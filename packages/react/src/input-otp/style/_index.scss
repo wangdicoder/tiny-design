@@ -1,0 +1,53 @@
+@use '../../style/variables' as *;
+@use '../../input/style/mixin' as *;
+
+.#{$prefix}-input-otp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &__cell {
+    @include input-default;
+
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    padding: 0;
+    font-size: $input-md-font-size;
+    border-radius: $input-border-radius;
+    caret-color: transparent;
+
+    &_sm {
+      width: 28px;
+      height: 28px;
+      font-size: $input-sm-font-size;
+    }
+
+    &_md {
+      width: 36px;
+      height: 36px;
+      font-size: $input-md-font-size;
+    }
+
+    &_lg {
+      width: 44px;
+      height: 44px;
+      font-size: $input-lg-font-size;
+    }
+
+    &_disabled {
+      @include input-default-disabled;
+    }
+  }
+
+  &__separator {
+    display: inline-flex;
+    align-items: center;
+    color: var(--ty-color-text-secondary);
+    font-size: $font-size-base;
+  }
+
+  &_disabled {
+    cursor: not-allowed;
+  }
+}

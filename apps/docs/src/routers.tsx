@@ -129,6 +129,7 @@ const c = {
   speedDial: ll(() => import('../../../packages/react/src/speed-dial/index.md'), () => import('../../../packages/react/src/speed-dial/index.zh_CN.md')),
   anchor: ll(() => import('../../../packages/react/src/anchor/index.md'), () => import('../../../packages/react/src/anchor/index.zh_CN.md')),
   autoComplete: ll(() => import('../../../packages/react/src/auto-complete/index.md'), () => import('../../../packages/react/src/auto-complete/index.zh_CN.md')),
+  inputOTP: ll(() => import('../../../packages/react/src/input-otp/index.md'), () => import('../../../packages/react/src/input-otp/index.md')),
   overlay: ll(() => import('../../../packages/react/src/overlay/index.md'), () => import('../../../packages/react/src/overlay/index.zh_CN.md')),
 };
 
@@ -218,6 +219,7 @@ export const getComponentMenu = (s: SiteLocale): RouterItem[] => {
         { title: 'Input', route: 'input', component: pick(c.input, z) },
         { title: 'Input Number', route: 'input-number', component: pick(c.inputNumber, z) },
         { title: 'Input Password', route: 'input-password', component: pick(c.inputPassword, z) },
+        { title: 'InputOTP', route: 'input-otp', component: pick(c.inputOTP, z) },
         { title: 'Native Select', route: 'native-select', component: pick(c.nativeSelect, z) },
         { title: 'Radio', route: 'radio', component: pick(c.radio, z) },
         { title: 'Rate', route: 'rate', component: pick(c.rate, z) },
