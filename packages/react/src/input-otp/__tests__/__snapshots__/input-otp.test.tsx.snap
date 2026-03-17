@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputOTP /> should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ty-input-otp ty-input-otp_md"
+    role="group"
+  >
+    <input
+      aria-label="OTP Input 1"
+      autocomplete="one-time-code"
+      class="ty-input-otp__cell ty-input-otp__cell_md"
+      inputmode="numeric"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="OTP Input 2"
+      autocomplete="one-time-code"
+      class="ty-input-otp__cell ty-input-otp__cell_md"
+      inputmode="numeric"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="OTP Input 3"
+      autocomplete="one-time-code"
+      class="ty-input-otp__cell ty-input-otp__cell_md"
+      inputmode="numeric"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="OTP Input 4"
+      autocomplete="one-time-code"
+      class="ty-input-otp__cell ty-input-otp__cell_md"
+      inputmode="numeric"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="OTP Input 5"
+      autocomplete="one-time-code"
+      class="ty-input-otp__cell ty-input-otp__cell_md"
+      inputmode="numeric"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="OTP Input 6"
+      autocomplete="one-time-code"
+      class="ty-input-otp__cell ty-input-otp__cell_md"
+      inputmode="numeric"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
+`;
