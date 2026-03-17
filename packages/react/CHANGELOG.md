@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- Improve `InputOTP` behaviour: - [#54](https://github.com/wangdicoder/tiny-design/pull/54) [`b81d406`](https://github.com/wangdicoder/tiny-design/commit/b81d40600573110565837dbde712bc778a3238d9)
+  - Fire `onChange` on every value update instead of only when all cells are filled.
+  - Fix masked cell rendering logic.
+  - Adjust caret colour to follow current text colour.
+  - Update docs and tests for the new behaviour and add Chinese docs entry.
+
 ## 1.0.11
 
 ### Patch Changes
