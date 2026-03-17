@@ -63,7 +63,16 @@ const InputOTP = React.forwardRef<InputOTPRef, InputOTPProps>(
     // Imperative handle
     React.useImperativeHandle(ref, () => ({
       focus: () => {
-        inputsRef.current[0]?.focus();
+        // Focus first empty cell (or last cell if all filled)
+        let nextIndex = 0;
+        for (let i = 0; i < length; i += 1) {
+          if (!inputsRef.current[i]?.value) {
+            nextIndex = i;
+            break;
+          }
+          nextIndex = i;
+        }
+        inputsRef.current[nextIndex]?.focus();
       },
       blur: () => {
         for (let i = 0; i < length; i += 1) {
@@ -149,20 +158,15 @@ const InputOTP = React.forwardRef<InputOTPRef, InputOTPProps>(
     // Handle active change (arrow keys, backspace)
     const onInputActiveChange = useCallback(
       (nextIndex: number) => {
-        inputsRef.current[nextIndex]?.focus();
+        const clampedIndex = Math.max(0, Math.min(nextIndex, length - 1));
+        inputsRef.current[clampedIndex]?.focus();
       },
-      []
+      [length]
     );
 
-    // Handle focus — keep focus on first empty cell
+    // Handle focus — keep focus on the interacted cell
     const onInputFocus = useCallback(
       (event: React.FocusEvent<HTMLInputElement>, index: number) => {
-        for (let i = 0; i < index; i += 1) {
-          if (!inputsRef.current[i]?.value) {
-            inputsRef.current[i]?.focus();
-            return;
-          }
-        }
         if (onFocus) {
           (onFocus as React.FocusEventHandler<HTMLDivElement>)(event as unknown as React.FocusEvent<HTMLDivElement>);
         }
