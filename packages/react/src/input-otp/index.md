@@ -7,7 +7,7 @@ import Separator from './demo/separator.md'
 import Formatter from './demo/formatter.md'
 import AutoFocus from './demo/auto-focus.md'
 
-# InputOTP
+# Input OTP
 
 Used for entering verification codes, OTP (One-Time Password), and similar short numeric/character sequences.
 
@@ -54,6 +54,6 @@ import { InputOTP } from 'tiny-design';
 | separator    | Separator element rendered between cells                                  | ((index: number) => ReactNode) &#124; ReactNode                   | -       |
 | autoFocus    | Auto focus the first cell on mount                                        | boolean                                                           | false   |
 | autoComplete | HTML autocomplete attribute                                               | string                                                            | `one-time-code` |
-| onChange     | Callback when all cells are filled                                        | (value: string) => void                                           | -       |
+| onChange     | Callback when the value changes                                           | (value: string) => void                                           | -       |
 | style        | Style of container                                                        | CSSProperties                                                     | -       |
 | className    | ClassName of container                                                    | string                                                            | -       |

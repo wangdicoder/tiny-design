@@ -67,7 +67,7 @@ const OTPInput = React.forwardRef<HTMLInputElement, OTPInputCellProps>(
       syncSelection();
     };
 
-    const displayValue = mask && value ? (typeof mask === 'string' ? mask : '•') : value;
+    const displayValue = mask && typeof mask === 'string' && value ? mask : value;
     const inputType = mask === true ? 'password' : 'text';
 
     return (
@@ -81,7 +81,7 @@ const OTPInput = React.forwardRef<HTMLInputElement, OTPInputCellProps>(
           [`${prefixCls}__cell_disabled`]: disabled,
           [`${prefixCls}__cell_mask`]: mask,
         })}
-        value={mask && typeof mask === 'string' && value ? mask : value}
+        value={displayValue}
         disabled={disabled}
         autoFocus={autoFocus}
         onInput={onInternalInput}

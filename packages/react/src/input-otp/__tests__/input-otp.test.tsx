@@ -59,7 +59,7 @@ describe('<InputOTP />', () => {
     expect(container.firstChild).toHaveAttribute('role', 'group');
   });
 
-  it('should fire onChange when all cells are filled', () => {
+  it('should fire onChange on every input change', () => {
     const fn = jest.fn();
     const { container } = render(<InputOTP length={4} onChange={fn} />);
     const inputs = container.querySelectorAll('input');
@@ -67,10 +67,11 @@ describe('<InputOTP />', () => {
     fireEvent.input(inputs[0], { target: { value: '1' } });
     fireEvent.input(inputs[1], { target: { value: '2' } });
     fireEvent.input(inputs[2], { target: { value: '3' } });
-    expect(fn).not.toHaveBeenCalled();
-
     fireEvent.input(inputs[3], { target: { value: '4' } });
-    expect(fn).toHaveBeenCalledWith('1234');
+    expect(fn).toHaveBeenNthCalledWith(1, '1');
+    expect(fn).toHaveBeenNthCalledWith(2, '12');
+    expect(fn).toHaveBeenNthCalledWith(3, '123');
+    expect(fn).toHaveBeenNthCalledWith(4, '1234');
   });
 
   it('should render separator', () => {

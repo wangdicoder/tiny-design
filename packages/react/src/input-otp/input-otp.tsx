@@ -82,21 +82,19 @@ const InputOTP = React.forwardRef<InputOTPRef, InputOTPProps>(
       nativeElement: containerRef.current,
     }));
 
-    // Trigger onChange when all cells filled
+    // Trigger onChange when value cells change
     const triggerValueCellsChange = useCallback(
       (nextValueCells: string[]) => {
-        setValueCells(nextValueCells);
-
-        if (
-          onChange &&
-          nextValueCells.length === length &&
-          nextValueCells.every((c) => c) &&
-          nextValueCells.some((c, index) => valueCells[index] !== c)
-        ) {
-          onChange(nextValueCells.join(''));
-        }
+        setValueCells((prev) => {
+          const prevValue = prev.join('');
+          const nextValue = nextValueCells.join('');
+          if (onChange && prevValue !== nextValue) {
+            onChange(nextValue);
+          }
+          return nextValueCells;
+        });
       },
-      [onChange, length, valueCells]
+      [onChange]
     );
 
     // Patch value at given index
