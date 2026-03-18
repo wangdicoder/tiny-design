@@ -89,9 +89,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
-      react-live:
-        specifier: ^4.1.0
-        version: 4.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-router-dom:
         specifier: ^6.0.0
         version: 6.30.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4225,13 +4222,6 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
-  react-live@4.1.8:
-    resolution: {integrity: sha512-B2SgNqwPuS2ekqj4lcxi5TibEcjWkdVyYykBEUBshPAPDQ527x2zPEZg560n8egNtAjUpwXFQm7pcXV65aAYmg==}
-    engines: {node: '>= 0.12.0', npm: '>= 2.0.0'}
-    peerDependencies:
-      react: '>=18.0.0'
-      react-dom: '>=18.0.0'
-
   react-refresh@0.18.0:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
     engines: {node: '>=0.10.0'}
@@ -5147,11 +5137,6 @@ packages:
 
   url-parse@1.5.10:
     resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
-
-  use-editable@2.3.3:
-    resolution: {integrity: sha512-7wVD2JbfAFJ3DK0vITvXBdpd9JAz5BcKAAolsnLBuBn6UDDwBGuCIAGvR3yA2BNKm578vAMVHFCWaOcA+BhhiA==}
-    peerDependencies:
-      react: '>= 16.8.0'
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -10230,14 +10215,6 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-live@4.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
-    dependencies:
-      prism-react-renderer: 2.4.1(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      sucrase: 3.35.1
-      use-editable: 2.3.3(react@18.3.1)
-
   react-refresh@0.18.0: {}
 
   react-router-dom@6.30.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
@@ -11362,10 +11339,6 @@ snapshots:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
-
-  use-editable@2.3.3(react@18.3.1):
-    dependencies:
-      react: 18.3.1
 
   util-deprecate@1.0.2: {}
 

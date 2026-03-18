@@ -23,9 +23,7 @@ import { Row, Col } from 'tiny-design';
 
 ## 代码示例
 
-<Layout>
-  <Column>
-    <Demo>
+<Demo>
 
 ### 基本栅格
 
@@ -33,8 +31,8 @@ import { Row, Col } from 'tiny-design';
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
-    </Demo>
-    <Demo>
+</Demo>
+<Demo>
 
 ### 栅格间距
 
@@ -42,8 +40,8 @@ import { Row, Col } from 'tiny-design';
 
 <DemoBlock component={GutterDemo} source={GutterSource} />
 
-    </Demo>
-    <Demo>
+</Demo>
+<Demo>
 
 ### 栅格偏移
 
@@ -51,10 +49,8 @@ import { Row, Col } from 'tiny-design';
 
 <DemoBlock component={OffsetDemo} source={OffsetSource} />
 
-    </Demo>
-  </Column>
-  <Column>
-    <Demo>
+</Demo>
+<Demo>
 
 ### 排序
 
@@ -62,8 +58,8 @@ import { Row, Col } from 'tiny-design';
 
 <DemoBlock component={OrderDemo} source={OrderSource} />
 
-    </Demo>
-    <Demo>
+</Demo>
+<Demo>
 
 ### 对齐
 
@@ -71,8 +67,8 @@ import { Row, Col } from 'tiny-design';
 
 <DemoBlock component={AlignmentDemo} source={AlignmentSource} />
 
-    </Demo>
-    <Demo>
+</Demo>
+<Demo>
 
 ### 响应式
 
@@ -80,9 +76,7 @@ import { Row, Col } from 'tiny-design';
 
 <DemoBlock component={ResponsiveDemo} source={ResponsiveSource} />
 
-    </Demo>
-  </Column>
-</Layout>
+</Demo>
 
 ## API
 

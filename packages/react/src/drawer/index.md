@@ -65,7 +65,7 @@ The Drawer can appear from any edge of the screen.
 | ----------------- | ----------------------------------------------------- | --------------------------------------------------------- | --------- |
 | placement         | The placement of the Drawer                           | enum: `top` &#124; `bottom` &#124; `left` &#124; `right`  | `right`   |
 | size              | Drawer dialog width or height                         | number &#124; string                                      | 256       |
-| open           | Whether the Drawer dialog is visible or not           | boolean                                                   | -         |
+| visible           | Whether the Drawer dialog is visible or not           | boolean                                                   | -         |
 | header            | Drawer header                                         | ReactNode                                                 | -         |
 | footer            | Drawer footer                                         | ReactNode                                                 | -         |
 | closable          | Display a close button                                | boolean                                                   | `true`    |

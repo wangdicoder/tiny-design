@@ -15,7 +15,7 @@ export default function MultiLevelDemo() {
         size={520}
         closable={false}
         onClose={() => setVisible(false)}
-        open={visible}
+        visible={visible}
       >
         <Button btnType="primary" onClick={() => setChildVisible(true)}>
           Two-level drawer
@@ -25,7 +25,7 @@ export default function MultiLevelDemo() {
           size={320}
           closable={false}
           onClose={() => setChildVisible(false)}
-          open={childVisible}
+          visible={childVisible}
         >
           This is two-level drawer
         </Drawer>
