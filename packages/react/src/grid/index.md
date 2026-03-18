@@ -23,9 +23,7 @@ import { Row, Col } from 'tiny-design';
 
 ## Examples
 
-<Layout>
-  <Column>
-    <Demo>
+<Demo>
 
 ### Basic Grid
 
@@ -33,8 +31,8 @@ Create basic grid layout using columns.
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
-    </Demo>
-    <Demo>
+</Demo>
+<Demo>
 
 ### Gutter
 
@@ -42,8 +40,8 @@ Use the `gutter` property of `Row` as grid spacing. It is recommended to set it 
 
 <DemoBlock component={GutterDemo} source={GutterSource} />
 
-    </Demo>
-    <Demo>
+</Demo>
+<Demo>
 
 ### Column offset
 
@@ -51,10 +49,8 @@ Use the `gutter` property of `Row` as grid spacing. It is recommended to set it 
 
 <DemoBlock component={OffsetDemo} source={OffsetSource} />
 
-    </Demo>
-  </Column>
-  <Column>
-    <Demo>
+</Demo>
+<Demo>
 
 ### Order
 
@@ -62,8 +58,8 @@ Change the element sort by `order`.
 
 <DemoBlock component={OrderDemo} source={OrderSource} />
 
-    </Demo>
-    <Demo>
+</Demo>
+<Demo>
 
 ### Alignment
 
@@ -71,8 +67,8 @@ Child elements vertically aligned.
 
 <DemoBlock component={AlignmentDemo} source={AlignmentSource} />
 
-    </Demo>
-    <Demo>
+</Demo>
+<Demo>
 
 ### Responsive
 
@@ -80,9 +76,7 @@ Columns respond to viewport width using `xs`, `sm`, `md`, `lg`, `xl`, `xxl` brea
 
 <DemoBlock component={ResponsiveDemo} source={ResponsiveSource} />
 
-    </Demo>
-  </Column>
-</Layout>
+</Demo>
 
 ## API
 

@@ -25,9 +25,8 @@ const { Header, Footer, Content, Sidebar } = Layout;
 
 ## Examples
 
-<Layout>
-  <Column>
-    <Demo>
+
+<Demo>
 
 ### Basic Structure
 
@@ -35,10 +34,9 @@ Classic page layouts.
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
-    </Demo>
-  </Column>
-  <Column>
-    <Demo>
+</Demo>
+
+<Demo>
 
 ### Collapsible Sidebar
 
@@ -46,9 +44,7 @@ Use `collapsible` to enable a built-in toggle trigger on the sidebar. Control th
 
 <DemoBlock component={SidebarDemo} source={SidebarSource} />
 
-    </Demo>
-  </Column>
-</Layout>
+</Demo>
 
 ## API
 

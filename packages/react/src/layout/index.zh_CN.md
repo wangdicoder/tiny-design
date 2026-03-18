@@ -25,9 +25,7 @@ const { Header, Footer, Content, Sidebar } = Layout;
 
 ## 代码示例
 
-<Layout>
-  <Column>
-    <Demo>
+<Demo>
 
 ### 基本结构
 
@@ -35,10 +33,8 @@ const { Header, Footer, Content, Sidebar } = Layout;
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
-    </Demo>
-  </Column>
-  <Column>
-    <Demo>
+</Demo>
+<Demo>
 
 ### 可折叠侧边栏
 
@@ -46,9 +42,7 @@ const { Header, Footer, Content, Sidebar } = Layout;
 
 <DemoBlock component={SidebarDemo} source={SidebarSource} />
 
-    </Demo>
-  </Column>
-</Layout>
+</Demo>
 
 ## API
 
