@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Placement from './demo/placement.md'
-import Level from './demo/multi-level.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import MultiLevelDemo from './demo/MultiLevel';
+import MultiLevelSource from './demo/MultiLevel.tsx?raw';
 
 # Drawer
 
@@ -24,11 +27,35 @@ import { Drawer } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Level/>
+    <Demo>
+
+### Basic
+
+Basic drawer.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Multi-level drawer
+
+Open a new drawer on top of an existing drawer to handle multi branch tasks.
+
+<DemoBlock component={MultiLevelDemo} source={MultiLevelSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Placement/>
+    <Demo>
+
+### Placement
+
+The Drawer can appear from any edge of the screen.
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -38,10 +65,10 @@ import { Drawer } from 'tiny-design';
 | ----------------- | ----------------------------------------------------- | --------------------------------------------------------- | --------- |
 | placement         | The placement of the Drawer                           | enum: `top` &#124; `bottom` &#124; `left` &#124; `right`  | `right`   |
 | size              | Drawer dialog width or height                         | number &#124; string                                      | 256       |
-| visible           | Whether the Drawer dialog is visible or not           | boolean                                                   | -         |
-| header            | Drawer header                                         | ReactNode                                                 | -         | 
-| footer            | Drawer footer                                         | ReactNode                                                 | -         | 
-| closable          | Display a close button                                | boolean                                                   | `true`    | 
-| unmountOnClose    | Whether unmount child components when closing drawer  | boolean                                                   | `true`    | 
+| open           | Whether the Drawer dialog is visible or not           | boolean                                                   | -         |
+| header            | Drawer header                                         | ReactNode                                                 | -         |
+| footer            | Drawer footer                                         | ReactNode                                                 | -         |
+| closable          | Display a close button                                | boolean                                                   | `true`    |
+| unmountOnClose    | Whether unmount child components when closing drawer  | boolean                                                   | `true`    |
 | style	            | style object of container	object                      | CSSProperties                                             | -         |
 | className	        | className of container                                | string                                                    | -         |

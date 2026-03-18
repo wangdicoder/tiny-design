@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Target from './demo/target.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import TargetDemo from './demo/Target';
+import TargetSource from './demo/Target.tsx?raw';
 
 # Scroll Indicator
 
@@ -17,8 +19,24 @@ import { ScrollIndicator } from 'tiny-design';
 
 ## 代码示例
 
-<Basic/>
-<Target/>
+<Demo>
+
+### 基本用法
+
+一个基础示例。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+</Demo>
+<Demo>
+
+### 容器滚动
+
+设置 target 属性，监听目标元素的滚动事件（默认为 `window`）。
+
+<DemoBlock component={TargetDemo} source={TargetSource} />
+
+</Demo>
 
 ## API
 

@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Direction from './demo/direction.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DirectionDemo from './demo/Direction';
+import DirectionSource from './demo/Direction.tsx?raw';
 
 # Flip
 
@@ -21,10 +23,26 @@ const { Item } = Flip;
 
 <Layout>
   <Column>
-    <Basic/>
-  </Column>
-  <Column>
-    <Direction/>
+    <Demo>
+
+### Basic
+
+A basic flip
+
+> **The flip's width and height must be set**
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Direction
+
+`direction` and `reverse` can make the flip different.
+
+<DemoBlock component={DirectionDemo} source={DirectionSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

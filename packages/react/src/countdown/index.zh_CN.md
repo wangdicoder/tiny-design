@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Millisecond from './demo/millisecond.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import MillisecondDemo from './demo/Millisecond';
+import MillisecondSource from './demo/Millisecond.tsx?raw';
 
 # Countdown
 
@@ -19,10 +21,26 @@ import { Countdown } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### 基本用法
+
+基本的例子。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Millisecond/>
+    <Demo>
+
+### 毫秒
+
+允许显示毫秒
+
+<DemoBlock component={MillisecondDemo} source={MillisecondSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

@@ -1,7 +1,13 @@
-import Horizontal from './demo/horizontal.md'
-import Vertical from './demo/vertical.md'
-import Nest from './demo/nest.md'
-import Step from './demo/step.md'
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import HorizontalDemo from './demo/Horizontal';
+import HorizontalSource from './demo/Horizontal.tsx?raw';
+import NestDemo from './demo/Nest';
+import NestSource from './demo/Nest.tsx?raw';
+import StepDemo from './demo/Step';
+import StepSource from './demo/Step.tsx?raw';
+import MultipleDemo from './demo/Multiple';
+import MultipleSource from './demo/Multiple.tsx?raw';
 
 # Split
 
@@ -19,10 +25,57 @@ import { Split } from 'tiny-design';
 
 ## Examples
 
-<Vertical/>
-<Horizontal/>
-<Nest/>
-<Step/>
+<Layout>
+  <Column>
+    <Demo>
+
+### Vertical divider
+
+Top & Bottom.
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
+    <Demo>
+
+### Horizontal divider
+
+Left & Right.
+
+<DemoBlock component={HorizontalDemo} source={HorizontalSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Nest
+
+Can be used nested.
+
+<DemoBlock component={NestDemo} source={NestSource} />
+
+    </Demo>
+    <Demo>
+
+### Step
+
+Allow moving by a certain distance.
+
+<DemoBlock component={StepDemo} source={StepSource} />
+
+    </Demo>
+    <Demo>
+
+### Multiple
+
+Multiple divider.
+
+<DemoBlock component={MultipleDemo} source={MultipleSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

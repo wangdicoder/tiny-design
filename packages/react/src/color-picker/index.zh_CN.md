@@ -1,4 +1,13 @@
-import Basic from './demo/basic.md'
+import AlphaDemo from './demo/Alpha';
+import AlphaSource from './demo/Alpha.tsx?raw';
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import FormatDemo from './demo/Format';
+import FormatSource from './demo/Format.tsx?raw';
+import TriggerDemo from './demo/Trigger';
+import TriggerSource from './demo/Trigger.tsx?raw';
 
 # ColorPicker 颜色选择器
 
@@ -18,7 +27,53 @@ import { ColorPicker } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### 基本用法
+
+点击色块打开颜色选择面板。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 格式
+
+在 `hex`、`rgb` 和 `hsb` 输出格式之间切换。
+
+<DemoBlock component={FormatDemo} source={FormatSource} />
+
+    </Demo>
+    <Demo>
+
+### 透明度
+
+使用 `showAlpha` 启用透明度滑块。
+
+<DemoBlock component={AlphaDemo} source={AlphaSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 禁用
+
+禁用的颜色选择器。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### 触发方式
+
+悬停时打开面板而不是点击。
+
+<DemoBlock component={TriggerDemo} source={TriggerSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -34,7 +89,6 @@ import { ColorPicker } from 'tiny-design';
 | presets        | 预设颜色             | string[]                         |         |
 | showAlpha      | 显示透明度滑块       | boolean                          | false   |
 | disabled       | 禁用                 | boolean                          | false   |
-| size           | 触发器尺寸           | 'sm' \| 'md' \| 'lg'           | md      |
 | trigger        | 触发方式             | 'click' \| 'hover'             | click   |
 | open           | 面板显示（受控）     | boolean                          |         |
 | onOpenChange   | 面板显示变化回调     | (open: boolean) => void          |         |

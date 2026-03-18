@@ -80,6 +80,9 @@ const en_US: SiteLocale = {
   codeBlock: {
     showCode: 'Show Code',
     hideCode: 'Hide Code',
+    copyCode: 'Copy Code',
+    resetDemo: 'Reset Demo',
+    copied: 'Copied',
     openInStackBlitz: 'Open in StackBlitz',
     openInCodeSandbox: 'Open in CodeSandbox',
   },

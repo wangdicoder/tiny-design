@@ -1,4 +1,5 @@
-import Basic from './demo/basic.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
 
 # Keyboard
 
@@ -18,7 +19,15 @@ import { Keyboard } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### Basic
+
+A simple usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
   <Column>
   </Column>

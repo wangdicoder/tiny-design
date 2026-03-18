@@ -1,11 +1,19 @@
-import Block from './demo/block.md'
-import MoreTypes from './demo/more-types.md'
-import Disabled from './demo/disabled.md'
-import ButtonGroup from './demo/group.md'
-import Icon from './demo/icon.md'
-import Loading from './demo/loading.md'
-import Size from './demo/size.md'
-import Type from './demo/type.md'
+import TypeDemo from './demo/Type';
+import TypeSource from './demo/Type.tsx?raw';
+import MoreTypesDemo from './demo/MoreTypes';
+import MoreTypesSource from './demo/MoreTypes.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import LoadingDemo from './demo/Loading';
+import LoadingSource from './demo/Loading.tsx?raw';
+import BlockDemo from './demo/Block';
+import BlockSource from './demo/Block.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import GroupDemo from './demo/Group';
+import GroupSource from './demo/Group.tsx?raw';
 
 # Button
 
@@ -27,16 +35,82 @@ const { Group } = Button;
 
 <Layout>
   <Column>
-    <Type/>
-    <MoreTypes/>
-    <Size/>
-    <ButtonGroup/>
-    <Loading/>
+    <Demo>
+
+### Type
+
+There are `default`, `primary`, `outline`, `ghost` and `link` button.
+
+> The link type button only changes the style. It is still a `<button>` tag. Considering using a `<Link />` component to represent a hyperlink with the `href` property.
+
+<DemoBlock component={TypeDemo} source={TypeSource} />
+
+    </Demo>
+    <Demo>
+
+### More Types
+
+Different colors represent different meanings.
+
+<DemoBlock component={MoreTypesDemo} source={MoreTypesSource} />
+
+    </Demo>
+    <Demo>
+
+### Size
+
+There are three different sizes, `lg`, `md`, `sm`. The default size is `md`.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### Button Group
+
+Buttons can be grouped by placing multiple `Button` components into a `Button.Group`.
+
+<DemoBlock component={GroupDemo} source={GroupSource} />
+
+    </Demo>
+    <Demo>
+
+### Loading Button
+
+Click the button to load data, then the button displays a loading state.
+
+<DemoBlock component={LoadingDemo} source={LoadingSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Icon/>
-    <Disabled/>
-    <Block/>
+    <Demo>
+
+### Icon Button
+
+Use icons to add more meaning to Button. You can use icon alone to save some space, or with text together.
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+Add the `disabled` property to disable the Button.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Block Button
+
+block property will make the button fit to its parent width.
+
+<DemoBlock component={BlockDemo} source={BlockSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

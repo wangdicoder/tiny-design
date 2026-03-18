@@ -1,8 +1,13 @@
-import AutoFont from './demo/auto-font.md'
-import Basic from './demo/basic.md'
-import Group from './demo/group.md'
-import Presence from './demo/presence.md'
-import Type from './demo/type.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import TypeDemo from './demo/Type';
+import TypeSource from './demo/Type.tsx?raw';
+import GroupDemo from './demo/Group';
+import GroupSource from './demo/Group.tsx?raw';
+import PresenceDemo from './demo/Presence';
+import PresenceSource from './demo/Presence.tsx?raw';
+import AutoFontDemo from './demo/AutoFont';
+import AutoFontSource from './demo/AutoFont.tsx?raw';
 
 # Avatar
 
@@ -24,13 +29,53 @@ const { Group } = Avatar;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Type/>
-    <Group/>
+    <Demo>
+
+### Basic
+
+Different sizes setting by `size` and two shapes are available.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Type
+
+Image, Icon and letter are supported, and the latter two kinds avatar can have custom colors and background colors.
+
+<DemoBlock component={TypeDemo} source={TypeSource} />
+
+    </Demo>
+    <Demo>
+
+### Group
+
+Include multiple avatar items inside an `AvatarGroup` container.
+
+<DemoBlock component={GroupDemo} source={GroupSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Presence/>
-    <AutoFont/>
+    <Demo>
+
+### Presence Indicator
+
+Avatar also support presence indicators. Add `online`, `busy`, `away` or `offline` attribute for different status colors.
+
+<DemoBlock component={PresenceDemo} source={PresenceSource} />
+
+    </Demo>
+    <Demo>
+
+### Auto set font size
+
+For letter type Avatar, when the letters are too long to display, the font size can be automatically adjusted according to the width of the Avatar.
+
+<DemoBlock component={AutoFontDemo} source={AutoFontSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

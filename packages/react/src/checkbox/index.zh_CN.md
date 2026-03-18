@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import CheckAll from './demo/check-all.md'
-import Disabled from './demo/disabled.md'
-import Group from './demo/group.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CheckAllDemo from './demo/CheckAll';
+import CheckAllSource from './demo/CheckAll.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import GroupDemo from './demo/Group';
+import GroupSource from './demo/Group.tsx?raw';
 
 # Checkbox
 
@@ -24,12 +28,44 @@ const { Group } = Checkbox;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Group/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 复选框组
+
+复选框组件组。
+
+<DemoBlock component={GroupDemo} source={GroupSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <CheckAll/>
-    <Disabled/>
+    <Demo>
+
+### 全选
+
+`indeterminate` 属性可以帮助你实现**全选**效果。
+
+<DemoBlock component={CheckAllDemo} source={CheckAllSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用
+
+复选框的禁用状态。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

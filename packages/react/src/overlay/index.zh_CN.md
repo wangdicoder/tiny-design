@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Blurred from './demo/blurred.md'
-import MaskTypes from './demo/mask-types.md'
-import CustomContent from './demo/custom-content.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import BlurredDemo from './demo/Blurred';
+import BlurredSource from './demo/Blurred.tsx?raw';
+import MaskTypesDemo from './demo/MaskTypes';
+import MaskTypesSource from './demo/MaskTypes.tsx?raw';
+import CustomContentDemo from './demo/CustomContent';
+import CustomContentSource from './demo/CustomContent.tsx?raw';
 
 # Overlay
 
@@ -21,12 +25,44 @@ import { Overlay } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <MaskTypes/>
+    <Demo>
+
+### 基础用法
+
+带有默认遮罩的基础遮罩层。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 遮罩类型
+
+遮罩层支持三种类型：`default`、`inverted` 和 `none`。
+
+<DemoBlock component={MaskTypesDemo} source={MaskTypesSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Blurred/>
-    <CustomContent/>
+    <Demo>
+
+### 模糊背景
+
+带有模糊背景效果的遮罩层。
+
+<DemoBlock component={BlurredDemo} source={BlurredSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义内容
+
+遮罩层可以包裹任意自定义内容并显示在遮罩上方。
+
+<DemoBlock component={CustomContentDemo} source={CustomContentSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

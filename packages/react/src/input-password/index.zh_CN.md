@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import HideButton from './demo/hide-button.md'
-import Strength from './demo/strength.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import HideButtonDemo from './demo/HideButton';
+import HideButtonSource from './demo/HideButton.tsx?raw';
+import StrengthDemo from './demo/Strength';
+import StrengthSource from './demo/Strength.tsx?raw';
 
 # Input Password
 
@@ -20,11 +23,35 @@ import { InputPassword } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <HideButton/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 隐藏按钮
+
+可以隐藏后缀按钮。
+
+<DemoBlock component={HideButtonDemo} source={HideButtonSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Strength />
+    <Demo>
+
+### 配合强度指示器
+
+与 `StrengthIndicator` 组件配合使用。
+
+<DemoBlock component={StrengthDemo} source={StrengthSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

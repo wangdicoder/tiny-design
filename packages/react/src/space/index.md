@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Vertical from './demo/vertical.md'
-import Size from './demo/size.md'
-import Align from './demo/align.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import AlignDemo from './demo/Align';
+import AlignSource from './demo/Align.tsx?raw';
 
 # Space
 
@@ -21,12 +25,44 @@ import { Space } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic />
-    <Vertical />
+    <Demo>
+
+### Basic Usage
+
+Distribute components in a horizontal space.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Space Size
+
+`small`, `medium` and `large` preset sizes.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Size />
-    <Align />
+    <Demo>
+
+### Vertical Space
+
+Distribute components in a vertical space.
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
+    <Demo>
+
+### Align
+
+Item align.
+
+<DemoBlock component={AlignDemo} source={AlignSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -37,4 +73,3 @@ import { Space } from 'tiny-design';
 | align     | align items       | enum: `start` &#124; `end` &#124; `center` &#124; `baseline`  | `center`      |
 | direction | space direction	| enum: `horizontal` &#124; `vertical`                          | `horizontal`  |
 | size      | space size        | enum: `sm` &#124; `md` &#124; `lg` &#124; `number`            | `sm`          |
-

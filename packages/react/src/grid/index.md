@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import Gutter from './demo/gutter.md'
-import Offset from './demo/offset.md'
-import Order from './demo/order.md'
-import Alignment from './demo/alignment.md'
-import Responsive from './demo/responsive.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import GutterDemo from './demo/Gutter';
+import GutterSource from './demo/Gutter.tsx?raw';
+import OffsetDemo from './demo/Offset';
+import OffsetSource from './demo/Offset.tsx?raw';
+import OrderDemo from './demo/Order';
+import OrderSource from './demo/Order.tsx?raw';
+import AlignmentDemo from './demo/Alignment';
+import AlignmentSource from './demo/Alignment.tsx?raw';
+import ResponsiveDemo from './demo/Responsive';
+import ResponsiveSource from './demo/Responsive.tsx?raw';
 
 # Grid
 
@@ -17,12 +23,66 @@ import { Row, Col } from 'tiny-design';
 
 ## Examples
 
-<Basic />
-<Gutter />
-<Offset />
-<Order />
-<Alignment />
-<Responsive />
+<Layout>
+  <Column>
+    <Demo>
+
+### Basic Grid
+
+Create basic grid layout using columns.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Gutter
+
+Use the `gutter` property of `Row` as grid spacing. It is recommended to set it to `8n` px. (`n` stands for natural number.)
+
+<DemoBlock component={GutterDemo} source={GutterSource} />
+
+    </Demo>
+    <Demo>
+
+### Column offset
+
+`Offset` can set the column to the right side.
+
+<DemoBlock component={OffsetDemo} source={OffsetSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Order
+
+Change the element sort by `order`.
+
+<DemoBlock component={OrderDemo} source={OrderSource} />
+
+    </Demo>
+    <Demo>
+
+### Alignment
+
+Child elements vertically aligned.
+
+<DemoBlock component={AlignmentDemo} source={AlignmentSource} />
+
+    </Demo>
+    <Demo>
+
+### Responsive
+
+Columns respond to viewport width using `xs`, `sm`, `md`, `lg`, `xl`, `xxl` breakpoints. Resize the browser to see columns reflow.
+
+<DemoBlock component={ResponsiveDemo} source={ResponsiveSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

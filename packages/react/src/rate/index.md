@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Character from './demo/character.md'
-import Clearable from './demo/clearable.md'
-import Disabled from './demo/disabled.md'
-import Half from './demo/half.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CharacterDemo from './demo/Character';
+import CharacterSource from './demo/Character.tsx?raw';
+import ClearableDemo from './demo/Clearable';
+import ClearableSource from './demo/Clearable.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import HalfDemo from './demo/Half';
+import HalfSource from './demo/Half.tsx?raw';
 
 # Rate
 
@@ -24,13 +29,53 @@ import { Rate } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Half/>
-    <Clearable/>
+    <Demo>
+
+### Basic
+
+The simplest usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Half star
+
+Support select half star.
+
+<DemoBlock component={HalfDemo} source={HalfSource} />
+
+    </Demo>
+    <Demo>
+
+### Clear star
+
+Support set allow to clear star when click again.
+
+<DemoBlock component={ClearableDemo} source={ClearableSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Disabled/>
-    <Character/>
+    <Demo>
+
+### Read only
+
+Read only, can't be interactive.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Other Character
+
+Replace the default star to other character like alphabet, digit, iconfont or even other language word.
+
+<DemoBlock component={CharacterDemo} source={CharacterSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

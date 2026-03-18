@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Placement from './demo/placement.md'
-import Trigger from './demo/trigger.md'
-import Controlled from './demo/controlled.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import TriggerDemo from './demo/Trigger';
+import TriggerSource from './demo/Trigger.tsx?raw';
+import ControlledDemo from './demo/Controlled';
+import ControlledSource from './demo/Controlled.tsx?raw';
 
 # Popover
 
@@ -23,12 +27,44 @@ import { Popover } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Placement/>
+    <Demo>
+
+### 基础用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 位置
+
+有12个不同的弹出位置。
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Trigger/>
-    <Controlled/>
+    <Demo>
+
+### 触发方式
+
+四种触发方式：鼠标点击、右键菜单、获得焦点、悬停。
+
+<DemoBlock component={TriggerDemo} source={TriggerSource} />
+
+    </Demo>
+    <Demo>
+
+### 受控模式
+
+使用 `visible` 属性来控制弹出层的显示状态。
+
+<DemoBlock component={ControlledDemo} source={ControlledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Align from './demo/align.md'
-import Gap from './demo/gap.md'
-import Wrap from './demo/wrap.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import AlignDemo from './demo/Align';
+import AlignSource from './demo/Align.tsx?raw';
+import GapDemo from './demo/Gap';
+import GapSource from './demo/Gap.tsx?raw';
+import WrapDemo from './demo/Wrap';
+import WrapSource from './demo/Wrap.tsx?raw';
 
 # Flex
 
@@ -19,10 +23,48 @@ import { Flex } from 'tiny-design';
 
 ## Examples
 
-<Basic />
-<Align />
-<Gap />
-<Wrap />
+<Layout>
+  <Column>
+    <Demo>
+
+### Basic Layout
+
+Use `vertical` to control the direction. Default is horizontal.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Alignment
+
+Set `justify` and `align` to control alignment of items.
+
+<DemoBlock component={AlignDemo} source={AlignSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Gap
+
+Preset sizes `sm` (8px), `md` (16px), `lg` (24px) or a custom number via slider.
+
+<DemoBlock component={GapDemo} source={GapSource} />
+
+    </Demo>
+    <Demo>
+
+### Wrap
+
+Flex items wrap automatically when `wrap` is set.
+
+<DemoBlock component={WrapDemo} source={WrapSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

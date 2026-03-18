@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import CheckAll from './demo/check-all.md'
-import Disabled from './demo/disabled.md'
-import Group from './demo/group.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CheckAllDemo from './demo/CheckAll';
+import CheckAllSource from './demo/CheckAll.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import GroupDemo from './demo/Group';
+import GroupSource from './demo/Group.tsx?raw';
 
 # Checkbox
 
@@ -24,12 +28,44 @@ const { Group } = Checkbox;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Group/>
+    <Demo>
+
+### Basic
+
+The simplest use.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Checkbox Group
+
+A group of checkbox components.
+
+<DemoBlock component={GroupDemo} source={GroupSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <CheckAll/>
-    <Disabled/>
+    <Demo>
+
+### Check all
+
+The `indeterminate` property can help you to achieve a **check all** effect.
+
+<DemoBlock component={CheckAllDemo} source={CheckAllSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+Disabled state of Checkbox.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

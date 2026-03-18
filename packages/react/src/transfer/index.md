@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Custom from './demo/custom.md'
-import Search from './demo/search.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomDemo from './demo/Custom';
+import CustomSource from './demo/Custom.tsx?raw';
+import SearchDemo from './demo/Search';
+import SearchSource from './demo/Search.tsx?raw';
 
 # Transfer
 
@@ -19,9 +22,39 @@ import { Transfer } from 'tiny-design';
 
 ## Examples
 
-<Basic />
-<Search />
-<Custom />
+<Layout>
+  <Column>
+    <Demo>
+
+### Basic
+
+The most basic usage of `Transfer` involves providing the source data and target keys arrays, plus the rendering and some callback functions.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Search
+
+Transfer with a search box.
+
+<DemoBlock component={SearchDemo} source={SearchSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Custom Rendering
+
+Use `renderItem` to customize each item's display.
+
+<DemoBlock component={CustomDemo} source={CustomSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

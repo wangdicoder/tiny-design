@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Count from './demo/count.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CountDemo from './demo/Count';
+import CountSource from './demo/Count.tsx?raw';
 
 # Textarea
 
@@ -19,10 +21,26 @@ import { Textarea } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### 基本用法
+
+简单的文本域。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Count/>
+    <Demo>
+
+### 限制与计数
+
+使用 `limit` 限制字符数量。也可以使用 `counter` 自定义计数节点。
+
+<DemoBlock component={CountDemo} source={CountSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

@@ -74,6 +74,9 @@ const zh_CN: SiteLocale = {
   codeBlock: {
     showCode: '显示代码',
     hideCode: '隐藏代码',
+    copyCode: '复制代码',
+    resetDemo: '重置演示',
+    copied: '已复制',
     openInStackBlitz: '在 StackBlitz 中打开',
     openInCodeSandbox: '在 CodeSandbox 中打开',
   },

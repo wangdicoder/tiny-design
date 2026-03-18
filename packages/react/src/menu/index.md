@@ -1,6 +1,9 @@
-import Horizontal from './demo/horizontal.md';
-import Vertical from './demo/vertical.md';
-import Inline from './demo/inline.md';
+import HorizontalDemo from './demo/Horizontal';
+import HorizontalSource from './demo/Horizontal.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import InlineDemo from './demo/Inline';
+import InlineSource from './demo/Inline.tsx?raw';
 
 # Menu
 
@@ -20,9 +23,33 @@ const { Item, SubMenu, ItemGroup, Divider } = Menu;
 
 ## Examples
 
-<Horizontal />
-<Vertical />
-<Inline />
+<Demo>
+
+### Top Navigation
+
+Horizontal top navigation menu.
+
+<DemoBlock component={HorizontalDemo} source={HorizontalSource} />
+
+</Demo>
+<Demo>
+
+### Vertical Navigation
+
+A vertical menu with inline submenus.
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+</Demo>
+<Demo>
+
+### Inline Navigation
+
+Inline navigation menu.
+
+<DemoBlock component={InlineDemo} source={InlineSource} />
+
+</Demo>
 
 
 ## API

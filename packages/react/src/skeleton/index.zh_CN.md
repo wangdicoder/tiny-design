@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Active from './demo/active.md'
-import Combination from './demo/combination.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ActiveDemo from './demo/Active';
+import ActiveSource from './demo/Active.tsx?raw';
+import CombinationDemo from './demo/Combination';
+import CombinationSource from './demo/Combination.tsx?raw';
 
 # Skeleton
 
@@ -20,9 +23,35 @@ import { Skeleton } from 'tiny-design';
 
 ## 代码示例
 
-<Basic/>
-<Active/>
-<Combination/>
+<Demo>
+
+### 基础用法
+
+最简单的骨架屏用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+</Demo>
+<Demo>
+
+### 动画效果
+
+设置 `active={true}` 开启微光动画效果。
+
+<DemoBlock component={ActiveDemo} source={ActiveSource} />
+
+</Demo>
+<Demo>
+
+### 组合使用
+
+一个复杂示例。
+
+> 可以使用 `<ConfigProvider/>` 一次性设置 `shimmer` 属性。
+
+<DemoBlock component={CombinationDemo} source={CombinationSource} />
+
+</Demo>
 
 ## API
 

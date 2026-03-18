@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Duration from './demo/duration.md'
-import Icon from './demo/icon.md'
-import Placement from './demo/placement.md'
-import Type from './demo/type.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DurationDemo from './demo/Duration';
+import DurationSource from './demo/Duration.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import TypeDemo from './demo/Type';
+import TypeSource from './demo/Type.tsx?raw';
 
 # Notification
 
@@ -28,13 +33,53 @@ import { Notification } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Duration/>
-    <Icon/>
+    <Demo>
+
+### Basic
+
+The simplest usage that close the notification box after 4.5s.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Control the close time
+
+If set the `duration` value to 0, the notification will never close automatically.
+
+<DemoBlock component={DurationDemo} source={DurationSource} />
+
+    </Demo>
+    <Demo>
+
+### Customized Icon
+
+The icon can be customized to any react node.
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Placement/>
-    <Type/>
+    <Demo>
+
+### Placement
+
+A notification box can appear from the `topRight`, `bottomRight`, `bottomLeft` or `topLeft` of the viewport.
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
+    <Demo>
+
+### Different types of notification
+
+A notification box with a icon at the left side.
+
+<DemoBlock component={TypeDemo} source={TypeSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

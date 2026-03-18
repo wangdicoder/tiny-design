@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import Icon from './demo/icon.md'
-import Placement from './demo/placement.md'
-import Vertical from './demo/vertical.md'
-import Switch from './demo/switch.md'
-import Clickable from './demo/clickable.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import SwitchDemo from './demo/Switch';
+import SwitchSource from './demo/Switch.tsx?raw';
+import ClickableDemo from './demo/Clickable';
+import ClickableSource from './demo/Clickable.tsx?raw';
 
 # Steps
 
@@ -23,12 +29,68 @@ const { Step } = Steps;
 
 ## 代码示例
 
-<Basic />
-<Icon />
-<Placement />
-<Vertical />
-<Switch />
-<Clickable />
+<Layout>
+  <Column>
+    <Demo>
+
+### 基础
+
+最基础的步骤条。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 带图标
+
+使用自定义图标。
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
+    <Demo>
+
+### 切换步骤
+
+控制步骤。
+
+<DemoBlock component={SwitchDemo} source={SwitchSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 标签位置
+
+使用 `labelPlacement` 设置标题和描述的方向。
+
+> 仅适用于 `horizontal` 步骤条。
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
+    <Demo>
+
+### 垂直
+
+垂直方向的步骤条。
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
+    <Demo>
+
+### 可点击
+
+点击切换步骤。
+
+<DemoBlock component={ClickableDemo} source={ClickableSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

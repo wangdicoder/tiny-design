@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import More from './demo/more.md'
-import Size from './demo/size.md'
-import Disabled from './demo/disabled.md'
-import Align from './demo/align.md'
-import Controlled from './demo/controlled.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import MoreDemo from './demo/More';
+import MoreSource from './demo/More.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import AlignDemo from './demo/Align';
+import AlignSource from './demo/Align.tsx?raw';
+import ControlledDemo from './demo/Controlled';
+import ControlledSource from './demo/Controlled.tsx?raw';
 
 # Pagination
 
@@ -23,12 +29,66 @@ import { Pagination } from 'tiny-design';
 
 ## 代码示例
 
-<Basic />
-<More />
-<Size />
-<Disabled />
-<Align />
-<Controlled />
+<Layout>
+  <Column>
+    <Demo>
+
+### Basic
+
+基本分页。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Size
+
+两种不同大小的分页。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### Alignment
+
+设置分页的对齐方式。
+
+<DemoBlock component={AlignDemo} source={AlignSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### More Pages
+
+更多分页。
+
+<DemoBlock component={MoreDemo} source={MoreSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+禁用状态。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Controlled
+
+受控的页码。
+
+<DemoBlock component={ControlledDemo} source={ControlledSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

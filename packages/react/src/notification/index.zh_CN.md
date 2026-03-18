@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Duration from './demo/duration.md'
-import Icon from './demo/icon.md'
-import Placement from './demo/placement.md'
-import Type from './demo/type.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DurationDemo from './demo/Duration';
+import DurationSource from './demo/Duration.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import TypeDemo from './demo/Type';
+import TypeSource from './demo/Type.tsx?raw';
 
 # Notification
 
@@ -28,13 +33,53 @@ import { Notification } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Duration/>
-    <Icon/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法，4.5 秒后自动关闭。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 控制关闭时间
+
+通过设置 `duration` 为 0 可以禁用自动关闭。
+
+<DemoBlock component={DurationDemo} source={DurationSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义图标
+
+可以自定义图标为任意 React 节点。
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Placement/>
-    <Type/>
+    <Demo>
+
+### 位置
+
+通知框可以从视口的 `topRight`、`bottomRight`、`bottomLeft` 或 `topLeft` 弹出。
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
+    <Demo>
+
+### 不同类型的通知
+
+左侧带图标的通知。
+
+<DemoBlock component={TypeDemo} source={TypeSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

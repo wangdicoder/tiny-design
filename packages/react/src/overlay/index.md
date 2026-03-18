@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Blurred from './demo/blurred.md'
-import MaskTypes from './demo/mask-types.md'
-import CustomContent from './demo/custom-content.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import BlurredDemo from './demo/Blurred';
+import BlurredSource from './demo/Blurred.tsx?raw';
+import MaskTypesDemo from './demo/MaskTypes';
+import MaskTypesSource from './demo/MaskTypes.tsx?raw';
+import CustomContentDemo from './demo/CustomContent';
+import CustomContentSource from './demo/CustomContent.tsx?raw';
 
 # Overlay
 
@@ -21,12 +25,44 @@ import { Overlay } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <MaskTypes/>
+    <Demo>
+
+### Basic
+
+Basic overlay with a default mask.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Mask Types
+
+Overlay supports three mask types: `default`, `inverted`, and `none`.
+
+<DemoBlock component={MaskTypesDemo} source={MaskTypesSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Blurred/>
-    <CustomContent/>
+    <Demo>
+
+### Blurred
+
+Overlay with a blurred backdrop effect.
+
+<DemoBlock component={BlurredDemo} source={BlurredSource} />
+
+    </Demo>
+    <Demo>
+
+### Custom Content
+
+Overlay can wrap any custom content rendered above the mask.
+
+<DemoBlock component={CustomContentDemo} source={CustomContentSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

@@ -1,6 +1,9 @@
-import AlignTitle from './demo/align-title.md'
-import Horizontal from './demo/horizontal.md'
-import Vertical from './demo/vertical.md'
+import AlignTitleDemo from './demo/AlignTitle';
+import AlignTitleSource from './demo/AlignTitle.tsx?raw';
+import HorizontalDemo from './demo/Horizontal';
+import HorizontalSource from './demo/Horizontal.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
 
 # Divider
 
@@ -21,11 +24,35 @@ import { Divider } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Horizontal/>
-    <Vertical/>
+    <Demo>
+
+### Horizontal
+
+Divider default type is `horizontal`. Support inner text inside Divider.
+
+<DemoBlock component={HorizontalDemo} source={HorizontalSource} />
+
+    </Demo>
+    <Demo>
+
+### Vertical
+
+Use `type="vertical"` make it vertical.
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <AlignTitle/>
+    <Demo>
+
+### Align Title
+
+Set orientation of divider to left or right, default is `center`.
+
+<DemoBlock component={AlignTitleDemo} source={AlignTitleSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

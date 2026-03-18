@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Centered from './demo/centered.md'
-import Color from './demo/color.md'
-import Customised from './demo/customised.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CenteredDemo from './demo/Centered';
+import CenteredSource from './demo/Centered.tsx?raw';
+import ColorDemo from './demo/Color';
+import ColorSource from './demo/Color.tsx?raw';
+import CustomisedDemo from './demo/Customised';
+import CustomisedSource from './demo/Customised.tsx?raw';
 
 # Timeline
 
@@ -25,12 +29,44 @@ const { Item } = Timeline;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Customised/>
+    <Demo>
+
+### 基础
+
+基础时间线。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义圆点
+
+设置节点为图标或其他自定义元素。
+
+<DemoBlock component={CustomisedDemo} source={CustomisedSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Color/>
-    <Centered/>
+    <Demo>
+
+### 颜色
+
+通过 `dotStyle` 设置圆点颜色。
+
+<DemoBlock component={ColorDemo} source={ColorSource} />
+
+    </Demo>
+    <Demo>
+
+### 居中
+
+时间线居中显示。
+
+<DemoBlock component={CenteredDemo} source={CenteredSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

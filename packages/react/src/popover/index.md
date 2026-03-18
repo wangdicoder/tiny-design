@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Placement from './demo/placement.md'
-import Trigger from './demo/trigger.md'
-import Controlled from './demo/controlled.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import TriggerDemo from './demo/Trigger';
+import TriggerSource from './demo/Trigger.tsx?raw';
+import ControlledDemo from './demo/Controlled';
+import ControlledSource from './demo/Controlled.tsx?raw';
 
 # Popover
 
@@ -23,12 +27,44 @@ import { Popover } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Placement/>
+    <Demo>
+
+### Basic
+
+The simplest usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Placement
+
+There are 12 placement options available.
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Trigger/>
-    <Controlled/>
+    <Demo>
+
+### Four ways to trigger
+
+Mouse to click, right click, focus and move in.
+
+<DemoBlock component={TriggerDemo} source={TriggerSource} />
+
+    </Demo>
+    <Demo>
+
+### Controlled dialog
+
+Use `visible` prop to control the display of the card.
+
+<DemoBlock component={ControlledDemo} source={ControlledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

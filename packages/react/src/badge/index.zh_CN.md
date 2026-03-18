@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Custom from './demo/custom.md'
-import Dot from './demo/dot.md'
-import Overflow from './demo/overflow.md'
-import Standalone from './demo/standalone.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomDemo from './demo/Custom';
+import CustomSource from './demo/Custom.tsx?raw';
+import DotDemo from './demo/Dot';
+import DotSource from './demo/Dot.tsx?raw';
+import OverflowDemo from './demo/Overflow';
+import OverflowSource from './demo/Overflow.tsx?raw';
+import StandaloneDemo from './demo/Standalone';
+import StandaloneSource from './demo/Standalone.tsx?raw';
 
 # Badge
 
@@ -22,13 +27,55 @@ import { Badge } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Overflow/>
-    <Standalone/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 溢出
+
+当 count 大于 max 时，会显示 `max+`。默认最大值是 **99**。
+
+<DemoBlock component={OverflowDemo} source={OverflowSource} />
+
+    </Demo>
+    <Demo>
+
+### 独立使用
+
+在子元素为空时独立使用。
+
+<DemoBlock component={StandaloneDemo} source={StandaloneSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Dot/>
-    <Custom/>
+    <Demo>
+
+### 红点徽标
+
+不显示具体数字，只显示红点。
+
+<DemoBlock component={DotDemo} source={DotSource} />
+
+    </Demo>
+    <Demo>
+
+### 多彩徽标
+
+设置 `color` 以不同颜色显示小圆点徽标。`processing` 可以显示波纹动画。
+
+> 只有小圆点徽标才有 `processing` 效果。
+
+<DemoBlock component={CustomDemo} source={CustomSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

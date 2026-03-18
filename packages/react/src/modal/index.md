@@ -1,8 +1,13 @@
-import Animation from './demo/animation.md'
-import Basic from './demo/basic.md'
-import Context from './demo/context.md'
-import CustomisedFooter from './demo/customised-footer.md'
-import Position from './demo/position.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomisedFooterDemo from './demo/CustomisedFooter';
+import CustomisedFooterSource from './demo/CustomisedFooter.tsx?raw';
+import PositionDemo from './demo/Position';
+import PositionSource from './demo/Position.tsx?raw';
+import AnimationDemo from './demo/Animation';
+import AnimationSource from './demo/Animation.tsx?raw';
+import ContextDemo from './demo/Context';
+import ContextSource from './demo/Context.tsx?raw';
 
 # Modal
 
@@ -10,7 +15,7 @@ Modal dialogs.
 
 ## Scenario
 
-When requiring users to interact with the application, but without jumping to a new page and interrupting the user's workflow, you can use **Modal** to create a new floating layer over the current page to get user feedback or display information. 
+When requiring users to interact with the application, but without jumping to a new page and interrupting the user's workflow, you can use **Modal** to create a new floating layer over the current page to get user feedback or display information.
 
 ## Usage
 
@@ -22,13 +27,54 @@ import { Modal } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <CustomisedFooter/>
+    <Demo>
+
+### Basic
+
+Basic modal.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Customized Footer
+
+A more complex example which define a customized footer button bar, the dialog will change to loading state after clicking submit button, when the loading is over, the modal dialog will be closed.
+Set `footer={null}` if you don't need default footer buttons.
+
+<DemoBlock component={CustomisedFooterDemo} source={CustomisedFooterSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Position/>
-    <Animation/>
-    <Context/>
+    <Demo>
+
+### To customize the position of modal
+
+Use `centered` or `top` or other styles to set position of modal dialog.
+
+<DemoBlock component={PositionDemo} source={PositionSource} />
+
+    </Demo>
+    <Demo>
+
+### Animation
+
+Use `animation` to set different popup animation.
+
+<DemoBlock component={AnimationDemo} source={AnimationSource} />
+
+    </Demo>
+    <Demo>
+
+### Context
+
+Manage multiple modals by ID with `Modal.Provider` and `Modal.useModal`.
+
+<DemoBlock component={ContextDemo} source={ContextSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

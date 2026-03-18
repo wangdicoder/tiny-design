@@ -1,4 +1,7 @@
-import Basic from './demo/basic.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SidebarDemo from './demo/Sidebar';
+import SidebarSource from './demo/Sidebar.tsx?raw';
 
 # Layout
 
@@ -22,8 +25,30 @@ const { Header, Footer, Content, Sidebar } = Layout;
 
 ## 代码示例
 
-<Basic />
+<Layout>
+  <Column>
+    <Demo>
 
+### 基本结构
+
+经典页面布局。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 可折叠侧边栏
+
+使用 `collapsible` 启用内置的切换触发器。通过 `collapsed` 和 `onCollapse` 控制折叠状态。
+
+<DemoBlock component={SidebarDemo} source={SidebarSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

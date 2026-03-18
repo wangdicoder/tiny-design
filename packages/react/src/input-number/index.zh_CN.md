@@ -1,6 +1,11 @@
-import Basic from './demo/basic.md'
-import Size from './demo/size.md'
-import Disabled from './demo/disabled.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import PrecisionDemo from './demo/Precision';
+import PrecisionSource from './demo/Precision.tsx?raw';
 
 # Input Number
 
@@ -20,11 +25,44 @@ import { InputNumber } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Disabled/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用状态
+
+点击按钮切换可用和禁用状态。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Size/>
+    <Demo>
+
+### 尺寸
+
+不同尺寸的数字输入框。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### 精度
+
+通过 `precision` 设置小数精度，使用 `controls` 始终显示步进按钮。
+
+<DemoBlock component={PrecisionDemo} source={PrecisionSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

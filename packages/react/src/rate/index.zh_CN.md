@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Character from './demo/character.md'
-import Clearable from './demo/clearable.md'
-import Disabled from './demo/disabled.md'
-import Half from './demo/half.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CharacterDemo from './demo/Character';
+import CharacterSource from './demo/Character.tsx?raw';
+import ClearableDemo from './demo/Clearable';
+import ClearableSource from './demo/Clearable.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import HalfDemo from './demo/Half';
+import HalfSource from './demo/Half.tsx?raw';
 
 # Rate
 
@@ -24,13 +29,53 @@ import { Rate } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Half/>
-    <Clearable/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 半星
+
+支持选择半星。
+
+<DemoBlock component={HalfDemo} source={HalfSource} />
+
+    </Demo>
+    <Demo>
+
+### 清除星标
+
+支持设置允许再次点击清除星标。
+
+<DemoBlock component={ClearableDemo} source={ClearableSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Disabled/>
-    <Character/>
+    <Demo>
+
+### 只读
+
+只读状态，不可交互。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### 其他字符
+
+可以用其他字符如字母、数字、图标或其他语言的文字替换默认的五角星。
+
+<DemoBlock component={CharacterDemo} source={CharacterSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

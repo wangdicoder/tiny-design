@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Nested from './demo/nested.md'
-import Affix from './demo/affix.md'
-import OffsetTop from './demo/offset-top.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import NestedDemo from './demo/Nested';
+import NestedSource from './demo/Nested.tsx?raw';
+import AffixDemo from './demo/Affix';
+import AffixSource from './demo/Affix.tsx?raw';
+import OffsetTopDemo from './demo/OffsetTop';
+import OffsetTopSource from './demo/OffsetTop.tsx?raw';
 
 # Anchor
 
@@ -22,12 +26,44 @@ import { Anchor } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Affix/>
+    <Demo>
+
+### Basic
+
+Anchor with a scrollable container. Click a link to scroll to the section; scroll to see the active link update.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Affix
+
+Set `affix` to enable sticky positioning.
+
+<DemoBlock component={AffixDemo} source={AffixSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Nested/>
-    <OffsetTop/>
+    <Demo>
+
+### Nested Links
+
+Anchor supports nested `Anchor.Link` for multi-level navigation. Parent links highlight when any child is active.
+
+<DemoBlock component={NestedDemo} source={NestedSource} />
+
+    </Demo>
+    <Demo>
+
+### Offset Top
+
+Use `offsetTop` to set a pixel threshold before a section becomes active. A section is marked active only when its top edge scrolls past the offset.
+
+<DemoBlock component={OffsetTopDemo} source={OffsetTopSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

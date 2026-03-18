@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Disabled from './demo/disabled.md'
-import Underline from './demo/underline.md'
-import External from './demo/external.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import UnderlineDemo from './demo/Underline';
+import UnderlineSource from './demo/Underline.tsx?raw';
+import ExternalDemo from './demo/External';
+import ExternalSource from './demo/External.tsx?raw';
 
 # Link
 
@@ -19,12 +23,44 @@ import { Link } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Underline/>
+    <Demo>
+
+### 基础用法
+
+简单用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 下划线
+
+默认情况下，鼠标悬停时会有下划线样式，可以设置为不显示。
+
+<DemoBlock component={UnderlineDemo} source={UnderlineSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Disabled/>
-    <External/>
+    <Demo>
+
+### 禁用
+
+禁用状态。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### 外链
+
+默认点击会在新窗口打开。设置 `external={false}` 可以在当前窗口打开。
+
+<DemoBlock component={ExternalDemo} source={ExternalSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

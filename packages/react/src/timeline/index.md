@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Centered from './demo/centered.md'
-import Color from './demo/color.md'
-import Customised from './demo/customised.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CenteredDemo from './demo/Centered';
+import CenteredSource from './demo/Centered.tsx?raw';
+import ColorDemo from './demo/Color';
+import ColorSource from './demo/Color.tsx?raw';
+import CustomisedDemo from './demo/Customised';
+import CustomisedSource from './demo/Customised.tsx?raw';
 
 # Timeline
 
@@ -25,12 +29,44 @@ const { Item } = Timeline;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Customised/>
+    <Demo>
+
+### Basic
+
+Basic timeline.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Customise Dot
+
+Set a node as an icon or other custom element.
+
+<DemoBlock component={CustomisedDemo} source={CustomisedSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Color/>
-    <Centered/>
+    <Demo>
+
+### Color
+
+Set the color of dots via `dotStyle`.
+
+<DemoBlock component={ColorDemo} source={ColorSource} />
+
+    </Demo>
+    <Demo>
+
+### Centered timeline
+
+Center the timeline bar.
+
+<DemoBlock component={CenteredDemo} source={CenteredSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

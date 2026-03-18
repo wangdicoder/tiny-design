@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Container from './demo/container.md'
-import Callback from './demo/callback.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ContainerDemo from './demo/Container';
+import ContainerSource from './demo/Container.tsx?raw';
+import CallbackDemo from './demo/Callback';
+import CallbackSource from './demo/Callback.tsx?raw';
 
 # Sticky
 
@@ -20,11 +23,35 @@ import { Sticky } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic />
-    <Container />
+    <Demo>
+
+### 基础
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 滚动容器
+
+设置 `Sticky` 的目标元素，它将监听目标元素的滚动事件（默认为 `window`）。
+
+<DemoBlock component={ContainerDemo} source={ContainerSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Callback />
+    <Demo>
+
+### 回调
+
+固定状态改变时的回调函数。
+
+<DemoBlock component={CallbackDemo} source={CallbackSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

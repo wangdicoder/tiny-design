@@ -1,12 +1,21 @@
-import Basic from './demo/basic.md'
-import Dual from './demo/dual.md'
-import Vertical from './demo/vertical.md'
-import Dots from './demo/dots.md'
-import Marker from './demo/marker.md'
-import CustomisedTooltip from './demo/customised-tooltip.md'
-import Disabled from './demo/disabled.md'
-import TooltipVisible from './demo/tooltip-visible.md'
-import Track from './demo/track.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DualDemo from './demo/Dual';
+import DualSource from './demo/Dual.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import DotsDemo from './demo/Dots';
+import DotsSource from './demo/Dots.tsx?raw';
+import MarkerDemo from './demo/Marker';
+import MarkerSource from './demo/Marker.tsx?raw';
+import CustomisedTooltipDemo from './demo/CustomisedTooltip';
+import CustomisedTooltipSource from './demo/CustomisedTooltip.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import TooltipVisibleDemo from './demo/TooltipVisible';
+import TooltipVisibleSource from './demo/TooltipVisible.tsx?raw';
+import TrackDemo from './demo/Track';
+import TrackSource from './demo/Track.tsx?raw';
 
 # Slider
 
@@ -26,17 +35,89 @@ import { Slider } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Dual/>
-    <Dots/>
-    <Marker/>
-    <Disabled/>
+    <Demo>
+
+### 基本用法
+
+一个基本的例子。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 双滑块
+
+传入一个数字数组来显示双滑块。
+
+<DemoBlock component={DualDemo} source={DualSource} />
+
+    </Demo>
+    <Demo>
+
+### 点状
+
+在滑块上显示点。
+
+<DemoBlock component={DotsDemo} source={DotsSource} />
+
+    </Demo>
+    <Demo>
+
+### 标记
+
+在滑块上显示标记。
+
+<DemoBlock component={MarkerDemo} source={MarkerSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用滑块
+
+禁用滑块。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Vertical/>
-    <CustomisedTooltip/>
-    <TooltipVisible/>
-    <Track/>
+    <Demo>
+
+### 垂直模式
+
+使用 `direction` 创建垂直滑块。
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义提示
+
+使用 `tipFormatter` 来格式化 `Tooltip` 的内容。
+
+<DemoBlock component={CustomisedTooltipDemo} source={CustomisedTooltipSource} />
+
+    </Demo>
+    <Demo>
+
+### 控制 ToolTip 的显示
+
+当 `tooltipVisible` 为 true 时，即使拖动或悬停也会始终显示 ToolTip。
+
+<DemoBlock component={TooltipVisibleDemo} source={TooltipVisibleSource} />
+
+    </Demo>
+    <Demo>
+
+### 不显示轨道
+
+设置 `track={false}` 隐藏轨道。
+
+<DemoBlock component={TrackDemo} source={TrackSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

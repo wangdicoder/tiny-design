@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Disabled from './demo/disabled.md'
-import Placement from './demo/placement.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
 
 # Split Button
 
@@ -21,11 +24,35 @@ import { SplitButton } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic />
-    <Disabled />
+    <Demo>
+
+### Basic
+
+A simple usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+Disabled the button.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Placement />
+    <Demo>
+
+### Placement
+
+Set the placement of the dropdown menu. The default placement is `bottom-end`.
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

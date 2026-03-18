@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Customised from './demo/customised.md'
-import NoDesc from './demo/no-desc.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomisedDemo from './demo/Customised';
+import CustomisedSource from './demo/Customised.tsx?raw';
+import NoDescDemo from './demo/NoDesc';
+import NoDescSource from './demo/NoDesc.tsx?raw';
 
 # Empty
 
@@ -21,11 +24,35 @@ import { Empty } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Customised/>
+    <Demo>
+
+### Basic
+
+Simplest Usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Customised
+
+Customize image source, image size, description and extra content.
+
+<DemoBlock component={CustomisedDemo} source={CustomisedSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <NoDesc/>
+    <Demo>
+
+### No description
+
+Set `description={false}` to hide description.
+
+<DemoBlock component={NoDescDemo} source={NoDescSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

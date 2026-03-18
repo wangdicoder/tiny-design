@@ -1,9 +1,15 @@
-import Success from './demo/success.md'
-import Loading from './demo/loading.md'
-import Error from './demo/error.md'
-import Warning from './demo/warning.md'
-import Info from './demo/info.md'
-import Icon from './demo/icon.md'
+import SuccessDemo from './demo/Success';
+import SuccessSource from './demo/Success.tsx?raw';
+import LoadingDemo from './demo/Loading';
+import LoadingSource from './demo/Loading.tsx?raw';
+import ErrorDemo from './demo/Error';
+import ErrorSource from './demo/Error.tsx?raw';
+import WarningDemo from './demo/Warning';
+import WarningSource from './demo/Warning.tsx?raw';
+import InfoDemo from './demo/Info';
+import InfoSource from './demo/Info.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
 
 # Result
 
@@ -15,12 +21,66 @@ import Icon from './demo/icon.md'
 
 ## 代码示例
 
-<Success/>
-<Loading/>
-<Error/>
-<Warning/>
-<Info/>
-<Icon/>
+<Layout>
+  <Column>
+    <Demo>
+
+### 成功
+
+显示处理成功的反馈结果。
+
+<DemoBlock component={SuccessDemo} source={SuccessSource} />
+
+    </Demo>
+    <Demo>
+
+### 加载中
+
+结果显示加载状态。
+
+<DemoBlock component={LoadingDemo} source={LoadingSource} />
+
+    </Demo>
+    <Demo>
+
+### 失败
+
+复杂的错误反馈。
+
+<DemoBlock component={ErrorDemo} source={ErrorSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 警告
+
+警告反馈结果。
+
+<DemoBlock component={WarningDemo} source={WarningSource} />
+
+    </Demo>
+    <Demo>
+
+### 提示
+
+显示处理中的信息提示。
+
+<DemoBlock component={InfoDemo} source={InfoSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义图标
+
+通过 `icon` 属性设置图标。
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

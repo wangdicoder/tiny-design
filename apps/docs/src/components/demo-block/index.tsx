@@ -158,7 +158,7 @@ export const DemoBlock = ({ component: Component, source, title, description }: 
             <StackBlitzIcon />
           </button>
         </Tooltip>
-        <Tooltip title={copied ? 'Copied!' : 'Copy code'}>
+        <Tooltip title={copied ? s.codeBlock.copied : s.codeBlock.copyCode}>
           <button
             className="demo-block__action-btn"
             onClick={handleCopy}
@@ -167,7 +167,7 @@ export const DemoBlock = ({ component: Component, source, title, description }: 
           </button>
         </Tooltip>
         {isEditing && (
-          <Tooltip title="Reset demo">
+          <Tooltip title={s.codeBlock.resetDemo}>
             <button
               className="demo-block__action-btn"
               onClick={handleReset}

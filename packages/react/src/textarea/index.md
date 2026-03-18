@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Count from './demo/count.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CountDemo from './demo/Count';
+import CountSource from './demo/Count.tsx?raw';
 
 # Textarea
 
@@ -19,10 +21,26 @@ import { Textarea } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### Basic
+
+A simple textarea.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Count/>
+    <Demo>
+
+### Limit & count
+
+Use `limit` to limit the word amount. Also you can use `counter` to customise limit node.
+
+<DemoBlock component={CountDemo} source={CountSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -39,4 +57,3 @@ import { Textarea } from 'tiny-design';
 | disabled     | disabled the component           | boolean                                      |         |
 | style	       | style object of container object |                                              |         |
 | className    | className of container           | string                                       |         |
-

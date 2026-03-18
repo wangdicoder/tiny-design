@@ -1,12 +1,21 @@
-import Basic from './demo/basic.md'
-import Extra from './demo/extra.md'
-import Layout from './demo/layout.md'
-import Method from './demo/method.md'
-import ComplexLayout from './demo/complex-layout.md'
-import ValidateTrigger from './demo/validate-trigger.md'
-import Modal from './demo/modal.md'
-import AsyncSubmit from './demo/async-submit.md'
-import OtherControls from './demo/other-controls.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ExtraDemo from './demo/Extra';
+import ExtraSource from './demo/Extra.tsx?raw';
+import LayoutDemo from './demo/Layout';
+import LayoutSource from './demo/Layout.tsx?raw';
+import MethodDemo from './demo/Method';
+import MethodSource from './demo/Method.tsx?raw';
+import ComplexLayoutDemo from './demo/ComplexLayout';
+import ComplexLayoutSource from './demo/ComplexLayout.tsx?raw';
+import ValidateTriggerDemo from './demo/ValidateTrigger';
+import ValidateTriggerSource from './demo/ValidateTrigger.tsx?raw';
+import ModalDemo from './demo/Modal';
+import ModalSource from './demo/Modal.tsx?raw';
+import AsyncSubmitDemo from './demo/AsyncSubmit';
+import AsyncSubmitSource from './demo/AsyncSubmit.tsx?raw';
+import OtherControlsDemo from './demo/OtherControls';
+import OtherControlsSource from './demo/OtherControls.tsx?raw';
 
 # Form
 
@@ -27,15 +36,90 @@ const { Item, useForm, FormInstance } = Form;
 
 ## Examples
 
-<Basic />
-<Extra />
-<Layout />
-<Method />
-<ComplexLayout />
-<ValidateTrigger />
-<Modal />
-<AsyncSubmit />
-<OtherControls />
+<Layout>
+  <Column>
+    <Demo>
+
+### Basic usage
+
+Basic Form data control.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Extra info
+
+Use `helper` and `notice` to provide more field info.
+
+<DemoBlock component={ExtraDemo} source={ExtraSource} />
+
+    </Demo>
+    <Demo>
+
+### Form Layout
+
+There are three layouts for form: `horizontal`, `vertical` and `inline`.
+
+<DemoBlock component={LayoutDemo} source={LayoutSource} />
+
+    </Demo>
+    <Demo>
+
+### Form method
+
+Call form method with `Form.useForm`.
+
+<DemoBlock component={MethodDemo} source={MethodSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### More complex layout
+
+Sometimes it could need to put two fields in a same line.
+
+<DemoBlock component={ComplexLayoutDemo} source={ComplexLayoutSource} />
+
+    </Demo>
+    <Demo>
+
+### Validation Trigger
+
+There are three different triggers for the form validation: `onChange`, `onBlur` and `onSubmit`.
+
+<DemoBlock component={ValidateTriggerDemo} source={ValidateTriggerSource} />
+
+    </Demo>
+    <Demo>
+
+### Create in `Modal`
+
+Create a form in a `Modal`.
+
+<DemoBlock component={ModalDemo} source={ModalSource} />
+
+    </Demo>
+    <Demo>
+
+### Async Submission
+
+Simulate an async form submission with loading state.
+
+<DemoBlock component={AsyncSubmitDemo} source={AsyncSubmitSource} />
+
+    </Demo>
+  </Column>
+</Layout>
+
+### Other Form Controls
+
+A versatile example.
+
+<DemoBlock component={OtherControlsDemo} source={OtherControlsSource} />
 
 ## API
 

@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Disabled from './demo/disabled.md'
-import IconDemo from './demo/icon.md'
-import Size from './demo/size.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
 
 # Segmented
 
@@ -21,12 +25,44 @@ import { Segmented } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <IconDemo/>
+    <Demo>
+
+### Basic
+
+Simplest usage of Segmented control.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### With Icons
+
+Add icons to segmented options using the `icon` property.
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Size/>
-    <Disabled/>
+    <Demo>
+
+### Size
+
+Three sizes: `sm`, `md`, and `lg`.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+Disable the entire control or individual options.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

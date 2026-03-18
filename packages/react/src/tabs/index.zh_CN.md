@@ -1,8 +1,15 @@
-import Basic from './demo/basic.md'
-import Card from './demo/card.md'
-import Disabled from './demo/disabled.md'
-import Position from './demo/position.md'
-import Editable from './demo/editable.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CardDemo from './demo/Card';
+import CardSource from './demo/Card.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import PositionDemo from './demo/Position';
+import PositionSource from './demo/Position.tsx?raw';
+import EditableDemo from './demo/Editable';
+import EditableSource from './demo/Editable.tsx?raw';
+import ExtraDemo from './demo/Extra';
+import ExtraSource from './demo/Extra.tsx?raw';
 
 # Tabs
 
@@ -18,13 +25,62 @@ import { Tabs } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Card/>
-    <Editable/>
+    <Demo>
+
+### 基本用法
+
+基本用法的 Tabs，通过 `items` 属性配置。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 卡片类型
+
+卡片样式的选项卡。
+
+<DemoBlock component={CardDemo} source={CardSource} />
+
+    </Demo>
+    <Demo>
+
+### 可编辑选项卡
+
+通过 `editable-card` 类型动态添加和删除选项卡。
+
+<DemoBlock component={EditableDemo} source={EditableSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Disabled/>
-    <Position/>
+    <Demo>
+
+### 禁用
+
+禁用某个选项卡。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### 选项卡位置
+
+选项卡可展示在上下左右四个方向。
+
+<DemoBlock component={PositionDemo} source={PositionSource} />
+
+    </Demo>
+    <Demo>
+
+### 额外内容
+
+使用 `tabBarExtraContent` 在选项卡栏添加额外内容。通过 `items` 中的 `label` 属性使用图标。
+
+<DemoBlock component={ExtraDemo} source={ExtraSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

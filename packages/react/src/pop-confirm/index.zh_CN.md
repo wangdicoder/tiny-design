@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Placement from './demo/placement.md'
-import Locale from './demo/locale.md'
-import Icon from './demo/icon.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import LocaleDemo from './demo/Locale';
+import LocaleSource from './demo/Locale.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
 
 # PopConfirm
 
@@ -23,12 +27,44 @@ import { PopConfirm } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Placement/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 位置
+
+共有12个位置可选。
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Locale/>
-    <Icon/>
+    <Demo>
+
+### 自定义按钮文字
+
+设置 `confirmText` 和 `cancelText` 自定义按钮文字。
+
+<DemoBlock component={LocaleDemo} source={LocaleSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义图标
+
+设置 `icon` 属性自定义图标。
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

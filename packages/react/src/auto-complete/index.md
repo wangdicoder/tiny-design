@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import CustomFilter from './demo/custom-filter.md'
-import Disabled from './demo/disabled.md'
-import AllowClear from './demo/allow-clear.md'
-import NotFound from './demo/not-found.md'
-import Size from './demo/size.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomFilterDemo from './demo/CustomFilter';
+import CustomFilterSource from './demo/CustomFilter.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import AllowClearDemo from './demo/AllowClear';
+import AllowClearSource from './demo/AllowClear.tsx?raw';
+import NotFoundDemo from './demo/NotFound';
+import NotFoundSource from './demo/NotFound.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
 
 # AutoComplete
 
@@ -24,14 +30,62 @@ import { AutoComplete } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Disabled/>
-    <NotFound/>
+    <Demo>
+
+### Basic
+
+Basic usage. Type to see email suffix suggestions.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+A disabled AutoComplete.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Not Found Content
+
+Use `notFoundContent` to display a message when no options match.
+
+<DemoBlock component={NotFoundDemo} source={NotFoundSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <CustomFilter/>
-    <AllowClear/>
-    <Size/>
+    <Demo>
+
+### Custom Filter
+
+Use `filterOption` to implement custom filtering logic.
+
+<DemoBlock component={CustomFilterDemo} source={CustomFilterSource} />
+
+    </Demo>
+    <Demo>
+
+### Allow Clear
+
+Set `allowClear` to show a clear button when the input has a value.
+
+<DemoBlock component={AllowClearDemo} source={AllowClearSource} />
+
+    </Demo>
+    <Demo>
+
+### Size
+
+Three sizes: `sm`, `md` (default) and `lg`.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Disabled from './demo/disabled.md'
-import Placement from './demo/placement.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
 
 # Split Button
 
@@ -21,11 +24,35 @@ import { SplitButton } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic />
-    <Disabled />
+    <Demo>
+
+### 基本用法
+
+简单的使用方式。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用状态
+
+禁用该按钮。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Placement />
+    <Demo>
+
+### 位置
+
+设置下拉菜单的弹出位置。默认位置是 `bottom-end`。
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

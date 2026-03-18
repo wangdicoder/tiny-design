@@ -1,9 +1,17 @@
-import Basic from './demo/basic.md'
-import Search from './demo/search.md'
-import Multiple from './demo/multiple.md'
-import Sizes from './demo/sizes.md'
-import Groups from './demo/groups.md'
-import Custom from './demo/custom.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SearchDemo from './demo/Search';
+import SearchSource from './demo/Search.tsx?raw';
+import MultipleDemo from './demo/Multiple';
+import MultipleSource from './demo/Multiple.tsx?raw';
+import SizesDemo from './demo/Sizes';
+import SizesSource from './demo/Sizes.tsx?raw';
+import GroupsDemo from './demo/Groups';
+import GroupsSource from './demo/Groups.tsx?raw';
+import CustomDemo from './demo/Custom';
+import CustomSource from './demo/Custom.tsx?raw';
+import RenderDemo from './demo/Render';
+import RenderSource from './demo/Render.tsx?raw';
 
 # Select
 
@@ -27,14 +35,71 @@ const { Option, OptGroup } = Select;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Search/>
-    <Multiple/>
+    <Demo>
+
+### 基本用法
+
+Select 组件的基本用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 搜索
+
+带搜索功能的下拉框。设置 `showSearch` 启用过滤功能。
+
+<DemoBlock component={SearchDemo} source={SearchSource} />
+
+    </Demo>
+    <Demo>
+
+### 多选
+
+多选模式会将已选项目展示为标签。设置 `mode="multiple"`，可配合 `showSearch` 进行过滤。
+
+<DemoBlock component={MultipleDemo} source={MultipleSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Sizes/>
-    <Groups/>
-    <Custom/>
+    <Demo>
+
+### 尺寸
+
+三种尺寸：`sm`、`md`（默认）和 `lg`。
+
+<DemoBlock component={SizesDemo} source={SizesSource} />
+
+    </Demo>
+    <Demo>
+
+### 分组
+
+使用 `OptGroup` 对选项进行分组。
+
+<DemoBlock component={GroupsDemo} source={GroupsSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义渲染和加载
+
+使用 `options` 属性进行数据驱动渲染，`optionRender` 自定义选项内容，`loading` 显示加载状态。
+
+<DemoBlock component={CustomDemo} source={CustomSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义渲染
+
+使用 `optionRender` 自定义下拉项，`labelRender` 自定义选中标签。
+
+<DemoBlock component={RenderDemo} source={RenderSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

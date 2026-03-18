@@ -1,10 +1,17 @@
-import Basic from './demo/basic.md'
-import NoBorder from './demo/no-border.md'
-import Simple from './demo/simple.md'
-import Hoverable from './demo/hoverable.md'
-import Active from './demo/active.md'
-import InnerCard from './demo/inner-card.md'
-import Image from './demo/image.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import NoBorderDemo from './demo/NoBorder';
+import NoBorderSource from './demo/NoBorder.tsx?raw';
+import SimpleDemo from './demo/Simple';
+import SimpleSource from './demo/Simple.tsx?raw';
+import HoverableDemo from './demo/Hoverable';
+import HoverableSource from './demo/Hoverable.tsx?raw';
+import ActiveDemo from './demo/Active';
+import ActiveSource from './demo/Active.tsx?raw';
+import InnerCardDemo from './demo/InnerCard';
+import InnerCardSource from './demo/InnerCard.tsx?raw';
+import ImageDemo from './demo/Image';
+import ImageSource from './demo/Image.tsx?raw';
 
 # Card
 
@@ -26,15 +33,71 @@ const { Content } = Card;
 
 <Layout>
   <Column>
-    <Basic/>
-    <NoBorder/>
-    <Simple/>
-    <Hoverable/>
-    <Active/>
+    <Demo>
+
+### Basic card
+
+A basic card containing a title, content and an extra corner content.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### No border
+
+A borderless card on a gray background.
+
+<DemoBlock component={NoBorderDemo} source={NoBorderSource} />
+
+    </Demo>
+    <Demo>
+
+### Simple card
+
+A simple card only containing a content area.
+
+<DemoBlock component={SimpleDemo} source={SimpleSource} />
+
+    </Demo>
+    <Demo>
+
+### Hoverable
+
+Set `hoverable` to allow the card having a hover effect.
+
+<DemoBlock component={HoverableDemo} source={HoverableSource} />
+
+    </Demo>
+    <Demo>
+
+### Active
+
+Set `active` to allow the card always in elevation.
+
+<DemoBlock component={ActiveDemo} source={ActiveSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <InnerCard/>
-    <Image/>
+    <Demo>
+
+### Inner card
+
+It can be placed inside the ordinary card to display the information of the multilevel structure.
+
+<DemoBlock component={InnerCardDemo} source={InnerCardSource} />
+
+    </Demo>
+    <Demo>
+
+### Media
+
+A card using an image to reinforce the content.
+
+<DemoBlock component={ImageDemo} source={ImageSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

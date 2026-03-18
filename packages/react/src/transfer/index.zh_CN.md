@@ -1,5 +1,9 @@
-import Basic from './demo/basic.md'
-import Search from './demo/search.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomDemo from './demo/Custom';
+import CustomSource from './demo/Custom.tsx?raw';
+import SearchDemo from './demo/Search';
+import SearchSource from './demo/Search.tsx?raw';
 
 # Transfer
 
@@ -18,8 +22,39 @@ import { Transfer } from 'tiny-design';
 
 ## 代码示例
 
-<Basic />
-<Search />
+<Layout>
+  <Column>
+    <Demo>
+
+### 基本用法
+
+最基本的使用方式，需要提供数据源、目标键数组、渲染函数和回调函数。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 搜索
+
+可搜索的穿梭框。
+
+<DemoBlock component={SearchDemo} source={SearchSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 自定义渲染
+
+使用 `renderItem` 自定义每个项目的显示。
+
+<DemoBlock component={CustomDemo} source={CustomSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

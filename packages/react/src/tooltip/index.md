@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Arrow from './demo/arrow.md'
-import Placement from './demo/placement.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ArrowDemo from './demo/Arrow';
+import ArrowSource from './demo/Arrow.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
 
 # Tooltip
 
@@ -21,11 +24,37 @@ import { Tooltip } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Arrow/>
+    <Demo>
+
+### Basic
+
+The simplest usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Disable Arrow
+
+Set `arrow={false}` to hide arrow.
+
+<DemoBlock component={ArrowDemo} source={ArrowSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Placement/>
+    <Demo>
+
+### Placement
+
+There are 12 placement options available.
+
+> The tooltip's arrow is always pointing to the center of the trigger.
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

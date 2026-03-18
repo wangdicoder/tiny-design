@@ -1,6 +1,9 @@
-import Horizontal from './demo/horizontal.md';
-import Vertical from './demo/vertical.md';
-import Inline from './demo/inline.md';
+import HorizontalDemo from './demo/Horizontal';
+import HorizontalSource from './demo/Horizontal.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import InlineDemo from './demo/Inline';
+import InlineSource from './demo/Inline.tsx?raw';
 
 # Menu
 
@@ -20,9 +23,33 @@ const { Item, SubMenu, ItemGroup, Divider } = Menu;
 
 ## 代码示例
 
-<Horizontal />
-<Vertical />
-<Inline />
+<Demo>
+
+### 顶部导航
+
+水平顶部导航菜单。
+
+<DemoBlock component={HorizontalDemo} source={HorizontalSource} />
+
+</Demo>
+<Demo>
+
+### 垂直导航
+
+垂直菜单，内联子菜单。
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+</Demo>
+<Demo>
+
+### 内联导航
+
+内联导航菜单。
+
+<DemoBlock component={InlineDemo} source={InlineSource} />
+
+</Demo>
 
 
 ## API

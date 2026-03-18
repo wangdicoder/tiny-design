@@ -1,9 +1,15 @@
-import Addon from './demo/addon.md'
-import AddonButton from './demo/addon-button.md'
-import Basic from './demo/basic.md'
-import Clearable from './demo/clearable.md'
-import PreSuffix from './demo/pre-suf-fix.md'
-import Size from './demo/size.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import AddonDemo from './demo/Addon';
+import AddonSource from './demo/Addon.tsx?raw';
+import AddonButtonDemo from './demo/AddonButton';
+import AddonButtonSource from './demo/AddonButton.tsx?raw';
+import PreSufFixDemo from './demo/PreSufFix';
+import PreSufFixSource from './demo/PreSufFix.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import ClearableDemo from './demo/Clearable';
+import ClearableSource from './demo/Clearable.tsx?raw';
 
 # Input
 
@@ -25,14 +31,64 @@ const { Group, Addon } = Input;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Addon/>
-    <AddonButton/>
+    <Demo>
+
+### Basic
+
+A simple usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Addon
+
+Using `Addon` example.
+
+<DemoBlock component={AddonDemo} source={AddonSource} />
+
+    </Demo>
+    <Demo>
+
+### Addon with Button
+
+Add a button in `Addon` component to compose an input form, like search function.
+
+> Pass `noBorder` prop to `Addon` component.
+
+<DemoBlock component={AddonButtonDemo} source={AddonButtonSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <PreSuffix/>
-    <Size/>
-    <Clearable/>
+    <Demo>
+
+### Prefix & Suffix
+
+Add prefix or suffix icons inside input.
+
+<DemoBlock component={PreSufFixDemo} source={PreSufFixSource} />
+
+    </Demo>
+    <Demo>
+
+### Three sizes of Input
+
+There are three sizes of an Input box: `lg`, `md` and `sm`.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### With clear icon
+
+Allow to clear all content.
+
+<DemoBlock component={ClearableDemo} source={ClearableSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

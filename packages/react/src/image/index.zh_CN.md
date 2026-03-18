@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Size from './demo/size.md'
-import Round from './demo/round.md'
-import Lazy from './demo/lazy.md'
-import Fallback from './demo/fallback.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import RoundDemo from './demo/Round';
+import RoundSource from './demo/Round.tsx?raw';
+import LazyDemo from './demo/Lazy';
+import LazySource from './demo/Lazy.tsx?raw';
+import FallbackDemo from './demo/Fallback';
+import FallbackSource from './demo/Fallback.tsx?raw';
 
 # Image
 
@@ -22,13 +27,53 @@ import { Image } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Size/>
+    <Demo>
+
+### 基本用法
+
+展示一张图片。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 尺寸
+
+可以通过 `width` 和 `height` 属性调整图片尺寸。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Round/>
-    <Lazy/>
-    <Fallback/>
+    <Demo>
+
+### 圆角图片
+
+展示圆角图片。
+
+<DemoBlock component={RoundDemo} source={RoundSource} />
+
+    </Demo>
+    <Demo>
+
+### 懒加载
+
+设置 `lazy` 和 `placeholder` 属性实现懒加载。
+
+<DemoBlock component={LazyDemo} source={LazySource} />
+
+    </Demo>
+    <Demo>
+
+### 加载失败
+
+图片加载失败时显示占位图。
+
+<DemoBlock component={FallbackDemo} source={FallbackSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

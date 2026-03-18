@@ -1,10 +1,17 @@
-import Basic from './demo/basic.md'
-import NoBorder from './demo/no-border.md'
-import Simple from './demo/simple.md'
-import Hoverable from './demo/hoverable.md'
-import Active from './demo/active.md'
-import InnerCard from './demo/inner-card.md'
-import Image from './demo/image.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import NoBorderDemo from './demo/NoBorder';
+import NoBorderSource from './demo/NoBorder.tsx?raw';
+import SimpleDemo from './demo/Simple';
+import SimpleSource from './demo/Simple.tsx?raw';
+import HoverableDemo from './demo/Hoverable';
+import HoverableSource from './demo/Hoverable.tsx?raw';
+import ActiveDemo from './demo/Active';
+import ActiveSource from './demo/Active.tsx?raw';
+import InnerCardDemo from './demo/InnerCard';
+import InnerCardSource from './demo/InnerCard.tsx?raw';
+import ImageDemo from './demo/Image';
+import ImageSource from './demo/Image.tsx?raw';
 
 # Card
 
@@ -26,15 +33,71 @@ const { Content } = Card;
 
 <Layout>
   <Column>
-    <Basic/>
-    <NoBorder/>
-    <Simple/>
-    <Hoverable/>
-    <Active/>
+    <Demo>
+
+### 基本卡片
+
+包含标题、内容和右上角额外内容的基本卡片。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 无边框
+
+灰色背景上的无边框卡片。
+
+<DemoBlock component={NoBorderDemo} source={NoBorderSource} />
+
+    </Demo>
+    <Demo>
+
+### 简洁卡片
+
+只包含内容区域的简洁卡片。
+
+<DemoBlock component={SimpleDemo} source={SimpleSource} />
+
+    </Demo>
+    <Demo>
+
+### 悬停效果
+
+设置 `hoverable` 使卡片具有悬停效果。
+
+<DemoBlock component={HoverableDemo} source={HoverableSource} />
+
+    </Demo>
+    <Demo>
+
+### 激活状态
+
+设置 `active` 使卡片始终显示阴影效果。
+
+<DemoBlock component={ActiveDemo} source={ActiveSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <InnerCard/>
-    <Image/>
+    <Demo>
+
+### 内部卡片
+
+可以放置在普通卡片内部来展示多级结构的信息。
+
+<DemoBlock component={InnerCardDemo} source={InnerCardSource} />
+
+    </Demo>
+    <Demo>
+
+### 媒体卡片
+
+使用图片来增强内容的卡片。
+
+<DemoBlock component={ImageDemo} source={ImageSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

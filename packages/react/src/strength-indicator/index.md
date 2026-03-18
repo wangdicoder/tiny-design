@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Label from './demo/label.md'
-import Password from './demo/password.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import LabelDemo from './demo/Label';
+import LabelSource from './demo/Label.tsx?raw';
+import PasswordDemo from './demo/Password';
+import PasswordSource from './demo/Password.tsx?raw';
 
 # Strength Indicator
 
@@ -19,13 +22,37 @@ import { StrengthIndicator } from 'tiny-design';
 ## Examples
 
 <Layout>
- <Column>
-   <Basic />
-   <Label />
- </Column>
- <Column>
-   <Password />
- </Column>
+  <Column>
+    <Demo>
+
+### Basic
+
+A simple usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Label
+
+Display labels.
+
+<DemoBlock component={LabelDemo} source={LabelSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Integrate with `InputPassword`
+
+Work with `InputPassword` component.
+
+<DemoBlock component={PasswordDemo} source={PasswordSource} />
+
+    </Demo>
+  </Column>
 </Layout>
 
 ## API

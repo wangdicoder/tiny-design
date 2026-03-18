@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import Icon from './demo/icon.md'
-import Placement from './demo/placement.md'
-import Vertical from './demo/vertical.md'
-import Switch from './demo/switch.md'
-import Clickable from './demo/clickable.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import SwitchDemo from './demo/Switch';
+import SwitchSource from './demo/Switch.tsx?raw';
+import ClickableDemo from './demo/Clickable';
+import ClickableSource from './demo/Clickable.tsx?raw';
 
 # Steps
 
@@ -23,12 +29,68 @@ const { Step } = Steps;
 
 ## Examples
 
-<Basic />
-<Icon />
-<Placement />
-<Vertical />
-<Switch />
-<Clickable />
+<Layout>
+  <Column>
+    <Demo>
+
+### Basic
+
+The most basic step bar.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### With Icon
+
+Use a customised icon for `Step`.
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
+    <Demo>
+
+### Switch Step
+
+Control the step.
+
+<DemoBlock component={SwitchDemo} source={SwitchSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Label Placement
+
+Use `labelPlacement` to set the direction of title and description.
+
+> Only apply to `horizontal` Steps.
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
+    <Demo>
+
+### Vertical
+
+A simple step bar in the vertical direction.
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
+    <Demo>
+
+### Clickable
+
+Click to switch step.
+
+<DemoBlock component={ClickableDemo} source={ClickableSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

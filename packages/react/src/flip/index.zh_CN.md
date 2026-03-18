@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Direction from './demo/direction.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DirectionDemo from './demo/Direction';
+import DirectionSource from './demo/Direction.tsx?raw';
 
 # Flip
 
@@ -21,10 +23,26 @@ const { Item } = Flip;
 
 <Layout>
   <Column>
-    <Basic/>
-  </Column>
-  <Column>
-    <Direction/>
+    <Demo>
+
+### 基础用法
+
+基础翻转盒
+
+> **翻转盒的宽度和高度必须设置**
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 方向
+
+通过 `direction` 和 `reverse` 可以控制翻转方向。
+
+<DemoBlock component={DirectionDemo} source={DirectionSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

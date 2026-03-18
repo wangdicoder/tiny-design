@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Disabled from './demo/disabled.md'
-import Group from './demo/group.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import GroupDemo from './demo/Group';
+import GroupSource from './demo/Group.tsx?raw';
 
 # Radio
 
@@ -23,11 +26,35 @@ const { Group } = Radio;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Disabled/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用状态
+
+Radio 的禁用状态。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Group/>
+    <Demo>
+
+### 单选组合
+
+一组单选按钮。
+
+<DemoBlock component={GroupDemo} source={GroupSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

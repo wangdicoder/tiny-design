@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Target from './demo/target.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import TargetDemo from './demo/Target';
+import TargetSource from './demo/Target.tsx?raw';
 
 # Scroll Indicator
 
@@ -17,8 +19,24 @@ import { ScrollIndicator } from 'tiny-design';
 
 ## Examples
 
-<Basic/>
-<Target/>
+<Demo>
+
+### Basic
+
+A basic example.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+</Demo>
+<Demo>
+
+### Container to scroll
+
+Set a target, which is listen to scroll event of target element (default is `window`).
+
+<DemoBlock component={TargetDemo} source={TargetSource} />
+
+</Demo>
 
 ## API
 

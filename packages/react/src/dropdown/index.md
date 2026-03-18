@@ -1,10 +1,17 @@
-import Basic from './demo/basic.md'
-import Other from './demo/other.md'
-import Cascade from './demo/cascade.md'
-import Placement from './demo/placement.md'
-import Arrow from './demo/arrow.md'
-import Trigger from './demo/trigger.md'
-import Close from './demo/close.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import OtherDemo from './demo/Other';
+import OtherSource from './demo/Other.tsx?raw';
+import CascadeDemo from './demo/Cascade';
+import CascadeSource from './demo/Cascade.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import ArrowDemo from './demo/Arrow';
+import ArrowSource from './demo/Arrow.tsx?raw';
+import TriggerDemo from './demo/Trigger';
+import TriggerSource from './demo/Trigger.tsx?raw';
+import CloseDemo from './demo/Close';
+import CloseSource from './demo/Close.tsx?raw';
 
 # Dropdown
 
@@ -24,15 +31,71 @@ import { Dropdown } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic />
-    <Other />
-    <Cascade />
-    <Arrow />
+    <Demo>
+
+### Basic
+
+A very simple dropdown.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Other elements
+
+You can use other elements as the trigger.
+
+<DemoBlock component={OtherDemo} source={OtherSource} />
+
+    </Demo>
+    <Demo>
+
+### Cascade
+
+Cascading menu.
+
+<DemoBlock component={CascadeDemo} source={CascadeSource} />
+
+    </Demo>
+    <Demo>
+
+### Arrow
+
+Show arrow.
+
+<DemoBlock component={ArrowDemo} source={ArrowSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Placement />
-    <Trigger />
-    <Close />
+    <Demo>
+
+### Placement
+
+Placement of popup menu.
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
+    <Demo>
+
+### Trigger mode
+
+Open the menu by clicking.
+
+<DemoBlock component={TriggerDemo} source={TriggerSource} />
+
+    </Demo>
+    <Demo>
+
+### Close
+
+Close menu on click.
+
+<DemoBlock component={CloseDemo} source={CloseSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

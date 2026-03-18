@@ -1,13 +1,23 @@
-import Basic from './demo/basic.md'
-import Controlled from './demo/controlled.md'
-import Size from './demo/size.md'
-import Format from './demo/format.md'
-import Step from './demo/step.md'
-import Disabled from './demo/disabled.md'
-import DisabledTime from './demo/disabled-time.md'
-import HideDisabled from './demo/hide-disabled.md'
-import ExtraFooter from './demo/extra-footer.md'
-import Loop from './demo/loop.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ControlledDemo from './demo/Controlled';
+import ControlledSource from './demo/Controlled.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import FormatDemo from './demo/Format';
+import FormatSource from './demo/Format.tsx?raw';
+import StepDemo from './demo/Step';
+import StepSource from './demo/Step.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import DisabledTimeDemo from './demo/DisabledTime';
+import DisabledTimeSource from './demo/DisabledTime.tsx?raw';
+import HideDisabledDemo from './demo/HideDisabled';
+import HideDisabledSource from './demo/HideDisabled.tsx?raw';
+import ExtraFooterDemo from './demo/ExtraFooter';
+import ExtraFooterSource from './demo/ExtraFooter.tsx?raw';
+import LoopDemo from './demo/Loop';
+import LoopSource from './demo/Loop.tsx?raw';
 
 # TimePicker
 
@@ -23,18 +33,98 @@ import { TimePicker } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Controlled/>
-    <Format/>
-    <DisabledTime/>
-    <ExtraFooter/>
+    <Demo>
+
+### Basic
+
+A basic time picker.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Controlled
+
+Fully controlled with `value` and `onChange`.
+
+<DemoBlock component={ControlledDemo} source={ControlledSource} />
+
+    </Demo>
+    <Demo>
+
+### Format
+
+Use `format` to control what's displayed. Omitting seconds hides the seconds column.
+
+<DemoBlock component={FormatDemo} source={FormatSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled Time Options
+
+Use `disabledTime` to make certain hours, minutes, or seconds unselectable.
+
+<DemoBlock component={DisabledTimeDemo} source={DisabledTimeSource} />
+
+    </Demo>
+    <Demo>
+
+### Extra Footer
+
+Render extra content at the bottom of the dropdown panel.
+
+<DemoBlock component={ExtraFooterDemo} source={ExtraFooterSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Size/>
-    <Step/>
-    <Disabled/>
-    <HideDisabled/>
-    <Loop/>
+    <Demo>
+
+### Size
+
+Three sizes: `sm`, `md` (default), `lg`.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### Step Intervals
+
+Show time options at custom intervals.
+
+<DemoBlock component={StepDemo} source={StepSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+A disabled time picker.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Hide Disabled Options
+
+Combine `disabledTime` with `hideDisabledOptions` to remove unavailable times from the panel entirely.
+
+<DemoBlock component={HideDisabledDemo} source={HideDisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Infinite Scroll
+
+Enable circular scrolling so columns wrap around continuously.
+
+<DemoBlock component={LoopDemo} source={LoopSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

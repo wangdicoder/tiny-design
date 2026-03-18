@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import CustomFilter from './demo/custom-filter.md'
-import Disabled from './demo/disabled.md'
-import AllowClear from './demo/allow-clear.md'
-import NotFound from './demo/not-found.md'
-import Size from './demo/size.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomFilterDemo from './demo/CustomFilter';
+import CustomFilterSource from './demo/CustomFilter.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import AllowClearDemo from './demo/AllowClear';
+import AllowClearSource from './demo/AllowClear.tsx?raw';
+import NotFoundDemo from './demo/NotFound';
+import NotFoundSource from './demo/NotFound.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
 
 # AutoComplete
 
@@ -24,14 +30,62 @@ import { AutoComplete } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Disabled/>
-    <NotFound/>
+    <Demo>
+
+### 基本用法
+
+基本用法。输入以查看邮箱后缀建议。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用
+
+禁用的 AutoComplete。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### 无结果内容
+
+使用 `notFoundContent` 在没有匹配选项时显示内容。
+
+<DemoBlock component={NotFoundDemo} source={NotFoundSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <CustomFilter/>
-    <AllowClear/>
-    <Size/>
+    <Demo>
+
+### 自定义过滤
+
+使用 `filterOption` 实现自定义过滤逻辑。
+
+<DemoBlock component={CustomFilterDemo} source={CustomFilterSource} />
+
+    </Demo>
+    <Demo>
+
+### 可清除
+
+设置 `allowClear` 在输入有值时显示清除按钮。
+
+<DemoBlock component={AllowClearDemo} source={AllowClearSource} />
+
+    </Demo>
+    <Demo>
+
+### 尺寸
+
+三种尺寸：`sm`、`md`（默认）和 `lg`。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

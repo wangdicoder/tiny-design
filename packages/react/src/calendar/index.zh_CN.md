@@ -1,4 +1,5 @@
-import Basic from './demo/basic.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
 
 # Calendar 日历
 
@@ -18,7 +19,15 @@ import { Calendar } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### 基本用法
+
+支持日期选择的全尺寸日历。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

@@ -1,4 +1,5 @@
-import Basic from './demo/basic.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
 
 # Calendar
 
@@ -18,7 +19,15 @@ import { Calendar } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### Basic
+
+A full-size calendar with date selection.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

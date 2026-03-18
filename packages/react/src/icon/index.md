@@ -1,6 +1,9 @@
-import SvgBasic from './demo/svg-basic.md'
-import SvgSizeColor from './demo/svg-size-color.md'
-import SvgSpin from './demo/svg-spin.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SizeAndColorDemo from './demo/SizeAndColor';
+import SizeAndColorSource from './demo/SizeAndColor.tsx?raw';
+import SpinDemo from './demo/Spin';
+import SpinSource from './demo/Spin.tsx?raw';
 import SvgIconList from './demo/svg-icons.tsx'
 
 # Icon
@@ -22,11 +25,35 @@ import { IconClose, IconPlus } from '@tiny-design/icons';
 
 <Layout>
   <Column>
-    <SvgBasic />
-    <SvgSpin />
+    <Demo>
+
+### Basic
+
+Import individual SVG icon components. Each icon is tree-shakeable.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Spin
+
+Use the `withSpin` HOC to create a spinning variant of any icon. Useful for loading indicators.
+
+<DemoBlock component={SpinDemo} source={SpinSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <SvgSizeColor />
+    <Demo>
+
+### Size & Color
+
+Use `size` and `color` props to customize icons.
+
+<DemoBlock component={SizeAndColorDemo} source={SizeAndColorSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

@@ -1,10 +1,17 @@
-import Basic from './demo/basic.md'
-import Blur from './demo/blur.md'
-import Container from './demo/container.md'
-import Indicator from './demo/indicator.md'
-import Size from './demo/size.md'
-import State from './demo/state.md'
-import Tips from './demo/tips.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import BlurDemo from './demo/Blur';
+import BlurSource from './demo/Blur.tsx?raw';
+import ContainerDemo from './demo/Container';
+import ContainerSource from './demo/Container.tsx?raw';
+import IndicatorDemo from './demo/Indicator';
+import IndicatorSource from './demo/Indicator.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import StateDemo from './demo/State';
+import StateSource from './demo/State.tsx?raw';
+import TipsDemo from './demo/Tips';
+import TipsSource from './demo/Tips.tsx?raw';
 
 # Loader
 
@@ -24,15 +31,71 @@ import { Loader } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Container/>
-    <Tips/>
-    <Indicator/>
+    <Demo>
+
+### Basic
+
+A simple loading status.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Inside a container
+
+A Loader in a container.
+
+<DemoBlock component={ContainerDemo} source={ContainerSource} />
+
+    </Demo>
+    <Demo>
+
+### Customized description
+
+Customized description content.
+
+<DemoBlock component={TipsDemo} source={TipsSource} />
+
+    </Demo>
+    <Demo>
+
+### Custom spinning indicator
+
+Use custom loading indicator.
+
+<DemoBlock component={IndicatorDemo} source={IndicatorSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Size/>
-    <State/>
-    <Blur/>
+    <Demo>
+
+### Size
+
+There are three different sizes of the loader.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### Loading state
+
+Control the loading state.
+
+<DemoBlock component={StateDemo} source={StateSource} />
+
+    </Demo>
+    <Demo>
+
+### Blur the container
+
+Use `blurred` to control the container overlay.
+
+<DemoBlock component={BlurDemo} source={BlurSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -46,4 +109,3 @@ import { Loader } from 'tiny-design';
 | tip               | customize description content when Spin has children  | string                                | -         |
 | vertical          | vertical the content                                  | boolean                               | false     |
 | blurred           | determine whether blur the loading background         | boolean                               | false     |
-

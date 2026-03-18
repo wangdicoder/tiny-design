@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Direction from './demo/direction.md'
-import Click from './demo/click.md'
-import CustomIcon from './demo/custom-icon.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DirectionDemo from './demo/Direction';
+import DirectionSource from './demo/Direction.tsx?raw';
+import ClickDemo from './demo/Click';
+import ClickSource from './demo/Click.tsx?raw';
+import CustomIconDemo from './demo/CustomIcon';
+import CustomIconSource from './demo/CustomIcon.tsx?raw';
 
 # SpeedDial
 
@@ -21,12 +25,44 @@ import { SpeedDial } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic />
-    <Click />
+    <Demo>
+
+### 基础用法
+
+基础的 SpeedDial，hover 时展开。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 点击触发
+
+设置 `trigger="click"` 可以通过点击触发展开。
+
+<DemoBlock component={ClickDemo} source={ClickSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Direction />
-    <CustomIcon />
+    <Demo>
+
+### 方向
+
+支持四个展开方向：`up`、`down`、`left`、`right`。
+
+<DemoBlock component={DirectionDemo} source={DirectionSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义图标
+
+可以自定义主按钮图标和展开后的图标。
+
+<DemoBlock component={CustomIconDemo} source={CustomIconSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

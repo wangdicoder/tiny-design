@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Icon from './demo/icon.md'
-import Separator from './demo/separator.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import SeparatorDemo from './demo/Separator';
+import SeparatorSource from './demo/Separator.tsx?raw';
 
 # Breadcrumb
 
@@ -25,11 +28,35 @@ const { Item } = Breadcrumb;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Separator/>
+    <Demo>
+
+### Basic Usage
+
+The simplest use
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Separator
+
+Customise the separator symbol.
+
+<DemoBlock component={SeparatorDemo} source={SeparatorSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Icon/>
+    <Demo>
+
+### With Icon
+
+Using an icon replaces a text or combination.
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

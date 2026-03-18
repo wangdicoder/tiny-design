@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Duration from './demo/duration.md'
-import Extra from './demo/extra.md'
-import Type from './demo/type.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DurationDemo from './demo/Duration';
+import DurationSource from './demo/Duration.tsx?raw';
+import ExtraDemo from './demo/Extra';
+import ExtraSource from './demo/Extra.tsx?raw';
+import TypeDemo from './demo/Type';
+import TypeSource from './demo/Type.tsx?raw';
 
 # Message
 
@@ -23,12 +27,44 @@ import { Message } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Duration/>
+    <Demo>
+
+### 正常消息
+
+用于显示提示信息。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义时长
+
+自定义消息显示时长，从默认的 `3s` 改为 `10s`。
+
+<DemoBlock component={DurationDemo} source={DurationSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Type/>
-    <Extra/>
+    <Demo>
+
+### 不同类型
+
+包括 `info`、`success`、`warning`、`error` 和 `loading` 五种类型。
+
+<DemoBlock component={TypeDemo} source={TypeSource} />
+
+    </Demo>
+    <Demo>
+
+### 额外操作
+
+在消息后面添加额外操作。
+
+<DemoBlock component={ExtraDemo} source={ExtraSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
