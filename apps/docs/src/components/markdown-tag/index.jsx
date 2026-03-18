@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import './md-tag.scss';
-import { CodeBlock } from '../code-block';
 import { DemoBlock } from '../demo-block';
+import { HighlightedCode } from '../highlighted-code';
 
 const slugifyLink = (name) => {
   if (name.includes(' ')) {
@@ -49,14 +49,14 @@ export const components = {
       const { className, children: code } = children.props;
       return (
         <div className="markdown__pre-container">
-          <CodeBlock className={className} live>{code}</CodeBlock>
+          <HighlightedCode className={className}>{code}</HighlightedCode>
         </div>
       );
     }
     return <div {...rest} className="markdown__pre-container">{children}</div>;
   },
   code: ({ className, ...props }) =>
-    className ? <CodeBlock className={className} {...props} /> : <code {...props} className="markdown__inline-code" />,
+    className ? <HighlightedCode className={className} {...props} /> : <code {...props} className="markdown__inline-code" />,
   // Customised tags (PascalCase for MDX v3 provider resolution)
   Layout: (props) => <div {...props} className="markdown__layout" />,
   Column: (props) => <div {...props} className="markdown__column" />,

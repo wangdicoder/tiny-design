@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { useRunner } from 'react-runner';
 import { Highlight, themes } from 'prism-react-renderer';
-import { LightCodeTheme, DarkCodeTheme } from '../code-block/code-theme';
+import { LightCodeTheme, DarkCodeTheme } from './code-theme';
 import * as TinyDesign from '@tiny-design/react';
 import * as TinyIcons from '@tiny-design/icons';
 import CollapseTransition from '@tiny-design/react/collapse-transition';
