@@ -22,7 +22,7 @@ export default function StrengthDemo() {
     if (/[A-Z]/.test(str)) {
       lv++;
     }
-    if (/[\.|-|_]/.test(str)) {
+    if (/[.|-|_]/.test(str)) {
       lv++;
     }
 
