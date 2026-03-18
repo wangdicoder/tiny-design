@@ -1,8 +1,15 @@
-import Accordion from './demo/accordion.md'
-import Basic from './demo/basic.md'
-import Borderless from './demo/borderless.md'
-import Deletable from './demo/deletable.md'
-import Nested from './demo/nested.md'
+import AccordionDemo from './demo/Accordion';
+import AccordionSource from './demo/Accordion.tsx?raw';
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import BorderlessDemo from './demo/Borderless';
+import BorderlessSource from './demo/Borderless.tsx?raw';
+import DeletableDemo from './demo/Deletable';
+import DeletableSource from './demo/Deletable.tsx?raw';
+import ExtraDemo from './demo/Extra';
+import ExtraSource from './demo/Extra.tsx?raw';
+import NestedDemo from './demo/Nested';
+import NestedSource from './demo/Nested.tsx?raw';
 
 # Collapse
 
@@ -26,13 +33,62 @@ const { Panel } = Collapse;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Accordion/>
-    <Nested/>
+    <Demo>
+
+### 基本折叠
+
+默认情况下，可以同时展开任意数量的面板。此示例中第一个面板是展开的。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 手风琴
+
+同一时间只能展开一个面板。
+
+<DemoBlock component={AccordionDemo} source={AccordionSource} />
+
+    </Demo>
+    <Demo>
+
+### 嵌套面板
+
+`Collapse` 可以嵌套在 `Collapse` 内部。
+
+<DemoBlock component={NestedDemo} source={NestedSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Borderless/>
-    <Deletable/>
+    <Demo>
+
+### 无边框
+
+无边框样式的折叠面板。
+
+<DemoBlock component={BorderlessDemo} source={BorderlessSource} />
+
+    </Demo>
+    <Demo>
+
+### 可删除
+
+面板可以被删除。
+
+<DemoBlock component={DeletableDemo} source={DeletableSource} />
+
+    </Demo>
+    <Demo>
+
+### 额外内容
+
+使用 `extra` 属性在面板头部角落添加额外元素。
+
+<DemoBlock component={ExtraDemo} source={ExtraSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

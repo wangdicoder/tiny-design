@@ -1,11 +1,19 @@
-import Block from './demo/block.md'
-import MoreTypes from './demo/more-types.md'
-import Disabled from './demo/disabled.md'
-import ButtonGroup from './demo/group.md'
-import Icon from './demo/icon.md'
-import Loading from './demo/loading.md'
-import Size from './demo/size.md'
-import Type from './demo/type.md'
+import TypeDemo from './demo/Type';
+import TypeSource from './demo/Type.tsx?raw';
+import MoreTypesDemo from './demo/MoreTypes';
+import MoreTypesSource from './demo/MoreTypes.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import LoadingDemo from './demo/Loading';
+import LoadingSource from './demo/Loading.tsx?raw';
+import BlockDemo from './demo/Block';
+import BlockSource from './demo/Block.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import GroupDemo from './demo/Group';
+import GroupSource from './demo/Group.tsx?raw';
 
 # Button
 
@@ -27,16 +35,82 @@ const { Group } = Button;
 
 <Layout>
   <Column>
-    <Type/>
-    <MoreTypes/>
-    <Size/>
-    <ButtonGroup/>
-    <Loading/>
+    <Demo>
+
+### 类型
+
+按钮有 `default`、`primary`、`outline`、`ghost` 和 `link` 五种类型。
+
+> link 类型按钮仅改变样式，它仍然是一个 `<button>` 标签。如果需要表示带有 `href` 属性的超链接，建议使用 `<Link />` 组件。
+
+<DemoBlock component={TypeDemo} source={TypeSource} />
+
+    </Demo>
+    <Demo>
+
+### 更多类型
+
+不同的颜色代表不同的含义。
+
+<DemoBlock component={MoreTypesDemo} source={MoreTypesSource} />
+
+    </Demo>
+    <Demo>
+
+### 尺寸
+
+有三种不同的尺寸：`lg`、`md`、`sm`。默认尺寸为 `md`。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### 按钮组
+
+通过将多个 `Button` 组件放入 `Button.Group` 中来对按钮进行分组。
+
+<DemoBlock component={GroupDemo} source={GroupSource} />
+
+    </Demo>
+    <Demo>
+
+### 加载按钮
+
+点击按钮加载数据后，按钮会显示加载状态。
+
+<DemoBlock component={LoadingDemo} source={LoadingSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Icon/>
-    <Disabled/>
-    <Block/>
+    <Demo>
+
+### 图标按钮
+
+使用图标为按钮添加更多含义。可以单独使用图标以节省空间，也可以与文本一起使用。
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用状态
+
+添加 `disabled` 属性来禁用按钮。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### 块级按钮
+
+block 属性会使按钮宽度适应其父元素宽度。
+
+<DemoBlock component={BlockDemo} source={BlockSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

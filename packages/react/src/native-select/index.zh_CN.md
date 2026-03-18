@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Disabled from './demo/disabled.md'
-import Group from './demo/group.md'
-import Size from './demo/size.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import GroupDemo from './demo/Group';
+import GroupSource from './demo/Group.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
 
 # Native Select
 
@@ -24,12 +28,38 @@ const { Group, Option } = NativeSelect;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Size/>
+    <Demo>
+
+### 基础用法
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 尺寸
+
+使用 `size` 设置不同尺寸的选择器
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Group/>
-    <Disabled/>
+    <Demo>
+
+### 分组
+
+<DemoBlock component={GroupDemo} source={GroupSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

@@ -1,8 +1,15 @@
-import Basic from './demo/basic.md'
-import Gutter from './demo/gutter.md'
-import Offset from './demo/offset.md'
-import Order from './demo/order.md'
-import Alignment from './demo/alignment.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import GutterDemo from './demo/Gutter';
+import GutterSource from './demo/Gutter.tsx?raw';
+import OffsetDemo from './demo/Offset';
+import OffsetSource from './demo/Offset.tsx?raw';
+import OrderDemo from './demo/Order';
+import OrderSource from './demo/Order.tsx?raw';
+import AlignmentDemo from './demo/Alignment';
+import AlignmentSource from './demo/Alignment.tsx?raw';
+import ResponsiveDemo from './demo/Responsive';
+import ResponsiveSource from './demo/Responsive.tsx?raw';
 
 # Grid
 
@@ -16,11 +23,66 @@ import { Row, Col } from 'tiny-design';
 
 ## 代码示例
 
-<Basic />
-<Gutter />
-<Offset />
-<Order />
-<Alignment />
+<Layout>
+  <Column>
+    <Demo>
+
+### 基本栅格
+
+使用列创建基本栅格布局。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 栅格间距
+
+使用 `Row` 的 `gutter` 属性设置栅格间距。建议设为 `8n` px。（`n` 为正整数。）
+
+<DemoBlock component={GutterDemo} source={GutterSource} />
+
+    </Demo>
+    <Demo>
+
+### 栅格偏移
+
+使用 `offset` 可以将列向右移动。
+
+<DemoBlock component={OffsetDemo} source={OffsetSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 排序
+
+使用 `order` 改变元素的排列顺序。
+
+<DemoBlock component={OrderDemo} source={OrderSource} />
+
+    </Demo>
+    <Demo>
+
+### 对齐
+
+子元素垂直对齐。
+
+<DemoBlock component={AlignmentDemo} source={AlignmentSource} />
+
+    </Demo>
+    <Demo>
+
+### 响应式
+
+列使用 `xs`、`sm`、`md`、`lg`、`xl`、`xxl` 响应视口宽度。调整浏览器大小以查看列重新排列。
+
+<DemoBlock component={ResponsiveDemo} source={ResponsiveSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

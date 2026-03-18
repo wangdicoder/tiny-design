@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Placement from './demo/placement.md'
-import Level from './demo/multi-level.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import MultiLevelDemo from './demo/MultiLevel';
+import MultiLevelSource from './demo/MultiLevel.tsx?raw';
 
 # Drawer
 
@@ -24,11 +27,35 @@ import { Drawer } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Level/>
+    <Demo>
+
+### 基本用法
+
+基本的抽屉。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 多层抽屉
+
+在现有抽屉上打开新抽屉以处理多分支任务。
+
+<DemoBlock component={MultiLevelDemo} source={MultiLevelSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Placement/>
+    <Demo>
+
+### 位置
+
+抽屉可以从屏幕的任何边缘出现。
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -38,7 +65,7 @@ import { Drawer } from 'tiny-design';
 | ----------------- | --------------------------------------------- | --------------------------------------------------------- | --------- |
 | placement         | 抽屉的弹出位置                                | enum: `top` &#124; `bottom` &#124; `left` &#124; `right`  | `right`   |
 | size              | 抽屉的宽度或高度                              | number &#124; string                                      | 256       |
-| visible           | 抽屉是否可见                                  | boolean                                                   | -         |
+| open           | 抽屉是否可见                                  | boolean                                                   | -         |
 | header            | 抽屉头部内容                                  | ReactNode                                                 | -         |
 | footer            | 抽屉底部内容                                  | ReactNode                                                 | -         |
 | closable          | 是否显示关闭按钮                              | boolean                                                   | `true`    |

@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import HideButton from './demo/hide-button.md'
-import Strength from './demo/strength.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import HideButtonDemo from './demo/HideButton';
+import HideButtonSource from './demo/HideButton.tsx?raw';
+import StrengthDemo from './demo/Strength';
+import StrengthSource from './demo/Strength.tsx?raw';
 
 # Input Password
 
@@ -20,11 +23,35 @@ import { InputPassword } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <HideButton/>
+    <Demo>
+
+### Basic
+
+A simple usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Hide Button
+
+The suffix button can be hidden.
+
+<DemoBlock component={HideButtonDemo} source={HideButtonSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Strength />
+    <Demo>
+
+### Integrate with `StrengthIndicator`
+
+Work with `StrengthIndicator` component.
+
+<DemoBlock component={StrengthDemo} source={StrengthSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -36,4 +63,3 @@ import { InputPassword } from 'tiny-design';
 | visibleOnClick | callback when clicking the visible button | () => void | -       |
 | style	         | style object of container object          |            | -       |
 | className	     | className of container                    | string     | -       |
-

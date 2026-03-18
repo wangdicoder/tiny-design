@@ -1,6 +1,9 @@
-import AlignTitle from './demo/align-title.md'
-import Horizontal from './demo/horizontal.md'
-import Vertical from './demo/vertical.md'
+import AlignTitleDemo from './demo/AlignTitle';
+import AlignTitleSource from './demo/AlignTitle.tsx?raw';
+import HorizontalDemo from './demo/Horizontal';
+import HorizontalSource from './demo/Horizontal.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
 
 # Divider
 
@@ -21,11 +24,35 @@ import { Divider } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Horizontal/>
-    <Vertical/>
+    <Demo>
+
+### 水平分割线
+
+分割线默认类型为 `horizontal`。支持在分割线内添加文字。
+
+<DemoBlock component={HorizontalDemo} source={HorizontalSource} />
+
+    </Demo>
+    <Demo>
+
+### 垂直分割线
+
+使用 `type="vertical"` 使其垂直。
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <AlignTitle/>
+    <Demo>
+
+### 对齐标题
+
+设置分割线标题的位置，默认为 `center`。
+
+<DemoBlock component={AlignTitleDemo} source={AlignTitleSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

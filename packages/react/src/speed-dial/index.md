@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Direction from './demo/direction.md'
-import Click from './demo/click.md'
-import CustomIcon from './demo/custom-icon.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DirectionDemo from './demo/Direction';
+import DirectionSource from './demo/Direction.tsx?raw';
+import ClickDemo from './demo/Click';
+import ClickSource from './demo/Click.tsx?raw';
+import CustomIconDemo from './demo/CustomIcon';
+import CustomIconSource from './demo/CustomIcon.tsx?raw';
 
 # SpeedDial
 
@@ -21,12 +25,44 @@ import { SpeedDial } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic />
-    <Click />
+    <Demo>
+
+### Basic
+
+A basic SpeedDial that expands on hover.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Click Trigger
+
+Use `trigger="click"` to open the SpeedDial on click instead of hover.
+
+<DemoBlock component={ClickDemo} source={ClickSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Direction />
-    <CustomIcon />
+    <Demo>
+
+### Direction
+
+SpeedDial supports four directions: `up`, `down`, `left`, and `right`.
+
+<DemoBlock component={DirectionDemo} source={DirectionSource} />
+
+    </Demo>
+    <Demo>
+
+### Custom Icon
+
+Customize the FAB icon and the open icon.
+
+<DemoBlock component={CustomIconDemo} source={CustomIconSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

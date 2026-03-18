@@ -1,10 +1,17 @@
-import Basic from './demo/basic.md'
-import Blur from './demo/blur.md'
-import Container from './demo/container.md'
-import Indicator from './demo/indicator.md'
-import Size from './demo/size.md'
-import State from './demo/state.md'
-import Tips from './demo/tips.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import BlurDemo from './demo/Blur';
+import BlurSource from './demo/Blur.tsx?raw';
+import ContainerDemo from './demo/Container';
+import ContainerSource from './demo/Container.tsx?raw';
+import IndicatorDemo from './demo/Indicator';
+import IndicatorSource from './demo/Indicator.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import StateDemo from './demo/State';
+import StateSource from './demo/State.tsx?raw';
+import TipsDemo from './demo/Tips';
+import TipsSource from './demo/Tips.tsx?raw';
 
 # Loader
 
@@ -24,15 +31,71 @@ import { Loader } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Container/>
-    <Tips/>
-    <Indicator/>
+    <Demo>
+
+### 基本
+
+简单的加载状态。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 容器内
+
+容器内的加载器。
+
+<DemoBlock component={ContainerDemo} source={ContainerSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义描述文字
+
+自定义描述内容。
+
+<DemoBlock component={TipsDemo} source={TipsSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义指示符
+
+使用自定义的加载指示符。
+
+<DemoBlock component={IndicatorDemo} source={IndicatorSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Size/>
-    <State/>
-    <Blur/>
+    <Demo>
+
+### 尺寸
+
+三种不同尺寸的加载器。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### 加载状态
+
+控制加载状态。
+
+<DemoBlock component={StateDemo} source={StateSource} />
+
+    </Demo>
+    <Demo>
+
+### 模糊容器
+
+使用 `blurred` 属性控制容器遮罩层。
+
+<DemoBlock component={BlurDemo} source={BlurSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

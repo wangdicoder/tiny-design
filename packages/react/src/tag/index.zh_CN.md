@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Checkable from './demo/checkable.md'
-import Color from './demo/color.md'
-import Controlled from './demo/controlled.md'
-import Dynamic from './demo/dynamic.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CheckableDemo from './demo/Checkable';
+import CheckableSource from './demo/Checkable.tsx?raw';
+import ColorDemo from './demo/Color';
+import ColorSource from './demo/Color.tsx?raw';
+import ControlledDemo from './demo/Controlled';
+import ControlledSource from './demo/Controlled.tsx?raw';
+import DynamicDemo from './demo/Dynamic';
+import DynamicSource from './demo/Dynamic.tsx?raw';
 
 # Tag
 
@@ -26,13 +31,56 @@ const { CheckableTag } = Tag;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Dynamic/>
-    <Checkable/>
+    <Demo>
+
+### 基础用法
+
+```jsx live
+```
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 动态添加和删除
+
+动态添加和删除标签。
+
+<DemoBlock component={DynamicDemo} source={DynamicSource} />
+
+    </Demo>
+    <Demo>
+
+### 可选择
+
+`CheckableTag` 类似于 Checkbox，点击可切换选中状态。
+
+> 同时支持受控和非受控模式。
+
+<DemoBlock component={CheckableDemo} source={CheckableSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Color/>
-    <Controlled/>
+    <Demo>
+
+### 多彩标签
+
+我们提供了一系列预设的彩色标签样式，适用于不同场景。你也可以自定义十六进制颜色值。
+
+<DemoBlock component={ColorDemo} source={ColorSource} />
+
+    </Demo>
+    <Demo>
+
+### 受控显示
+
+通过 `visible` 属性控制标签的显示与隐藏。
+
+<DemoBlock component={ControlledDemo} source={ControlledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

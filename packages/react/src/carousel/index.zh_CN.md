@@ -1,6 +1,11 @@
-import Basic from './demo/basic.md'
-import Arrows from './demo/arrows.md'
-import Fade from './demo/fade.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ArrowsDemo from './demo/Arrows';
+import ArrowsSource from './demo/Arrows.tsx?raw';
+import FadeDemo from './demo/Fade';
+import FadeSource from './demo/Fade.tsx?raw';
+import MethodsDemo from './demo/Methods';
+import MethodsSource from './demo/Methods.tsx?raw';
 
 # Carousel
 
@@ -16,11 +21,44 @@ import { Carousel } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Fade/>
+    <Demo>
+
+### 基本用法
+
+基本的走马灯。可以直接传入子元素，不需要 `Carousel.Item`。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 渐变效果
+
+使用渐变过渡效果代替滚动。
+
+<DemoBlock component={FadeDemo} source={FadeSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Arrows/>
+    <Demo>
+
+### 切换箭头
+
+鼠标悬停时显示导航箭头。
+
+<DemoBlock component={ArrowsDemo} source={ArrowsSource} />
+
+    </Demo>
+    <Demo>
+
+### 编程控制
+
+使用 `ref` 来访问 `goTo`、`next` 和 `prev` 方法进行编程控制。
+
+<DemoBlock component={MethodsDemo} source={MethodsSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

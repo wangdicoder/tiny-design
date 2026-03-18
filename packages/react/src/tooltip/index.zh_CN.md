@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Arrow from './demo/arrow.md'
-import Placement from './demo/placement.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ArrowDemo from './demo/Arrow';
+import ArrowSource from './demo/Arrow.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
 
 # Tooltip
 
@@ -21,11 +24,37 @@ import { Tooltip } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Arrow/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 隐藏箭头
+
+设置 `arrow={false}` 隐藏箭头。
+
+<DemoBlock component={ArrowDemo} source={ArrowSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Placement/>
+    <Demo>
+
+### 位置
+
+共有 12 种位置选择。
+
+> 气泡框的箭头始终指向触发元素的中心。
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

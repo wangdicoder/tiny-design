@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Customised from './demo/customised.md'
-import NoDesc from './demo/no-desc.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomisedDemo from './demo/Customised';
+import CustomisedSource from './demo/Customised.tsx?raw';
+import NoDescDemo from './demo/NoDesc';
+import NoDescSource from './demo/NoDesc.tsx?raw';
 
 # Empty
 
@@ -21,11 +24,35 @@ import { Empty } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Customised/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义
+
+自定义图片、尺寸、描述和额外内容。
+
+<DemoBlock component={CustomisedDemo} source={CustomisedSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <NoDesc/>
+    <Demo>
+
+### 无描述
+
+设置 `description={false}` 隐藏描述。
+
+<DemoBlock component={NoDescDemo} source={NoDescSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

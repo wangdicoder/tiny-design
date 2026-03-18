@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Arrows from './demo/arrows.md'
-import Fade from './demo/fade.md'
-import Methods from './demo/methods.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ArrowsDemo from './demo/Arrows';
+import ArrowsSource from './demo/Arrows.tsx?raw';
+import FadeDemo from './demo/Fade';
+import FadeSource from './demo/Fade.tsx?raw';
+import MethodsDemo from './demo/Methods';
+import MethodsSource from './demo/Methods.tsx?raw';
 
 # Carousel
 
@@ -17,12 +21,44 @@ import { Carousel } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Fade/>
+    <Demo>
+
+### Basic
+
+A basic carousel. You can pass children directly — no need for `Carousel.Item`.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Fade Effect
+
+Use fade transition instead of scrolling.
+
+<DemoBlock component={FadeDemo} source={FadeSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Arrows/>
-    <Methods/>
+    <Demo>
+
+### Arrows
+
+Show navigation arrows on hover.
+
+<DemoBlock component={ArrowsDemo} source={ArrowsSource} />
+
+    </Demo>
+    <Demo>
+
+### Ref Methods
+
+Use `ref` to access `goTo`, `next`, and `prev` methods for programmatic control.
+
+<DemoBlock component={MethodsDemo} source={MethodsSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

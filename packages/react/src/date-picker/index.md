@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import Size from './demo/size.md'
-import Picker from './demo/picker.md'
-import DisabledDate from './demo/disabled-date.md'
-import Disabled from './demo/disabled.md'
-import ExtraFooter from './demo/extra-footer.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import PickerDemo from './demo/Picker';
+import PickerSource from './demo/Picker.tsx?raw';
+import DisabledDateDemo from './demo/DisabledDate';
+import DisabledDateSource from './demo/DisabledDate.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import ExtraFooterDemo from './demo/ExtraFooter';
+import ExtraFooterSource from './demo/ExtraFooter.tsx?raw';
 
 # DatePicker
 
@@ -19,14 +25,62 @@ import { DatePicker } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Picker/>
-    <DisabledDate/>
+    <Demo>
+
+### Basic
+
+A basic date picker with a "Today" shortcut.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Picker Type
+
+Use `picker` to switch between date, month, and year selection.
+
+<DemoBlock component={PickerDemo} source={PickerSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled Date
+
+Use `disabledDate` to make specific dates unselectable. This example disables all past dates.
+
+<DemoBlock component={DisabledDateDemo} source={DisabledDateSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Size/>
-    <Disabled/>
-    <ExtraFooter/>
+    <Demo>
+
+### Size
+
+Three sizes: `sm`, `md` (default), `lg`.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+A disabled date picker.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Extra Footer
+
+Render extra content in the panel footer.
+
+<DemoBlock component={ExtraFooterDemo} source={ExtraFooterSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

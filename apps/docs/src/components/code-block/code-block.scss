@@ -35,19 +35,52 @@
     width: 100%;
   }
 
-  &__controller {
+  &__actions {
     border-top: dashed 1px var(--ty-color-border-secondary);
-    height: 36px;
-    line-height: 36px;
+    height: 40px;
     box-sizing: border-box;
     background-color: var(--ty-color-bg-elevated);
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 0 12px;
+    position: relative;
+  }
+
+  &__action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: none;
     color: var(--ty-color-text-tertiary);
     cursor: pointer;
-    transition: 0.2s;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: color 0.2s, background-color 0.2s;
+    padding: 0;
+
+    &:hover {
+      color: var(--ty-color-primary);
+      background-color: var(--ty-color-fill);
+    }
+  }
+
+  &__action-toggle {
+    display: inline-flex;
+    align-items: center;
+    color: var(--ty-color-text-tertiary);
+    cursor: pointer;
     font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+    user-select: none;
 
     &:hover {
       color: var(--ty-color-primary);

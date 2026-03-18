@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Heading from './demo/heading.md'
-import Text from './demo/text.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import HeadingDemo from './demo/Heading';
+import HeadingSource from './demo/Heading.tsx?raw';
+import TextDemo from './demo/Text';
+import TextSource from './demo/Text.tsx?raw';
 
 # Typography
 
@@ -20,9 +23,37 @@ const { Heading, Paragraph, Text } = Typography;
 
 ## 代码示例
 
-<Basic/>
-<Heading/>
-<Text/>
+<Layout>
+  <Column>
+    <Demo>
+
+### 基本使用
+
+展示文档示例。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 标题
+
+展示不同级别的标题。
+
+<DemoBlock component={HeadingDemo} source={HeadingSource} />
+
+    </Demo>
+    <Demo>
+
+### 文本
+
+HTML 包含多个用于定义具有特殊意义的文本的元素。`Text` 组件为它们提供了包装器。
+
+<DemoBlock component={TextDemo} source={TextSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

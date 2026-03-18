@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md';
-import UseInput from './demo/use-input.md';
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import UseInputDemo from './demo/UseInput';
+import UseInputSource from './demo/UseInput.tsx?raw';
 
 # Copy To Clipboard
 
@@ -17,10 +19,22 @@ import { CopyToClipboard } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### 基本用法
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <UseInput/>
+    <Demo>
+
+### 从输入框复制
+
+<DemoBlock component={UseInputDemo} source={UseInputSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

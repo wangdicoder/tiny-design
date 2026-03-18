@@ -1,4 +1,9 @@
-import Basic from './demo/basic.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import FormatterDemo from './demo/Formatter';
+import FormatterSource from './demo/Formatter.tsx?raw';
+import StyleDemo from './demo/Style';
+import StyleSource from './demo/Style.tsx?raw';
 
 # Statistic 统计数值
 
@@ -18,7 +23,35 @@ import { Statistic } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### 基本用法
+
+展示带标题和格式化数值的统计组件。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义格式化
+
+使用 `formatter` 来自定义数值显示。
+
+<DemoBlock component={FormatterDemo} source={FormatterSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 数值样式
+
+通过 `valueStyle` 和 `groupSeparator` 自定义数值外观。
+
+<DemoBlock component={StyleDemo} source={StyleSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

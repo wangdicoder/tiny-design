@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Size from './demo/size.md'
-import Disabled from './demo/disabled.md'
-import Precision from './demo/precision.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import PrecisionDemo from './demo/Precision';
+import PrecisionSource from './demo/Precision.tsx?raw';
 
 # Input Number
 
@@ -21,12 +25,44 @@ import { InputNumber } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Disabled/>
+    <Demo>
+
+### Basic
+
+A simple usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+Click the button to toggle between available and disabled states.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Size/>
-    <Precision/>
+    <Demo>
+
+### Size
+
+Different sizes of input number components.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### Precision
+
+Set decimal precision with `precision`, and use `controls` to always show step buttons.
+
+<DemoBlock component={PrecisionDemo} source={PrecisionSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -45,4 +81,3 @@ import { InputNumber } from 'tiny-design';
 | controls      | Always display the controller                         | boolean                               | false                     |
 | style	        | Style object of container object                      |                                       | -                         |
 | className	    | ClassName of container                                | string                                | -                         |
-

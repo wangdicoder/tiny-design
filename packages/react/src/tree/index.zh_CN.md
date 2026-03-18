@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Selectable from './demo/selectable.md'
-import Icon from './demo/icon.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SelectableDemo from './demo/Selectable';
+import SelectableSource from './demo/Selectable.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
 
 # Tree
 
@@ -20,11 +23,35 @@ import { Tree } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic />
-    <Selectable />
+    <Demo>
+
+### 基础用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 可选择
+
+节点可选择。
+
+<DemoBlock component={SelectableDemo} source={SelectableSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Icon />
+    <Demo>
+
+### 自定义图标
+
+自定义树节点展开/收起图标。
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

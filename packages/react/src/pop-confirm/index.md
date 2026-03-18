@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Placement from './demo/placement.md'
-import Locale from './demo/locale.md'
-import Icon from './demo/icon.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import PlacementDemo from './demo/Placement';
+import PlacementSource from './demo/Placement.tsx?raw';
+import LocaleDemo from './demo/Locale';
+import LocaleSource from './demo/Locale.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
 
 # PopConfirm
 
@@ -23,12 +27,44 @@ import { PopConfirm } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Placement/>
+    <Demo>
+
+### Basic
+
+The simplest usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Placement
+
+There are 12 placement options available.
+
+<DemoBlock component={PlacementDemo} source={PlacementSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Locale/>
-    <Icon/>
+    <Demo>
+
+### Locale text
+
+Set `confirmText` and `cancelText` props to customise button's labels.
+
+<DemoBlock component={LocaleDemo} source={LocaleSource} />
+
+    </Demo>
+    <Demo>
+
+### Customised Icon
+
+Set `icon` props to customize the icon.
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

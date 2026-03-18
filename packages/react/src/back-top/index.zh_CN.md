@@ -1,4 +1,7 @@
-import Basic from './demo/basic.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomDemo from './demo/Custom';
+import CustomSource from './demo/Custom.tsx?raw';
 
 # BackTop
 
@@ -19,9 +22,26 @@ import { BackTop } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### 基本用法
+
+基本示例。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
   <Column>
+    <Demo>
+
+### 自定义触发器
+
+使用自定义子元素替换默认按钮。
+
+<DemoBlock component={CustomDemo} source={CustomSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

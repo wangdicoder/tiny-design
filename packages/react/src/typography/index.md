@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Heading from './demo/heading.md'
-import Text from './demo/text.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import HeadingDemo from './demo/Heading';
+import HeadingSource from './demo/Heading.tsx?raw';
+import TextDemo from './demo/Text';
+import TextSource from './demo/Text.tsx?raw';
 
 # Typography
 
@@ -20,9 +23,37 @@ const { Heading, Paragraph, Text } = Typography;
 
 ## Examples
 
-<Basic/>
-<Heading/>
-<Text/>
+<Layout>
+  <Column>
+    <Demo>
+
+### Basic
+
+Display the document sample.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Heading
+
+Display title in different levels.
+
+<DemoBlock component={HeadingDemo} source={HeadingSource} />
+
+    </Demo>
+    <Demo>
+
+### Text
+
+HTML contains several elements for defining text with a special meaning. `Text` component provides a wrapper for them.
+
+<DemoBlock component={TextDemo} source={TextSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import UploadList from './demo/upload-list.md'
-import Drag from './demo/drag.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import UploadListDemo from './demo/UploadList';
+import UploadListSource from './demo/UploadList.tsx?raw';
+import DragDemo from './demo/Drag';
+import DragSource from './demo/Drag.tsx?raw';
 
 # Upload
 
@@ -22,11 +25,35 @@ import { Upload } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <UploadList/>
+    <Demo>
+
+### 基础用法
+
+经典的文件上传按钮，点击弹出文件选择对话框。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 默认文件列表
+
+使用 `defaultFileList` 设置页面初始化时已上传的文件列表。
+
+<DemoBlock component={UploadListDemo} source={UploadListSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Drag/>
+    <Demo>
+
+### 拖拽上传
+
+你可以将文件拖拽到指定区域进行上传，也可以通过点击选择文件进行上传。
+
+<DemoBlock component={DragDemo} source={DragSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

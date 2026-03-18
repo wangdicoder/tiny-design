@@ -1,9 +1,15 @@
-import Addon from './demo/addon.md'
-import AddonButton from './demo/addon-button.md'
-import Basic from './demo/basic.md'
-import Clearable from './demo/clearable.md'
-import PreSuffix from './demo/pre-suf-fix.md'
-import Size from './demo/size.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import AddonDemo from './demo/Addon';
+import AddonSource from './demo/Addon.tsx?raw';
+import AddonButtonDemo from './demo/AddonButton';
+import AddonButtonSource from './demo/AddonButton.tsx?raw';
+import PreSufFixDemo from './demo/PreSufFix';
+import PreSufFixSource from './demo/PreSufFix.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import ClearableDemo from './demo/Clearable';
+import ClearableSource from './demo/Clearable.tsx?raw';
 
 # Input
 
@@ -25,14 +31,64 @@ const { Group, Addon } = Input;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Addon/>
-    <AddonButton/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 添加附件
+
+使用 `Addon` 组件的示例。
+
+<DemoBlock component={AddonDemo} source={AddonSource} />
+
+    </Demo>
+    <Demo>
+
+### 带按钮的附件
+
+在 `Addon` 组件中添加按钮来组合成输入表单，如搜索功能。
+
+> 传递 `noBorder` 属性给 `Addon` 组件。
+
+<DemoBlock component={AddonButtonDemo} source={AddonButtonSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <PreSuffix/>
-    <Size/>
-    <Clearable/>
+    <Demo>
+
+### 前缀和后缀
+
+在输入框内添加前缀或后缀图标。
+
+<DemoBlock component={PreSufFixDemo} source={PreSufFixSource} />
+
+    </Demo>
+    <Demo>
+
+### 三种尺寸
+
+输入框有三种尺寸：`lg`、`md` 和 `sm`。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### 带清除图标
+
+允许清除所有内容。
+
+<DemoBlock component={ClearableDemo} source={ClearableSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

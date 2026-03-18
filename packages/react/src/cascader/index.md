@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import ChangeOnSelect from './demo/change-on-select.md'
-import DefaultValue from './demo/default-value.md'
-import Hover from './demo/hover.md'
-import Disabled from './demo/disabled.md'
-import Sizes from './demo/sizes.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ChangeOnSelectDemo from './demo/ChangeOnSelect';
+import ChangeOnSelectSource from './demo/ChangeOnSelect.tsx?raw';
+import DefaultValueDemo from './demo/DefaultValue';
+import DefaultValueSource from './demo/DefaultValue.tsx?raw';
+import HoverDemo from './demo/Hover';
+import HoverSource from './demo/Hover.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import SizesDemo from './demo/Sizes';
+import SizesSource from './demo/Sizes.tsx?raw';
 
 # Cascader
 
@@ -23,14 +29,62 @@ import { Cascader } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Hover/>
-    <Sizes/>
+    <Demo>
+
+### Basic
+
+Select a location from a country > state/province > city hierarchy.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Hover Expand
+
+Expand sub-menus on hover instead of click for faster navigation.
+
+<DemoBlock component={HoverDemo} source={HoverSource} />
+
+    </Demo>
+    <Demo>
+
+### Sizes
+
+Three sizes to match different form densities.
+
+<DemoBlock component={SizesDemo} source={SizesSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <DefaultValue/>
-    <Disabled/>
-    <ChangeOnSelect/>
+    <Demo>
+
+### Default Value
+
+Pre-select a value and customize how the selection is displayed.
+
+<DemoBlock component={DefaultValueDemo} source={DefaultValueSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled Options
+
+Disable specific options or the entire cascader.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Change On Select
+
+By default, only selecting a leaf node triggers `onChange`. Set `changeOnSelect` to fire `onChange` at every level, allowing partial selections. Use `displayRender` to customize how the selected path is shown.
+
+<DemoBlock component={ChangeOnSelectDemo} source={ChangeOnSelectSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Border from './demo/border.md'
-import Size from './demo/size.md'
-import Vertical from './demo/vertical.md'
-import VerticalBorder from './demo/vertical-border.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import BorderDemo from './demo/Border';
+import BorderSource from './demo/Border.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import VerticalBorderDemo from './demo/VerticalBorder';
+import VerticalBorderSource from './demo/VerticalBorder.tsx?raw';
 
 # Descriptions
 
@@ -20,11 +25,57 @@ import { Descriptions } from 'tiny-design';
 
 ## 代码示例
 
-<Basic />
-<Border />
-<Size />
-<Vertical />
-<VerticalBorder />
+<Layout>
+  <Column>
+    <Demo>
+
+### 基本用法
+
+简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 带边框
+
+带边框的描述列表。
+
+<DemoBlock component={BorderDemo} source={BorderSource} />
+
+    </Demo>
+    <Demo>
+
+### 尺寸
+
+适应各种容器的尺寸。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 垂直布局
+
+垂直布局。
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
+    <Demo>
+
+### 垂直带边框
+
+垂直布局带边框。
+
+<DemoBlock component={VerticalBorderDemo} source={VerticalBorderSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

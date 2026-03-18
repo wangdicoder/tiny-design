@@ -1,7 +1,13 @@
-import Horizontal from './demo/horizontal.md'
-import Vertical from './demo/vertical.md'
-import Nest from './demo/nest.md'
-import Step from './demo/step.md'
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import HorizontalDemo from './demo/Horizontal';
+import HorizontalSource from './demo/Horizontal.tsx?raw';
+import NestDemo from './demo/Nest';
+import NestSource from './demo/Nest.tsx?raw';
+import StepDemo from './demo/Step';
+import StepSource from './demo/Step.tsx?raw';
+import MultipleDemo from './demo/Multiple';
+import MultipleSource from './demo/Multiple.tsx?raw';
 
 # Split
 
@@ -19,10 +25,57 @@ import { Split } from 'tiny-design';
 
 ## 代码示例
 
-<Vertical/>
-<Horizontal/>
-<Nest/>
-<Step/>
+<Layout>
+  <Column>
+    <Demo>
+
+### 垂直分割
+
+上 & 下。
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
+    <Demo>
+
+### 水平分割
+
+左 & 右。
+
+<DemoBlock component={HorizontalDemo} source={HorizontalSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 嵌套
+
+可以嵌套使用。
+
+<DemoBlock component={NestDemo} source={NestSource} />
+
+    </Demo>
+    <Demo>
+
+### 步长
+
+允许按一定距离移动。
+
+<DemoBlock component={StepDemo} source={StepSource} />
+
+    </Demo>
+    <Demo>
+
+### 多个面板
+
+多个分割面板。
+
+<DemoBlock component={MultipleDemo} source={MultipleSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

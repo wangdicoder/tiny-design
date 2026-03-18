@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Disabled from './demo/disabled.md'
-import Loading from './demo/loading.md'
-import Size from './demo/size.md'
-import Text from './demo/text.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import LoadingDemo from './demo/Loading';
+import LoadingSource from './demo/Loading.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import TextDemo from './demo/Text';
+import TextSource from './demo/Text.tsx?raw';
 
 # Switch
 
@@ -23,13 +28,53 @@ import { Switch } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Text/>
-    <Size/>
+    <Demo>
+
+### Basic
+
+The most basic usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Text & customise element
+
+With text and customise element.
+
+<DemoBlock component={TextDemo} source={TextSource} />
+
+    </Demo>
+    <Demo>
+
+### Different sizes
+
+`size` attribute represents different sized switches.
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Loading/>
-    <Disabled/>
+    <Demo>
+
+### Loading
+
+Mark a pending state of switch.
+
+<DemoBlock component={LoadingDemo} source={LoadingSource} />
+
+    </Demo>
+    <Demo>
+
+### Disabled
+
+Disabled state of Switch.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

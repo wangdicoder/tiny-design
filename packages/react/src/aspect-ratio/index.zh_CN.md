@@ -1,6 +1,9 @@
-import Video from './demo/video.md'
-import Image from './demo/image.md'
-import Map from './demo/map.md'
+import VideoDemo from './demo/Video';
+import VideoSource from './demo/Video.tsx?raw';
+import ImageDemo from './demo/Image';
+import ImageSource from './demo/Image.tsx?raw';
+import MapDemo from './demo/Map';
+import MapSource from './demo/Map.tsx?raw';
 
 # Aspect Radio
 
@@ -20,11 +23,35 @@ import { AspectRatio } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Video/>
-    <Map/>
+    <Demo>
+
+### 嵌入视频
+
+4:3 视频。
+
+<DemoBlock component={VideoDemo} source={VideoSource} />
+
+    </Demo>
+    <Demo>
+
+### 嵌入地图
+
+16:9 地图。
+
+<DemoBlock component={MapDemo} source={MapSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Image/>
+    <Demo>
+
+### 嵌入图片
+
+1:1 图片。
+
+<DemoBlock component={ImageDemo} source={ImageSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

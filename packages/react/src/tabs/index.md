@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import Card from './demo/card.md'
-import Disabled from './demo/disabled.md'
-import Extra from './demo/extra.md'
-import Position from './demo/position.md'
-import Editable from './demo/editable.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CardDemo from './demo/Card';
+import CardSource from './demo/Card.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import ExtraDemo from './demo/Extra';
+import ExtraSource from './demo/Extra.tsx?raw';
+import PositionDemo from './demo/Position';
+import PositionSource from './demo/Position.tsx?raw';
+import EditableDemo from './demo/Editable';
+import EditableSource from './demo/Editable.tsx?raw';
 
 # Tabs
 
@@ -19,14 +25,62 @@ import { Tabs } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Card/>
-    <Editable/>
+    <Demo>
+
+### Basic
+
+Basic usage of Tabs with the `items` API.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Card Type
+
+Card style tabs.
+
+<DemoBlock component={CardDemo} source={CardSource} />
+
+    </Demo>
+    <Demo>
+
+### Editable Tabs
+
+Add and remove tabs dynamically with the `editable-card` type.
+
+<DemoBlock component={EditableDemo} source={EditableSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Disabled/>
-    <Position/>
-    <Extra/>
+    <Demo>
+
+### Disabled
+
+A disabled tab.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Tab Position
+
+Tabs can be placed on the top, bottom, left, or right.
+
+<DemoBlock component={PositionDemo} source={PositionSource} />
+
+    </Demo>
+    <Demo>
+
+### Extra Content
+
+Add extra content to the tab bar with `tabBarExtraContent`. Use icons in tab labels via `items`.
+
+<DemoBlock component={ExtraDemo} source={ExtraSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

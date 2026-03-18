@@ -1,7 +1,11 @@
-import Animation from './demo/animation.md'
-import Basic from './demo/basic.md'
-import CustomisedFooter from './demo/customised-footer.md'
-import Position from './demo/position.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomisedFooterDemo from './demo/CustomisedFooter';
+import CustomisedFooterSource from './demo/CustomisedFooter.tsx?raw';
+import PositionDemo from './demo/Position';
+import PositionSource from './demo/Position.tsx?raw';
+import AnimationDemo from './demo/Animation';
+import AnimationSource from './demo/Animation.tsx?raw';
 
 # Modal
 
@@ -21,12 +25,45 @@ import { Modal } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <CustomisedFooter/>
+    <Demo>
+
+### 基本用法
+
+简单的模态对话框。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义底部
+
+更复杂的例子，自定义底部按钮栏，点击提交按钮后对话框会进入加载状态，加载完成后自动关闭。
+如果不需要默认的底部按钮，可以设置 `footer={null}`。
+
+<DemoBlock component={CustomisedFooterDemo} source={CustomisedFooterSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Position/>
-    <Animation/>
+    <Demo>
+
+### 自定义位置
+
+使用 `centered` 或 `top` 等属性设置对话框位置。
+
+<DemoBlock component={PositionDemo} source={PositionSource} />
+
+    </Demo>
+    <Demo>
+
+### 动画
+
+使用 `animation` 设置不同的弹出动画。
+
+<DemoBlock component={AnimationDemo} source={AnimationSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

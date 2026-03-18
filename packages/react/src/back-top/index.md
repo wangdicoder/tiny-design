@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Custom from './demo/custom.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CustomDemo from './demo/Custom';
+import CustomSource from './demo/Custom.tsx?raw';
 
 # BackTop
 
@@ -20,10 +22,26 @@ import { BackTop } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### Basic
+
+A basic example.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Custom/>
+    <Demo>
+
+### Custom Trigger
+
+Use custom children to replace the default button.
+
+<DemoBlock component={CustomDemo} source={CustomSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

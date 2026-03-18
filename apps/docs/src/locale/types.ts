@@ -71,6 +71,11 @@ export type SiteLocale = {
   codeBlock: {
     showCode: string;
     hideCode: string;
+    copyCode: string;
+    resetDemo: string;
+    copied: string;
+    openInStackBlitz: string;
+    openInCodeSandbox: string;
   };
   common: {
     loading: string;

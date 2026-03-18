@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import Closable from './demo/closable.md'
-import CloseButton from './demo/close-btn.md'
-import Icon from './demo/icon.md'
-import Title from './demo/title.md'
-import Type from './demo/type.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ClosableDemo from './demo/Closable';
+import ClosableSource from './demo/Closable.tsx?raw';
+import CloseBtnDemo from './demo/CloseBtn';
+import CloseBtnSource from './demo/CloseBtn.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import TitleDemo from './demo/Title';
+import TitleSource from './demo/Title.tsx?raw';
+import TypeDemo from './demo/Type';
+import TypeSource from './demo/Type.tsx?raw';
 
 # Alert
 
@@ -24,14 +30,62 @@ import { Alert } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Closable/>
-    <Icon/>
+    <Demo>
+
+### 基本用法
+
+最简单的用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 可关闭
+
+显示关闭按钮，允许用户关闭警报。关闭时会有平滑的卸载动画。
+
+<DemoBlock component={ClosableDemo} source={ClosableSource} />
+
+    </Demo>
+    <Demo>
+
+### 图标
+
+使用图标可以使信息更清晰、更友好。使用 `iconSize` 设置默认图标大小。也可以通过传入元素来自定义图标。
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Type/>
-    <Title/>
-    <CloseButton/>
+    <Demo>
+
+### 类型
+
+警报有四种类型：`success`、`info`、`warning`、`error`。默认类型是 **`info`**。
+
+<DemoBlock component={TypeDemo} source={TypeSource} />
+
+    </Demo>
+    <Demo>
+
+### 标题
+
+添加标题。
+
+<DemoBlock component={TitleDemo} source={TitleSource} />
+
+    </Demo>
+    <Demo>
+
+### 自定义关闭文字
+
+用自定义文字替换默认图标。
+
+<DemoBlock component={CloseBtnDemo} source={CloseBtnSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

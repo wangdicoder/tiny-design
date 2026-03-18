@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Formatter from './demo/formatter.md'
-import Style from './demo/style.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import FormatterDemo from './demo/Formatter';
+import FormatterSource from './demo/Formatter.tsx?raw';
+import StyleDemo from './demo/Style';
+import StyleSource from './demo/Style.tsx?raw';
 
 # Statistic
 
@@ -20,11 +23,35 @@ import { Statistic } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Formatter/>
+    <Demo>
+
+### Basic
+
+Display a statistic with title and formatted value.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Custom Formatter
+
+Use `formatter` to fully customize the value display.
+
+<DemoBlock component={FormatterDemo} source={FormatterSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Style/>
+    <Demo>
+
+### Value Style
+
+Customize value appearance with `valueStyle` and `groupSeparator`.
+
+<DemoBlock component={StyleDemo} source={StyleSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

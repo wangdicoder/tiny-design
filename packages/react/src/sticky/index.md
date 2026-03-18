@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Container from './demo/container.md'
-import Callback from './demo/callback.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ContainerDemo from './demo/Container';
+import ContainerSource from './demo/Container.tsx?raw';
+import CallbackDemo from './demo/Callback';
+import CallbackSource from './demo/Callback.tsx?raw';
 
 # Sticky
 
@@ -20,11 +23,35 @@ import { Sticky } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic />
-    <Container />
+    <Demo>
+
+### Basic
+
+The simplest usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Container to scroll
+
+Set a target for `Sticky`, which is listen to scroll event of target element (default is `window`).
+
+<DemoBlock component={ContainerDemo} source={ContainerSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Callback />
+    <Demo>
+
+### Callback
+
+Callback with affixed state.
+
+<DemoBlock component={CallbackDemo} source={CallbackSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

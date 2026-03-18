@@ -1,6 +1,9 @@
-import Basic from './demo/basic.md'
-import Active from './demo/active.md'
-import Combination from './demo/combination.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ActiveDemo from './demo/Active';
+import ActiveSource from './demo/Active.tsx?raw';
+import CombinationDemo from './demo/Combination';
+import CombinationSource from './demo/Combination.tsx?raw';
 
 # Skeleton
 
@@ -20,9 +23,35 @@ import { Skeleton } from 'tiny-design';
 
 ## Examples
 
-<Basic/>
-<Active/>
-<Combination/>
+<Demo>
+
+### Basic
+
+Simplest Skeleton usage.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+</Demo>
+<Demo>
+
+### Active
+
+Set `active={true}` to activate the Shimmer effect.
+
+<DemoBlock component={ActiveDemo} source={ActiveSource} />
+
+</Demo>
+<Demo>
+
+### Combination
+
+A complex example.
+
+> Consider using `<ConfigProvider/>` to set `active` prop in once.
+
+<DemoBlock component={CombinationDemo} source={CombinationSource} />
+
+</Demo>
 
 ## API
 

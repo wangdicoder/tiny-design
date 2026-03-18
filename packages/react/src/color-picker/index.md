@@ -1,8 +1,13 @@
-import Alpha from './demo/alpha.md'
-import Basic from './demo/basic.md'
-import Disabled from './demo/disabled.md'
-import Format from './demo/format.md'
-import Trigger from './demo/trigger.md'
+import AlphaDemo from './demo/Alpha';
+import AlphaSource from './demo/Alpha.tsx?raw';
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import FormatDemo from './demo/Format';
+import FormatSource from './demo/Format.tsx?raw';
+import TriggerDemo from './demo/Trigger';
+import TriggerSource from './demo/Trigger.tsx?raw';
 
 # ColorPicker
 
@@ -22,13 +27,53 @@ import { ColorPicker } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Format/>
-    <Alpha/>
+    <Demo>
+
+### Basic
+
+Click the swatch to open the color picker panel.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Format
+
+Toggle between `hex`, `rgb`, and `hsb` output formats.
+
+<DemoBlock component={FormatDemo} source={FormatSource} />
+
+    </Demo>
+    <Demo>
+
+### Alpha Channel
+
+Enable the alpha slider with `showAlpha`.
+
+<DemoBlock component={AlphaDemo} source={AlphaSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Disabled/>
-    <Trigger/>
+    <Demo>
+
+### Disabled
+
+A disabled color picker.
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### Trigger
+
+Open the panel on hover instead of click.
+
+<DemoBlock component={TriggerDemo} source={TriggerSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -43,7 +88,7 @@ import { ColorPicker } from 'tiny-design';
 | onFormatChange | callback when format changes       | (format: string) => void         |         |
 | presets        | preset color swatches              | string[]                         |         |
 | showAlpha      | show alpha slider                  | boolean                          | false   |
-| disabled       | disable the picker                 | boolean                          | false   |
-| trigger        | trigger mode                       | 'click' \| 'hover'             | click   |
+| disabled       | disable the picker                  | boolean                          | false   |
+| trigger        | trigger mode                        | 'click' \| 'hover'             | click   |
 | open           | controlled panel visibility        | boolean                          |         |
 | onOpenChange   | callback when visibility changes   | (open: boolean) => void          |         |

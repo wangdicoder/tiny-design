@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Sidebar from './demo/sidebar.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SidebarDemo from './demo/Sidebar';
+import SidebarSource from './demo/Sidebar.tsx?raw';
 
 # Layout
 
@@ -23,9 +25,30 @@ const { Header, Footer, Content, Sidebar } = Layout;
 
 ## Examples
 
-<Basic />
-<Sidebar />
+<Layout>
+  <Column>
+    <Demo>
 
+### Basic Structure
+
+Classic page layouts.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Collapsible Sidebar
+
+Use `collapsible` to enable a built-in toggle trigger on the sidebar. Control the collapsed state with `collapsed` and `onCollapse`.
+
+<DemoBlock component={SidebarDemo} source={SidebarSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 

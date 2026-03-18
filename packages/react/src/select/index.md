@@ -1,10 +1,17 @@
-import Basic from './demo/basic.md'
-import Search from './demo/search.md'
-import Multiple from './demo/multiple.md'
-import Render from './demo/render.md'
-import Sizes from './demo/sizes.md'
-import Groups from './demo/groups.md'
-import Custom from './demo/custom.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SearchDemo from './demo/Search';
+import SearchSource from './demo/Search.tsx?raw';
+import MultipleDemo from './demo/Multiple';
+import MultipleSource from './demo/Multiple.tsx?raw';
+import SizesDemo from './demo/Sizes';
+import SizesSource from './demo/Sizes.tsx?raw';
+import GroupsDemo from './demo/Groups';
+import GroupsSource from './demo/Groups.tsx?raw';
+import CustomDemo from './demo/Custom';
+import CustomSource from './demo/Custom.tsx?raw';
+import RenderDemo from './demo/Render';
+import RenderSource from './demo/Render.tsx?raw';
 
 # Select
 
@@ -28,15 +35,71 @@ const { Option, OptGroup } = Select;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Search/>
-    <Multiple/>
+    <Demo>
+
+### Basic
+
+Basic usage of Select.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Search
+
+Select with search functionality. Set `showSearch` to enable filtering.
+
+<DemoBlock component={SearchDemo} source={SearchSource} />
+
+    </Demo>
+    <Demo>
+
+### Multiple
+
+Multiple selection mode displays selected items as tags. Set `mode="multiple"` and optionally `showSearch` for filtering.
+
+<DemoBlock component={MultipleDemo} source={MultipleSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Sizes/>
-    <Groups/>
-    <Custom/>
-    <Render/>
+    <Demo>
+
+### Sizes
+
+Three sizes: `sm`, `md` (default), and `lg`.
+
+<DemoBlock component={SizesDemo} source={SizesSource} />
+
+    </Demo>
+    <Demo>
+
+### Option Groups
+
+Use `OptGroup` to group options together.
+
+<DemoBlock component={GroupsDemo} source={GroupsSource} />
+
+    </Demo>
+    <Demo>
+
+### Custom Rendering & Loading
+
+Use the `options` prop for data-driven rendering, `optionRender` for custom option content, and `loading` for async states.
+
+<DemoBlock component={CustomDemo} source={CustomSource} />
+
+    </Demo>
+    <Demo>
+
+### Custom Rendering
+
+Use `optionRender` to customize dropdown items and `labelRender` to customize the selected label.
+
+<DemoBlock component={RenderDemo} source={RenderSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

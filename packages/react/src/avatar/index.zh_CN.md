@@ -1,8 +1,13 @@
-import AutoFont from './demo/auto-font.md'
-import Basic from './demo/basic.md'
-import Group from './demo/group.md'
-import Presence from './demo/presence.md'
-import Type from './demo/type.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import TypeDemo from './demo/Type';
+import TypeSource from './demo/Type.tsx?raw';
+import GroupDemo from './demo/Group';
+import GroupSource from './demo/Group.tsx?raw';
+import PresenceDemo from './demo/Presence';
+import PresenceSource from './demo/Presence.tsx?raw';
+import AutoFontDemo from './demo/AutoFont';
+import AutoFontSource from './demo/AutoFont.tsx?raw';
 
 # Avatar
 
@@ -24,13 +29,53 @@ const { Group } = Avatar;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Type/>
-    <Group/>
+    <Demo>
+
+### 基本用法
+
+通过 `size` 设置不同尺寸，支持两种形状。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 类型
+
+支持图片、图标和文字，后两种可以自定义颜色和背景色。
+
+<DemoBlock component={TypeDemo} source={TypeSource} />
+
+    </Demo>
+    <Demo>
+
+### 头像组
+
+在 `AvatarGroup` 容器中包含多个头像项。
+
+<DemoBlock component={GroupDemo} source={GroupSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Presence/>
-    <AutoFont/>
+    <Demo>
+
+### 状态指示器
+
+头像也支持状态指示器。添加 `online`、`busy`、`away` 或 `offline` 属性显示不同的状态颜色。
+
+<DemoBlock component={PresenceDemo} source={PresenceSource} />
+
+    </Demo>
+    <Demo>
+
+### 自动调整字体大小
+
+对于文字类型的头像，当文字过长时，字体大小可以根据头像宽度自动调整。
+
+<DemoBlock component={AutoFontDemo} source={AutoFontSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

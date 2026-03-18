@@ -1,12 +1,21 @@
-import Basic from './demo/basic.md'
-import Extra from './demo/extra.md'
-import Layout from './demo/layout.md'
-import Method from './demo/method.md'
-import ComplexLayout from './demo/complex-layout.md'
-import ValidateTrigger from './demo/validate-trigger.md'
-import Modal from './demo/modal.md'
-import AsyncSubmit from './demo/async-submit.md'
-import OtherControls from './demo/other-controls.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import ExtraDemo from './demo/Extra';
+import ExtraSource from './demo/Extra.tsx?raw';
+import LayoutDemo from './demo/Layout';
+import LayoutSource from './demo/Layout.tsx?raw';
+import MethodDemo from './demo/Method';
+import MethodSource from './demo/Method.tsx?raw';
+import ComplexLayoutDemo from './demo/ComplexLayout';
+import ComplexLayoutSource from './demo/ComplexLayout.tsx?raw';
+import ValidateTriggerDemo from './demo/ValidateTrigger';
+import ValidateTriggerSource from './demo/ValidateTrigger.tsx?raw';
+import ModalDemo from './demo/Modal';
+import ModalSource from './demo/Modal.tsx?raw';
+import AsyncSubmitDemo from './demo/AsyncSubmit';
+import AsyncSubmitSource from './demo/AsyncSubmit.tsx?raw';
+import OtherControlsDemo from './demo/OtherControls';
+import OtherControlsSource from './demo/OtherControls.tsx?raw';
 
 # Form
 
@@ -27,15 +36,90 @@ const { Item, useForm, FormInstance } = Form;
 
 ## 代码示例
 
-<Basic />
-<Extra />
-<Layout />
-<Method />
-<ComplexLayout />
-<ValidateTrigger />
-<Modal />
-<AsyncSubmit />
-<OtherControls />
+<Layout>
+  <Column>
+    <Demo>
+
+### 基本用法
+
+基础的表单数据控制。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 额外信息
+
+使用 `helper` 和 `notice` 提供更多字段信息。
+
+<DemoBlock component={ExtraDemo} source={ExtraSource} />
+
+    </Demo>
+    <Demo>
+
+### 表单布局
+
+表单有三种布局方式：`horizontal`、`vertical` 和 `inline`。
+
+<DemoBlock component={LayoutDemo} source={LayoutSource} />
+
+    </Demo>
+    <Demo>
+
+### 表单方法
+
+通过 `Form.useForm` 调用表单方法。
+
+<DemoBlock component={MethodDemo} source={MethodSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 复杂布局
+
+有时候需要将两个字段放在同一行。
+
+<DemoBlock component={ComplexLayoutDemo} source={ComplexLayoutSource} />
+
+    </Demo>
+    <Demo>
+
+### 校验触发器
+
+表单校验有三种不同的触发时机：`onChange`、`onBlur` 和 `onSubmit`。
+
+<DemoBlock component={ValidateTriggerDemo} source={ValidateTriggerSource} />
+
+    </Demo>
+    <Demo>
+
+### 在 Modal 中创建
+
+在 `Modal` 中创建表单。
+
+<DemoBlock component={ModalDemo} source={ModalSource} />
+
+    </Demo>
+    <Demo>
+
+### 异步提交
+
+模拟带有加载状态的异步表单提交。
+
+<DemoBlock component={AsyncSubmitDemo} source={AsyncSubmitSource} />
+
+    </Demo>
+  </Column>
+</Layout>
+
+### 其他表单控件
+
+一个多功能的示例。
+
+<DemoBlock component={OtherControlsDemo} source={OtherControlsSource} />
 
 ## API
 

@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Nested from './demo/nested.md'
-import Affix from './demo/affix.md'
-import OffsetTop from './demo/offset-top.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import NestedDemo from './demo/Nested';
+import NestedSource from './demo/Nested.tsx?raw';
+import AffixDemo from './demo/Affix';
+import AffixSource from './demo/Affix.tsx?raw';
+import OffsetTopDemo from './demo/OffsetTop';
+import OffsetTopSource from './demo/OffsetTop.tsx?raw';
 
 # Anchor
 
@@ -22,12 +26,44 @@ import { Anchor } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Affix/>
+    <Demo>
+
+### 基本用法
+
+可滚动的容器上的锚点。点击链接滚动到对应章节；滚动页面可以看到高亮的链接更新。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 固定
+
+设置 `affix` 开启固定定位模式。
+
+<DemoBlock component={AffixDemo} source={AffixSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Nested/>
-    <OffsetTop/>
+    <Demo>
+
+### 嵌套链接
+
+锚点支持嵌套 `Anchor.Link` 用于多级导航。当任何子链接激活时，父链接也会高亮。
+
+<DemoBlock component={NestedDemo} source={NestedSource} />
+
+    </Demo>
+    <Demo>
+
+### 偏移量
+
+使用 `offsetTop` 设置距离顶部的像素阈值。只有当章节顶部边缘超过偏移量时，章节才会被标记为激活。
+
+<DemoBlock component={OffsetTopDemo} source={OffsetTopSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

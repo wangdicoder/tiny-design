@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Vertical from './demo/vertical.md'
-import Size from './demo/size.md'
-import Align from './demo/align.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import VerticalDemo from './demo/Vertical';
+import VerticalSource from './demo/Vertical.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import AlignDemo from './demo/Align';
+import AlignSource from './demo/Align.tsx?raw';
 
 # Space
 
@@ -19,10 +23,48 @@ import { Space } from 'tiny-design';
 
 ## 代码示例
 
-<Basic />
-<Vertical />
-<Size />
-<Align />
+<Layout>
+  <Column>
+    <Demo>
+
+### 基础用法
+
+水平排列组件。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 间距大小
+
+预设三种间距大小。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 垂直方向
+
+垂直排列组件。
+
+<DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
+    <Demo>
+
+### 对齐方式
+
+设置对齐方式。
+
+<DemoBlock component={AlignDemo} source={AlignSource} />
+
+    </Demo>
+  </Column>
+</Layout>
 
 ## API
 
@@ -31,4 +73,3 @@ import { Space } from 'tiny-design';
 | align     | 对齐方式       | enum: `start` &#124; `end` &#124; `center` &#124; `baseline`  | `center`      |
 | direction | 间距方向	| enum: `horizontal` &#124; `vertical`                          | `horizontal`  |
 | size      | 间距大小        | enum: `sm` &#124; `md` &#124; `lg` &#124; `number`            | `sm`          |
-

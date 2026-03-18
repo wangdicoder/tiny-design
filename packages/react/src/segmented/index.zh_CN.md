@@ -1,4 +1,11 @@
-import Basic from './demo/basic.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import IconDemo from './demo/Icon';
+import IconSource from './demo/Icon.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
 
 # Segmented 分段控制器
 
@@ -18,7 +25,44 @@ import { Segmented } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### 基础用法
+
+最简单的使用方式。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 带图标
+
+使用 `icon` 属性为分段选项添加图标。
+
+<DemoBlock component={IconDemo} source={IconSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### 尺寸
+
+三种尺寸: `sm`, `md`, `lg`。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用
+
+禁用整个控件或单个选项。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

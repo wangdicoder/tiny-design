@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Checkable from './demo/checkable.md'
-import Color from './demo/color.md'
-import Controlled from './demo/controlled.md'
-import Dynamic from './demo/dynamic.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import CheckableDemo from './demo/Checkable';
+import CheckableSource from './demo/Checkable.tsx?raw';
+import ColorDemo from './demo/Color';
+import ColorSource from './demo/Color.tsx?raw';
+import ControlledDemo from './demo/Controlled';
+import ControlledSource from './demo/Controlled.tsx?raw';
+import DynamicDemo from './demo/Dynamic';
+import DynamicSource from './demo/Dynamic.tsx?raw';
 
 # Tag
 
@@ -26,13 +31,56 @@ const { CheckableTag } = Tag;
 
 <Layout>
   <Column>
-    <Basic/>
-    <Dynamic/>
-    <Checkable/>
+    <Demo>
+
+### Basic
+
+```jsx live
+```
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Add & Remove Dynamically
+
+Adding or removing a set of tags dynamically.
+
+<DemoBlock component={DynamicDemo} source={DynamicSource} />
+
+    </Demo>
+    <Demo>
+
+### Checkable
+
+`CheckableTag` works like Checkbox, click it to toggle checked state.
+
+> It also has controlled & uncontrolled mode.
+
+<DemoBlock component={CheckableDemo} source={CheckableSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Color/>
-    <Controlled/>
+    <Demo>
+
+### Colorful Tag
+
+We preset a series of colorful tag styles for use in different situations. You can also set it to a hex color string for custom color.
+
+<DemoBlock component={ColorDemo} source={ColorSource} />
+
+    </Demo>
+    <Demo>
+
+### Controlled
+
+By using the `visible` prop, you can control the close state of Tag.
+
+<DemoBlock component={ControlledDemo} source={ControlledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

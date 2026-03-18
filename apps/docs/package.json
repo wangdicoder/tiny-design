@@ -8,14 +8,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.1.1",
+    "@stackblitz/sdk": "^1.11.0",
     "@tiny-design/icons": "workspace:*",
     "@tiny-design/react": "workspace:*",
     "@tiny-design/tokens": "workspace:*",
-    "@mdx-js/react": "^3.1.1",
+    "codesandbox": "^2.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-live": "^4.1.0",
-    "react-router-dom": "^6.0.0"
+    "react-router-dom": "^6.0.0",
+    "react-runner": "^1.0.5"
   },
   "devDependencies": {
     "@mdx-js/rollup": "^3.1.1",

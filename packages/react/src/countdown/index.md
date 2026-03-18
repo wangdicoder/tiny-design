@@ -1,5 +1,7 @@
-import Basic from './demo/basic.md'
-import Millisecond from './demo/millisecond.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import MillisecondDemo from './demo/Millisecond';
+import MillisecondSource from './demo/Millisecond.tsx?raw';
 
 # Countdown
 
@@ -19,10 +21,26 @@ import { Countdown } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
+    <Demo>
+
+### Basic
+
+A basic example.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Millisecond/>
+    <Demo>
+
+### Millisecond
+
+Allow to display millisecond
+
+<DemoBlock component={MillisecondDemo} source={MillisecondSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -35,4 +53,3 @@ import { Countdown } from 'tiny-design';
 | onFinish    | callback when the countdown finished | () => void        | -       |
 | style	      | style object of container	object     |                   | -       |
 | className	  | className of container               | string            | -       |
-

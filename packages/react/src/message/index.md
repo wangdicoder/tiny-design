@@ -1,7 +1,11 @@
-import Basic from './demo/basic.md'
-import Duration from './demo/duration.md'
-import Extra from './demo/extra.md'
-import Type from './demo/type.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DurationDemo from './demo/Duration';
+import DurationSource from './demo/Duration.tsx?raw';
+import ExtraDemo from './demo/Extra';
+import ExtraSource from './demo/Extra.tsx?raw';
+import TypeDemo from './demo/Type';
+import TypeSource from './demo/Type.tsx?raw';
 
 # Message
 
@@ -23,12 +27,44 @@ import { Message } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Duration/>
+    <Demo>
+
+### Normal prompt
+
+Normal message for information.
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Customize duration
+
+Customize message display duration from default `3s` to `10s`.
+
+<DemoBlock component={DurationDemo} source={DurationSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Type/>
-    <Extra/>
+    <Demo>
+
+### Different types of message
+
+Messages of `info`, `success`, `warning`, `error` and `loading` types.
+
+<DemoBlock component={TypeDemo} source={TypeSource} />
+
+    </Demo>
+    <Demo>
+
+### Extra action
+
+Add an extra content to allow more action.
+
+<DemoBlock component={ExtraDemo} source={ExtraSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

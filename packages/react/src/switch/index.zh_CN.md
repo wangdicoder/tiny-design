@@ -1,8 +1,13 @@
-import Basic from './demo/basic.md'
-import Disabled from './demo/disabled.md'
-import Loading from './demo/loading.md'
-import Size from './demo/size.md'
-import Text from './demo/text.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import LoadingDemo from './demo/Loading';
+import LoadingSource from './demo/Loading.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import TextDemo from './demo/Text';
+import TextSource from './demo/Text.tsx?raw';
 
 # Switch
 
@@ -23,13 +28,53 @@ import { Switch } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Text/>
-    <Size/>
+    <Demo>
+
+### 基本用法
+
+最基础的开关用法。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 文本和自定义元素
+
+支持自定义文本内容。
+
+<DemoBlock component={TextDemo} source={TextSource} />
+
+    </Demo>
+    <Demo>
+
+### 不同尺寸
+
+提供三种不同尺寸的开关。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Loading/>
-    <Disabled/>
+    <Demo>
+
+### 加载状态
+
+标识开关的加载状态。
+
+<DemoBlock component={LoadingDemo} source={LoadingSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用状态
+
+禁用开关。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 

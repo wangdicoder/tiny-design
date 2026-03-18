@@ -1,9 +1,15 @@
-import Basic from './demo/basic.md'
-import Size from './demo/size.md'
-import Picker from './demo/picker.md'
-import DisabledDate from './demo/disabled-date.md'
-import Disabled from './demo/disabled.md'
-import ExtraFooter from './demo/extra-footer.md'
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import SizeDemo from './demo/Size';
+import SizeSource from './demo/Size.tsx?raw';
+import PickerDemo from './demo/Picker';
+import PickerSource from './demo/Picker.tsx?raw';
+import DisabledDateDemo from './demo/DisabledDate';
+import DisabledDateSource from './demo/DisabledDate.tsx?raw';
+import DisabledDemo from './demo/Disabled';
+import DisabledSource from './demo/Disabled.tsx?raw';
+import ExtraFooterDemo from './demo/ExtraFooter';
+import ExtraFooterSource from './demo/ExtraFooter.tsx?raw';
 
 # DatePicker
 
@@ -19,14 +25,62 @@ import { DatePicker } from 'tiny-design';
 
 <Layout>
   <Column>
-    <Basic/>
-    <Picker/>
-    <DisabledDate/>
+    <Demo>
+
+### 基本用法
+
+带有"今天"快捷选项的基本日期选择器。
+
+<DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 选择器类型
+
+使用 `picker` 在日期、月份和年份选择之间切换。
+
+<DemoBlock component={PickerDemo} source={PickerSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用日期
+
+使用 `disabledDate` 使特定日期不可选择。此示例禁用所有过去的日期。
+
+<DemoBlock component={DisabledDateDemo} source={DisabledDateSource} />
+
+    </Demo>
   </Column>
   <Column>
-    <Size/>
-    <Disabled/>
-    <ExtraFooter/>
+    <Demo>
+
+### 尺寸
+
+三种尺寸：`sm`、`md`（默认）、`lg`。
+
+<DemoBlock component={SizeDemo} source={SizeSource} />
+
+    </Demo>
+    <Demo>
+
+### 禁用
+
+禁用的日期选择器。
+
+<DemoBlock component={DisabledDemo} source={DisabledSource} />
+
+    </Demo>
+    <Demo>
+
+### 额外页脚
+
+在面板页脚渲染额外内容。
+
+<DemoBlock component={ExtraFooterDemo} source={ExtraFooterSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
