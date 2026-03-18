@@ -4,6 +4,7 @@
 import React from 'react';
 import './md-tag.scss';
 import { CodeBlock } from '../code-block';
+import { DemoBlock } from '../demo-block';
 
 const slugifyLink = (name) => {
   if (name.includes(' ')) {
@@ -60,4 +61,5 @@ export const components = {
   Layout: (props) => <div {...props} className="markdown__layout" />,
   Column: (props) => <div {...props} className="markdown__column" />,
   Demo: (props) => <section {...props} className="markdown__demo" />,
+  DemoBlock,
 };
