@@ -1,6 +1,6 @@
 import React from 'react';
 import { List } from '@tiny-design/react';
-import { StarFilled } from '@tiny-design/icons';
+import { IconStarFill } from '@tiny-design/icons';
 
 export default function ActionsDemo() {
   const colors = ['#6e41bf', '#1890ff', '#52c41a', '#fa8c16'];
@@ -19,7 +19,7 @@ export default function ActionsDemo() {
         <List.Item
           actions={[
             <a key="reply" style={{ color: '#6e41bf', fontSize: 13 }}>Reply</a>,
-            <a key="star" style={{ fontSize: 13, color: '#8898aa' }}><StarFilled /> Star</a>,
+            <a key="star" style={{ fontSize: 13, color: '#8898aa' }}><IconStarFill /> Star</a>,
           ]}
           extra={<span style={{ color: '#adb5bd', fontSize: 12, whiteSpace: 'nowrap' }}>{item.time}</span>}
         >

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dropdown, Menu, IconDown } from '@tiny-design/react';
+import { Dropdown, Menu } from '@tiny-design/react';
+import { IconDown } from '@tiny-design/icons';
 
 export default function CascadeDemo() {
   return (

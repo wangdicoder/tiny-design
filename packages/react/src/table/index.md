@@ -107,16 +107,16 @@ Render large tables efficiently with virtual scrolling. The header stays fixed w
 | ------------- | ------------------------------------ | ----------------------------------------------- | ------- |
 | columns       | columns configuration                | ColumnType[]                                    |         |
 | dataSource    | data array to render                 | any[]                                           | []      |
-| rowKey        | row key field or getter              | string | (record) => Key                       | key     |
+| rowKey        | row key field or getter              | string &#124; (record) => Key                       | key     |
 | loading       | loading state                        | boolean                                         | false   |
 | bordered      | show all borders                     | boolean                                         | false   |
-| size          | table size                           | 'sm' | 'md' | 'lg'                           | md      |
+| size          | table size                           | `sm` &#124; `md` &#124; `lg`                    | `md`      |
 | virtual       | enable virtual scrolling             | boolean                                         | false   |
 | height        | container height (required when virtual) | number                                      |         |
 | itemHeight    | height of each row in px (virtual mode)  | number                                      |         |
-| scroll        | scrollable area                      | { x?: number, y?: number }                      |         |
+| scroll        | scrollable area                      | `{ x?: number, y?: number }`                    |         |
 | rowSelection  | row selection config                 | RowSelection                                    |         |
-| pagination    | pagination config (false to disable) | false | TablePaginationConfig                  |         |
+| pagination    | pagination config (false to disable) | false &#124; TablePaginationConfig                  |         |
 | onChange      | sort/pagination change callback      | (pagination, sorter) => void                    |         |
 | emptyText     | empty state text                     | ReactNode                                       | No Data |
 | showHeader    | show table header                    | boolean                                         | true    |
@@ -128,9 +128,9 @@ Render large tables efficiently with virtual scrolling. The header stays fixed w
 | title        | column header               | ReactNode                                |         |
 | dataIndex    | field name in data          | string                                   |         |
 | key          | unique key                  | string                                   |         |
-| width        | column width                | number | string                         |         |
-| align        | text alignment              | 'left' | 'center' | 'right'           | left    |
-| sorter       | enable sorting              | boolean | (a, b) => number              |         |
+| width        | column width                | number &#124; string                         |         |
+| align        | text alignment              | `left` &#124; `center` &#124; `right`           | left    |
+| sorter       | enable sorting              | boolean &#124; (a, b) => number              |         |
 | render       | custom cell renderer        | (value, record, index) => ReactNode      |         |
 | ellipsis     | truncate long content       | boolean                                  | false   |
 
@@ -140,4 +140,4 @@ Render large tables efficiently with virtual scrolling. The header stays fixed w
 | ---------------- | -------------------------- | ---------------------------------------- | -------- |
 | selectedRowKeys  | controlled selected keys   | Key[]                                    |          |
 | onChange         | selection change callback  | (keys, rows) => void                     |          |
-| type             | selection type             | 'checkbox' | 'radio'                   | checkbox |
+| type             | selection type             | `checkbox` &#124; `radio`                   | checkbox |

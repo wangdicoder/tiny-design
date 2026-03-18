@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dropdown, Menu, Message, IconDown } from '@tiny-design/react';
+import { Dropdown, Menu, Message } from '@tiny-design/react';
+import { IconDown } from '@tiny-design/icons';
 
 export default function BasicDemo() {
   return (

@@ -107,16 +107,16 @@ import { Table } from 'tiny-design';
 | ------------- | -------------------- | ----------------------------------------------- | ------- |
 | columns       | 列配置               | ColumnType[]                                    |         |
 | dataSource    | 数据数组             | any[]                                           | []      |
-| rowKey        | 行 key 字段          | string | (record) => Key                       | key     |
+| rowKey        | 行 key 字段          | string &#124; (record) => Key                       | key     |
 | loading       | 加载状态             | boolean                                         | false   |
 | bordered      | 显示边框             | boolean                                         | false   |
-| size          | 表格尺寸             | 'sm' | 'md' | 'lg'                           | md      |
+| size          | 表格尺寸             | `sm` &#124; `md` &#124; `lg`                           | md      |
 | virtual       | 启用虚拟滚动         | boolean                                         | false   |
 | height        | 容器高度（虚拟滚动时必填） | number                                      |         |
 | itemHeight    | 每行高度（虚拟滚动模式）  | number                                      |         |
-| scroll        | 滚动区域             | { x?: number, y?: number }                      |         |
+| scroll        | 滚动区域             | `{ x?: number, y?: number }`                    |         |
 | rowSelection  | 行选择配置           | RowSelection                                    |         |
-| pagination    | 分页配置             | false | TablePaginationConfig                  |         |
+| pagination    | 分页配置             | false &#124; TablePaginationConfig                  |         |
 | onChange      | 排序/分页变化回调    | (pagination, sorter) => void                    |         |
 | emptyText     | 空状态文本           | ReactNode                                       | 暂无数据 |
 | showHeader    | 显示表头             | boolean                                         | true    |
@@ -128,9 +128,9 @@ import { Table } from 'tiny-design';
 | title        | 列标题         | ReactNode                                |         |
 | dataIndex    | 数据字段名     | string                                   |         |
 | key          | 唯一标识       | string                                   |         |
-| width        | 列宽           | number | string                         |         |
-| align        | 对齐方式       | 'left' | 'center' | 'right'           | left    |
-| sorter       | 排序功能       | boolean | (a, b) => number              |         |
+| width        | 列宽           | number &#124; string                         |         |
+| align        | 对齐方式       | `left` &#124; `center` &#124; `right`           | left    |
+| sorter       | 排序功能       | boolean &#124; (a, b) => number              |         |
 | render       | 自定义渲染     | (value, record, index) => ReactNode      |         |
 | ellipsis     | 文本溢出省略   | boolean                                  | false   |
 
@@ -140,4 +140,4 @@ import { Table } from 'tiny-design';
 | ---------------- | ------------------ | ---------------------------------------- | -------- |
 | selectedRowKeys  | 选中行 keys        | Key[]                                    |          |
 | onChange         | 选中变化回调       | (keys, rows) => void                     |          |
-| type             | 选择类型           | 'checkbox' | 'radio'                   | checkbox |
+| type             | 选择类型           | `checkbox` &#124; `radio`                   | checkbox |
