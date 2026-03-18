@@ -115,11 +115,14 @@ Simulate an async form submission with loading state.
   </Column>
 </Layout>
 
+<Demo>
 ### Other Form Controls
 
 A versatile example.
 
 <DemoBlock component={OtherControlsDemo} source={OtherControlsSource} />
+
+</Demo>
 
 ## API
 
