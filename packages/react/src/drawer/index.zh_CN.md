@@ -65,7 +65,7 @@ import { Drawer } from 'tiny-design';
 | ----------------- | --------------------------------------------- | --------------------------------------------------------- | --------- |
 | placement         | 抽屉的弹出位置                                | enum: `top` &#124; `bottom` &#124; `left` &#124; `right`  | `right`   |
 | size              | 抽屉的宽度或高度                              | number &#124; string                                      | 256       |
-| open           | 抽屉是否可见                                  | boolean                                                   | -         |
+| visible           | 抽屉是否可见                                  | boolean                                                   | -         |
 | header            | 抽屉头部内容                                  | ReactNode                                                 | -         |
 | footer            | 抽屉底部内容                                  | ReactNode                                                 | -         |
 | closable          | 是否显示关闭按钮                              | boolean                                                   | `true`    |

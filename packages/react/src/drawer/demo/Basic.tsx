@@ -13,7 +13,7 @@ export default function BasicDemo() {
         header="Basic Drawer"
         placement="right"
         onClose={() => setVisible(false)}
-        open={visible}
+        visible={visible}
       >
         <div>Some contents...</div>
         <div>Some contents...</div>
