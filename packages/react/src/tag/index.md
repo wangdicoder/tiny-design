@@ -35,9 +35,6 @@ const { CheckableTag } = Tag;
 
 ### Basic
 
-```jsx live
-```
-
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
     </Demo>
