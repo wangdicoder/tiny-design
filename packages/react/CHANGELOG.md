@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.1
+
+### Patch Changes
+
+- - Fix the AutoComplete component export issue - [#60](https://github.com/wangdicoder/tiny-design/pull/60) [`a2ea544`](https://github.com/wangdicoder/tiny-design/commit/a2ea544f2c9bf516218a14f831010c84131bff26)
+  - Some components' font family issue
+
 ## 1.1.0
 
 ### Minor Changes
