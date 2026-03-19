@@ -32,7 +32,8 @@
   &__editor-container {
     background-color: var(--ty-color-fill);
     border-top: solid 1px var(--ty-color-border-secondary);
-    overflow-x: auto;
+    // Wrap editor text instead of forcing horizontal scrolling.
+    overflow-x: hidden;
     font-family: Menlo, Consolas, "Droid Sans Mono", monospace;
     font-size: 13px;
     line-height: 1.6;
@@ -40,7 +41,6 @@
   }
 
   &__editor-wrapper {
-    max-width: 800px;
     width: 100%;
   }
 
@@ -50,6 +50,10 @@
     pre {
       margin: 0;
       pointer-events: none;
+      // Ensure long lines wrap in the highlighted background layer.
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: anywhere;
     }
   }
 
@@ -73,7 +77,10 @@
     font-size: inherit;
     line-height: inherit;
     tab-size: inherit;
-    white-space: pre;
+    // Keep caret + selection aligned with the highlighted background layer.
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
     box-sizing: border-box;
 
     &::selection {
