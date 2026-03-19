@@ -2,7 +2,6 @@
 @use '../../style/mixins' as *;
 
 .#{$prefix}-loader {
-  font-family: $font-family;
   position: relative;
   display: inline-block;
   color: var(--ty-color-primary);
@@ -21,7 +20,7 @@
     position: absolute;
     display: block;
     transform: scale(0.75);
-    background-color: currentColor;
+    background-color: currentcolor;
     border-radius: 50%;
     transform-origin: 50% 50%;
     opacity: 0.5;
@@ -53,7 +52,6 @@
 
   &__label {
     margin: 5px 0;
-    font-family: $font-family;
     user-select: none;
     opacity: 0.8;
     font-size: 16px;
@@ -133,9 +131,11 @@
   0% {
     opacity: 0.2;
   }
+
   50% {
     opacity: 0.9;
   }
+
   100% {
     opacity: 0.2;
   }
