@@ -74,26 +74,20 @@ graph TD
         FOC["FormOptionsContext.Provider"]
     end
 
-    subgraph FormItem1["<Form.Item name='username'>"]
-        SUB1["subscribe(listener)"]
+    subgraph FormItem1["Form.Item (name='username')"]
         CE1["cloneElement → {value, onChange, onBlur}"]
-        STATE1["local state: value, error"]
-        ERR1["Error display with Transition"]
     end
 
-    subgraph FormItem2["<Form.Item name='password'>"]
-        SUB2["subscribe(listener)"]
+    subgraph FormItem2["Form.Item (name='password')"]
         CE2["cloneElement → {value, onChange, onBlur}"]
-        STATE2["local state: value, error"]
-        ERR2["Error display with Transition"]
     end
 
-    subgraph Input1["<Input />"]
-        V1["value prop (controlled)"]
+    subgraph Input1["Input (controlled by value prop)"]
+        V1["value: from useState"]
     end
 
-    subgraph Input2["<Input />"]
-        V2["value prop (controlled)"]
+    subgraph Input2["Input (controlled by value prop)"]
+        V2["value: from useState"]
     end
 
     FI --> FIC
@@ -103,17 +97,8 @@ graph TD
     FOC --> FormItem1
     FOC --> FormItem2
 
-    FormItem1 --> SUB1
-    FormItem1 --> CE1
-    FormItem1 --> STATE1
-    CE1 --> V1
-    STATE1 --> ERR1
-
-    FormItem2 --> SUB2
-    FormItem2 --> CE2
-    FormItem2 --> STATE2
-    CE2 --> V2
-    STATE2 --> ERR2
+    FormItem1 --> CE1 --> V1
+    FormItem2 --> CE2 --> V2
 ```
 
 ### Subscribe/Notify Pattern (Pub/Sub)
