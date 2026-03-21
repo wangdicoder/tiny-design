@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useId, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
+import Transition from '../transition';
 import Overlay from '../overlay';
 import Button from '../button/button';
 import Flex from '../flex/flex';
@@ -132,11 +132,12 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       style={maskStyle}>
       <div ref={ref} className={cls} style={{ top }}>
         <div style={{ width, ...style }}>
-          <CSSTransition
+          <Transition
             appear={true}
             nodeRef={nodeRef}
             in={modalVisible}
             classNames={`${prefixCls}__content_${animation}`}
+            unmountOnExit={false}
             timeout={0}>
             <div
               ref={nodeRef}
@@ -160,7 +161,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
               </div>
               {renderFooter()}
             </div>
-          </CSSTransition>
+          </Transition>
         </div>
       </div>
     </Overlay>

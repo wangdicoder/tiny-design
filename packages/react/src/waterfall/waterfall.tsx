@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Transition from '../transition';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { Breakpoint, WaterfallItem, WaterfallProps } from './types';
@@ -115,6 +115,42 @@ const Waterfall = React.forwardRef<HTMLDivElement, WaterfallProps>((props, ref) 
     onLayoutChange(sortInfo);
   }, [itemPositions, items, onLayoutChange]);
 
+  // ============== Exiting items (replaces TransitionGroup) ==============
+  const prevItemsRef = useRef<WaterfallItem[]>(items || []);
+  const [exitingItems, setExitingItems] = useState<Map<React.Key, WaterfallItem>>(new Map());
+
+  useEffect(() => {
+    const currentKeys = new Set((items || []).map((item, i) => item.key ?? i));
+    const removed = new Map<React.Key, WaterfallItem>();
+
+    prevItemsRef.current.forEach((item, index) => {
+      const key = item.key ?? index;
+      if (!currentKeys.has(key)) {
+        removed.set(key, item);
+      }
+    });
+
+    if (removed.size > 0) {
+      setExitingItems((prev) => {
+        const next = new Map(prev);
+        removed.forEach((item, key) => next.set(key, item));
+        return next;
+      });
+    }
+
+    prevItemsRef.current = items || [];
+  }, [items]);
+
+  const handleExited = useCallback((key: React.Key) => {
+    itemRefsMap.current.delete(key);
+    setExitingItems((prev) => {
+      const next = new Map(prev);
+      next.delete(key);
+      return next;
+    });
+    collectItemSizes();
+  }, [collectItemSizes]);
+
   // ==================== Render ====================
   const cls = classNames(prefixCls, className);
 
@@ -126,6 +162,46 @@ const Waterfall = React.forwardRef<HTMLDivElement, WaterfallProps>((props, ref) 
 
   const mergedItems = items || [];
 
+  const renderItem = (item: WaterfallItem, index: number, isExiting: boolean) => {
+    const key = item.key ?? index;
+    const position = itemPositions.get(key);
+    const hasPosition = !!position;
+    const columnIndex = position?.column ?? 0;
+
+    const itemStyle: React.CSSProperties = {
+      position: 'absolute',
+      width: `calc((100% - ${horizontalGutter * (columnCount - 1)}px) / ${columnCount})`,
+      left: `calc((100% - ${horizontalGutter * (columnCount - 1)}px) / ${columnCount} * ${columnIndex} + ${horizontalGutter * columnIndex}px)`,
+      top: position?.top ?? 0,
+      // Only transition position changes after initial placement
+      transition: hasPosition ? 'top 0.3s ease, left 0.3s ease, opacity 0.3s ease' : 'none',
+      // Hide until position is computed so items don't flash at (0,0)
+      opacity: hasPosition ? 1 : 0,
+    };
+
+    const content = item.children ?? itemRender?.({ ...item, index, column: columnIndex });
+
+    return (
+      <Transition
+        key={key}
+        in={!isExiting}
+        timeout={300}
+        appear={false}
+        unmountOnExit={true}
+        classNames={`${prefixCls}__item-fade`}
+        onExited={() => handleExited(key)}
+      >
+        <div
+          ref={(el) => setItemRef(key, el)}
+          className={`${prefixCls}__item`}
+          style={itemStyle}
+        >
+          {content}
+        </div>
+      </Transition>
+    );
+  };
+
   return (
     <div
       ref={ref}
@@ -135,47 +211,10 @@ const Waterfall = React.forwardRef<HTMLDivElement, WaterfallProps>((props, ref) 
       onLoad={collectItemSizes}
       onError={collectItemSizes}
     >
-      <TransitionGroup component={null}>
-        {mergedItems.map((item, index) => {
-          const key = item.key ?? index;
-          const position = itemPositions.get(key);
-          const hasPosition = !!position;
-          const columnIndex = position?.column ?? 0;
-
-          const itemStyle: React.CSSProperties = {
-            position: 'absolute',
-            width: `calc((100% - ${horizontalGutter * (columnCount - 1)}px) / ${columnCount})`,
-            left: `calc((100% - ${horizontalGutter * (columnCount - 1)}px) / ${columnCount} * ${columnIndex} + ${horizontalGutter * columnIndex}px)`,
-            top: position?.top ?? 0,
-            // Only transition position changes after initial placement
-            transition: hasPosition ? 'top 0.3s ease, left 0.3s ease, opacity 0.3s ease' : 'none',
-            // Hide until position is computed so items don't flash at (0,0)
-            opacity: hasPosition ? 1 : 0,
-          };
-
-          const content = item.children ?? itemRender?.({ ...item, index, column: columnIndex });
-
-          return (
-            <CSSTransition
-              key={key}
-              timeout={300}
-              classNames={`${prefixCls}__item-fade`}
-              onExited={() => {
-                itemRefsMap.current.delete(key);
-                collectItemSizes();
-              }}
-            >
-              <div
-                ref={(el) => setItemRef(key, el)}
-                className={`${prefixCls}__item`}
-                style={itemStyle}
-              >
-                {content}
-              </div>
-            </CSSTransition>
-          );
-        })}
-      </TransitionGroup>
+      {mergedItems.map((item, index) => renderItem(item, index, false))}
+      {Array.from(exitingItems.entries()).map(([key, item]) =>
+        renderItem(item, Number(key), true)
+      )}
     </div>
   );
 });

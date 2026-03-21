@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import Portal from '../portal';
-import { CSSTransition } from 'react-transition-group';
+import Transition from '../transition';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { OverlayProps } from './types';
@@ -47,7 +47,7 @@ const Overlay = (props: OverlayProps): JSX.Element => {
 
   return (
     <Portal>
-      <CSSTransition
+      <Transition
         appear={true}
         nodeRef={nodeRef}
         onEnter={onEnter}
@@ -62,7 +62,7 @@ const Overlay = (props: OverlayProps): JSX.Element => {
         <div ref={nodeRef} tabIndex={-1} className={cls} onClick={clickCallback} style={{ zIndex, ...style }}>
           {children}
         </div>
-      </CSSTransition>
+      </Transition>
     </Portal>
   );
 };

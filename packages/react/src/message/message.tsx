@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
+import Transition from '../transition';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import {
@@ -72,13 +72,13 @@ const Message = (props: MessageProps): JSX.Element => {
   }, [duration, willUnmount]);
 
   return (
-    <CSSTransition nodeRef={ref} in={visible} appear={true} timeout={0} classNames={`${prefixCls}_fade-slide`}>
+    <Transition nodeRef={ref} in={visible} appear={true} timeout={0} unmountOnExit={false} classNames={`${prefixCls}_fade-slide`}>
       <div role="alert" className={cls} style={style} ref={ref}>
         {renderIcon()}
         <span className={`${prefixCls}__content`}>{content}</span>
         {extra && <div className={`${prefixCls}__extra`}>{extra}</div>}
       </div>
-    </CSSTransition>
+    </Transition>
   );
 };
 

@@ -3,7 +3,7 @@
 exports[`<Message /> should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ty-message ty-message_fade-slide-appear ty-message_fade-slide-appear-active"
+    class="ty-message ty-message_fade-slide-enter"
     role="alert"
   >
     <svg
