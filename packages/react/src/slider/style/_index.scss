@@ -5,21 +5,13 @@
   box-sizing: border-box;
   cursor: pointer;
 
-  &_horizontal.#{$prefix}-slider {
-    margin-bottom: $slider-margin-bottom-with-marks;
-  }
-
-  &_vertical.#{$prefix}-slider {
-    margin-right: $slider-margin-bottom-with-marks;
-  }
-
   &_horizontal {
+    width: 100%;
     min-height: $slider-size;
     margin: 13px 7px;
     padding: 4px 0;
 
     .#{$prefix}-slider {
-
       &__rail {
         width: 100%;
         height: $slider-track-size;
