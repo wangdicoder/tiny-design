@@ -20,7 +20,9 @@ apps/docs/build
 .DS_Store
 
 # Claude
-.claude
+!.claude
+.claude/*
+!.claude/skills/
 
 # Misc
 *.tgz
