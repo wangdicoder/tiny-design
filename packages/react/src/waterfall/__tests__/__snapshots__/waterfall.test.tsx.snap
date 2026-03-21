@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Waterfall /> should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ty-waterfall"
+    style="position: relative; height: 16px;"
+  >
+    <div
+      class="ty-waterfall__item"
+      style="position: absolute; top: 0px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
+    >
+      <div
+        style="height: 100px;"
+      >
+        1
+      </div>
+    </div>
+    <div
+      class="ty-waterfall__item"
+      style="position: absolute; top: 0px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
+    >
+      <div
+        style="height: 150px;"
+      >
+        2
+      </div>
+    </div>
+    <div
+      class="ty-waterfall__item"
+      style="position: absolute; top: 0px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
+    >
+      <div
+        style="height: 80px;"
+      >
+        3
+      </div>
+    </div>
+    <div
+      class="ty-waterfall__item"
+      style="position: absolute; top: 16px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
+    >
+      <div
+        style="height: 120px;"
+      >
+        4
+      </div>
+    </div>
+    <div
+      class="ty-waterfall__item"
+      style="position: absolute; top: 16px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
+    >
+      <div
+        style="height: 90px;"
+      >
+        5
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
