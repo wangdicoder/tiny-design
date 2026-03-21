@@ -39,25 +39,32 @@ $light-theme: (
 
   // ---- Success ----
   color-success: #52c41a,
+  color-success-hover: #73d13d,
+  color-success-active: #389e0d,
   color-success-bg: #f6ffed,
   color-success-border: #b7eb8f,
   color-success-text: #49b10e,
 
   // ---- Warning ----
   color-warning: #ff9800,
+  color-warning-hover: #ffad33,
+  color-warning-active: #e68a00,
   color-warning-bg: #fffbe6,
   color-warning-border: #ffe58f,
   color-warning-text: #d48806,
 
   // ---- Danger / Error ----
   color-danger: #f44336,
+  color-danger-hover: #ff7875,
+  color-danger-active: #cf1322,
   color-danger-bg: #fff1f0,
   color-danger-border: #ffa39e,
   color-danger-text: #cf1322,
-  color-danger-hover: #ff7875,
 
   // ---- Info ----
   color-info: #1890ff,
+  color-info-hover: #40a9ff,
+  color-info-active: #096dd9,
   color-info-bg: #e6f7ff,
   color-info-border: #91d5ff,
   color-info-text: #096dd9,
