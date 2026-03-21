@@ -16,6 +16,8 @@ import AsyncSubmitDemo from './demo/AsyncSubmit';
 import AsyncSubmitSource from './demo/AsyncSubmit.tsx?raw';
 import OtherControlsDemo from './demo/OtherControls';
 import OtherControlsSource from './demo/OtherControls.tsx?raw';
+import StepFormDemo from './demo/StepForm';
+import StepFormSource from './demo/StepForm.tsx?raw';
 
 # Form
 
@@ -121,6 +123,15 @@ Simulate an async form submission with loading state.
 A versatile example.
 
 <DemoBlock component={OtherControlsDemo} source={OtherControlsSource} />
+
+</Demo>
+
+<Demo>
+### Multi-Step Form
+
+A multi-step registration form. Each step validates its fields via the form instance before proceeding to the next step.
+
+<DemoBlock component={StepFormDemo} source={StepFormSource} />
 
 </Demo>
 
