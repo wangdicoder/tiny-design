@@ -1,5 +1,4 @@
 @use "../../style/variables" as *;
-@use "sass:color";
 
 $speed-dial-fab-size: 56px;
 $speed-dial-action-size: 40px;
@@ -18,8 +17,8 @@ $speed-dial-actions-gap: 16px;
     height: $speed-dial-fab-size;
     border-radius: 50%;
     border: none;
-    background-color: var(--ty-speed-dial-bg, #{$primary-color});
-    color: var(--ty-speed-dial-color, #{$white-color});
+    background-color: var(--ty-speed-dial-bg, var(--ty-color-primary));
+    color: var(--ty-speed-dial-color, #fff);
     font-size: 24px;
     cursor: pointer;
     box-shadow: $box-shadow;
@@ -27,11 +26,11 @@ $speed-dial-actions-gap: 16px;
     outline: none;
 
     &:hover:not(.#{$prefix}-speed-dial__button_disabled) {
-      background-color: var(--ty-speed-dial-bg-hover, #{color.adjust($primary-color, $lightness: -8%)});
+      background-color: var(--ty-speed-dial-bg-hover, var(--ty-color-primary-active));
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px rgba($primary-color, 0.3), $box-shadow;
+      box-shadow: 0 0 0 3px var(--ty-input-focus-shadow, rgb(110 65 191 / 20%)), $box-shadow;
     }
 
     &_open {
@@ -59,7 +58,7 @@ $speed-dial-actions-gap: 16px;
       position: absolute;
       top: 50%;
       left: 50%;
-      background-color: currentColor;
+      background-color: currentcolor;
       border-radius: 1px;
       translate: -50% -50%;
     }
@@ -183,7 +182,7 @@ $speed-dial-actions-gap: 16px;
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px rgba($primary-color, 0.3), $box-shadow-sm;
+      box-shadow: 0 0 0 3px var(--ty-input-focus-shadow, rgb(110 65 191 / 20%)), $box-shadow-sm;
     }
 
     &_disabled {
