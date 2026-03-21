@@ -7,7 +7,7 @@ exports[`<Waterfall /> should match the snapshot 1`] = `
     style="position: relative; height: 16px;"
   >
     <div
-      class="ty-waterfall__item"
+      class="ty-waterfall__item ty-waterfall__item-fade-enter-done"
       style="position: absolute; top: 0px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
     >
       <div
@@ -17,7 +17,7 @@ exports[`<Waterfall /> should match the snapshot 1`] = `
       </div>
     </div>
     <div
-      class="ty-waterfall__item"
+      class="ty-waterfall__item ty-waterfall__item-fade-enter-done"
       style="position: absolute; top: 0px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
     >
       <div
@@ -27,7 +27,7 @@ exports[`<Waterfall /> should match the snapshot 1`] = `
       </div>
     </div>
     <div
-      class="ty-waterfall__item"
+      class="ty-waterfall__item ty-waterfall__item-fade-enter-done"
       style="position: absolute; top: 0px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
     >
       <div
@@ -37,7 +37,7 @@ exports[`<Waterfall /> should match the snapshot 1`] = `
       </div>
     </div>
     <div
-      class="ty-waterfall__item"
+      class="ty-waterfall__item ty-waterfall__item-fade-enter-done"
       style="position: absolute; top: 16px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
     >
       <div
@@ -47,7 +47,7 @@ exports[`<Waterfall /> should match the snapshot 1`] = `
       </div>
     </div>
     <div
-      class="ty-waterfall__item"
+      class="ty-waterfall__item ty-waterfall__item-fade-enter-done"
       style="position: absolute; top: 16px; transition: top 0.3s ease, left 0.3s ease, opacity 0.3s ease; opacity: 1;"
     >
       <div
