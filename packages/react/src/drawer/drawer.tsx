@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useId, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
+import Transition from '../transition';
 import Overlay from '../overlay';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -91,11 +91,12 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
       }}
       style={maskStyle}>
       <div ref={ref} className={cls} style={{ ...style, ...sty }}>
-        <CSSTransition
+        <Transition
           appear={true}
           nodeRef={nodeRef}
           in={drawerVisible}
           timeout={0}
+          unmountOnExit={false}
           classNames={`${prefixCls}__content_move`}>
           <div
             ref={nodeRef}
@@ -113,7 +114,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
             <div className={`${prefixCls}__body`}>{children}</div>
             {footer && <div className={`${prefixCls}__footer`}>{footer}</div>}
           </div>
-        </CSSTransition>
+        </Transition>
       </div>
     </Overlay>
   );
