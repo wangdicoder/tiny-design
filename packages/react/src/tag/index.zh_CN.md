@@ -8,6 +8,8 @@ import ControlledDemo from './demo/Controlled';
 import ControlledSource from './demo/Controlled.tsx?raw';
 import DynamicDemo from './demo/Dynamic';
 import DynamicSource from './demo/Dynamic.tsx?raw';
+import StatusDemo from './demo/Status';
+import StatusSource from './demo/Status.tsx?raw';
 
 # Tag
 
@@ -71,6 +73,15 @@ const { CheckableTag } = Tag;
     </Demo>
     <Demo>
 
+### 状态标签
+
+状态标签使用与按钮组件状态类型一致的语义化颜色。
+
+<DemoBlock component={StatusDemo} source={StatusSource} />
+
+    </Demo>
+    <Demo>
+
 ### 受控显示
 
 通过 `visible` 属性控制标签的显示与隐藏。
@@ -97,6 +108,8 @@ const { CheckableTag } = Tag;
 | className      | 容器的 className                               | string                         | -       |
 
 预设颜色：`magenta`、`red`、`volcano`、`orange`、`gold`、`lime`、`green`、`cyan`、`blue`、`geekblue`、`purple`。
+
+状态颜色：`success`、`info`、`warning`、`danger`。
 
 ### Tag.CheckableTag
 

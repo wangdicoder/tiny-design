@@ -8,6 +8,8 @@ import ControlledDemo from './demo/Controlled';
 import ControlledSource from './demo/Controlled.tsx?raw';
 import DynamicDemo from './demo/Dynamic';
 import DynamicSource from './demo/Dynamic.tsx?raw';
+import StatusDemo from './demo/Status';
+import StatusSource from './demo/Status.tsx?raw';
 
 # Tag
 
@@ -71,6 +73,15 @@ We preset a series of colorful tag styles for use in different situations. You c
     </Demo>
     <Demo>
 
+### Status
+
+Status tags use semantic colors that match the button component's status types.
+
+<DemoBlock component={StatusDemo} source={StatusSource} />
+
+    </Demo>
+    <Demo>
+
 ### Controlled
 
 By using the `visible` prop, you can control the close state of Tag.
@@ -97,6 +108,8 @@ By using the `visible` prop, you can control the close state of Tag.
 | className      | className of container                         | string                         | -       |
 
 Preset colors: `magenta`, `red`, `volcano`, `orange`, `gold`, `lime`, `green`, `cyan`, `blue`, `geekblue`, `purple`.
+
+Status colors: `success`, `info`, `warning`, `danger`.
 
 ### Tag.CheckableTag
 
