@@ -16,6 +16,8 @@ import AsyncSubmitDemo from './demo/AsyncSubmit';
 import AsyncSubmitSource from './demo/AsyncSubmit.tsx?raw';
 import OtherControlsDemo from './demo/OtherControls';
 import OtherControlsSource from './demo/OtherControls.tsx?raw';
+import StepFormDemo from './demo/StepForm';
+import StepFormSource from './demo/StepForm.tsx?raw';
 
 # Form
 
@@ -120,6 +122,15 @@ const { Item, useForm, FormInstance } = Form;
 一个多功能的示例。
 
 <DemoBlock component={OtherControlsDemo} source={OtherControlsSource} />
+
+<Demo>
+### 分步表单
+
+多步骤注册表单。每一步通过表单实例校验当前步骤的字段后才能进入下一步。
+
+<DemoBlock component={StepFormDemo} source={StepFormSource} />
+
+</Demo>
 
 ## API
 
