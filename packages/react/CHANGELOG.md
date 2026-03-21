@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.2
+
+### Patch Changes
+
+- fix: preserve FormInstance across re-renders in useForm hook - [#62](https://github.com/wangdicoder/tiny-design/pull/62) [`ee696d0`](https://github.com/wangdicoder/tiny-design/commit/ee696d06cab1e4cb510200b11a0118a770f81cc5)
+
 ## 1.1.1
 
 ### Patch Changes
