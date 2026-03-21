@@ -131,6 +131,7 @@ const c = {
   autoComplete: ll(() => import('../../../packages/react/src/auto-complete/index.md'), () => import('../../../packages/react/src/auto-complete/index.zh_CN.md')),
   inputOTP: ll(() => import('../../../packages/react/src/input-otp/index.md'), () => import('../../../packages/react/src/input-otp/index.zh_CN.md')),
   overlay: ll(() => import('../../../packages/react/src/overlay/index.md'), () => import('../../../packages/react/src/overlay/index.zh_CN.md')),
+  waterfall: ll(() => import('../../../packages/react/src/waterfall/index.md'), () => import('../../../packages/react/src/waterfall/index.zh_CN.md')),
 };
 
 export const getGuideMenu = (s: SiteLocale): RouterItem[] => {
@@ -169,6 +170,7 @@ export const getComponentMenu = (s: SiteLocale): RouterItem[] => {
         { title: 'Layout', route: 'layout', component: pick(c.layout, z) },
         { title: 'Space', route: 'space', component: pick(c.space, z) },
         { title: 'Split', route: 'split', component: pick(c.split, z) },
+        { title: 'Waterfall', route: 'waterfall', component: pick(c.waterfall, z) },
       ],
     },
     {

@@ -79,6 +79,7 @@ export { default as Transition } from './transition';
 export { default as Tree } from './tree';
 export { default as Typography } from './typography';
 export { default as Upload } from './upload';
+export { default as Waterfall } from './waterfall';
 
 export { withLocale } from './intl-provider/with-locale';
 export { withSpin } from './with-spin';
