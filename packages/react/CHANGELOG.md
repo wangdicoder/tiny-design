@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0
+
+### Minor Changes
+
+- Replace react-transition-group with a custom useTransition hook for CSS-driven animations. This removes the unmaintained dependency and prepares the library for React 19 compatibility. - [#66](https://github.com/wangdicoder/tiny-design/pull/66) [`2d3e756`](https://github.com/wangdicoder/tiny-design/commit/2d3e756674c47058180981b304af84f181f63027)
+
 ## 1.2.0
 
 ### Minor Changes
