@@ -102,6 +102,30 @@
     background: var(--ty-tag-purple-bg);
     border-color: var(--ty-tag-purple-border);
   }
+
+  &_success {
+    color: var(--ty-color-success);
+    background: var(--ty-color-success-bg);
+    border-color: var(--ty-color-success-border);
+  }
+
+  &_info {
+    color: var(--ty-color-info);
+    background: var(--ty-color-info-bg);
+    border-color: var(--ty-color-info-border);
+  }
+
+  &_warning {
+    color: var(--ty-color-warning);
+    background: var(--ty-color-warning-bg);
+    border-color: var(--ty-color-warning-border);
+  }
+
+  &_danger {
+    color: var(--ty-color-danger);
+    background: var(--ty-color-danger-bg);
+    border-color: var(--ty-color-danger-border);
+  }
 }
 
 .#{$prefix}-checkable-tag {

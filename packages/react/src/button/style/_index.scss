@@ -24,7 +24,7 @@ $btn-prefix: #{$prefix}-btn;
   line-height: $btn-line-height;
 
   &__loader {
-    @include loader();
+    @include loader;
   }
 
   &__icon-container, &__loader {
@@ -91,19 +91,27 @@ $btn-prefix: #{$prefix}-btn;
   }
 
   &_info {
-    @include button-style(#fff, var(--ty-color-info), var(--ty-color-info));
+    @include button-style(#fff, var(--ty-color-info), var(--ty-color-info),
+      var(--ty-color-info-hover), var(--ty-color-info-hover), #fff,
+      var(--ty-color-info-active), var(--ty-color-info-active), #fff);
   }
 
   &_success {
-    @include button-style(#fff, var(--ty-color-success), var(--ty-color-success));
+    @include button-style(#fff, var(--ty-color-success), var(--ty-color-success),
+      var(--ty-color-success-hover), var(--ty-color-success-hover), #fff,
+      var(--ty-color-success-active), var(--ty-color-success-active), #fff);
   }
 
   &_warning {
-    @include button-style(#fff, var(--ty-color-warning), var(--ty-color-warning));
+    @include button-style(#fff, var(--ty-color-warning), var(--ty-color-warning),
+      var(--ty-color-warning-hover), var(--ty-color-warning-hover), #fff,
+      var(--ty-color-warning-active), var(--ty-color-warning-active), #fff);
   }
 
   &_danger {
-    @include button-style(#fff, var(--ty-color-danger), var(--ty-color-danger));
+    @include button-style(#fff, var(--ty-color-danger), var(--ty-color-danger),
+      var(--ty-color-danger-hover), var(--ty-color-danger-hover), #fff,
+      var(--ty-color-danger-active), var(--ty-color-danger-active), #fff);
   }
 
   // Sizes
@@ -135,13 +143,10 @@ $btn-prefix: #{$prefix}-btn;
     position: relative;
     pointer-events: none;
 
-    &:before {
+    &::before {
       content: '';
       position: absolute;
-      top: -1px;
-      right: -1px;
-      bottom: -1px;
-      left: -1px;
+      inset: -1px;
       z-index: 1;
       display: block;
       background: var(--ty-btn-loading-bg);
@@ -208,7 +213,7 @@ $btn-prefix: #{$prefix}-btn;
   &_danger {
     .#{$btn-prefix} {
       &:not(:first-child) {
-        border-left-color: rgba(255, 255, 255, 0.2);
+        border-left-color: rgb(255 255 255 / 20%);
       }
     }
   }

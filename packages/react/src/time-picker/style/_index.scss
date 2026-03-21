@@ -29,6 +29,10 @@ $tp: #{$prefix}-time-picker;
     box-shadow: var(--ty-input-focus-shadow);
   }
 
+  &_pending &__input-field {
+    color: var(--ty-color-text-tertiary);
+  }
+
   &__input-field {
     flex: 1;
     border: none;
@@ -185,6 +189,15 @@ $tp: #{$prefix}-time-picker;
     &_selected {
       background: var(--ty-color-primary-bg);
       font-weight: 500;
+
+      &:hover {
+        background: var(--ty-color-primary-bg-hover);
+      }
+    }
+
+    &_pending {
+      background: var(--ty-color-primary-bg);
+      color: var(--ty-color-text-tertiary);
 
       &:hover {
         background: var(--ty-color-primary-bg-hover);

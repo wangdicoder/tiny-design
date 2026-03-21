@@ -8,6 +8,14 @@ import Popup from '../popup';
 import TimePanel from './time-panel';
 import { TimePickerProps } from './types';
 
+interface PendingTime {
+  h: number | null;
+  m: number | null;
+  s: number | null;
+}
+
+const EMPTY_PENDING: PendingTime = { h: null, m: null, s: null };
+
 function formatTime(date: Date, format: string, use12Hours: boolean): string {
   let h = date.getHours();
   const m = String(date.getMinutes()).padStart(2, '0');
@@ -75,6 +83,7 @@ const TimePicker = (props: TimePickerProps): React.ReactElement => {
   const prefixCls = getPrefixCls('time-picker', configContext.prefixCls, customisedCls);
 
   const [date, setDate] = useState<Date | null>(value ?? defaultValue ?? null);
+  const [pending, setPending] = useState<PendingTime>(EMPTY_PENDING);
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -96,6 +105,7 @@ const TimePicker = (props: TimePickerProps): React.ReactElement => {
       if (wrapperRef.current?.contains(target) || dropdownRef.current?.contains(target)) return;
       if (controlledOpen === undefined) setOpen(false);
       onOpenChange?.(false);
+      setPending(EMPTY_PENDING);
     };
     document.addEventListener('click', listener);
     return () => document.removeEventListener('click', listener);
@@ -104,48 +114,62 @@ const TimePicker = (props: TimePickerProps): React.ReactElement => {
   const toggleOpen = useCallback((val: boolean) => {
     if (controlledOpen === undefined) setOpen(val);
     onOpenChange?.(val);
+    if (!val) setPending(EMPTY_PENDING);
   }, [controlledOpen, onOpenChange]);
 
-  const updateTime = useCallback((type: 'h' | 'm' | 's', num: number) => {
+  /** Build a Date from committed date + pending overrides */
+  const buildDate = useCallback((p: PendingTime): Date => {
     const base = date ? new Date(date) : new Date(0, 0, 0, 0, 0, 0, 0);
-    if (type === 'h') base.setHours(num);
-    else if (type === 'm') base.setMinutes(num);
-    else base.setSeconds(num);
+    if (p.h !== null) base.setHours(p.h);
+    if (p.m !== null) base.setMinutes(p.m);
+    if (p.s !== null) base.setSeconds(p.s);
+    return base;
+  }, [date]);
 
-    if (value === undefined) setDate(base);
-    onChange?.(base);
-  }, [date, value, onChange]);
+  const updatePending = useCallback((type: 'h' | 'm' | 's', num: number) => {
+    setPending((prev) => ({ ...prev, [type]: num }));
+  }, []);
+
+  const commit = useCallback((newDate: Date) => {
+    if (value === undefined) setDate(newDate);
+    onChange?.(newDate);
+    setPending(EMPTY_PENDING);
+  }, [value, onChange]);
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (value === undefined) setDate(null);
     onChange?.(null);
+    setPending(EMPTY_PENDING);
     toggleOpen(false);
   };
 
   const handleNow = () => {
     const now = new Date();
-    if (value === undefined) setDate(now);
-    onChange?.(now);
+    commit(now);
     toggleOpen(false);
   };
 
   const handleOk = () => {
+    if (pending.h !== null || pending.m !== null || pending.s !== null) {
+      commit(buildDate(pending));
+    }
     toggleOpen(false);
   };
 
-  // Disabled time calculation
+  // Disabled time calculation — use pending values when available
+  const effectiveHour = pending.h ?? date?.getHours() ?? 0;
+  const effectiveMinute = pending.m ?? date?.getMinutes() ?? 0;
+
   const disabled12 = useMemo(() => disabledTime?.() ?? {}, [disabledTime]);
   const disabledHours = useMemo(() => disabled12.disabledHours?.() ?? [], [disabled12]);
-  const currentHour = date?.getHours() ?? 0;
   const disabledMinutes = useMemo(
-    () => disabled12.disabledMinutes?.(currentHour) ?? [],
-    [disabled12, currentHour]
+    () => disabled12.disabledMinutes?.(effectiveHour) ?? [],
+    [disabled12, effectiveHour]
   );
-  const currentMinute = date?.getMinutes() ?? 0;
   const disabledSeconds = useMemo(
-    () => disabled12.disabledSeconds?.(currentHour, currentMinute) ?? [],
-    [disabled12, currentHour, currentMinute]
+    () => disabled12.disabledSeconds?.(effectiveHour, effectiveMinute) ?? [],
+    [disabled12, effectiveHour, effectiveMinute]
   );
 
   const hours = generateSteps(24, hourStep);
@@ -156,13 +180,17 @@ const TimePicker = (props: TimePickerProps): React.ReactElement => {
   const filteredMinutes = hideDisabledOptions ? minutes.filter((m) => !disabledMinutes.includes(m)) : minutes;
   const filteredSeconds = hideDisabledOptions ? seconds.filter((s) => !disabledSeconds.includes(s)) : seconds;
 
-  const hasValue = date !== null;
-  const displayValue = hasValue ? formatTime(date, format, use12Hours) : '';
+  const hasPending = pending.h !== null || pending.m !== null || pending.s !== null;
+  const previewDate = hasPending ? buildDate(pending) : null;
+  const effectiveDate = previewDate ?? date;
+  const hasValue = effectiveDate !== null;
+  const displayValue = hasValue ? formatTime(effectiveDate, format, use12Hours) : '';
 
   const cls = classNames(prefixCls, className, `${prefixCls}_${size}`, {
     [`${prefixCls}_disabled`]: disabled,
     [`${prefixCls}_open`]: isOpen,
     [`${prefixCls}_has-value`]: hasValue,
+    [`${prefixCls}_pending`]: hasPending,
   });
 
   const renderOverlay = () => (
@@ -170,30 +198,33 @@ const TimePicker = (props: TimePickerProps): React.ReactElement => {
       <div className={`${prefixCls}__panel`}>
         <TimePanel
           prefixCls={prefixCls}
-          value={date?.getHours() ?? 0}
+          value={date?.getHours() ?? null}
+          pendingValue={pending.h}
           items={filteredHours}
           disabledItems={hideDisabledOptions ? [] : disabledHours}
           loop={loop}
-          onChange={(h) => updateTime('h', h)}
+          onChange={(h) => updatePending('h', h)}
         />
         {showsMinutes(format) && (
           <TimePanel
             prefixCls={prefixCls}
-            value={date?.getMinutes() ?? 0}
+            value={date?.getMinutes() ?? null}
+            pendingValue={pending.m}
             items={filteredMinutes}
             disabledItems={hideDisabledOptions ? [] : disabledMinutes}
             loop={loop}
-            onChange={(m) => updateTime('m', m)}
+            onChange={(m) => updatePending('m', m)}
           />
         )}
         {showsSeconds(format) && (
           <TimePanel
             prefixCls={prefixCls}
-            value={date?.getSeconds() ?? 0}
+            value={date?.getSeconds() ?? null}
+            pendingValue={pending.s}
             items={filteredSeconds}
             disabledItems={hideDisabledOptions ? [] : disabledSeconds}
             loop={loop}
-            onChange={(s) => updateTime('s', s)}
+            onChange={(s) => updatePending('s', s)}
           />
         )}
       </div>

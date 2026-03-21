@@ -2,7 +2,8 @@ import { useRef, useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 
 export interface TimePanelProps {
-  value: number;
+  value: number | null;
+  pendingValue: number | null;
   items: number[];
   disabledItems?: number[];
   loop?: boolean;
@@ -13,16 +14,20 @@ export interface TimePanelProps {
 const ITEM_HEIGHT = 28; // 4px padding-top + 20px line-height + 4px padding-bottom
 
 const TimePanel = (props: TimePanelProps): React.ReactElement => {
-  const { prefixCls, value, items, disabledItems = [], loop = false, onChange } = props;
+  const { prefixCls, value, pendingValue, items, disabledItems = [], loop = false, onChange } = props;
   const panelRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Map<number, HTMLLIElement>>(new Map());
   const isResetting = useRef(false);
   const clickedRef = useRef(false);
-  const scrollToItemRef = useRef<((val: number) => void) | null>(null);
+  const scrollToItemRef = useRef<((val: number | null) => void) | null>(null);
 
   const oneGroupHeight = items.length * ITEM_HEIGHT;
 
-  scrollToItemRef.current = (val: number) => {
+  // The displayed value: pending takes priority, then committed
+  const displayValue = pendingValue ?? value;
+
+  scrollToItemRef.current = (val: number | null) => {
+    if (val === null) return;
     const panel = panelRef.current;
     if (!panel) return;
 
@@ -46,8 +51,8 @@ const TimePanel = (props: TimePanelProps): React.ReactElement => {
       clickedRef.current = false;
       return;
     }
-    scrollToItemRef.current?.(value);
-  }, [value]);
+    scrollToItemRef.current?.(displayValue);
+  }, [displayValue]);
 
   // Scroll reset for loop mode
   const handleScroll = useCallback(() => {
@@ -69,27 +74,32 @@ const TimePanel = (props: TimePanelProps): React.ReactElement => {
     onChange(num);
   };
 
+  const isPending = pendingValue !== null;
+  const isCommitted = value !== null && pendingValue === null;
+
+  const cellCls = (num: number) => {
+    const isSelected = num === displayValue;
+    return classNames(`${prefixCls}__cell`, {
+      [`${prefixCls}__cell_selected`]: isSelected && isCommitted,
+      [`${prefixCls}__cell_pending`]: isSelected && isPending,
+      [`${prefixCls}__cell_disabled`]: disabledItems.includes(num),
+    });
+  };
+
   if (loop) {
     const copies = [0, 1, 2];
     return (
       <div className={`${prefixCls}__column`} ref={panelRef} onScroll={handleScroll}>
         <ul className={`${prefixCls}__column-list`}>
           {copies.map((copyIdx) =>
-            items.map((num, i) => {
-              const isDisabled = disabledItems.includes(num);
-              const cls = classNames(`${prefixCls}__cell`, {
-                [`${prefixCls}__cell_selected`]: num === value,
-                [`${prefixCls}__cell_disabled`]: isDisabled,
-              });
-              return (
-                <li
-                  key={`c${copyIdx}-${i}`}
-                  className={cls}
-                  onClick={() => handleClick(num)}>
-                  {String(num).padStart(2, '0')}
-                </li>
-              );
-            })
+            items.map((num, i) => (
+              <li
+                key={`c${copyIdx}-${i}`}
+                className={cellCls(num)}
+                onClick={() => handleClick(num)}>
+                {String(num).padStart(2, '0')}
+              </li>
+            ))
           )}
         </ul>
       </div>
@@ -99,24 +109,17 @@ const TimePanel = (props: TimePanelProps): React.ReactElement => {
   return (
     <div className={`${prefixCls}__column`} ref={panelRef}>
       <ul className={`${prefixCls}__column-list`}>
-        {items.map((num) => {
-          const isDisabled = disabledItems.includes(num);
-          const cls = classNames(`${prefixCls}__cell`, {
-            [`${prefixCls}__cell_selected`]: num === value,
-            [`${prefixCls}__cell_disabled`]: isDisabled,
-          });
-          return (
-            <li
-              key={num}
-              ref={(el) => {
-                if (el) itemRefs.current.set(num, el);
-              }}
-              className={cls}
-              onClick={() => handleClick(num)}>
-              {String(num).padStart(2, '0')}
-            </li>
-          );
-        })}
+        {items.map((num) => (
+          <li
+            key={num}
+            ref={(el) => {
+              if (el) itemRefs.current.set(num, el);
+            }}
+            className={cellCls(num)}
+            onClick={() => handleClick(num)}>
+            {String(num).padStart(2, '0')}
+          </li>
+        ))}
       </ul>
     </div>
   );
