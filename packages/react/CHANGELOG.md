@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- Add Waterfall (masonry) layout component with responsive columns, gutter spacing, dynamic add/remove with animations, and image gallery support - [#64](https://github.com/wangdicoder/tiny-design/pull/64) [`788f763`](https://github.com/wangdicoder/tiny-design/commit/788f76327ea104f33b4602ffe36dca341818ac3d)
+
 ## 1.1.2
 
 ### Patch Changes

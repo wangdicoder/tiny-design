@@ -1,0 +1,22 @@
+@use '../../style/variables' as *;
+
+.#{$prefix}-waterfall {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+
+  &__item {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  // Exit animation
+  &__item-fade-exit {
+    opacity: 1;
+  }
+
+  &__item-fade-exit-active {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+}
