@@ -8,6 +8,8 @@ import OverflowDemo from './demo/Overflow';
 import OverflowSource from './demo/Overflow.tsx?raw';
 import StandaloneDemo from './demo/Standalone';
 import StandaloneSource from './demo/Standalone.tsx?raw';
+import DynamicDemo from './demo/Dynamic';
+import DynamicSource from './demo/Dynamic.tsx?raw';
 
 # Badge
 
@@ -74,6 +76,15 @@ import { Badge } from 'tiny-design';
 > 只有小圆点徽标才有 `processing` 效果。
 
 <DemoBlock component={CustomDemo} source={CustomSource} />
+    
+    </Demo>
+    <Demo>
+
+### 动态变化
+
+通过按钮增减数字，或通过开关切换小圆点。
+
+<DemoBlock component={DynamicDemo} source={DynamicSource} />
 
     </Demo>
   </Column>

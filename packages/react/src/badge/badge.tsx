@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import warning from '../_utils/warning';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
+import ScrollNumber from '../scroll-number';
 import { BadgeProps } from './types';
 
 const Badge = React.memo(React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
@@ -28,16 +29,32 @@ const Badge = React.memo(React.forwardRef<HTMLSpanElement, BadgeProps>((props, r
   warning(!dot && processing, 'only dot badge has the processing effect');
 
   const renderCount = () => {
-    if (typeof count === 'number' || typeof count === 'string') {
+    if (typeof count === 'number') {
       if (count === 0 && !showZero) {
         return null;
       }
+      const displayValue = count > max ? max : count;
+      const overflowSuffix = count > max ? '+' : undefined;
       return (
         <sup
           title={title}
           className={`${prefixCls}__count`}
           style={{ backgroundColor: color, ...badgeStyle }}>
-          {typeof count === 'number' && count > max ? `${max}+` : count}
+          <ScrollNumber
+            value={displayValue}
+            suffix={overflowSuffix}
+            groupSeparator=""
+            className={`${prefixCls}__scroll-number`}
+          />
+        </sup>
+      );
+    } else if (typeof count === 'string') {
+      return (
+        <sup
+          title={title}
+          className={`${prefixCls}__count`}
+          style={{ backgroundColor: color, ...badgeStyle }}>
+          {count}
         </sup>
       );
     } else {

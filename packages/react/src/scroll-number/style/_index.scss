@@ -1,0 +1,93 @@
+@use '../../style/variables' as *;
+
+.#{$prefix}-scroll-number {
+  display: inline-block;
+  position: relative;
+
+  &__title {
+    margin-bottom: 4px;
+    color: var(--ty-color-text-secondary, #{$gray-600});
+    font-size: var(--ty-font-size-sm);
+  }
+
+  &__content {
+    display: flex;
+    align-items: baseline;
+    color: var(--ty-color-text, #{$gray-900});
+    font-size: 24px;
+    font-weight: 600;
+    font-family: $font-family-sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__prefix {
+    margin-right: 4px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__suffix {
+    margin-left: 4px;
+    font-size: var(--ty-font-size-base);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__value {
+    display: inline-flex;
+    overflow: hidden;
+  }
+
+  &__digit {
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  &__digit-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__digit-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__separator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__measure {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    line-height: inherit;
+  }
+
+  &__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .#{$prefix}-scroll-number {
+    .#{$prefix}-scroll-number__digit-column {
+      transition-duration: 0s !important;
+    }
+  }
+}

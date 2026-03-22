@@ -13,7 +13,100 @@ exports[`<Badge /> should match the snapshot 1`] = `
       class="ty-badge__count"
       style="background-color: rgb(242, 69, 61);"
     >
-      5
+      <div
+        class="ty-scroll-number ty-badge__scroll-number"
+      >
+        <div
+          class="ty-scroll-number__content"
+        >
+          <span
+            aria-hidden="true"
+            class="ty-scroll-number__value"
+          >
+            <span
+              class="ty-scroll-number__digit"
+              style="height: 0px; line-height: 0px;"
+            >
+              <span
+                class="ty-scroll-number__digit-column"
+                style="transform: translateY(0px);"
+              >
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  0
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  1
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  2
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  3
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  4
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  5
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  6
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  7
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  8
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  9
+                </span>
+              </span>
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="ty-scroll-number__measure"
+          >
+            0
+          </span>
+        </div>
+        <span
+          class="ty-scroll-number__sr-only"
+        >
+          5
+        </span>
+      </div>
     </sup>
   </span>
 </DocumentFragment>

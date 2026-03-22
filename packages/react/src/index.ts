@@ -55,6 +55,7 @@ export { default as Radio } from './radio';
 export { default as Rate } from './rate';
 export { default as Result } from './result';
 export { default as ScrollIndicator } from './scroll-indicator';
+export { default as ScrollNumber } from './scroll-number';
 export { default as Segmented } from './segmented';
 export { default as Select } from './select';
 export { default as Skeleton } from './skeleton';
