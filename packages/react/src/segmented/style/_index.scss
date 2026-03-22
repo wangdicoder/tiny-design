@@ -5,7 +5,7 @@
   align-items: center;
   padding: 2px;
   background: var(--ty-segmented-bg, #{$gray-200});
-  border-radius: $border-radius;
+  border-radius: var(--ty-border-radius);
   box-sizing: border-box;
 
   &_block {
@@ -30,20 +30,20 @@
 
   &_sm .#{$prefix}-segmented__item {
     padding: 0 8px;
-    height: calc(#{$height-sm} - 4px);
-    font-size: $font-size-sm;
+    height: calc(var(--ty-height-sm) - 4px);
+    font-size: var(--ty-font-size-sm);
   }
 
   &_md .#{$prefix}-segmented__item {
     padding: 0 12px;
-    height: calc(#{$height-md} - 4px);
-    font-size: $font-size-base;
+    height: calc(var(--ty-height-md) - 4px);
+    font-size: var(--ty-font-size-base);
   }
 
   &_lg .#{$prefix}-segmented__item {
     padding: 0 16px;
-    height: calc(#{$height-lg} - 4px);
-    font-size: $font-size-lg;
+    height: calc(var(--ty-height-lg) - 4px);
+    font-size: var(--ty-font-size-lg);
   }
 
   &__item {
@@ -52,19 +52,19 @@
     align-items: center;
     gap: 4px;
     cursor: pointer;
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     transition: all 0.2s;
     user-select: none;
     white-space: nowrap;
 
-    &:hover:not(&_active):not(&_disabled) {
+    &:hover:not(&_active, &_disabled) {
       color: var(--ty-color-text, #{$gray-900});
     }
 
     &_active {
       background: var(--ty-segmented-active-bg, #fff);
       color: var(--ty-color-text, #{$gray-900});
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 6%), 0 1px 3px 0 rgb(0 0 0 / 10%);
       font-weight: 500;
     }
 

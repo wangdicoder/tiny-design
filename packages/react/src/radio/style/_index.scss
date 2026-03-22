@@ -4,16 +4,13 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
   margin-right: 8px;
   color: var(--ty-color-text);
 
   &__native {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -34,7 +31,7 @@
     align-items: center;
     justify-content: center;
 
-    &:after {
+    &::after {
       box-sizing: border-box;
       display: inline-block;
       content: '';
@@ -54,7 +51,7 @@
 
   &_checked {
     .#{$prefix}-radio {
-      &__inner:after {
+      &__inner::after {
         transform: scale(1);
       }
     }
@@ -69,7 +66,7 @@
       &__inner {
         border-color: var(--ty-radio-disabled-border);
 
-        &:after {
+        &::after {
           background-color: var(--ty-radio-disabled-dot);
         }
 

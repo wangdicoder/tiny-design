@@ -44,7 +44,7 @@
     display: inline-flex;
     align-items: center;
     color: var(--ty-color-text-secondary);
-    font-size: $font-size-base;
+    font-size: var(--ty-font-size-base);
   }
 
   &_disabled {

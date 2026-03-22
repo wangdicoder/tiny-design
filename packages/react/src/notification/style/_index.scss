@@ -5,7 +5,7 @@
   padding: 16px 24px;
   border-radius: 3px;
   color: var(--ty-color-text-secondary);
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
   box-shadow: var(--ty-shadow-modal);
   box-sizing: border-box;
   display: flex;

@@ -2,7 +2,7 @@
 
 .#{$prefix}-table {
   color: var(--ty-color-text, #{$gray-800});
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
 
   &__wrapper {
     overflow-x: auto;
@@ -24,8 +24,8 @@
 
   // Sizes
   &_sm &__cell {
-    padding: 8px 8px;
-    font-size: $font-size-sm;
+    padding: 8px;
+    font-size: var(--ty-font-size-sm);
   }
 
   &_md &__cell {
@@ -33,8 +33,8 @@
   }
 
   &_lg &__cell {
-    padding: 16px 16px;
-    font-size: $font-size-lg;
+    padding: 16px;
+    font-size: var(--ty-font-size-lg);
   }
 
   // Sticky header for virtual scroll
@@ -99,7 +99,7 @@
     }
 
     &_selected {
-      background: var(--ty-table-selected-bg, rgba(110, 65, 191, 0.06));
+      background: var(--ty-table-selected-bg, rgb(110 65 191 / 6%));
     }
   }
 

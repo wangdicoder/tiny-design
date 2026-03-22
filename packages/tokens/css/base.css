@@ -270,6 +270,25 @@
   --ty-calendar-bg: #fff;
   --ty-calendar-border: #e9ecef;
   --ty-calendar-hover: #f6f9fc;
+  --ty-font-family: -apple-system, blinkmacsystemfont, Segoe UI, roboto, Helvetica Neue, arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --ty-font-family-monospace: lucida console, consolas, monaco, andale mono, ubuntu mono, monospace;
+  --ty-font-size-base: 1rem;
+  --ty-font-size-sm: 0.875rem;
+  --ty-font-size-lg: 1.25rem;
+  --ty-font-weight: 400;
+  --ty-line-height-base: 1.5;
+  --ty-headings-font-weight: 500;
+  --ty-h1-font-size: 2.5rem;
+  --ty-h2-font-size: 2rem;
+  --ty-h3-font-size: 1.75rem;
+  --ty-h4-font-size: 1.5rem;
+  --ty-h5-font-size: 1.25rem;
+  --ty-h6-font-size: 1rem;
+  --ty-border-radius: 2px;
+  --ty-height-sm: 24px;
+  --ty-height-md: 32px;
+  --ty-height-lg: 42px;
+  --ty-spacer: 1rem;
 }
 
 html[data-tiny-theme=dark] {
@@ -544,6 +563,25 @@ html[data-tiny-theme=dark] {
   --ty-calendar-bg: #1f1f1f;
   --ty-calendar-border: #363636;
   --ty-calendar-hover: #2a2a2a;
+  --ty-font-family: -apple-system, blinkmacsystemfont, Segoe UI, roboto, Helvetica Neue, arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --ty-font-family-monospace: lucida console, consolas, monaco, andale mono, ubuntu mono, monospace;
+  --ty-font-size-base: 1rem;
+  --ty-font-size-sm: 0.875rem;
+  --ty-font-size-lg: 1.25rem;
+  --ty-font-weight: 400;
+  --ty-line-height-base: 1.5;
+  --ty-headings-font-weight: 500;
+  --ty-h1-font-size: 2.5rem;
+  --ty-h2-font-size: 2rem;
+  --ty-h3-font-size: 1.75rem;
+  --ty-h4-font-size: 1.5rem;
+  --ty-h5-font-size: 1.25rem;
+  --ty-h6-font-size: 1rem;
+  --ty-border-radius: 2px;
+  --ty-height-sm: 24px;
+  --ty-height-md: 32px;
+  --ty-height-lg: 42px;
+  --ty-spacer: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -819,6 +857,25 @@ html[data-tiny-theme=dark] {
     --ty-calendar-bg: #1f1f1f;
     --ty-calendar-border: #363636;
     --ty-calendar-hover: #2a2a2a;
+    --ty-font-family: -apple-system, blinkmacsystemfont, Segoe UI, roboto, Helvetica Neue, arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    --ty-font-family-monospace: lucida console, consolas, monaco, andale mono, ubuntu mono, monospace;
+    --ty-font-size-base: 1rem;
+    --ty-font-size-sm: 0.875rem;
+    --ty-font-size-lg: 1.25rem;
+    --ty-font-weight: 400;
+    --ty-line-height-base: 1.5;
+    --ty-headings-font-weight: 500;
+    --ty-h1-font-size: 2.5rem;
+    --ty-h2-font-size: 2rem;
+    --ty-h3-font-size: 1.75rem;
+    --ty-h4-font-size: 1.5rem;
+    --ty-h5-font-size: 1.25rem;
+    --ty-h6-font-size: 1rem;
+    --ty-border-radius: 2px;
+    --ty-height-sm: 24px;
+    --ty-height-md: 32px;
+    --ty-height-lg: 42px;
+    --ty-spacer: 1rem;
   }
 }
 /* stylelint-disable scss/comment-no-empty */

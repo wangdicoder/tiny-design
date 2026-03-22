@@ -384,4 +384,27 @@ $light-theme: (
   calendar-bg: #fff,
   calendar-border: #e9ecef,
   calendar-hover: #f6f9fc,
+
+  // ---- Typography ----
+  font-family: #{-apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"},
+  font-family-monospace: #{lucida console, consolas, monaco, andale mono, ubuntu mono, monospace},
+  font-size-base: 1rem,
+  font-size-sm: 0.875rem,
+  font-size-lg: 1.25rem,
+  font-weight: 400,
+  line-height-base: 1.5,
+  headings-font-weight: 500,
+  h1-font-size: 2.5rem,
+  h2-font-size: 2rem,
+  h3-font-size: 1.75rem,
+  h4-font-size: 1.5rem,
+  h5-font-size: 1.25rem,
+  h6-font-size: 1rem,
+
+  // ---- Sizing ----
+  border-radius: 2px,
+  height-sm: 24px,
+  height-md: 32px,
+  height-lg: 42px,
+  spacer: 1rem,
 );

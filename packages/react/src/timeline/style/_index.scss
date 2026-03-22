@@ -3,7 +3,7 @@
 .#{$prefix}-timeline {
   box-sizing: border-box;
   color: var(--ty-color-text-secondary);
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
   line-height: 1.5;
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@
 
   &:last-child {
     .#{$prefix}-timeline-item__head {
-      &:before {
+      &::before {
         display: none;
       }
     }
@@ -33,7 +33,7 @@
     color: var(--ty-color-primary);
     height: 100%;
 
-    &:before {
+    &::before {
       content: '';
       position: absolute;
       top: 0;

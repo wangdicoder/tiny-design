@@ -23,7 +23,7 @@
   &__swatch {
     width: 32px;
     height: 32px;
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     border: 1px solid var(--ty-color-picker-border, #{$gray-300});
     padding: 3px;
     cursor: pointer;
@@ -39,7 +39,7 @@
     padding: 12px;
     background: var(--ty-color-picker-bg, #fff);
     border-radius: 8px;
-    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     width: 240px;
   }
 
@@ -70,7 +70,7 @@
     height: 12px;
     border-radius: 50%;
     border: 2px solid #fff;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 2px rgb(0 0 0 / 30%);
     transform: translate(-50%, -50%);
     pointer-events: none;
   }
@@ -128,7 +128,7 @@
     height: 14px;
     border-radius: 50%;
     border: 2px solid #fff;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 2px rgb(0 0 0 / 30%);
     transform: translate(-50%, -50%);
     pointer-events: none;
     background: transparent;
@@ -144,7 +144,7 @@
   &__format-btn {
     border: 1px solid var(--ty-color-picker-border, #{$gray-300});
     background: transparent;
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     padding: 2px 6px;
     cursor: pointer;
     font-size: 12px;
@@ -159,7 +159,7 @@
   &__hex-input {
     flex: 1;
     border: 1px solid var(--ty-color-picker-border, #{$gray-300});
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     padding: 2px 6px;
     font-size: 12px;
     font-family: $font-family-monospace;
@@ -184,7 +184,7 @@
   &__preset {
     width: 20px;
     height: 20px;
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     cursor: pointer;
     border: 1px solid var(--ty-color-picker-border, #{$gray-300});
     transition: transform 0.15s;

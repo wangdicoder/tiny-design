@@ -56,6 +56,7 @@ const en_US: SiteLocale = {
     colors: 'Colors',
     changelog: 'Changelog',
     faq: 'FAQ',
+    themeEditor: 'Theme Editor',
   },
   color: {
     title: 'Color',

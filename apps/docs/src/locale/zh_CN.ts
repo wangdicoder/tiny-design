@@ -52,6 +52,7 @@ const zh_CN: SiteLocale = {
     colors: '色彩',
     changelog: '更新日志',
     faq: '常见问题',
+    themeEditor: '主题编辑器',
   },
   color: {
     title: '色彩',

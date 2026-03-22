@@ -132,7 +132,7 @@ $avatar-color: #fff !default;
 $avatar-border-radius: 2px !default;
 
 // Collapse
-$collapse-border-radius: $border-radius !default;
+$collapse-border-radius: var(--ty-border-radius) !default;
 
 // Badge
 $badge-font-size: 12px !default;
@@ -140,26 +140,26 @@ $badge-size: 18px !default;
 $badge-dot-size: 6px !default;
 
 // Button
-$btn-font-size-sm: $font-size-sm !default;
-$btn-font-size-md: $font-size-base !default;
-$btn-font-size-lg: $font-size-lg !default;
+$btn-font-size-sm: var(--ty-font-size-sm) !default;
+$btn-font-size-md: var(--ty-font-size-base) !default;
+$btn-font-size-lg: var(--ty-font-size-lg) !default;
 $btn-padding-sm: 0 10px !default;
 $btn-padding-md: 0 15px !default;
 $btn-padding-lg: 0 28px !default;
-$btn-height-sm: $height-sm !default;
-$btn-height-md: $height-md !default;
-$btn-height-lg: $height-lg !default;
-$btn-line-height: $line-height-base !default;
-$btn-border-radius: $border-radius !default;
+$btn-height-sm: var(--ty-height-sm) !default;
+$btn-height-md: var(--ty-height-md) !default;
+$btn-height-lg: var(--ty-height-lg) !default;
+$btn-line-height: var(--ty-line-height-base) !default;
+$btn-border-radius: var(--ty-border-radius) !default;
 $btn-border-width: $border-width !default;
 $btn-font-weight: 400 !default;
-$btn-font-family: $font-family !default;
+$btn-font-family: var(--ty-font-family) !default;
 $btn-box-shadow: inset 0 1px 0 rgba($white-color, 0.15), 0 1px 1px rgba($black-color, 0.075) !default;
 $btn-loading-opacity: 0.35 !default;
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
 // Card
-$card-border-radius: $border-radius !default;
+$card-border-radius: var(--ty-border-radius) !default;
 $card-header-padding: 13px 16px !default;
 $card-body-padding: 16px !default;
 $card-footer-padding: 5px 16px 16px !default;
@@ -169,29 +169,29 @@ $divider-line-color: #e4e4e4 !default;
 
 // Input
 $input-font-color: $font-color !default;
-$input-border-radius: $border-radius !default;
+$input-border-radius: var(--ty-border-radius) !default;
 $input-sm-padding: 0 4px !default;
-$input-sm-height: $height-sm !default;
-$input-sm-font-size: $font-size-sm !default;
+$input-sm-height: var(--ty-height-sm) !default;
+$input-sm-font-size: var(--ty-font-size-sm) !default;
 $input-md-padding: 0 6px !default;
-$input-md-font-size: $font-size-base !default;
-$input-md-height: $height-md !default;
+$input-md-font-size: var(--ty-font-size-base) !default;
+$input-md-height: var(--ty-height-md) !default;
 $input-lg-padding: 0 8px !default;
-$input-lg-font-size: $font-size-lg !default;
-$input-lg-height: $height-lg !default;
+$input-lg-font-size: var(--ty-font-size-lg) !default;
+$input-lg-height: var(--ty-height-lg) !default;
 
 // Textarea
-$textarea-font-size: $font-size-base !default;
+$textarea-font-size: var(--ty-font-size-base) !default;
 $textarea-padding: 5px !default;
 
 // Native Select
 $native-select-sm-padding: 3px 25px 3px 7px !default;
-$native-select-sm-font-size: $font-size-sm !default;
+$native-select-sm-font-size: var(--ty-font-size-sm) !default;
 $native-select-md-padding: 6px 25px 6px 7px !default;
-$native-select-md-font-size: $font-size-base !default;
+$native-select-md-font-size: var(--ty-font-size-base) !default;
 $native-select-lg-padding: 9px 25px 9px 7px !default;
-$native-select-lg-font-size: $font-size-lg !default;
-$native-select-border-radius: $border-radius !default;
+$native-select-lg-font-size: var(--ty-font-size-lg) !default;
+$native-select-border-radius: var(--ty-border-radius) !default;
 
 // Switch
 $switch-md-font-size: 12px !default;
@@ -208,23 +208,23 @@ $notification-width: 380px !default;
 $notification-margin: 20px !default;
 
 // Breadcrumb
-$breadcrumb-font-size: $font-size-base !default;
+$breadcrumb-font-size: var(--ty-font-size-base) !default;
 
 // Tag
-$tag-border-radius: $border-radius !default;
+$tag-border-radius: var(--ty-border-radius) !default;
 
 // Popover
 $popover-arrow-size: 8px !default;
-$popover-border-radius: $border-radius !default;
+$popover-border-radius: var(--ty-border-radius) !default;
 $popover-box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%) !default;
 
 // Tooltip
 $tooltip-arrow-size: 4px !default;
-$tooltip-font-size: $font-size-sm !default;
+$tooltip-font-size: var(--ty-font-size-sm) !default;
 $tooltip-content-padding: 5px 8px !default;
 
 // Menu
-$menu-sub-border-radius: $border-radius !default;
+$menu-sub-border-radius: var(--ty-border-radius) !default;
 $menu-item-padding-vertical: 15px 20px !default;
 
 // Slider
@@ -245,7 +245,7 @@ $steps-desc-error-color: #ff4d4f !default;
 
 // Description
 $description-border-color: #dfe2e5 !default;
-$description-border-radius: $border-radius !default;
+$description-border-radius: var(--ty-border-radius) !default;
 $description-sm-padding-vt: 8px !default;
 $description-md-padding-vt: 12px !default;
 $description-lg-padding-vt: 16px !default;
@@ -254,7 +254,7 @@ $description-md-padding-hr: 24px !default;
 $description-lg-padding-hr: 24px !default;
 
 // Tree
-$tree-font-size: $font-size-base !default;
+$tree-font-size: var(--ty-font-size-base) !default;
 
 // StrengthIndicator
 $strength-indicator-border-radius: 99px !default;

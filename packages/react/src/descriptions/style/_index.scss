@@ -1,7 +1,6 @@
 @use '../../style/variables' as *;
 
 .#{$prefix}-descriptions {
-
   &__body {
     width: 100%;
     overflow: hidden;
@@ -24,7 +23,7 @@
     font-size: 16px;
   }
 
-  &__item_colon:after {
+  &__item_colon::after {
     content: ':';
     margin-left: 2px;
     margin-right: 5px;
@@ -32,15 +31,15 @@
 
   &__item-label {
     color: var(--ty-color-text-label);
-    font-size: $font-size-base;
+    font-size: var(--ty-font-size-base);
     font-weight: 400;
-    line-height: $line-height-base;
+    line-height: var(--ty-line-height-base);
   }
 
   &__item-content {
     color: var(--ty-color-text-secondary);
-    font-size: $font-size-base;
-    line-height: $line-height-base;
+    font-size: var(--ty-font-size-base);
+    line-height: var(--ty-line-height-base);
   }
 
   &_bordered {

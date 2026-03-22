@@ -2,11 +2,11 @@
 
 .#{$prefix}-list {
   color: var(--ty-color-text, #{$gray-800});
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
 
   &_bordered {
     border: 1px solid var(--ty-list-border, #{$gray-300});
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
   }
 
   &_sm {
@@ -136,6 +136,6 @@
 
   &__description {
     color: var(--ty-color-text-secondary, #{$gray-600});
-    font-size: $font-size-sm;
+    font-size: var(--ty-font-size-sm);
   }
 }

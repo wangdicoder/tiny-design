@@ -11,20 +11,20 @@
   }
 
   &_sm &__selector {
-    height: $height-sm;
-    font-size: $font-size-sm;
+    height: var(--ty-height-sm);
+    font-size: var(--ty-font-size-sm);
     padding: 0 28px 0 8px;
   }
 
   &_md &__selector {
-    height: $height-md;
-    font-size: $font-size-base;
+    height: var(--ty-height-md);
+    font-size: var(--ty-font-size-base);
     padding: 0 32px 0 10px;
   }
 
   &_lg &__selector {
-    height: $height-lg;
-    font-size: $font-size-lg;
+    height: var(--ty-height-lg);
+    font-size: var(--ty-font-size-lg);
     padding: 0 36px 0 12px;
   }
 
@@ -33,7 +33,7 @@
     align-items: center;
     width: 100%;
     border: 1px solid var(--ty-cascader-border, #{$gray-300});
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     background: var(--ty-cascader-bg, #fff);
     cursor: pointer;
     transition: all 0.2s;
@@ -95,9 +95,9 @@
 
   &__dropdown {
     background: var(--ty-cascader-dropdown-bg, #fff);
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     box-shadow: $select-dropdown-shadow;
-    font-size: $font-size-base;
+    font-size: var(--ty-font-size-base);
   }
 
   &__menus {

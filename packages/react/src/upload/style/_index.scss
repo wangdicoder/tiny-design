@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   color: var(--ty-color-text);
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
   outline: 0;
 
   &__upload-list {
@@ -16,12 +16,12 @@
     padding: 0;
     box-sizing: border-box;
     color: var(--ty-color-text);
-    font-size: $font-size-base;
+    font-size: var(--ty-font-size-base);
   }
 
   &__upload-list-item {
     margin-top: 5px;
-    font-size: $font-size-base;
+    font-size: var(--ty-font-size-base);
     transition: background-color 300ms;
 
     &:hover {
@@ -82,7 +82,7 @@
     text-align: center;
     background: var(--ty-upload-dragger-bg);
     border: 1px dashed var(--ty-upload-dragger-border);
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     cursor: pointer;
     transition: border-color 300ms, background-color 300ms;
 

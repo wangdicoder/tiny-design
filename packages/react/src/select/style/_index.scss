@@ -4,7 +4,7 @@
   position: relative;
   display: inline-block;
   width: 100%;
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
   cursor: pointer;
   outline: none;
 
@@ -20,20 +20,20 @@
 
   // Sizes
   &_sm .#{$prefix}-select__selector {
-    min-height: $height-sm;
-    font-size: $font-size-sm;
+    min-height: var(--ty-height-sm);
+    font-size: var(--ty-font-size-sm);
     padding: 0 24px 0 8px;
   }
 
   &_md .#{$prefix}-select__selector {
-    min-height: $height-md;
-    font-size: $font-size-base;
+    min-height: var(--ty-height-md);
+    font-size: var(--ty-font-size-base);
     padding: 0 28px 0 10px;
   }
 
   &_lg .#{$prefix}-select__selector {
-    min-height: $height-lg;
-    font-size: $font-size-lg;
+    min-height: var(--ty-height-lg);
+    font-size: var(--ty-font-size-lg);
     padding: 0 32px 0 12px;
   }
 
@@ -62,7 +62,7 @@
     align-items: center;
     width: 100%;
     border: $border-width solid var(--ty-input-border);
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     background-color: var(--ty-input-bg);
     box-sizing: border-box;
     transition: all 0.3s;
@@ -173,9 +173,9 @@
     max-width: 100%;
     height: 22px;
     padding: 0 4px 0 8px;
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     background-color: var(--ty-color-fill-secondary);
-    font-size: $font-size-sm;
+    font-size: var(--ty-font-size-sm);
     line-height: 20px;
     color: var(--ty-color-text);
     box-sizing: border-box;
@@ -212,12 +212,11 @@
     list-style-type: none;
     background-color: var(--ty-select-dropdown-bg);
     box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden auto;
     z-index: 10;
     box-shadow: var(--ty-shadow-popup);
-    border-radius: $border-radius;
-    font-size: $font-size-base;
+    border-radius: var(--ty-border-radius);
+    font-size: var(--ty-font-size-base);
     max-height: $select-dropdown-max-height;
   }
 
@@ -238,7 +237,7 @@
     padding: 16px;
     text-align: center;
     color: var(--ty-color-text-quaternary);
-    font-size: $font-size-sm;
+    font-size: var(--ty-font-size-sm);
   }
 }
 
@@ -284,9 +283,8 @@
 }
 
 .#{$prefix}-select-group {
-
   &__title {
-    font-size: $font-size-sm;
+    font-size: var(--ty-font-size-sm);
     cursor: default;
     color: $gray-600;
     padding: 7px 12px;
@@ -307,6 +305,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

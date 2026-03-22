@@ -36,7 +36,7 @@ $tp-prefix: #{$prefix}-typography;
     font-size: 85%;
     background: var(--ty-typography-code-bg);
     border: 1px solid var(--ty-typography-code-border);
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
   }
 
   mark {
@@ -99,7 +99,7 @@ p.#{$tp-prefix}, div.#{$tp-prefix} {
   margin-top: 0;
   margin-bottom: 1em;
   color: var(--ty-typography-body-color);
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
   line-height: 1.5;
 }
 

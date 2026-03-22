@@ -59,3 +59,26 @@ $token-shadow-popup: var(--ty-shadow-popup);
 
 // ---- Overlay ----
 $token-color-overlay-bg: var(--ty-color-overlay-bg);
+
+// ---- Typography ----
+$token-font-family: var(--ty-font-family);
+$token-font-family-monospace: var(--ty-font-family-monospace);
+$token-font-size-base: var(--ty-font-size-base);
+$token-font-size-sm: var(--ty-font-size-sm);
+$token-font-size-lg: var(--ty-font-size-lg);
+$token-font-weight: var(--ty-font-weight);
+$token-line-height-base: var(--ty-line-height-base);
+$token-headings-font-weight: var(--ty-headings-font-weight);
+$token-h1-font-size: var(--ty-h1-font-size);
+$token-h2-font-size: var(--ty-h2-font-size);
+$token-h3-font-size: var(--ty-h3-font-size);
+$token-h4-font-size: var(--ty-h4-font-size);
+$token-h5-font-size: var(--ty-h5-font-size);
+$token-h6-font-size: var(--ty-h6-font-size);
+
+// ---- Sizing ----
+$token-border-radius: var(--ty-border-radius);
+$token-height-sm: var(--ty-height-sm);
+$token-height-md: var(--ty-height-md);
+$token-height-lg: var(--ty-height-lg);
+$token-spacer: var(--ty-spacer);

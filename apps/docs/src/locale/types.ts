@@ -50,6 +50,7 @@ export type SiteLocale = {
     colors: string;
     changelog: string;
     faq: string;
+    themeEditor: string;
   };
   color: {
     title: string;

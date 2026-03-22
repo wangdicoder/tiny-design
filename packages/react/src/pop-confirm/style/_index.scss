@@ -9,7 +9,7 @@
 
   &__messages {
     padding: 0 0 12px;
-    font-size: $font-size-base;
+    font-size: var(--ty-font-size-base);
     display: flex;
     align-items: center;
   }

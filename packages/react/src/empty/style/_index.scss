@@ -16,7 +16,7 @@
 
   &__desc {
     color: var(--ty-empty-desc-color);
-    font-size: $font-size-base;
+    font-size: var(--ty-font-size-base);
     margin: 0;
   }
 

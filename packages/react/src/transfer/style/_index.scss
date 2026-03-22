@@ -2,7 +2,7 @@
 
 .#{$prefix}-transfer {
   box-sizing: border-box;
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
   color: var(--ty-color-text);
 
   &__left-arrow {
@@ -34,14 +34,14 @@
   vertical-align: middle;
   width: 180px;
   border: 1px solid var(--ty-transfer-border);
-  border-radius: $border-radius;
+  border-radius: var(--ty-border-radius);
 
   &__header {
     padding: 8px 12px 9px;
     color: var(--ty-color-text);
     background: var(--ty-transfer-header-bg);
     border-bottom: 1px solid var(--ty-transfer-footer-border);
-    border-radius: $border-radius $border-radius 0 0;
+    border-radius: var(--ty-border-radius) var(--ty-border-radius) 0 0;
   }
 
   &__body {
@@ -93,6 +93,6 @@
     padding: 8px 12px 9px;
     border-top: 1px solid var(--ty-transfer-footer-border);
     background-color: var(--ty-transfer-footer-bg);
-    border-radius: 0 0 $border-radius $border-radius;
+    border-radius: 0 0 var(--ty-border-radius) var(--ty-border-radius);
   }
 }

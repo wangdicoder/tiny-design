@@ -18,12 +18,11 @@
     list-style-type: none;
     background-color: var(--ty-select-dropdown-bg);
     box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden auto;
     z-index: 10;
     box-shadow: var(--ty-shadow-popup);
-    border-radius: $border-radius;
-    font-size: $font-size-base;
+    border-radius: var(--ty-border-radius);
+    font-size: var(--ty-font-size-base);
     max-height: $select-dropdown-max-height;
   }
 
@@ -32,7 +31,7 @@
     padding: 16px;
     text-align: center;
     color: var(--ty-color-text-quaternary);
-    font-size: $font-size-sm;
+    font-size: var(--ty-font-size-sm);
   }
 }
 

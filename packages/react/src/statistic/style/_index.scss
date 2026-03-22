@@ -4,7 +4,7 @@
   &__title {
     margin-bottom: 4px;
     color: var(--ty-color-text-secondary, #{$gray-600});
-    font-size: $font-size-sm;
+    font-size: var(--ty-font-size-sm);
   }
 
   &__content {
@@ -24,7 +24,7 @@
 
   &__suffix {
     margin-left: 4px;
-    font-size: $font-size-base;
+    font-size: var(--ty-font-size-base);
     display: inline-flex;
     align-items: center;
   }

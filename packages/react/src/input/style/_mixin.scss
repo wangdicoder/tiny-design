@@ -10,7 +10,7 @@
   transition: all 0.3s;
   outline: 0;
   border-radius: $input-border-radius;
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
   background-color: var(--ty-input-bg);
 
   &:hover {

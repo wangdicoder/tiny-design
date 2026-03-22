@@ -4,7 +4,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-size: $font-size-base;
+  font-size: var(--ty-font-size-base);
   margin-right: 8px;
   color: var(--ty-color-text);
   box-sizing: border-box;
@@ -17,10 +17,7 @@
 
   &__native {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -43,7 +40,7 @@
     line-height: 1;
     vertical-align: middle;
 
-    &:before {
+    &::before {
       content: '';
       position: absolute;
       display: block;
@@ -56,7 +53,7 @@
       transform: scale(0);
     }
 
-    &:after {
+    &::after {
       transform: rotate(45deg) scaleY(1);
       pointer-events: none;
       box-sizing: content-box;
@@ -83,12 +80,12 @@
         background-color: var(--ty-color-primary);
         border-color: var(--ty-color-primary);
 
-        &:after {
+        &::after {
           content: '';
           transform: rotate(45deg) scale(1);
         }
 
-        &:before {
+        &::before {
           transform: scale(0);
         }
       }
@@ -101,11 +98,11 @@
         background-color: var(--ty-color-primary);
         border-color: var(--ty-color-primary);
 
-        &:before {
+        &::before {
           transform: scale(1);
         }
 
-        &:after {
+        &::after {
           transform: rotate(45deg) scale(0);
         }
       }
@@ -122,7 +119,7 @@
         background-color: var(--ty-checkbox-disabled-bg);
         border-color: var(--ty-checkbox-border) !important;
 
-        &:after {
+        &::after {
           border-color: var(--ty-color-text-quaternary);
         }
 

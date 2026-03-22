@@ -197,9 +197,9 @@ $speed-dial-actions-gap: 16px;
     white-space: nowrap;
     background-color: var(--ty-speed-dial-tooltip-bg, #{$gray-800});
     color: var(--ty-speed-dial-tooltip-color, #{$white-color});
-    font-size: $font-size-sm;
+    font-size: var(--ty-font-size-sm);
     padding: 4px 8px;
-    border-radius: $border-radius;
+    border-radius: var(--ty-border-radius);
     pointer-events: none;
 
     &_left {
