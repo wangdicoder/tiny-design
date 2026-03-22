@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.1
+
+### Patch Changes
+
+- Fix React warnings (missing keys, nested buttons, DOM attribute leaks, setState during render, infinite loop) and Alert title margin - [#72](https://github.com/wangdicoder/tiny-design/pull/72) [`08f4b2a`](https://github.com/wangdicoder/tiny-design/commit/08f4b2ac4b564c5d498ce96834a8f112cbd93534)
+
 ## 1.5.0
 
 ### Minor Changes
