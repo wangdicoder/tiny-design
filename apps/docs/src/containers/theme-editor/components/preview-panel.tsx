@@ -164,8 +164,8 @@ export const PreviewPanel = (): React.ReactElement => {
         </Flex>
         <Flex gap="lg" style={{ marginTop: 16 }}>
           <Progress.Circle percent={75} width={80} />
-          <Progress.Circle percent={50} width={80} strokeColor="var(--ty-color-success)" />
-          <Progress.Circle percent={90} width={80} strokeColor="var(--ty-color-warning)" />
+          <Progress.Circle percent={50} width={80} strokeColor="green" />
+          <Progress.Circle percent={90} width={80} strokeColor="yellow" />
         </Flex>
         <Progress.Bar percent={65} style={{ marginTop: 12 }} />
       </section>
