@@ -28,7 +28,7 @@
 <p align="center">
   <a href="https://wangdicoder.github.io/tiny-design/"><strong>Documentation</strong></a> &nbsp;&bull;&nbsp;
   <a href="https://wangdicoder.github.io/tiny-design/theme/theme-editor"><strong>Theme Editor</strong></a> &nbsp;&bull;&nbsp;
-  <a href="https://wangdicoder.github.io/tiny-design/guide/customise-theme"><strong>Theming Guide</strong></a>
+  <a href="https://wangdicoder.github.io/tiny-design/theme/customise-theme"><strong>Theming Guide</strong></a>
 </p>
 
 ---
@@ -107,7 +107,7 @@ $border-radius: 8px;
 @use "@tiny-design/react/es/style/index" as *;
 ```
 
-See the [Theming Guide](https://wangdicoder.github.io/tiny-design/guide/customise-theme) for the full list of tokens and variables.
+See the [Theming Guide](https://wangdicoder.github.io/tiny-design/theme/customise-theme) for the full list of tokens and variables.
 
 ## Packages
 

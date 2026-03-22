@@ -1,17 +1,26 @@
 import sdk from '@stackblitz/sdk';
 import { getParameters } from 'codesandbox/lib/api/define';
 
-const TINY_DESIGN_VERSION = '^1.1.0';
-const TINY_ICONS_VERSION = '^1.1.0';
+declare const __TINY_VERSION__: string;
+
+const TINY_VERSION = `^${__TINY_VERSION__}`;
+const TINY_DESIGN_VERSION = TINY_VERSION;
+const TINY_ICONS_VERSION = TINY_VERSION;
+
+const BOOTSTRAP_CODE = `import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+
+createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);`;
 
 /**
- * Generate the shared file set used by both StackBlitz and CodeSandbox.
- *
- * With the new standalone demo format, the source code already contains
- * real imports (e.g. `import { Button } from '@tiny-design/react'`) and
- * a default export. It can be used directly as App.tsx.
+ * Generate the file set for StackBlitz (Vite-based).
  */
-function buildSandboxFiles(sourceCode: string): Record<string, string> {
+function buildStackBlitzFiles(sourceCode: string): Record<string, string> {
   return {
     'package.json': JSON.stringify(
       {
@@ -38,9 +47,10 @@ function buildSandboxFiles(sourceCode: string): Record<string, string> {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tiny Design Demo</title>
+  <style>body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }</style>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root" style="padding: 24px"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>`,
@@ -50,15 +60,46 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
 });`,
-    'src/main.tsx': `import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
+    'src/main.tsx': BOOTSTRAP_CODE,
+    'src/App.tsx': sourceCode,
+  };
+}
 
-createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);`,
+/**
+ * Generate the file set for CodeSandbox (classic browser sandbox).
+ *
+ * Classic sandboxes use an in-browser bundler — no Vite needed.
+ * Entry point must be src/index.tsx and HTML goes in public/.
+ */
+function buildCodeSandboxFiles(sourceCode: string): Record<string, string> {
+  return {
+    'package.json': JSON.stringify(
+      {
+        name: 'tiny-design-demo',
+        private: true,
+        dependencies: {
+          react: '^18.2.0',
+          'react-dom': '^18.2.0',
+          '@tiny-design/react': TINY_DESIGN_VERSION,
+          '@tiny-design/icons': TINY_ICONS_VERSION,
+        },
+      },
+      null,
+      2,
+    ),
+    'public/index.html': `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiny Design Demo</title>
+  <style>body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }</style>
+</head>
+<body>
+  <div id="root" style="padding: 24px"></div>
+</body>
+</html>`,
+    'src/index.tsx': BOOTSTRAP_CODE,
     'src/App.tsx': sourceCode,
   };
 }
@@ -68,7 +109,7 @@ createRoot(document.getElementById('root')!).render(
  * The sourceCode should be a standalone .tsx file with real imports.
  */
 export function openInStackBlitz(sourceCode: string): void {
-  const files = buildSandboxFiles(sourceCode);
+  const files = buildStackBlitzFiles(sourceCode);
 
   sdk.openProject(
     {
@@ -85,7 +126,7 @@ export function openInStackBlitz(sourceCode: string): void {
  * The sourceCode should be a standalone .tsx file with real imports.
  */
 export function openInCodeSandbox(sourceCode: string): void {
-  const files = buildSandboxFiles(sourceCode);
+  const files = buildCodeSandboxFiles(sourceCode);
 
   // Convert to CodeSandbox's IFiles format
   const csFiles: Record<string, { content: string; isBinary: boolean }> = {};
