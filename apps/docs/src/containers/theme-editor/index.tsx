@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Button, Tabs } from '@tiny-design/react';
 import { useThemeState } from './hooks/use-theme-state';
+import { PRESETS, getPresetSeeds } from './constants/presets';
 import { ColorControls } from './components/color-controls';
 import { TypographyControls } from './components/typography-controls';
 import { DetailControls } from './components/detail-controls';
@@ -10,10 +11,23 @@ import { ExportDialog } from './components/export-dialog';
 import './theme-editor.scss';
 
 const ThemeEditor = (): React.ReactElement => {
-  const { seeds, applied, setSeed, applyPreset, reset, isOverridden, resetToken } =
+  const { seeds, applied, isDark, setSeed, applyPreset, reset, isOverridden, resetToken } =
     useThemeState();
   const [exportVisible, setExportVisible] = useState(false);
   const [activePresetId, setActivePresetId] = useState<string | undefined>();
+  const prevIsDarkRef = useRef(isDark);
+
+  // When dark mode toggles, re-apply the active preset with mode-appropriate seeds
+  useEffect(() => {
+    if (prevIsDarkRef.current !== isDark && activePresetId) {
+      const preset = PRESETS.find((p) => p.id === activePresetId);
+      if (preset) {
+        const modeSeeds = getPresetSeeds(preset, isDark);
+        applyPreset(modeSeeds);
+      }
+    }
+    prevIsDarkRef.current = isDark;
+  }, [isDark, activePresetId, applyPreset]);
 
   const handlePresetSelect = useCallback(
     (presetSeeds: Record<string, string>, presetId: string) => {
@@ -63,6 +77,7 @@ const ThemeEditor = (): React.ReactElement => {
             <Tabs.Panel tab="Presets" tabKey="presets">
               <PresetSelector
                 activePresetId={activePresetId}
+                isDark={isDark}
                 onSelect={handlePresetSelect}
               />
             </Tabs.Panel>

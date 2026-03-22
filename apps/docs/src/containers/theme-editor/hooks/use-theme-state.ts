@@ -23,11 +23,17 @@ function saveToStorage(seeds: Record<string, string>): void {
   }
 }
 
+function detectDarkMode(): boolean {
+  return document.documentElement.getAttribute('data-tiny-theme') === 'dark';
+}
+
 export interface ThemeState {
   /** Raw seed overrides (only user-changed tokens) */
   seeds: Record<string, string>;
   /** All derived + seed tokens currently applied */
   applied: Record<string, string>;
+  /** Whether dark mode is active */
+  isDark: boolean;
   /** Update a single seed token */
   setSeed: (key: string, value: string) => void;
   /** Apply a full preset (replaces all seeds) */
@@ -42,16 +48,21 @@ export interface ThemeState {
 
 export function useThemeState(): ThemeState {
   const [seeds, setSeeds] = useState<Record<string, string>>(loadFromStorage);
+  const [isDark, setIsDark] = useState(detectDarkMode);
   const appliedRef = useRef<Record<string, string>>({});
+  const seedsRef = useRef(seeds);
+  seedsRef.current = seeds;
 
-  const applyAll = useCallback((newSeeds: Record<string, string>) => {
+  const applyAll = useCallback((newSeeds: Record<string, string>, dark?: boolean) => {
+    const darkMode = dark ?? detectDarkMode();
+
     // Clear previous overrides
     if (Object.keys(appliedRef.current).length > 0) {
       clearAllTokenOverrides(appliedRef.current);
     }
 
-    // Derive all tokens from seeds
-    const derived = deriveAllTokens(newSeeds);
+    // Derive all tokens from seeds, using mode-appropriate derivation
+    const derived = deriveAllTokens(newSeeds, darkMode);
     appliedRef.current = derived;
 
     // Apply to DOM
@@ -75,8 +86,26 @@ export function useThemeState(): ThemeState {
     if (Object.keys(seeds).length > 0) {
       applyAll(seeds);
     }
-    // Cleanup on unmount: don't clear — let theme persist across pages
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Watch for dark mode changes and re-apply tokens
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const dark = detectDarkMode();
+      setIsDark(dark);
+      // Re-derive with the same seeds but different mode
+      if (Object.keys(seedsRef.current).length > 0) {
+        applyAll(seedsRef.current, dark);
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-tiny-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, [applyAll]);
 
   const setSeed = useCallback(
     (key: string, value: string) => {
@@ -134,6 +163,7 @@ export function useThemeState(): ThemeState {
   return {
     seeds,
     applied: appliedRef.current,
+    isDark,
     setSeed,
     applyPreset,
     reset,

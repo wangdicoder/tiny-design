@@ -1,8 +1,9 @@
 import React from 'react';
-import { PRESETS, ThemePreset } from '../constants/presets';
+import { PRESETS, ThemePreset, getPresetSeeds } from '../constants/presets';
 
 interface PresetSelectorProps {
   activePresetId?: string;
+  isDark: boolean;
   onSelect: (presetSeeds: Record<string, string>, presetId: string) => void;
 }
 
@@ -35,6 +36,7 @@ const PresetCard = ({
 
 export const PresetSelector = ({
   activePresetId,
+  isDark,
   onSelect,
 }: PresetSelectorProps): React.ReactElement => {
   return (
@@ -45,7 +47,7 @@ export const PresetSelector = ({
             key={preset.id}
             preset={preset}
             isActive={preset.id === activePresetId}
-            onClick={() => onSelect(preset.seeds, preset.id)}
+            onClick={() => onSelect(getPresetSeeds(preset, isDark), preset.id)}
           />
         ))}
       </div>
