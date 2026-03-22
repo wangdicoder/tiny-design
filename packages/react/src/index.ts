@@ -39,6 +39,7 @@ export { default as Link } from './link';
 export { default as List } from './list';
 export { default as Loader } from './loader';
 export { default as LoadingBar } from './loading-bar';
+export { default as Marquee } from './marquee';
 export { default as Menu } from './menu';
 export { default as Message } from './message';
 export { default as NativeSelect } from './native-select';

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Typography, Button } from '@tiny-design/react';
+import { Typography, Button, Marquee } from '@tiny-design/react';
 import { useTheme } from '@tiny-design/react';
 import { PRESETS, getPresetSeeds, ThemePreset } from '../theme-editor/constants/presets';
 import { applyThemeToDOM, saveSeeds } from '../../utils/theme-persistence';
@@ -79,10 +79,6 @@ export const ThemeShowcase = (): React.ReactElement => {
     };
   }, []);
 
-  // Duplicate items for seamless loop
-  const row1Items = useMemo(() => [...row1, ...row1], [row1]);
-  const row2Items = useMemo(() => [...row2, ...row2], [row2]);
-
   return (
     <div className="home__section home__theme-showcase">
       <Typography.Heading level={1} className="home__feature-title">
@@ -93,28 +89,28 @@ export const ThemeShowcase = (): React.ReactElement => {
       </Typography.Paragraph>
 
       <div className="home__marquee-container">
-        <div className="home__marquee-row">
-          {row1Items.map((preset, i) => (
+        <Marquee duration={50} pauseOnHover>
+          {row1.map((preset) => (
             <PresetCard
-              key={`${preset.id}-${i}`}
+              key={preset.id}
               preset={preset}
               isActive={preset.id === activeId}
               isZh={isZh}
               onClick={() => handleSelect(preset)}
             />
           ))}
-        </div>
-        <div className="home__marquee-row home__marquee-row_reverse">
-          {row2Items.map((preset, i) => (
+        </Marquee>
+        <Marquee direction="right" duration={50} pauseOnHover>
+          {row2.map((preset) => (
             <PresetCard
-              key={`${preset.id}-${i}`}
+              key={preset.id}
               preset={preset}
               isActive={preset.id === activeId}
               isZh={isZh}
               onClick={() => handleSelect(preset)}
             />
           ))}
-        </div>
+        </Marquee>
       </div>
 
       <div className="home__theme-showcase-cta">

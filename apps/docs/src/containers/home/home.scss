@@ -283,27 +283,11 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 4px 0;
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  }
 
-  &__marquee-row {
-    display: flex;
-    gap: 16px;
-    width: max-content;
-    animation: marquee-left 50s linear infinite;
-
-    &:hover {
-      animation-play-state: paused;
-    }
-
-    &_reverse {
-      animation-name: marquee-right;
-
-      &:hover {
-        animation-play-state: paused;
-      }
+    .ty-marquee {
+      padding: 4px 0;
     }
   }
 
@@ -354,24 +338,6 @@
   &__theme-showcase-cta {
     text-align: center;
     margin-top: 28px;
-  }
-
-  @keyframes marquee-left {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes marquee-right {
-    from {
-      transform: translateX(-50%);
-    }
-    to {
-      transform: translateX(0);
-    }
   }
 
   @media (max-width: $size-sm) {

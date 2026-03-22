@@ -1,0 +1,77 @@
+@use '../../style/variables' as *;
+
+.#{$prefix}-marquee {
+  overflow: hidden;
+  width: 0;
+  min-width: 100%;
+
+  &_fade {
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+
+  &__track {
+    display: flex;
+    gap: var(--ty-marquee-gap, 16px);
+    width: max-content;
+    animation: ty-marquee-left var(--ty-marquee-duration, 50s) linear infinite;
+
+    &_reverse {
+      animation-name: ty-marquee-right;
+    }
+
+    &_pause-on-hover:hover {
+      animation-play-state: paused;
+    }
+
+    &_once {
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      animation-name: ty-marquee-once-left;
+
+      &.#{$prefix}-marquee__track_reverse {
+        animation-name: ty-marquee-once-right;
+      }
+    }
+  }
+}
+
+@keyframes ty-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ty-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes ty-marquee-once-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes ty-marquee-once-right {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
