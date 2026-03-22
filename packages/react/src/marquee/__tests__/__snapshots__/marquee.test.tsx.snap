@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Marquee /> should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ty-marquee"
+  >
+    <div
+      class="ty-marquee__track ty-marquee__track_pause-on-hover"
+      style="--ty-marquee-duration: 50s; --ty-marquee-gap: 16px;"
+    >
+      <div>
+        Item 1
+      </div>
+      <div>
+        Item 2
+      </div>
+      <div>
+        Item 3
+      </div>
+      <div>
+        Item 1
+      </div>
+      <div>
+        Item 2
+      </div>
+      <div>
+        Item 3
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
