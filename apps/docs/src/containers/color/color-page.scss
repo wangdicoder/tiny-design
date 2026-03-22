@@ -21,12 +21,12 @@
     font-weight: 600;
 
     tr {
-      border: 1px solid rgba(0, 0, 0, .1);
+      border: 1px solid var(--ty-color-border-secondary);
     }
 
     td {
       padding: 10px;
-      color: #525F7F;
+      color: var(--ty-color-text-secondary);
       width: 400px;
       line-height: 40px;
     }
@@ -49,7 +49,7 @@
     align-items: center;
     justify-content: space-around;
     border-radius: 0 0 5px 5px;
-    background-color: #f4f5f7;
+    background-color: var(--ty-color-bg-spotlight);
     padding: 20px 10px;
   }
 
@@ -59,11 +59,11 @@
 
   &__title {
     font-size: 11px;
-    color: #62748c;
+    color: var(--ty-color-text-tertiary);
   }
 
   &__subtitle {
     font-size: 14px;
-    color: #525f7f;
+    color: var(--ty-color-text-secondary);
   }
 }

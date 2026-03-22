@@ -5,13 +5,17 @@ import { useLocaleContext } from '../../context/locale-context';
 type ColorCardProps = {
   name: string;
   hex: string;
+  cssVar?: string;
   nameLabel: string;
   hexLabel: string;
 };
 
-const ColorCard = ({ name, hex, nameLabel, hexLabel }: ColorCardProps): React.ReactElement => (
+const ColorCard = ({ name, hex, cssVar, nameLabel, hexLabel }: ColorCardProps): React.ReactElement => (
   <div className="color-card">
-    <div className="color-card__header" style={{ backgroundColor: hex }} />
+    <div
+      className="color-card__header"
+      style={{ backgroundColor: cssVar ? `var(${cssVar})` : hex }}
+    />
     <div className="color-card__footer">
       <div>
         <p className="color-card__title">{nameLabel}</p>
@@ -48,13 +52,11 @@ const ColorPage = (): React.ReactElement => {
       <h2 className="markdown__heading-2">{s.color.primaryTitle}</h2>
       <p className="markdown__p">{s.color.primaryDesc}</p>
       <div className="color-page__color-panel">
-        <ColorCard name={s.color.defaultColor} hex="#172b4d" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
-        <ColorCard name={s.color.primary} hex="#6E41BF" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
-        <ColorCard name={s.color.secondary} hex="#f7fafc" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
-        <ColorCard name={s.color.info} hex="#00bcd4" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
-        <ColorCard name={s.color.success} hex="#4caf50" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
-        <ColorCard name={s.color.danger} hex="#f44336" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
-        <ColorCard name={s.color.warning} hex="#ff9800" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
+        <ColorCard name={s.color.primary} hex="#6e41bf" cssVar="--ty-color-primary" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
+        <ColorCard name={s.color.info} hex="#1890ff" cssVar="--ty-color-info" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
+        <ColorCard name={s.color.success} hex="#52c41a" cssVar="--ty-color-success" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
+        <ColorCard name={s.color.warning} hex="#ff9800" cssVar="--ty-color-warning" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
+        <ColorCard name={s.color.danger} hex="#f44336" cssVar="--ty-color-danger" nameLabel={s.color.nameLabel} hexLabel={s.color.hexLabel} />
       </div>
 
       <h2 className="markdown__heading-2">{s.color.neutralsTitle}</h2>
