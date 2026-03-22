@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MDXProvider } from '@mdx-js/react';
 import '@tiny-design/react/style/index.scss';
 import './index.scss';
+import './utils/theme-persistence';
 
 import { IntlProvider } from '@tiny-design/react';
 import { components } from './components/markdown-tag';

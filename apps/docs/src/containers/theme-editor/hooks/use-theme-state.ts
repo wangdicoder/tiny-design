@@ -1,7 +1,11 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { ALL_TOKENS } from '../constants/default-tokens';
-import { deriveAllTokens } from '../utils/color-utils';
-import { applyTokens, clearAllTokenOverrides } from '../utils/apply-theme';
+import {
+  applyThemeToDOM,
+  clearThemeFromDOM,
+  saveSeeds,
+  clearStoredSeeds,
+} from '../../../utils/theme-persistence';
 
 const STORAGE_KEY = 'ty-theme-editor-overrides';
 
@@ -11,14 +15,6 @@ function loadFromStorage(): Record<string, string> {
     return raw ? JSON.parse(raw) : {};
   } catch {
     return {};
-  }
-}
-
-function saveToStorage(seeds: Record<string, string>): void {
-  if (Object.keys(seeds).length === 0) {
-    localStorage.removeItem(STORAGE_KEY);
-  } else {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(seeds));
   }
 }
 
@@ -49,28 +45,13 @@ export function useThemeState(): ThemeState {
   const [seeds, setSeeds] = useState<Record<string, string>>(loadFromStorage);
   const [isDark, setIsDark] = useState(detectDarkMode);
   const appliedRef = useRef<Record<string, string>>({});
-  const seedsRef = useRef(seeds);
-  seedsRef.current = seeds;
 
   const applyAll = useCallback((newSeeds: Record<string, string>, dark?: boolean) => {
     const darkMode = dark ?? detectDarkMode();
 
-    // Clear previous overrides
-    if (Object.keys(appliedRef.current).length > 0) {
-      clearAllTokenOverrides(appliedRef.current);
-    }
-
-    // Derive all tokens from seeds, using mode-appropriate derivation
-    const derived = deriveAllTokens(newSeeds, darkMode);
+    // Delegate DOM application to the global persistence module
+    const derived = applyThemeToDOM(newSeeds, darkMode);
     appliedRef.current = derived;
-
-    // Apply to DOM
-    if (Object.keys(derived).length > 0) {
-      applyTokens(derived);
-    }
-
-    // Persist
-    saveToStorage(newSeeds);
   }, []);
 
   // Apply on mount
@@ -80,15 +61,11 @@ export function useThemeState(): ThemeState {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Watch for dark mode changes and re-apply tokens
+  // Watch for dark mode changes to update isDark state for the UI.
+  // The global theme-persistence module handles the actual DOM re-application.
   useEffect(() => {
     const observer = new MutationObserver(() => {
-      const dark = detectDarkMode();
-      setIsDark(dark);
-      // Re-derive with the same seeds but different mode
-      if (Object.keys(seedsRef.current).length > 0) {
-        applyAll(seedsRef.current, dark);
-      }
+      setIsDark(detectDarkMode());
     });
 
     observer.observe(document.documentElement, {
@@ -97,7 +74,7 @@ export function useThemeState(): ThemeState {
     });
 
     return () => observer.disconnect();
-  }, [applyAll]);
+  }, []);
 
   const setSeed = useCallback(
     (key: string, value: string) => {
@@ -113,6 +90,16 @@ export function useThemeState(): ThemeState {
           next[key] = value;
         }
         applyAll(next);
+        // Save as current mode seeds (manual edit clears dark seeds since user is customizing)
+        const dark = detectDarkMode();
+        if (dark) {
+          // Editing in dark mode: keep light seeds, update dark seeds
+          const lightRaw = localStorage.getItem(STORAGE_KEY);
+          const lightSeeds = lightRaw ? JSON.parse(lightRaw) : {};
+          saveSeeds(lightSeeds, next);
+        } else {
+          saveSeeds(next);
+        }
         return next;
       });
     },
@@ -123,15 +110,27 @@ export function useThemeState(): ThemeState {
     (presetSeeds: Record<string, string>) => {
       setSeeds(presetSeeds);
       applyAll(presetSeeds);
+      // Save for current mode only; dark seeds are saved separately via saveDarkSeeds
+      const dark = detectDarkMode();
+      if (dark) {
+        const lightRaw = localStorage.getItem(STORAGE_KEY);
+        const lightSeeds = lightRaw ? JSON.parse(lightRaw) : {};
+        saveSeeds(lightSeeds, presetSeeds);
+      } else {
+        // Light mode: save light seeds, preserve existing dark seeds
+        const darkRaw = localStorage.getItem('ty-theme-editor-overrides-dark');
+        const darkSeeds = darkRaw ? JSON.parse(darkRaw) : undefined;
+        saveSeeds(presetSeeds, darkSeeds);
+      }
     },
     [applyAll]
   );
 
   const reset = useCallback(() => {
-    clearAllTokenOverrides(appliedRef.current);
+    clearThemeFromDOM();
     appliedRef.current = {};
     setSeeds({});
-    saveToStorage({});
+    clearStoredSeeds();
   }, []);
 
   const isOverridden = useCallback(
@@ -145,6 +144,14 @@ export function useThemeState(): ThemeState {
         const next = { ...prev };
         delete next[key];
         applyAll(next);
+        const dark = detectDarkMode();
+        if (dark) {
+          const lightRaw = localStorage.getItem(STORAGE_KEY);
+          const lightSeeds = lightRaw ? JSON.parse(lightRaw) : {};
+          saveSeeds(lightSeeds, next);
+        } else {
+          saveSeeds(next);
+        }
         return next;
       });
     },

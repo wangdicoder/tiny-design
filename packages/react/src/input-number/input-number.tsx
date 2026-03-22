@@ -13,8 +13,13 @@ const isValid = (val: string | number): boolean => {
   return !isNaN(+val);
 };
 
-const toPrecision = (val: number, precision?: number): number => {
-  if (precision === undefined) return val;
+const getDecimalPrecision = (num: number): number => {
+  const str = String(num);
+  const dotIndex = str.indexOf('.');
+  return dotIndex === -1 ? 0 : str.length - dotIndex - 1;
+};
+
+const toPrecision = (val: number, precision: number): number => {
   return parseFloat(val.toFixed(precision));
 };
 
@@ -40,13 +45,14 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
     [`${prefixCls}_disabled`]: disabled,
     [`${prefixCls}_always-controls`]: controls,
   });
+  const resolvedPrecision = precision ?? Math.max(getDecimalPrecision(step), getDecimalPrecision(defaultValue));
   const [value, setValue] = useState<number>(
     'value' in props ? (props.value as number) : defaultValue
   );
 
   const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const raw = Number(e.target.value.trim());
-    const val = toPrecision(raw, precision);
+    const val = resolvedPrecision > 0 ? toPrecision(raw, resolvedPrecision) : raw;
     !('value' in props) && setValue(val);
     onChange && isValid(val) && onChange(val, e);
   };
@@ -54,7 +60,7 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
   const plusOnClick = (e: MouseEvent<HTMLSpanElement>): void => {
     e.stopPropagation();
     if (!disabled && isValid(step)) {
-      const val = toPrecision(+value + +step, precision);
+      const val = toPrecision(+value + +step, resolvedPrecision);
       if (val <= max) {
         !('value' in props) && setValue(val);
         onChange && onChange(val, e);
@@ -65,7 +71,7 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
   const minusOnClick = (e: MouseEvent<HTMLSpanElement>): void => {
     e.stopPropagation();
     if (!disabled && isValid(step)) {
-      const val = toPrecision(+value - +step, precision);
+      const val = toPrecision(+value - +step, resolvedPrecision);
       if (val >= min) {
         !('value' in props) && setValue(val);
         onChange && onChange(val, e);
@@ -82,7 +88,7 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
       <input
         autoComplete="off"
         disabled={disabled}
-        value={precision !== undefined ? value.toFixed(precision) : value}
+        value={resolvedPrecision > 0 ? value.toFixed(resolvedPrecision) : value}
         type="number"
         className={`${prefixCls}__input`}
         max={max}

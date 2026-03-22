@@ -5,7 +5,7 @@ export interface BreadcrumbProps
   extends BaseProps,
     React.PropsWithoutRef<JSX.IntrinsicElements['nav']> {
   separator?: React.ReactNode;
-  children: ReactElement<BreadcrumbItemProps>;
+  children: ReactElement<BreadcrumbItemProps> | ReactElement<BreadcrumbItemProps>[];
 }
 
 export interface BreadcrumbItemProps

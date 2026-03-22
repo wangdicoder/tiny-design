@@ -4,6 +4,7 @@
 .#{$prefix}-input-number {
   position: relative;
   box-sizing: border-box;
+  width: 100%;
 
   &:hover {
     .#{$prefix}-input-number__controls {
@@ -12,13 +13,14 @@
   }
 
   &__input {
-    @include input-default();
+    @include input-default;
+
     padding-left: 7px;
     padding-right: 25px;
 
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
+      appearance: none;
     }
   }
 
@@ -112,7 +114,7 @@
   &_disabled {
     .#{$prefix}-input-number {
       &__input {
-        @include input-default-disabled();
+        @include input-default-disabled;
       }
 
       &__up,

@@ -8,6 +8,7 @@ import { DetailControls } from './components/detail-controls';
 import { PresetSelector } from './components/preset-selector';
 import { PreviewPanel } from './components/preview-panel';
 import { ExportDialog } from './components/export-dialog';
+import { saveSeeds } from '../../utils/theme-persistence';
 import './theme-editor.scss';
 
 const ThemeEditor = (): React.ReactElement => {
@@ -33,6 +34,15 @@ const ThemeEditor = (): React.ReactElement => {
     (presetSeeds: Record<string, string>, presetId: string) => {
       applyPreset(presetSeeds);
       setActivePresetId(presetId);
+
+      // Save both light and dark seeds so the global persistence module
+      // can apply the correct seeds when dark mode toggles on other pages
+      const preset = PRESETS.find((p) => p.id === presetId);
+      if (preset) {
+        const lightSeeds = getPresetSeeds(preset, false);
+        const darkSeeds = getPresetSeeds(preset, true);
+        saveSeeds(lightSeeds, darkSeeds);
+      }
     },
     [applyPreset]
   );

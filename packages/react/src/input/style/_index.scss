@@ -4,10 +4,11 @@
 .#{$prefix}-input {
   position: relative;
   box-sizing: border-box;
+  width: 100%;
   color: var(--ty-color-text);
 
   &__input {
-    @include input-default();
+    @include input-default;
   }
 
   &__prefix,
@@ -77,7 +78,7 @@
 
   &_disabled {
     .#{$prefix}-input__input {
-      @include input-default-disabled();
+      @include input-default-disabled;
     }
   }
 }
@@ -124,7 +125,7 @@
       }
     }
 
-    &:not(:first-child):not(:last-child) {
+    &:not(:first-child, :last-child) {
       .#{$prefix}-input__input {
         border-radius: 0;
       }
@@ -166,7 +167,7 @@
     border-top-left-radius: 0;
   }
 
-  &:not(:first-child):not(:last-child) {
+  &:not(:first-child, :last-child) {
     border-radius: 0;
     border-left: 0;
     border-right: 0;
