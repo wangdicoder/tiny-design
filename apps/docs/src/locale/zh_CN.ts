@@ -31,6 +31,9 @@ const zh_CN: SiteLocale = {
       typescript: 'TypeScript',
       license: '开源协议',
     },
+    themeShowcase: '定制你的主题',
+    themeShowcaseDesc: '选择一个预设主题，即刻改变整个网站的外观。',
+    themeShowcaseCustomize: '在主题编辑器中自定义',
   },
   overview: {
     title: '组件总览',
@@ -61,7 +64,7 @@ const zh_CN: SiteLocale = {
     title: '色彩',
     intro: 'Tiny UI 使用一套特定的调色板来指定颜色，为你构建的产品提供一致的外观和体验。',
     primaryTitle: '主色',
-    primaryDesc: '主色调由中性色、白色和紫色组成，这些颜色贯穿从营销到产品的大多数触点。',
+    primaryDesc: '所有组件共用的语义色彩，映射到 CSS 自定义属性（如 --ty-color-primary），应用主题预设时会自动更新。',
     neutralsTitle: '浅色中性色',
     neutralsDesc:
       '浅色中性色有助于在以白色为主的布局中区分内容，同时不失温暖和整洁感，因此常用作网页组件的背景色。',

@@ -29,6 +29,9 @@ export type SiteLocale = {
       typescript: string;
       license: string;
     };
+    themeShowcase: string;
+    themeShowcaseDesc: string;
+    themeShowcaseCustomize: string;
   };
   overview: {
     title: string;

@@ -8,6 +8,7 @@ import {
 } from '../../../utils/theme-persistence';
 
 const STORAGE_KEY = 'ty-theme-editor-overrides';
+const PRESET_ID_KEY = 'ty-theme-preset-id';
 
 function loadFromStorage(): Record<string, string> {
   try {

@@ -267,6 +267,133 @@
     }
   }
 
+  // Theme showcase marquee
+  &__theme-showcase {
+    overflow: hidden;
+  }
+
+  &__theme-showcase-desc.ty-typography {
+    text-align: center;
+    color: var(--ty-color-text-secondary);
+    font-size: 16px;
+    margin: -24px 0 32px;
+  }
+
+  &__marquee-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 4px 0;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+
+  &__marquee-row {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: marquee-left 50s linear infinite;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    &_reverse {
+      animation-name: marquee-right;
+
+      &:hover {
+        animation-play-state: paused;
+      }
+    }
+  }
+
+  &__marquee-card {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px;
+    border: 1px solid var(--ty-color-border-secondary);
+    border-radius: 12px;
+    background: var(--ty-color-bg-component);
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    font-family: inherit;
+
+    &:hover {
+      transform: translateY(-3px);
+      border-color: var(--ty-color-primary);
+    }
+
+    &_active {
+      transform: translateY(-2px);
+    }
+  }
+
+  &__marquee-swatches {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__marquee-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  &__marquee-name {
+    font-size: 13px;
+    color: var(--ty-color-text-secondary);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  &__theme-showcase-cta {
+    text-align: center;
+    margin-top: 28px;
+  }
+
+  @keyframes marquee-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-right {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: $size-sm) {
+    &__marquee-card {
+      padding: 12px 14px;
+    }
+
+    &__marquee-swatch {
+      width: 16px;
+      height: 16px;
+    }
+
+    &__marquee-name {
+      font-size: 12px;
+    }
+
+    &__theme-showcase-desc.ty-typography {
+      padding: 0 20px;
+      font-size: 14px;
+    }
+  }
+
   @keyframes logo-spin {
     from {
       transform: rotate(0deg);

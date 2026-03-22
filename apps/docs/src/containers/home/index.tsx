@@ -9,6 +9,7 @@ import {
 } from '@tiny-design/icons';
 import type { IconProps } from '@tiny-design/icons';
 import { Footer } from './footer';
+import { ThemeShowcase } from './theme-showcase';
 import { useLocaleContext } from '../../context/locale-context';
 import { getComponentMenu } from '../../routers';
 import pkg from '../../../../../packages/react/package.json';
@@ -80,6 +81,8 @@ const HomePage = (): React.ReactElement => {
           </Button>
         </Flex>
       </div>
+
+      <ThemeShowcase />
 
       <div className="home__section">
         <Typography.Heading level={1} className="home__feature-title">{s.home.designPrinciple}</Typography.Heading>

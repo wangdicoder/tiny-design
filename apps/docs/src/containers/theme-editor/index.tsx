@@ -11,11 +11,21 @@ import { ExportDialog } from './components/export-dialog';
 import { saveSeeds } from '../../utils/theme-persistence';
 import './theme-editor.scss';
 
+const PRESET_ID_KEY = 'ty-theme-preset-id';
+
+function loadPresetId(): string | undefined {
+  try {
+    return localStorage.getItem(PRESET_ID_KEY) || undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 const ThemeEditor = (): React.ReactElement => {
   const { seeds, applied, isDark, setSeed, applyPreset, reset, isOverridden, resetToken } =
     useThemeState();
   const [exportVisible, setExportVisible] = useState(false);
-  const [activePresetId, setActivePresetId] = useState<string | undefined>();
+  const [activePresetId, setActivePresetId] = useState<string | undefined>(loadPresetId);
   const prevIsDarkRef = useRef(isDark);
 
   // When dark mode toggles, re-apply the active preset with mode-appropriate seeds
@@ -34,6 +44,7 @@ const ThemeEditor = (): React.ReactElement => {
     (presetSeeds: Record<string, string>, presetId: string) => {
       applyPreset(presetSeeds);
       setActivePresetId(presetId);
+      try { localStorage.setItem(PRESET_ID_KEY, presetId); } catch { /* ignore */ }
 
       // Save both light and dark seeds so the global persistence module
       // can apply the correct seeds when dark mode toggles on other pages
@@ -51,6 +62,7 @@ const ThemeEditor = (): React.ReactElement => {
     (key: string, value: string) => {
       setSeed(key, value);
       setActivePresetId(undefined);
+      try { localStorage.removeItem(PRESET_ID_KEY); } catch { /* ignore */ }
     },
     [setSeed]
   );
@@ -58,6 +70,7 @@ const ThemeEditor = (): React.ReactElement => {
   const handleReset = useCallback(() => {
     reset();
     setActivePresetId('default');
+    try { localStorage.setItem(PRESET_ID_KEY, 'default'); } catch { /* ignore */ }
   }, [reset]);
 
   const controlProps = {

@@ -34,6 +34,9 @@ const en_US: SiteLocale = {
       typescript: 'TypeScript',
       license: 'License',
     },
+    themeShowcase: 'Make It Yours',
+    themeShowcaseDesc: 'Choose a preset theme and watch the entire site transform instantly.',
+    themeShowcaseCustomize: 'Customize in Theme Editor',
   },
   overview: {
     title: 'Component Overview',
@@ -67,7 +70,7 @@ const en_US: SiteLocale = {
       'Tiny UI uses a specific set of palettes to specify colors to provide a consistent look and feel for the products you build.',
     primaryTitle: 'Primary colors',
     primaryDesc:
-      'Primary palette is comprised of neutrals, white, and purple. These colors are present across most touch points from marketing to product.',
+      'Semantic colours used across all components. These map to CSS custom properties (e.g. --ty-color-primary) and update automatically when you apply a theme preset.',
     neutralsTitle: 'Light neutrals',
     neutralsDesc:
       'Light neutrals are helpful for offsetting content in a primarily white layout without losing warmth and cleanliness, and are therefore often used as a background color for web components.',
