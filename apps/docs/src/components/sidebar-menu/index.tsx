@@ -2,10 +2,15 @@ import React from 'react';
 import './sidebar-menu.scss';
 import { NavLink } from 'react-router-dom';
 import { RouterItem } from '../../routers';
-import { Layout } from '@tiny-design/react';
+import { Layout, Link } from '@tiny-design/react';
+import { IconGithub } from '@tiny-design/icons';
 import { useSidebarToggle } from '../../context/sidebar-toggle-context';
+import { useLocaleContext } from '../../context/locale-context';
+import { ThemeToggle } from '../header/theme-toggle';
+import pkg from '../../../../../packages/react/package.json';
 
 const { Sidebar } = Layout;
+const { version, repository } = pkg;
 
 type Props = {
   routers: RouterItem[];
@@ -15,6 +20,8 @@ type Props = {
 export const SidebarMenu = (props: Props): React.ReactElement => {
   const { routers, url } = props;
   const { isOpen, close } = useSidebarToggle();
+  const { locale, toggle: toggleLocale } = useLocaleContext();
+  const isZh = locale.locale === 'zh_CN';
 
   return (
     <>
@@ -61,6 +68,19 @@ export const SidebarMenu = (props: Props): React.ReactElement => {
             }
           })}
         </ul>
+        <div className="sidebar-menu__toolbar">
+          <span className="sidebar-menu__toolbar-version">v{version}</span>
+          <Link href={repository.url} underline={false} rel="noreferrer noopener">
+            <IconGithub color="currentColor" size={18} />
+          </Link>
+          <button
+            className="sidebar-menu__toolbar-btn"
+            onClick={toggleLocale}
+            aria-label={isZh ? 'Switch to English' : '切换到中文'}>
+            {isZh ? 'EN' : '中文'}
+          </button>
+          <ThemeToggle />
+        </div>
       </Sidebar>
     </>
   );

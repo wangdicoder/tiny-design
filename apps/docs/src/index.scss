@@ -28,6 +28,7 @@ body {
 
   &__layout {
     padding: 30px 30px 30px 280px;
+    overflow-x: hidden;
 
     @media (max-width: $size-md) {
       padding: 20px 16px;

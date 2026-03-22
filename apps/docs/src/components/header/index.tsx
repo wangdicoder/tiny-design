@@ -1,6 +1,6 @@
 import React from 'react';
 import './header.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import pkg from '../../../../../packages/react/package.json';
 import { Link } from '@tiny-design/react';
 import { IconGithub } from '@tiny-design/icons';
@@ -15,6 +15,8 @@ const { version, repository } = pkg;
 export const Header = (): React.ReactElement => {
   const { toggle } = useSidebarToggle();
   const { siteLocale: s } = useLocaleContext();
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
 
   return (
     <header className="header">
@@ -22,7 +24,8 @@ export const Header = (): React.ReactElement => {
         <button
           className="header__menu-toggle"
           onClick={toggle}
-          aria-label="Toggle menu">
+          aria-label="Toggle menu"
+          style={isHome ? { display: 'none' } : undefined}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <line x1="3" y1="6" x2="21" y2="6" />
             <line x1="3" y1="12" x2="21" y2="12" />
@@ -38,7 +41,7 @@ export const Header = (): React.ReactElement => {
       </div>
       <nav className="header__nav">
         <ul className="header__nav-list">
-          <li className="header__nav-item">
+          <li className="header__nav-item header__home-link">
             <NavLink end to="/" className="header__link">
               {s.nav.home}
             </NavLink>
@@ -67,7 +70,7 @@ export const Header = (): React.ReactElement => {
               <span className="header__version">v{version}</span>
             </a>
           </li>
-          <li className="header__nav-item">
+          <li className="header__nav-item header__github-link">
             <Link href={repository.url} underline={false} rel="noreferrer noopener">
               <IconGithub color="currentColor" size={19} />
             </Link>

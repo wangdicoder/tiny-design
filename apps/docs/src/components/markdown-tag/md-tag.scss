@@ -65,6 +65,12 @@
     }
   }
 
+  overflow-wrap: break-word;
+
+  @media (max-width: $size-md) {
+    overflow-x: hidden;
+  }
+
   &__pre-container {
     code {
       line-height: 2;

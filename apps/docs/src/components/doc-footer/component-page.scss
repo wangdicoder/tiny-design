@@ -6,6 +6,10 @@
 
   &__layout {
     padding: 30px 30px 30px 280px;
+
+    @media (max-width: $size-md) {
+      padding: 20px 16px;
+    }
   }
 
   &__divider {
