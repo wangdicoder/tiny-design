@@ -42,6 +42,18 @@
     min-width: 0;
   }
 
+  @media (max-width: 840px) {
+    &__layout {
+      flex-direction: column;
+    }
+
+    &__sidebar {
+      width: 100%;
+      position: static;
+      max-height: none;
+    }
+  }
+
   // Panel
   &__panel {
     padding: 8px 0;

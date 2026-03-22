@@ -161,12 +161,14 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       if (!el || !wrap || !showNav) return;
 
       if (isHorizontal) {
+        const wrapWidth = wrap.clientWidth;
+        if (wrapWidth <= 0) return;
         const elLeft = el.offsetLeft;
         const elRight = elLeft + el.offsetWidth;
         if (elLeft < scrollOffset) {
           setScrollOffset(elLeft);
-        } else if (elRight > scrollOffset + wrap.clientWidth) {
-          setScrollOffset(elRight - wrap.clientWidth);
+        } else if (elRight > scrollOffset + wrapWidth) {
+          setScrollOffset(elRight - wrapWidth);
         }
       }
     }, [currentKey, showNav, isHorizontal, scrollOffset]);
