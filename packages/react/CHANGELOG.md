@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.0
+
+### Minor Changes
+
+- Add Marquee component for infinite horizontal scrolling with configurable direction, speed, pause-on-hover, edge fade, and infinite/once play modes - [#70](https://github.com/wangdicoder/tiny-design/pull/70) [`36cad31`](https://github.com/wangdicoder/tiny-design/commit/36cad31a235bd2bd0e9f71e8ec92a4e33517d6cd)
+
 ## 1.4.0
 
 ### Minor Changes
