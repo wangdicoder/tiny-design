@@ -10,6 +10,7 @@ const StrengthIndicator = React.forwardRef<HTMLDivElement, StrengthIndicatorProp
       current = 0,
       blocks = 3,
       colors = ['#f44336', '#ff9800', '#52c41a'],
+      labels,
       className,
       prefixCls: customisedCls,
       ...otherProps
@@ -17,8 +18,9 @@ const StrengthIndicator = React.forwardRef<HTMLDivElement, StrengthIndicatorProp
     const configContext = useContext(ConfigContext);
     const prefixCls = getPrefixCls('strength-indicator', configContext.prefixCls, customisedCls);
     const cls = classNames(prefixCls, className);
-    const displayLabels: React.ReactNode[] = Array.isArray(props.labels)
-      ? props.labels
+    const showLabels = labels !== undefined;
+    const displayLabels: React.ReactNode[] = Array.isArray(labels)
+      ? labels
       : ['Weak', 'Medium', 'Strong'];
 
     return (
@@ -31,7 +33,7 @@ const StrengthIndicator = React.forwardRef<HTMLDivElement, StrengthIndicatorProp
           return (
             <div key={idx} className={itemCls}>
               <div className={`${prefixCls}__inner`} style={{ backgroundColor: bgColor }} />
-              {'labels' in props && (
+              {showLabels && (
                 <div className={`${prefixCls}__label`}>{displayLabels[idx]}</div>
               )}
             </div>

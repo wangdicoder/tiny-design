@@ -102,6 +102,8 @@ const Waterfall = React.forwardRef<HTMLDivElement, WaterfallProps>((props, ref) 
   }, [items, collectItemSizes]);
 
   // ================ onLayoutChange ================
+  const prevLayoutRef = useRef<string>('');
+
   useEffect(() => {
     if (!onLayoutChange || !items || items.length === 0) return;
 
@@ -112,6 +114,11 @@ const Waterfall = React.forwardRef<HTMLDivElement, WaterfallProps>((props, ref) 
       key: item.key,
       column: itemPositions.get(item.key)!.column,
     }));
+
+    const layoutKey = sortInfo.map((s) => `${s.key}:${s.column}`).join(',');
+    if (layoutKey === prevLayoutRef.current) return;
+    prevLayoutRef.current = layoutKey;
+
     onLayoutChange(sortInfo);
   }, [itemPositions, items, onLayoutChange]);
 

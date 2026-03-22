@@ -41,7 +41,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, forwardedRef)
   const closeBtnOnClick = (e: React.MouseEvent<HTMLSpanElement>): void => {
     ref.current && setClosedStyle(ref.current as HTMLDivElement);
     setShow(false);
-    onClose && onClose(e);
+    onClose?.(e);
   };
 
   // Setting close text attribute also allows to be closable
@@ -77,7 +77,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, forwardedRef)
       }}>
         {icon && renderIcon()}
         <div>
-          {title && <p className={`${prefixCls}__title`}>{title}</p>}
+          {title && <p className={classNames(`${prefixCls}__title`, { [`${prefixCls}__title_has-content`]: children })}>{title}</p>}
           {children}
         </div>
         {closeIcon}
