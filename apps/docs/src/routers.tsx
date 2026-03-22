@@ -144,11 +144,17 @@ export const getGuideMenu = (s: SiteLocale): RouterItem[] => {
     { title: s.guideMenu.introduction, route: 'introduction', component: pick(guide.introduction, isZh) },
     { title: s.guideMenu.getStarted, route: 'get-started', component: pick(guide.getStarted, isZh) },
     { title: s.guideMenu.useWithVite, route: 'use-with-vite', component: pick(guide.useWithVite, isZh) },
-    { title: s.guideMenu.customiseTheme, route: 'customise-theme', component: pick(guide.customiseTheme, isZh) },
-    { title: s.guideMenu.colors, route: 'colors', component: pick(guide.colors, isZh) },
-    { title: s.guideMenu.themeEditor, route: 'theme-editor', component: pick(guide.themeEditor, isZh) },
     { title: s.guideMenu.changelog, route: 'changelog', component: pick(guide.changelog, isZh) },
     { title: s.guideMenu.faq, route: 'faq', component: pick(guide.faq, isZh) },
+  ];
+};
+
+export const getThemeMenu = (s: SiteLocale): RouterItem[] => {
+  const isZh = s.locale === 'zh_CN';
+  return [
+    { title: s.themeMenu.customiseTheme, route: 'customise-theme', component: pick(guide.customiseTheme, isZh) },
+    { title: s.themeMenu.colors, route: 'colors', component: pick(guide.colors, isZh) },
+    { title: s.themeMenu.themeEditor, route: 'theme-editor', component: pick(guide.themeEditor, isZh) },
   ];
 };
 

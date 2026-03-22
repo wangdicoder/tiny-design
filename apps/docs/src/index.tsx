@@ -12,6 +12,7 @@ import { SidebarToggleProvider } from './context/sidebar-toggle-context';
 import { LocaleProvider, useLocaleContext } from './context/locale-context';
 import HomePage from './containers/home';
 import GuidePage from './containers/guide';
+import ThemePage from './containers/theme';
 import ComponentsPage from './containers/components';
 
 const basename = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
@@ -24,6 +25,7 @@ const AppInner = (): React.ReactElement => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/guide/*" element={<GuidePage />} />
+        <Route path="/theme/*" element={<ThemePage />} />
         <Route path="/components/*" element={<ComponentsPage />} />
       </Routes>
     </IntlProvider>

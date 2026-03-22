@@ -5,6 +5,7 @@ const en_US: SiteLocale = {
   nav: {
     home: 'Home',
     guide: 'Guide',
+    theme: 'Theme',
     components: 'Components',
   },
   home: {
@@ -52,10 +53,12 @@ const en_US: SiteLocale = {
     introduction: 'Introduction',
     getStarted: 'Get Started',
     useWithVite: 'Use with Vite',
-    customiseTheme: 'Customise Theme',
-    colors: 'Colors',
     changelog: 'Changelog',
     faq: 'FAQ',
+  },
+  themeMenu: {
+    customiseTheme: 'Customise Theme',
+    colors: 'Colors',
     themeEditor: 'Theme Editor',
   },
   color: {

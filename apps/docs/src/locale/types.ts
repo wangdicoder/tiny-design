@@ -3,6 +3,7 @@ export type SiteLocale = {
   nav: {
     home: string;
     guide: string;
+    theme: string;
     components: string;
   };
   home: {
@@ -46,10 +47,12 @@ export type SiteLocale = {
     introduction: string;
     getStarted: string;
     useWithVite: string;
-    customiseTheme: string;
-    colors: string;
     changelog: string;
     faq: string;
+  };
+  themeMenu: {
+    customiseTheme: string;
+    colors: string;
     themeEditor: string;
   };
   color: {

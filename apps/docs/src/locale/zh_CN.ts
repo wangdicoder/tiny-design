@@ -5,6 +5,7 @@ const zh_CN: SiteLocale = {
   nav: {
     home: '首页',
     guide: '指南',
+    theme: '主题',
     components: '组件',
   },
   home: {
@@ -48,10 +49,12 @@ const zh_CN: SiteLocale = {
     introduction: '介绍',
     getStarted: '快速开始',
     useWithVite: '在 Vite 中使用',
-    customiseTheme: '自定义主题',
-    colors: '色彩',
     changelog: '更新日志',
     faq: '常见问题',
+  },
+  themeMenu: {
+    customiseTheme: '自定义主题',
+    colors: '色彩',
     themeEditor: '主题编辑器',
   },
   color: {

@@ -50,6 +50,11 @@ export const Header = (): React.ReactElement => {
             </NavLink>
           </li>
           <li className="header__nav-item">
+            <NavLink to="/theme" className="header__link">
+              {s.nav.theme}
+            </NavLink>
+          </li>
+          <li className="header__nav-item">
             <NavLink to="/components" className="header__link">
               {s.nav.components}
             </NavLink>
