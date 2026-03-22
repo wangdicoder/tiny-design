@@ -69,21 +69,27 @@ const CollapsePanel = (props: CollapsePanelProps): React.ReactElement => {
       [`${prefixCls}__arrow_active`]: active,
     });
 
+    const hasExtra = deletable || extra;
+
     return (
-      <button
-        type="button"
-        id={headerId}
-        className={headerCls}
-        onClick={headerOnClick}
-        aria-expanded={active}
-        aria-controls={panelId}
-        aria-disabled={disabled || undefined}>
-        {showArrow && <ArrowDown size={10} className={arrowCls} />}
-        <div className={`${prefixCls}__title`}>{richNode(header, active)}</div>
-        <div className={`${prefixCls}__extra`}>
-          {deletable ? <span onClick={removeItem}>✕</span> : richNode(extra, active)}
-        </div>
-      </button>
+      <div className={headerCls}>
+        <button
+          type="button"
+          id={headerId}
+          className={`${prefixCls}__toggle`}
+          onClick={headerOnClick}
+          aria-expanded={active}
+          aria-controls={panelId}
+          aria-disabled={disabled || undefined}>
+          {showArrow && <ArrowDown size={10} className={arrowCls} />}
+          <div className={`${prefixCls}__title`}>{richNode(header, active)}</div>
+        </button>
+        {hasExtra && (
+          <div className={`${prefixCls}__extra`}>
+            {deletable ? <span onClick={removeItem}>✕</span> : richNode(extra, active)}
+          </div>
+        )}
+      </div>
     );
   };
 

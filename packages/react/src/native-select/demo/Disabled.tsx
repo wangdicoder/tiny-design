@@ -5,7 +5,7 @@ export default function DisabledDemo() {
   const { Option } = NativeSelect;
 
   return (
-    <NativeSelect disabled value="oliver">
+    <NativeSelect disabled defaultValue="oliver">
       <Option value="tom">Tom</Option>
       <Option value="oliver">Oliver</Option>
       <Option value="jack">Jack</Option>

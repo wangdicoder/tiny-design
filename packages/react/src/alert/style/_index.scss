@@ -22,9 +22,13 @@
 
   &__title {
     box-sizing: border-box;
-    margin: 0 0 5px;
-    font-size: 18px;
+    margin: 0;
+    font-size: 17px;
     font-weight: 500;
+
+    &_has-content {
+      margin-bottom: 5px;
+    }
   }
 
   &__desc {

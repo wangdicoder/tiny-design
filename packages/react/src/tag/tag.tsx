@@ -7,6 +7,7 @@ import { PresetColors, TagProps } from './types';
 const Tag = React.memo(forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
     closable = false,
+    visible: visibleProp,
     defaultVisible = true,
     prefixCls: customisedCls,
     color,
@@ -18,7 +19,7 @@ const Tag = React.memo(forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     ...otherProps
   } = props;
   const [visible, setVisible] = useState<boolean>(
-    'visible' in props ? (props.visible as boolean) : defaultVisible
+    visibleProp !== undefined ? visibleProp : defaultVisible
   );
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('tag', configContext.prefixCls, customisedCls);
@@ -37,7 +38,7 @@ const Tag = React.memo(forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     if (e.defaultPrevented) {
       return;
     }
-    !('visible' in props) && setVisible(false);
+    visibleProp === undefined && setVisible(false);
   };
 
   const tagStyle: React.CSSProperties = {
@@ -48,8 +49,8 @@ const Tag = React.memo(forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   };
 
   useEffect(() => {
-    'visible' in props && setVisible(props.visible as boolean);
-  }, [props]);
+    if (visibleProp !== undefined) setVisible(visibleProp);
+  }, [visibleProp]);
 
   return (
     <div {...otherProps} ref={ref} className={cls} style={tagStyle} onClick={onClick}>

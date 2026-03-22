@@ -85,16 +85,14 @@ const InputOTP = React.forwardRef<InputOTPRef, InputOTPProps>(
     // Trigger onChange when value cells change
     const triggerValueCellsChange = useCallback(
       (nextValueCells: string[]) => {
-        setValueCells((prev) => {
-          const prevValue = prev.join('');
-          const nextValue = nextValueCells.join('');
-          if (onChange && prevValue !== nextValue) {
-            onChange(nextValue);
-          }
-          return nextValueCells;
-        });
+        const prevValue = valueCells.join('');
+        const nextValue = nextValueCells.join('');
+        setValueCells(nextValueCells);
+        if (onChange && prevValue !== nextValue) {
+          onChange(nextValue);
+        }
       },
-      [onChange]
+      [onChange, valueCells]
     );
 
     // Patch value at given index

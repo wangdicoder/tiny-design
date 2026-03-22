@@ -85,7 +85,9 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
       }
       if (renderItem) {
         const [start, end] = visibleRange;
-        const visibleItems = dataSource.slice(start, end + 1).map((item, i) => renderItem(item, start + i));
+        const visibleItems = dataSource.slice(start, end + 1).map((item, i) => (
+          <React.Fragment key={start + i}>{renderItem(item, start + i)}</React.Fragment>
+        ));
         return (
           <div style={{ height: totalHeight, position: 'relative' }}>
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, transform: `translateY(${offsetY}px)` }}>
@@ -106,7 +108,9 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
       );
     }
     if (renderItem) {
-      const rendered = items.map((item, index) => renderItem(item, index));
+      const rendered = items.map((item, index) => (
+        <React.Fragment key={index}>{renderItem(item, index)}</React.Fragment>
+      ));
       if (grid) {
         return (
           <div
