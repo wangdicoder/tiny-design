@@ -1,9 +1,22 @@
 # 自定义主题
 
-Tiny UI 提供两层主题定制方案：
+Tiny UI 提供三种方式来定制外观：
 
-1. **设计令牌（Design tokens）** — 驱动亮色/暗色模式的 CSS 自定义属性，所有组件在运行时读取这些值。
-2. **SCSS 变量** — 编译时变量（尺寸、字体、圆角等），可在构建自定义样式表时覆盖。
+1. **主题编辑器** — 一个可视化的实时主题工具，无需编写代码（非常适合探索和快速定制）。
+2. **设计令牌（Design tokens）** — 驱动亮色/暗色模式的 CSS 自定义属性，所有组件在运行时读取这些值。
+3. **SCSS 变量** — 编译时变量（尺寸、字体、圆角等），可在构建自定义样式表时覆盖。
+
+## 主题编辑器
+
+内置的[主题编辑器](/theme/theme-editor)让你可以实时可视化定制设计令牌。你可以：
+
+- 从 **20+ 个预设主题**中选择（如 Catppuccin、摩卡慕斯、赛博朋克等），或从零开始。
+- 调整主色、成功色、警告色、危险色和信息色，以及背景色、文本色和边框色。
+- 调整排版（字号、行高、字重）和细节（圆角、间距、尺寸）。
+- 在真实组件上实时预览更改效果。
+- 导出自定义的令牌为 CSS 或 SCSS，在你的项目中使用。
+
+更改通过 CSS 自定义属性即时生效 — 无需重新构建。
 
 ## 暗色模式
 
@@ -23,13 +36,22 @@ Tiny UI 内置亮色和暗色主题。默认为亮色模式。要启用暗色模
 也可以使用 `useTheme` hook 在运行时切换主题：
 
 ```tsx
-import { useTheme } from 'tiny-design';
+import { useTheme } from '@tiny-design/react';
 
 const App = () => {
-  const { mode, setMode, toggle } = useTheme();
-  return <button onClick={toggle}>当前：{mode}</button>;
+  const { mode, resolvedTheme, setMode, toggle } = useTheme();
+  return <button onClick={toggle}>当前：{resolvedTheme}</button>;
 };
 ```
+
+该 hook 返回：
+
+| 属性 | 类型 | 说明 |
+|---|---|---|
+| `mode` | `'light' \| 'dark' \| 'system'` | 存储的用户偏好 |
+| `resolvedTheme` | `'light' \| 'dark'` | 实际解析的主题（将 `'system'` 解析为操作系统偏好） |
+| `setMode(mode)` | `(mode: ThemeMode) => void` | 设置指定模式 |
+| `toggle()` | `() => void` | 在亮色和暗色之间切换 |
 
 ## 设计令牌（CSS 自定义属性）
 
@@ -43,9 +65,21 @@ const App = () => {
 }
 ```
 
+### 常用令牌
+
+| 令牌 | 亮色默认值 | 说明 |
+|---|---|---|
+| `--ty-color-primary` | `#6e41bf` | 主品牌色 |
+| `--ty-color-primary-hover` | `#8b62d0` | 主色悬停状态 |
+| `--ty-color-primary-active` | `#5a30a8` | 主色激活状态 |
+| `--ty-color-bg` | `#fff` | 页面背景色 |
+| `--ty-color-text` | `rgba(0,0,0,0.85)` | 主文本色 |
+| `--ty-color-text-secondary` | `rgba(0,0,0,0.65)` | 次要文本色 |
+| `--ty-color-border` | `#d9d9d9` | 默认边框色 |
+
 完整的令牌列表请参考源码：
-- [亮色主题令牌](https://github.com/wangdicoder/tiny-design/blob/master/components/style/themes/_light.scss)
-- [暗色主题令牌](https://github.com/wangdicoder/tiny-design/blob/master/components/style/themes/_dark.scss)
+- [亮色主题令牌](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/themes/_light.scss)
+- [暗色主题令牌](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/themes/_dark.scss)
 
 ## SCSS 变量
 
@@ -70,7 +104,7 @@ $border-radius: 4px;
 $font-size-base: 14px;
 
 // 引入 Tiny UI 样式（通过 !default 应用你的覆盖值）
-@use "tiny-design/es/style/index" as *;
+@use "@tiny-design/react/es/style/index" as *;
 ```
 
 ### 3. 在入口文件中引入
@@ -79,7 +113,7 @@ $font-size-base: 14px;
 import './theme-variables.scss';
 ```
 
-完整的 SCSS 变量列表请参考 [_variables.scss](https://github.com/wangdicoder/tiny-design/blob/master/components/style/_variables.scss)。
+完整的 SCSS 变量列表请参考 [_variables.scss](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/_variables.scss)。
 
 以下是一些常用的可覆盖变量：
 
