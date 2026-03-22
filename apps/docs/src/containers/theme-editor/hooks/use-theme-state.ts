@@ -4,7 +4,6 @@ import { deriveAllTokens } from '../utils/color-utils';
 import { applyTokens, clearAllTokenOverrides } from '../utils/apply-theme';
 
 const STORAGE_KEY = 'ty-theme-editor-overrides';
-const PRIMARY_COLOR_KEY = 'ty-primary-color';
 
 function loadFromStorage(): Record<string, string> {
   try {
@@ -70,13 +69,6 @@ export function useThemeState(): ThemeState {
       applyTokens(derived);
     }
 
-    // Sync primary color with header ColorCustomizer
-    if (newSeeds['color-primary']) {
-      localStorage.setItem(PRIMARY_COLOR_KEY, newSeeds['color-primary']);
-    } else {
-      localStorage.removeItem(PRIMARY_COLOR_KEY);
-    }
-
     // Persist
     saveToStorage(newSeeds);
   }, []);
@@ -140,7 +132,6 @@ export function useThemeState(): ThemeState {
     appliedRef.current = {};
     setSeeds({});
     saveToStorage({});
-    localStorage.removeItem(PRIMARY_COLOR_KEY);
   }, []);
 
   const isOverridden = useCallback(

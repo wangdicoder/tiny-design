@@ -113,28 +113,6 @@
     }
   }
 
-  .ty-color-picker {
-    display: inline-flex;
-  }
-
-  &__color-swatch {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border: 1px solid var(--ty-color-border);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.2s;
-    padding: 0;
-
-    &:hover {
-      border-color: var(--ty-color-primary);
-      box-shadow: 0 0 0 2px var(--ty-color-primary-bg);
-    }
-  }
-
   &__theme-toggle {
     display: inline-flex;
     align-items: center;
@@ -171,7 +149,6 @@
 
     &__version,
     &__locale-toggle,
-    &__color-swatch,
     &__theme-toggle {
       display: none;
     }
