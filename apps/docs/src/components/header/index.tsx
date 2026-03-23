@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './header.scss';
 import { NavLink, useLocation } from 'react-router-dom';
 import pkg from '../../../../../packages/react/package.json';
@@ -8,6 +8,8 @@ import { useSidebarToggle } from '../../context/sidebar-toggle-context';
 import { useLocaleContext } from '../../context/locale-context';
 import { ThemeToggle } from './theme-toggle';
 import { LocaleToggle } from './locale-toggle';
+import { CommandPalette } from '../command-palette';
+import { SearchTrigger } from '../command-palette/search-trigger';
 import logoSvg from '../../assets/logo/logo.svg';
 
 const { version, repository } = pkg;
@@ -17,6 +19,7 @@ export const Header = (): React.ReactElement => {
   const { siteLocale: s } = useLocaleContext();
   const { pathname } = useLocation();
   const isHome = pathname === '/';
+  const [paletteOpen, setPaletteOpen] = useState(false);
 
   return (
     <header className="header">
@@ -75,6 +78,9 @@ export const Header = (): React.ReactElement => {
               <IconGithub color="currentColor" size={19} />
             </Link>
           </li>
+          <li className="header__nav-item header__search-item">
+            <SearchTrigger onClick={() => setPaletteOpen(true)} />
+          </li>
           <li className="header__nav-item">
             <LocaleToggle />
           </li>
@@ -83,6 +89,7 @@ export const Header = (): React.ReactElement => {
           </li>
         </ul>
       </nav>
+      <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
     </header>
   );
 };

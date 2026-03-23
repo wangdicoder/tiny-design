@@ -93,6 +93,10 @@ const en_US: SiteLocale = {
     openInStackBlitz: 'Open in StackBlitz',
     openInCodeSandbox: 'Open in CodeSandbox',
   },
+  commandPalette: {
+    placeholder: 'Search docs...',
+    noResults: 'No results found.',
+  },
   common: {
     loading: 'Loading...',
   },

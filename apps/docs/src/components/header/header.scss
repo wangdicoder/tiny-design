@@ -102,6 +102,26 @@
     padding: 4px 13px;
   }
 
+  &__search-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 8px;
+    border: 1px solid var(--ty-color-border);
+    border-radius: 14px;
+    background: var(--ty-color-bg-elevated);
+    color: var(--ty-color-text-tertiary);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+
+    &:hover {
+      color: var(--ty-color-primary);
+      border-color: var(--ty-color-primary);
+    }
+  }
+
   &__locale-toggle {
     display: inline-flex;
     align-items: center;
@@ -162,6 +182,10 @@
     &__theme-toggle,
     &__github-link,
     &__home-link {
+      display: none;
+    }
+
+    &__search-trigger .ty-keyboard {
       display: none;
     }
   }

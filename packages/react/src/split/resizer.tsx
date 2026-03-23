@@ -1,4 +1,4 @@
-import React, { useContext, MouseEventHandler } from 'react';
+import React, { useContext, MouseEventHandler, TouchEventHandler } from 'react';
 import classNames from 'classnames';
 import { BaseProps, DirectionType } from '../_utils/props';
 import { ConfigContext } from '../config-provider/config-context';
@@ -10,12 +10,14 @@ export interface ResizerProps
   size: number;
   mode: DirectionType;
   onResizerMouseDown: MouseEventHandler<HTMLDivElement>;
+  onResizerTouchStart?: TouchEventHandler<HTMLDivElement>;
 }
 
 const Resizer = (props: ResizerProps): JSX.Element => {
   const {
     size,
     onResizerMouseDown,
+    onResizerTouchStart,
     prefixCls: customisedCls,
     mode,
     className,
@@ -34,6 +36,11 @@ const Resizer = (props: ResizerProps): JSX.Element => {
     onResizerMouseDown(e);
   };
 
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    props.onTouchStart && props.onTouchStart(e);
+    onResizerTouchStart && onResizerTouchStart(e);
+  };
+
   return (
     <div
       {...otherProps}
@@ -43,6 +50,7 @@ const Resizer = (props: ResizerProps): JSX.Element => {
       className={cls}
       style={style}
       onMouseDown={(e): void => onMouseDown(e)}
+      onTouchStart={(e): void => onTouchStart(e)}
       onKeyDown={(e) => {
         const step = 10;
         if (mode === 'vertical' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {

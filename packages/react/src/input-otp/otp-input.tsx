@@ -89,6 +89,8 @@ const OTPInput = React.forwardRef<HTMLInputElement, OTPInputCellProps>(
         onKeyDown={onInternalKeyDown}
         onMouseDown={syncSelection}
         onMouseUp={syncSelection}
+        onTouchStart={syncSelection}
+        onTouchEnd={syncSelection}
       />
     );
   }

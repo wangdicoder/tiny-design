@@ -61,21 +61,38 @@ const Split = (props: SplitProps): JSX.Element => {
     maxSize = (mode === 'vertical' ? width : height) - maxSize - resizerSize;
   }
 
+  const getPointerPos = (e: MouseEvent | TouchEvent): number => {
+    const key = mode === 'vertical' ? 'clientX' : 'clientY';
+    if ('touches' in e) {
+      const touch = e.touches[0] ?? e.changedTouches[0];
+      return touch?.[key] ?? 0;
+    }
+    return e[key];
+  };
+
   const onResizerMouseDown = (e: React.MouseEvent<HTMLElement>): void => {
     isActiveMove.current = true;
     lastPosition.current = e[mode === 'vertical' ? 'clientX' : 'clientY'];
     onDragStarted && onDragStarted();
   };
 
-  const onMouseMove = useCallback(
-    (e: MouseEvent): void => {
+  const onResizerTouchStart = (e: React.TouchEvent<HTMLElement>): void => {
+    const touch = e.touches[0];
+    if (!touch) return;
+    isActiveMove.current = true;
+    lastPosition.current = touch[mode === 'vertical' ? 'clientX' : 'clientY'];
+    onDragStarted && onDragStarted();
+  };
+
+  const onPointerMove = useCallback(
+    (e: MouseEvent | TouchEvent): void => {
       if (!disabled && isActiveMove.current) {
         const pane = paneRef.current;
         if (pane) {
           if (pane.getBoundingClientRect) {
             const width = pane.getBoundingClientRect().width;
             const height = pane.getBoundingClientRect().height;
-            const current = e[mode === 'vertical' ? 'clientX' : 'clientY'];
+            const current = getPointerPos(e);
             const size = mode === 'vertical' ? width : height;
             let offset = lastPosition.current - current;
             if (step) {
@@ -105,7 +122,7 @@ const Split = (props: SplitProps): JSX.Element => {
     [props, disabled, maxSize, minSize, mode, onChange, step]
   );
 
-  const onMouseUp = useCallback((): void => {
+  const onPointerUp = useCallback((): void => {
     isActiveMove.current = false;
     onDragFinished && onDragFinished();
   }, [onDragFinished]);
@@ -124,14 +141,18 @@ const Split = (props: SplitProps): JSX.Element => {
   }
 
   useEffect(() => {
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+    window.addEventListener('touchmove', onPointerMove);
+    window.addEventListener('touchend', onPointerUp);
 
     return (): void => {
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onMouseUp);
+      window.removeEventListener('mousemove', onPointerMove);
+      window.removeEventListener('mouseup', onPointerUp);
+      window.removeEventListener('touchmove', onPointerMove);
+      window.removeEventListener('touchend', onPointerUp);
     };
-  }, [onMouseMove, onMouseUp]);
+  }, [onPointerMove, onPointerUp]);
 
   useEffect(() => {
     const initialSize = getSizeNumber(props.size || defaultSize || minSize);
@@ -159,6 +180,7 @@ const Split = (props: SplitProps): JSX.Element => {
           size={resizerSize}
           mode={mode}
           onResizerMouseDown={onResizerMouseDown}
+          onResizerTouchStart={onResizerTouchStart}
         />
         <Pane style={{ flex: '1 1 0%' }}>{childrenList[1]}</Pane>
       </div>

@@ -84,6 +84,10 @@ export type SiteLocale = {
     openInStackBlitz: string;
     openInCodeSandbox: string;
   };
+  commandPalette: {
+    placeholder: string;
+    noResults: string;
+  };
   common: {
     loading: string;
   };

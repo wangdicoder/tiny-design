@@ -152,16 +152,24 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     // Store latest drag/dragEnd handlers in refs so window listeners
     // always dispatch to the current closure (no stale captures).
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const draggingRef = useRef<(e: MouseEvent) => void>(() => {});
+    const draggingRef = useRef<(e: MouseEvent | TouchEvent) => void>(() => {});
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     const dragEndRef = useRef<() => void>(() => {});
 
-    draggingRef.current = (e: MouseEvent): void => {
+    const getClientPos = (e: MouseEvent | TouchEvent): number => {
+      const key = isVertical ? 'clientY' : 'clientX';
+      if ('touches' in e) {
+        return e.touches[0]?.[key] ?? e.changedTouches[0]?.[key] ?? 0;
+      }
+      return e[key];
+    };
+
+    draggingRef.current = (e: MouseEvent | TouchEvent): void => {
       if (!isDragging.current) {
         return;
       }
       const sliderVal = getWidthToValue(
-        e[isVertical ? 'clientY' : 'clientX'] - mouseStartPos.current + trackStartPos.current
+        getClientPos(e) - mouseStartPos.current + trackStartPos.current
       );
       const val = [...sliderValuesRef.current];
       if (sliderVal !== currVal.current) {
@@ -175,26 +183,28 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       isDragging.current = false;
       window.removeEventListener('mousemove', stableOnDragging);
       window.removeEventListener('mouseup', stableOnDragEnd);
+      window.removeEventListener('touchmove', stableOnDragging);
+      window.removeEventListener('touchend', stableOnDragEnd);
       const vals = sliderValuesRef.current;
       onAfterChange &&
         onAfterChange(vals.length === 1 ? vals[0] : [vals[0], vals[1]]);
     };
 
     // Stable function references for window event listeners
-    const stableOnDragging = useCallback((e: MouseEvent) => draggingRef.current(e), []);
+    const stableOnDragging = useCallback((e: MouseEvent | TouchEvent) => draggingRef.current(e), []);
     const stableOnDragEnd = useCallback(() => dragEndRef.current(), []);
 
     /**
      * Get track width info when click down the thumb button
      */
-    const handleThumbOnMouseDown = (idx: number, e: React.MouseEvent<HTMLDivElement>): void => {
+    const startDrag = (idx: number, clientPos: number): void => {
       if (disabled) {
         return;
       }
 
       thumbIdx.current = idx;
       isDragging.current = true;
-      mouseStartPos.current = e[isVertical ? 'clientY' : 'clientX'];
+      mouseStartPos.current = clientPos;
       const trackNode = trackRef.current;
       if (trackNode) {
         trackStartPos.current = isVertical ? trackNode.offsetTop : trackNode.clientWidth;
@@ -216,6 +226,19 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
       window.addEventListener('mousemove', stableOnDragging, { capture: true });
       window.addEventListener('mouseup', stableOnDragEnd, { capture: true });
+      window.addEventListener('touchmove', stableOnDragging, { capture: true });
+      window.addEventListener('touchend', stableOnDragEnd, { capture: true });
+    };
+
+    const handleThumbOnMouseDown = (idx: number, e: React.MouseEvent<HTMLDivElement>): void => {
+      startDrag(idx, e[isVertical ? 'clientY' : 'clientX']);
+    };
+
+    const handleThumbOnTouchStart = (idx: number, e: React.TouchEvent<HTMLDivElement>): void => {
+      const touch = e.touches[0];
+      if (touch) {
+        startDrag(idx, touch[isVertical ? 'clientY' : 'clientX']);
+      }
     };
 
     /**
@@ -311,7 +334,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
               }}
               onMouseEnter={(): void => handleThumbOnMouseEnter(idx)}
               onMouseLeave={handleThumbOnMouseLeave}
-              onMouseDown={(e): void => handleThumbOnMouseDown(idx, e)}>
+              onMouseDown={(e): void => handleThumbOnMouseDown(idx, e)}
+              onTouchStart={(e): void => handleThumbOnTouchStart(idx, e)}>
               <Tooltip
                 trigger="manual"
                 visible={

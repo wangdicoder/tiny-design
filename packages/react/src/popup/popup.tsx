@@ -210,6 +210,8 @@ const Popup = (props: PopupProps): JSX.Element => {
       } else {
         target.addEventListener('mousedown', displayPopup);
         target.addEventListener('mouseup', hidePopup);
+        target.addEventListener('touchstart', displayPopup);
+        target.addEventListener('touchend', hidePopup);
       }
     } else if (trigger === 'contextmenu') {
       target.addEventListener('contextmenu', handleTargetOnMouseClick);
@@ -225,6 +227,8 @@ const Popup = (props: PopupProps): JSX.Element => {
       target.removeEventListener('blur', hidePopup);
       target.removeEventListener('mousedown', displayPopup);
       target.removeEventListener('mouseup', hidePopup);
+      target.removeEventListener('touchstart', displayPopup);
+      target.removeEventListener('touchend', hidePopup);
       target.removeEventListener('contextmenu', handleTargetOnMouseClick);
     };
   }, [

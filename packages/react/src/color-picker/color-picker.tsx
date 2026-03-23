@@ -82,32 +82,72 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
     updateSpectrumFromEvent(e.nativeEvent);
   };
 
-  const updateSpectrumFromEvent = (e: MouseEvent | React.MouseEvent['nativeEvent']) => {
+  const handleSpectrumTouchStart = (e: React.TouchEvent) => {
+    if (disabled) return;
+    setDragging(true);
+    updateSpectrumFromEvent(e.nativeEvent);
+  };
+
+  const getClientPos = (e: MouseEvent | TouchEvent | React.MouseEvent['nativeEvent']) => {
+    if ('touches' in e) {
+      const touch = e.touches[0] ?? e.changedTouches[0];
+      return { clientX: touch?.clientX ?? 0, clientY: touch?.clientY ?? 0 };
+    }
+    return { clientX: e.clientX, clientY: e.clientY };
+  };
+
+  const updateSpectrumFromEvent = (e: MouseEvent | TouchEvent | React.MouseEvent['nativeEvent']) => {
     const rect = spectrumRef.current?.getBoundingClientRect();
     if (!rect) return;
-    const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-    const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height));
+    const { clientX, clientY } = getClientPos(e);
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    const y = Math.max(0, Math.min(clientY - rect.top, rect.height));
     const s = Math.round((x / rect.width) * 100);
     const b = Math.round(100 - (y / rect.height) * 100);
     updateColor({ s, b });
   };
 
+  const addDragListeners = (
+    handleMove: (ev: MouseEvent | TouchEvent) => void,
+    handleUp: () => void
+  ) => {
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mouseup', handleUp);
+    document.addEventListener('touchmove', handleMove);
+    document.addEventListener('touchend', handleUp);
+  };
+
+  const removeDragListeners = (
+    handleMove: (ev: MouseEvent | TouchEvent) => void,
+    handleUp: () => void
+  ) => {
+    document.removeEventListener('mousemove', handleMove);
+    document.removeEventListener('mouseup', handleUp);
+    document.removeEventListener('touchmove', handleMove);
+    document.removeEventListener('touchend', handleUp);
+  };
+
   const handleHueMouseDown = (e: React.MouseEvent) => {
     if (disabled) return;
     updateHueFromEvent(e.nativeEvent);
-    const handleMove = (ev: MouseEvent) => updateHueFromEvent(ev);
-    const handleUp = () => {
-      document.removeEventListener('mousemove', handleMove);
-      document.removeEventListener('mouseup', handleUp);
-    };
-    document.addEventListener('mousemove', handleMove);
-    document.addEventListener('mouseup', handleUp);
+    const handleMove = (ev: MouseEvent | TouchEvent) => updateHueFromEvent(ev);
+    const handleUp = () => removeDragListeners(handleMove, handleUp);
+    addDragListeners(handleMove, handleUp);
   };
 
-  const updateHueFromEvent = (e: MouseEvent | React.MouseEvent['nativeEvent']) => {
+  const handleHueTouchStart = (e: React.TouchEvent) => {
+    if (disabled) return;
+    updateHueFromEvent(e.nativeEvent);
+    const handleMove = (ev: MouseEvent | TouchEvent) => updateHueFromEvent(ev);
+    const handleUp = () => removeDragListeners(handleMove, handleUp);
+    addDragListeners(handleMove, handleUp);
+  };
+
+  const updateHueFromEvent = (e: MouseEvent | TouchEvent | React.MouseEvent['nativeEvent']) => {
     const rect = hueRef.current?.getBoundingClientRect();
     if (!rect) return;
-    const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+    const { clientX } = getClientPos(e);
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
     const h = Math.round((x / rect.width) * 360);
     updateColor({ h });
   };
@@ -115,32 +155,41 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   const handleAlphaMouseDown = (e: React.MouseEvent) => {
     if (disabled) return;
     updateAlphaFromEvent(e.nativeEvent);
-    const handleMove = (ev: MouseEvent) => updateAlphaFromEvent(ev);
-    const handleUp = () => {
-      document.removeEventListener('mousemove', handleMove);
-      document.removeEventListener('mouseup', handleUp);
-    };
-    document.addEventListener('mousemove', handleMove);
-    document.addEventListener('mouseup', handleUp);
+    const handleMove = (ev: MouseEvent | TouchEvent) => updateAlphaFromEvent(ev);
+    const handleUp = () => removeDragListeners(handleMove, handleUp);
+    addDragListeners(handleMove, handleUp);
   };
 
-  const updateAlphaFromEvent = (e: MouseEvent | React.MouseEvent['nativeEvent']) => {
+  const handleAlphaTouchStart = (e: React.TouchEvent) => {
+    if (disabled) return;
+    updateAlphaFromEvent(e.nativeEvent);
+    const handleMove = (ev: MouseEvent | TouchEvent) => updateAlphaFromEvent(ev);
+    const handleUp = () => removeDragListeners(handleMove, handleUp);
+    addDragListeners(handleMove, handleUp);
+  };
+
+  const updateAlphaFromEvent = (e: MouseEvent | TouchEvent | React.MouseEvent['nativeEvent']) => {
     const rect = alphaRef.current?.getBoundingClientRect();
     if (!rect) return;
-    const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+    const { clientX } = getClientPos(e);
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
     const a = Math.round((x / rect.width) * 100) / 100;
     updateColor({ a });
   };
 
   useEffect(() => {
     if (!dragging) return;
-    const handleMove = (e: MouseEvent) => updateSpectrumFromEvent(e);
+    const handleMove = (e: MouseEvent | TouchEvent) => updateSpectrumFromEvent(e);
     const handleUp = () => setDragging(false);
     document.addEventListener('mousemove', handleMove);
     document.addEventListener('mouseup', handleUp);
+    document.addEventListener('touchmove', handleMove);
+    document.addEventListener('touchend', handleUp);
     return () => {
       document.removeEventListener('mousemove', handleMove);
       document.removeEventListener('mouseup', handleUp);
+      document.removeEventListener('touchmove', handleMove);
+      document.removeEventListener('touchend', handleUp);
     };
   }, [dragging, color.h, color.a]);
 
@@ -179,6 +228,7 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
         className={`${prefixCls}__spectrum`}
         style={{ backgroundColor: hueColor }}
         onMouseDown={handleSpectrumMouseDown}
+        onTouchStart={handleSpectrumTouchStart}
       >
         <div className={`${prefixCls}__spectrum-white`} />
         <div className={`${prefixCls}__spectrum-black`} />
@@ -199,6 +249,7 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
             ref={hueRef}
             className={`${prefixCls}__hue`}
             onMouseDown={handleHueMouseDown}
+            onTouchStart={handleHueTouchStart}
           >
             <div
               className={`${prefixCls}__slider-handle`}
@@ -210,6 +261,7 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
               ref={alphaRef}
               className={`${prefixCls}__alpha`}
               onMouseDown={handleAlphaMouseDown}
+              onTouchStart={handleAlphaTouchStart}
               style={{
                 background: `linear-gradient(to right, transparent, ${hsbToHex({ ...color, a: 1 })})`,
               }}

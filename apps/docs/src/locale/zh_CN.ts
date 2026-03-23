@@ -87,6 +87,10 @@ const zh_CN: SiteLocale = {
     openInStackBlitz: '在 StackBlitz 中打开',
     openInCodeSandbox: '在 CodeSandbox 中打开',
   },
+  commandPalette: {
+    placeholder: '搜索文档...',
+    noResults: '未找到结果。',
+  },
   common: {
     loading: '加载中...',
   },
