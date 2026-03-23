@@ -9,7 +9,8 @@
   line-height: 1;
 
   &__count {
-    @include badge-base();
+    @include badge-base;
+
     min-width: $badge-size;
     min-height: $badge-size;
     line-height: $badge-size;
@@ -29,13 +30,14 @@
   }
 
   &__dot {
-    @include badge-base();
+    @include badge-base;
+
     width: $badge-dot-size;
     height: $badge-dot-size;
     line-height: $badge-dot-size;
 
     &_wave {
-      &:after {
+      &::after {
         content: '';
         position: absolute;
         top: 0;
@@ -46,6 +48,32 @@
         background-color: inherit;
         animation: ty-processing 1.2s infinite ease-in-out;
       }
+    }
+  }
+
+  &__scroll-number {
+    display: inline-flex;
+
+    .#{$prefix}-scroll-number__content {
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+      font-family: inherit;
+    }
+
+    .#{$prefix}-scroll-number__measure {
+      font-size: inherit;
+      font-weight: inherit;
+    }
+
+    .#{$prefix}-scroll-number__suffix {
+      margin-left: 0;
+      font-size: inherit;
+    }
+
+    .#{$prefix}-scroll-number__sr-only,
+    .#{$prefix}-scroll-number__title {
+      display: none;
     }
   }
 

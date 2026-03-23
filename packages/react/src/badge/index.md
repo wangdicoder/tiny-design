@@ -8,6 +8,8 @@ import OverflowDemo from './demo/Overflow';
 import OverflowSource from './demo/Overflow.tsx?raw';
 import StandaloneDemo from './demo/Standalone';
 import StandaloneSource from './demo/Standalone.tsx?raw';
+import DynamicDemo from './demo/Dynamic';
+import DynamicSource from './demo/Dynamic.tsx?raw';
 
 # Badge
 
@@ -74,6 +76,15 @@ Set `color` to display the dot badge with different colors. `processing` can sho
 > Only the dot badge has the `processing` effect.
 
 <DemoBlock component={CustomDemo} source={CustomSource} />
+    
+    </Demo>
+    <Demo>
+
+### Dynamic
+
+Increase or decrease the count with buttons, or toggle the dot with a switch.
+
+<DemoBlock component={DynamicDemo} source={DynamicSource} />
 
     </Demo>
   </Column>

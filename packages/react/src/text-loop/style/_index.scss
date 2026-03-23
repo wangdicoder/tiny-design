@@ -1,0 +1,15 @@
+@use '../../style/variables' as *;
+
+.#{$prefix}-text-loop {
+  overflow: hidden;
+  position: relative;
+
+  &__track {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    flex-shrink: 0;
+  }
+}

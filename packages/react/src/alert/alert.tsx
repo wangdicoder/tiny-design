@@ -76,7 +76,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, forwardedRef)
         else if (forwardedRef) forwardedRef.current = node;
       }}>
         {icon && renderIcon()}
-        <div>
+        <div className={`${prefixCls}__content`}>
           {title && <p className={classNames(`${prefixCls}__title`, { [`${prefixCls}__title_has-content`]: children })}>{title}</p>}
           {children}
         </div>
