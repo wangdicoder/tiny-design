@@ -19,9 +19,9 @@
   "files": ["dist"],
   "type": "module",
   "scripts": {
-    "extract": "tsx scripts/extract.ts",
+    "extract": "node --import tsx scripts/extract.ts",
     "build": "pnpm extract && tsup",
-    "test": "jest"
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1"
