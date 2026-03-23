@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.0
+
+### Minor Changes
+
+- Add ScrollNumber component with animated digit transitions and shortest-path scrolling; integrate into Badge for smooth count animations. Add TextLoop component for cycling through children with vertical slide transitions. - [#74](https://github.com/wangdicoder/tiny-design/pull/74) [`2f215ca`](https://github.com/wangdicoder/tiny-design/commit/2f215cacd199ab2d7433b9f7de2241bf8fc46c51)
+
 ## 1.5.1
 
 ### Patch Changes
