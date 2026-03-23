@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextLoop /> should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    aria-live="polite"
+    class="ty-text-loop"
+  >
+    <div
+      class="ty-text-loop__track ty-text-loop__track_vertical"
+      style="transform: translateY(0%); transition: none;"
+    >
+      <div
+        class="ty-text-loop__item"
+      >
+        <span>
+          A
+        </span>
+      </div>
+      <div
+        class="ty-text-loop__item"
+      >
+        <span>
+          B
+        </span>
+      </div>
+      <div
+        class="ty-text-loop__item"
+      >
+        <span>
+          A
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
