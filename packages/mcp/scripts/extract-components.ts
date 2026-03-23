@@ -1,7 +1,11 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Project, type InterfaceDeclaration } from 'ts-morph';
 import type { ComponentData, ComponentProp } from '../src/types';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const REACT_SRC = path.resolve(__dirname, '../../react/src');
 
