@@ -10,6 +10,8 @@ import TitleDemo from './demo/Title';
 import TitleSource from './demo/Title.tsx?raw';
 import TypeDemo from './demo/Type';
 import TypeSource from './demo/Type.tsx?raw';
+import LoopBannerDemo from './demo/LoopBanner';
+import LoopBannerSource from './demo/LoopBanner.tsx?raw';
 
 # Alert
 
@@ -84,6 +86,15 @@ Additional title for alert message.
 Replace the default icon with customized text.
 
 <DemoBlock component={CloseBtnDemo} source={CloseBtnSource} />
+
+    </Demo>
+    <Demo>
+
+### Loop Banner
+
+Combine with `Marquee` component to create a scrolling banner alert. The text pauses on hover.
+
+<DemoBlock component={LoopBannerDemo} source={LoopBannerSource} />
 
     </Demo>
   </Column>

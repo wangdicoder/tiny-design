@@ -6,7 +6,9 @@ exports[`<Alert /> should match the snapshot 1`] = `
     class="ty-alert ty-alert_info ty-undefined-enter"
     role="alert"
   >
-    <div>
+    <div
+      class="ty-alert__content"
+    >
       Alert
     </div>
   </div>

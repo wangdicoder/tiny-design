@@ -20,6 +20,11 @@
     margin-top: 14px;
   }
 
+  &__content {
+    flex: 1;
+    overflow: hidden;
+  }
+
   &__title {
     box-sizing: border-box;
     margin: 0;

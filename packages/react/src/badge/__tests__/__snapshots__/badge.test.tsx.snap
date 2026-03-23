@@ -29,8 +29,247 @@ exports[`<Badge /> should match the snapshot 1`] = `
             >
               <span
                 class="ty-scroll-number__digit-column"
-                style="transform: translateY(0px);"
               >
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  0
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  1
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  2
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  3
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  4
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  5
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  6
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  7
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  8
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  9
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  0
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  1
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  2
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  3
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  4
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  5
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  6
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  7
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  8
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  9
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  0
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  1
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  2
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  3
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  4
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  5
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  6
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  7
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  8
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  9
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  0
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  1
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  2
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  3
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  4
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  5
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  6
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  7
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  8
+                </span>
+                <span
+                  class="ty-scroll-number__digit-cell"
+                  style="height: 0px; line-height: 0px;"
+                >
+                  9
+                </span>
                 <span
                   class="ty-scroll-number__digit-cell"
                   style="height: 0px; line-height: 0px;"
