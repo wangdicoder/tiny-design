@@ -5,10 +5,11 @@ import { z } from 'zod';
 import { listComponents, getComponentProps, getComponentExample } from './tools/components.js';
 import { getDesignTokens } from './tools/tokens.js';
 import { listIcons, getIcon } from './tools/icons.js';
+import pkg from '../package.json';
 
 const server = new McpServer({
   name: '@tiny-design/mcp',
-  version: '1.6.0',
+  version: pkg.version,
 });
 
 // --- Component tools ---

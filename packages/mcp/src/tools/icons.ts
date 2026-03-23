@@ -1,18 +1,9 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import type { IconData } from '../types';
+import type { IconData } from '../types.js';
+import iconsData from '../data/icons.json';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const DATA_PATH = path.resolve(__dirname, '../data/icons.json');
-
-function loadIcons(): IconData {
-  return JSON.parse(fs.readFileSync(DATA_PATH, 'utf-8'));
-}
+const data = iconsData as IconData;
 
 export function listIcons(search?: string): string[] {
-  const data = loadIcons();
   if (search) {
     const term = search.toLowerCase();
     return data.icons.filter((name) => name.toLowerCase().includes(term));
@@ -21,7 +12,6 @@ export function listIcons(search?: string): string[] {
 }
 
 export function getIcon(name: string) {
-  const data = loadIcons();
   const icon = data.icons.find(
     (i) => i.toLowerCase() === name.toLowerCase()
   );
