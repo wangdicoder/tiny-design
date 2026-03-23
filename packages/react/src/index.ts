@@ -72,6 +72,7 @@ export { default as Switch } from './switch';
 export { default as Table } from './table';
 export { default as Tabs } from './tabs';
 export { default as Tag } from './tag';
+export { default as TextLoop } from './text-loop';
 export { default as Textarea } from './textarea';
 export { default as Timeline } from './timeline';
 export { default as TimePicker } from './time-picker';
