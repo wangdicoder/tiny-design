@@ -9,7 +9,9 @@ Primary use case: loop banner alerts where notification messages rotate automati
 ## API
 
 ```tsx
-interface TextLoopProps extends BaseProps {
+interface TextLoopProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
   /** Time each item stays visible, in ms (default: 3000) */
   interval?: number;
   /** Pause cycling on hover (default: true) */
@@ -18,9 +20,12 @@ interface TextLoopProps extends BaseProps {
   infinite?: boolean;
   /** Cycling direction (default: 'up') */
   direction?: 'up' | 'down' | 'left' | 'right';
-  children: React.ReactNode;
 }
 ```
+
+Uses `React.forwardRef` to forward ref to the outer container div. Sets `displayName = 'TextLoop'`.
+
+Children are processed via `React.Children.toArray` (flattens fragments, strips nulls/booleans).
 
 ## Usage
 
@@ -52,29 +57,45 @@ interface TextLoopProps extends BaseProps {
 
 ### Approach: CSS translateY/translateX with interval timer
 
-1. **Container** has `overflow: hidden` and a measured size (height for vertical, width for horizontal) equal to one child.
-2. **Inner wrapper** holds all children stacked in the cycling direction (flex-direction: column for up/down, row for left/right). Each child is sized to fill the container.
+1. **Container** has `overflow: hidden` and a measured size (height for vertical, width for horizontal) equal to the first child's measured size via ref.
+2. **Inner wrapper** holds all children stacked in the cycling direction (flex-direction: column for up/down, row for left/right). Each child is wrapped in a `ty-text-loop__item` div sized to fill the container.
 3. **Timer** (`setInterval`) increments the current index every `interval` ms.
-4. **Translation**: On index change, the wrapper is translated by `-(index * itemSize)px` with a 300ms CSS transition.
-5. **Seamless loop** (`infinite=true`): A duplicate of the first child is appended at the end. After transitioning to it, the wrapper silently resets to position 0 (transition disabled) to create a seamless loop.
+4. **Translation**: On index change, the wrapper is translated by `-(index * itemSize)px` with a fixed 300ms CSS transition (matches project standard).
+5. **Seamless loop** (`infinite=true`): A duplicate of the first child is appended at the end. After transitioning to it, listen for `transitionend`, then silently reset to position 0 (transition disabled) to create a seamless loop.
 6. **Finite mode** (`infinite=false`): No duplicate child. Cycling stops on the last item.
 7. **Pause on hover**: `mouseenter` clears the interval, `mouseleave` restarts it.
-8. **Accessibility**: Respects `prefers-reduced-motion` — disables transition animation.
 
-### Direction mechanics
+### Edge cases
 
-| Direction | Flex direction | Translate axis | Measured dimension |
+- **0 children**: Render an empty container. No timer started.
+- **1 child**: Render statically. No timer, no animation.
+- **Dynamic children changes**: Reset index to 0, re-measure item size.
+
+### Direction semantics
+
+"Direction" describes the visual motion of outgoing content:
+- `up` = content slides upward, new item enters from bottom
+- `down` = content slides downward, new item enters from top
+- `left` = content slides left, new item enters from right
+- `right` = content slides right, new item enters from left
+
+| Direction | Flex direction | Translate      | Measured dimension |
 |-----------|---------------|----------------|--------------------|
-| `up`      | column        | translateY (-)  | height             |
-| `down`    | column        | translateY (+)  | height             |
-| `left`    | row           | translateX (-)  | width              |
-| `right`   | row           | translateX (+)  | width              |
+| `up`      | column        | translateY (-) | height             |
+| `down`    | column        | translateY (+) | height             |
+| `left`    | row           | translateX (-) | width              |
+| `right`   | row           | translateX (+) | width              |
 
 ### CSS classes (BEM)
 
 - `.ty-text-loop` — outer container, `overflow: hidden`
 - `.ty-text-loop__track` — inner wrapper, holds children, animated via `transform`
 - `.ty-text-loop__item` — each child wrapper, sized to fill container
+
+### Accessibility
+
+- `aria-live="polite"` on the container so screen readers announce content changes
+- Respects `prefers-reduced-motion` — disables transition animation, instant switch
 
 ## File structure
 
@@ -103,6 +124,8 @@ packages/react/src/text-loop/
 ## Testing
 
 - Renders all children
+- Renders nothing with 0 children
+- Renders statically with 1 child (no timer)
 - Cycles to next child after interval (use `jest.advanceTimersByTime`)
 - Pauses on hover, resumes on mouse leave
 - Stops after one cycle when `infinite={false}`
