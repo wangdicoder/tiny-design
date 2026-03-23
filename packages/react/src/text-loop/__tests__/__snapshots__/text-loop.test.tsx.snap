@@ -7,7 +7,7 @@ exports[`<TextLoop /> should match the snapshot 1`] = `
     class="ty-text-loop"
   >
     <div
-      class="ty-text-loop__track ty-text-loop__track_vertical"
+      class="ty-text-loop__track"
       style="transform: translateY(0%); transition: none;"
     >
       <div

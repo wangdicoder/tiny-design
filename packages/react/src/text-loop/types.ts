@@ -11,5 +11,5 @@ export interface TextLoopProps
   /** Loop infinitely or stop after one full cycle (default: true) */
   infinite?: boolean;
   /** Cycling direction (default: 'up') */
-  direction?: 'up' | 'down' | 'left' | 'right';
+  direction?: 'up' | 'down';
 }

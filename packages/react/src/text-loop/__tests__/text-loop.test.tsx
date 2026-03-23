@@ -126,7 +126,7 @@ describe('<TextLoop />', () => {
     expect(track.style.transform).toBe(transformAtLast);
   });
 
-  it('should apply vertical classes by default', () => {
+  it('should render track element', () => {
     const { container } = render(
       <TextLoop>
         <span>A</span>
@@ -134,40 +134,7 @@ describe('<TextLoop />', () => {
       </TextLoop>
     );
     const track = container.querySelector('.ty-text-loop__track');
-    expect(track).toHaveClass('ty-text-loop__track_vertical');
-  });
-
-  it('should apply horizontal classes for left direction', () => {
-    const { container } = render(
-      <TextLoop direction="left">
-        <span>A</span>
-        <span>B</span>
-      </TextLoop>
-    );
-    const track = container.querySelector('.ty-text-loop__track');
-    expect(track).toHaveClass('ty-text-loop__track_horizontal');
-  });
-
-  it('should apply horizontal classes for right direction', () => {
-    const { container } = render(
-      <TextLoop direction="right">
-        <span>A</span>
-        <span>B</span>
-      </TextLoop>
-    );
-    const track = container.querySelector('.ty-text-loop__track');
-    expect(track).toHaveClass('ty-text-loop__track_horizontal');
-  });
-
-  it('should apply vertical classes for down direction', () => {
-    const { container } = render(
-      <TextLoop direction="down">
-        <span>A</span>
-        <span>B</span>
-      </TextLoop>
-    );
-    const track = container.querySelector('.ty-text-loop__track');
-    expect(track).toHaveClass('ty-text-loop__track_vertical');
+    expect(track).toBeInTheDocument();
   });
 
   it('should have aria-live attribute', () => {

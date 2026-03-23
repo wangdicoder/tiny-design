@@ -6,14 +6,7 @@
 
   &__track {
     display: flex;
-
-    &_vertical {
-      flex-direction: column;
-    }
-
-    &_horizontal {
-      flex-direction: row;
-    }
+    flex-direction: column;
   }
 
   &__item {

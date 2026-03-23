@@ -20,8 +20,7 @@ const TextLoop = React.forwardRef<HTMLDivElement, TextLoopProps>((props, forward
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('text-loop', configContext.prefixCls, customisedCls);
 
-  const isVertical = direction === 'up' || direction === 'down';
-  const isReverse = direction === 'down' || direction === 'right';
+  const isReverse = direction === 'down';
 
   const childArray = useMemo(() => React.Children.toArray(children), [children]);
   const count = childArray.length;
@@ -51,14 +50,12 @@ const TextLoop = React.forwardRef<HTMLDivElement, TextLoopProps>((props, forward
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isPausedRef = useRef(false);
 
-  // Measure the first item's size
+  // Measure the first item's height
   const measure = useCallback(() => {
     if (!firstItemRef.current) return;
-    const size = isVertical
-      ? firstItemRef.current.offsetHeight
-      : firstItemRef.current.offsetWidth;
+    const size = firstItemRef.current.offsetHeight;
     if (size > 0) setItemSize(size);
-  }, [isVertical]);
+  }, []);
 
   useEffect(() => {
     measure();
@@ -127,9 +124,8 @@ const TextLoop = React.forwardRef<HTMLDivElement, TextLoopProps>((props, forward
     if (pauseOnHover) isPausedRef.current = false;
   }, [pauseOnHover]);
 
-  // Always use negative translate — direction is controlled by index counting
   const offset = itemSize > 0 ? `${-(index * itemSize)}px` : `${-(index * 100)}%`;
-  const transform = isVertical ? `translateY(${offset})` : `translateX(${offset})`;
+  const transform = `translateY(${offset})`;
 
   // Check prefers-reduced-motion via matchMedia
   const prefersReducedMotion =
@@ -137,14 +133,10 @@ const TextLoop = React.forwardRef<HTMLDivElement, TextLoopProps>((props, forward
     window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
   const cls = classNames(prefixCls, className);
-  const trackCls = classNames(`${prefixCls}__track`, {
-    [`${prefixCls}__track_vertical`]: isVertical,
-    [`${prefixCls}__track_horizontal`]: !isVertical,
-  });
 
   const containerStyle: React.CSSProperties = {
     ...style,
-    ...(itemSize > 0 ? (isVertical ? { height: itemSize } : { width: itemSize }) : {}),
+    ...(itemSize > 0 ? { height: itemSize } : {}),
   };
 
   const trackStyle: React.CSSProperties = {
@@ -163,7 +155,7 @@ const TextLoop = React.forwardRef<HTMLDivElement, TextLoopProps>((props, forward
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className={trackCls}
+        className={`${prefixCls}__track`}
         style={trackStyle}
         onTransitionEnd={handleTransitionEnd}
       >
