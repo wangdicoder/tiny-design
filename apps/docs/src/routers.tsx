@@ -48,6 +48,10 @@ const guide = {
     () => import('../guides/faq.md'),
     () => import('../guides/faq.zh_CN.md'),
   ),
+  mcpServer: ll(
+    () => import('../guides/mcp-server.md'),
+    () => import('../guides/mcp-server.zh_CN.md'),
+  ),
   themeEditor: ll(
     () => import('./containers/theme-editor'),
     () => import('./containers/theme-editor'),
@@ -147,6 +151,7 @@ export const getGuideMenu = (s: SiteLocale): RouterItem[] => {
     { title: s.guideMenu.introduction, route: 'introduction', component: pick(guide.introduction, isZh) },
     { title: s.guideMenu.getStarted, route: 'get-started', component: pick(guide.getStarted, isZh) },
     { title: s.guideMenu.useWithVite, route: 'use-with-vite', component: pick(guide.useWithVite, isZh) },
+    { title: s.guideMenu.mcpServer, route: 'mcp-server', component: pick(guide.mcpServer, isZh) },
     { title: s.guideMenu.changelog, route: 'changelog', component: pick(guide.changelog, isZh) },
     { title: s.guideMenu.faq, route: 'faq', component: pick(guide.faq, isZh) },
   ];

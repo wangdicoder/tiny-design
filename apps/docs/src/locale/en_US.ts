@@ -58,6 +58,7 @@ const en_US: SiteLocale = {
     useWithVite: 'Use with Vite',
     changelog: 'Changelog',
     faq: 'FAQ',
+    mcpServer: 'MCP Server',
   },
   themeMenu: {
     customiseTheme: 'Customise Theme',

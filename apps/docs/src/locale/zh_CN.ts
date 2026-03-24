@@ -54,6 +54,7 @@ const zh_CN: SiteLocale = {
     useWithVite: '在 Vite 中使用',
     changelog: '更新日志',
     faq: '常见问题',
+    mcpServer: 'MCP Server',
   },
   themeMenu: {
     customiseTheme: '自定义主题',

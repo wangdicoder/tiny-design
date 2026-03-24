@@ -52,6 +52,7 @@ export type SiteLocale = {
     useWithVite: string;
     changelog: string;
     faq: string;
+    mcpServer: string;
   };
   themeMenu: {
     customiseTheme: string;
