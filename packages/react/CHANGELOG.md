@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.1
+
+### Patch Changes
+
+- Improve color-picker, slider, split, popup, and input-otp components; add @tiny-design/mcp server package with component, token, and icon tools - [#76](https://github.com/wangdicoder/tiny-design/pull/76) [`5b4641d`](https://github.com/wangdicoder/tiny-design/commit/5b4641d1a6a359093dc82ee258ab234a1200f59e)
+
 ## 1.6.0
 
 ### Minor Changes
