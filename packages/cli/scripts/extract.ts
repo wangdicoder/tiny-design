@@ -23,11 +23,14 @@ function writeJson(filename: string, data: unknown) {
   console.log(`  wrote ${filePath}`);
 }
 
-console.log('Extracting Tiny Design data...');
+console.log('Extracting Tiny Design data for CLI...');
 ensureDir(DATA_DIR);
 
-console.log('  extracting components...');
-writeJson('components.json', extractComponents({ reactSrcPath: REACT_SRC }));
+console.log('  extracting components (with docs & defaults)...');
+writeJson(
+  'components.json',
+  extractComponents({ reactSrcPath: REACT_SRC, includeDocs: true, includeDefaults: true }),
+);
 
 console.log('  extracting tokens...');
 writeJson('tokens.json', extractTokens({ variablesPath: VARIABLES_PATH }));

@@ -53,6 +53,13 @@ export type SiteLocale = {
     changelog: string;
     faq: string;
     mcpServer: string;
+    cli: string;
+    groups: {
+      overview: string;
+      gettingStarted: string;
+      ai: string;
+      resources: string;
+    };
   };
   themeMenu: {
     customiseTheme: string;
