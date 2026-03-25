@@ -8,6 +8,9 @@
 <p align="center">A friendly, themeable UI component library for React</p>
 
 <p align="center">
+  <a href="https://github.com/wangdicoder/tiny-design/actions">
+    <img src="https://img.shields.io/github/actions/workflow/status/wangdicoder/tiny-design/ci.yml?style=flat-square&label=test" alt="test status"/>
+  </a>
   <a href="https://www.npmjs.com/package/@tiny-design/react">
     <img src="https://img.shields.io/npm/v/@tiny-design/react.svg?style=flat-square" alt="npm version"/>
   </a>
@@ -15,7 +18,10 @@
     <img src="https://img.shields.io/npm/dm/@tiny-design/react.svg?style=flat-square" alt="npm downloads"/>
   </a>
   <a href="https://bundlephobia.com/package/@tiny-design/react">
-    <img src="https://img.shields.io/bundlephobia/minzip/@tiny-design/react.svg?style=flat-square" alt="bundle size"/>
+    <img src="https://img.shields.io/bundlephobia/minzip/@tiny-design/react?style=flat-square" alt="minzipped size"/>
+  </a>
+  <a href="https://www.jsdelivr.com/package/npm/@tiny-design/react">
+    <img src="https://img.shields.io/jsdelivr/npm/hm/@tiny-design/react?style=flat-square" alt="jsDelivr hits"/>
   </a>
   <a href="https://react.dev">
     <img src="https://img.shields.io/static/v1?label=react&message=%3E=18&color=61dafb&style=flat-square" alt="react version"/>
@@ -116,6 +122,8 @@ See the [Theming Guide](https://wangdicoder.github.io/tiny-design/theme/customis
 | [@tiny-design/react](./packages/react) | Core component library |
 | [@tiny-design/tokens](./packages/tokens) | Design tokens and foundational styles |
 | [@tiny-design/icons](./packages/icons) | SVG icon components |
+| [@tiny-design/cli](./packages/cli) | CLI for the Tiny Design component library |
+| [@tiny-design/mcp](./packages/mcp) | MCP server for AI assistants to access the component library |
 
 ## Components
 
