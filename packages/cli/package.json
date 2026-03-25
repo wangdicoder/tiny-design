@@ -1,37 +1,35 @@
 {
-  "name": "@tiny-design/mcp",
-  "version": "1.6.0",
-  "description": "MCP server for AI assistants to access the Tiny Design component library",
+  "name": "@tiny-design/cli",
+  "version": "1.0.0",
+  "description": "CLI for the Tiny Design component library",
   "license": "MIT",
-  "keywords": ["tiny-design", "mcp", "model-context-protocol", "ai"],
+  "keywords": ["tiny-design", "cli", "components", "design-system"],
   "repository": {
     "type": "git",
     "url": "https://github.com/wangdicoder/tiny-design.git",
-    "directory": "packages/mcp"
+    "directory": "packages/cli"
   },
   "author": "Di Wang<wangdicoder@gmail.com>",
   "publishConfig": {
     "access": "public"
   },
   "bin": {
-    "tiny-design-mcp": "./dist/index.js"
+    "tiny-design": "./dist/index.js"
   },
   "files": ["dist"],
   "type": "module",
   "scripts": {
     "extract": "node --import tsx scripts/extract.ts",
     "build": "pnpm extract && tsup",
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest --passWithNoTests"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.1"
+    "chalk": "^5.0.0",
+    "commander": "^12.0.0"
   },
   "devDependencies": {
     "@tiny-design/extract": "workspace:*",
-    "@types/jest": "^29.0.0",
     "@types/node": "^22.0.0",
-    "jest": "^29.0.0",
-    "ts-jest": "^29.0.0",
     "tsup": "^8.0.0",
     "tsx": "^4.0.0",
     "typescript": "^5.4.0"

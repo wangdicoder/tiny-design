@@ -52,6 +52,10 @@ const guide = {
     () => import('../guides/mcp-server.md'),
     () => import('../guides/mcp-server.zh_CN.md'),
   ),
+  cli: ll(
+    () => import('../guides/cli.md'),
+    () => import('../guides/cli.zh_CN.md'),
+  ),
   themeEditor: ll(
     () => import('./containers/theme-editor'),
     () => import('./containers/theme-editor'),
@@ -148,12 +152,33 @@ const c = {
 export const getGuideMenu = (s: SiteLocale): RouterItem[] => {
   const isZh = s.locale === 'zh_CN';
   return [
-    { title: s.guideMenu.introduction, route: 'introduction', component: pick(guide.introduction, isZh) },
-    { title: s.guideMenu.getStarted, route: 'get-started', component: pick(guide.getStarted, isZh) },
-    { title: s.guideMenu.useWithVite, route: 'use-with-vite', component: pick(guide.useWithVite, isZh) },
-    { title: s.guideMenu.mcpServer, route: 'mcp-server', component: pick(guide.mcpServer, isZh) },
-    { title: s.guideMenu.changelog, route: 'changelog', component: pick(guide.changelog, isZh) },
-    { title: s.guideMenu.faq, route: 'faq', component: pick(guide.faq, isZh) },
+    {
+      title: s.guideMenu.groups.overview,
+      children: [
+        { title: s.guideMenu.introduction, route: 'introduction', component: pick(guide.introduction, isZh) },
+      ],
+    },
+    {
+      title: s.guideMenu.groups.gettingStarted,
+      children: [
+        { title: s.guideMenu.getStarted, route: 'get-started', component: pick(guide.getStarted, isZh) },
+        { title: s.guideMenu.useWithVite, route: 'use-with-vite', component: pick(guide.useWithVite, isZh) },
+      ],
+    },
+    {
+      title: s.guideMenu.groups.ai,
+      children: [
+        { title: s.guideMenu.mcpServer, route: 'mcp-server', component: pick(guide.mcpServer, isZh) },
+        { title: s.guideMenu.cli, route: 'cli', component: pick(guide.cli, isZh) },
+      ],
+    },
+    {
+      title: s.guideMenu.groups.resources,
+      children: [
+        { title: s.guideMenu.changelog, route: 'changelog', component: pick(guide.changelog, isZh) },
+        { title: s.guideMenu.faq, route: 'faq', component: pick(guide.faq, isZh) },
+      ],
+    },
   ];
 };
 

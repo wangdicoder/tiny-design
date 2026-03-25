@@ -1,8 +1,13 @@
-import { extractIcons } from '../scripts/extract-icons';
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { extractIcons } from '@tiny-design/extract';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ICONS_INDEX = path.resolve(__dirname, '../../icons/src/index.ts');
 
 describe('extractIcons', () => {
   it('returns icon names and shared props', () => {
-    const result = extractIcons();
+    const result = extractIcons({ iconsIndexPath: ICONS_INDEX });
 
     // Check structure
     expect(result.props).toEqual({

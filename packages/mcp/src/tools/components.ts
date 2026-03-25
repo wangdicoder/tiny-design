@@ -1,4 +1,4 @@
-import type { ComponentData } from '../types.js';
+import type { ComponentData } from '@tiny-design/extract';
 import componentsData from '../data/components.json';
 
 const components = componentsData as ComponentData[];

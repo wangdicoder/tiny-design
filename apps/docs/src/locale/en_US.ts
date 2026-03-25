@@ -59,6 +59,13 @@ const en_US: SiteLocale = {
     changelog: 'Changelog',
     faq: 'FAQ',
     mcpServer: 'MCP Server',
+    cli: 'CLI',
+    groups: {
+      overview: 'Overview',
+      gettingStarted: 'Getting Started',
+      ai: 'AI',
+      resources: 'Resources',
+    },
   },
   themeMenu: {
     customiseTheme: 'Customise Theme',

@@ -55,6 +55,13 @@ const zh_CN: SiteLocale = {
     changelog: '更新日志',
     faq: '常见问题',
     mcpServer: 'MCP Server',
+    cli: 'CLI',
+    groups: {
+      overview: '概览',
+      gettingStarted: '快速上手',
+      ai: 'AI',
+      resources: '资源',
+    },
   },
   themeMenu: {
     customiseTheme: '自定义主题',

@@ -1,10 +1,15 @@
-import { extractComponents } from '../scripts/extract-components';
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { extractComponents, ComponentData } from '@tiny-design/extract';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const REACT_SRC = path.resolve(__dirname, '../../react/src');
 
 describe('extractComponents', () => {
-  let components: ReturnType<typeof extractComponents>;
+  let components: ComponentData[];
 
   beforeAll(() => {
-    components = extractComponents();
+    components = extractComponents({ reactSrcPath: REACT_SRC });
   });
 
   it('extracts all components', () => {

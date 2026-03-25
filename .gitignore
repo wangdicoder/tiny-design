@@ -24,6 +24,10 @@ apps/docs/build
 .claude/*
 !.claude/skills/
 
+# Generated data
+packages/mcp/src/data
+packages/cli/src/data
+
 # Misc
 *.tgz
 *.log

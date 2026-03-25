@@ -1,12 +1,5 @@
 import * as fs from 'node:fs';
-import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import type { TokenData } from '../src/types';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const VARIABLES_PATH = path.resolve(__dirname, '../../tokens/scss/_variables.scss');
+import type { TokenData, ExtractTokensOptions } from './types.js';
 
 // Map variable name prefixes to categories
 const CATEGORY_RULES: Array<{ test: (name: string) => boolean; category: string }> = [
@@ -31,8 +24,8 @@ function categorize(name: string): string | null {
   return null;
 }
 
-export function extractTokens(): TokenData {
-  const content = fs.readFileSync(VARIABLES_PATH, 'utf-8');
+export function extractTokens(options: ExtractTokensOptions): TokenData {
+  const content = fs.readFileSync(options.variablesPath, 'utf-8');
   const result: TokenData = {
     colors: {},
     typography: {},

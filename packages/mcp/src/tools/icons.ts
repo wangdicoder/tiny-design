@@ -1,4 +1,4 @@
-import type { IconData } from '../types.js';
+import type { IconData } from '@tiny-design/extract';
 import iconsData from '../data/icons.json';
 
 const data = iconsData as IconData;

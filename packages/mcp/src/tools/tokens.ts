@@ -1,4 +1,4 @@
-import type { TokenData } from '../types.js';
+import type { TokenData } from '@tiny-design/extract';
 import tokensData from '../data/tokens.json';
 
 const tokens = tokensData as TokenData;
