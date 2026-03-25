@@ -71,9 +71,12 @@ const Anchor = (props: AnchorProps): JSX.Element => {
         const container = getContainer();
         const containerRect = container.getBoundingClientRect();
         const elementRect = element.getBoundingClientRect();
-        container.scrollTop += elementRect.top - containerRect.top;
+        container.scrollTo({
+          top: container.scrollTop + elementRect.top - containerRect.top,
+          behavior: 'smooth',
+        });
       } else {
-        element.scrollIntoView(true);
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     },
     [getContainer]
@@ -117,10 +120,24 @@ const Anchor = (props: AnchorProps): JSX.Element => {
       ? container.getBoundingClientRect().top
       : 0;
 
+    // Check if scrolled to the bottom
+    let isAtBottom = false;
+    if (container) {
+      isAtBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 1;
+    } else {
+      isAtBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1;
+    }
+
     let newActiveId = '';
     let maxTop = -Infinity;
     let firstId = '';
     let firstTop = Infinity;
+    // Track the last heading visible in the viewport (for bottom-of-page case)
+    let lastVisibleId = '';
+    let lastVisibleTop = -Infinity;
+    const viewportHeight = container ? container.clientHeight : window.innerHeight;
+
     links.forEach((href) => {
       const id = href.replace('#', '');
       const el = document.getElementById(id);
@@ -134,8 +151,17 @@ const Anchor = (props: AnchorProps): JSX.Element => {
         maxTop = elTop;
         newActiveId = id;
       }
+      // Track headings visible in the viewport
+      if (elTop >= 0 && elTop <= viewportHeight && elTop > lastVisibleTop) {
+        lastVisibleTop = elTop;
+        lastVisibleId = id;
+      }
     });
-    if (!newActiveId && firstId) {
+
+    // When scrolled to the bottom, use the last visible heading
+    if (isAtBottom && lastVisibleId) {
+      newActiveId = lastVisibleId;
+    } else if (!newActiveId && firstId) {
       newActiveId = firstId;
     }
 

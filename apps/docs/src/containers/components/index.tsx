@@ -4,6 +4,7 @@ import { getComponentMenu, RouterItem } from '../../routers';
 import { SidebarMenu } from '../../components/sidebar-menu';
 import { Layout, Loader, Divider } from '@tiny-design/react';
 import { DocFooter } from '../../components/doc-footer';
+import { TableOfContents } from '../../components/table-of-contents';
 import { useLocaleContext } from '../../context/locale-context';
 import ComponentOverview from './overview';
 
@@ -52,6 +53,7 @@ const ComponentsPage = (): React.ReactElement => {
           <Divider className="doc-container__divider" />
           <DocFooter routers={flattenedRouters} />
         </Content>
+        <TableOfContents />
       </Layout>
     </Layout>
   );

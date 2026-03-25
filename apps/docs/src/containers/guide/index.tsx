@@ -4,6 +4,7 @@ import { getGuideMenu } from '../../routers';
 import { SidebarMenu } from '../../components/sidebar-menu';
 import { Layout, Loader, Divider } from '@tiny-design/react';
 import { DocFooter } from '../../components/doc-footer';
+import { TableOfContents } from '../../components/table-of-contents';
 import { useLocaleContext } from '../../context/locale-context';
 
 const { Content } = Layout;
@@ -41,6 +42,7 @@ const GuidePage = (): React.ReactElement => {
           <Divider className="doc-container__divider" />
           <DocFooter routers={guideMenu} />
         </Content>
+        <TableOfContents />
       </Layout>
     </Layout>
   );

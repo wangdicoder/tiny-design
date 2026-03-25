@@ -20,6 +20,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       className,
       style,
       children,
+      collapsed: _collapsed,
       prefixCls: customisedCls,
       ...otherProps
     } = props;
