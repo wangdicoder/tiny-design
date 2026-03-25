@@ -1,8 +1,13 @@
-import { extractTokens } from '../scripts/extract-tokens';
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { extractTokens } from '@tiny-design/extract';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const VARIABLES_PATH = path.resolve(__dirname, '../../tokens/scss/_variables.scss');
 
 describe('extractTokens', () => {
   it('extracts tokens grouped by category', () => {
-    const result = extractTokens();
+    const result = extractTokens({ variablesPath: VARIABLES_PATH });
 
     // Should have known categories
     expect(Object.keys(result)).toEqual(
@@ -11,7 +16,7 @@ describe('extractTokens', () => {
   });
 
   it('extracts color tokens', () => {
-    const result = extractTokens();
+    const result = extractTokens({ variablesPath: VARIABLES_PATH });
 
     expect(result.colors['primary-color']).toEqual({
       variable: '$primary-color',
@@ -25,7 +30,7 @@ describe('extractTokens', () => {
   });
 
   it('extracts typography tokens', () => {
-    const result = extractTokens();
+    const result = extractTokens({ variablesPath: VARIABLES_PATH });
 
     expect(result.typography['font-size-base']).toEqual({
       variable: '$font-size-base',
@@ -34,7 +39,7 @@ describe('extractTokens', () => {
   });
 
   it('extracts breakpoint tokens', () => {
-    const result = extractTokens();
+    const result = extractTokens({ variablesPath: VARIABLES_PATH });
 
     expect(result.breakpoints['size-xs']).toEqual({
       variable: '$size-xs',
@@ -43,7 +48,7 @@ describe('extractTokens', () => {
   });
 
   it('extracts shadow tokens', () => {
-    const result = extractTokens();
+    const result = extractTokens({ variablesPath: VARIABLES_PATH });
 
     expect(result.shadows).toBeDefined();
     expect(result.shadows['box-shadow-sm']).toBeDefined();

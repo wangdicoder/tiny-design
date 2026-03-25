@@ -21,7 +21,7 @@
   "scripts": {
     "extract": "node --import tsx scripts/extract.ts",
     "build": "pnpm extract && tsup",
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest --passWithNoTests"
   },
   "dependencies": {
     "chalk": "^5.0.0",
