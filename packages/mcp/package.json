@@ -1,9 +1,14 @@
 {
   "name": "@tiny-design/mcp",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "MCP server for AI assistants to access the Tiny Design component library",
   "license": "MIT",
-  "keywords": ["tiny-design", "mcp", "model-context-protocol", "ai"],
+  "keywords": [
+    "tiny-design",
+    "mcp",
+    "model-context-protocol",
+    "ai"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/wangdicoder/tiny-design.git",
@@ -16,7 +21,9 @@
   "bin": {
     "tiny-design-mcp": "./dist/index.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "scripts": {
     "extract": "node --import tsx scripts/extract.ts",
