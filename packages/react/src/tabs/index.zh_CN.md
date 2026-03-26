@@ -10,6 +10,8 @@ import EditableDemo from './demo/Editable';
 import EditableSource from './demo/Editable.tsx?raw';
 import ExtraDemo from './demo/Extra';
 import ExtraSource from './demo/Extra.tsx?raw';
+import AnimatedDemo from './demo/Animated';
+import AnimatedSource from './demo/Animated.tsx?raw';
 
 # Tabs
 
@@ -50,6 +52,15 @@ import { Tabs } from 'tiny-design';
 通过 `editable-card` 类型动态添加和删除选项卡。
 
 <DemoBlock component={EditableDemo} source={EditableSource} />
+
+    </Demo>
+    <Demo>
+
+### 无动画
+
+将 `animated` 设置为 `false` 以禁用选项卡切换动画。
+
+<DemoBlock component={AnimatedDemo} source={AnimatedSource} />
 
     </Demo>
   </Column>

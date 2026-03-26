@@ -335,12 +335,14 @@ function renderPanels(
   baseId?: string
 ): React.ReactNode {
   const activeIdx = items.findIndex((item) => item.key === currentKey);
-  const containerStyle: CSSProperties = animated && isHorizontal
+  const useSlide = animated && isHorizontal;
+  const containerStyle: CSSProperties = useSlide
     ? { transform: `translate3d(${-activeIdx * 100}%, 0, 0)` }
     : {};
 
   const containerCls = classNames(`${prefixCls}__content-inner`, {
-    [`${prefixCls}__content-inner_animated`]: animated && isHorizontal,
+    [`${prefixCls}__content-inner_animated`]: useSlide,
+    [`${prefixCls}__content-inner_static`]: !useSlide,
   });
 
   return (

@@ -10,6 +10,8 @@ import PositionDemo from './demo/Position';
 import PositionSource from './demo/Position.tsx?raw';
 import EditableDemo from './demo/Editable';
 import EditableSource from './demo/Editable.tsx?raw';
+import AnimatedDemo from './demo/Animated';
+import AnimatedSource from './demo/Animated.tsx?raw';
 
 # Tabs
 
@@ -50,6 +52,15 @@ Card style tabs.
 Add and remove tabs dynamically with the `editable-card` type.
 
 <DemoBlock component={EditableDemo} source={EditableSource} />
+
+    </Demo>
+    <Demo>
+
+### No Animation
+
+Disable the tab switching animation by setting `animated` to `false`.
+
+<DemoBlock component={AnimatedDemo} source={AnimatedSource} />
 
     </Demo>
   </Column>

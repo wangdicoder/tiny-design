@@ -1,3 +1,13 @@
+import { Tabs } from '@tiny-design/react';
+import { NpmIcon, YarnIcon, PnpmIcon, BunIcon } from './pkg-icons';
+import { HighlightedCode } from '../src/components/highlighted-code';
+
+export const CodeBlock = ({ children }) => (
+  <div className="markdown__pre-container">
+    <HighlightedCode className="language-bash">{children}</HighlightedCode>
+  </div>
+);
+
 # Get Started
 
 ## Install
@@ -6,19 +16,16 @@
 
 You first need to install and configure the `Node.js` environment properly locally.
 
-```bash
-$ npm install tiny-design
-```
-<br />
-
-```bash
-$ yarn add tiny-design
-```
-<br />
-
-```bash
-$ pnpm add tiny-design
-```
+<Tabs
+  animated={false}
+  defaultActiveKey="npm"
+  items={[
+    { key: 'npm', label: <span><NpmIcon />npm</span>, children: <CodeBlock>$ npm install @tiny-design/react</CodeBlock> },
+    { key: 'yarn', label: <span><YarnIcon />yarn</span>, children: <CodeBlock>$ yarn add @tiny-design/react</CodeBlock> },
+    { key: 'pnpm', label: <span><PnpmIcon />pnpm</span>, children: <CodeBlock>$ pnpm add @tiny-design/react</CodeBlock> },
+    { key: 'bun', label: <span><BunIcon />Bun</span>, children: <CodeBlock>$ bun add @tiny-design/react</CodeBlock> },
+  ]}
+/>
 
 ## Usage
 

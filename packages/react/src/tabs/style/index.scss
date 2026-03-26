@@ -108,6 +108,10 @@ $tab-prefix: #{$prefix}-tabs;
     &_animated {
       transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
+
+    &_static {
+      display: block;
+    }
   }
 
   &__panel {
@@ -267,6 +271,10 @@ $tab-prefix: #{$prefix}-tabs;
       }
     }
 
+    .#{$tab-prefix}__nav-wrap {
+      overflow: visible;
+    }
+
     .#{$tab-prefix}__nav-list {
       flex-direction: column;
     }
@@ -279,6 +287,8 @@ $tab-prefix: #{$prefix}-tabs;
     .#{$tab-prefix}__ink-bar {
       width: 2px;
       height: auto;
+      top: 0;
+      bottom: auto;
     }
 
     .#{$tab-prefix}__content {
