@@ -46,6 +46,7 @@ export const SidebarMenu = (props: Props): React.ReactElement => {
                             isActive ? 'sidebar-menu__menu-item_active' : ''
                           }>
                           {item.title}
+                          {item.tag && item.tag}
                         </NavLink>
                       </li>
                     ))}
@@ -62,6 +63,7 @@ export const SidebarMenu = (props: Props): React.ReactElement => {
                       isActive ? 'sidebar-menu__menu-item_active' : ''
                     }>
                     {router.title}
+                    {router.tag && router.tag}
                   </NavLink>
                 </li>
               );
