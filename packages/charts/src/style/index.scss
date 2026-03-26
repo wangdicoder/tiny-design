@@ -1,0 +1,151 @@
+@use '@tiny-design/tokens/scss/tokens' as *;
+
+// ---- Chart Container ----
+.ty-chart {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+
+  // Recharts text elements inherit chart-friendly styles
+  .recharts-cartesian-axis-tick-value {
+    font-size: $token-font-size-sm;
+    fill: $token-color-text-secondary;
+  }
+
+  .recharts-cartesian-grid line {
+    stroke: $token-color-border-light;
+  }
+}
+
+// ---- Chart Tooltip ----
+// Override Recharts' built-in tooltip wrapper to prevent double-boxing
+.ty-chart .recharts-tooltip-wrapper {
+  outline: none !important;
+
+  .recharts-default-tooltip {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+.ty-chart-tooltip {
+  background-color: $token-color-bg-elevated;
+  backdrop-filter: blur(12px);
+  border: 1px solid $token-color-border-light;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.07),
+    0 2px 4px -2px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(0, 0, 0, 0.03);
+  padding: 10px 14px;
+  font-size: $token-font-size-sm;
+  min-width: 140px;
+  line-height: 1.5;
+
+  &__label {
+    font-weight: 600;
+    color: $token-color-text;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid $token-color-border-light;
+    letter-spacing: -0.01em;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 0;
+  }
+
+  &__indicator {
+    flex-shrink: 0;
+
+    &_dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--indicator-color);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+
+    &_line {
+      width: 14px;
+      height: 3px;
+      border-radius: 2px;
+      background-color: var(--indicator-color);
+    }
+
+    &_dashed {
+      width: 14px;
+      height: 0;
+      border-top: 2px dashed var(--indicator-color);
+    }
+  }
+
+  &__item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+  }
+
+  &__item-name {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: $token-color-text-secondary;
+    white-space: nowrap;
+  }
+
+  &__item-value {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: $token-color-text;
+    font-feature-settings: 'tnum';
+  }
+}
+
+// ---- Chart Legend ----
+.ty-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  font-size: $token-font-size-sm;
+
+  &_top {
+    padding-bottom: 8px;
+  }
+
+  &_bottom {
+    padding-top: 8px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: default;
+  }
+
+  &__icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    color: $token-color-text-secondary;
+  }
+}
