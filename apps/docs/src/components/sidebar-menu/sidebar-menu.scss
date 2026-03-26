@@ -34,7 +34,6 @@
   }
 
   &__menu-item {
-    line-height: 40px;
     font-size: 14px;
     position: relative;
     padding-left: 50px;
@@ -43,6 +42,11 @@
       text-decoration: none;
       color: var(--ty-color-text);
       transition: all 300ms;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+      padding-right: 16px;
 
       &:hover {
         color: var(--ty-color-primary);
@@ -94,6 +98,11 @@
   &__group-list {
     margin: 10px 0;
     padding: 0;
+  }
+
+  &__tag {
+    font-size: 10px;
+    text-transform: uppercase;
   }
 
   &__backdrop {

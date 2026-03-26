@@ -9,6 +9,7 @@ import { readFileSync } from 'fs';
 const reactPkg = path.resolve(__dirname, '../../packages/react/package.json');
 const reactSrc = path.resolve(__dirname, '../../packages/react/src');
 const iconsSrc = path.resolve(__dirname, '../../packages/icons/src');
+const chartsSrc = path.resolve(__dirname, '../../packages/charts/src');
 
 const tinyVersion = JSON.parse(readFileSync(reactPkg, 'utf-8')).version;
 
@@ -31,6 +32,7 @@ export default defineConfig({
     alias: {
       '@tiny-design/react': reactSrc,
       '@tiny-design/icons': iconsSrc,
+      '@tiny-design/charts': chartsSrc,
     },
     dedupe: ['react', 'react-dom'],
   },

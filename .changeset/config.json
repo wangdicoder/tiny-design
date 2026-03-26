@@ -6,7 +6,8 @@
     [
       "@tiny-design/react",
       "@tiny-design/icons",
-      "@tiny-design/tokens"
+      "@tiny-design/tokens",
+      "@tiny-design/charts"
     ]
   ],
   "linked": [],

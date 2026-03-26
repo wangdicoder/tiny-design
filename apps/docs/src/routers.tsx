@@ -1,4 +1,5 @@
-import { lazy } from 'react';
+import React, { lazy } from 'react';
+import { Tag } from '@tiny-design/react';
 import { SiteLocale } from './locale/types';
 
 export interface RouterItem {
@@ -6,6 +7,7 @@ export interface RouterItem {
   route?: string;
   component?: any;
   children?: RouterItem[];
+  tag?: React.ReactNode;
 }
 
 type LocalizedLazy = { en: any; zh: any };
@@ -147,6 +149,7 @@ const c = {
   inputOTP: ll(() => import('../../../packages/react/src/input-otp/index.md'), () => import('../../../packages/react/src/input-otp/index.zh_CN.md')),
   overlay: ll(() => import('../../../packages/react/src/overlay/index.md'), () => import('../../../packages/react/src/overlay/index.zh_CN.md')),
   waterfall: ll(() => import('../../../packages/react/src/waterfall/index.md'), () => import('../../../packages/react/src/waterfall/index.zh_CN.md')),
+  chart: ll(() => import('../../../packages/charts/src/index.md'), () => import('../../../packages/charts/src/index.zh_CN.md')),
 };
 
 export const getGuideMenu = (s: SiteLocale): RouterItem[] => {
@@ -168,8 +171,8 @@ export const getGuideMenu = (s: SiteLocale): RouterItem[] => {
     {
       title: s.guideMenu.groups.ai,
       children: [
-        { title: s.guideMenu.mcpServer, route: 'mcp-server', component: pick(guide.mcpServer, isZh) },
-        { title: s.guideMenu.cli, route: 'cli', component: pick(guide.cli, isZh) },
+        { title: s.guideMenu.mcpServer, route: 'mcp-server', component: pick(guide.mcpServer, isZh), tag: <Tag color="info">New</Tag> },
+        { title: s.guideMenu.cli, route: 'cli', component: pick(guide.cli, isZh), tag: <Tag color="info">New</Tag> },
       ],
     },
     {
@@ -254,6 +257,7 @@ export const getComponentMenu = (s: SiteLocale): RouterItem[] => {
         { title: 'Timeline', route: 'timeline', component: pick(c.timeline, z) },
         { title: 'Tooltip', route: 'tooltip', component: pick(c.tooltip, z) },
         { title: 'Tree', route: 'tree', component: pick(c.tree, z) },
+        { title: 'Chart', route: 'chart', component: pick(c.chart, z), tag: <Tag color="info">New</Tag> },
       ],
     },
     {
