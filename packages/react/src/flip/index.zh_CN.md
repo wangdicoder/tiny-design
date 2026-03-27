@@ -3,7 +3,7 @@ import BasicSource from './demo/Basic.tsx?raw';
 import DirectionDemo from './demo/Direction';
 import DirectionSource from './demo/Direction.tsx?raw';
 
-# Flip
+# Flip 翻转
 
 一个可以展示正反两面内容的翻转盒子。
 

@@ -1,7 +1,7 @@
 import BasicDemo from './demo/Basic';
 import BasicSource from './demo/Basic.tsx?raw';
 
-# Keyboard
+# Keyboard 键盘按键
 
 键盘样式按钮。
 

@@ -3,7 +3,7 @@ import BasicSource from './demo/Basic.tsx?raw';
 import CountDemo from './demo/Count';
 import CountSource from './demo/Count.tsx?raw';
 
-# Textarea
+# Textarea 文本域
 
 用于多行文本输入。
 

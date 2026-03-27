@@ -7,7 +7,7 @@ import GroupSource from './demo/Group.tsx?raw';
 import SizeDemo from './demo/Size';
 import SizeSource from './demo/Size.tsx?raw';
 
-# Native Select
+# NativeSelect 原生选择器
 
 从选项中选择值的选择器组件。
 

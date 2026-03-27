@@ -11,7 +11,7 @@ import AlignSource from './demo/Align.tsx?raw';
 import ControlledDemo from './demo/Controlled';
 import ControlledSource from './demo/Controlled.tsx?raw';
 
-# Pagination
+# Pagination 分页
 
 用于分隔长数据集，使用户更容易获取信息。
 

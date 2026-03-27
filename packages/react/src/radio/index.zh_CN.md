@@ -5,7 +5,7 @@ import DisabledSource from './demo/Disabled.tsx?raw';
 import GroupDemo from './demo/Group';
 import GroupSource from './demo/Group.tsx?raw';
 
-# Radio
+# Radio 单选框
 
 单选组件。如果只有两个选项，建议使用 `Switch` 组件。
 

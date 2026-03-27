@@ -7,7 +7,7 @@ import MaskTypesSource from './demo/MaskTypes.tsx?raw';
 import CustomContentDemo from './demo/CustomContent';
 import CustomContentSource from './demo/CustomContent.tsx?raw';
 
-# Overlay
+# Overlay 遮罩层
 
 覆盖页面内容的遮罩层。
 

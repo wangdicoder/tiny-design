@@ -1,7 +1,7 @@
 import BasicDemo from './demo/Basic';
 import BasicSource from './demo/Basic.tsx?raw';
 
-# Loading Bar
+# LoadingBar 加载进度条
 
 显示当前加载进度。
 

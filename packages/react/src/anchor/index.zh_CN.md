@@ -7,7 +7,7 @@ import AffixSource from './demo/Affix.tsx?raw';
 import OffsetTopDemo from './demo/OffsetTop';
 import OffsetTopSource from './demo/OffsetTop.tsx?raw';
 
-# Anchor
+# Anchor 锚点
 
 用于跳转到页面指定位置的锚点。
 

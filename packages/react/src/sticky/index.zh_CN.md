@@ -5,7 +5,7 @@ import ContainerSource from './demo/Container.tsx?raw';
 import CallbackDemo from './demo/Callback';
 import CallbackSource from './demo/Callback.tsx?raw';
 
-# Sticky
+# Sticky 粘性布局
 
 包裹其他组件使其固定在视口中。
 

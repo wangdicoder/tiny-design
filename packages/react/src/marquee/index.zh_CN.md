@@ -7,7 +7,7 @@ import SpeedSource from './demo/speed.tsx?raw';
 import CardsDemo from './demo/cards';
 import CardsSource from './demo/cards.tsx?raw';
 
-# 跑马灯
+# Marquee 跑马灯
 
 一个自动循环滚动内容的无限滚动组件。
 

@@ -5,7 +5,7 @@ import ActiveSource from './demo/Active.tsx?raw';
 import CombinationDemo from './demo/Combination';
 import CombinationSource from './demo/Combination.tsx?raw';
 
-# Skeleton
+# Skeleton 骨架屏
 
 在内容加载过程中提供占位图形。
 

@@ -13,7 +13,7 @@ import InnerCardSource from './demo/InnerCard.tsx?raw';
 import ImageDemo from './demo/Image';
 import ImageSource from './demo/Image.tsx?raw';
 
-# Card
+# Card 卡片
 
 简洁的矩形容器。
 

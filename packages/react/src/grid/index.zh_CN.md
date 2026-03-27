@@ -11,7 +11,7 @@ import AlignmentSource from './demo/Alignment.tsx?raw';
 import ResponsiveDemo from './demo/Responsive';
 import ResponsiveSource from './demo/Responsive.tsx?raw';
 
-# Grid
+# Grid 栅格
 
 通过基础的 24 列栅格系统，快速简便地创建布局。
 

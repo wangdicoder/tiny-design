@@ -6,7 +6,7 @@ import SpinDemo from './demo/Spin';
 import SpinSource from './demo/Spin.tsx?raw';
 import SvgIconList from './demo/svg-icons.tsx'
 
-# Icon
+# Icon 图标
 
 来自 `@tiny-design/icons` 的 SVG 图标组件。每个图标都是独立模块，打包工具可以 tree-shake 未使用的图标。
 

@@ -11,9 +11,7 @@ import InfoSource from './demo/Info.tsx?raw';
 import IconDemo from './demo/Icon';
 import IconSource from './demo/Icon.tsx?raw';
 
-# Result
-
-用于反馈一系列操作任务的处理结果。
+# Result 结果
 
 ## 使用场景
 

@@ -11,7 +11,7 @@ import ExtraSource from './demo/Extra.tsx?raw';
 import NestedDemo from './demo/Nested';
 import NestedSource from './demo/Nested.tsx?raw';
 
-# Collapse
+# Collapse 折叠面板
 
 可以折叠/展开的内容区域。
 

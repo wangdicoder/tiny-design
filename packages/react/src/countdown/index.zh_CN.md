@@ -3,7 +3,7 @@ import BasicSource from './demo/Basic.tsx?raw';
 import MillisecondDemo from './demo/Millisecond';
 import MillisecondSource from './demo/Millisecond.tsx?raw';
 
-# Countdown
+# Countdown 倒计时
 
 倒计时组件。
 

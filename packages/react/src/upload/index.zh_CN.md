@@ -5,7 +5,7 @@ import UploadListSource from './demo/UploadList.tsx?raw';
 import DragDemo from './demo/Drag';
 import DragSource from './demo/Drag.tsx?raw';
 
-# Upload
+# Upload 上传
 
 通过点击或拖拽上传文件。
 

@@ -7,7 +7,7 @@ import DisabledSource from './demo/Disabled.tsx?raw';
 import GroupDemo from './demo/Group';
 import GroupSource from './demo/Group.tsx?raw';
 
-# Checkbox
+# Checkbox 复选框
 
 多选组件。
 

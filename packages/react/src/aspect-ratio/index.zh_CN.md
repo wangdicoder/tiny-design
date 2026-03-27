@@ -5,7 +5,7 @@ import ImageSource from './demo/Image.tsx?raw';
 import MapDemo from './demo/Map';
 import MapSource from './demo/Map.tsx?raw';
 
-# Aspect Radio
+# AspectRatio 宽高比
 
 用于描述元素宽度与高度之间比例关系的组件。
 

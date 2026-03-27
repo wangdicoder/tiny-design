@@ -5,7 +5,7 @@ import LabelSource from './demo/Label.tsx?raw';
 import PasswordDemo from './demo/Password';
 import PasswordSource from './demo/Password.tsx?raw';
 
-# Strength Indicator
+# StrengthIndicator 强度指示器
 
 用于衡量密码强度的组件。
 

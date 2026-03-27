@@ -9,7 +9,7 @@ import PlacementSource from './demo/Placement.tsx?raw';
 import TypeDemo from './demo/Type';
 import TypeSource from './demo/Type.tsx?raw';
 
-# Notification
+# Notification 通知提醒
 
 显示通知消息。
 

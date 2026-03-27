@@ -7,7 +7,7 @@ import GapSource from './demo/Gap.tsx?raw';
 import WrapDemo from './demo/Wrap';
 import WrapSource from './demo/Wrap.tsx?raw';
 
-# Flex
+# Flex 弹性布局
 
 弹性盒子布局容器，使用 CSS `gap` 设置间距，无需额外包裹子元素。
 

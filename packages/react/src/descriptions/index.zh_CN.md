@@ -9,7 +9,7 @@ import VerticalSource from './demo/Vertical.tsx?raw';
 import VerticalBorderDemo from './demo/VerticalBorder';
 import VerticalBorderSource from './demo/VerticalBorder.tsx?raw';
 
-# Descriptions
+# Descriptions 描述列表
 
 成组展示多个只读字段。
 

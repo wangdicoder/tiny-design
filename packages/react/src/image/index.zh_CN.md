@@ -9,7 +9,7 @@ import LazySource from './demo/Lazy.tsx?raw';
 import FallbackDemo from './demo/Fallback';
 import FallbackSource from './demo/Fallback.tsx?raw';
 
-# Image
+# Image 图片
 
 Image 组件用于显示图片。
 

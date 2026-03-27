@@ -5,7 +5,7 @@ import VerticalSource from './demo/Vertical.tsx?raw';
 import InlineDemo from './demo/Inline';
 import InlineSource from './demo/Inline.tsx?raw';
 
-# Menu
+# Menu 菜单
 
 一个多功能的导航组件，支持下拉菜单。
 

@@ -7,7 +7,7 @@ import TriggerSource from './demo/Trigger.tsx?raw';
 import ControlledDemo from './demo/Controlled';
 import ControlledSource from './demo/Controlled.tsx?raw';
 
-# Popover
+# Popover 气泡卡片
 
 点击或悬停时弹出的浮层卡片。
 

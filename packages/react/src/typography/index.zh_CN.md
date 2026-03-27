@@ -5,7 +5,7 @@ import HeadingSource from './demo/Heading.tsx?raw';
 import TextDemo from './demo/Text';
 import TextSource from './demo/Text.tsx?raw';
 
-# Typography
+# Typography 文字排版
 
 基本的文字排版，包括标题、正文、列表等。
 

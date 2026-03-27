@@ -11,7 +11,7 @@ import RadarChartSource from './demo/RadarChart.tsx?raw';
 import TooltipDemo from './demo/Tooltip';
 import TooltipSource from './demo/Tooltip.tsx?raw';
 
-# 图表 Chart
+# Chart 图表
 
 基于 [Recharts](https://recharts.org/) 构建的主题感知图表组件。颜色通过 `--ty-chart-*` 设计令牌自动适配亮色和暗色主题。
 

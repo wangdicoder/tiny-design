@@ -3,7 +3,7 @@ import BasicSource from './demo/Basic.tsx?raw';
 import TargetDemo from './demo/Target';
 import TargetSource from './demo/Target.tsx?raw';
 
-# Scroll Indicator
+# ScrollIndicator 滚动指示器
 
 用于显示页面滚动进度的"进度条"。
 

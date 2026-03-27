@@ -9,7 +9,7 @@ import SizeSource from './demo/Size.tsx?raw';
 import TextDemo from './demo/Text';
 import TextSource from './demo/Text.tsx?raw';
 
-# Switch
+# Switch 开关
 
 Switch 用于在两种对立状态之间切换。
 

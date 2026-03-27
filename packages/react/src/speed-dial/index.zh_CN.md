@@ -7,7 +7,7 @@ import ClickSource from './demo/Click.tsx?raw';
 import CustomIconDemo from './demo/CustomIcon';
 import CustomIconSource from './demo/CustomIcon.tsx?raw';
 
-# SpeedDial
+# SpeedDial 快捷操作
 
 悬浮按钮，展开后显示一组操作。
 

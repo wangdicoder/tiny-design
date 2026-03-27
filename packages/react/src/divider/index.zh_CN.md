@@ -5,7 +5,7 @@ import HorizontalSource from './demo/Horizontal.tsx?raw';
 import VerticalDemo from './demo/Vertical';
 import VerticalSource from './demo/Vertical.tsx?raw';
 
-# Divider
+# Divider 分割线
 
 分割线用于区隔不同的内容。
 

@@ -13,7 +13,7 @@ import StateSource from './demo/State.tsx?raw';
 import TipsDemo from './demo/Tips';
 import TipsSource from './demo/Tips.tsx?raw';
 
-# Loader
+# Loader 加载指示器
 
 用于页面或区块的加载中状态的旋转指示器。
 

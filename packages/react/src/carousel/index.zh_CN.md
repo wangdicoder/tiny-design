@@ -7,7 +7,7 @@ import FadeSource from './demo/Fade.tsx?raw';
 import MethodsDemo from './demo/Methods';
 import MethodsSource from './demo/Methods.tsx?raw';
 
-# Carousel
+# Carousel 走马灯
 
 一个用于循环展示元素的走马灯组件，类似幻灯片。
 

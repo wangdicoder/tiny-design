@@ -13,7 +13,7 @@ import ExtraSource from './demo/Extra.tsx?raw';
 import AnimatedDemo from './demo/Animated';
 import AnimatedSource from './demo/Animated.tsx?raw';
 
-# Tabs
+# Tabs 标签页
 
 选项卡使在不同视图之间切换变得简单。
 

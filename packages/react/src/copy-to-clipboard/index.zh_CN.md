@@ -3,7 +3,7 @@ import BasicSource from './demo/Basic.tsx?raw';
 import UseInputDemo from './demo/UseInput';
 import UseInputSource from './demo/UseInput.tsx?raw';
 
-# Copy To Clipboard
+# CopyToClipboard 复制到剪贴板
 
 ## 使用场景
 

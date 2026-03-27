@@ -7,7 +7,7 @@ import ExtraSource from './demo/Extra.tsx?raw';
 import TypeDemo from './demo/Type';
 import TypeSource from './demo/Type.tsx?raw';
 
-# Message
+# Message 全局提示
 
 全局展示操作反馈信息。
 

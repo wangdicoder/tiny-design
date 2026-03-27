@@ -7,7 +7,7 @@ import ColorSource from './demo/Color.tsx?raw';
 import CustomisedDemo from './demo/Customised';
 import CustomisedSource from './demo/Customised.tsx?raw';
 
-# Timeline
+# Timeline 时间轴
 
 展示时间线。
 

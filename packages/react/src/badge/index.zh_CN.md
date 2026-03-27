@@ -11,7 +11,7 @@ import StandaloneSource from './demo/Standalone.tsx?raw';
 import DynamicDemo from './demo/Dynamic';
 import DynamicSource from './demo/Dynamic.tsx?raw';
 
-# Badge
+# Badge 徽标
 
 UI 元素的小型数值或状态描述符。
 

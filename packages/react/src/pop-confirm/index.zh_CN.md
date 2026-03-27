@@ -7,7 +7,7 @@ import LocaleSource from './demo/Locale.tsx?raw';
 import IconDemo from './demo/Icon';
 import IconSource from './demo/Icon.tsx?raw';
 
-# PopConfirm
+# PopConfirm 气泡确认框
 
 轻量级的确认对话框。
 

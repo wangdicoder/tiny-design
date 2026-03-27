@@ -15,7 +15,7 @@ import FormatterSource from './demo/Formatter.tsx?raw';
 import AutoFocusDemo from './demo/AutoFocus';
 import AutoFocusSource from './demo/AutoFocus.tsx?raw';
 
-# Input OTP
+# InputOTP 验证码输入
 
 用于输入验证码、一次性密码（OTP / One-Time Password）等短字符/数字序列。
 

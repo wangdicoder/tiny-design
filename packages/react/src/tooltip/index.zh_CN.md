@@ -5,7 +5,7 @@ import ArrowSource from './demo/Arrow.tsx?raw';
 import PlacementDemo from './demo/Placement';
 import PlacementSource from './demo/Placement.tsx?raw';
 
-# Tooltip
+# Tooltip 文字提示
 
 简单的文字提示气泡。
 

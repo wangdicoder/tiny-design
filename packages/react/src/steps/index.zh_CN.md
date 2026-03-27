@@ -11,7 +11,7 @@ import SwitchSource from './demo/Switch.tsx?raw';
 import ClickableDemo from './demo/Clickable';
 import ClickableSource from './demo/Clickable.tsx?raw';
 
-# Steps
+# Steps 步骤条
 
 `Steps` 通过编号步骤传达进度。它提供了一种类似向导的工作流。
 

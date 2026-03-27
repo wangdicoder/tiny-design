@@ -13,7 +13,7 @@ import TriggerSource from './demo/Trigger.tsx?raw';
 import CloseDemo from './demo/Close';
 import CloseSource from './demo/Close.tsx?raw';
 
-# Dropdown
+# Dropdown 下拉菜单
 
 下拉列表是一种图形控件元素，类似于列表框。
 

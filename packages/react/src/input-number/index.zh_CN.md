@@ -7,7 +7,7 @@ import DisabledSource from './demo/Disabled.tsx?raw';
 import PrecisionDemo from './demo/Precision';
 import PrecisionSource from './demo/Precision.tsx?raw';
 
-# Input Number
+# InputNumber 数字输入框
 
 通过鼠标或键盘输入指定范围内的数值。
 

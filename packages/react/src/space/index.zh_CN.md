@@ -7,7 +7,7 @@ import SizeSource from './demo/Size.tsx?raw';
 import AlignDemo from './demo/Align';
 import AlignSource from './demo/Align.tsx?raw';
 
-# Space
+# Space 间距
 
 设置组件之间的间距。
 

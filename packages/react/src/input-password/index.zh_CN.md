@@ -5,7 +5,7 @@ import HideButtonSource from './demo/HideButton.tsx?raw';
 import StrengthDemo from './demo/Strength';
 import StrengthSource from './demo/Strength.tsx?raw';
 
-# Input Password
+# InputPassword 密码输入框
 
 带有切换密码可见性触发器的输入组件。
 

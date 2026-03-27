@@ -11,7 +11,7 @@ import TitleSource from './demo/Title.tsx?raw';
 import TypeDemo from './demo/Type';
 import TypeSource from './demo/Type.tsx?raw';
 
-# Alert
+# Alert 警告提示
 
 警告提示组件，用于页面中展示重要的提示信息。
 

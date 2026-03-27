@@ -17,7 +17,7 @@ import ReverseSource from './demo/Reverse.tsx?raw';
 import SquareLinecapsDemo from './demo/SquareLinecaps';
 import SquareLinecapsSource from './demo/SquareLinecaps.tsx?raw';
 
-# Progress
+# Progress 进度条
 
 展示操作流程的当前进度。
 

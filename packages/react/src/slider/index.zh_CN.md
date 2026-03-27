@@ -17,7 +17,7 @@ import TooltipVisibleSource from './demo/TooltipVisible.tsx?raw';
 import TrackDemo from './demo/Track';
 import TrackSource from './demo/Track.tsx?raw';
 
-# Slider
+# Slider 滑块
 
 在固定范围内拖动滑块。
 

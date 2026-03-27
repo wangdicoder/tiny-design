@@ -5,7 +5,7 @@ import CustomisedSource from './demo/Customised.tsx?raw';
 import NoDescDemo from './demo/NoDesc';
 import NoDescSource from './demo/NoDesc.tsx?raw';
 
-# Empty
+# Empty 空状态
 
 空状态占位符。
 

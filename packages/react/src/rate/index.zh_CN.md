@@ -9,9 +9,7 @@ import DisabledSource from './demo/Disabled.tsx?raw';
 import HalfDemo from './demo/Half';
 import HalfSource from './demo/Half.tsx?raw';
 
-# Rate
-
-评分组件。
+# Rate 评分
 
 ## 使用场景
 

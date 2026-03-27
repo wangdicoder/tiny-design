@@ -9,7 +9,7 @@ import PresenceSource from './demo/Presence.tsx?raw';
 import AutoFontDemo from './demo/AutoFont';
 import AutoFontSource from './demo/AutoFont.tsx?raw';
 
-# Avatar
+# Avatar 头像
 
 头像用于代表用户或事物，支持 `image`、`Icon` 或 `letter` 三种类型。
 

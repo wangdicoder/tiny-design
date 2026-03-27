@@ -13,7 +13,7 @@ import StatusSource from './demo/Status.tsx?raw';
 import VariantDemo from './demo/Variant';
 import VariantSource from './demo/Variant.tsx?raw';
 
-# Tag
+# Tag 标签
 
 用于分类或标记的标签。
 
