@@ -11,6 +11,7 @@ const Tag = React.memo(forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     defaultVisible = true,
     prefixCls: customisedCls,
     color,
+    variant = 'filled',
     onClose,
     onClick,
     className,
@@ -23,8 +24,12 @@ const Tag = React.memo(forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   );
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('tag', configContext.prefixCls, customisedCls);
+  const isPresetColor = color && PresetColors.includes(color);
   const cls = classNames(prefixCls, className, {
-    [`${prefixCls}_${color}`]: color && PresetColors.includes(color),
+    [`${prefixCls}_${color}`]: isPresetColor && variant === 'filled',
+    [`${prefixCls}_${color}-soft`]: isPresetColor && variant === 'soft',
+    [`${prefixCls}_${color}-solid`]: isPresetColor && variant === 'solid',
+    [`${prefixCls}_${color}-outlined`]: isPresetColor && variant === 'outlined',
     [`${prefixCls}_visible`]: visible,
     [`${prefixCls}_closeable`]: closable,
   });
@@ -41,10 +46,24 @@ const Tag = React.memo(forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     visibleProp === undefined && setVisible(false);
   };
 
+  const getCustomColorStyle = (): React.CSSProperties => {
+    if (!color || isPresetColor) return {};
+
+    switch (variant) {
+      case 'soft':
+        return { backgroundColor: color, borderColor: 'transparent', color: '#fff' };
+      case 'solid':
+        return { backgroundColor: color, borderColor: color, color: '#fff' };
+      case 'outlined':
+        return { backgroundColor: 'transparent', borderColor: color, color: color };
+      case 'filled':
+      default:
+        return { backgroundColor: color, borderColor: color, color: '#fff' };
+    }
+  };
+
   const tagStyle: React.CSSProperties = {
-    backgroundColor: color ? (PresetColors.includes(color) ? undefined : color) : undefined,
-    borderColor: color ? (PresetColors.includes(color) ? undefined : color) : undefined,
-    color: color ? (PresetColors.includes(color) ? undefined : '#fff') : undefined,
+    ...getCustomColorStyle(),
     ...style,
   };
 

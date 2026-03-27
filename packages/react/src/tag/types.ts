@@ -10,6 +10,8 @@ export interface CheckableTagProps extends BaseProps {
 
 export type StatusColor = 'success' | 'warning' | 'info' | 'danger';
 
+export type TagVariant = 'filled' | 'soft' | 'solid' | 'outlined';
+
 export const StatusColors: StatusColor[] = ['success', 'info', 'warning', 'danger'];
 
 export const PresetColors = [
@@ -29,6 +31,7 @@ export const PresetColors = [
 
 export interface TagProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
   color?: string | StatusColor;
+  variant?: TagVariant;
   closable?: boolean;
   onClose?: React.MouseEventHandler;
   onClick?: React.MouseEventHandler;

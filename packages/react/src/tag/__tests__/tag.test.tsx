@@ -37,4 +37,36 @@ describe('<Tag />', () => {
     container.firstChild && fireEvent.click(container.firstChild);
     expect(fn).toHaveBeenCalledTimes(1);
   });
+
+  // Variant tests
+  it('should apply filled variant class by default for preset color', () => {
+    const { container } = render(<Tag color="blue">Blue</Tag>);
+    expect(container.firstChild).toHaveClass('ty-tag_blue');
+    expect(container.firstChild).not.toHaveClass('ty-tag_blue-solid');
+    expect(container.firstChild).not.toHaveClass('ty-tag_blue-outlined');
+  });
+
+  it('should apply solid variant class', () => {
+    const { container } = render(<Tag color="blue" variant="solid">Blue</Tag>);
+    expect(container.firstChild).toHaveClass('ty-tag_blue-solid');
+    expect(container.firstChild).not.toHaveClass('ty-tag_blue');
+  });
+
+  it('should apply soft variant class', () => {
+    const { container } = render(<Tag color="blue" variant="soft">Blue</Tag>);
+    expect(container.firstChild).toHaveClass('ty-tag_blue-soft');
+    expect(container.firstChild).not.toHaveClass('ty-tag_blue');
+  });
+
+  it('should apply outlined variant class', () => {
+    const { container } = render(<Tag color="blue" variant="outlined">Blue</Tag>);
+    expect(container.firstChild).toHaveClass('ty-tag_blue-outlined');
+    expect(container.firstChild).not.toHaveClass('ty-tag_blue');
+  });
+
+  it('should not apply variant class without color', () => {
+    const { container } = render(<Tag variant="solid">Tag</Tag>);
+    expect(container.firstChild).toHaveClass('ty-tag');
+    expect(container.firstChild).not.toHaveClass('ty-tag_solid');
+  });
 });
