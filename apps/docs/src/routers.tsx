@@ -171,8 +171,8 @@ export const getGuideMenu = (s: SiteLocale): RouterItem[] => {
     {
       title: s.guideMenu.groups.ai,
       children: [
-        { title: s.guideMenu.mcpServer, route: 'mcp-server', component: pick(guide.mcpServer, isZh), tag: <Tag color="info">New</Tag> },
-        { title: s.guideMenu.cli, route: 'cli', component: pick(guide.cli, isZh), tag: <Tag color="info">New</Tag> },
+        { title: s.guideMenu.mcpServer, route: 'mcp-server', component: pick(guide.mcpServer, isZh), tag: <Tag variant='soft' color="info">New</Tag> },
+        { title: s.guideMenu.cli, route: 'cli', component: pick(guide.cli, isZh), tag: <Tag variant='soft' color="info">New</Tag> },
       ],
     },
     {
@@ -257,7 +257,7 @@ export const getComponentMenu = (s: SiteLocale): RouterItem[] => {
         { title: 'Timeline', route: 'timeline', component: pick(c.timeline, z) },
         { title: 'Tooltip', route: 'tooltip', component: pick(c.tooltip, z) },
         { title: 'Tree', route: 'tree', component: pick(c.tree, z) },
-        { title: 'Chart', route: 'chart', component: pick(c.chart, z), tag: <Tag color="info">New</Tag> },
+        { title: 'Chart', route: 'chart', component: pick(c.chart, z), tag: <Tag variant='soft' color="info">New</Tag> },
       ],
     },
     {

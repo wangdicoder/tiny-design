@@ -10,6 +10,8 @@ import DynamicDemo from './demo/Dynamic';
 import DynamicSource from './demo/Dynamic.tsx?raw';
 import StatusDemo from './demo/Status';
 import StatusSource from './demo/Status.tsx?raw';
+import VariantDemo from './demo/Variant';
+import VariantSource from './demo/Variant.tsx?raw';
 
 # Tag
 
@@ -60,17 +62,6 @@ const { CheckableTag } = Tag;
 <DemoBlock component={CheckableDemo} source={CheckableSource} />
 
     </Demo>
-  </Column>
-  <Column>
-    <Demo>
-
-### 多彩标签
-
-我们提供了一系列预设的彩色标签样式，适用于不同场景。你也可以自定义十六进制颜色值。
-
-<DemoBlock component={ColorDemo} source={ColorSource} />
-
-    </Demo>
     <Demo>
 
 ### 状态标签
@@ -90,22 +81,43 @@ const { CheckableTag } = Tag;
 
     </Demo>
   </Column>
+  <Column>
+    <Demo>
+
+### 多彩标签
+
+我们提供了一系列预设的彩色标签样式，适用于不同场景。你也可以自定义十六进制颜色值。
+
+<DemoBlock component={ColorDemo} source={ColorSource} />
+
+    </Demo>
+    <Demo>
+
+### 变体
+
+标签支持四种变体样式：`filled`（默认）、`soft`、`solid` 和 `outlined`。
+
+<DemoBlock component={VariantDemo} source={VariantSource} />
+
+    </Demo>
+  </Column>
 </Layout>
 
 ## API
 
 ### Tag
 
-| 属性           | 说明                                           | 类型                           | 默认值  |
-| -------------- | ---------------------------------------------- | ------------------------------ | ------- |
-| color          | 标签颜色（预设颜色或自定义十六进制值）         | string                         | -       |
-| closable       | 标签是否可关闭                                 | boolean                        | false   |
-| defaultVisible | 初始显示状态                                   | boolean                        | true    |
-| visible        | 受控的显示状态                                 | boolean                        | -       |
-| onClose        | 关闭标签时的回调                               | (e: MouseEvent) => void        | -       |
-| onClick        | 点击回调                                       | (e: MouseEvent) => void        | -       |
-| style          | 容器样式对象                                   | CSSProperties                  | -       |
-| className      | 容器的 className                               | string                         | -       |
+| 属性           | 说明                                           | 类型                                                  | 默认值     |
+| -------------- | ---------------------------------------------- | ----------------------------------------------------- | ---------- |
+| color          | 标签颜色（预设颜色或自定义十六进制值）         | string                                                | -          |
+| variant        | 标签的变体样式                                 | `'filled'` \| `'soft'` \| `'solid'` \| `'outlined'`   | `'filled'` |
+| closable       | 标签是否可关闭                                 | boolean                                               | false      |
+| defaultVisible | 初始显示状态                                   | boolean                                               | true       |
+| visible        | 受控的显示状态                                 | boolean                                               | -          |
+| onClose        | 关闭标签时的回调                               | (e: MouseEvent) => void                               | -          |
+| onClick        | 点击回调                                       | (e: MouseEvent) => void                               | -          |
+| style          | 容器样式对象                                   | CSSProperties                                         | -          |
+| className      | 容器的 className                               | string                                                | -          |
 
 预设颜色：`magenta`、`red`、`volcano`、`orange`、`gold`、`lime`、`green`、`cyan`、`blue`、`geekblue`、`purple`。
 

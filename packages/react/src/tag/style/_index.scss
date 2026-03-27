@@ -1,5 +1,8 @@
 @use '../../style/variables' as *;
 
+$tag-preset-colors: magenta, red, volcano, orange, gold, lime, green, cyan, blue, geekblue, purple;
+$tag-status-colors: success, info, warning, danger;
+
 .#{$prefix}-tag {
   user-select: none;
   display: none;
@@ -37,72 +40,16 @@
     }
   }
 
-  &_magenta {
-    color: var(--ty-tag-magenta-color);
-    background: var(--ty-tag-magenta-bg);
-    border-color: var(--ty-tag-magenta-border);
+  // ============= Preset colors: filled (default) =============
+  @each $color in $tag-preset-colors {
+    &_#{$color} {
+      color: var(--ty-tag-#{$color}-color);
+      background: var(--ty-tag-#{$color}-bg);
+      border-color: var(--ty-tag-#{$color}-border);
+    }
   }
 
-  &_red {
-    color: var(--ty-tag-red-color);
-    background: var(--ty-tag-red-bg);
-    border-color: var(--ty-tag-red-border);
-  }
-
-  &_volcano {
-    color: var(--ty-tag-volcano-color);
-    background: var(--ty-tag-volcano-bg);
-    border-color: var(--ty-tag-volcano-border);
-  }
-
-  &_orange {
-    color: var(--ty-tag-orange-color);
-    background: var(--ty-tag-orange-bg);
-    border-color: var(--ty-tag-orange-border);
-  }
-
-  &_gold {
-    color: var(--ty-tag-gold-color);
-    background: var(--ty-tag-gold-bg);
-    border-color: var(--ty-tag-gold-border);
-  }
-
-  &_lime {
-    color: var(--ty-tag-lime-color);
-    background: var(--ty-tag-lime-bg);
-    border-color: var(--ty-tag-lime-border);
-  }
-
-  &_green {
-    color: var(--ty-tag-green-color);
-    background: var(--ty-tag-green-bg);
-    border-color: var(--ty-tag-green-border);
-  }
-
-  &_cyan {
-    color: var(--ty-tag-cyan-color);
-    background: var(--ty-tag-cyan-bg);
-    border-color: var(--ty-tag-cyan-border);
-  }
-
-  &_blue {
-    color: var(--ty-tag-blue-color);
-    background: var(--ty-tag-blue-bg);
-    border-color: var(--ty-tag-blue-border);
-  }
-
-  &_geekblue {
-    color: var(--ty-tag-geekblue-color);
-    background: var(--ty-tag-geekblue-bg);
-    border-color: var(--ty-tag-geekblue-border);
-  }
-
-  &_purple {
-    color: var(--ty-tag-purple-color);
-    background: var(--ty-tag-purple-bg);
-    border-color: var(--ty-tag-purple-border);
-  }
-
+  // ============= Status colors: filled (default) =============
   &_success {
     color: var(--ty-color-success);
     background: var(--ty-color-success-bg);
@@ -124,6 +71,108 @@
   &_danger {
     color: var(--ty-color-danger);
     background: var(--ty-color-danger-bg);
+    border-color: var(--ty-color-danger-border);
+  }
+
+  // ============= Preset colors: soft =============
+  @each $color in $tag-preset-colors {
+    &_#{$color}-soft {
+      color: var(--ty-tag-#{$color}-color);
+      background: var(--ty-tag-#{$color}-bg);
+      border-color: transparent;
+    }
+  }
+
+  // ============= Status colors: soft =============
+  &_success-soft {
+    color: var(--ty-color-success);
+    background: var(--ty-color-success-bg);
+    border-color: transparent;
+  }
+
+  &_info-soft {
+    color: var(--ty-color-info);
+    background: var(--ty-color-info-bg);
+    border-color: transparent;
+  }
+
+  &_warning-soft {
+    color: var(--ty-color-warning);
+    background: var(--ty-color-warning-bg);
+    border-color: transparent;
+  }
+
+  &_danger-soft {
+    color: var(--ty-color-danger);
+    background: var(--ty-color-danger-bg);
+    border-color: transparent;
+  }
+
+  // ============= Preset colors: solid =============
+  @each $color in $tag-preset-colors {
+    &_#{$color}-solid {
+      color: #fff;
+      background: var(--ty-tag-#{$color}-color);
+      border-color: var(--ty-tag-#{$color}-color);
+    }
+  }
+
+  // ============= Status colors: solid =============
+  &_success-solid {
+    color: #fff;
+    background: var(--ty-color-success);
+    border-color: var(--ty-color-success);
+  }
+
+  &_info-solid {
+    color: #fff;
+    background: var(--ty-color-info);
+    border-color: var(--ty-color-info);
+  }
+
+  &_warning-solid {
+    color: #fff;
+    background: var(--ty-color-warning);
+    border-color: var(--ty-color-warning);
+  }
+
+  &_danger-solid {
+    color: #fff;
+    background: var(--ty-color-danger);
+    border-color: var(--ty-color-danger);
+  }
+
+  // ============= Preset colors: outlined =============
+  @each $color in $tag-preset-colors {
+    &_#{$color}-outlined {
+      color: var(--ty-tag-#{$color}-color);
+      background: transparent;
+      border-color: var(--ty-tag-#{$color}-border);
+    }
+  }
+
+  // ============= Status colors: outlined =============
+  &_success-outlined {
+    color: var(--ty-color-success);
+    background: transparent;
+    border-color: var(--ty-color-success-border);
+  }
+
+  &_info-outlined {
+    color: var(--ty-color-info);
+    background: transparent;
+    border-color: var(--ty-color-info-border);
+  }
+
+  &_warning-outlined {
+    color: var(--ty-color-warning);
+    background: transparent;
+    border-color: var(--ty-color-warning-border);
+  }
+
+  &_danger-outlined {
+    color: var(--ty-color-danger);
+    background: transparent;
     border-color: var(--ty-color-danger-border);
   }
 }
