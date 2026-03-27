@@ -77,7 +77,7 @@ Vertical layout with border.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Descriptions
 

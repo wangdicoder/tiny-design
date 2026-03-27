@@ -16,7 +16,7 @@ import GroupSource from './demo/Group.tsx?raw';
 - 用于在多个选项中选择多个值。
 - 如果只使用一个 Checkbox，其功能与 Switch 相同，用于在两种状态之间切换。区别在于 Switch 会直接触发状态变更，而 Checkbox 只是标记状态变更，需要配合提交操作。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Checkbox } from 'tiny-design';
@@ -69,7 +69,7 @@ const { Group } = Checkbox;
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Checkbox
 

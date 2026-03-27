@@ -16,7 +16,7 @@ import SeparatorSource from './demo/Separator.tsx?raw';
 - 当用户可能需要导航回上一层级时。
 - 当应用具有多层架构时。
 
-## 引入方式
+## 使用方式
 
 ```js
 import { Breadcrumb } from 'tiny-design';
@@ -60,7 +60,7 @@ const { Item } = Breadcrumb;
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性          | 说明                                               | 类型              | 默认值       |
 | ----------------- | --------------------------------------------------------- | ----------------- | ------------- |

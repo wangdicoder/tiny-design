@@ -114,7 +114,7 @@ block property will make the button fit to its parent width.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description                               | Type                                  | Default   |
 | --------- | ----------------------------------------- | ------------------------------------- | --------- |

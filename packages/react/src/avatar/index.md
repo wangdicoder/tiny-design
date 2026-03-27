@@ -79,7 +79,7 @@ For letter type Avatar, when the letters are too long to display, the font size 
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Avatar
 

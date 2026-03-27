@@ -19,6 +19,12 @@ Used to feed back the results of a series of operational tasks.
 
 Use when important operations need to inform the user to process the results and the feedback is more complicated.
 
+## Usage
+
+```jsx
+import { Result } from 'tiny-design';
+```
+
 ## Examples
 
 <Layout>
@@ -82,7 +88,7 @@ Pass `icon` attribute to set the icon.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description                                           | Type                                                                              | Default   |
 | --------- | ----------------------------------------------------- | --------------------------------------------------------------------------------- | --------- |

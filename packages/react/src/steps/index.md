@@ -92,7 +92,7 @@ Click to switch step.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Steps
 

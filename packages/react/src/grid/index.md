@@ -78,7 +78,7 @@ Columns respond to viewport width using `xs`, `sm`, `md`, `lg`, `xl`, `xxl` brea
 
 </Demo>
 
-## API
+## Props
 
 ### Row
 

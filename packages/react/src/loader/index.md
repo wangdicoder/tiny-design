@@ -99,7 +99,7 @@ Use `blurred` to control the container overlay.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property          | Description                                           | Type                                  | Default   |
 | ----------------- | ----------------------------------------------------- | ------------------------------------- | --------- |

@@ -17,7 +17,7 @@ import CustomisedSource from './demo/Customised.tsx?raw';
 
 - 当需要通过时间线进行视觉上的关联时。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Timeline } from 'tiny-design';
@@ -70,7 +70,7 @@ const { Item } = Timeline;
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Timeline
 

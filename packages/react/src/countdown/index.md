@@ -44,7 +44,7 @@ Allow to display millisecond
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property    | Description                          | Type              | Default |
 | ----------- | ------------------------------------ | ----------------- | ------- |

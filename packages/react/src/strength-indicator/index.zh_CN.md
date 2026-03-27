@@ -13,7 +13,7 @@ import PasswordSource from './demo/Password.tsx?raw';
 
 在使用密码表单时。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { StrengthIndicator } from 'tiny-design';
@@ -55,7 +55,7 @@ import { StrengthIndicator } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性      | 说明                              | 类型                           | 默认值              |
 | --------- | --------------------------------- | ------------------------------ | ------------------- |

@@ -128,7 +128,7 @@ Enable circular scrolling so columns wrap around continuously.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property            | Description                          | Type                                    | Default       |
 | ------------------- | ------------------------------------ | --------------------------------------- | ------------- |

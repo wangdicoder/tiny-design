@@ -88,7 +88,7 @@ By default, only selecting a leaf node triggers `onChange`. Set `changeOnSelect`
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property               | Description                         | Type                                                      | Default        |
 | ---------------------- | ----------------------------------- | --------------------------------------------------------- | -------------- |

@@ -77,7 +77,7 @@ Multiple divider.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property          | Description                               | Type                                  | Default       |
 | ----------------- | ----------------------------------------- | ------------------------------------- | ------------- |

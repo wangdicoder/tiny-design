@@ -12,7 +12,7 @@ import CustomSource from './demo/Custom.tsx?raw';
 - 当页面内容很长时。
 - 当需要频繁返回顶部查看内容时。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { BackTop } from 'tiny-design';
@@ -45,7 +45,7 @@ import { BackTop } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性              | 说明                                                                      | 类型              | 默认值        |
 | ----------------- | ------------------------------------------------------------------------- | ----------------- | ------------- |

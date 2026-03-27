@@ -128,7 +128,7 @@ By setting `strokeLinecap="square"`, you can change the linecaps from round to s
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description                      | Type                               | Default |
 | --------- | -------------------------------- | ---------------------------------- | ------- |

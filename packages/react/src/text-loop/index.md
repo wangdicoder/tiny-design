@@ -78,7 +78,7 @@ Combine with `Alert` to cycle through notification messages.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property     | Description                              | Type                                          | Default |
 | ------------ | ---------------------------------------- | --------------------------------------------- | ------- |

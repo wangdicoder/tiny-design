@@ -15,7 +15,7 @@ import SidebarSource from './demo/Sidebar.tsx?raw';
 - `Content`：内容布局，带有默认样式，其中可以嵌套任何元素，必须放在 `Layout` 中。
 - `Footer`：底部布局，带有默认样式，其中可以嵌套任何元素，必须放在 `Layout` 中。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Layout } from 'tiny-design';
@@ -44,7 +44,7 @@ const { Header, Footer, Content, Sidebar } = Layout;
 
 </Demo>
 
-## API
+## Props
 
 ### Layout
 

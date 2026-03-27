@@ -23,7 +23,7 @@ import AutoFocusSource from './demo/AutoFocus.tsx?raw';
 
 登录、注册或双因素认证流程中的验证码输入。
 
-## 引入方式
+## 使用方式
 
 ```js
 import { InputOTP } from 'tiny-design';
@@ -110,7 +110,7 @@ import { InputOTP } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### InputOTP
 

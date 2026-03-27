@@ -55,7 +55,7 @@ HTML contains several elements for defining text with a special meaning. `Text` 
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Typography
 

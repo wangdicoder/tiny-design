@@ -99,7 +99,7 @@ import { List } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### List
 

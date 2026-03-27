@@ -92,7 +92,7 @@ Allow to clear all content.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Input
 

@@ -69,7 +69,7 @@ Disabled state of Checkbox.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Checkbox
 

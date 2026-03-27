@@ -110,7 +110,7 @@ Use `autoFocus` to automatically focus the first cell when the component mounts.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### InputOTP
 

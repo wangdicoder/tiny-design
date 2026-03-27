@@ -23,7 +23,7 @@ import VariantSource from './demo/Variant.tsx?raw';
 
 - 用于分类时。
 
-## 引入方式
+## 使用方式
 
 ```js
 import { Tag } from 'tiny-design';
@@ -103,7 +103,7 @@ const { CheckableTag } = Tag;
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Tag
 

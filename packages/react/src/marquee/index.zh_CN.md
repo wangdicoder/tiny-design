@@ -15,7 +15,7 @@ import CardsSource from './demo/cards.tsx?raw';
 
 当你需要展示一组连续滚动的内容（如 Logo、卡片、标签）时使用，支持自动滚动和悬停暂停。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Marquee } from 'tiny-design';
@@ -66,7 +66,7 @@ import { Marquee } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性         | 说明                  | 类型                             | 默认值  |
 | ------------ | --------------------- | -------------------------------- | ------- |

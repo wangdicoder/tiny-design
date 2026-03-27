@@ -17,7 +17,7 @@ import IconSource from './demo/Icon.tsx?raw';
 
 与确认模态对话框的区别在于，它比全屏弹出的静态确认模态框更加轻量。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { PopConfirm } from 'tiny-design';
@@ -68,7 +68,7 @@ import { PopConfirm } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 继承所有 [Popover](#/components/popover) 属性，以及：
 

@@ -64,7 +64,7 @@ It will open a new window when clicking the link by default. Set `external={fals
   </Column>
 </Layout>
 
-## API
+## Props
 
 `Link` component inherit all `<a>` properties. There are extra properties.
 

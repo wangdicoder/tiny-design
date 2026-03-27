@@ -90,7 +90,7 @@ Increase or decrease the count with buttons, or toggle the dot with a switch.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property      | Description                                                       | Type              | Default   |
 | ------------- | ----------------------------------------------------------------- | ----------------- | --------- |

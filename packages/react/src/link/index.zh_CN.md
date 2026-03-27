@@ -13,7 +13,7 @@ import ExternalSource from './demo/External.tsx?raw';
 
 展示一个超链接。该组件样式上类似超链接，语义上渲染为 `<a>` 标签。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Link } from 'tiny-design';
@@ -64,7 +64,7 @@ import { Link } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 `Link` 组件继承了所有 `<a>` 标签的属性，以下是额外的属性。
 

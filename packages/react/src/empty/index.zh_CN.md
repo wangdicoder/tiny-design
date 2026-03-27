@@ -14,7 +14,7 @@ import NoDescSource from './demo/NoDesc.tsx?raw';
 - 当没有数据时，展示友好的提示信息。
 - 在全新的场景中，引导用户创建内容。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Empty } from 'tiny-design';
@@ -56,7 +56,7 @@ import { Empty } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性        | 说明                 | 类型                                         | 默认值  |
 | ----------- | -------------------- | -------------------------------------------- | ------- |

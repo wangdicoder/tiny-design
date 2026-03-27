@@ -60,7 +60,7 @@ Using an icon replaces a text or combination.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property          | Description                                               | Type              | Default       |
 | ----------------- | --------------------------------------------------------- | ----------------- | ------------- |

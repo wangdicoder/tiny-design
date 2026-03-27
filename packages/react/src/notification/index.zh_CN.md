@@ -23,7 +23,7 @@ import TypeSource from './demo/Type.tsx?raw';
 
 - 由应用推送的通知。
 
-## 引入方式
+## 使用方式
 
 ```js
 import { Notification } from 'tiny-design';
@@ -83,7 +83,7 @@ import { Notification } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 Notification 通过静态方法调用：
 

@@ -14,7 +14,7 @@ import PlacementSource from './demo/Placement.tsx?raw';
 用户可以选择绑定到主按钮的默认值，
 或从绑定到副按钮的下拉列表中选择互斥的值。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { SplitButton } from 'tiny-design';
@@ -56,7 +56,7 @@ import { SplitButton } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性              | 说明                           | 类型                                                                                | 默认值    |
 | ----------------- | -------------------------------------- | ----------------------------------------------------------------------------------- | --------- |

@@ -138,7 +138,7 @@ const chartData = [
 ];
 ```
 
-## API
+## Props
 
 ### ChartContainer
 

@@ -66,7 +66,7 @@ Marquee works with any content, such as cards with rich layouts.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property    | Description                        | Type                             | Default |
 | ----------- | ---------------------------------- | -------------------------------- | ------- |

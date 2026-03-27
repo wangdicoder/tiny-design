@@ -33,7 +33,7 @@ A simple usage.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description              | Type          | Default |
 | --------- | ------------------------ | ------------- | ------- |

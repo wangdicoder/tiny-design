@@ -17,7 +17,7 @@ import AutoFontSource from './demo/AutoFont.tsx?raw';
 
 展示用户头像图片
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Avatar } from 'tiny-design';
@@ -79,7 +79,7 @@ const { Group } = Avatar;
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Avatar
 

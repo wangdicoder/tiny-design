@@ -99,7 +99,7 @@ import { Table } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Table
 

@@ -20,7 +20,7 @@ import SizeSource from './demo/Size.tsx?raw';
 - 需要对输入框进行自动补全时。
 - 与 Select 不同，AutoComplete 是一个增强的输入框，而不是从预定义选项中选择。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { AutoComplete } from 'tiny-design';
@@ -89,7 +89,7 @@ import { AutoComplete } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性                      | 说明                                     | 类型                                                          | 默认值  |
 | ------------------------- | ---------------------------------------- | ------------------------------------------------------------- | ------- |

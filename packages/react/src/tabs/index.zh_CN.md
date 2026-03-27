@@ -17,7 +17,7 @@ import AnimatedSource from './demo/Animated.tsx?raw';
 
 选项卡使在不同视图之间切换变得简单。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Tabs } from 'tiny-design';
@@ -95,7 +95,7 @@ import { Tabs } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Tabs
 

@@ -56,7 +56,7 @@ Use `renderItem` to customize each item's display.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property      | Description                                                               | Type                                                                  | Default       |
 | ------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------- |

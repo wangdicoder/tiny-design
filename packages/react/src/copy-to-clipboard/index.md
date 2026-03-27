@@ -38,7 +38,7 @@ import { CopyToClipboard } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description                           | Type              | Default   |
 | --------- | ------------------------------------- | ----------------- | --------- |

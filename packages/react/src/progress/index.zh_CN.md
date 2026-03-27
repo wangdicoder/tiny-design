@@ -27,7 +27,7 @@ import SquareLinecapsSource from './demo/SquareLinecaps.tsx?raw';
 - 当操作会中断当前界面，或者需要在后台运行超过 2 秒时。
 - 当需要展示操作的完成百分比时。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Progress } from 'tiny-design';
@@ -129,7 +129,7 @@ const { Bar, Circle } = Progress;
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性      | 说明                             | 类型                               | 默认值  |
 | --------- | -------------------------------- | ---------------------------------- | ------- |

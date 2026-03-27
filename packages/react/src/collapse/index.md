@@ -92,7 +92,7 @@ Add extra elements in the panel header corner with the `extra` prop.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Collapse
 

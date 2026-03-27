@@ -19,7 +19,7 @@ import ClickableSource from './demo/Clickable.tsx?raw';
 
 当某个任务比较复杂或者存在先后顺序的一系列子任务时，可以将其分解为多个步骤，使流程更加清晰。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Steps } from 'tiny-design';
@@ -92,7 +92,7 @@ const { Step } = Steps;
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Steps
 

@@ -66,7 +66,7 @@ Overlay can wrap any custom content rendered above the mask.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property       | Description                                    | Type                                                          | Default   |
 | -------------- | ---------------------------------------------- | ------------------------------------------------------------- | --------- |

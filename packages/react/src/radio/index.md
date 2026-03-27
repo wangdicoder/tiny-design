@@ -58,7 +58,7 @@ A group of radio components.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Radio
 

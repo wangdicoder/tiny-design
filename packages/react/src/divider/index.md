@@ -56,7 +56,7 @@ Set orientation of divider to left or right, default is `center`.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description                      | Type                                           | Default      |
 | --------- | -------------------------------- | ---------------------------------------------- | ------------ |

@@ -15,7 +15,7 @@ import CustomIconSource from './demo/CustomIcon.tsx?raw';
 
 当需要一个悬浮操作按钮来展示多个相关操作时使用。常用于页面底部角落的快速操作入口。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { SpeedDial } from 'tiny-design';
@@ -66,7 +66,7 @@ import { SpeedDial } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### SpeedDial
 

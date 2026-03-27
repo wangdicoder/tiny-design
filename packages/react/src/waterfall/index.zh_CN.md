@@ -66,7 +66,7 @@ import { Waterfall } from '@tiny-design/react';
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Waterfall
 

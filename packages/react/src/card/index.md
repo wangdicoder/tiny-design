@@ -101,7 +101,7 @@ A card using an image to reinforce the content.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property    | Description                                  | Type                     | Default |
 | ----------- | -------------------------------------------- | ------------------------ | ------- |

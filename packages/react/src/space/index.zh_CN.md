@@ -15,7 +15,7 @@ import AlignSource from './demo/Align.tsx?raw';
 
 避免组件紧贴在一起，设置统一的间距。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Space } from 'tiny-design';
@@ -66,7 +66,7 @@ import { Space } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性  | 说明       | 类型                                                          | 默认值       |
 | --------- | ----------------- | ------------------------------------------------------------- | ------------- |

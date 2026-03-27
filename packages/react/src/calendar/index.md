@@ -31,7 +31,7 @@ A full-size calendar with date selection.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property        | Description                              | Type                                         | Default |
 | --------------- | ---------------------------------------- | -------------------------------------------- | ------- |

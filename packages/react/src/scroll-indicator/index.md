@@ -38,7 +38,7 @@ Set a target, which is listen to scroll event of target element (default is `win
 
 </Demo>
 
-## API
+## Props
 
 | Property  | Description                                           | Type              | Default       |
 | --------- | ----------------------------------------------------- | ----------------- | ------------- |

@@ -55,7 +55,7 @@ A `ratio=1` image.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description                       | Type                  | Default   |
 | --------- | --------------------------------- | --------------------- | --------- |

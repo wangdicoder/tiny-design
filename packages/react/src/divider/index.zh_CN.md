@@ -14,7 +14,7 @@ import VerticalSource from './demo/Vertical.tsx?raw';
 - 对文章的不同章节进行分隔。
 - 对行内文字和链接进行分隔，例如表格的操作列。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Divider } from 'tiny-design';
@@ -56,7 +56,7 @@ import { Divider } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性  | 说明                      | 类型                                           | 默认值      |
 | --------- | -------------------------------- | ---------------------------------------------- | ------------ |

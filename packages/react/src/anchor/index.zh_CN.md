@@ -16,7 +16,7 @@ import OffsetTopSource from './demo/OffsetTop.tsx?raw';
 - 需要展现当前页面上可供跳转的锚点链接，以及快速在锚点之间跳转。
 - 滚动时自动追踪当前可见区域。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Anchor } from 'tiny-design';
@@ -67,7 +67,7 @@ import { Anchor } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Anchor
 

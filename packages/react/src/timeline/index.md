@@ -70,7 +70,7 @@ Center the timeline bar.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Timeline
 

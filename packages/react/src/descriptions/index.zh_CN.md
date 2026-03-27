@@ -17,7 +17,7 @@ import VerticalBorderSource from './demo/VerticalBorder.tsx?raw';
 
 常用于详情页的信息展示。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Descriptions } from 'tiny-design';
@@ -77,7 +77,7 @@ import { Descriptions } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Descriptions
 

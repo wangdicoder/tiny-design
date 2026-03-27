@@ -66,7 +66,7 @@ Flex items wrap automatically when `wrap` is set.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description                      | Type                                                                 | Default |
 | --------- | -------------------------------- | -------------------------------------------------------------------- | ------- |

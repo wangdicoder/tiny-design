@@ -66,7 +66,7 @@ Disable the entire control or individual options.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property     | Description                                 | Type                                                  | Default |
 | ------------ | ------------------------------------------- | ----------------------------------------------------- | ------- |

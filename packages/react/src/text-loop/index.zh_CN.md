@@ -78,7 +78,7 @@ import { TextLoop } from '@tiny-design/react';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property     | Description                              | Type                                          | Default |
 | ------------ | ---------------------------------------- | --------------------------------------------- | ------- |

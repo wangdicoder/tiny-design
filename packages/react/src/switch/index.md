@@ -78,7 +78,7 @@ Disabled state of Switch.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property       | Description                             | Type                                          | Default |
 | -------------- | --------------------------------------- | --------------------------------------------- | ------- |

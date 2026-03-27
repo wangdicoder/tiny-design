@@ -13,7 +13,7 @@ import MapSource from './demo/Map.tsx?raw';
 
 用于嵌入响应式图片、视频和地图等。它使用了一种常见的 [padding hack](https://css-tricks.com/aspect-ratio-boxes/) 技术来实现。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { AspectRatio } from 'tiny-design';
@@ -55,7 +55,7 @@ import { AspectRatio } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性  | 说明                       | 类型                  | 默认值   |
 | --------- | --------------------------------- | --------------------- | --------- |

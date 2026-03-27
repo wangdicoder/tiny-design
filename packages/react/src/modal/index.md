@@ -78,7 +78,7 @@ Manage multiple modals by ID with `Modal.Provider` and `Modal.useModal`.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property           | Description                                        | Type                                              | Default   |
 | ------------------ | -------------------------------------------------- | ------------------------------------------------- | --------- |

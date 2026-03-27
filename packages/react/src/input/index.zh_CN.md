@@ -19,7 +19,7 @@ import ClearableSource from './demo/Clearable.tsx?raw';
 
 在表单中需要用户输入内容时使用。
 
-## 引入方式
+## 使用方式
 
 ```js
 import { Input } from 'tiny-design';
@@ -92,7 +92,7 @@ const { Group, Addon } = Input;
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Input
 

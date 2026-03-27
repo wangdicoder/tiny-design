@@ -84,7 +84,7 @@ Render extra content in the panel footer.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property            | Description                          | Type                                              | Default       |
 | ------------------- | ------------------------------------ | ------------------------------------------------- | ------------- |

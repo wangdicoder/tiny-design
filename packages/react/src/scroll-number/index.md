@@ -66,7 +66,7 @@ Customize font size, color, and separator via `valueStyle` and `groupSeparator`.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |

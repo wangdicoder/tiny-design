@@ -68,7 +68,7 @@ Set `icon` props to customize the icon.
   </Column>
 </Layout>
 
-## API
+## Props
 
 Inherits all [Popover](#/components/popover) props, plus:
 

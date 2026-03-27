@@ -9,7 +9,7 @@ import BasicSource from './demo/Basic.tsx?raw';
 
 - 展示键盘操作。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Keyboard } from 'tiny-design';
@@ -33,7 +33,7 @@ import { Keyboard } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性      | 说明                 | 类型          | 默认值  |
 | --------- | -------------------- | ------------- | ------- |

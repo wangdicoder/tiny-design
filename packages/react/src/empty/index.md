@@ -56,7 +56,7 @@ Set `description={false}` to hide description.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property    | Description            | Type                                         | Default |
 | ----------- | ---------------------- | -------------------------------------------- | ------- |

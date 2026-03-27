@@ -11,7 +11,7 @@ import MillisecondSource from './demo/Millisecond.tsx?raw';
 
 倒计时活动，例如秒杀。
 
-## 引入方式
+## 使用方式
 
 ```js
 import { Countdown } from 'tiny-design';
@@ -44,7 +44,7 @@ import { Countdown } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性        | 说明                                 | 类型              | 默认值  |
 | ----------- | ------------------------------------ | ----------------- | ------- |

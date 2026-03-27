@@ -103,7 +103,7 @@ Use `optionRender` to customize dropdown items and `labelRender` to customize th
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Select
 

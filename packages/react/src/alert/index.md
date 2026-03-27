@@ -100,7 +100,7 @@ Combine with `Marquee` component to create a scrolling banner alert. The text pa
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property   | Description                                    | Type                                                                     | Default |
 | ---------- | ---------------------------------------------- | ------------------------------------------------------------------------ | ------- |

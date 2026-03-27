@@ -21,7 +21,7 @@ import ControlledSource from './demo/Controlled.tsx?raw';
 
 - 当需要通过翻页来浏览数据时。
 
-## 引入方式
+## 使用方式
 
 ```js
 import { Pagination } from 'tiny-design';
@@ -90,7 +90,7 @@ import { Pagination } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性          | 说明                               | 类型                                                          | 默认值   |
 | ----------------- | ----------------------------------------- | ------------------------------------------------------------- | --------- |

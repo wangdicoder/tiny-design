@@ -66,7 +66,7 @@ Customize the FAB icon and the open icon.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### SpeedDial
 

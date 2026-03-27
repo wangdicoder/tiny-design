@@ -57,7 +57,7 @@ You can drag files to a specific area, to upload. Alternatively, you can also up
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property          | Description                                       | Type                          | Default   |
 | ----------------- | ------------------------------------------------- | ----------------------------- | --------- |

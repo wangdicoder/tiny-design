@@ -103,7 +103,7 @@ Tags support four variants: `filled` (default), `soft`, `solid`, and `outlined`.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Tag
 

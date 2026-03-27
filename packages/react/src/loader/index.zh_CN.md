@@ -21,7 +21,7 @@ import TipsSource from './demo/Tips.tsx?raw';
 
 当页面的某一部分正在等待异步数据或处于渲染过程中时，合适的加载动画能有效缓解用户的焦虑感。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Loader } from 'tiny-design';
@@ -99,7 +99,7 @@ import { Loader } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性              | 说明                                          | 类型                                  | 默认值    |
 | ----------------- | --------------------------------------------- | ------------------------------------- | --------- |

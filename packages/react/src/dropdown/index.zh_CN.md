@@ -21,7 +21,7 @@ import CloseSource from './demo/Close.tsx?raw';
 
 当有多个选项可供选择时，可以将它们封装在 `Dropdown` 中。通过悬停或点击触发器，会出现一个下拉菜单，允许你选择一个选项并执行相关操作。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Dropdown } from 'tiny-design';
@@ -99,7 +99,7 @@ import { Dropdown } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性          | 说明                           | 类型                          | 默认值   |
 | ----------------- | ------------------------------------- | ----------------------------- | --------- |

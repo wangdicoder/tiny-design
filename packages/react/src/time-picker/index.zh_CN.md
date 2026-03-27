@@ -23,7 +23,7 @@ import LoopSource from './demo/Loop.tsx?raw';
 
 用于选择或输入时间。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { TimePicker } from 'tiny-design';
@@ -128,7 +128,7 @@ import { TimePicker } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性                | 说明                                 | 类型                                    | 默认值        |
 | ------------------- | ------------------------------------ | --------------------------------------- | ------------- |

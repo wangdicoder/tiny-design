@@ -17,7 +17,7 @@ import MultipleSource from './demo/Multiple.tsx?raw';
 
 当有多个内容需要同时展示，但其中一些需要更多空间来显示时使用。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Split } from 'tiny-design';
@@ -77,7 +77,7 @@ import { Split } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性          | 说明                               | 类型                                  | 默认值       |
 | ----------------- | ----------------------------------------- | ------------------------------------- | ------------- |

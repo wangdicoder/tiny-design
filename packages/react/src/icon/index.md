@@ -57,7 +57,7 @@ Use `size` and `color` props to customize icons.
   </Column>
 </Layout>
 
-## API
+## Props
 
 All icon components share the same props interface (`IconProps`), which extends `SVGAttributes<SVGSVGElement>`.
 

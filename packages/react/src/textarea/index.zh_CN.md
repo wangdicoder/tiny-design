@@ -11,7 +11,7 @@ import CountSource from './demo/Count.tsx?raw';
 
 评论等场景。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Textarea } from 'tiny-design';
@@ -44,7 +44,7 @@ import { Textarea } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性         | 说明                     | 类型                                         | 默认值  |
 | ------------ | -------------------------------- | -------------------------------------------- | ------- |

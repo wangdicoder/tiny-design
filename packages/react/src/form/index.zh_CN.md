@@ -28,7 +28,7 @@ import StepFormSource from './demo/StepForm.tsx?raw';
 - 当你需要创建一个实例或收集信息时。
 - 当你需要对字段进行特定规则的校验时。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Form } from 'tiny-design';
@@ -132,7 +132,7 @@ const { Item, useForm, FormInstance } = Form;
 
 </Demo>
 
-## API
+## Props
 
 ### Form
 

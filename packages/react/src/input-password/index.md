@@ -55,7 +55,7 @@ Work with `StrengthIndicator` component.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property       | Description                               | Type       | Default |
 | -------------- | ----------------------------------------- | ---------- | ------- |

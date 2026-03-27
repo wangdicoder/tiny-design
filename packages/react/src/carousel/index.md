@@ -62,7 +62,7 @@ Use `ref` to access `goTo`, `next`, and `prev` methods for programmatic control.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property        | Description                          | Type                                                     | Default    |
 | --------------- | ------------------------------------ | -------------------------------------------------------- | ---------- |

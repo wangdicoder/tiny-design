@@ -17,7 +17,7 @@ import HalfSource from './demo/Half.tsx?raw';
 
 - 对事物进行快速评分操作。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Rate } from 'tiny-design';
@@ -77,7 +77,7 @@ import { Rate } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性         | 说明                           | 类型                    | 默认值  |
 | ------------ | -------------------------------------- | ----------------------- | ------- |

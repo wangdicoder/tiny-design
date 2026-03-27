@@ -11,7 +11,7 @@ import TargetSource from './demo/Target.tsx?raw';
 
 当内容过长时使用。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { ScrollIndicator } from 'tiny-design';
@@ -38,7 +38,7 @@ import { ScrollIndicator } from 'tiny-design';
 
 </Demo>
 
-## API
+## Props
 
 | 属性      | 说明                                          | 类型              | 默认值        |
 | --------- | --------------------------------------------- | ----------------- | ------------- |

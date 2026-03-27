@@ -46,7 +46,7 @@ Use `collapsible` to enable a built-in toggle trigger on the sidebar. Control th
 
 </Demo>
 
-## API
+## Props
 
 ### Layout
 

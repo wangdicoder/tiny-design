@@ -79,7 +79,7 @@ Replace the default star to other character like alphabet, digit, iconfont or ev
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property     | Description                            | Type                    | Default |
 | ------------ | -------------------------------------- | ----------------------- | ------- |

@@ -77,7 +77,7 @@ Providing a fallback image for when there is an error loading the src of the ima
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property      | Description                               | Type                  | Default   |
 | ------------- | ----------------------------------------- | --------------------- | --------- |

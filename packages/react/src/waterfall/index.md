@@ -66,7 +66,7 @@ Add and remove items dynamically.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Waterfall
 

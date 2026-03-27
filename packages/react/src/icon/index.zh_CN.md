@@ -10,7 +10,7 @@ import SvgIconList from './demo/svg-icons.tsx'
 
 来自 `@tiny-design/icons` 的 SVG 图标组件。每个图标都是独立模块，打包工具可以 tree-shake 未使用的图标。
 
-## 引入方式
+## 使用方式
 
 ```bash
 $ pnpm add @tiny-design/icons
@@ -57,7 +57,7 @@ import { IconClose, IconPlus } from '@tiny-design/icons';
   </Column>
 </Layout>
 
-## API
+## Props
 
 所有图标组件共享相同的 props 接口 (`IconProps`)，继承自 `SVGAttributes<SVGSVGElement>`。
 

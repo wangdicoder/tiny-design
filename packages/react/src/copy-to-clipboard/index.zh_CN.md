@@ -9,7 +9,7 @@ import UseInputSource from './demo/UseInput.tsx?raw';
 
 用于处理将内容复制到剪贴板的组件。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { CopyToClipboard } from 'tiny-design';
@@ -38,7 +38,7 @@ import { CopyToClipboard } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性      | 说明                          | 类型              | 默认值    |
 | --------- | ----------------------------- | ----------------- | --------- |

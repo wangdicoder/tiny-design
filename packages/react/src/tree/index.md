@@ -55,7 +55,7 @@ Customised icons.
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Tree
 

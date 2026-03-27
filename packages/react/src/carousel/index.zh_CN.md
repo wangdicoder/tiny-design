@@ -11,7 +11,7 @@ import MethodsSource from './demo/Methods.tsx?raw';
 
 一个用于循环展示元素的走马灯组件，类似幻灯片。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Carousel } from 'tiny-design';
@@ -62,7 +62,7 @@ import { Carousel } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性            | 说明                                 | 类型                                                     | 默认值     |
 | --------------- | ------------------------------------ | -------------------------------------------------------- | ---------- |

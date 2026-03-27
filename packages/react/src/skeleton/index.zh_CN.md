@@ -15,7 +15,7 @@ import CombinationSource from './demo/Combination.tsx?raw';
 - 当组件包含大量信息时，如列表或卡片。
 - 仅在首次加载数据时使用。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Skeleton } from 'tiny-design';
@@ -53,7 +53,7 @@ import { Skeleton } from 'tiny-design';
 
 </Demo>
 
-## API
+## Props
 
 | 属性              | 说明                                      | 类型                          | 默认值    |
 | ----------------- | ----------------------------------------- | ----------------------------- | --------- |

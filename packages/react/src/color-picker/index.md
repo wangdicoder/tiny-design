@@ -77,7 +77,7 @@ Open the panel on hover instead of click.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property       | Description                        | Type                             | Default |
 | -------------- | ---------------------------------- | -------------------------------- | ------- |

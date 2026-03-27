@@ -45,7 +45,7 @@ Use custom children to replace the default button.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property          | Description                                                                   | Type              | Default       |
 | ----------------- | ----------------------------------------------------------------------------- | ----------------- | ------------- |

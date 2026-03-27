@@ -14,7 +14,7 @@ import GroupSource from './demo/Group.tsx?raw';
 - 用于从多个选项中选择单个状态。
 - 与 Select 的区别在于 Radio 对用户可见，便于选项对比，因此不宜设置过多选项。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Radio } from 'tiny-design';
@@ -58,7 +58,7 @@ Radio 的禁用状态。
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Radio
 

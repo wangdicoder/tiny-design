@@ -99,7 +99,7 @@ Render large lists efficiently with virtual scrolling. Only visible items are re
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### List
 

@@ -46,7 +46,7 @@ A basic flip
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description             | Type                                    | Default      |
 | --------- | ----------------------- | --------------------------------------- | ------------ |

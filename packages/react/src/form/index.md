@@ -135,7 +135,7 @@ A multi-step registration form. Each step validates its fields via the form inst
 
 </Demo>
 
-## API
+## Props
 
 ### Form
 

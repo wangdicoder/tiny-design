@@ -13,7 +13,7 @@ import CallbackSource from './demo/Callback.tsx?raw';
 
 在较长的网页中，某些内容固定在视口中会很有帮助。这常见于菜单和操作栏。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Sticky } from 'tiny-design';
@@ -55,7 +55,7 @@ import { Sticky } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性              | 说明                                  | 类型                          | 默认值        |
 | ----------------- | ------------------------------------- | ----------------------------- | ------------- |

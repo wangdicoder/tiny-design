@@ -16,7 +16,7 @@ import SizeSource from './demo/Size.tsx?raw';
 - 用于展示选项的下拉菜单。
 - 分组选项——原生 `<optgroup>` 的优雅替代方案。
 
-## 引入方式
+## 使用方式
 
 ```js
 import { NativeSelect } from 'tiny-design';
@@ -63,7 +63,7 @@ const { Group, Option } = NativeSelect;
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性      | 说明                     | 类型                          | 默认值  |
 | --------- | -------------------------------- | ----------------------------- | ------- |

@@ -55,7 +55,7 @@ Work with `InputPassword` component.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description                               | Type                           | Default             |
 | --------- | ----------------------------------------- | ------------------------------ | ------------------- |

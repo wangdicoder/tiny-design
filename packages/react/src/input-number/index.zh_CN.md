@@ -15,7 +15,7 @@ import PrecisionSource from './demo/Precision.tsx?raw';
 
 当需要提供一个数值时使用。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { InputNumber } from 'tiny-design';
@@ -66,7 +66,7 @@ import { InputNumber } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性          | 说明                                          | 类型                                  | 默认值                    |
 | ------------- | ----------------------------------------------------- | ------------------------------------- | ------------------------- |

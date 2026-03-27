@@ -63,7 +63,7 @@ Use `size` to set different size of select
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property  | Description                      | Type                          | Default |
 | --------- | -------------------------------- | ----------------------------- | ------- |

@@ -11,7 +11,7 @@ import DirectionSource from './demo/Direction.tsx?raw';
 
 如果某个内容附带次要信息，可以将主要内容展示在正面，辅助信息展示在背面。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Flip } from 'tiny-design';
@@ -46,7 +46,7 @@ const { Item } = Flip;
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性      | 说明                  | 类型                                    | 默认值       |
 | --------- | --------------------- | --------------------------------------- | ------------ |

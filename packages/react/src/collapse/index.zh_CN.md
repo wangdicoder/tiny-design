@@ -21,7 +21,7 @@ import NestedSource from './demo/Nested.tsx?raw';
 
 `Accordion`（手风琴）是一种特殊的 `Collapse`，同一时间只允许展开一个面板。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Collapse } from 'tiny-design';
@@ -92,7 +92,7 @@ const { Panel } = Collapse;
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Collapse
 

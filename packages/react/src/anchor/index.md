@@ -67,7 +67,7 @@ Use `offsetTop` to set a pixel threshold before a section becomes active. A sect
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Anchor
 

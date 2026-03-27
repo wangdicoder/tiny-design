@@ -13,7 +13,7 @@ import StrengthSource from './demo/Strength.tsx?raw';
 
 用户输入密码时的专用场景。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { InputPassword } from 'tiny-design';
@@ -55,7 +55,7 @@ import { InputPassword } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性           | 说明                              | 类型       | 默认值  |
 | -------------- | ----------------------------------------- | ---------- | ------- |

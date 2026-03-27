@@ -99,7 +99,7 @@ Close menu on click.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property          | Description                           | Type                          | Default   |
 | ----------------- | ------------------------------------- | ----------------------------- | --------- |

@@ -17,7 +17,7 @@ import TypeSource from './demo/Type.tsx?raw';
 
 - 消息显示在页面顶部居中位置，会自动消失，是一种不打断用户操作的轻量级提示方式。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Message } from 'tiny-design';
@@ -68,7 +68,7 @@ import { Message } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 Message 通过静态方法调用：
 

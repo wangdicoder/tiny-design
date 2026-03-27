@@ -66,7 +66,7 @@ import { ScrollNumber } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

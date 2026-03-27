@@ -52,7 +52,7 @@ Inline navigation menu.
 </Demo>
 
 
-## API
+## Props
 
 ### Menu
 

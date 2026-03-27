@@ -17,6 +17,12 @@ import IconSource from './demo/Icon.tsx?raw';
 
 当需要向用户告知重要操作的处理结果，且反馈内容较为复杂时使用。
 
+## 使用方式
+
+```jsx
+import { Result } from 'tiny-design';
+```
+
 ## 代码示例
 
 <Layout>
@@ -80,7 +86,7 @@ import IconSource from './demo/Icon.tsx?raw';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性      | 说明                                          | 类型                                                                              | 默认值    |
 | --------- | --------------------------------------------- | --------------------------------------------------------------------------------- | --------- |

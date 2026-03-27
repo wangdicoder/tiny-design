@@ -66,7 +66,7 @@ Set decimal precision with `precision`, and use `controls` to always show step b
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property      | Description                                           | Type                                  | Default                   |
 | ------------- | ----------------------------------------------------- | ------------------------------------- | ------------------------- |

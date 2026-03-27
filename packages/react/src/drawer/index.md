@@ -59,7 +59,7 @@ The Drawer can appear from any edge of the screen.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property          | Description                                           | Type                                                      | Default   |
 | ----------------- | ----------------------------------------------------- | --------------------------------------------------------- | --------- |

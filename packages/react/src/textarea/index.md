@@ -44,7 +44,7 @@ Use `limit` to limit the word amount. Also you can use `counter` to customise li
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property     | Description                      | Type                                         | Default |
 | ------------ | -------------------------------- | -------------------------------------------- | ------- |

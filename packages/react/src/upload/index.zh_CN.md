@@ -15,7 +15,7 @@ import DragSource from './demo/Drag.tsx?raw';
 - 当需要展示上传进度时。
 - 当需要通过拖拽方式上传文件时。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Upload } from 'tiny-design';
@@ -57,7 +57,7 @@ import { Upload } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性              | 说明                                                      | 类型                          | 默认值    |
 | ----------------- | ------------------------------------------------- | ----------------------------- | --------- |

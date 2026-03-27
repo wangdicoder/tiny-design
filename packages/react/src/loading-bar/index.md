@@ -35,7 +35,7 @@ LoadingBar.fail();
   </Column>
 </Layout>
 
-## API
+## Props
 
 LoadingBar is called through static methods:
 

@@ -21,7 +21,7 @@ import ImageSource from './demo/Image.tsx?raw';
 
 卡片可用于展示与某一主题相关的内容。内容可以由多种不同类型和大小的元素组成。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Card } from 'tiny-design';
@@ -101,7 +101,7 @@ const { Content } = Card;
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性        | 说明                                         | 类型                     | 默认值  |
 | ----------- | -------------------------------------------- | ------------------------ | ------- |

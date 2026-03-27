@@ -15,7 +15,7 @@ import ResponsiveSource from './demo/Responsive.tsx?raw';
 
 通过基础的 24 列栅格系统，快速简便地创建布局。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Row, Col } from 'tiny-design';
@@ -78,7 +78,7 @@ import { Row, Col } from 'tiny-design';
 
 </Demo>
 
-## API
+## Props
 
 ### Row
 

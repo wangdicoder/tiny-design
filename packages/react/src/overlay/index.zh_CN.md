@@ -15,7 +15,7 @@ import CustomContentSource from './demo/CustomContent.tsx?raw';
 
 当你需要一个遮罩层来覆盖页面内容时，例如显示模态对话框、抽屉或任何需要背景遮罩的浮层。**Overlay** 提供了一个低级构建块，具有淡入淡出动画、滚动锁定和多种遮罩类型。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Overlay } from 'tiny-design';
@@ -66,7 +66,7 @@ import { Overlay } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性           | 说明                                       | 类型                                                          | 默认值    |
 | -------------- | ------------------------------------------ | ------------------------------------------------------------- | --------- |

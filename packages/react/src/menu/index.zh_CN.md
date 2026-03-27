@@ -13,7 +13,7 @@ import InlineSource from './demo/Inline.tsx?raw';
 
 一个可访问的下拉菜单组件，适用于常见的下拉菜单按钮设计模式。Menu 使用 roving tabIndex 进行焦点管理。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Menu } from 'tiny-design';
@@ -52,7 +52,7 @@ const { Item, SubMenu, ItemGroup, Divider } = Menu;
 </Demo>
 
 
-## API
+## Props
 
 ### Menu
 

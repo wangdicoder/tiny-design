@@ -68,7 +68,7 @@ Add an extra content to allow more action.
   </Column>
 </Layout>
 
-## API
+## Props
 
 Message is called through static methods:
 

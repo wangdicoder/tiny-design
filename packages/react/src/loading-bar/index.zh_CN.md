@@ -9,7 +9,7 @@ import BasicSource from './demo/Basic.tsx?raw';
 
 在浏览器顶部显示加载进度条，用于表示内容正在获取和渲染中。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { LoadingBar } from 'tiny-design';
@@ -35,7 +35,7 @@ LoadingBar.fail();
   </Column>
 </Layout>
 
-## API
+## Props
 
 LoadingBar 通过静态方法调用：
 

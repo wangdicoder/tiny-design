@@ -15,7 +15,7 @@ import WrapSource from './demo/Wrap.tsx?raw';
 
 需要轻量级弹性布局时使用，无需为每个子元素添加额外的包裹元素。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Flex } from 'tiny-design';
@@ -66,7 +66,7 @@ import { Flex } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性       | 说明                          | 类型                                                                 | 默认值  |
 | --------- | ----------------------------- | -------------------------------------------------------------------- | ------- |

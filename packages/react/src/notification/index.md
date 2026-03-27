@@ -83,7 +83,7 @@ A notification box with a icon at the left side.
   </Column>
 </Layout>
 
-## API
+## Props
 
 Notification is called through static methods:
 

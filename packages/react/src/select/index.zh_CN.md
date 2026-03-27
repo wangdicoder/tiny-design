@@ -23,7 +23,7 @@ import RenderSource from './demo/Render.tsx?raw';
 - 支持单选或多选。
 - 支持搜索/过滤、自定义渲染和数据驱动的选项。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Select } from 'tiny-design';
@@ -103,7 +103,7 @@ Select 组件的基本用法。
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Select
 

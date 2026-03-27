@@ -15,7 +15,7 @@ import ExtraFooterSource from './demo/ExtraFooter.tsx?raw';
 
 用于选择或输入日期。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { DatePicker } from 'tiny-design';
@@ -84,7 +84,7 @@ import { DatePicker } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 | 属性                | 说明                                 | 类型                                              | 默认值        |
 | ------------------- | ------------------------------------ | ------------------------------------------------- | ------------- |

@@ -56,7 +56,7 @@ Set the placement of the dropdown menu. The default placement is `bottom-end`.
   </Column>
 </Layout>
 
-## API
+## Props
 
 | Property          | Description                            | Type                                                                                | Default   |
 | ----------------- | -------------------------------------- | ----------------------------------------------------------------------------------- | --------- |

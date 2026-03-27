@@ -13,7 +13,7 @@ import IconSource from './demo/Icon.tsx?raw';
 
 任何可以用树形结构表示的内容都可以使用 `Tree` 组件。
 
-## 引入方式
+## 使用方式
 
 ```jsx
 import { Tree } from 'tiny-design';
@@ -55,7 +55,7 @@ import { Tree } from 'tiny-design';
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Tree
 

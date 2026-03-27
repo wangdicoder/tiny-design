@@ -99,7 +99,7 @@ Render large tables efficiently with virtual scrolling. The header stays fixed w
   </Column>
 </Layout>
 
-## API
+## Props
 
 ### Table
 
