@@ -1,5 +1,11 @@
 # @tiny-design/tokens
 
+## 1.6.2
+
+### Patch Changes
+
+- Add chart color tokens (chart-1 through chart-5) for light and dark themes - [#81](https://github.com/wangdicoder/tiny-design/pull/81) [`7e17617`](https://github.com/wangdicoder/tiny-design/commit/7e176176335fe696f637a15215b467c5c2612945)
+
 ## 1.6.1
 
 ## 1.6.0
