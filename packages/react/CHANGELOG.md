@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.7.0
+
+### Minor Changes
+
+- Add `variant` prop to Card component (`outlined`, `elevated`, `filled`). Fix NativeSelect children type to accept arrays. Make Table ColumnType `dataIndex` optional for action columns. - [#85](https://github.com/wangdicoder/tiny-design/pull/85) [`6ab92fd`](https://github.com/wangdicoder/tiny-design/commit/6ab92fdf5b081e399d0e756909690ac267607a9e)
+
+- feat(tag): add `variant` prop with `filled`, `soft`, `solid`, and `outlined` styles - [#83](https://github.com/wangdicoder/tiny-design/pull/83) [`2a2dc57`](https://github.com/wangdicoder/tiny-design/commit/2a2dc57a998b789aef4d998151c63fa0271685ea)
+
+- - Table: use Checkbox/Radio components, fix selection bugs with pagination and sorting, improve type definitions - [#86](https://github.com/wangdicoder/tiny-design/pull/86) [`6ff73db`](https://github.com/wangdicoder/tiny-design/commit/6ff73db28ecff56b2c89813a432ef66abead834c)
+  - List: use semantic `<ul>`/`<li>` elements, add forwardRef to ListItemMeta, fix paginated renderItem index, add ARIA attributes
+  - Loader: redesign spinner with CSS-only border animation, remove dot elements
+  - Button: fix icon container shrinking in flex layout
+  - useVirtualScroll: add `enabled` option
+
 ## 1.6.2
 
 ## 1.6.1
