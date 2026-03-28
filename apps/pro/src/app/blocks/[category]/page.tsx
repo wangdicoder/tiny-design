@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getCategorySlugs, getCategoryInfo } from '@/lib/categories';
+import { getCategorySlugs, getCategoryInfo } from '../../../lib/categories';
 import { CategoryPageClient } from './category-page-client';
 
 export function generateStaticParams() {

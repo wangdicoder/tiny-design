@@ -7,7 +7,7 @@ import * as TinyIcons from '@tiny-design/icons';
 import { Toolbar, CodeIcon, CopyIcon, CheckIcon, type ViewportSize } from './toolbar';
 import { PreviewFrame } from './preview-frame';
 import { CodePanel } from './code-panel';
-import type { BlockMeta } from '@/lib/blocks';
+import type { BlockMeta } from '../../lib/blocks';
 import styles from './block-preview.module.scss';
 
 // In dev mode, Next.js appends HMR code (import.meta.webpackHot...) to
