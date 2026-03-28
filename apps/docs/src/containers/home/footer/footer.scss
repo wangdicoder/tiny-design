@@ -1,38 +1,58 @@
+@use '../../../variables' as *;
+
 .footer {
-  background-color: #292c33;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--ty-color-border-secondary);
   text-align: center;
+  background: var(--ty-color-bg);
 
   &__main {
-    padding: 40px 0 30px;
+    padding: 48px 0 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
 
   &__title {
-    font-size: 24px;
-    color: #d2d3d6;
-    font-weight: 500;
+    font-family: $font-display;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ty-color-text);
     margin: 0;
+    letter-spacing: -0.01em;
   }
 
   &__version {
-    font-size: 13px;
-    color: #65676e;
-    margin: 20px 0 0 0;
+    font-size: 12px;
+    color: var(--ty-color-text-tertiary);
+    margin: 4px 0 0 0;
   }
 
   &__github {
-    border-top: 1px solid #404349;
-    padding: 20px 0;
-    color: #fff;
+    border-top: 1px solid var(--ty-color-border-secondary);
+    padding: 16px 0;
+    color: var(--ty-color-text-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--ty-color-text);
+    }
   }
 
   &__icon {
-    margin-right: 5px;
+    margin-right: 2px;
   }
 
   &__link {
     text-decoration-line: none;
+    color: inherit;
   }
 }

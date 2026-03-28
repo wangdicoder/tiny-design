@@ -1,5 +1,14 @@
 @forward "../../../packages/react/src/style/variables";
 
-$main-color: #6E41BF;
-$header-height: 60px;
-$font-family: 'Wix Madefor Text', -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$main-color: #0D9488;
+$header-height: 64px;
+$sidebar-width: 260px;
+$font-family: 'DM Sans', -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-display: 'Bricolage Grotesque', 'DM Sans', -apple-system, blinkmacsystemfont, sans-serif;
+
+// Docs-specific accent colors (independent of component library theming)
+$docs-accent: #0D9488;
+$docs-accent-light: #14B8A6;
+$docs-accent-subtle: rgba(13, 148, 136, 0.08);
+$docs-surface-warm: #FDFCFA;
+$docs-surface-warm-alt: #F7F5F0;

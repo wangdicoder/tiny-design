@@ -9,13 +9,13 @@ import logoSvg from '../../../assets/logo/logo.svg';
 export const Footer = (): React.ReactElement => (
   <footer className="footer">
     <div className="footer__main">
-      <img src={logoSvg} alt="logo" width={40} />
+      <img src={logoSvg} alt="logo" width={36} />
       <h3 className="footer__title">Tiny UI</h3>
-      <p className="footer__version">- v{version} -</p>
+      <p className="footer__version">v{version}</p>
     </div>
     <a href={repository.url} target="_blank" className="footer__link" rel="noreferrer noopener">
       <div className="footer__github">
-        <IconGithub size={25} color="#fff" className="footer__icon" />
+        <IconGithub size={18} color="currentColor" className="footer__icon" />
         <span>GitHub</span>
       </div>
     </a>

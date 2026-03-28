@@ -33,6 +33,22 @@ export type SiteLocale = {
     themeShowcase: string;
     themeShowcaseDesc: string;
     themeShowcaseCustomize: string;
+    showcase: {
+      title: string;
+      subtitle: string;
+    };
+    codeExample: {
+      title: string;
+      subtitle: string;
+    };
+    cta: {
+      title: string;
+      subtitle: string;
+      install: string;
+      copied: string;
+      readDocs: string;
+      browseComponents: string;
+    };
   };
   overview: {
     title: string;

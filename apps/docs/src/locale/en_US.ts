@@ -38,6 +38,22 @@ const en_US: SiteLocale = {
     themeShowcase: 'Make It Yours',
     themeShowcaseDesc: 'Choose a preset theme and watch the entire site transform instantly.',
     themeShowcaseCustomize: 'Customize in Theme Editor',
+    showcase: {
+      title: 'Components in Action',
+      subtitle: 'Real components, rendered live. What you see is what you ship.',
+    },
+    codeExample: {
+      title: 'Delightful Developer Experience',
+      subtitle: 'Clean APIs. Predictable patterns. Ship in minutes, not hours.',
+    },
+    cta: {
+      title: 'Start Building Today',
+      subtitle: 'Install Tiny UI and have your first component on screen in under a minute.',
+      install: 'npm install @tiny-design/react',
+      copied: 'Copied!',
+      readDocs: 'Read the Docs',
+      browseComponents: 'Browse Components',
+    },
   },
   overview: {
     title: 'Component Overview',

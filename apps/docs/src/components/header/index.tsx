@@ -37,11 +37,12 @@ export const Header = (): React.ReactElement => {
         </button>
         <NavLink to="/" className="header__link">
           <div className="header__logo">
-            <img src={logoSvg} alt="logo" width={35} />
+            <img src={logoSvg} alt="logo" width={32} />
             <span className="header__title">Tiny UI</span>
           </div>
         </NavLink>
       </div>
+
       <nav className="header__nav">
         <ul className="header__nav-list">
           <li className="header__nav-item header__home-link">
@@ -64,41 +65,25 @@ export const Header = (): React.ReactElement => {
               {s.nav.components}
             </NavLink>
           </li>
-          <li className="header__nav-item">
-            <a
-              href="/tiny-design/pro/"
-              className="header__link header__pro-link"
-              target="_blank"
-              rel="noreferrer noopener">
-              {s.nav.pro}
-              <span className="header__pro-badge">New</span>
-            </a>
-          </li>
-          <li className="header__nav-item">
-            <a
-              href={repository.url}
-              target="_blank"
-              className="header__link"
-              rel="noreferrer noopener">
-              <span className="header__version">v{version}</span>
-            </a>
-          </li>
-          <li className="header__nav-item header__github-link">
-            <Link href={repository.url} underline={false} rel="noreferrer noopener">
-              <IconGithub color="currentColor" size={19} />
-            </Link>
-          </li>
-          <li className="header__nav-item header__search-item">
-            <SearchTrigger onClick={() => setPaletteOpen(true)} />
-          </li>
-          <li className="header__nav-item">
-            <LocaleToggle />
-          </li>
-          <li className="header__nav-item">
-            <ThemeToggle />
-          </li>
         </ul>
       </nav>
+
+      <div className="header__utils">
+        <SearchTrigger onClick={() => setPaletteOpen(true)} />
+        <a
+          href={repository.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          style={{ textDecoration: 'none' }}>
+          <span className="header__version">v{version}</span>
+        </a>
+        <Link href={repository.url} underline={false} rel="noreferrer noopener" className="header__github-link">
+          <IconGithub color="currentColor" size={18} />
+        </Link>
+        <LocaleToggle />
+        <ThemeToggle />
+      </div>
+
       <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
     </header>
   );

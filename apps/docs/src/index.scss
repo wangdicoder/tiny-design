@@ -8,6 +8,8 @@ body {
   background: var(--ty-color-bg);
   color: var(--ty-color-text);
   transition: background-color 0.2s, color 0.2s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 *,
@@ -27,15 +29,15 @@ body {
   }
 
   &__layout {
-    padding: 30px 230px 30px 280px;
+    padding: 40px 220px 40px #{$sidebar-width + 40px};
     overflow-x: hidden;
 
     @media (max-width: $size-xl) {
-      padding: 30px 30px 30px 280px;
+      padding: 40px 30px 40px #{$sidebar-width + 30px};
     }
 
     @media (max-width: $size-md) {
-      padding: 20px 16px;
+      padding: 24px 20px;
     }
   }
 

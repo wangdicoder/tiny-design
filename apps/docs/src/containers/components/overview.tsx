@@ -1,15 +1,9 @@
 import React, { useMemo } from 'react';
 import './component-overview.scss';
 import { useNavigate } from 'react-router-dom';
-import { Card, Tag } from '@tiny-design/react';
 import { getComponentMenu } from '../../routers';
 import { useLocaleContext } from '../../context/locale-context';
-
-const iconModules = import.meta.glob<string>('../../assets/icon/*.svg', { eager: true, import: 'default' });
-
-function getSvgSrc(route: string): string | undefined {
-  return iconModules[`../../assets/icon/${route}.svg`];
-}
+import { getComponentIcon } from './component-icons';
 
 const ComponentOverview = () => {
   const navigate = useNavigate();
@@ -22,33 +16,29 @@ const ComponentOverview = () => {
 
   return (
     <div className="component-overview">
-      <h1 className="markdown__heading-1">{s.overview.title}</h1>
-      <p className="markdown__p">{s.overview.desc(numOfComps)}</p>
+      <h1 className="component-overview__title">{s.overview.title}</h1>
+      <p className="component-overview__desc">{s.overview.desc(numOfComps)}</p>
       {componentMenu.map((router) => (
         <div key={router.title} className="component-overview__category">
-          <h3 className="markdown__heading-3">
-            {router.title} <Tag>{router.children?.length}</Tag>
-          </h3>
+          <div className="component-overview__category-header">
+            <h3 className="component-overview__category-title">{router.title}</h3>
+            <span className="component-overview__category-count">{router.children?.length}</span>
+          </div>
           <div className="component-overview__grid">
-            {router.children!.map((item) => {
-              const svgSrc = getSvgSrc(item.route!);
-              return (
-                <Card
-                  className="component-overview__card"
-                  key={item.route}
-                  hoverable
-                  onClick={() => navigate(`/components/${item.route!}`)}>
-                  <div className="component-overview__card-img">
-                    {svgSrc ? (
-                      <img src={svgSrc} alt={item.title} />
-                    ) : (
-                      <div className="component-overview__card-placeholder" />
-                    )}
-                  </div>
-                  <div className="component-overview__card-name">{item.title}</div>
-                </Card>
-              );
-            })}
+            {router.children!.map((item) => (
+              <button
+                className="component-overview__card"
+                key={item.route}
+                onClick={() => navigate(`/components/${item.route!}`)}>
+                <span className="component-overview__card-icon">
+                  {getComponentIcon(item.route!)}
+                </span>
+                <span className="component-overview__card-name">{item.title}</span>
+                <svg className="component-overview__card-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            ))}
           </div>
         </div>
       ))}

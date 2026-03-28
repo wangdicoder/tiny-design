@@ -7,6 +7,7 @@ import { IconGithub } from '@tiny-design/icons';
 import { useSidebarToggle } from '../../context/sidebar-toggle-context';
 import { useLocaleContext } from '../../context/locale-context';
 import { ThemeToggle } from '../header/theme-toggle';
+import { getComponentIcon } from '../../containers/components/component-icons';
 import pkg from '../../../../../packages/react/package.json';
 
 const { Sidebar } = Layout;
@@ -37,23 +38,30 @@ export const SidebarMenu = (props: Props): React.ReactElement => {
                 <li key={router.title}>
                   <div className="sidebar-menu__group-title">{router.title}</div>
                   <ul className="sidebar-menu__group-list">
-                    {router.children.map((item) => (
-                      <li key={item.title} className="sidebar-menu__menu-item">
-                        <NavLink
-                          to={`${url}/${item.route}`}
-                          onClick={close}
-                          className={({ isActive }) =>
-                            isActive ? 'sidebar-menu__menu-item_active' : ''
-                          }>
-                          {item.title}
-                          {item.tag && item.tag}
-                        </NavLink>
-                      </li>
-                    ))}
+                    {router.children.map((item) => {
+                      const icon = item.route ? getComponentIcon(item.route) : null;
+                      return (
+                        <li key={item.title} className="sidebar-menu__menu-item">
+                          <NavLink
+                            to={`${url}/${item.route}`}
+                            onClick={close}
+                            className={({ isActive }) =>
+                              isActive ? 'sidebar-menu__menu-item_active' : ''
+                            }>
+                            <span className="sidebar-menu__menu-label">
+                              {icon && <span className="sidebar-menu__menu-icon">{icon}</span>}
+                              {item.title}
+                            </span>
+                            {item.tag && item.tag}
+                          </NavLink>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </li>
               );
             } else {
+              const icon = router.route ? getComponentIcon(router.route) : null;
               return (
                 <li key={router.title} className="sidebar-menu__menu-item">
                   <NavLink
@@ -62,7 +70,10 @@ export const SidebarMenu = (props: Props): React.ReactElement => {
                     className={({ isActive }) =>
                       isActive ? 'sidebar-menu__menu-item_active' : ''
                     }>
-                    {router.title}
+                    <span className="sidebar-menu__menu-label">
+                      {icon && <span className="sidebar-menu__menu-icon">{icon}</span>}
+                      {router.title}
+                    </span>
                     {router.tag && router.tag}
                   </NavLink>
                 </li>

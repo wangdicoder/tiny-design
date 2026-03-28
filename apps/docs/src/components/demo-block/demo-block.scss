@@ -20,11 +20,11 @@
   &__error {
     color: #e53e3e;
     font-size: 13px;
-    padding: 12px;
+    padding: 12px 16px;
     margin: 0;
     background-color: #fff5f5;
-    border-radius: 4px;
-    font-family: Menlo, Consolas, "Droid Sans Mono", monospace;
+    border-radius: 8px;
+    font-family: 'SF Mono', Consolas, 'Droid Sans Mono', monospace;
     white-space: pre-wrap;
     word-break: break-word;
   }
@@ -32,9 +32,8 @@
   &__editor-container {
     background-color: var(--ty-color-fill);
     border-top: solid 1px var(--ty-color-border-secondary);
-    // Wrap editor text instead of forcing horizontal scrolling.
     overflow-x: hidden;
-    font-family: Menlo, Consolas, "Droid Sans Mono", monospace;
+    font-family: 'SF Mono', 'Fira Code', Consolas, 'Droid Sans Mono', monospace;
     font-size: 13px;
     line-height: 1.6;
     tab-size: 2;
@@ -50,7 +49,6 @@
     pre {
       margin: 0;
       pointer-events: none;
-      // Ensure long lines wrap in the highlighted background layer.
       white-space: pre-wrap;
       word-break: break-word;
       overflow-wrap: anywhere;
@@ -77,24 +75,21 @@
     font-size: inherit;
     line-height: inherit;
     tab-size: inherit;
-    // Keep caret + selection aligned with the highlighted background layer.
     white-space: pre-wrap;
     word-break: break-word;
     overflow-wrap: anywhere;
     box-sizing: border-box;
 
     &::selection {
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(0, 0, 0, 0.12);
     }
   }
 
   &__actions {
-    border-top: dashed 1px var(--ty-color-border-secondary);
+    border-top: 1px solid var(--ty-color-border-secondary);
     height: 40px;
     box-sizing: border-box;
     background-color: var(--ty-color-bg-elevated);
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,9 +108,9 @@
     background: none;
     color: var(--ty-color-text-tertiary);
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 15px;
-    transition: color 0.2s, background-color 0.2s;
+    transition: color 0.15s, background-color 0.15s;
     padding: 0;
 
     &:hover {
@@ -131,9 +126,10 @@
     cursor: pointer;
     font-size: 12px;
     padding: 4px 8px;
-    border-radius: 4px;
-    transition: color 0.2s, background-color 0.2s;
+    border-radius: 6px;
+    transition: color 0.15s, background-color 0.15s;
     user-select: none;
+    font-weight: 500;
 
     &:hover {
       color: var(--ty-color-primary);
