@@ -10,6 +10,14 @@ import { CodePanel } from './code-panel';
 import type { BlockMeta } from '@/lib/blocks';
 import styles from './block-preview.module.scss';
 
+// In dev mode, Next.js appends HMR code (import.meta.webpackHot...) to
+// asset/source modules. Strip it so react-runner only sees the TSX source.
+function stripHmr(raw: string): string {
+  const marker = '\n\n;\n    // Wrapped in an IIFE';
+  const idx = raw.indexOf(marker);
+  return idx !== -1 ? raw.substring(0, idx).trim() : raw.trim();
+}
+
 const scope = {
   import: {
     react: React,
@@ -29,7 +37,7 @@ export function BlockPreview({ meta }: BlockPreviewProps) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    meta.rawSource().then((m) => setSourceCode(m.default));
+    meta.rawSource().then((m) => setSourceCode(stripHmr(m.default)));
   }, [meta]);
 
   const { element, error } = useRunner({ code: sourceCode, scope });
