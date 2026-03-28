@@ -36,13 +36,15 @@ export interface ListPaginationProps extends Pick<PaginationProps, 'size' | 'ali
 
 export interface ListItemProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
   extra?: React.ReactNode;
   actions?: React.ReactNode[];
   children?: React.ReactNode;
 }
 
-export interface ListItemMetaProps extends BaseProps {
+export interface ListItemMetaProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
   avatar?: React.ReactNode;
   title?: React.ReactNode;
   description?: React.ReactNode;

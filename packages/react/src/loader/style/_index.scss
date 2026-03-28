@@ -9,44 +9,44 @@
   &__indicator {
     position: relative;
     display: inline-block;
-    font-size: 20px;
-    width: 1em;
-    height: 1em;
-    margin: 5px;
-    animation: ty-rotate 1s linear infinite;
-  }
-
-  &__indicator-dot {
-    position: absolute;
-    display: block;
-    transform: scale(0.75);
-    background-color: currentcolor;
+    aspect-ratio: 1;
     border-radius: 50%;
-    transform-origin: 50% 50%;
-    opacity: 0.5;
-    animation: dot-opacity 2s linear infinite;
+    border: var(--ty-loader-border-width) solid transparent;
+    border-right-color: currentcolor;
+    margin: 5px;
+    animation: ty-loader-spin 1s infinite linear;
 
-    &:nth-child(1) {
-      top: 0;
-      left: 0;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset: calc(var(--ty-loader-border-width) * -1);
+      border-radius: 50%;
+      border: inherit;
+      animation: inherit;
+      animation-duration: 2s;
     }
 
-    &:nth-child(2) {
-      top: 0;
-      right: 0;
-      animation-delay: .4s;
+    &::after {
+      animation-duration: 4s;
     }
 
-    &:nth-child(3) {
-      right: 0;
-      bottom: 0;
-      animation-delay: .8s;
+    &_sm {
+      --ty-loader-border-width: 2px;
+
+      width: 16px;
     }
 
-    &:nth-child(4) {
-      bottom: 0;
-      left: 0;
-      animation-delay: 1.2s;
+    &_md {
+      --ty-loader-border-width: 3px;
+
+      width: 24px;
+    }
+
+    &_lg {
+      --ty-loader-border-width: 4px;
+
+      width: 36px;
     }
   }
 
@@ -55,45 +55,6 @@
     user-select: none;
     opacity: 0.8;
     font-size: 16px;
-  }
-
-  &_md {
-    .#{$prefix}-loader{
-      &__indicator{
-        font-size: 20px;
-      }
-
-      &__indicator-dot {
-        width: 9px;
-        height: 9px;
-      }
-    }
-  }
-
-  &_lg {
-    .#{$prefix}-loader{
-      &__indicator{
-        font-size: 32px;
-      }
-
-      &__indicator-dot {
-        width: 14px;
-        height: 14px;
-      }
-    }
-  }
-
-  &_sm {
-    .#{$prefix}-loader{
-      &__indicator{
-        font-size: 14px;
-      }
-
-      &__indicator-dot {
-        width: 6px;
-        height: 6px;
-      }
-    }
   }
 
   &__loader-container {
@@ -127,16 +88,8 @@
   }
 }
 
-@keyframes dot-opacity {
-  0% {
-    opacity: 0.2;
-  }
-
-  50% {
-    opacity: 0.9;
-  }
-
+@keyframes ty-loader-spin {
   100% {
-    opacity: 0.2;
+    transform: rotate(1turn);
   }
 }

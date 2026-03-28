@@ -12,20 +12,7 @@ exports[`<Loader /> should match the snapshot 1`] = `
     >
       <div
         class="ty-loader__indicator ty-loader__indicator_md"
-      >
-        <span
-          class="ty-loader__indicator-dot"
-        />
-        <span
-          class="ty-loader__indicator-dot"
-        />
-        <span
-          class="ty-loader__indicator-dot"
-        />
-        <span
-          class="ty-loader__indicator-dot"
-        />
-      </div>
+      />
     </div>
   </div>
 </DocumentFragment>

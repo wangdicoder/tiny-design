@@ -49,6 +49,13 @@
     }
   }
 
+  &__items,
+  &__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
   &__empty {
     padding: 24px;
     text-align: center;

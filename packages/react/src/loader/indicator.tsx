@@ -8,14 +8,7 @@ type Props = {
 
 const Indicator = (props: Props): React.ReactElement => {
   const { size, className } = props;
-  return (
-    <div className={`${className} ${className}_${size}`}>
-      <span className={`${className}-dot`} />
-      <span className={`${className}-dot`} />
-      <span className={`${className}-dot`} />
-      <span className={`${className}-dot`} />
-    </div>
-  );
+  return <div className={`${className} ${className}_${size}`} />;
 };
 
 export default Indicator;

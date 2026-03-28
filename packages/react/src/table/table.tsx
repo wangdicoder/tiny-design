@@ -4,6 +4,8 @@ import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { useVirtualScroll } from '../_utils/use-virtual-scroll';
 import Pagination from '../pagination';
+import Checkbox from '../checkbox';
+import Radio from '../radio';
 import { TableProps, ColumnType, SortOrder } from './types';
 
 const ROW_HEIGHT_MAP = { sm: 40, md: 48, lg: 56 } as const;
@@ -81,7 +83,7 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
         break;
       }
     }
-  }, []);
+  }, [columns]);
 
   const sortedData = useMemo(() => {
     if (!sortField || !sortOrder) return [...dataSource];
@@ -143,13 +145,14 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    pagination && pagination.onChange?.(page, pageSize);
+    paginationConfig?.onChange?.(page, pageSize);
     onChange?.({ current: page, pageSize }, { field: sortField, order: sortOrder });
   };
 
   const handleSelectAll = () => {
     if (!rowSelection) return;
-    const allKeys = paginatedData.map((record, i) => getRowKey(record, rowKey, i));
+    const offset = (!isVirtual && pagination !== false) ? (activePage - 1) * pageSize : 0;
+    const allKeys = paginatedData.map((record, i) => getRowKey(record, rowKey, offset + i));
     const allSelected = allKeys.every((k) => selectedKeys.includes(k));
     const newKeys = allSelected ? [] : allKeys;
     if (!rowSelection.selectedRowKeys) {
@@ -173,7 +176,7 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
     if (!rowSelection.selectedRowKeys) {
       setSelectedKeys(newKeys);
     }
-    const newRows = dataSource.filter((r, i) => newKeys.includes(getRowKey(r, rowKey, i)));
+    const newRows = sortedData.filter((r, i) => newKeys.includes(getRowKey(r, rowKey, i)));
     rowSelection.onChange?.(newKeys, newRows);
   };
 
@@ -195,7 +198,8 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
     wrapperStyle.overflowY = 'auto';
   }
 
-  const allPageKeys = paginatedData.map((r, i) => getRowKey(r, rowKey, i));
+  const pageOffset = (!isVirtual && pagination !== false) ? (activePage - 1) * pageSize : 0;
+  const allPageKeys = paginatedData.map((r, i) => getRowKey(r, rowKey, pageOffset + i));
   const allSelected = allPageKeys.length > 0 && allPageKeys.every((k) => selectedKeys.includes(k));
   const someSelected = allPageKeys.some((k) => selectedKeys.includes(k));
 
@@ -212,12 +216,19 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
       <tr key={key} className={rowCls} {...rowProps}>
         {rowSelection && (
           <td className={`${prefixCls}__cell ${prefixCls}__selection-col`}>
-            <input
-              type={rowSelection.type === 'radio' ? 'radio' : 'checkbox'}
-              checked={isSelected}
-              onChange={() => handleSelectRow(record, key)}
-              aria-label={`Select row ${rowIndex + 1}`}
-            />
+            {rowSelection.type === 'radio' ? (
+              <Radio
+                checked={isSelected}
+                onChange={() => handleSelectRow(record, key)}
+                aria-label={`Select row ${rowIndex + 1}`}
+              />
+            ) : (
+              <Checkbox
+                checked={isSelected}
+                onChange={() => handleSelectRow(record, key)}
+                aria-label={`Select row ${rowIndex + 1}`}
+              />
+            )}
           </td>
         )}
         {columns.map((col, colIndex) => {
@@ -294,7 +305,7 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
       );
     }
 
-    return paginatedData.map((record, rowIndex) => renderRow(record, rowIndex));
+    return paginatedData.map((record, i) => renderRow(record, pageOffset + i));
   };
 
   const theadCls = classNames(`${prefixCls}__thead`, {
@@ -317,10 +328,9 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
                 {rowSelection && (
                   <th className={`${prefixCls}__cell ${prefixCls}__selection-col`}>
                     {rowSelection.type !== 'radio' && (
-                      <input
-                        type="checkbox"
+                      <Checkbox
                         checked={allSelected}
-                        ref={(el) => { if (el) el.indeterminate = someSelected && !allSelected; }}
+                        indeterminate={someSelected && !allSelected}
                         onChange={handleSelectAll}
                         aria-label="Select all"
                       />

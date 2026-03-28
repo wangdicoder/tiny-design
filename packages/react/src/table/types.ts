@@ -7,11 +7,10 @@ export type ColumnAlign = 'left' | 'center' | 'right';
 
 export interface ColumnType<T = any> {
   title: React.ReactNode;
-  dataIndex?: string;
+  dataIndex?: keyof T & string;
   key?: string;
   width?: number | string;
   align?: ColumnAlign;
-  fixed?: 'left' | 'right';
   sorter?: boolean | ((a: T, b: T) => number);
   defaultSortOrder?: SortOrder;
   render?: (value: any, record: T, index: number) => React.ReactNode;
@@ -19,11 +18,11 @@ export interface ColumnType<T = any> {
   className?: string;
 }
 
-export type RowSelection<T = any> = {
+export interface RowSelection<T = any> {
   selectedRowKeys?: React.Key[];
   onChange?: (selectedRowKeys: React.Key[], selectedRows: T[]) => void;
   type?: 'checkbox' | 'radio';
-};
+}
 
 export interface TablePaginationConfig extends Pick<PaginationProps, 'size' | 'align' | 'disabled'> {
   current?: number;
