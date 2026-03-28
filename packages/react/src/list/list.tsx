@@ -52,6 +52,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     itemCount: dataSource.length,
     itemHeight,
     containerHeight: height ?? 0,
+    enabled: isVirtual,
   });
 
   const cls = classNames(prefixCls, className, {
@@ -78,7 +79,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     if (isVirtual) {
       if (dataSource.length === 0) {
         return (
-          <div className={`${prefixCls}__empty`}>
+          <div className={`${prefixCls}__empty`} role="status">
             {locale?.emptyText ?? 'No Data'}
           </div>
         );
@@ -89,10 +90,16 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
           <React.Fragment key={start + i}>{renderItem(item, start + i)}</React.Fragment>
         ));
         return (
-          <div style={{ height: totalHeight, position: 'relative' }}>
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, transform: `translateY(${offsetY}px)` }}>
+          <div
+            style={{ height: totalHeight, position: 'relative' }}
+            aria-rowcount={dataSource.length}
+          >
+            <ul
+              className={`${prefixCls}__items`}
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, transform: `translateY(${offsetY}px)` }}
+            >
               {visibleItems}
-            </div>
+            </ul>
           </div>
         );
       }
@@ -102,18 +109,22 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     const items = paginatedData();
     if (items.length === 0 && !children) {
       return (
-        <div className={`${prefixCls}__empty`}>
+        <div className={`${prefixCls}__empty`} role="status">
           {locale?.emptyText ?? 'No Data'}
         </div>
       );
     }
     if (renderItem) {
+      const page = pagination ? (pagination.current ?? currentPage) : 1;
+      const startIndex = pagination ? (page - 1) * pageSize : 0;
       const rendered = items.map((item, index) => (
-        <React.Fragment key={index}>{renderItem(item, index)}</React.Fragment>
+        <React.Fragment key={startIndex + index}>
+          {renderItem(item, startIndex + index)}
+        </React.Fragment>
       ));
       if (grid) {
         return (
-          <div
+          <ul
             className={`${prefixCls}__grid`}
             style={{
               display: 'grid',
@@ -122,10 +133,10 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
             }}
           >
             {rendered}
-          </div>
+          </ul>
         );
       }
-      return rendered;
+      return <ul className={`${prefixCls}__items`}>{rendered}</ul>;
     }
     return children;
   };
@@ -144,11 +155,11 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     : undefined;
 
   return (
-    <div {...otherProps} ref={ref} className={cls} style={style}>
+    <div {...otherProps} ref={ref} aria-busy={loading} className={cls} style={style}>
       {header && <div className={`${prefixCls}__header`}>{header}</div>}
       <div className={bodyCls} style={bodyStyle} onScroll={isVirtual ? onScroll : undefined}>
         {loading ? (
-          <div className={`${prefixCls}__loading`}>Loading...</div>
+          <div className={`${prefixCls}__loading`} role="status" aria-live="polite">Loading...</div>
         ) : (
           renderItems()
         )}
@@ -171,4 +182,6 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
 });
 
 List.displayName = 'List';
-export default List;
+export default List as <T = any>(
+  props: ListProps<T> & React.RefAttributes<HTMLDivElement>
+) => React.ReactElement | null;

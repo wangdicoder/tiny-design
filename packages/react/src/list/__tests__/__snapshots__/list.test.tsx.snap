@@ -3,50 +3,55 @@
 exports[`<List /> should match the snapshot 1`] = `
 <DocumentFragment>
   <div
+    aria-busy="false"
     class="ty-list ty-list_md ty-list_split"
   >
     <div
       class="ty-list__body"
     >
-      <div
-        class="ty-list-item"
+      <ul
+        class="ty-list__items"
       >
-        <div
-          class="ty-list-item__main"
+        <li
+          class="ty-list-item"
         >
           <div
-            class="ty-list-item__content"
+            class="ty-list-item__main"
           >
-            Item 1
+            <div
+              class="ty-list-item__content"
+            >
+              Item 1
+            </div>
           </div>
-        </div>
-      </div>
-      <div
-        class="ty-list-item"
-      >
-        <div
-          class="ty-list-item__main"
+        </li>
+        <li
+          class="ty-list-item"
         >
           <div
-            class="ty-list-item__content"
+            class="ty-list-item__main"
           >
-            Item 2
+            <div
+              class="ty-list-item__content"
+            >
+              Item 2
+            </div>
           </div>
-        </div>
-      </div>
-      <div
-        class="ty-list-item"
-      >
-        <div
-          class="ty-list-item__main"
+        </li>
+        <li
+          class="ty-list-item"
         >
           <div
-            class="ty-list-item__content"
+            class="ty-list-item__main"
           >
-            Item 3
+            <div
+              class="ty-list-item__content"
+            >
+              Item 3
+            </div>
           </div>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
 </DocumentFragment>

@@ -5,6 +5,7 @@ export interface UseVirtualScrollOptions {
   itemHeight: number;
   containerHeight: number;
   overscan?: number;
+  enabled?: boolean;
 }
 
 export interface UseVirtualScrollResult {
@@ -15,12 +16,14 @@ export interface UseVirtualScrollResult {
 }
 
 export function useVirtualScroll(options: UseVirtualScrollOptions): UseVirtualScrollResult {
-  const { itemCount, itemHeight, containerHeight, overscan = 3 } = options;
+  const { itemCount, itemHeight, containerHeight, overscan = 3, enabled = true } = options;
   const [scrollTop, setScrollTop] = useState(0);
 
   const onScroll = useCallback((e: React.UIEvent<HTMLElement>) => {
-    setScrollTop(e.currentTarget.scrollTop);
-  }, []);
+    if (enabled) {
+      setScrollTop(e.currentTarget.scrollTop);
+    }
+  }, [enabled]);
 
   const totalHeight = itemCount * itemHeight;
 

@@ -29,6 +29,7 @@ $btn-prefix: #{$prefix}-btn;
 
   &__icon-container, &__loader {
     display: inline-block;
+    flex-shrink: 0;
     pointer-events: none;
     line-height: $btn-line-height;
     vertical-align: middle;

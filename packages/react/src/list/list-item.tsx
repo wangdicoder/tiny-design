@@ -4,7 +4,7 @@ import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { ListItemProps } from './types';
 
-const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
+const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>((props, ref) => {
   const {
     extra,
     actions,
@@ -20,11 +20,11 @@ const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>((props, ref) =>
   const cls = classNames(prefixCls, className);
 
   return (
-    <div {...otherProps} ref={ref} className={cls} style={style}>
+    <li {...otherProps} ref={ref} className={cls} style={style}>
       <div className={`${prefixCls}__main`}>
         <div className={`${prefixCls}__content`}>{children}</div>
         {actions && actions.length > 0 && (
-          <ul className={`${prefixCls}__actions`}>
+          <ul className={`${prefixCls}__actions`} aria-label="Actions">
             {actions.map((action, i) => (
               <li key={i} className={`${prefixCls}__action`}>
                 {action}
@@ -34,7 +34,7 @@ const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>((props, ref) =>
         )}
       </div>
       {extra && <div className={`${prefixCls}__extra`}>{extra}</div>}
-    </div>
+    </li>
   );
 });
 
