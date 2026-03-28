@@ -14,5 +14,5 @@
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": ["@tiny-design/docs", "@tiny-design/extract"]
+  "ignore": ["@tiny-design/docs", "@tiny-design/extract", "@tiny-design/pro"]
 }
