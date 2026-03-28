@@ -5,7 +5,7 @@ export type CardVariant = 'outlined' | 'elevated' | 'filled';
 
 export interface CardContentProps extends React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
   prefixCls?: string;
-  children: string;
+  children: ReactNode;
 }
 
 export interface CardProps

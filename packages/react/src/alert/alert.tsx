@@ -77,7 +77,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, forwardedRef)
       }}>
         {icon && renderIcon()}
         <div className={`${prefixCls}__content`}>
-          {title && <p className={classNames(`${prefixCls}__title`, { [`${prefixCls}__title_has-content`]: children })}>{title}</p>}
+          {title && <div className={classNames(`${prefixCls}__title`, { [`${prefixCls}__title_has-content`]: children })}>{title}</div>}
           {children}
         </div>
         {closeIcon}
