@@ -14,8 +14,8 @@ const getRowKey = <T,>(record: T, rowKey: string | ((record: T) => React.Key), i
   return key !== undefined ? key : index;
 };
 
-const getValue = <T,>(record: T, dataIndex: string): any => {
-  return (record as any)[dataIndex];
+const getValue = <T,>(record: T, dataIndex?: string): any => {
+  return dataIndex ? (record as any)[dataIndex] : undefined;
 };
 
 const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {

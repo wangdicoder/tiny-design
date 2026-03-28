@@ -9,5 +9,7 @@ export interface NativeSelectProps
   extends BaseProps,
     Omit<React.PropsWithRef<JSX.IntrinsicElements['select']>, 'size'> {
   size?: SizeType;
-  children: React.ReactElement<NativeSelectGroupProps | NativeSelectOptionProps>;
+  children:
+    | React.ReactElement<NativeSelectGroupProps | NativeSelectOptionProps>
+    | React.ReactElement<NativeSelectGroupProps | NativeSelectOptionProps>[];
 }

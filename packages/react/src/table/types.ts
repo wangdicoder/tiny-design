@@ -7,7 +7,7 @@ export type ColumnAlign = 'left' | 'center' | 'right';
 
 export interface ColumnType<T = any> {
   title: React.ReactNode;
-  dataIndex: string;
+  dataIndex?: string;
   key?: string;
   width?: number | string;
   align?: ColumnAlign;
