@@ -5,6 +5,7 @@ export type SiteLocale = {
     guide: string;
     theme: string;
     components: string;
+    pro: string;
   };
   home: {
     subtitle: string;

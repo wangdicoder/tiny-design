@@ -7,6 +7,7 @@ const zh_CN: SiteLocale = {
     guide: '指南',
     theme: '主题',
     components: '组件',
+    pro: 'Pro',
   },
   home: {
     subtitle: '一套友好的 React UI 组件库',

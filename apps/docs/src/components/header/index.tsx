@@ -66,6 +66,16 @@ export const Header = (): React.ReactElement => {
           </li>
           <li className="header__nav-item">
             <a
+              href="/tiny-design/pro/"
+              className="header__link header__pro-link"
+              target="_blank"
+              rel="noreferrer noopener">
+              {s.nav.pro}
+              <span className="header__pro-badge">New</span>
+            </a>
+          </li>
+          <li className="header__nav-item">
+            <a
               href={repository.url}
               target="_blank"
               className="header__link"

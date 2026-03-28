@@ -93,6 +93,23 @@
     }
   }
 
+  &__pro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__pro-badge {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: var(--ty-color-primary);
+    color: #fff;
+    vertical-align: middle;
+  }
+
   &__version {
     background: var(--ty-color-primary);
     font-size: 12px;
