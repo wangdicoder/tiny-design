@@ -44,7 +44,7 @@ export interface ListItemProps
 
 export interface ListItemMetaProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
   avatar?: React.ReactNode;
   title?: React.ReactNode;
   description?: React.ReactNode;
