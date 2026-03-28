@@ -1,6 +1,7 @@
 @use '../../style/variables' as *;
 
-$tag-preset-colors: magenta, red, volcano, orange, gold, lime, green, cyan, blue, geekblue, purple;
+$tag-preset-colors: 'magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue',
+  'geekblue', 'purple';
 $tag-status-colors: success, info, warning, danger;
 
 .#{$prefix}-tag {
