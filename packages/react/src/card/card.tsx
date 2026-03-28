@@ -2,10 +2,11 @@ import React, { ReactNode, useContext } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
-import { CardContentProps, CardProps } from './types';
+import { CardContentProps, CardProps, CardVariant } from './types';
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
+    variant,
     bordered = true,
     active = false,
     hoverable = false,
@@ -24,8 +25,11 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   } = props;
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('card', configContext.prefixCls, customisedCls);
+  // When variant is set, it takes precedence over the legacy bordered prop
+  const resolvedVariant: CardVariant | undefined = variant ?? (bordered ? 'outlined' : undefined);
+
   const cls = classNames(prefixCls, className, {
-    [`${prefixCls}_bordered`]: bordered,
+    [`${prefixCls}_${resolvedVariant}`]: resolvedVariant,
     [`${prefixCls}_active`]: active,
     [`${prefixCls}_hoverable`]: hoverable,
   });

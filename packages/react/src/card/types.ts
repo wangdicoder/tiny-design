@@ -1,6 +1,8 @@
 import React, { CSSProperties, ReactNode } from 'react';
 import { BaseProps } from '../_utils/props';
 
+export type CardVariant = 'outlined' | 'elevated' | 'filled';
+
 export interface CardContentProps extends React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
   prefixCls?: string;
   children: string;
@@ -11,8 +13,11 @@ export interface CardProps
     Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
   title?: ReactNode;
   extra?: ReactNode;
+  /** Card surface style */
+  variant?: CardVariant;
   hoverable?: boolean;
   active?: boolean;
+  /** @deprecated Use `variant="outlined"` instead */
   bordered?: boolean;
   actions?: ReactNode[];
   header?: ReactNode;

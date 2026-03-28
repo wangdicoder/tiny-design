@@ -8,6 +8,8 @@ import HoverableDemo from './demo/Hoverable';
 import HoverableSource from './demo/Hoverable.tsx?raw';
 import ActiveDemo from './demo/Active';
 import ActiveSource from './demo/Active.tsx?raw';
+import VariantDemo from './demo/Variant';
+import VariantSource from './demo/Variant.tsx?raw';
 import InnerCardDemo from './demo/InnerCard';
 import InnerCardSource from './demo/InnerCard.tsx?raw';
 import ImageDemo from './demo/Image';
@@ -40,6 +42,15 @@ const { Content } = Card;
 包含标题、内容和右上角额外内容的基本卡片。
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 变体样式
+
+使用 `variant` 控制卡片表面样式：`outlined`（默认）、`elevated` 或 `filled`。
+
+<DemoBlock component={VariantDemo} source={VariantSource} />
 
     </Demo>
     <Demo>
@@ -103,13 +114,14 @@ const { Content } = Card;
 
 ## Props
 
-| 属性        | 说明                                         | 类型                     | 默认值  |
-| ----------- | -------------------------------------------- | ------------------------ | ------- |
-| title       | 卡片标题                                     | ReactNode                | -       |
-| extra       | 右上角额外内容                               | ReactNode                | -       |
-| hoverable   | 鼠标悬停时浮起                               | boolean                  | false   |
-| active      | 显示带有阴影的卡片                           | boolean                  | false   |
-| bordered    | 是否显示边框                                 | boolean                  | true    |
+| 属性        | 说明                                         | 类型                                   | 默认值      |
+| ----------- | -------------------------------------------- | -------------------------------------- | ----------- |
+| variant     | 卡片表面样式                                 | `outlined` \| `elevated` \| `filled`  | `outlined`  |
+| title       | 卡片标题                                     | ReactNode                              | -           |
+| extra       | 右上角额外内容                               | ReactNode                              | -           |
+| hoverable   | 鼠标悬停时浮起                               | boolean                                | false       |
+| active      | 显示带有阴影的卡片                           | boolean                                | false       |
+| bordered    | 是否显示边框（已弃用）                       | boolean                                | true        |
 | actions     | 卡片底部的操作列表                           | ReactNode[]              | -       |
 | header      | 自定义头部内容                               | ReactNode                | -       |
 | footer      | 自定义底部内容                               | ReactNode                | -       |
