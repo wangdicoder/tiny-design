@@ -1,0 +1,268 @@
+// ── Block Preview Card ──────────────────────────────────────────────
+.blockPreview {
+  border: 1px solid var(--ty-color-border-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--ty-color-bg-container);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 2px 8px rgba(0, 0, 0, 0.02);
+  transition:
+    border-color 0.25s,
+    background-color 0.25s,
+    box-shadow 0.25s;
+
+  & + & {
+    margin-top: 40px;
+  }
+
+  &:hover {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.06),
+      0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+}
+
+// ── Header ─────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--ty-color-border-secondary);
+  background: var(--ty-color-bg-elevated);
+  transition:
+    background-color 0.25s,
+    border-color 0.25s;
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ty-color-text);
+}
+
+// ── Toolbar ────────────────────────────────────────────────────────
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+// Segmented viewport switcher
+.viewportGroup {
+  display: flex;
+  align-items: center;
+  background: var(--ty-color-fill-secondary);
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.viewportBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ty-color-text-tertiary);
+  cursor: pointer;
+  font-size: 15px;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+
+  &:hover {
+    color: var(--ty-color-text-secondary);
+  }
+}
+
+.viewportBtnActive {
+  background: var(--ty-color-bg-container);
+  color: var(--ty-color-text);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+// Divider between viewport and actions
+.toolbarDivider {
+  width: 1px;
+  height: 20px;
+  background: var(--ty-color-border-secondary);
+  margin: 0 4px;
+}
+
+// Action buttons
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ty-color-text-tertiary);
+  cursor: pointer;
+  font-size: 15px;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+
+  &:hover {
+    color: var(--ty-color-text);
+    background: var(--ty-color-fill-secondary);
+  }
+}
+
+.actionBtnActive {
+  color: var(--ty-color-primary);
+  background: var(--ty-color-primary-bg);
+
+  &:hover {
+    color: var(--ty-color-primary);
+    background: var(--ty-color-primary-bg);
+  }
+}
+
+// ── Preview Frame ──────────────────────────────────────────────────
+.previewOuter {
+  position: relative;
+  overflow: hidden;
+  min-height: 120px;
+  transition: background-color 0.3s;
+}
+
+.previewOuterScaled {
+  // Subtle dot grid to indicate constrained viewport
+  background-image: radial-gradient(circle, var(--ty-color-border-secondary) 0.8px, transparent 0.8px);
+  background-size: 16px 16px;
+  background-position: 8px 8px;
+}
+
+.previewInner {
+  width: 100%;
+}
+
+.previewInnerScaled {
+  margin: 0 auto;
+  box-shadow:
+    -1px 0 0 var(--ty-color-border-secondary),
+    1px 0 0 var(--ty-color-border-secondary);
+  background: var(--ty-color-bg-container);
+}
+
+// ── Action Bar (between preview and code) ──────────────────────────
+.actionBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-top: 1px dashed var(--ty-color-border-secondary);
+  background: var(--ty-color-bg-elevated);
+  transition:
+    background-color 0.25s,
+    border-color 0.25s;
+}
+
+.actionBarBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ty-color-text-tertiary);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0 8px;
+  gap: 5px;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+
+  &:hover {
+    color: var(--ty-color-text);
+    background: var(--ty-color-fill-secondary);
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.actionBarBtnActive {
+  color: var(--ty-color-primary);
+
+  &:hover {
+    color: var(--ty-color-primary);
+  }
+}
+
+.actionBarDivider {
+  width: 1px;
+  height: 16px;
+  background: var(--ty-color-border-secondary);
+  margin: 0 2px;
+}
+
+.actionBarLabel {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+// ── Code Panel ─────────────────────────────────────────────────────
+.codePanelWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+  border-top: 1px solid var(--ty-color-border-secondary);
+}
+
+.codePanelWrapperOpen {
+  grid-template-rows: 1fr;
+}
+
+.codePanelInner {
+  overflow: hidden;
+}
+
+.codePanel {
+  max-height: 480px;
+  overflow: auto;
+  font-size: 13px;
+  line-height: 1.7;
+
+  pre {
+    margin: 0;
+  }
+}
+
+// ── Error ──────────────────────────────────────────────────────────
+.errorDisplay {
+  padding: 16px 20px;
+  font-size: 13px;
+  font-family: 'Menlo', 'Consolas', 'Droid Sans Mono', monospace;
+  line-height: 1.5;
+  color: var(--ty-color-danger);
+  background: var(--ty-color-danger-bg);
+  white-space: pre-wrap;
+  word-break: break-word;
+}

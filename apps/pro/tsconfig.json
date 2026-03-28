@@ -1,0 +1,43 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "esnext",
+    "noUnusedLocals": false,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@tiny-design/react": [
+        "../../packages/react/src"
+      ],
+      "@tiny-design/react/*": [
+        "../../packages/react/src/*"
+      ],
+      "@tiny-design/icons": [
+        "../../packages/icons/src"
+      ],
+      "@tiny-design/icons/*": [
+        "../../packages/icons/src/*"
+      ]
+    },
+    "skipLibCheck": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "next-env.d.ts",
+    "src",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

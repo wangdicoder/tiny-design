@@ -4,7 +4,7 @@ import * as Icons from '@tiny-design/icons';
 import type { IconProps } from '@tiny-design/icons';
 import Input from '../../input';
 import Message from '../../message';
-import { useTheme } from '../../_utils/use-theme'
+import { useTheme } from '../../_utils/use-theme';
 
 const iconEntries = Object.entries(Icons).filter(
   ([key]) => key.startsWith('Icon')
@@ -38,7 +38,7 @@ const SvgIconList = (): JSX.Element => {
   const [keyword, setKeyword] = useState('');
   const [activeIconName, setActiveIconName] = useState('');
   const deferredKeyword = useDeferredValue(keyword);
-  const { resolvedTheme } = useTheme()
+  const { resolvedTheme } = useTheme();
 
   const normalizedKeyword = deferredKeyword.trim().toLowerCase();
   const filteredIconEntries = iconEntries.filter(([name]) =>

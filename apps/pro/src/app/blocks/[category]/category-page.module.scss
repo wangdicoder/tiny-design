@@ -1,0 +1,33 @@
+.layout {
+  display: flex;
+  padding-top: 60px;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  margin-left: 240px;
+  padding: 40px 48px 80px;
+  max-width: calc(100% - 240px);
+}
+
+.pageHeader {
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--ty-color-border-secondary);
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin: 0 0 6px;
+  color: var(--ty-color-text);
+}
+
+.count {
+  font-size: 13px;
+  color: var(--ty-color-text-tertiary);
+  margin: 0;
+  font-weight: 500;
+}

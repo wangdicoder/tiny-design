@@ -9,27 +9,32 @@
   transition: all 0.3s;
   background-color: var(--ty-card-bg);
 
-  & + & {
-    margin-top: 15px;
-  }
-
   & > img:first-child {
     border-radius: $card-border-radius $card-border-radius 0 0;
   }
 
-  &_bordered {
+  &_outlined {
     border: 1px solid var(--ty-card-border);
+  }
+
+  &_elevated {
+    box-shadow: var(--ty-shadow-card);
+  }
+
+  &_filled {
+    background-color: var(--ty-color-fill);
   }
 
   &_hoverable {
     cursor: pointer;
+
     &:hover {
-      @include card_elevation();
+      @include card_elevation;
     }
   }
 
   &_active {
-    @include card_elevation();
+    @include card_elevation;
   }
 
   &__header {

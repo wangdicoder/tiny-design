@@ -7,6 +7,7 @@ const en_US: SiteLocale = {
     guide: 'Guide',
     theme: 'Theme',
     components: 'Components',
+    pro: 'Pro',
   },
   home: {
     subtitle: 'A Friendly UI Component Set for React',

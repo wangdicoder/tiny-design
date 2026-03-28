@@ -8,6 +8,8 @@ import HoverableDemo from './demo/Hoverable';
 import HoverableSource from './demo/Hoverable.tsx?raw';
 import ActiveDemo from './demo/Active';
 import ActiveSource from './demo/Active.tsx?raw';
+import VariantDemo from './demo/Variant';
+import VariantSource from './demo/Variant.tsx?raw';
 import InnerCardDemo from './demo/InnerCard';
 import InnerCardSource from './demo/InnerCard.tsx?raw';
 import ImageDemo from './demo/Image';
@@ -40,6 +42,15 @@ const { Content } = Card;
 A basic card containing a title, content and an extra corner content.
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Variants
+
+Use `variant` to control the card surface style: `outlined` (default), `elevated`, or `filled`.
+
+<DemoBlock component={VariantDemo} source={VariantSource} />
 
     </Demo>
     <Demo>
@@ -103,13 +114,14 @@ A card using an image to reinforce the content.
 
 ## Props
 
-| Property    | Description                                  | Type                     | Default |
-| ----------- | -------------------------------------------- | ------------------------ | ------- |
-| title       | card title                                   | ReactNode                | -       |
-| extra       | content to render in the top-right corner    | ReactNode                | -       |
-| hoverable   | lift up when hovering card                   | boolean                  | false   |
-| active      | display card with elevation shadow           | boolean                  | false   |
-| bordered    | toggles rendering of the border              | boolean                  | true    |
+| Property    | Description                                  | Type                                   | Default     |
+| ----------- | -------------------------------------------- | -------------------------------------- | ----------- |
+| variant     | card surface style                           | `outlined` \| `elevated` \| `filled`  | `outlined`  |
+| title       | card title                                   | ReactNode                              | -           |
+| extra       | content to render in the top-right corner    | ReactNode                              | -           |
+| hoverable   | lift up when hovering card                   | boolean                                | false       |
+| active      | display card with elevation shadow           | boolean                                | false       |
+| bordered    | toggles rendering of the border (deprecated) | boolean                                | true        |
 | actions     | the action list at the bottom of the card    | ReactNode[]              | -       |
 | header      | custom header content                        | ReactNode                | -       |
 | footer      | custom footer content                        | ReactNode                | -       |

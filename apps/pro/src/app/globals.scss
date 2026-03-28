@@ -1,0 +1,22 @@
+@use '@tiny-design/tokens/scss/base' as *;
+@use 'style/component' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body), -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
+    'Helvetica Neue', arial, 'Noto Sans', sans-serif;
+  background: var(--ty-color-bg);
+  color: var(--ty-color-text);
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

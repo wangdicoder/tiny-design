@@ -13,9 +13,37 @@ describe('<Card />', () => {
     expect(container.firstChild).toHaveClass('ty-card');
   });
 
-  it('should render bordered by default', () => {
+  it('should render outlined by default (bordered backward compat)', () => {
     const { container } = render(<Card>Content</Card>);
-    expect(container.firstChild).toHaveClass('ty-card_bordered');
+    expect(container.firstChild).toHaveClass('ty-card_outlined');
+  });
+
+  it('should render elevated variant', () => {
+    const { container } = render(<Card variant="elevated">Content</Card>);
+    expect(container.firstChild).toHaveClass('ty-card_elevated');
+    expect(container.firstChild).not.toHaveClass('ty-card_outlined');
+  });
+
+  it('should render filled variant', () => {
+    const { container } = render(<Card variant="filled">Content</Card>);
+    expect(container.firstChild).toHaveClass('ty-card_filled');
+    expect(container.firstChild).not.toHaveClass('ty-card_outlined');
+  });
+
+  it('should render outlined variant explicitly', () => {
+    const { container } = render(<Card variant="outlined">Content</Card>);
+    expect(container.firstChild).toHaveClass('ty-card_outlined');
+  });
+
+  it('variant should take precedence over bordered', () => {
+    const { container } = render(<Card variant="elevated" bordered>Content</Card>);
+    expect(container.firstChild).toHaveClass('ty-card_elevated');
+    expect(container.firstChild).not.toHaveClass('ty-card_outlined');
+  });
+
+  it('should render without border when bordered is false', () => {
+    const { container } = render(<Card bordered={false}>Content</Card>);
+    expect(container.firstChild).not.toHaveClass('ty-card_outlined');
   });
 
   it('should render hoverable', () => {

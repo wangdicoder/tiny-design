@@ -126,7 +126,10 @@ export const PreviewPanel = (): React.ReactElement => {
         </Flex>
         <Table columns={tableColumns} dataSource={tableData} pagination={false} bordered />
         <Card title="Card Title" style={{ marginTop: 16 }}>
-          <p>Card content with some text to show how typography looks in a card component.</p>
+          <Card.Content>
+            <p>Card content with some text to show how typography looks in a card component.</p>
+            <p>Card content with some text to show how typography looks in a card component.</p>
+          </Card.Content>
         </Card>
         <Flex gap="sm" wrap="wrap" style={{ marginTop: 16 }}>
           <Tag>Default</Tag>
