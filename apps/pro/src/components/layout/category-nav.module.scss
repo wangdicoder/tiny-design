@@ -1,0 +1,44 @@
+.nav {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  overflow-y: auto;
+  padding: 16px 0;
+  background: var(--ty-color-bg-container);
+  border-right: 1px solid var(--ty-color-border);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.title {
+  padding: 8px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ty-color-text-tertiary);
+}
+
+.link {
+  display: block;
+  padding: 8px 20px;
+  font-size: 14px;
+  color: var(--ty-color-text-secondary);
+  text-decoration: none;
+  transition:
+    color 0.15s,
+    background-color 0.15s;
+
+  &:hover {
+    color: var(--ty-color-text);
+    background: var(--ty-color-bg-hover);
+  }
+
+  &.active {
+    color: var(--ty-color-primary);
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,64 @@
+.main {
+  padding-top: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.hero {
+  text-align: center;
+  padding: 64px 0 48px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: var(--ty-color-text);
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--ty-color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  padding-bottom: 64px;
+}
+
+.card {
+  display: block;
+  padding: 20px;
+  border: 1px solid var(--ty-color-border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--ty-color-text);
+  background: var(--ty-color-bg-container);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s,
+    background-color 0.2s;
+
+  &:hover {
+    border-color: var(--ty-color-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.cardTitle {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cardCount {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ty-color-text-tertiary);
+}
