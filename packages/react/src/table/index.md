@@ -120,6 +120,8 @@ Render large tables efficiently with virtual scrolling. The header stays fixed w
 | onChange      | sort/pagination change callback      | (pagination, sorter) => void                    |         |
 | emptyText     | empty state text                     | ReactNode                                       | No Data |
 | showHeader    | show table header                    | boolean                                         | true    |
+| rowClassName  | custom row class name                | string &#124; (record, index) => string             |         |
+| onRow         | row event handler                    | (record, index) => HTMLAttributes                |         |
 
 ### ColumnType
 
@@ -132,7 +134,9 @@ Render large tables efficiently with virtual scrolling. The header stays fixed w
 | align        | text alignment              | `left` &#124; `center` &#124; `right`           | left    |
 | sorter       | enable sorting              | boolean &#124; (a, b) => number              |         |
 | render       | custom cell renderer        | (value, record, index) => ReactNode      |         |
+| defaultSortOrder | default sort order     | `ascend` &#124; `descend`                    |         |
 | ellipsis     | truncate long content       | boolean                                  | false   |
+| className    | custom column class name    | string                                   |         |
 
 ### RowSelection
 

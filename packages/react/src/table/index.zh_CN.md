@@ -120,6 +120,8 @@ import { Table } from 'tiny-design';
 | onChange      | 排序/分页变化回调    | (pagination, sorter) => void                    |         |
 | emptyText     | 空状态文本           | ReactNode                                       | 暂无数据 |
 | showHeader    | 显示表头             | boolean                                         | true    |
+| rowClassName  | 自定义行类名         | string &#124; (record, index) => string             |         |
+| onRow         | 行事件处理           | (record, index) => HTMLAttributes                |         |
 
 ### ColumnType
 
@@ -132,7 +134,9 @@ import { Table } from 'tiny-design';
 | align        | 对齐方式       | `left` &#124; `center` &#124; `right`           | left    |
 | sorter       | 排序功能       | boolean &#124; (a, b) => number              |         |
 | render       | 自定义渲染     | (value, record, index) => ReactNode      |         |
+| defaultSortOrder | 默认排序方向 | `ascend` &#124; `descend`                    |         |
 | ellipsis     | 文本溢出省略   | boolean                                  | false   |
+| className    | 自定义列类名   | string                                   |         |
 
 ### RowSelection
 
