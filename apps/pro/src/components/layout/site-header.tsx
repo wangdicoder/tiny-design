@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from '@tiny-design/react';
 import styles from './site-header.module.scss';
@@ -32,6 +33,9 @@ const GitHubIcon = () => (
 
 export function SiteHeader() {
   const { resolvedTheme, toggle } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   return (
     <header className={styles.header}>
@@ -40,7 +44,7 @@ export function SiteHeader() {
       </Link>
       <div className={styles.actions}>
         <button className={styles.iconBtn} onClick={toggle} aria-label="Toggle theme">
-          {resolvedTheme === 'dark' ? <SunIcon /> : <MoonIcon />}
+          {mounted ? (resolvedTheme === 'dark' ? <SunIcon /> : <MoonIcon />) : <MoonIcon />}
         </button>
         <a
           className={styles.iconBtn}
