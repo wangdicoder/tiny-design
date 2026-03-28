@@ -1,11 +1,22 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useRunner } from 'react-runner';
+import * as TinyDesign from '@tiny-design/react';
+import * as TinyIcons from '@tiny-design/icons';
 import { Toolbar, type ViewportSize } from './toolbar';
 import { PreviewFrame } from './preview-frame';
 import { CodePanel } from './code-panel';
 import type { BlockMeta } from '@/lib/blocks';
 import styles from './block-preview.module.scss';
+
+const scope = {
+  import: {
+    react: React,
+    '@tiny-design/react': TinyDesign,
+    '@tiny-design/icons': TinyIcons,
+  },
+};
 
 interface BlockPreviewProps {
   meta: BlockMeta;
@@ -14,14 +25,14 @@ interface BlockPreviewProps {
 export function BlockPreview({ meta }: BlockPreviewProps) {
   const [viewport, setViewport] = useState<ViewportSize>('desktop');
   const [showCode, setShowCode] = useState(false);
-  const [BlockComponent, setBlockComponent] = useState<React.ComponentType | null>(null);
   const [sourceCode, setSourceCode] = useState('');
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    meta.component().then((m) => setBlockComponent(() => m.default));
     meta.rawSource().then((m) => setSourceCode(m.default));
   }, [meta]);
+
+  const { element, error } = useRunner({ code: sourceCode, scope });
 
   const handleCopy = useCallback(async () => {
     await navigator.clipboard.writeText(sourceCode);
@@ -43,7 +54,11 @@ export function BlockPreview({ meta }: BlockPreviewProps) {
         />
       </div>
       <PreviewFrame viewport={viewport}>
-        {BlockComponent ? <BlockComponent /> : null}
+        {error ? (
+          <pre style={{ color: 'red', padding: 16, fontSize: 13 }}>{error}</pre>
+        ) : (
+          element
+        )}
       </PreviewFrame>
       {showCode && <CodePanel source={sourceCode} />}
     </div>
