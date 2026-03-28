@@ -2,7 +2,7 @@
 
 import { CategoryNav } from '@/components/layout/category-nav';
 import { BlockPreview } from '@/components/block-preview';
-import { getCategory } from '../../../lib/blocks';
+import { getCategory } from '../../../utils/blocks';
 import styles from './category-page.module.scss';
 
 interface CategoryPageClientProps {

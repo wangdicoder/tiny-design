@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getCategories } from '../lib/categories';
+import { getCategories } from '../utils/blocks';
 import styles from './page.module.scss';
 
 const CATEGORY_ICONS: Record<string, string> = {

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CATEGORIES } from '../../lib/categories';
+import { CATEGORIES } from '../../utils/blocks';
 import styles from './category-nav.module.scss';
 
 export function CategoryNav() {

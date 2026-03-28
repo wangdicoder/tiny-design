@@ -152,3 +152,13 @@ export function getCategories(): CategoryMeta[] {
 export function getCategory(slug: string): CategoryMeta | undefined {
   return CATEGORIES.find((c) => c.slug === slug);
 }
+
+export function getCategorySlugs(): string[] {
+  return CATEGORIES.map((c) => c.slug);
+}
+
+export function getCategoryInfo(slug: string): { label: string; blockCount: number } | undefined {
+  const cat = CATEGORIES.find((c) => c.slug === slug);
+  if (!cat) return undefined;
+  return { label: cat.label, blockCount: cat.blocks.length };
+}
