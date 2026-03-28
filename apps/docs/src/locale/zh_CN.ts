@@ -34,6 +34,22 @@ const zh_CN: SiteLocale = {
     themeShowcase: '定制你的主题',
     themeShowcaseDesc: '选择一个预设主题，即刻改变整个网站的外观。',
     themeShowcaseCustomize: '在主题编辑器中自定义',
+    showcase: {
+      title: '组件实战',
+      subtitle: '真实组件，实时渲染。所见即所得。',
+    },
+    codeExample: {
+      title: '愉悦的开发体验',
+      subtitle: '简洁的 API，可预测的模式。几分钟内即可交付。',
+    },
+    cta: {
+      title: '立即开始构建',
+      subtitle: '安装 Tiny UI，一分钟内即可在屏幕上看到你的第一个组件。',
+      install: 'npm install @tiny-design/react',
+      copied: '已复制！',
+      readDocs: '阅读文档',
+      browseComponents: '浏览组件',
+    },
   },
   overview: {
     title: '组件总览',

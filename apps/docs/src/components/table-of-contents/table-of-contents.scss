@@ -8,6 +8,11 @@
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   font-size: 13px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (max-width: $size-xl) {
     display: none;

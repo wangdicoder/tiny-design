@@ -7,16 +7,19 @@
   left: 0;
   z-index: 101;
   height: $header-height;
-  background: var(--ty-color-bg-elevated);
-  border-bottom: 1px solid var(--ty-color-border-secondary);
+  background: color-mix(in srgb, var(--ty-color-bg) 80%, transparent);
+  backdrop-filter: blur(16px) saturate(1.8);
+  -webkit-backdrop-filter: blur(16px) saturate(1.8);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px 0 30px;
+  padding: 0 32px;
+  transition: background 0.3s;
 
   &__left {
     display: flex;
     align-items: center;
+    min-width: 140px;
   }
 
   &__menu-toggle {
@@ -28,6 +31,12 @@
     margin-right: 12px;
     color: var(--ty-color-text);
     line-height: 0;
+    border-radius: 8px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--ty-color-fill);
+    }
   }
 
   &__link {
@@ -45,23 +54,21 @@
 
   &__title {
     margin-left: 10px;
-    font-weight: 600;
+    font-family: $font-display;
+    font-weight: 700;
     color: var(--ty-color-text);
-    font-size: 22px;
+    font-size: 20px;
+    letter-spacing: -0.02em;
   }
 
+  // Centered pill-shaped navigation cluster
   &__nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    list-style: none;
     height: 100%;
     min-width: 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 
   &__nav-list {
@@ -70,46 +77,69 @@
     padding: 0;
     display: flex;
     align-items: center;
+    gap: 2px;
+    background: var(--ty-color-fill);
+    border-radius: 12px;
+    padding: 4px 10px;
     white-space: nowrap;
   }
 
   &__nav-item {
-    margin-left: 20px;
-    font-size: 16px;
     list-style: none;
     position: relative;
-    cursor: pointer;
     display: flex;
     align-items: center;
 
     a {
       color: var(--ty-color-text-secondary);
-      line-height: $header-height;
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+      line-height: 1.5;
+
+      &:hover {
+        color: var(--ty-color-text);
+        background: var(--ty-color-bg-elevated);
+      }
 
       &.active {
-        color: var(--ty-color-primary);
-        font-weight: 500;
+        color: var(--ty-color-text);
+        background: var(--ty-color-bg-elevated);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        font-weight: 600;
       }
     }
   }
 
+  // Right-aligned utility items
+  &__utils {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 140px;
+    justify-content: flex-end;
+  }
+
   &__version {
-    background: var(--ty-color-primary);
-    font-size: 12px;
-    color: #fff;
-    border-radius: 46px;
-    margin-left: 10px;
-    padding: 4px 13px;
+    font-size: 11px;
+    font-weight: 600;
+    color: $docs-accent;
+    background: $docs-accent-subtle;
+    border-radius: 6px;
+    padding: 3px 10px;
+    letter-spacing: 0.02em;
   }
 
   &__search-trigger {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    height: 28px;
-    padding: 0 8px;
-    border: 1px solid var(--ty-color-border);
-    border-radius: 14px;
+    height: 32px;
+    padding: 0 12px;
+    border: 1px solid var(--ty-color-border-secondary);
+    border-radius: 8px;
     background: var(--ty-color-bg-elevated);
     color: var(--ty-color-text-tertiary);
     cursor: pointer;
@@ -117,8 +147,9 @@
     font-size: 12px;
 
     &:hover {
-      color: var(--ty-color-primary);
-      border-color: var(--ty-color-primary);
+      color: var(--ty-color-text);
+      border-color: var(--ty-color-border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
   }
 
@@ -126,20 +157,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 28px;
-    padding: 0 8px;
-    border: 1px solid var(--ty-color-border);
-    border-radius: 14px;
+    height: 32px;
+    padding: 0 10px;
+    border: 1px solid var(--ty-color-border-secondary);
+    border-radius: 8px;
     background: var(--ty-color-bg-elevated);
     color: var(--ty-color-text-secondary);
     cursor: pointer;
     transition: all 0.2s;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
 
     &:hover {
-      color: var(--ty-color-primary);
-      border-color: var(--ty-color-primary);
+      color: var(--ty-color-text);
+      border-color: var(--ty-color-border);
     }
   }
 
@@ -147,10 +178,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
-    border: 1px solid var(--ty-color-border);
-    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--ty-color-border-secondary);
+    border-radius: 8px;
     background: var(--ty-color-bg-elevated);
     color: var(--ty-color-text-secondary);
     cursor: pointer;
@@ -158,8 +189,8 @@
     padding: 0;
 
     &:hover {
-      color: var(--ty-color-primary);
-      border-color: var(--ty-color-primary);
+      color: var(--ty-color-text);
+      border-color: var(--ty-color-border);
     }
   }
 
@@ -169,23 +200,50 @@
     &__menu-toggle {
       display: block;
     }
-  }
 
-  @media (max-width: $size-xs) {
-    &__nav-item {
-      margin-left: 8px;
+    &__nav {
+      position: static;
+      transform: none;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__nav-list {
+      padding: 3px;
+    }
+
+    &__nav-item a {
+      padding: 5px 12px;
       font-size: 13px;
     }
 
+    &__utils {
+      min-width: auto;
+    }
+  }
+
+  @media (max-width: $size-sm) {
+    &__nav {
+      display: none;
+    }
+
     &__version,
-    &__locale-toggle,
-    &__theme-toggle,
-    &__github-link,
-    &__home-link {
+    &__github-link {
       display: none;
     }
 
     &__search-trigger .ty-keyboard {
+      display: none;
+    }
+  }
+
+  @media (max-width: $size-xs) {
+    &__locale-toggle {
       display: none;
     }
   }

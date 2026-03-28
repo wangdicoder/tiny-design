@@ -24,30 +24,20 @@
   &__demo {
     flex-grow: 1;
     border: 1px solid var(--ty-color-border-secondary);
-    border-radius: 3px;
+    border-radius: 12px;
     margin-bottom: 16px;
     overflow: hidden;
 
     .markdown {
       &__heading-3 {
         color: var(--ty-color-text);
-        font-size: 16px;
-        font-weight: 600;
+        font-family: $font-display;
+        font-size: 15px;
+        font-weight: 700;
         position: relative;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         margin-left: 24px;
         margin-right: 24px;
-
-        &:after {
-          content: '';
-          position: absolute;
-          top: calc(100% + 5px);
-          left: 0;
-          width: 20px;
-          height: 2px;
-          transform: translateY(-50%);
-          background-color: var(--ty-color-primary);
-        }
       }
 
       &__p {
@@ -80,29 +70,37 @@
 
     .prism-code {
       margin: 0;
-      border: 1px solid var(--ty-color-border-light);
-      border-radius: 3px;
+      border: 1px solid var(--ty-color-border-secondary);
+      border-radius: 10px;
     }
   }
 
   &__heading-1 {
+    font-family: $font-display;
     font-size: 28px;
-    margin: 5px 0 10px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 8px 0 12px;
+    padding-bottom: 12px;
     border-bottom: 1px solid var(--ty-color-border-secondary);
-    padding-bottom: 10px;
   }
 
   &__heading-2 {
-    font-size: 23px;
+    font-family: $font-display;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     margin: 1.6em 0 0.6em;
   }
 
   &__heading-3 {
-    font-size: 17px;
+    font-family: $font-display;
+    font-size: 16px;
+    font-weight: 700;
     margin: 1.5em 0 0.8em;
 
     .markdown__link {
-      font-size: 19px;
+      font-size: 18px;
     }
   }
 
@@ -125,23 +123,26 @@
   }
 
   &__heading-4 {
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 600;
   }
 
   &__p {
     color: var(--ty-color-text);
     margin: 0.5em 0 0.5em;
-    line-height: 28px;
+    line-height: 1.75;
+    font-size: 15px;
   }
 
   &__inline-code {
-    font-size: 0.8em;
-    background: var(--ty-color-fill-secondary);
+    font-size: 0.85em;
+    background: var(--ty-color-fill);
     margin: 0 1px;
-    padding: 0.2em 0.4em;
-    border: 1px solid var(--ty-color-border-light);
-    border-radius: 3px;
+    padding: 0.2em 0.5em;
+    border: 1px solid var(--ty-color-border-secondary);
+    border-radius: 6px;
     line-height: 2;
+    font-family: 'SF Mono', 'Fira Code', Consolas, 'Liberation Mono', Menlo, monospace;
   }
 
   &__list {
@@ -151,37 +152,42 @@
   &__list-item {
     font-size: 14px;
     color: var(--ty-color-text);
-    margin: 1em 0;
+    margin: 0.8em 0;
+    line-height: 1.7;
   }
 
   &__blockquote {
     padding-left: 0.8em;
     color: var(--ty-color-text-secondary);
     font-size: 90%;
-    border-left: 4px solid var(--ty-color-border-light);
+    border-left: 3px solid var(--ty-color-primary);
     margin: 1em 0;
+    border-radius: 0 6px 6px 0;
+    background: var(--ty-color-fill);
+    padding: 12px 16px 12px 16px;
   }
 
   &__table-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+    border: 1px solid var(--ty-color-border-secondary);
+    margin: 16px 0;
   }
 
   &__table {
     font-size: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border-top: 1px solid var(--ty-color-border-light);
-    border-bottom: 1px solid var(--ty-color-border-light);
 
     tbody {
       tr {
-        transition: all 300ms;
+        transition: background 0.15s;
 
         &:hover {
-          background: var(--ty-color-bg-spotlight);
+          background: var(--ty-color-fill);
         }
       }
     }
@@ -189,24 +195,30 @@
     th,
     td {
       text-align: left;
-      padding: 12px 13px;
+      padding: 12px 16px;
     }
 
     th {
       color: var(--ty-color-text-secondary);
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
       white-space: nowrap;
       background: var(--ty-color-fill);
-      border-bottom: 2px solid var(--ty-color-border-light);
+      border-bottom: 1px solid var(--ty-color-border-secondary);
     }
 
     tr {
-      border-top: 1px solid var(--ty-color-border-light);
-      background: var(--ty-color-bg-elevated);
+      border-top: 1px solid var(--ty-color-border-secondary);
+    }
+
+    tr:first-child {
+      border-top: none;
     }
 
     td {
-      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      font-family: 'SF Mono', 'Fira Code', Consolas, 'Liberation Mono', Menlo, monospace;
       color: var(--ty-color-text);
 
       &:first-child {
