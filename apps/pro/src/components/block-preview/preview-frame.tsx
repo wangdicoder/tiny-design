@@ -35,7 +35,6 @@ export function PreviewFrame({ viewport, children }: PreviewFrameProps) {
       const newScale = Math.min(1, availableWidth / targetWidth);
       setScale(newScale);
 
-      // Also observe inner height for proper container sizing
       if (innerRef.current) {
         setInnerHeight(innerRef.current.scrollHeight * newScale);
       }
@@ -54,12 +53,12 @@ export function PreviewFrame({ viewport, children }: PreviewFrameProps) {
   return (
     <div
       ref={outerRef}
-      className={styles.previewOuter}
+      className={`${styles.previewOuter} ${isScaled ? styles.previewOuterScaled : ''}`}
       style={isScaled && innerHeight ? { height: innerHeight } : undefined}
     >
       <div
         ref={innerRef}
-        className={styles.previewInner}
+        className={`${styles.previewInner} ${isScaled ? styles.previewInnerScaled : ''}`}
         style={
           isScaled
             ? {

@@ -26,21 +26,21 @@ const MobileIcon = () => (
   </svg>
 );
 
-const CodeIcon = () => (
+export const CodeIcon = () => (
   <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="16 18 22 12 16 6" />
     <polyline points="8 6 2 12 8 18" />
   </svg>
 );
 
-const CopyIcon = () => (
+export const CopyIcon = () => (
   <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
   </svg>
 );
 
-const CheckIcon = () => (
+export const CheckIcon = () => (
   <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="20 6 9 17 4 12" />
   </svg>
@@ -49,20 +49,9 @@ const CheckIcon = () => (
 interface ToolbarProps {
   viewport: ViewportSize;
   onViewportChange: (v: ViewportSize) => void;
-  showCode: boolean;
-  onToggleCode: () => void;
-  onCopy: () => void;
-  copied: boolean;
 }
 
-export function Toolbar({
-  viewport,
-  onViewportChange,
-  showCode,
-  onToggleCode,
-  onCopy,
-  copied,
-}: ToolbarProps) {
+export function Toolbar({ viewport, onViewportChange }: ToolbarProps) {
   return (
     <div className={styles.toolbar}>
       <div className={styles.viewportGroup}>
@@ -73,25 +62,13 @@ export function Toolbar({
         ] as const).map(([size, Icon]) => (
           <button
             key={size}
-            className={`${styles.toolbarBtn} ${viewport === size ? styles.toolbarBtnActive : ''}`}
+            className={`${styles.viewportBtn} ${viewport === size ? styles.viewportBtnActive : ''}`}
             onClick={() => onViewportChange(size)}
             aria-label={`${size} view`}
           >
             <Icon />
           </button>
         ))}
-      </div>
-      <div className={styles.actionGroup}>
-        <button
-          className={`${styles.toolbarBtn} ${showCode ? styles.toolbarBtnActive : ''}`}
-          onClick={onToggleCode}
-          aria-label="Toggle code"
-        >
-          <CodeIcon />
-        </button>
-        <button className={styles.toolbarBtn} onClick={onCopy} aria-label="Copy code">
-          {copied ? <CheckIcon /> : <CopyIcon />}
-        </button>
       </div>
     </div>
   );

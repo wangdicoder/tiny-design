@@ -9,11 +9,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: var(--ty-color-bg-container);
-  border-bottom: 1px solid var(--ty-color-border);
+  background: color-mix(in srgb, var(--ty-color-bg-container) 85%, transparent);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 1px solid var(--ty-color-border-secondary);
   transition:
-    background-color 0.2s,
-    border-color 0.2s;
+    background-color 0.25s,
+    border-color 0.25s;
 }
 
 .logo {
@@ -22,33 +24,37 @@
   gap: 10px;
   text-decoration: none;
   color: var(--ty-color-text);
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.02em;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .iconBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 6px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--ty-color-border-secondary);
+  border-radius: 8px;
   background: transparent;
-  color: var(--ty-color-text);
+  color: var(--ty-color-text-secondary);
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   transition:
     background-color 0.15s,
-    color 0.15s;
+    color 0.15s,
+    border-color 0.15s;
 
   &:hover {
-    background: var(--ty-color-bg-hover);
+    color: var(--ty-color-text);
+    background: var(--ty-color-fill-secondary);
+    border-color: var(--ty-color-border);
   }
 }

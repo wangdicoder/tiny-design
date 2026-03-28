@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useRunner } from 'react-runner';
 import * as TinyDesign from '@tiny-design/react';
 import * as TinyIcons from '@tiny-design/icons';
-import { Toolbar, type ViewportSize } from './toolbar';
+import { Toolbar, CodeIcon, CopyIcon, CheckIcon, type ViewportSize } from './toolbar';
 import { PreviewFrame } from './preview-frame';
 import { CodePanel } from './code-panel';
 import type { BlockMeta } from '@/lib/blocks';
@@ -52,23 +52,43 @@ export function BlockPreview({ meta }: BlockPreviewProps) {
     <div className={styles.blockPreview}>
       <div className={styles.header}>
         <h3 className={styles.title}>{meta.title}</h3>
-        <Toolbar
-          viewport={viewport}
-          onViewportChange={setViewport}
-          showCode={showCode}
-          onToggleCode={() => setShowCode((v) => !v)}
-          onCopy={handleCopy}
-          copied={copied}
-        />
+        <Toolbar viewport={viewport} onViewportChange={setViewport} />
       </div>
+
       <PreviewFrame viewport={viewport}>
         {error ? (
-          <pre style={{ color: 'red', padding: 16, fontSize: 13 }}>{error}</pre>
+          <div className={styles.errorDisplay}>{error}</div>
         ) : (
           element
         )}
       </PreviewFrame>
-      {showCode && <CodePanel source={sourceCode} />}
+
+      {/* Docs-inspired action bar */}
+      <div className={styles.actionBar}>
+        <button
+          className={`${styles.actionBarBtn} ${showCode ? styles.actionBarBtnActive : ''}`}
+          onClick={() => setShowCode((v) => !v)}
+        >
+          <CodeIcon />
+          <span className={styles.actionBarLabel}>
+            {showCode ? 'Hide Code' : 'Show Code'}
+          </span>
+        </button>
+        <span className={styles.actionBarDivider} />
+        <button className={styles.actionBarBtn} onClick={handleCopy}>
+          {copied ? <CheckIcon /> : <CopyIcon />}
+          <span className={styles.actionBarLabel}>
+            {copied ? 'Copied!' : 'Copy'}
+          </span>
+        </button>
+      </div>
+
+      {/* Animated code panel */}
+      <div className={`${styles.codePanelWrapper} ${showCode ? styles.codePanelWrapperOpen : ''}`}>
+        <div className={styles.codePanelInner}>
+          <CodePanel source={sourceCode} />
+        </div>
+      </div>
     </div>
   );
 }

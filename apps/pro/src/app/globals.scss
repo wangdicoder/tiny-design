@@ -1,10 +1,6 @@
 @use '@tiny-design/tokens/scss/base' as *;
 @use 'style/component' as *;
 
-$pro-font-family: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial,
-  'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-  'Noto Color Emoji';
-
 *,
 *::before,
 *::after {
@@ -14,10 +10,13 @@ $pro-font-family: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvet
 body {
   margin: 0;
   padding: 0;
-  font-family: $pro-font-family;
+  font-family: var(--font-body), -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
+    'Helvetica Neue', arial, 'Noto Sans', sans-serif;
   background: var(--ty-color-bg);
   color: var(--ty-color-text);
   transition:
     background-color 0.2s,
     color 0.2s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

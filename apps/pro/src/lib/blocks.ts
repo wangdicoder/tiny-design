@@ -44,14 +44,6 @@ export const CATEGORIES: CategoryMeta[] = [
     ],
   },
   {
-    slug: 'card-headers',
-    label: 'Card Headers',
-    blocks: [
-      block('card-headers', 'Card Headers', 'card-header-with-actions', 'Card Header with Actions',
-        () => import('../blocks/card-headers/card-header-with-actions?raw')),
-    ],
-  },
-  {
     slug: 'cards',
     label: 'Cards',
     blocks: [
@@ -59,22 +51,6 @@ export const CATEGORIES: CategoryMeta[] = [
         () => import('../blocks/cards/stats-card?raw')),
       block('cards', 'Cards', 'profile-card', 'Profile Card',
         () => import('../blocks/cards/profile-card?raw')),
-    ],
-  },
-  {
-    slug: 'dividers',
-    label: 'Dividers',
-    blocks: [
-      block('dividers', 'Dividers', 'divider-variants', 'Divider Variants',
-        () => import('../blocks/dividers/divider-variants?raw')),
-    ],
-  },
-  {
-    slug: 'form-elements',
-    label: 'Form Elements',
-    blocks: [
-      block('form-elements', 'Form Elements', 'input-variants', 'Input Variants',
-        () => import('../blocks/form-elements/input-variants?raw')),
     ],
   },
   {
@@ -128,27 +104,11 @@ export const CATEGORIES: CategoryMeta[] = [
     ],
   },
   {
-    slug: 'pagination',
-    label: 'Pagination',
-    blocks: [
-      block('pagination', 'Pagination', 'pagination-variants', 'Pagination Variants',
-        () => import('../blocks/pagination/pagination-variants?raw')),
-    ],
-  },
-  {
     slug: 'progress-steps',
     label: 'Progress Steps',
     blocks: [
       block('progress-steps', 'Progress Steps', 'steps-basic', 'Basic Steps',
         () => import('../blocks/progress-steps/steps-basic?raw')),
-    ],
-  },
-  {
-    slug: 'section-headers',
-    label: 'Section Headers',
-    blocks: [
-      block('section-headers', 'Section Headers', 'section-header-simple', 'Simple Section Header',
-        () => import('../blocks/section-headers/section-header-simple?raw')),
     ],
   },
   {
@@ -173,14 +133,6 @@ export const CATEGORIES: CategoryMeta[] = [
     blocks: [
       block('tables', 'Tables', 'data-table', 'Data Table',
         () => import('../blocks/tables/data-table?raw')),
-    ],
-  },
-  {
-    slug: 'tabs',
-    label: 'Tabs',
-    blocks: [
-      block('tabs', 'Tabs', 'tabs-with-content', 'Tabs with Content',
-        () => import('../blocks/tabs/tabs-with-content?raw')),
     ],
   },
   {

@@ -17,7 +17,7 @@ export function CodePanel({ source }: CodePanelProps) {
     <div className={styles.codePanel}>
       <Highlight code={source.trim()} language="tsx" theme={theme}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={className} style={{ ...style, padding: 16, margin: 0, overflow: 'auto' }}>
+          <pre className={className} style={{ ...style, padding: '16px 20px', margin: 0, overflow: 'auto' }}>
             <code>
               {tokens.map((line, i) => {
                 const { key: _lineKey, ...lineProps } = getLineProps({ line }); // eslint-disable-line @typescript-eslint/no-unused-vars

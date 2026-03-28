@@ -18,10 +18,12 @@ export function CategoryPageClient({ slug, label }: CategoryPageClientProps) {
     <div className={styles.layout}>
       <CategoryNav />
       <main className={styles.content}>
-        <h1 className={styles.title}>{label}</h1>
-        <p className={styles.count}>
-          {blocks.length} {blocks.length === 1 ? 'block' : 'blocks'}
-        </p>
+        <div className={styles.pageHeader}>
+          <h1 className={styles.title}>{label}</h1>
+          <p className={styles.count}>
+            {blocks.length} {blocks.length === 1 ? 'block' : 'blocks'}
+          </p>
+        </div>
         {blocks.map((block) => (
           <BlockPreview key={block.id} meta={block} />
         ))}

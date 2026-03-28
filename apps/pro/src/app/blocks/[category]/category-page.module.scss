@@ -7,19 +7,27 @@
 .content {
   flex: 1;
   margin-left: 240px;
-  padding: 32px 40px 64px;
+  padding: 40px 48px 80px;
   max-width: calc(100% - 240px);
 }
 
+.pageHeader {
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--ty-color-border-secondary);
+}
+
 .title {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
-  margin: 0 0 4px;
+  letter-spacing: -0.025em;
+  margin: 0 0 6px;
   color: var(--ty-color-text);
 }
 
 .count {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--ty-color-text-tertiary);
-  margin: 0 0 32px;
+  margin: 0;
+  font-weight: 500;
 }
