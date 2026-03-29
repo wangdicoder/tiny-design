@@ -1,0 +1,218 @@
+# Tiny Design
+
+> A friendly UI component set for React
+
+Tiny Design (`@tiny-design/react`) is a comprehensive React UI component library with 80+ components, built with TypeScript, supporting theming via `ConfigProvider` and design tokens.
+
+- Docs: https://wangdicoder.github.io/tiny-design/
+- GitHub: https://github.com/wangdicoder/tiny-design
+- npm: https://www.npmjs.com/package/@tiny-design/react
+
+## Installation
+
+```bash
+npm install @tiny-design/react
+# or
+pnpm add @tiny-design/react
+```
+
+## Quick Start
+
+```tsx
+import { Button, Modal, Table } from '@tiny-design/react';
+import '@tiny-design/react/es/style.css'; // import styles
+```
+
+## Theming
+
+Use `ConfigProvider` to customize the prefix class name and theme mode:
+
+```tsx
+import { ConfigProvider } from '@tiny-design/react';
+
+<ConfigProvider prefixCls="my-app" themeMode="dark">
+  <App />
+</ConfigProvider>
+```
+
+Design tokens are available via `@tiny-design/tokens` (SCSS variables and CSS custom properties).
+
+## Base Props
+
+All components extend `BaseProps`:
+
+- `style?: CSSProperties` — inline styles
+- `className?: string` — CSS class
+- `prefixCls?: string` — CSS class prefix (default: `ty-`)
+
+All components support `React.forwardRef` for ref forwarding.
+
+## Size System
+
+Components that accept sizes use: `'sm' | 'md' | 'lg'`
+
+## CSS Conventions
+
+- Class prefix: `ty-` (e.g., `.ty-btn`, `.ty-modal`)
+- BEM naming: `ty-component`, `ty-component__element`, `ty-component_modifier`
+
+## Components
+
+### Foundation
+- **Button** — Trigger operations. Props: `btnType` (`'default'|'primary'|'outline'|'ghost'|'link'|'info'|'danger'|'warning'|'success'`), `loading`, `disabled`, `block`, `size`, `round`, `icon`. Also: `Button.Group`.
+- **Image** — Display images with preview support.
+- **Link** — Styled anchor element.
+- **Typography** — Headings, body text, lists. Subcomponents: `Typography.Title`, `Typography.Text`, `Typography.Paragraph`.
+
+### Layout
+- **AspectRatio** — Maintain width-to-height proportional relationship.
+- **Divider** — Separate content sections. Props: `direction` (`'horizontal'|'vertical'`).
+- **Flex** — Flexbox container with CSS `gap` spacing.
+- **Grid** — 24-column grid system. `Grid.Row` + `Grid.Col` with `span`, `offset`, `push`, `pull`.
+- **Layout** — Page layout. Subcomponents: `Layout.Header`, `Layout.Content`, `Layout.Footer`, `Layout.Sider`.
+- **Space** — Set spacing between components. Props: `size`, `direction`, `wrap`.
+- **Split** — Draggable split pane.
+- **Waterfall** — Masonry/waterfall layout distributing items across columns.
+
+### Navigation
+- **Anchor** — Hyperlinks for scrolling within a page.
+- **Breadcrumb** — Show current location in hierarchy.
+- **Dropdown** — Drop-down list with menu items.
+- **Menu** — Navigation menu with dropdown support. Props: `mode` (`'horizontal'|'vertical'|'inline'`).
+- **Pagination** — Page through data sets. Props: `total`, `current`, `pageSize`, `onChange`.
+- **SpeedDial** — Floating action button expanding to actions.
+- **Steps** — Wizard-like numbered step navigation.
+
+### Data Display
+- **Avatar** — Represent people/objects with `image`, `Icon`, or `letter`.
+- **Badge** — Numerical value or status indicator. Props: `count`, `dot`, `overflowCount`.
+- **Calendar** — Date display and selection.
+- **Card** — Rectangular container. Props: `title`, `extra`, `cover`, `variant`.
+- **Carousel** — Slideshow cycling through elements.
+- **Collapse** — Expandable/collapsible content panels.
+- **Countdown** — Countdown timer component.
+- **Descriptions** — Display read-only field groups.
+- **Empty** — Empty state placeholder.
+- **Flip** — Two-sided flip box.
+- **List** — Simple list for displaying item collections.
+- **Marquee** — Infinite horizontal scrolling content.
+- **Popover** — Floating card on click/hover. Props: `content`, `title`, `trigger`, `placement`.
+- **Progress** — Operation progress display. Props: `percent`, `type` (`'line'|'circle'`).
+- **ScrollNumber** — Animated rolling number transitions.
+- **Statistic** — Formatted statistic number with title.
+- **Table** — Tabular data with sorting, selection, pagination. Props: `columns`, `dataSource`, `rowKey`, `rowSelection`, `pagination`, `loading`, `bordered`, `virtual`.
+- **Tag** — Categorizing markup. Props: `color`, `closable`.
+- **TextLoop** — Cycle text with slide transitions.
+- **Timeline** — Display a timeline of events.
+- **Tooltip** — Simple text popup on hover. Props: `title`, `placement`, `trigger`.
+- **Tree** — Hierarchical list structure.
+
+### Form
+- **AutoComplete** — Input with autocomplete suggestions.
+- **Cascader** — Multi-level dropdown for hierarchical data.
+- **Checkbox** — Multiple selection. `Checkbox.Group` for managing groups.
+- **ColorPicker** — Color selection with spectrum, hue slider, presets.
+- **DatePicker** — Date selection/input. Also: `DatePicker.RangePicker`.
+- **Form** — Data collection with validation. `Form.Item` wraps fields. Props: `layout` (`'horizontal'|'vertical'|'inline'`), `onFinish`.
+- **Input** — Text input. Props: `prefix`, `suffix`, `allowClear`, `size`.
+- **InputNumber** — Numeric input within a range.
+- **InputOtp** — OTP/verification code input.
+- **InputPassword** — Password input with visibility toggle.
+- **NativeSelect** — Native HTML select wrapper.
+- **Radio** — Single selection. `Radio.Group` for groups.
+- **Rate** — Star rating component.
+- **Segmented** — Toggle between a set of options.
+- **Select** — Select value from dropdown options. Props: `options`, `mode` (`'multiple'|'tags'`), `searchable`.
+- **Slider** — Drag slider within range. Props: `min`, `max`, `step`, `range`.
+- **SplitButton** — Button with attached dropdown menu.
+- **Switch** — Toggle between two states.
+- **Tabs** — Switch between views. Props: `type` (`'line'|'card'`).
+- **Textarea** — Multi-line text input.
+- **TimePicker** — Time selection/input.
+- **Transfer** — Double column transfer selection.
+- **Upload** — File upload via click or drag-and-drop.
+
+### Feedback
+- **Alert** — Feedback alert. Props: `type` (`'info'|'success'|'warning'|'error'`), `closable`, `banner`.
+- **Drawer** — Panel sliding from screen edge. Props: `visible`, `placement`, `width`.
+- **Loader** — Loading spinner.
+- **LoadingBar** — Top progress bar.
+- **Message** — Global message feedback. Usage: `Message.info('text')`, `Message.success('text')`.
+- **Modal** — Dialog. Props: `visible`, `header`, `width`, `centered`, `maskClosable`, `onConfirm`, `onCancel`.
+- **Notification** — Notification messages. Usage: `Notification.open({ title, description })`.
+- **Overlay** — Mask layer covering page content.
+- **PopConfirm** — Compact confirmation dialog on click.
+- **Result** — Operation result feedback. Props: `status`, `title`, `subTitle`.
+- **ScrollIndicator** — Page scroll progress bar.
+- **Skeleton** — Loading placeholder.
+- **StrengthIndicator** — Password strength meter.
+
+### Miscellany
+- **BackTop** — Scroll to top button.
+- **ConfigProvider** — Global configuration (prefix, theme, locale).
+- **CopyToClipboard** — Copy text to clipboard.
+- **Keyboard** — Keyboard key style display.
+- **Sticky** — Make elements stick to the viewport.
+
+## Icons
+
+Icons are available via `@tiny-design/icons`:
+
+```tsx
+import { SearchIcon, CloseIcon } from '@tiny-design/icons';
+
+<Button icon={<SearchIcon />}>Search</Button>
+```
+
+## Common Patterns
+
+### Table with Selection and Pagination
+
+```tsx
+<Table
+  columns={[
+    { title: 'Name', dataIndex: 'name' },
+    { title: 'Age', dataIndex: 'age', sorter: (a, b) => a.age - b.age },
+  ]}
+  dataSource={data}
+  rowKey="id"
+  rowSelection={{
+    selectedRowKeys,
+    onChange: (keys) => setSelectedRowKeys(keys),
+  }}
+  pagination={{ current: 1, pageSize: 10, total: 100 }}
+/>
+```
+
+### Form with Validation
+
+```tsx
+<Form layout="vertical" onFinish={(values) => console.log(values)}>
+  <Form.Item label="Username" name="username" rules={[{ required: true }]}>
+    <Input />
+  </Form.Item>
+  <Form.Item>
+    <Button btnType="primary" htmlType="submit">Submit</Button>
+  </Form.Item>
+</Form>
+```
+
+### Modal Dialog
+
+```tsx
+<Modal
+  visible={visible}
+  header="Confirm Action"
+  onConfirm={() => handleConfirm()}
+  onCancel={() => setVisible(false)}
+>
+  <p>Are you sure you want to proceed?</p>
+</Modal>
+```
+
+### Feedback Messages
+
+```tsx
+Message.success('Operation completed successfully');
+Notification.open({ title: 'New Message', description: 'You have a new notification' });
+```

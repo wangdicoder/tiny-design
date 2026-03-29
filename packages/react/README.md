@@ -5,9 +5,9 @@ A friendly UI component library for React with 80+ components, theming, and i18n
 ## Install
 
 ```bash
-npm install @tiny-design/react @tiny-design/tokens
+npm install @tiny-design/react
 # or
-pnpm add @tiny-design/react @tiny-design/tokens
+pnpm add @tiny-design/react
 ```
 
 **Peer dependencies:** `react >= 18.0.0`, `react-dom >= 18.0.0`
@@ -101,6 +101,17 @@ import zh_CN from '@tiny-design/react/es/locale/zh_CN';
   <App />
 </ConfigProvider>
 ```
+
+## AI-Friendly
+
+Tiny Design is optimized for AI-assisted development:
+
+- **`llms.txt`** — Structured library overview for LLMs ([view](https://wangdicoder.github.io/tiny-design/llms.txt))
+- **`llms-full.txt`** — Complete Props API reference for all components ([view](https://wangdicoder.github.io/tiny-design/llms-full.txt))
+- **`.cursorrules`** — Cursor IDE context for accurate code generation
+- **MCP Tools** — Claude Code / Claude Desktop integration via `@anthropic-ai/tiny-design` MCP server
+
+Use with Cursor, Claude Code, or any AI coding assistant for the best experience.
 
 ## License
 

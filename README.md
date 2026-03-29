@@ -48,6 +48,7 @@
 - **Accessible** — follows [WAI-ARIA](https://www.w3.org/WAI/standards-guidelines/aria/) standards with keyboard navigation support
 - **Lightweight** — tree-shakeable ESM/CJS builds; styles auto-import alongside components
 - **i18n** — English and Chinese built in
+- **AI-ready** — `llms.txt`, `.cursorrules`, and MCP server for seamless AI-assisted development
 
 ## Quick Start
 

@@ -1,0 +1,2565 @@
+# Tiny Design — Full API Reference
+
+> Complete Props and type definitions for all components in `@tiny-design/react`
+
+- Docs: https://wangdicoder.github.io/tiny-design/
+- GitHub: https://github.com/wangdicoder/tiny-design
+- npm: https://www.npmjs.com/package/@tiny-design/react
+
+## Base Types
+
+All components extend `BaseProps`:
+
+```typescript
+type SizeType = 'sm' | 'md' | 'lg';
+type DirectionType = 'horizontal' | 'vertical';
+
+type BaseProps = {
+  style?: CSSProperties;
+  className?: string;
+  prefixCls?: string;
+};
+```
+
+## Component API
+
+### alert
+```typescript
+import React, { ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type AlertType = 'success' | 'info' | 'warning' | 'error';
+
+export interface AlertProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
+  /** alert title */
+  title?: string | ReactNode;
+
+  /** alert type */
+  type?: AlertType;
+
+  /** display icon or customise an icon */
+  icon?: boolean | ReactNode;
+
+  /** icon size */
+  iconSize?: number;
+
+  /** whether the Alert can be closed */
+  closable?: boolean;
+
+  /** close text to show */
+  closeText?: ReactNode;
+
+  /** trigger when animation ending of Alert */
+  afterClose?: () => void;
+
+  /** close button callback */
+  onClose?: React.MouseEventHandler<HTMLSpanElement>;
+}
+
+```
+
+### anchor
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface AnchorProps extends BaseProps {
+  affix?: boolean;
+  type?: 'dot' | 'line';
+  offsetBottom?: number;
+  offsetTop?: number;
+  getContainer?: () => HTMLElement;
+  onChange?: (currentActiveLink: string) => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>, link: { title: string; href: string }) => void;
+  children?: React.ReactNode;
+}
+
+export interface AnchorLinkProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['a']> {
+  href: string;
+  title: string;
+  children?: React.ReactElement<AnchorLinkProps>[];
+}
+
+```
+
+### aspect-ratio
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface AspectRatioProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  /** the width of the content */
+  width?: number | string;
+
+  /** the aspect ratio of the content */
+  ratio?: number;
+}
+
+```
+
+### auto-complete
+```typescript
+import { FocusEventHandler, ReactNode } from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface AutoCompleteOption {
+  value: string;
+  label?: ReactNode;
+  disabled?: boolean;
+}
+
+export interface AutoCompleteProps extends BaseProps {
+  options?: AutoCompleteOption[];
+  value?: string;
+  defaultValue?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  allowClear?: boolean;
+  defaultActiveFirstOption?: boolean;
+  open?: boolean;
+  defaultOpen?: boolean;
+  notFoundContent?: ReactNode;
+  size?: SizeType;
+  filterOption?: boolean | ((inputValue: string, option: AutoCompleteOption) => boolean);
+  onChange?: (value: string) => void;
+  onSelect?: (value: string, option: AutoCompleteOption) => void;
+  onSearch?: (value: string) => void;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+}
+
+```
+
+### avatar
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type AvatarShape = 'circle' | 'square';
+export type AvatarPresence = 'online' | 'busy' | 'away' | 'offline';
+
+export interface AvatarProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['span']> {
+  /** use an icon */
+  icon?: React.ReactNode;
+
+  /** avatar shape */
+  shape?: AvatarShape;
+
+  /** avatar size */
+  size?: number;
+
+  /** use an image */
+  src?: string;
+
+  /** display presence status  */
+  presence?: AvatarPresence;
+
+  /** alt prop for src */
+  alt?: string;
+}
+
+export interface AvatarGroupProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['span']> {
+  /** the distance between two avatars */
+  gap: number | string;
+}
+
+```
+
+### back-top
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+import { Target } from '../_utils/dom';
+
+export interface BackTopProps extends BaseProps {
+  target?: () => Target;
+  onClick?: (e: React.MouseEvent) => void;
+  visibilityHeight?: number;
+  children?: React.ReactNode;
+}
+
+```
+
+### badge
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface BadgeProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['span']> {
+  /** the number to show in badge */
+  count?: React.ReactNode;
+
+  /** background color */
+  color?: string;
+
+  /** max count to show */
+  max?: number;
+
+  /** display a dot only */
+  dot?: boolean;
+
+  /** display wave effect */
+  processing?: boolean;
+
+  /** when value is equal to zero, the badge will be hidden by default */
+  showZero?: boolean;
+
+  /** text to show when hovering over the badge */
+  title?: string;
+
+  /** internal badge style */
+  badgeStyle?: React.CSSProperties;
+}
+
+```
+
+### breadcrumb
+```typescript
+import React, { ReactElement } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface BreadcrumbProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['nav']> {
+  separator?: React.ReactNode;
+  children: ReactElement<BreadcrumbItemProps> | ReactElement<BreadcrumbItemProps>[];
+}
+
+export interface BreadcrumbItemProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+  separator?: React.ReactNode;
+  children?: React.ReactNode;
+}
+
+```
+
+### button
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export type ButtonType =
+  | 'default'
+  | 'primary'
+  | 'outline'
+  | 'ghost'
+  | 'link'
+  | 'info'
+  | 'danger'
+  | 'warning'
+  | 'success';
+
+export interface ButtonProps
+  extends BaseProps,
+    React.PropsWithRef<JSX.IntrinsicElements['button']> {
+  btnType?: ButtonType;
+  loading?: boolean;
+  disabled?: boolean;
+  block?: boolean;
+  size?: SizeType;
+  round?: boolean;
+  icon?: React.ReactNode;
+}
+
+export interface ButtonGroupProps
+  extends BaseProps,
+    React.PropsWithRef<JSX.IntrinsicElements['div']> {
+  btnType?: ButtonType;
+  size?: SizeType;
+  round?: boolean;
+  disabled?: boolean;
+  children: React.ReactNode;
+}
+
+```
+
+### calendar
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type CalendarMode = 'month' | 'year';
+
+export interface CalendarProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange' | 'onSelect' | 'defaultValue'> {
+  defaultValue?: Date;
+  value?: Date;
+  mode?: CalendarMode;
+  defaultMode?: CalendarMode;
+  fullscreen?: boolean;
+  disabledDate?: (currentDate: Date) => boolean;
+  onChange?: (date: Date) => void;
+  onSelect?: (date: Date) => void;
+  onPanelChange?: (date: Date, mode: CalendarMode) => void;
+  dateCellRender?: (date: Date) => React.ReactNode;
+  monthCellRender?: (date: Date) => React.ReactNode;
+  headerRender?: (config: { value: Date; mode: CalendarMode; onChange: (date: Date) => void; onModeChange: (mode: CalendarMode) => void }) => React.ReactNode;
+}
+
+```
+
+### card
+```typescript
+import React, { CSSProperties, ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type CardVariant = 'outlined' | 'elevated' | 'filled';
+
+export interface CardContentProps extends React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  prefixCls?: string;
+  children: ReactNode;
+}
+
+export interface CardProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
+  title?: ReactNode;
+  extra?: ReactNode;
+  /** Card surface style */
+  variant?: CardVariant;
+  hoverable?: boolean;
+  active?: boolean;
+  /** @deprecated Use `variant="outlined"` instead */
+  bordered?: boolean;
+  actions?: ReactNode[];
+  header?: ReactNode;
+  footer?: ReactNode;
+  headerStyle?: CSSProperties;
+  bodyStyle?: CSSProperties;
+  footerStyle?: CSSProperties;
+  children?: ReactNode | React.ReactElement<CardContentProps>;
+}
+
+```
+
+### carousel
+```typescript
+import { BaseProps } from '../_utils/props';
+
+export type DotPlacement = 'top' | 'bottom' | 'left' | 'right';
+export type CarouselEffect = 'scrollx' | 'fade';
+
+export interface CarouselProps extends BaseProps {
+  /** Whether to show arrow buttons */
+  arrows?: boolean;
+  /** Whether to auto-scroll */
+  autoplay?: boolean;
+  /** Delay between auto-scroll in ms */
+  autoplaySpeed?: number;
+  /** Dot indicator placement */
+  dotPlacement?: DotPlacement;
+  /** Whether to show dot indicators */
+  dots?: boolean | { className?: string };
+  /** Enable drag-to-scroll */
+  draggable?: boolean;
+  /** Transition effect */
+  effect?: CarouselEffect;
+  /** CSS transition easing function */
+  easing?: string;
+  /** Infinite loop */
+  infinite?: boolean;
+  /** Animation speed in ms */
+  speed?: number;
+  /** Wait for animation to complete before switching */
+  waitForAnimate?: boolean;
+  /** Fires after slide changes */
+  afterChange?: (current: number) => void;
+  /** Fires before slide changes */
+  beforeChange?: (current: number, next: number) => void;
+  children: React.ReactElement[];
+}
+
+export interface CarouselRef {
+  /** Go to a specific slide */
+  goTo: (slideNumber: number, dontAnimate?: boolean) => void;
+  /** Go to the next slide */
+  next: () => void;
+  /** Go to the previous slide */
+  prev: () => void;
+}
+
+```
+
+### cascader
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface CascaderOption {
+  value: string | number;
+  label: React.ReactNode;
+  disabled?: boolean;
+  children?: CascaderOption[];
+  isLeaf?: boolean;
+}
+
+export type CascaderValue = (string | number)[];
+
+export interface CascaderProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange' | 'defaultValue'> {
+  options: CascaderOption[];
+  value?: CascaderValue;
+  defaultValue?: CascaderValue;
+  onChange?: (value: CascaderValue, selectedOptions: CascaderOption[]) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  allowClear?: boolean;
+  size?: SizeType;
+  expandTrigger?: 'click' | 'hover';
+  displayRender?: (labels: React.ReactNode[], selectedOptions: CascaderOption[]) => React.ReactNode;
+  changeOnSelect?: boolean;
+  open?: boolean;
+  onDropdownVisibleChange?: (open: boolean) => void;
+  notFoundContent?: React.ReactNode;
+}
+
+```
+
+### checkbox
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface CheckboxGroupProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+  defaultValue?: string[];
+  value?: string[];
+  onChange?: (checkedValues: string[]) => void;
+  disabled?: boolean;
+}
+
+
+export interface CheckboxProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['label']>, 'onChange'> {
+  /** Only required when use checkbox group */
+  value?: string;
+  defaultChecked?: boolean;
+  checked?: boolean;
+  indeterminate?: boolean;
+  disabled?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  checkboxRef?: React.RefObject<HTMLInputElement>;
+}
+
+```
+
+### collapse
+```typescript
+import React, { ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface CollapsePanelProps extends BaseProps {
+  itemKey: string;
+  header: ReactNode;
+  disabled?: boolean;
+  extra?: ReactNode;
+  deletable?: boolean;
+  showArrow?: boolean;
+  onHeaderOnClick?: (e: React.MouseEvent) => void;
+  children?: ReactNode;
+}
+
+export interface CollapseProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+  defaultActiveKey?: string | string[];
+  activeKey?: string | string[];
+  /** Only open one panel */
+  accordion?: boolean;
+  /** Allow to delete */
+  deletable?: boolean;
+  showArrow?: boolean;
+  bordered?: boolean;
+  onChange?: (keys: string | string[]) => void;
+}
+
+```
+
+### color-picker
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type ColorFormat = 'hex' | 'rgb' | 'hsb';
+
+export interface Color {
+  h: number; // 0-360
+  s: number; // 0-100
+  b: number; // 0-100 (brightness/value)
+  a: number; // 0-1
+}
+
+export interface ColorPickerProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange' | 'defaultValue'> {
+  value?: string;
+  defaultValue?: string;
+  onChange?: (color: string) => void;
+  format?: ColorFormat;
+  defaultFormat?: ColorFormat;
+  onFormatChange?: (format: ColorFormat) => void;
+  presets?: string[];
+  showAlpha?: boolean;
+  disabled?: boolean;
+  trigger?: 'click' | 'hover';
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  children?: React.ReactNode;
+}
+
+```
+
+### config-provider
+```typescript
+import React from 'react';
+import { ConfigContextProps } from './config-context';
+
+export interface ConfigProviderProps extends ConfigContextProps {
+  children: React.ReactNode;
+}
+
+```
+
+### copy-to-clipboard
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface CopyToClipboardProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['span']> {
+  text: string;
+  children?: React.ReactNode;
+}
+
+```
+
+### countdown
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type DateType = {
+  day: number;
+  hour: number;
+  min: number;
+  sec: number;
+  millisec: number;
+};
+
+export interface CountdownProps extends BaseProps {
+  value: Date;
+  onFinish?: () => void;
+  millisec?: boolean;
+  children?: (date: DateType) => React.ReactNode;
+}
+
+```
+
+### date-picker
+```typescript
+import { ReactNode } from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export type PickerType = 'date' | 'month' | 'year';
+export type PanelMode = 'date' | 'month' | 'year';
+
+export interface DatePickerProps extends BaseProps {
+  /** Default date value */
+  defaultValue?: Date;
+  /** Controlled date value */
+  value?: Date;
+  /** Control popup visibility */
+  open?: boolean;
+  /** Selection granularity */
+  picker?: PickerType;
+  /** Display format string */
+  format?: string;
+  /** Disable picker */
+  disabled?: boolean;
+  /** Input placeholder */
+  placeholder?: string;
+  /** Show clear button */
+  allowClear?: boolean;
+  /** Input size */
+  size?: SizeType;
+  /** Show "Today" button */
+  showToday?: boolean;
+  /** Prevent keyboard input */
+  inputReadOnly?: boolean;
+  /** Function to disable specific dates */
+  disabledDate?: (current: Date) => boolean;
+  /** Extra content in the footer */
+  renderExtraFooter?: (mode: PanelMode) => ReactNode;
+  /** Custom suffix icon */
+  suffixIcon?: ReactNode;
+  /** Callback when date changes */
+  onChange?: (date: Date | null, dateString: string) => void;
+  /** Callback when popup opens/closes */
+  onOpenChange?: (open: boolean) => void;
+  /** Callback when panel mode changes */
+  onPanelChange?: (date: Date, mode: PanelMode) => void;
+}
+
+```
+
+### descriptions
+```typescript
+import React from 'react';
+import { BaseProps, DirectionType, SizeType } from '../_utils/props';
+
+export interface DescriptionsProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'title'> {
+  title?: React.ReactNode;
+  bordered?: boolean;
+  column?: number;
+  size?: SizeType;
+  layout?: DirectionType;
+  colon?: boolean;
+}
+
+export interface DescriptionsItemProps extends BaseProps {
+  label?: React.ReactNode;
+  span?: number;
+  children: React.ReactNode;
+}
+
+```
+
+### divider
+```typescript
+import React from 'react';
+import { BaseProps, DirectionType } from '../_utils/props';
+
+export type DivideAlign = 'left' | 'right' | 'center';
+
+export interface DividerProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  type?: DirectionType;
+  dashed?: boolean;
+  align?: DivideAlign;
+  children?: React.ReactNode;
+}
+
+```
+
+### drawer
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+import { OverlayMaskType } from '../overlay/types';
+
+export type DrawerPlacement = 'top' | 'bottom' | 'left' | 'right';
+
+export interface DrawerProps extends BaseProps {
+  onClose?: (e: React.MouseEvent) => void;
+  placement?: DrawerPlacement;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+  zIndex?: number;
+  size?: number | string;
+  closable?: boolean;
+  maskType?: OverlayMaskType;
+  maskClosable?: boolean;
+  unmountOnClose?: boolean;
+  afterClose?: () => void;
+  visible?: boolean;
+  keyboard?: boolean;
+  maskStyle?: React.CSSProperties;
+  children?: React.ReactNode;
+}
+
+```
+
+### dropdown
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+import { MenuProps } from '../menu/types';
+
+export type DropdownTrigger = 'click' | 'hover';
+export type DropdownPlacement =
+  | 'top-start'
+  | 'top'
+  | 'top-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'bottom-end';
+
+export interface DropdownProps extends BaseProps {
+  disabled?: boolean;
+  trigger?: DropdownTrigger;
+  placement?: DropdownPlacement;
+  overlay?: React.ReactElement<MenuProps>;
+  visible?: boolean;
+  arrow?: boolean;
+  onVisibleChange?: (visible: boolean) => void;
+  children: React.ReactElement;
+}
+
+```
+
+### empty
+```typescript
+import React, { CSSProperties, ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface EmptyProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  image?: string | ReactNode;
+  imageStyle?: CSSProperties;
+  description?: boolean | string | React.ReactNode;
+  descStyle?: CSSProperties;
+  children?: React.ReactNode;
+}
+
+```
+
+### flex
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface FlexProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['div']> {
+  vertical?: boolean;
+  wrap?: React.CSSProperties['flexWrap'];
+  justify?: React.CSSProperties['justifyContent'];
+  align?: React.CSSProperties['alignItems'];
+  gap?: SizeType | React.CSSProperties['gap'];
+  flex?: React.CSSProperties['flex'];
+  component?: React.ElementType;
+}
+
+```
+
+### flip
+```typescript
+import React from 'react';
+import { BaseProps, DirectionType } from '../_utils/props';
+
+export interface FlipProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  /** a certain parent width and height to prevent the hover empty issue */
+  width: string | number;
+  height: string | number;
+
+  /** flip direction */
+  direction?: DirectionType;
+
+  /** flip from left to right or reverse */
+  reverse?: boolean;
+  children: React.ReactElement<FlipItemProps>;
+}
+
+export interface FlipItemProps
+  extends Omit<BaseProps, 'prefixCls'>,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  children?: React.ReactNode;
+}
+
+```
+
+### form
+```typescript
+import { BaseProps, DirectionType } from '../_utils/props';
+import React from 'react';
+import FormInstance, { FormErrors, FormValues } from './form-instance';
+
+export type Rule = {
+  // specific type
+  type?: 'string' | 'number' | 'boolean';
+
+  // error message. auto generate by template if not provided
+  message?: string;
+
+  // type required: max length of string, number, array
+  max?: number;
+
+  // type required: min length of string, number, array
+  min?: number;
+
+  // required field
+  required?: boolean;
+
+  // match enum value
+  enum?: any[];
+
+  // length of string, number, array
+  len?: number;
+
+  // regex pattern
+  pattern?: RegExp;
+
+  // transform value to the rule before validation
+  transform?: (value: any) => any;
+
+  // customize validation rule.
+  validator?: (value: any) => boolean | Promise<boolean>;
+
+  // failed if only has whitespace
+  whitespace?: boolean;
+};
+
+export interface FormItemProps extends BaseProps {
+  name?: string;
+  required?: boolean;
+  colon?: boolean;
+  label?: React.ReactNode;
+  rules?: Rule[];
+  helper?: React.ReactNode;
+  notice?: React.ReactNode;
+  valuePropName?: string;
+  valueGetter?: (...args: any[]) => any;
+  labelCol?: number | { span: number; offset: number };
+  wrapperCol?: number | { span: number; offset: number };
+  children?: React.ReactNode;
+}
+
+export type FormLayout = DirectionType | 'inline';
+
+export type ValidateTrigger = 'onChange' | 'onBlur' | 'onSubmit';
+
+export interface FormOptionsProps {
+  labelCol: number | { span: number; offset: number };
+  wrapperCol: number | { span: number; offset: number };
+  validateTrigger: ValidateTrigger;
+  layout: FormLayout;
+}
+
+export interface FormProps
+  extends BaseProps,
+    Partial<FormOptionsProps>,
+    React.PropsWithRef<JSX.IntrinsicElements['form']> {
+  form?: FormInstance;
+  initialValues?: FormValues;
+  onFinish?: (values: FormValues) => void;
+  onFinishFailed?: ({ values, errors }: { values: FormValues; errors: FormErrors }) => void;
+}
+
+```
+
+### grid
+```typescript
+import { BaseProps } from '../_utils/props';
+import React from 'react';
+
+export type RowAlign = 'top' | 'center' | 'bottom';
+export type RowJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
+
+export interface RowProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  gutter?: number | [number, number];
+  // { xs: number; sm: number; md: number; lg: number; xl: number; xxl: number };
+  /** gutter padding includes first and end child  */
+  gutterSide?: boolean;
+  align?: RowAlign;
+  justify?: RowJustify;
+  children: React.ReactElement<ColProps>[] | React.ReactElement<ColProps>;
+}
+
+export type ColSize = {
+  span?: number;
+  offset?: number;
+  order?: number;
+};
+
+export interface ColProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  span?: number;
+  offset?: number;
+  order?: number;
+  xs?: number | ColSize;
+  sm?: number | ColSize;
+  md?: number | ColSize;
+  lg?: number | ColSize;
+  xl?: number | ColSize;
+  xxl?: number | ColSize;
+  children?: React.ReactNode;
+}
+
+```
+
+### image
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface ImageProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['img']> {
+  src?: string;
+  placeholder?: string;
+  alt?: string;
+  width?: number | string;
+  height?: number | string;
+  round?: boolean;
+  lazy?: boolean;
+  fallback?: string;
+  objectFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
+}
+
+```
+
+### input-number
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface InputNumberProps extends BaseProps {
+  min?: number;
+  max?: number;
+  step?: number;
+  precision?: number;
+  defaultValue?: number;
+  value?: number;
+  onChange?: (
+    value: number,
+    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLSpanElement>
+  ) => void;
+  size?: SizeType;
+  disabled?: boolean;
+  /** Determine whether always display the control button  */
+  controls?: boolean;
+  children?: React.ReactNode;
+}
+
+```
+
+### input-otp
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface InputOTPProps extends BaseProps, Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onInput'> {
+  /** Number of OTP input cells */
+  length?: number;
+  /** Size of the input */
+  size?: SizeType;
+  /** Default value of the OTP input */
+  defaultValue?: string;
+  /** Controlled value of the OTP input */
+  value?: string;
+  /** Callback when all cells are filled */
+  onChange?: (value: string) => void;
+  /** Custom formatter to restrict/modify input */
+  formatter?: (value: string) => string;
+  /** Separator element between cells */
+  separator?: ((index: number) => React.ReactNode) | React.ReactNode;
+  /** Whether the input is disabled */
+  disabled?: boolean;
+  /** Whether to mask the values, or a custom mask character */
+  mask?: boolean | string;
+  /** Auto focus the first cell on mount */
+  autoFocus?: boolean;
+  /** Autocomplete attribute */
+  autoComplete?: string;
+}
+
+export interface OTPInputCellProps {
+  index: number;
+  value: string;
+  disabled?: boolean;
+  mask?: boolean | string;
+  size?: SizeType;
+  autoFocus?: boolean;
+  autoComplete?: string;
+  prefixCls: string;
+  onChange: (index: number, value: string) => void;
+  onActiveChange: (index: number) => void;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
+}
+
+```
+
+### input-password
+```typescript
+import React from 'react';
+import { InputProps } from '../input/types';
+
+export interface InputPasswordProps extends InputProps {
+  suffix?: boolean;
+  visibleOnClick?: () => void;
+  children?: React.ReactNode;
+}
+
+```
+
+### input
+```typescript
+import React, { ReactNode } from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface InputProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['input']>, 'size' | 'prefix'> {
+  clearable?: boolean;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>; // prevent covering keydown event by enter press
+  size?: SizeType;
+  disabled?: boolean;
+  onClearClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
+}
+
+export interface InputGroupProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  size?: SizeType;
+  disabled?: boolean;
+  children: React.ReactElement;
+}
+
+export interface InputGroupAddonProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  noBorder: boolean;
+  disabled?: boolean;
+  size?: SizeType;
+  children: React.ReactElement;
+}
+
+```
+
+### keyboard
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface KeyboardProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['kbd']> {
+  children?: React.ReactNode;
+}
+
+```
+
+### layout
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface LayoutProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['div']> {}
+
+export type SidebarTheme = 'light' | 'dark';
+
+export interface SidebarProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['div']> {
+  collapsible?: boolean;
+  collapsed?: boolean;
+  defaultCollapsed?: boolean;
+  onCollapse?: (collapsed: boolean) => void;
+  trigger?: React.ReactNode;
+  width?: number | string;
+  collapsedWidth?: number | string;
+  theme?: SidebarTheme;
+  children?: React.ReactNode;
+}
+
+```
+
+### link
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface LinkProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['a']> {
+  external?: boolean;
+  disabled?: boolean;
+  underline?: boolean;
+  children?: React.ReactNode;
+}
+
+```
+
+### list
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+import { PaginationProps } from '../pagination/types';
+
+export interface ListProps<T = any>
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'children'> {
+  dataSource?: T[];
+  renderItem?: (item: T, index: number) => React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+  loading?: boolean;
+  bordered?: boolean;
+  split?: boolean;
+  size?: SizeType;
+  grid?: ListGridType;
+  locale?: { emptyText?: React.ReactNode };
+  virtual?: boolean;
+  height?: number;
+  itemHeight?: number;
+  pagination?: false | ListPaginationProps;
+  children?: React.ReactNode;
+}
+
+export interface ListGridType {
+  gutter?: number;
+  column?: number;
+}
+
+export interface ListPaginationProps extends Pick<PaginationProps, 'size' | 'align' | 'disabled'> {
+  current?: number;
+  pageSize?: number;
+  total?: number;
+  onChange?: (page: number, pageSize: number) => void;
+}
+
+export interface ListItemProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+  extra?: React.ReactNode;
+  actions?: React.ReactNode[];
+  children?: React.ReactNode;
+}
+
+export interface ListItemMetaProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
+  avatar?: React.ReactNode;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+}
+
+```
+
+### loader
+```typescript
+import React, {ReactNode} from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface LoaderProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  /** customise the spinning indicator */
+  indicator?: ReactNode;
+
+  /** loader size */
+  size?: SizeType;
+
+  /** loading status */
+  loading?: boolean;
+
+  /** customize description content when Spin has children */
+  tip?: string;
+
+  /** vertical the content */
+  vertical?: boolean;
+
+  /** determine whether blur the loading background */
+  blurred?: boolean;
+}
+
+```
+
+### loading-bar
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface LoadingBarProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  didMount?: () => void;
+  children?: React.ReactNode;
+}
+
+```
+
+### locale
+```typescript
+export type Locale = {
+  locale: string;
+  DatePicker: {
+    weeks: string[];
+    months: string[];
+    today: string;
+    selectDate: string;
+    selectMonth: string;
+    selectYear: string;
+  };
+  TimePicker: {
+    selectTime: string;
+    now: string;
+    okText: string;
+  };
+  Modal: {
+    okText: string;
+    cancelText: string;
+  };
+  PopConfirm: {
+    okText: string;
+    cancelText: string;
+  };
+  Empty: {
+    description: string;
+  };
+  Table: {
+    sortAscend: string;
+    sortDescend: string;
+    cancelSort: string;
+    selectAll: string;
+    selectNone: string;
+    emptyText: string;
+  };
+  ColorPicker: {
+    hex: string;
+    rgb: string;
+    hsb: string;
+  };
+};
+
+```
+
+### marquee
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface MarqueeProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  /** Scroll direction */
+  direction?: 'left' | 'right';
+
+  /** Animation duration in seconds */
+  duration?: number;
+
+  /** Pause animation on hover */
+  pauseOnHover?: boolean;
+
+  /** Gap between items in pixels */
+  gap?: number;
+
+  /** Apply edge fade mask */
+  fade?: boolean;
+
+  /** Loop the animation infinitely (duplicates children for seamless loop) */
+  infinite?: boolean;
+}
+
+```
+
+### menu
+```typescript
+import React, { ReactNode } from 'react';
+import { BaseProps, DirectionType } from '../_utils/props';
+
+export type MenuMode = DirectionType | 'inline';
+export type Theme = 'light' | 'dark';
+
+export interface MenuProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['ul']>, 'onSelect'> {
+  defaultIndex?: string;
+
+  /** color theme of the menu */
+  theme?: Theme;
+
+  /** type of menu: vertical, horizontal or inline */
+  mode?: MenuMode;
+
+  /** indent (in pixels) of inline menu items on each level */
+  inlineIndent?: number;
+
+  /** called when a menu item is selected */
+  onSelect?: (selectedIndex: string) => void;
+
+  overlayClassName?: string;
+}
+
+export interface MenuItemProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+  index?: string;
+  disabled?: boolean;
+  onClick?: React.MouseEventHandler;
+}
+
+export interface MenuItemGroupProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['li']>, 'title'> {
+  index?: string;
+  title?: string;
+}
+
+export interface SubMenuProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['li']>, 'title'> {
+  title: ReactNode;
+  index?: string;
+  disabled?: boolean;
+  icon?: ReactNode;
+  overlayClassName?: string;
+}
+
+```
+
+### message
+```typescript
+import { ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type MessageType = 'success' | 'error' | 'warning' | 'info' | 'loading' | undefined;
+
+export interface MessageProps extends BaseProps {
+  type: MessageType;
+  content: string;
+  duration: number;
+  icon?: ReactNode;
+  extra?: ReactNode;
+  willUnmount: (height: number) => void;
+}
+
+```
+
+### modal
+```typescript
+import React, {CSSProperties, ReactNode} from 'react';
+import { BaseProps } from '../_utils/props';
+import { OverlayMaskType } from '../overlay/types';
+import { ButtonProps } from '../button/types';
+
+export type ModalAnimation = 'slide' | 'scale';
+
+export interface ModalProps extends BaseProps {
+  visible?: boolean;
+  header?: ReactNode;
+  footer?: ReactNode;
+  width?: number | string;
+  centered?: boolean;
+  closable?: boolean;
+  unmountOnClose?: boolean;
+  afterClose?: () => void;
+  maskType?: OverlayMaskType;
+  maskClosable?: boolean;
+  confirmLoading?: boolean;
+  onConfirm?: (e: React.MouseEvent) => void;
+  onCancel?: (e: React.MouseEvent) => void;
+  onClose?: (e: React.MouseEvent) => void;
+  confirmText?: string;
+  cancelText?: string;
+  confirmButtonProps?: ButtonProps;
+  cancelButtonProps?: ButtonProps;
+  animation?: ModalAnimation;
+  top?: number;
+  zIndex?: number;
+  headerStyle?: CSSProperties;
+  bodyStyle?: CSSProperties;
+  footerStyle?: CSSProperties;
+  maskStyle?: CSSProperties;
+  children?: ReactNode;
+}
+
+```
+
+### native-select
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export type NativeSelectGroupProps = React.PropsWithRef<JSX.IntrinsicElements['optgroup']>;
+
+export type NativeSelectOptionProps = React.PropsWithRef<JSX.IntrinsicElements['option']>;
+
+export interface NativeSelectProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['select']>, 'size'> {
+  size?: SizeType;
+  children:
+    | React.ReactElement<NativeSelectGroupProps | NativeSelectOptionProps>
+    | React.ReactElement<NativeSelectGroupProps | NativeSelectOptionProps>[];
+}
+
+```
+
+### notification
+```typescript
+import React, { ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type NotificationType = 'success' | 'error' | 'warning' | 'info' | undefined;
+
+export interface NotificationProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
+  type: NotificationType;
+  title?: ReactNode;
+  description?: ReactNode;
+  footer?: ReactNode;
+  onClick?: (e: React.MouseEvent) => void;
+  onClose?: (e: React.MouseEvent) => void;
+  icon?: ReactNode | boolean;
+  willUnmount: (height: number) => void;
+  didMount: () => void;
+  duration?: number;
+  children?: React.ReactNode;
+}
+
+```
+
+### overlay
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type OverlayMaskType = 'default' | 'inverted' | 'none';
+
+export interface OverlayProps extends BaseProps {
+  isShow?: boolean;
+  blurred?: boolean;
+  unmountOnExit?: boolean;
+  clickCallback?: (e: React.MouseEvent) => void;
+  zIndex?: number;
+  onEnter?: () => void;
+  onExit?: () => void;
+  onEntered?: () => void;
+  onExited?: () => void;
+  type?: OverlayMaskType;
+  children?: React.ReactNode;
+}
+
+```
+
+### pagination
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type PaginationAlign = 'left' | 'center' | 'right';
+export type PaginationSize = 'sm' | 'md';
+
+export interface PaginationProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['ul']>, 'onChange'> {
+  current?: number;
+  total?: number;
+  defaultCurrent?: number;
+  disabled?: boolean;
+  pageSize?: number;
+  defaultPageSize?: number;
+  size?: PaginationSize;
+  align?: PaginationAlign;
+  onChange?: (current: number, total: number, pageSize: number) => void;
+}
+
+```
+
+### pop-confirm
+```typescript
+import React from 'react';
+import { PopoverProps } from '../popover/types';
+
+export interface PopConfirmProps extends PopoverProps {
+  confirmText?: string;
+  cancelText?: string;
+  onConfirm?: (e: React.MouseEvent) => void;
+  onCancel?: (e: React.MouseEvent) => void;
+  icon?: React.ReactNode;
+}
+
+```
+
+### popover
+```typescript
+import React from 'react';
+import { PopupProps, Placement } from '../popup/types';
+
+export type PopupPlacement = Placement;
+
+export interface PopoverProps extends Omit<PopupProps, 'title'> {
+  role?: string;
+  placement?: PopupPlacement;
+  title?: React.ReactNode;
+  children: React.ReactElement;
+}
+
+```
+
+### popup
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type TriggerType = 'hover' | 'focus' | 'click' | 'contextmenu' | 'manual';
+export type PopoverTheme = 'light' | 'dark';
+export type Placement =
+  | 'top-start'
+  | 'top'
+  | 'top-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'bottom-end'
+  | 'left-start'
+  | 'left'
+  | 'left-end'
+  | 'right-start'
+  | 'right'
+  | 'right-end';
+
+export interface PopupProps extends BaseProps, Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'children' | 'content'> {
+  disabled?: boolean;
+  content?: React.ReactNode;
+  placement?: Placement;
+  visible?: boolean;
+  defaultVisible?: boolean;
+  onVisibleChange?: (visible: boolean) => void;
+
+  /** Determine whether using a portal to wrap the content */
+  usePortal?: boolean;
+
+  /** Provide white and black backgrounds */
+  theme?: PopoverTheme;
+
+  flip?: boolean;
+
+  /** Determine whether display an arrow */
+  arrow?: boolean;
+
+  /** The distance between popup window and trigger target */
+  offset?: number;
+
+  /** Delay in seconds, before tooltip is shown on mouse enter */
+  mouseEnterDelay?: number;
+
+  /** Delay in seconds, before tooltip is hidden on mouse leave */
+  mouseLeaveDelay?: number;
+
+  /** Trigger mode */
+  trigger?: TriggerType;
+
+  /** Determine using a bidirectional effect of the zoom animation */
+  biZoom?: boolean;
+
+  children: React.ReactElement;
+}
+
+```
+
+### progress
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type strokeLineCaps = 'round' | 'square';
+
+export const strokePresetColors = ['primary', 'blue', 'green', 'yellow', 'red'];
+
+export type BarBackgroundType = 'impulse' | 'striped';
+
+export interface BarProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  percent?: number;
+  /** Customise label style for both outer and inner label */
+  format?: (percent: number) => React.ReactNode;
+  /** Determine display the label */
+  showInfo?: boolean;
+  strokeLinecap?: strokeLineCaps;
+  strokeColor?: string | string[];
+  strokeWidth?: number;
+  /** Determine display the label in the bar or right of bar */
+  innerText?: boolean;
+  backgroundType?: BarBackgroundType;
+  children?: React.ReactNode;
+}
+
+export interface CircleProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  percent?: number;
+  /** Customise label style for both outer and inner label */
+  format?: (percent: number) => React.ReactNode;
+  width?: number;
+  strokeWidth?: number;
+  strokeLinecap?: strokeLineCaps;
+  strokeColor?: string;
+  reverse?: boolean;
+  prefixCls?: string;
+  textStyle?: React.CSSProperties;
+  children?: React.ReactNode;
+}
+
+```
+
+### radio
+```typescript
+import React, { RefObject } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface RadioProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['label']>, 'onChange'> {
+  radioRef?: RefObject<HTMLInputElement>;
+  value?: string | number;
+  name?: string;
+  defaultChecked?: boolean;
+  checked?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
+}
+
+export interface RadioGroupProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+  name?: string;
+  defaultValue?: number | string;
+  value?: number | string;
+  onChange?: (value: number | string) => void;
+  disabled?: boolean;
+  children: React.ReactNode;
+}
+
+```
+
+### rate
+```typescript
+import React from 'react';
+import { ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface RateProps extends BaseProps,
+  Omit<React.PropsWithRef<JSX.IntrinsicElements['ul']>, 'onChange'> {
+  color?: string;
+  clearable?: boolean;
+  half?: boolean;
+  character?: ReactNode;
+  count?: number;
+  defaultValue?: number;
+  value?: number;
+  disabled?: boolean;
+  onChange?: (value: number) => void;
+  children?: ReactNode;
+}
+
+```
+
+### result
+```typescript
+import React, { ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type ResultStatus = 'success' | 'error' | 'info' | 'warning' | 'loading';
+
+export interface ResultProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'title'> {
+  title?: ReactNode;
+  subtitle?: ReactNode;
+  status?: ResultStatus;
+  icon?: ReactNode;
+  extra?: ReactNode;
+  children?: ReactNode;
+}
+
+```
+
+### scroll-indicator
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+import { Target } from '../_utils/dom';
+
+export interface ScrollIndicatorProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  fixed?: boolean;
+  target?: () => Target;
+}
+
+```
+
+### scroll-number
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface ScrollNumberProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title' | 'prefix'> {
+  /** The numeric value to display */
+  value?: number | string;
+  /** Title displayed above the value */
+  title?: React.ReactNode;
+  /** Animation duration in milliseconds */
+  duration?: number;
+  /** Number of decimal places to display */
+  precision?: number;
+  /** Thousands separator character */
+  groupSeparator?: string;
+  /** Prefix node rendered before the number */
+  prefix?: React.ReactNode;
+  /** Suffix node rendered after the number */
+  suffix?: React.ReactNode;
+  /** Custom style applied to the value container */
+  valueStyle?: React.CSSProperties;
+}
+
+```
+
+### segmented
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface SegmentedOption {
+  label: React.ReactNode;
+  value: string | number;
+  disabled?: boolean;
+  icon?: React.ReactNode;
+}
+
+export type SegmentedValue = string | number;
+
+export interface SegmentedProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+  options: (string | number | SegmentedOption)[];
+  value?: SegmentedValue;
+  defaultValue?: SegmentedValue;
+  onChange?: (value: SegmentedValue) => void;
+  block?: boolean;
+  disabled?: boolean;
+  size?: SizeType;
+}
+
+```
+
+### select
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface SelectOptGroupProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+  label?: string;
+  children?: React.ReactNode;
+}
+
+export interface SelectOptionsProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+  value: string;
+  label?: React.ReactNode;
+  disabled?: boolean;
+  children?: React.ReactNode;
+}
+
+export interface SelectOptionItem {
+  value: string;
+  label?: React.ReactNode;
+  disabled?: boolean;
+}
+
+export type SelectValue = string | string[];
+
+export interface SelectProps
+  extends BaseProps,
+    Omit<
+      React.PropsWithoutRef<JSX.IntrinsicElements['div']>,
+      'onSelect' | 'onChange' | 'defaultValue'
+    > {
+  value?: SelectValue;
+  defaultValue?: SelectValue;
+  mode?: 'multiple' | 'tags';
+  showSearch?: boolean;
+  filterOption?: boolean | ((inputValue: string, option: SelectOptionItem) => boolean);
+  onSearch?: (value: string) => void;
+  allowClear?: boolean;
+  loading?: boolean;
+  size?: SizeType;
+  maxTagCount?: number;
+  notFoundContent?: React.ReactNode;
+  options?: SelectOptionItem[];
+  onChange?: (value: SelectValue, option?: SelectOptionItem | SelectOptionItem[]) => void;
+  onSelect?: (value: SelectValue) => void;
+  optionRender?: (option: SelectOptionItem, info: { index: number }) => React.ReactNode;
+  labelRender?: (props: { label: React.ReactNode; value: string }) => React.ReactNode;
+  placeholder?: string;
+  disabled?: boolean;
+  defaultOpen?: boolean;
+  open?: boolean;
+  onDropdownVisibleChange?: (open: boolean) => void;
+  dropdownStyle?: React.CSSProperties;
+  children?: React.ReactNode;
+}
+
+```
+
+### skeleton
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface SkeletonProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['div']> {
+  active?: boolean;
+  rounded?: boolean;
+  children?: React.ReactNode;
+}
+
+```
+
+### slider
+```typescript
+import React, { ReactNode } from 'react';
+import { BaseProps, DirectionType } from '../_utils/props';
+import { Placement } from '../popup/types';
+
+export type SliderValue = number | [number, number];
+export type SliderMarks = {
+  [key: string]:
+    | React.ReactNode
+    | {
+    style: React.CSSProperties;
+    label: ReactNode;
+  };
+};
+
+export interface SliderProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange' | 'defaultValue'> {
+  value?: SliderValue;
+  defaultValue?: SliderValue;
+  min?: number;
+  max?: number;
+  marks?: SliderMarks;
+  dots?: boolean;
+  direction?: DirectionType;
+  step?: number;
+  disabled?: boolean;
+  track?: boolean;
+  tooltipVisible?: boolean;
+  tooltipPlacement?: Placement;
+  tipFormatter?: (value: number) => ReactNode;
+  onChange?: (value: SliderValue) => void;
+  onAfterChange?: (value: SliderValue) => void;
+  children?: ReactNode;
+}
+
+```
+
+### space
+```typescript
+import React from 'react';
+import { BaseProps, DirectionType, SizeType } from '../_utils/props';
+
+export type SpaceAlign = 'start' | 'end' | 'center' | 'baseline';
+export type SpaceSize = SizeType | number;
+
+export interface SpaceProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['div']> {
+  align?: SpaceAlign;
+  direction?: DirectionType;
+  size?: SpaceSize;
+}
+
+```
+
+### speed-dial
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type SpeedDialDirection = 'up' | 'down' | 'left' | 'right';
+export type SpeedDialTrigger = 'hover' | 'click';
+
+export interface SpeedDialProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'children'> {
+  icon?: React.ReactNode;
+  openIcon?: React.ReactNode;
+  direction?: SpeedDialDirection;
+  open?: boolean;
+  trigger?: SpeedDialTrigger;
+  onOpen?: () => void;
+  onClose?: () => void;
+  disabled?: boolean;
+  children?: React.ReactNode;
+}
+
+export interface SpeedDialActionProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['button']>, 'children'> {
+  icon: React.ReactNode;
+  tooltip?: string;
+  tooltipPlacement?: 'left' | 'right' | 'top' | 'bottom';
+  disabled?: boolean;
+}
+
+```
+
+### split-button
+```typescript
+import React from 'react';
+import { ButtonGroupProps, ButtonType } from '../button/types';
+import { DropdownPlacement, DropdownTrigger } from '../dropdown/types';
+import { MenuProps } from '../menu/types';
+import { SizeType } from '../_utils/props';
+
+export interface SplitButtonProps extends Omit<ButtonGroupProps, 'onClick'> {
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  loading?: boolean;
+  disabled?: boolean;
+  size?: SizeType;
+  btnType?: ButtonType;
+  overlay?: React.ReactElement<MenuProps>;
+  dropdownTrigger?: DropdownTrigger;
+  dropdownPlacement?: DropdownPlacement;
+}
+
+```
+
+### split
+```typescript
+import React from 'react';
+import { BaseProps, DirectionType } from '../_utils/props';
+import { ResizerProps } from './resizer';
+
+export interface SplitProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+  /** Split mode */
+  mode?: DirectionType;
+
+  /** Disabled flag */
+  disabled?: boolean;
+
+  /** Minimum width / height of the target pane */
+  min?: number | string;
+
+  /** Maximum width / height of the target pane */
+  max?: number | string;
+
+  /** Control the size of target pane */
+  size?: number | string;
+
+  /** Default size of target pane */
+  defaultSize?: number | string;
+
+  /** Resizer's other props */
+  resizerProps?: ResizerProps;
+
+  /** Drag step */
+  step?: number;
+
+  resizerSize?: number;
+
+  onChange?: (size: number) => void;
+  onDragStarted?: () => void;
+  onDragFinished?: () => void;
+}
+
+```
+
+### statistic
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface StatisticProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title' | 'prefix'> {
+  title?: React.ReactNode;
+  value?: number | string;
+  precision?: number;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+  groupSeparator?: string;
+  valueStyle?: React.CSSProperties;
+  formatter?: (value: number | string) => React.ReactNode;
+}
+
+```
+
+### steps
+```typescript
+import React, { ReactNode } from 'react';
+import { BaseProps, DirectionType } from '../_utils/props';
+
+export type StepsStatus = 'wait' | 'process' | 'finish' | 'error';
+
+export interface StepsProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+  current?: number;
+  defaultCurrent?: number;
+  direction?: DirectionType;
+  status?: StepsStatus;
+  labelPlacement?: DirectionType;
+  onChange?: (current: number) => void;
+}
+
+export interface StepsItemProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'title'> {
+  stepIndex?: number;
+  icon?: ReactNode;
+  title?: ReactNode;
+  description?: ReactNode;
+  status?: StepsStatus;
+  disabled?: boolean;
+}
+
+```
+
+### sticky
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+import { Target } from '../_utils/dom';
+
+export interface StickyProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+  offsetTop?: number;
+  offsetBottom?: number;
+  container?: () => Target;
+  onChange?: (stuck: boolean) => void;
+}
+
+```
+
+### strength-indicator
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface StrengthIndicatorProps
+  extends BaseProps,
+    React.PropsWithRef<JSX.IntrinsicElements['div']> {
+  /** the number of indicator, default is 3 */
+  blocks?: number;
+
+  /** current value */
+  current?: number;
+
+  /** block colors */
+  colors?: string[];
+
+  /** hint labels */
+  labels?: boolean | React.ReactNode[];
+}
+
+```
+
+### switch
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface SwitchProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['label']>, 'onChange' | 'onClick'> {
+  defaultChecked?: boolean;
+  checked?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  size?: SizeType;
+  onChange?: (checked: boolean, event: React.MouseEvent) => void;
+  onClick?: (checked: boolean, event: React.MouseEvent) => void;
+  checkedText?: React.ReactNode;
+  uncheckedText?: React.ReactNode;
+}
+
+```
+
+### table
+```typescript
+import React from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+import { PaginationProps } from '../pagination/types';
+
+export type SortOrder = 'ascend' | 'descend' | null;
+export type ColumnAlign = 'left' | 'center' | 'right';
+
+export interface ColumnType<T = any> {
+  title: React.ReactNode;
+  dataIndex?: keyof T & string;
+  key?: string;
+  width?: number | string;
+  align?: ColumnAlign;
+  sorter?: boolean | ((a: T, b: T) => number);
+  defaultSortOrder?: SortOrder;
+  render?: (value: any, record: T, index: number) => React.ReactNode;
+  ellipsis?: boolean;
+  className?: string;
+}
+
+export interface RowSelection<T = any> {
+  selectedRowKeys?: React.Key[];
+  onChange?: (selectedRowKeys: React.Key[], selectedRows: T[]) => void;
+  type?: 'checkbox' | 'radio';
+}
+
+export interface TablePaginationConfig extends Pick<PaginationProps, 'size' | 'align' | 'disabled'> {
+  current?: number;
+  pageSize?: number;
+  total?: number;
+  onChange?: (page: number, pageSize: number) => void;
+}
+
+export interface TableProps<T = any>
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+  columns: ColumnType<T>[];
+  dataSource?: T[];
+  rowKey?: string | ((record: T) => React.Key);
+  loading?: boolean;
+  bordered?: boolean;
+  size?: SizeType;
+  virtual?: boolean;
+  height?: number;
+  itemHeight?: number;
+  scroll?: { x?: number | string; y?: number | string };
+  rowSelection?: RowSelection<T>;
+  pagination?: false | TablePaginationConfig;
+  onChange?: (pagination: TablePaginationConfig, sorter: { field?: string; order?: SortOrder }) => void;
+  emptyText?: React.ReactNode;
+  showHeader?: boolean;
+  rowClassName?: string | ((record: T, index: number) => string);
+  onRow?: (record: T, index: number) => React.HTMLAttributes<HTMLTableRowElement>;
+}
+
+```
+
+### tabs
+```typescript
+import { CSSProperties, ReactNode } from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export type TabType = 'line' | 'card' | 'editable-card';
+export type TabPosition = 'top' | 'bottom' | 'left' | 'right';
+
+export interface TabItem {
+  key: string;
+  label: ReactNode;
+  children?: ReactNode;
+  icon?: ReactNode;
+  disabled?: boolean;
+  closable?: boolean;
+  forceRender?: boolean;
+}
+
+export interface TabsProps
+  extends BaseProps,
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  /** Current active tab key */
+  activeKey?: string;
+  /** Initial active tab key */
+  defaultActiveKey?: string;
+  /** Tab content configuration (recommended) */
+  items?: TabItem[];
+  /** Tab style variant */
+  type?: TabType;
+  /** Tab position */
+  tabPosition?: TabPosition;
+  /** Preset tab bar size */
+  size?: SizeType;
+  /** Whether to animate tab transitions */
+  animated?: boolean;
+  /** Center the tab bar */
+  centered?: boolean;
+  /** Destroy inactive tab panes */
+  destroyInactiveTabPane?: boolean;
+  /** Extra content on the tab bar */
+  tabBarExtraContent?: ReactNode | { left?: ReactNode; right?: ReactNode };
+  /** Gap between tabs in pixels */
+  tabBarGutter?: number;
+  /** Tab bar inline styles */
+  tabBarStyle?: CSSProperties;
+  /** Callback when the active tab changes */
+  onChange?: (activeKey: string) => void;
+  /** Callback when a tab is clicked */
+  onTabClick?: (key: string, event: React.MouseEvent) => void;
+  /** Callback when tabs are added or removed (editable-card only) */
+  onEdit?: (targetKey: string | React.MouseEvent, action: 'add' | 'remove') => void;
+  /** Hide the add button in editable-card mode */
+  hideAdd?: boolean;
+}
+
+export interface TabPanelProps
+  extends BaseProps,
+    React.HTMLAttributes<HTMLDivElement> {
+  /** Whether the panel is active (set internally) */
+  active?: boolean;
+  /** Whether the tab is disabled */
+  disabled?: boolean;
+  /** Whether the tab is closable (editable-card only) */
+  closable?: boolean;
+  /** Tab header content */
+  tab?: ReactNode;
+  /** Unique key for the tab */
+  tabKey?: string;
+  /** Force render even when inactive */
+  forceRender?: boolean;
+}
+
+```
+
+### tag
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface CheckableTagProps extends BaseProps {
+  defaultChecked?: boolean;
+  checked?: boolean;
+  onChange?: (checked: boolean, e: React.MouseEvent) => void;
+  children?: React.ReactNode;
+}
+
+export type StatusColor = 'success' | 'warning' | 'info' | 'danger';
+
+export type TagVariant = 'filled' | 'soft' | 'solid' | 'outlined';
+
+export const StatusColors: StatusColor[] = ['success', 'info', 'warning', 'danger'];
+
+export const PresetColors = [
+  'magenta',
+  'red',
+  'volcano',
+  'orange',
+  'gold',
+  'lime',
+  'green',
+  'cyan',
+  'blue',
+  'geekblue',
+  'purple',
+  ...StatusColors,
+];
+
+export interface TagProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  color?: string | StatusColor;
+  variant?: TagVariant;
+  closable?: boolean;
+  onClose?: React.MouseEventHandler;
+  onClick?: React.MouseEventHandler;
+  defaultVisible?: boolean;
+  visible?: boolean;
+  children?: React.ReactNode;
+}
+
+```
+
+### text-loop
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface TextLoopProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+  /** Time each item stays visible, in ms (default: 3000) */
+  interval?: number;
+  /** Pause cycling on hover (default: true) */
+  pauseOnHover?: boolean;
+  /** Loop infinitely or stop after one full cycle (default: true) */
+  infinite?: boolean;
+  /** Cycling direction (default: 'up') */
+  direction?: 'up' | 'down';
+}
+
+```
+
+### textarea
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface TextareaProps extends BaseProps {
+  rows?: number;
+  limit?: number;
+  counter?: (count?: number) => React.ReactNode;
+  defaultValue?: string;
+  value?: string;
+  onChange?: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  disabled?: boolean;
+}
+
+```
+
+### time-picker
+```typescript
+import { ReactNode } from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
+
+export interface DisabledTime {
+  disabledHours?: () => number[];
+  disabledMinutes?: (hour: number) => number[];
+  disabledSeconds?: (hour: number, minute: number) => number[];
+}
+
+export interface TimePickerProps extends BaseProps {
+  /** Default time value */
+  defaultValue?: Date;
+  /** Controlled time value */
+  value?: Date;
+  /** Whether the popup is open (controlled) */
+  open?: boolean;
+  /** Display format string */
+  format?: string;
+  /** Enable 12-hour format */
+  use12Hours?: boolean;
+  /** Hour step interval */
+  hourStep?: number;
+  /** Minute step interval */
+  minuteStep?: number;
+  /** Second step interval */
+  secondStep?: number;
+  /** Disable time picker */
+  disabled?: boolean;
+  /** Input placeholder */
+  placeholder?: string;
+  /** Show clear button */
+  allowClear?: boolean;
+  /** Input size */
+  size?: SizeType;
+  /** Prevent keyboard input */
+  inputReadOnly?: boolean;
+  /** Function to specify unavailable times */
+  disabledTime?: () => DisabledTime;
+  /** Hide disabled options in the panel */
+  hideDisabledOptions?: boolean;
+  /** Show "Now" button in footer (default: true) */
+  showNow?: boolean;
+  /** Extra content in the footer */
+  renderExtraFooter?: () => ReactNode;
+  /** Suffix icon */
+  suffixIcon?: ReactNode;
+  /** Callback when time changes */
+  onChange?: (date: Date | null) => void;
+  /** Callback when popup opens/closes */
+  onOpenChange?: (open: boolean) => void;
+  /** Enable infinite circular scrolling for h/m/s columns */
+  loop?: boolean;
+}
+
+```
+
+### timeline
+```typescript
+import React, { CSSProperties } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type TimelinePosition = 'left' | 'center';
+
+export interface TimelineProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['ul']> {
+  position?: TimelinePosition;
+  children: React.ReactNode;
+}
+
+export interface TimelineItemProps
+  extends BaseProps,
+    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+  dot?: React.ReactNode;
+  dotStyle?: CSSProperties;
+  children?: React.ReactNode;
+}
+
+```
+
+### tooltip
+```typescript
+import React from 'react';
+import { PopupProps, Placement } from '../popup/types';
+
+export type TooltipPlacement = Placement;
+
+export interface TooltipProps extends Omit<PopupProps, 'title' | 'content'> {
+  title?: React.ReactNode;
+  placement?: TooltipPlacement;
+}
+
+```
+
+### transfer
+```typescript
+import React, { ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type TransferItem = {
+  key: string;
+  label: string;
+  disabled: boolean;
+};
+
+export interface TransferProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+  dataSource?: TransferItem[];
+  value?: string[];
+  defaultValue?: string[];
+  disabled?: boolean;
+  showSearch?: boolean;
+  titles?: [ReactNode, ReactNode];
+  placeholders?: [string, string];
+  buttonTexts?: [ReactNode, ReactNode];
+  onChange?: (targetKeys: string[], direction: string, moveKeys: string[]) => void;
+  renderItem?: (item: TransferItem) => ReactNode;
+  filterOption?: (input: string, item: TransferItem) => boolean;
+}
+
+```
+
+### tree
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type TreeData = {
+  key?: string;
+  title?: React.ReactNode;
+  disableCheckbox?: boolean;
+  disabled?: boolean;
+  icon?: (isExpanded: boolean) => React.ReactNode;
+  children?: TreeData[];
+};
+
+export interface TreeProps
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['ul']>, 'onSelect'> {
+  data?: TreeData[];
+  indent?: number;
+  checkable?: boolean;
+  blockNode?: boolean;
+  disabled?: boolean;
+  defaultCheckedKeys?: string[];
+  defaultExpandedKeys?: string[];
+  defaultExpandAll?: boolean;
+  icon?: (isExpanded: boolean) => React.ReactNode;
+  onCheck?: (checkedKeys: string[], e: React.ChangeEvent) => void;
+  onExpand?: (expandedKeys: string[], e: React.MouseEvent) => void;
+}
+
+```
+
+### typography
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export interface TypographyProps
+  extends BaseProps,
+    React.PropsWithRef<JSX.IntrinsicElements['div']> {
+  children?: React.ReactNode;
+}
+
+export interface ParagraphProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['p']> {
+  children?: React.ReactNode;
+}
+
+export interface HeadingProps
+  extends BaseProps,
+    React.PropsWithRef<React.HTMLAttributes<HTMLHeadingElement>> {
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  children?: React.ReactNode;
+}
+
+export interface TextProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['span']> {
+  code?: boolean;
+  del?: boolean;
+  underline?: boolean;
+  strong?: boolean;
+  italic?: boolean;
+  mark?: boolean;
+  sub?: boolean;
+  sup?: boolean;
+  children: React.ReactNode;
+}
+
+```
+
+### upload
+```typescript
+import React from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type UploadFileStatus = 'uploading' | 'done' | 'error' | 'ready';
+
+export interface UploadFile {
+  uid: string;
+  name: string;
+  status: UploadFileStatus;
+  percent?: number;
+  url?: string;
+}
+
+export interface UploadProps extends BaseProps {
+  action: string;
+  accept?: string;
+  method?: string;
+  name?: string;
+  disabled?: boolean;
+  data?: { [key: string]: string };
+  headers?: { [key: string]: string };
+  multiple?: boolean;
+  drag?: boolean;
+  tip?: React.ReactNode;
+  withCredentials?: boolean;
+  limit?: number;
+  fileList?: UploadFile[];
+  defaultFileList?: UploadFile[];
+  beforeUpload?: (file: File) => boolean | Promise<File>;
+  onProgress?: (percent: number, file: UploadFile, fileList: UploadFile[]) => void;
+  onSuccess?: (e: ProgressEvent, file: UploadFile, fileList: UploadFile[]) => void;
+  onError?: (e: ProgressEvent, file: UploadFile, fileList: UploadFile[]) => void;
+  onChange?: (file: UploadFile, fileList: UploadFile[]) => void;
+  onRemove?: (file: UploadFile) => void;
+  onExceed?: (files: FileList, fileList: UploadFile[]) => void;
+  httpRequest?: (...args: unknown[]) => void;
+  children?: React.ReactNode;
+}
+
+```
+
+### waterfall
+```typescript
+import React, { CSSProperties, ReactNode } from 'react';
+import { BaseProps } from '../_utils/props';
+
+export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+
+export interface WaterfallItem<T = any> {
+  key: React.Key;
+  /** Pin this item to a specific column index */
+  column?: number;
+  /** Direct content — takes priority over itemRender */
+  children?: ReactNode;
+  /** Custom data passed to itemRender */
+  data?: T;
+}
+
+export interface WaterfallProps<T = any>
+  extends BaseProps,
+    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'children'> {
+  /** Number of columns, or responsive breakpoint config. Default: 3 */
+  columns?: number | Partial<Record<Breakpoint, number>>;
+  /** Spacing between items: number or [horizontal, vertical] */
+  gutter?: number | [number, number];
+  /** Array of items to render */
+  items?: WaterfallItem<T>[];
+  /** Custom render function for each item */
+  itemRender?: (item: WaterfallItem<T> & { index: number; column: number }) => ReactNode;
+  /** Callback when layout order changes */
+  onLayoutChange?: (sortInfo: { key: React.Key; column: number }[]) => void;
+}
+
+```
+
