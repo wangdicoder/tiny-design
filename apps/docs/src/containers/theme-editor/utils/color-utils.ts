@@ -258,6 +258,118 @@ function adjustOpacity(hex: string, alpha: number): string {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
+// ---- Shadow derivation ----
+
+interface ShadowSet {
+  'shadow-sm': string;
+  shadow: string;
+  'shadow-lg': string;
+  'shadow-popup': string;
+  'shadow-card': string;
+  'shadow-modal': string;
+  'shadow-btn': string;
+}
+
+function deriveShadowTokensLight(intensity: string): ShadowSet {
+  switch (intensity) {
+    case 'none':
+      return {
+        'shadow-sm': 'none',
+        shadow: 'none',
+        'shadow-lg': 'none',
+        'shadow-popup': 'none',
+        'shadow-card': 'none',
+        'shadow-modal': 'none',
+        'shadow-btn': 'none',
+      };
+    case 'subtle':
+      return {
+        'shadow-sm': '0 1px 2px rgba(0, 0, 0, 0.04)',
+        shadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+        'shadow-lg': '0 8px 24px rgba(0, 0, 0, 0.08)',
+        'shadow-popup':
+          '0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04)',
+        'shadow-card': '0 1px 3px rgba(0, 0, 0, 0.05)',
+        'shadow-modal': '0 4px 12px rgba(0, 0, 0, 0.06)',
+        'shadow-btn': 'none',
+      };
+    case 'strong':
+      return {
+        'shadow-sm': '0 2px 4px rgba(0, 0, 0, 0.12)',
+        shadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
+        'shadow-lg': '0 12px 40px rgba(0, 0, 0, 0.25)',
+        'shadow-popup':
+          '0 4px 8px rgba(0, 0, 0, 0.16), 0 8px 24px rgba(0, 0, 0, 0.12), 0 12px 40px rgba(0, 0, 0, 0.08)',
+        'shadow-card': '0 2px 10px rgba(0, 0, 0, 0.18)',
+        'shadow-modal': '0 8px 24px rgba(0, 0, 0, 0.22)',
+        'shadow-btn':
+          'inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 4px rgba(0, 0, 0, 0.12)',
+      };
+    default: // medium (default)
+      return {
+        'shadow-sm': '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
+        shadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+        'shadow-lg': '0 1rem 3rem rgba(0, 0, 0, 0.175)',
+        'shadow-popup':
+          '0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05)',
+        'shadow-card': '0 1px 6px rgba(0, 0, 0, 0.12)',
+        'shadow-modal': '0 4px 12px rgba(0, 0, 0, 0.15)',
+        'shadow-btn':
+          'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+      };
+  }
+}
+
+function deriveShadowTokensDark(intensity: string): ShadowSet {
+  switch (intensity) {
+    case 'none':
+      return {
+        'shadow-sm': 'none',
+        shadow: 'none',
+        'shadow-lg': 'none',
+        'shadow-popup': 'none',
+        'shadow-card': 'none',
+        'shadow-modal': 'none',
+        'shadow-btn': 'none',
+      };
+    case 'subtle':
+      return {
+        'shadow-sm': '0 1px 2px rgba(0, 0, 0, 0.15)',
+        shadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+        'shadow-lg': '0 8px 24px rgba(0, 0, 0, 0.25)',
+        'shadow-popup':
+          '0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15)',
+        'shadow-card': '0 1px 3px rgba(0, 0, 0, 0.18)',
+        'shadow-modal': '0 4px 12px rgba(0, 0, 0, 0.22)',
+        'shadow-btn': 'none',
+      };
+    case 'strong':
+      return {
+        'shadow-sm': '0 2px 4px rgba(0, 0, 0, 0.45)',
+        shadow: '0 4px 16px rgba(0, 0, 0, 0.55)',
+        'shadow-lg': '0 12px 40px rgba(0, 0, 0, 0.65)',
+        'shadow-popup':
+          '0 4px 8px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.3)',
+        'shadow-card': '0 2px 10px rgba(0, 0, 0, 0.5)',
+        'shadow-modal': '0 8px 24px rgba(0, 0, 0, 0.55)',
+        'shadow-btn':
+          'inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 4px rgba(0, 0, 0, 0.35)',
+      };
+    default: // medium
+      return {
+        'shadow-sm': '0 0.125rem 0.25rem rgba(0, 0, 0, 0.3)',
+        shadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.4)',
+        'shadow-lg': '0 1rem 3rem rgba(0, 0, 0, 0.5)',
+        'shadow-popup':
+          '0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 9px 28px 8px rgba(0, 0, 0, 0.2)',
+        'shadow-card': '0 1px 6px rgba(0, 0, 0, 0.35)',
+        'shadow-modal': '0 4px 12px rgba(0, 0, 0, 0.45)',
+        'shadow-btn':
+          'inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 1px rgba(0, 0, 0, 0.2)',
+      };
+  }
+}
+
 /**
  * Derive all tokens from a set of seed overrides.
  * @param seeds - seed token overrides
@@ -274,6 +386,7 @@ export function deriveAllTokens(
   const deriveBg = isDark ? deriveBgTokensDark : deriveBgTokensLight;
   const deriveText = isDark ? deriveTextTokensDark : deriveTextTokensLight;
   const deriveBorder = isDark ? deriveBorderTokensDark : deriveBorderTokensLight;
+  const deriveShadow = isDark ? deriveShadowTokensDark : deriveShadowTokensLight;
 
   for (const [key, value] of Object.entries(seeds)) {
     switch (key) {
@@ -294,6 +407,15 @@ export function deriveAllTokens(
         break;
       case 'color-border':
         Object.assign(result, deriveBorder(value));
+        break;
+      case 'shadow-intensity':
+        Object.assign(result, deriveShadow(value));
+        break;
+      case 'font-family':
+      case 'font-family-monospace':
+      case 'letter-spacing':
+      case 'spacer':
+        result[key] = value;
         break;
       default:
         result[key] = value;

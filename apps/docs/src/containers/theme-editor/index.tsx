@@ -3,11 +3,13 @@ import { Button, Tabs } from '@tiny-design/react';
 import { useThemeState } from './hooks/use-theme-state';
 import { PRESETS, getPresetSeeds } from './constants/presets';
 import { ColorControls } from './components/color-controls';
+import { FontControls } from './components/font-controls';
 import { TypographyControls } from './components/typography-controls';
 import { DetailControls } from './components/detail-controls';
 import { PresetSelector } from './components/preset-selector';
 import { PreviewPanel } from './components/preview-panel';
 import { ExportDialog } from './components/export-dialog';
+import { loadFontFromValue } from './utils/font-loader';
 import { saveSeeds } from '../../utils/theme-persistence';
 import './theme-editor.scss';
 
@@ -73,6 +75,12 @@ const ThemeEditor = (): React.ReactElement => {
     try { localStorage.setItem(PRESET_ID_KEY, 'default'); } catch { /* ignore */ }
   }, [reset]);
 
+  // Load custom fonts on mount if they were persisted
+  useEffect(() => {
+    if (seeds['font-family']) loadFontFromValue(seeds['font-family']);
+    if (seeds['font-family-monospace']) loadFontFromValue(seeds['font-family-monospace']);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const controlProps = {
     seeds,
     onSeedChange: handleSeedChange,
@@ -106,6 +114,9 @@ const ThemeEditor = (): React.ReactElement => {
             </Tabs.Panel>
             <Tabs.Panel tab="Colors" tabKey="colors">
               <ColorControls {...controlProps} />
+            </Tabs.Panel>
+            <Tabs.Panel tab="Fonts" tabKey="fonts">
+              <FontControls {...controlProps} />
             </Tabs.Panel>
             <Tabs.Panel tab="Typography" tabKey="typography">
               <TypographyControls {...controlProps} />

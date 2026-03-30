@@ -1,5 +1,6 @@
 import { deriveAllTokens } from '../containers/theme-editor/utils/color-utils';
 import { applyTokens, clearAllTokenOverrides } from '../containers/theme-editor/utils/apply-theme';
+import { loadFontFromValue } from '../containers/theme-editor/utils/font-loader';
 
 const STORAGE_KEY = 'ty-theme-editor-overrides';
 const STORAGE_KEY_DARK = 'ty-theme-editor-overrides-dark';
@@ -52,6 +53,10 @@ export function applyThemeToDOM(
   if (Object.keys(resolvedSeeds).length === 0) {
     return {};
   }
+
+  // Load custom fonts if present
+  if (resolvedSeeds['font-family']) loadFontFromValue(resolvedSeeds['font-family']);
+  if (resolvedSeeds['font-family-monospace']) loadFontFromValue(resolvedSeeds['font-family-monospace']);
 
   // Derive and apply
   const derived = deriveAllTokens(resolvedSeeds, darkMode);

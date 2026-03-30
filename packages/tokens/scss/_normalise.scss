@@ -30,6 +30,11 @@ html {
 
 body {
   margin: 0;
+  font-family: var(--ty-font-family);
+  font-size: var(--ty-font-size-base);
+  font-weight: var(--ty-font-weight);
+  line-height: var(--ty-line-height-base);
+  color: var(--ty-color-text);
 }
 
 /**
@@ -162,7 +167,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: $font-family-monospace; /* 1 */
+  font-family: var(--ty-font-family-monospace); /* 1 */
   font-size: 1em; /* 2 */
 }
 

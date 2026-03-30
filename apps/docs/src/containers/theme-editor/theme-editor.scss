@@ -128,6 +128,73 @@
     }
   }
 
+  // Section label (for sub-groups like Spacing, Shadows)
+  &__section-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ty-color-text-tertiary);
+    margin-bottom: 12px;
+  }
+
+  // Font selector
+  &__font-group {
+    margin-bottom: 8px;
+  }
+
+  &__font-group-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ty-color-text-tertiary);
+    margin-bottom: 6px;
+  }
+
+  &__font-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__font-option {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 10px;
+    border: 1px solid var(--ty-color-border-light);
+    border-radius: 6px;
+    background: var(--ty-color-bg);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: left;
+
+    &:hover {
+      border-color: var(--ty-color-primary);
+    }
+
+    &_active {
+      border-color: var(--ty-color-primary);
+      background: var(--ty-color-primary-bg);
+    }
+  }
+
+  &__font-option-name {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ty-color-text-secondary);
+  }
+
+  &__font-option-preview {
+    font-size: 15px;
+    color: var(--ty-color-text);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   // Preset grid
   &__preset-grid {
     display: grid;
@@ -219,9 +286,10 @@
     font-family: var(--ty-font-family-monospace);
   }
 
-  &__export-copy {
-    position: absolute;
-    top: 8px;
-    right: 8px;
+  &__export-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
   }
 }

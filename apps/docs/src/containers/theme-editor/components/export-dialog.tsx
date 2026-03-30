@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
 import { Button, Modal, Tabs } from '@tiny-design/react';
-import { generateCSS, generateSCSS } from '../utils/export-theme';
+import { generateCSS, generateSCSS, generateJSON } from '../utils/export-theme';
 
 interface ExportDialogProps {
   visible: boolean;
   onClose: () => void;
   seeds: Record<string, string>;
   appliedTokens: Record<string, string>;
+}
+
+function downloadFile(content: string, filename: string, mime: string): void {
+  const blob = new Blob([content], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 export const ExportDialog = ({
@@ -19,6 +29,7 @@ export const ExportDialog = ({
 
   const cssCode = generateCSS(appliedTokens);
   const scssCode = generateSCSS(seeds);
+  const jsonCode = generateJSON(seeds);
 
   const handleCopy = (code: string) => {
     navigator.clipboard.writeText(code).then(() => {
@@ -27,40 +38,44 @@ export const ExportDialog = ({
     });
   };
 
+  const renderBlock = (code: string, filename: string, mime: string) => (
+    <div className="theme-editor__export-block">
+      <pre className="theme-editor__export-code">{code}</pre>
+      <div className="theme-editor__export-actions">
+        <Button
+          size="sm"
+          btnType="primary"
+          onClick={() => handleCopy(code)}
+        >
+          {copied ? 'Copied!' : 'Copy'}
+        </Button>
+        <Button
+          size="sm"
+          onClick={() => downloadFile(code, filename, mime)}
+        >
+          Download
+        </Button>
+      </div>
+    </div>
+  );
+
   return (
     <Modal
       visible={visible}
-      title="Export Theme"
+      header="Export Theme"
       onClose={onClose}
       width={640}
       footer={null}
     >
       <Tabs defaultActiveKey="css">
         <Tabs.Panel tab="CSS Variables" tabKey="css">
-          <div className="theme-editor__export-block">
-            <pre className="theme-editor__export-code">{cssCode}</pre>
-            <Button
-              size="sm"
-              btnType="primary"
-              onClick={() => handleCopy(cssCode)}
-              className="theme-editor__export-copy"
-            >
-              {copied ? 'Copied!' : 'Copy'}
-            </Button>
-          </div>
+          {renderBlock(cssCode, 'tiny-theme.css', 'text/css')}
         </Tabs.Panel>
         <Tabs.Panel tab="SCSS Variables" tabKey="scss">
-          <div className="theme-editor__export-block">
-            <pre className="theme-editor__export-code">{scssCode}</pre>
-            <Button
-              size="sm"
-              btnType="primary"
-              onClick={() => handleCopy(scssCode)}
-              className="theme-editor__export-copy"
-            >
-              {copied ? 'Copied!' : 'Copy'}
-            </Button>
-          </div>
+          {renderBlock(scssCode, 'tiny-theme.scss', 'text/x-scss')}
+        </Tabs.Panel>
+        <Tabs.Panel tab="JSON Tokens" tabKey="json">
+          {renderBlock(jsonCode, 'tiny-theme.json', 'application/json')}
         </Tabs.Panel>
       </Tabs>
     </Modal>

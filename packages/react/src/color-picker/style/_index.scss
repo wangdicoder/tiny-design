@@ -162,7 +162,7 @@
     border-radius: var(--ty-border-radius);
     padding: 2px 6px;
     font-size: 12px;
-    font-family: $font-family-monospace;
+    font-family: var(--ty-font-family-monospace);
     color: var(--ty-color-text, #{$gray-800});
     outline: none;
     min-width: 0;

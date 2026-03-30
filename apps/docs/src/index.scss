@@ -1,9 +1,15 @@
 @use './variables' as *;
 
+// Override the default font-family token so the docs site uses DM Sans,
+// while still responding to theme-editor changes via CSS custom properties.
+:root {
+  --ty-font-family: #{$font-family};
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: $font-family;
+  font-family: var(--ty-font-family);
   box-sizing: border-box;
   background: var(--ty-color-bg);
   color: var(--ty-color-text);

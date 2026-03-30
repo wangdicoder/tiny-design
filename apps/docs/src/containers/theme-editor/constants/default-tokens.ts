@@ -1,4 +1,4 @@
-export type TokenType = 'color' | 'size' | 'number' | 'select' | 'text';
+export type TokenType = 'color' | 'size' | 'number' | 'select' | 'text' | 'font';
 
 export interface TokenDef {
   key: string;
@@ -76,6 +76,28 @@ export const COLOR_TOKENS: TokenDef[] = [
     labelZh: '边框色',
     type: 'color',
     defaultValue: '#d9d9d9',
+  },
+];
+
+// ---- Font tokens ----
+export const FONT_TOKENS: TokenDef[] = [
+  {
+    key: 'font-family',
+    label: 'Body Font',
+    labelZh: '正文字体',
+    type: 'font',
+    defaultValue:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
+    scssVar: '$font-family-sans-serif',
+  },
+  {
+    key: 'font-family-monospace',
+    label: 'Monospace Font',
+    labelZh: '等宽字体',
+    type: 'font',
+    defaultValue:
+      '"Lucida Console", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
+    scssVar: '$font-family-monospace',
   },
 ];
 
@@ -157,6 +179,17 @@ export const TYPOGRAPHY_TOKENS: TokenDef[] = [
       { label: 'Bold (700)', value: '700' },
     ],
   },
+  {
+    key: 'letter-spacing',
+    label: 'Letter Spacing',
+    labelZh: '字间距',
+    type: 'size',
+    defaultValue: '0px',
+    min: -1,
+    max: 4,
+    step: 0.25,
+    unit: 'px',
+  },
 ];
 
 // ---- Detail tokens ----
@@ -211,4 +244,44 @@ export const DETAIL_TOKENS: TokenDef[] = [
   },
 ];
 
-export const ALL_TOKENS = [...COLOR_TOKENS, ...TYPOGRAPHY_TOKENS, ...DETAIL_TOKENS];
+// ---- Shadow tokens ----
+export const SHADOW_TOKENS: TokenDef[] = [
+  {
+    key: 'shadow-intensity',
+    label: 'Shadow Intensity',
+    labelZh: '阴影强度',
+    type: 'select',
+    defaultValue: 'medium',
+    options: [
+      { label: 'None', value: 'none' },
+      { label: 'Subtle', value: 'subtle' },
+      { label: 'Medium', value: 'medium' },
+      { label: 'Strong', value: 'strong' },
+    ],
+  },
+];
+
+// ---- Spacing tokens ----
+export const SPACING_TOKENS: TokenDef[] = [
+  {
+    key: 'spacer',
+    label: 'Base Spacing',
+    labelZh: '基础间距',
+    type: 'size',
+    defaultValue: '16px',
+    scssVar: '$spacer',
+    min: 8,
+    max: 24,
+    step: 2,
+    unit: 'px',
+  },
+];
+
+export const ALL_TOKENS = [
+  ...COLOR_TOKENS,
+  ...FONT_TOKENS,
+  ...TYPOGRAPHY_TOKENS,
+  ...DETAIL_TOKENS,
+  ...SHADOW_TOKENS,
+  ...SPACING_TOKENS,
+];

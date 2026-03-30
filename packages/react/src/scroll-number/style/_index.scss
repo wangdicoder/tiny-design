@@ -16,7 +16,7 @@
     color: var(--ty-color-text, #{$gray-900});
     font-size: 24px;
     font-weight: 600;
-    font-family: $font-family-sans-serif;
+    font-family: var(--ty-font-family);
     font-variant-numeric: tabular-nums;
   }
 
