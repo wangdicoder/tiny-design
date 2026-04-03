@@ -1,7 +1,6 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-popover {
-
   &__title {
     margin: 0;
     padding: 9px 16px 7px;

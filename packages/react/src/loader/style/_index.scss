@@ -1,5 +1,5 @@
-@use '../../style/variables' as *;
-@use '../../style/mixins' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
+@use '@tiny-design/tokens/scss/mixins' as *;
 
 .#{$prefix}-loader {
   position: relative;

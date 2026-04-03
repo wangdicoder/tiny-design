@@ -37,8 +37,7 @@
     "es"
   ],
   "scripts": {
-    "generate": "node scripts/generate-icons.js",
-    "build": "npm run clean && npm run generate && tsdown",
+    "build": "npm run clean && tsdown",
     "clean": "rimraf lib es",
     "test": "jest",
     "test:watch": "jest --watch",

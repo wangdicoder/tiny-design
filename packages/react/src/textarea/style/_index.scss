@@ -1,13 +1,14 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 @use '../../input/style/mixin' as *;
 
 .#{$prefix}-textarea {
-  @include input-default();
+  @include input-default;
+
   padding: $textarea-padding;
   overflow: hidden;
 
   &_disabled {
-    @include input-default-disabled();
+    @include input-default-disabled;
   }
 
   &-container {

@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-divider {
   font-size: 16px;
@@ -44,8 +44,8 @@
     font-weight: 500;
     color: var(--ty-divider-text-color);
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       content: '';
       display: table-cell;
       position: relative;
@@ -56,13 +56,13 @@
     }
   }
 
-  &_left:before,
-  &_right:after {
+  &_left::before,
+  &_right::after {
     width: 5%;
   }
 
-  &_left:after,
-  &_right:before {
+  &_left::after,
+  &_right::before {
     width: 95%;
   }
 
@@ -72,8 +72,8 @@
   }
 
   &_dashed {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       border-top-style: dashed;
     }
   }

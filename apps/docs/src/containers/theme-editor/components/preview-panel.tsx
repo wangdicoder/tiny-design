@@ -13,6 +13,7 @@ import {
   Flex,
   Input,
   InputNumber,
+  Keyboard,
   Link,
   Menu,
   Pagination,
@@ -188,6 +189,13 @@ export const PreviewPanel = (): React.ReactElement => {
             <Link href="#">Learn more</Link>
           </Typography.Paragraph>
         </Typography>
+        <Flex gap="sm" align="center" style={{ marginTop: 4 }}>
+          <Keyboard>Ctrl</Keyboard>
+          <span>+</span>
+          <Keyboard>Shift</Keyboard>
+          <span>+</span>
+          <Keyboard>P</Keyboard>
+        </Flex>
         <Flex gap="sm" style={{ marginTop: 12 }}>
           <Tooltip title="Tooltip text">
             <Button>Tooltip</Button>

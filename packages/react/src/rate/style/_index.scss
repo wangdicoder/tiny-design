@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-rate {
   display: inline-flex;
@@ -23,9 +23,6 @@
     width: 50%;
     height: 100%;
     overflow: hidden;
-    //opacity: 0;
   }
 
-  &__item-second {
-  }
 }

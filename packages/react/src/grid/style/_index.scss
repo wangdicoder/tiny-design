@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-row {
   box-sizing: border-box;
@@ -69,21 +69,26 @@
 
   box-sizing: border-box;
   display: block;
-  @include grid();
+
+  @include grid;
   @include grid('-xs');
 
   @media screen and (min-width: $size-sm) {
     @include grid('-sm');
   }
+
   @media screen and (min-width: $size-md) {
     @include grid('-md');
   }
+
   @media screen and (min-width: $size-lg) {
     @include grid('-lg');
   }
+
   @media screen and (min-width: $size-xl) {
     @include grid('-xl');
   }
+
   @media screen and (min-width: $size-xxl) {
     @include grid('-xxl');
   }

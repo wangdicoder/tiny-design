@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-back-top {
   position: fixed;

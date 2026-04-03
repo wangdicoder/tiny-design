@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-skeleton {
   display: inline-block;
@@ -12,12 +12,9 @@
     margin-top: 10px;
   }
 
-  &:after {
+  &::after {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     transform: translateX(-100%);
     background-image: var(--ty-skeleton-shimmer);
     background-size: 200% 100%;
@@ -29,7 +26,7 @@
   }
 
   &_active {
-    &:after {
+    &::after {
       content: '';
     }
   }

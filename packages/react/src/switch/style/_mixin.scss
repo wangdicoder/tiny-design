@@ -1,15 +1,17 @@
-@use "../../style/mixins" as *;
+@use "@tiny-design/tokens/scss/mixins" as *;
 
 @mixin switch-bg($size) {
   width: $size;
   height: $size;
   border-radius: $size;
 
-  &:before {
+  &::before {
     content: '';
     width: calc(($size - 22px) / 2) + 10px;
     height: calc(($size - 22px) / 2) + 10px;
-    @include loader();
+
+    @include loader;
+
     display: none;
   }
 }

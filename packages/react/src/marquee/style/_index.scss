@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-marquee {
   overflow: hidden;
@@ -6,7 +6,6 @@
   min-width: 100%;
 
   &_fade {
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   }
 

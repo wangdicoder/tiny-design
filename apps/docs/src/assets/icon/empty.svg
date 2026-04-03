@@ -1,9 +1,0 @@
-<svg width="280" height="140" viewBox="0 0 280 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="280" height="140" fill="#F4F5F7"/>
-<ellipse cx="140" cy="98" rx="50" ry="8" fill="#E5E7EB"/>
-<rect x="112" y="48" width="56" height="50" rx="4" fill="#D2D6DC"/>
-<rect x="118" y="40" width="44" height="12" rx="3" fill="#E5E7EB" stroke="#D2D6DC"/>
-<line x1="125" y1="68" x2="155" y2="68" stroke="#9FA6B2" stroke-width="1.5" stroke-linecap="round"/>
-<line x1="130" y1="78" x2="150" y2="78" stroke="#9FA6B2" stroke-width="1.5" stroke-linecap="round"/>
-<rect x="110" y="114" width="60" height="6" rx="2" fill="#D2D6DC"/>
-</svg>

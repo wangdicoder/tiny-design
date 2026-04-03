@@ -1,7 +1,6 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-split-button {
-
   &__dropdown-btn{
     padding: 0 8px;
     min-width: auto;

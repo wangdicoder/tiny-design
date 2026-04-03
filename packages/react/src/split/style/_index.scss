@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-split {
   box-sizing: border-box;
@@ -33,8 +33,8 @@
   justify-content: center;
   align-items: center;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: '';
     box-sizing: border-box;
     display: block;
@@ -52,19 +52,19 @@
       cursor: ew-resize;
     }
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       height: 4px;
       width: 100%;
       border-left: 0;
       border-right: 0;
     }
 
-    &:before {
+    &::before {
       margin-bottom: 1px;
     }
 
-    &:after {
+    &::after {
       margin-top: 1px;
     }
   }
@@ -79,19 +79,19 @@
       cursor: ns-resize;
     }
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       height: 100%;
       width: 4px;
       border-top: 0;
       border-bottom: 0;
     }
 
-    &:before {
+    &::before {
       margin-right: 1px;
     }
 
-    &:after {
+    &::after {
       margin-left: 1px;
     }
   }

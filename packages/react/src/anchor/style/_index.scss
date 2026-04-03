@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-anchor {
   margin: 0;
@@ -16,7 +16,7 @@
     left: 0;
     height: 100%;
 
-    &:before {
+    &::before {
       content: '';
       position: relative;
       display: block;

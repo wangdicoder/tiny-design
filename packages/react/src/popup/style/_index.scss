@@ -1,5 +1,5 @@
 @use 'sass:math';
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-popup {
   box-sizing: border-box;

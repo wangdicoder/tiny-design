@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 @use './mixin' as *;
 
 .#{$prefix}-switch {
@@ -9,10 +9,7 @@
 
   &__bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    inset: 0;
     background-color: var(--ty-switch-bg);
     transition: background-color 300ms;
     user-select: none;
@@ -72,7 +69,7 @@
     opacity: 0.4;
   }
 
-  //TODO: optimise
+  // TODO: optimise
   &_loading {
     .#{$prefix}-switch__thumb:before {
       display: inline-block !important;

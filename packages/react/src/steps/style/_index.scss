@@ -1,4 +1,4 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-steps {
   box-sizing: border-box;
@@ -26,7 +26,7 @@
           display: flex;
           align-items: center;
 
-          &:after {
+          &::after {
             content: '';
             margin: 0 12px;
             flex: 1;
@@ -125,12 +125,11 @@
     flex: none;
 
     .#{$prefix}-steps-item {
-
       &__tail {
         display: none;
       }
 
-      &__title:after {
+      &__title::after {
         content: none;
       }
     }
@@ -161,12 +160,11 @@
 
   &_finish {
     .#{$prefix}-steps-item {
-
       &__icon {
         color: var(--ty-color-primary);
       }
 
-      &__tail, &__title:after {
+      &__tail, &__title::after {
         background-color: var(--ty-color-primary);
       }
     }

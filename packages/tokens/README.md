@@ -14,7 +14,7 @@ pnpm add @tiny-design/tokens
 
 ### CSS (recommended)
 
-Import the compiled CSS to get all tokens, normalization, animations, and icon fonts:
+Import the compiled CSS to get all tokens, normalization, and animations:
 
 ```js
 import '@tiny-design/tokens';
@@ -42,7 +42,6 @@ Import individual SCSS modules for custom builds:
 | `_theme.scss` | Theme generation (light/dark via `data-tiny-theme` attribute) |
 | `_normalise.scss` | HTML normalization (based on Normalize.css) |
 | `_animation.scss` | Keyframe animations (`ty-rotate`, `ty-rotate-reverse`, `ty-processing`) |
-| `_font.scss` | Icon font definitions (300+ `.ty--*` icon classes) |
 | `_mixins.scss` | Helper mixins (e.g. `loader()`) |
 
 ## Theming

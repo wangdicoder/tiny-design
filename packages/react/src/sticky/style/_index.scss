@@ -1,7 +1,6 @@
-@use '../../style/variables' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-sticky {
-
   &_fixed {
     position: fixed;
   }

@@ -1,5 +1,5 @@
-@use '../../style/variables' as *;
-@use '../../style/animation' as *;
+@use '@tiny-design/tokens/scss/variables' as *;
+@use '@tiny-design/tokens/scss/animation' as *;
 
 .#{$prefix}-message {
   position: relative;
