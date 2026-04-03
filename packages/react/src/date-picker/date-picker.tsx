@@ -100,7 +100,7 @@ const DatePicker = (props: DatePickerProps) => {
   useEffect(() => {
     if (value !== undefined) {
       if (range) {
-        const nextRange = isRangeValue(value) ? [value[0] ?? null, value[1] ?? null] as DateRangeValue : [null, null];
+        const nextRange: DateRangeValue = isRangeValue(value) ? [value[0] ?? null, value[1] ?? null] : [null, null];
         setRangeValue(nextRange);
         const nextPanelDate = nextRange[0] ?? nextRange[1];
         if (nextPanelDate) setPanelDate(nextPanelDate);
@@ -138,7 +138,7 @@ const DatePicker = (props: DatePickerProps) => {
 
   const fireChange = useCallback((nextValue: DatePickerValue) => {
     if (range) {
-      const normalized = Array.isArray(nextValue) ? nextValue : [null, null];
+      const normalized: DateRangeValue = Array.isArray(nextValue) ? nextValue : [null, null];
       if (value === undefined) setRangeValue(normalized);
       onChange?.(normalized, [
         normalized[0] ? formatDate(normalized[0], format) : '',
