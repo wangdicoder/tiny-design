@@ -239,6 +239,37 @@ $dp: #{$prefix}-date-picker;
     background: var(--ty-picker-cell-selected-hover-bg);
   }
 
+  &__cell_in-range,
+  &__cell_in-preview-range {
+    background: var(--ty-color-primary-bg, rgb(24 144 255 / 12%));
+  }
+
+  &__cell_range-start,
+  &__cell_range-end {
+    background: var(--ty-color-primary-bg, rgb(24 144 255 / 12%));
+  }
+
+  &__cell_range-start &__cell-inner,
+  &__cell_range-end &__cell-inner {
+    background: var(--ty-color-primary);
+    color: #fff;
+    font-weight: 500;
+  }
+
+  &__cell_in-preview-range &__cell-inner,
+  &__cell_in-range &__cell-inner {
+    background: transparent;
+    color: var(--ty-color-text);
+  }
+
+  &__cell_range-start.#{$dp}__cell_in-preview-range &__cell-inner,
+  &__cell_range-end.#{$dp}__cell_in-preview-range &__cell-inner,
+  &__cell_range-start.#{$dp}__cell_in-range &__cell-inner,
+  &__cell_range-end.#{$dp}__cell_in-range &__cell-inner {
+    background: var(--ty-color-primary);
+    color: #fff;
+  }
+
   &__cell_disabled &__cell-inner {
     color: var(--ty-color-text-quaternary);
     background: var(--ty-picker-cell-disabled-bg);

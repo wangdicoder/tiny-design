@@ -84,4 +84,27 @@ describe('<DatePicker />', () => {
     clear && fireEvent.click(clear);
     expect(fn).toHaveBeenCalledWith(null, '');
   });
+
+  it('should render range value', () => {
+    const { container } = render(<DatePicker range defaultValue={[new Date(2024, 0, 10), new Date(2024, 0, 15)]} />);
+    expect(container.querySelector('input')?.value).toBe('2024-01-10 ~ 2024-01-15');
+  });
+
+  it('should select a date range', () => {
+    const fn = jest.fn();
+    const { container } = render(<DatePicker range open onChange={fn} defaultValue={[new Date(2024, 0, 1), null]} />);
+    const input = container.querySelector('.ty-date-picker__input');
+    input && fireEvent.click(input);
+
+    const dayCells = Array.from(document.querySelectorAll('.ty-date-picker__cell.ty-date-picker__cell_in-view'));
+    const startCell = dayCells.find((cell) => cell.textContent?.trim() === '10');
+    startCell && fireEvent.click(startCell);
+
+    expect(fn).toHaveBeenCalledWith([expect.any(Date), expect.any(Date)], ['2024-01-01', '2024-01-10']);
+
+    const endCell = dayCells.find((cell) => cell.textContent?.trim() === '15');
+    endCell && fireEvent.click(endCell);
+
+    expect(fn).toHaveBeenLastCalledWith([expect.any(Date), null], ['2024-01-15', '']);
+  });
 });

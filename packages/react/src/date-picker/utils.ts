@@ -52,7 +52,7 @@ type DayCell = {
   isThisMonth: boolean;
 };
 
-export const getMonthDaysArray = (date: Date = TODAY): DayCell[] => {
+export const getMonthDaysArray = (date: Date = TODAY, weekStartsOn: number = 0): DayCell[] => {
   const year = date.getFullYear();
   const month = date.getMonth();
   const dayArrays: DayCell[] = [];
@@ -61,9 +61,12 @@ export const getMonthDaysArray = (date: Date = TODAY): DayCell[] => {
   const preDays = getMonthDays(preYear, preMonth);
   const thisMonthFirstDayInWeek = getWeekday(year, month, 1);
 
+  // Adjust for weekStartsOn
+  const leadingDays = (thisMonthFirstDayInWeek - weekStartsOn + 7) % 7;
+
   // last month days
-  for (let i = 0; i < thisMonthFirstDayInWeek; i++) {
-    const day = preDays - thisMonthFirstDayInWeek + i + 1;
+  for (let i = 0; i < leadingDays; i++) {
+    const day = preDays - leadingDays + i + 1;
     dayArrays.push({
       label: day,
       date: new Date(preYear, preMonth, day),
@@ -80,8 +83,10 @@ export const getMonthDaysArray = (date: Date = TODAY): DayCell[] => {
     });
   }
 
-  // next month days
-  for (let i = 1; i <= 42 - days - thisMonthFirstDayInWeek; i++) {
+  // next month days - always fill to 42 cells (6 rows) for stable layout
+  const totalCells = 42;
+  const trailingDays = totalCells - dayArrays.length;
+  for (let i = 1; i <= trailingDays; i++) {
     dayArrays.push({
       label: i,
       date: new Date(year, month + 1, i),
@@ -92,6 +97,13 @@ export const getMonthDaysArray = (date: Date = TODAY): DayCell[] => {
   return dayArrays;
 };
 
+export const getISOWeekNumber = (date: Date): number => {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+};
+
 export const isSameDate = (dateA: Date, dateB: Date): boolean => {
   const dateAYear = dateA.getFullYear();
   const dateAMonth = dateA.getMonth();
@@ -100,6 +112,16 @@ export const isSameDate = (dateA: Date, dateB: Date): boolean => {
   const dateBMonth = dateB.getMonth();
   const dateBDate = dateB.getDate();
   return dateAYear === dateBYear && dateAMonth === dateBMonth && dateADate === dateBDate;
+};
+
+export const compareDate = (dateA: Date, dateB: Date): number => {
+  const a = new Date(dateA.getFullYear(), dateA.getMonth(), dateA.getDate()).getTime();
+  const b = new Date(dateB.getFullYear(), dateB.getMonth(), dateB.getDate()).getTime();
+  return a - b;
+};
+
+export const isDateInRange = (current: Date, start: Date, end: Date): boolean => {
+  return compareDate(current, start) >= 0 && compareDate(current, end) <= 0;
 };
 
 export const isToday = (date: Date): boolean => {

@@ -4,6 +4,7 @@
   background: var(--ty-calendar-bg, #fff);
   border: 1px solid var(--ty-calendar-border, #{$gray-200});
   border-radius: var(--ty-border-radius);
+  outline: none;
 
   &_fullscreen {
     width: 100%;
@@ -12,6 +13,8 @@
   &_card {
     width: 300px;
   }
+
+  // ── Header ──────────────────────────────────────────────────────────────
 
   &__header {
     display: flex;
@@ -33,13 +36,22 @@
     border-radius: var(--ty-border-radius);
     font-size: 18px;
     color: var(--ty-color-text, #{$gray-700});
+    transition: background 0.2s, opacity 0.2s;
 
-    &:hover {
+    &:hover:not(&_disabled) {
       background: var(--ty-calendar-hover, #{$gray-100});
+    }
+
+    &_disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
     }
   }
 
   &__title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-weight: 500;
     font-size: var(--ty-font-size-base);
   }
@@ -59,9 +71,29 @@
     }
   }
 
+  &__today-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: var(--ty-font-size-sm);
+    padding: 2px 10px;
+    border-radius: var(--ty-border-radius);
+    color: var(--ty-color-primary, #{$primary-color});
+    font-weight: 500;
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--ty-color-primary-bg, rgba($primary-color, 0.08));
+    }
+  }
+
+  // ── Body & animation ────────────────────────────────────────────────────
+
   &__body {
     padding: 8px;
   }
+
+  // ── Table (month panel) ─────────────────────────────────────────────────
 
   &__table {
     width: 100%;
@@ -77,6 +109,25 @@
     color: var(--ty-color-text-secondary, #{$gray-600});
   }
 
+  // ── Week number ─────────────────────────────────────────────────────────
+
+  &__week-number-header {
+    width: 32px;
+    color: var(--ty-color-text-secondary, #{$gray-400});
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  &__week-number {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ty-color-text-secondary, #{$gray-400});
+    padding: 4px 0;
+    user-select: none;
+  }
+
+  // ── Day cell ────────────────────────────────────────────────────────────
+
   &__cell {
     text-align: center;
     cursor: pointer;
@@ -84,7 +135,24 @@
 
     &_disabled {
       cursor: not-allowed;
-      opacity: 0.3;
+      color: var(--ty-color-text-quaternary);
+      pointer-events: none;
+
+      .#{$prefix}-calendar__cell-date {
+        text-decoration: line-through;
+        text-decoration-color: var(--ty-color-text-quaternary);
+        text-decoration-thickness: 1px;
+      }
+
+      // Disabled dates in the current month should be darker than out-of-month dates
+      &#{&}_in-view {
+        color: var(--ty-color-text-tertiary);
+
+        .#{$prefix}-calendar__cell-date {
+          text-decoration-color: var(--ty-color-text-tertiary);
+          text-decoration-thickness: 1px;
+        }
+      }
     }
 
     &:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
@@ -100,7 +168,11 @@
     }
 
     &:not(&_in-view) {
-      color: var(--ty-color-text-secondary, #{$gray-400});
+      color: var(--ty-color-text-quaternary, #{$gray-300});
+
+      .#{$prefix}-calendar__cell-dot {
+        opacity: 0.4;
+      }
     }
 
     &_today .#{$prefix}-calendar__cell-date {
@@ -117,7 +189,49 @@
     &_selected .#{$prefix}-calendar__cell-date {
       color: inherit;
     }
+
+    // ── Range selection ─────────────────────────────────────────────────
+
+    &_in-range {
+      background: var(--ty-color-primary-bg, rgba($primary-color, 0.08));
+    }
+
+    &_range-start {
+      border-radius: var(--ty-border-radius) 0 0 var(--ty-border-radius);
+      background: var(--ty-color-primary-bg, rgba($primary-color, 0.08));
+    }
+
+    &_range-start .#{$prefix}-calendar__cell-inner {
+      background: var(--ty-color-primary, #{$primary-color});
+      color: #fff;
+      border-radius: var(--ty-border-radius);
+    }
+
+    &_range-end {
+      border-radius: 0 var(--ty-border-radius) var(--ty-border-radius) 0;
+      background: var(--ty-color-primary-bg, rgba($primary-color, 0.08));
+    }
+
+    &_range-end .#{$prefix}-calendar__cell-inner {
+      background: var(--ty-color-primary, #{$primary-color});
+      color: #fff;
+      border-radius: var(--ty-border-radius);
+    }
+
+    &_range-start#{&}_range-end {
+      border-radius: var(--ty-border-radius);
+    }
+
+    // ── Keyboard focus ──────────────────────────────────────────────────
+
+    &_focused .#{$prefix}-calendar__cell-inner,
+    &:focus-visible .#{$prefix}-calendar__cell-inner {
+      outline: 2px solid var(--ty-color-primary, #{$primary-color});
+      outline-offset: 1px;
+    }
   }
+
+  // ── Cell inner ──────────────────────────────────────────────────────────
 
   &__cell-inner {
     padding: 4px;
@@ -126,6 +240,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
   }
 
   &_fullscreen &__cell-inner {
@@ -147,7 +262,21 @@
     margin-top: 2px;
   }
 
-  // Month panel (year mode)
+  // ── Dot indicator ───────────────────────────────────────────────────────
+
+  &__cell-dot {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--ty-color-primary, #{$primary-color});
+  }
+
+  // ── Month panel (year mode) ─────────────────────────────────────────────
+
   &__months {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -186,5 +315,41 @@
   &__month-content {
     font-size: 12px;
     margin-top: 4px;
+  }
+
+  // ── Decade panel ────────────────────────────────────────────────────────
+
+  &__decades {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+
+  &__decade-cell {
+    text-align: center;
+    padding: 16px 8px;
+    cursor: pointer;
+    border-radius: var(--ty-border-radius);
+    transition: all 0.2s;
+    font-size: var(--ty-font-size-base);
+
+    &:hover {
+      background: var(--ty-calendar-hover, #{$gray-100});
+    }
+
+    &_selected {
+      background: var(--ty-color-primary, #{$primary-color});
+      color: #fff;
+
+      &:hover {
+        background: var(--ty-color-primary, #{$primary-color});
+        opacity: 0.9;
+      }
+    }
+
+    &_out {
+      color: var(--ty-color-text-secondary, #{$gray-400});
+    }
   }
 }

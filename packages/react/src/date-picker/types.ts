@@ -3,16 +3,20 @@ import { BaseProps, SizeType } from '../_utils/props';
 
 export type PickerType = 'date' | 'month' | 'year';
 export type PanelMode = 'date' | 'month' | 'year';
+export type DateRangeValue = [Date | null, Date | null];
+export type DatePickerValue = Date | DateRangeValue | null;
 
 export interface DatePickerProps extends BaseProps {
   /** Default date value */
-  defaultValue?: Date;
+  defaultValue?: Date | DateRangeValue;
   /** Controlled date value */
-  value?: Date;
+  value?: Date | DateRangeValue;
   /** Control popup visibility */
   open?: boolean;
   /** Selection granularity */
   picker?: PickerType;
+  /** Enable range selection for date picker */
+  range?: boolean;
   /** Display format string */
   format?: string;
   /** Disable picker */
@@ -34,7 +38,7 @@ export interface DatePickerProps extends BaseProps {
   /** Custom suffix icon */
   suffixIcon?: ReactNode;
   /** Callback when date changes */
-  onChange?: (date: Date | null, dateString: string) => void;
+  onChange?: (date: DatePickerValue, dateString: string | [string, string]) => void;
   /** Callback when popup opens/closes */
   onOpenChange?: (open: boolean) => void;
   /** Callback when panel mode changes */

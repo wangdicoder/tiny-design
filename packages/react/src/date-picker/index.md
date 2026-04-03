@@ -10,6 +10,10 @@ import DisabledDemo from './demo/Disabled';
 import DisabledSource from './demo/Disabled.tsx?raw';
 import ExtraFooterDemo from './demo/ExtraFooter';
 import ExtraFooterSource from './demo/ExtraFooter.tsx?raw';
+import RangeDemo from './demo/Range';
+import RangeSource from './demo/Range.tsx?raw';
+import RangeDisabledDemo from './demo/RangeDisabled';
+import RangeDisabledSource from './demo/RangeDisabled.tsx?raw';
 
 # DatePicker
 
@@ -52,6 +56,15 @@ Use `disabledDate` to make specific dates unselectable. This example disables al
 <DemoBlock component={DisabledDateDemo} source={DisabledDateSource} />
 
     </Demo>
+    <Demo>
+
+### Date Range
+
+Enable `range` to select a start and end date in one picker.
+
+<DemoBlock component={RangeDemo} source={RangeSource} />
+
+    </Demo>
   </Column>
   <Column>
     <Demo>
@@ -81,6 +94,15 @@ Render extra content in the panel footer.
 <DemoBlock component={ExtraFooterDemo} source={ExtraFooterSource} />
 
     </Demo>
+    <Demo>
+
+### Range With Disabled Dates
+
+Range mode works with `disabledDate` too. This example blocks weekend selection.
+
+<DemoBlock component={RangeDisabledDemo} source={RangeDisabledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -88,10 +110,11 @@ Render extra content in the panel footer.
 
 | Property            | Description                          | Type                                              | Default       |
 | ------------------- | ------------------------------------ | ------------------------------------------------- | ------------- |
-| defaultValue        | Default date                         | Date                                              | -             |
-| value               | Controlled date value                | Date                                              | -             |
+| defaultValue        | Default date or date range           | Date &#124; [Date &#124; null, Date &#124; null]  | -             |
+| value               | Controlled date or date range        | Date &#124; [Date &#124; null, Date &#124; null]  | -             |
 | open                | Control popup visibility             | boolean                                           | -             |
 | picker              | Selection granularity                | `date` &#124; `month` &#124; `year`               | `date`        |
+| range               | Enable date range selection          | boolean                                           | false         |
 | format              | Display format                       | string                                            | `YYYY-MM-DD`  |
 | disabled            | Disable the picker                   | boolean                                           | false         |
 | placeholder         | Input placeholder                    | string                                            | `Select date` |
@@ -102,7 +125,7 @@ Render extra content in the panel footer.
 | disabledDate        | Disable specific dates               | (current: Date) => boolean                        | -             |
 | renderExtraFooter   | Extra content in the footer          | (mode: PanelMode) => ReactNode                    | -             |
 | suffixIcon          | Custom suffix icon                   | ReactNode                                         | Calendar icon |
-| onChange            | Callback when date changes           | (date: Date &#124; null, dateString: string) => void | -          |
+| onChange            | Callback when date changes           | (date: Date &#124; null &#124; [Date &#124; null, Date &#124; null], dateString: string &#124; [string, string]) => void | - |
 | onOpenChange        | Callback on popup open/close         | (open: boolean) => void                           | -             |
 | onPanelChange       | Callback on panel mode change        | (date: Date, mode: PanelMode) => void             | -             |
 | style               | Style object of container            | CSSProperties                                     | -             |
