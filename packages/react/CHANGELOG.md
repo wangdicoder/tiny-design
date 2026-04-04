@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.8.0
+
+### Minor Changes
+
+- Add Tour component for step-by-step product guides with spotlight mask, Popper.js positioning, keyboard navigation, and customizable step indicators - [#88](https://github.com/wangdicoder/tiny-design/pull/88) [`57c2f38`](https://github.com/wangdicoder/tiny-design/commit/57c2f3813c74410cfc8208ed3591bb46c7804899)
+
+- Calendar: add range selection, multiple selection, keyboard navigation, week numbers, valid range, dot indicators, decade panel, and card mode. DatePicker: add range mode with date range selection and preview highlighting. - [#87](https://github.com/wangdicoder/tiny-design/pull/87) [`a0b3e45`](https://github.com/wangdicoder/tiny-design/commit/a0b3e45046afa5626e616ca632ec015aafbc0322)
+
 ## 1.7.0
 
 ### Minor Changes
