@@ -9,7 +9,8 @@ import PickerHeader from './picker-header';
 import PickerDay from './picker-day';
 import PickerMonth from './picker-month';
 import PickerYear from './picker-year';
-import { DatePickerProps, PanelMode } from './types';
+import { DatePickerProps, DateRangeValue, DatePickerValue, PanelMode } from './types';
+import { compareDate } from './utils';
 
 
 function formatDate(date: Date, format: string): string {
@@ -31,12 +32,35 @@ function getFormatByPicker(picker: string, customFormat?: string): string {
   }
 }
 
+function isRangeValue(value: DatePickerProps['value'] | DatePickerProps['defaultValue']): value is DateRangeValue {
+  return Array.isArray(value);
+}
+
+function getInitialRangeValue(value?: DatePickerProps['value'], defaultValue?: DatePickerProps['defaultValue']): DateRangeValue {
+  if (isRangeValue(value)) {
+    return [value[0] ?? null, value[1] ?? null];
+  }
+  if (isRangeValue(defaultValue)) {
+    return [defaultValue[0] ?? null, defaultValue[1] ?? null];
+  }
+  return [null, null];
+}
+
+function getInitialPanelDate(value?: DatePickerProps['value'], defaultValue?: DatePickerProps['defaultValue']): Date {
+  if (isRangeValue(value)) return value[0] ?? value[1] ?? new Date();
+  if (value instanceof Date) return value;
+  if (isRangeValue(defaultValue)) return defaultValue[0] ?? defaultValue[1] ?? new Date();
+  if (defaultValue instanceof Date) return defaultValue;
+  return new Date();
+}
+
 const DatePicker = (props: DatePickerProps) => {
   const {
     defaultValue,
     value,
     open: controlledOpen,
     picker = 'date',
+    range = false,
     format: customFormat,
     disabled = false,
     placeholder,
@@ -59,11 +83,14 @@ const DatePicker = (props: DatePickerProps) => {
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('date-picker', configContext.prefixCls, customisedCls);
   const format = getFormatByPicker(picker, customFormat);
-
-  const [date, setDate] = useState<Date | null>(value ?? defaultValue ?? null);
-  const [panelDate, setPanelDate] = useState<Date>(value ?? defaultValue ?? new Date());
+  const [date, setDate] = useState<Date | null>(
+    !range && value instanceof Date ? value : !range && defaultValue instanceof Date ? defaultValue : null,
+  );
+  const [rangeValue, setRangeValue] = useState<DateRangeValue>(() => getInitialRangeValue(value, defaultValue));
+  const [panelDate, setPanelDate] = useState<Date>(() => getInitialPanelDate(value, defaultValue));
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<PanelMode>(picker === 'date' ? 'date' : picker);
+  const [hoverDate, setHoverDate] = useState<Date | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -72,10 +99,17 @@ const DatePicker = (props: DatePickerProps) => {
   // Controlled value
   useEffect(() => {
     if (value !== undefined) {
-      setDate(value);
-      if (value) setPanelDate(value);
+      if (range) {
+        const nextRange: DateRangeValue = isRangeValue(value) ? [value[0] ?? null, value[1] ?? null] : [null, null];
+        setRangeValue(nextRange);
+        const nextPanelDate = nextRange[0] ?? nextRange[1];
+        if (nextPanelDate) setPanelDate(nextPanelDate);
+      } else {
+        setDate(value instanceof Date ? value : null);
+        if (value instanceof Date) setPanelDate(value);
+      }
     }
-  }, [value]);
+  }, [value, range]);
 
   useEffect(() => {
     if (controlledOpen !== undefined) setOpen(controlledOpen);
@@ -95,18 +129,48 @@ const DatePicker = (props: DatePickerProps) => {
   const toggleOpen = useCallback((val: boolean) => {
     if (controlledOpen === undefined) setOpen(val);
     onOpenChange?.(val);
-    if (val) setMode(picker === 'date' ? 'date' : picker);
+    if (val) {
+      setMode(picker === 'date' ? 'date' : picker);
+    } else {
+      setHoverDate(null);
+    }
   }, [controlledOpen, onOpenChange, picker]);
 
-  const fireChange = useCallback((d: Date | null) => {
-    if (value === undefined) setDate(d);
-    onChange?.(d, d ? formatDate(d, format) : '');
-  }, [value, onChange, format]);
+  const fireChange = useCallback((nextValue: DatePickerValue) => {
+    if (range) {
+      const normalized: DateRangeValue = Array.isArray(nextValue) ? nextValue : [null, null];
+      if (value === undefined) setRangeValue(normalized);
+      onChange?.(normalized, [
+        normalized[0] ? formatDate(normalized[0], format) : '',
+        normalized[1] ? formatDate(normalized[1], format) : '',
+      ]);
+      return;
+    }
+
+    const nextDate = nextValue instanceof Date ? nextValue : null;
+    if (value === undefined) setDate(nextDate);
+    onChange?.(nextDate, nextDate ? formatDate(nextDate, format) : '');
+  }, [range, value, onChange, format]);
 
   const handleDateSelect = useCallback((d: Date) => {
-    fireChange(d);
+    if (!range) {
+      fireChange(d);
+      toggleOpen(false);
+      return;
+    }
+
+    const [start, end] = rangeValue;
+    if (!start || end) {
+      fireChange([d, null]);
+      setHoverDate(null);
+      return;
+    }
+
+    const nextRange: DateRangeValue = compareDate(d, start) < 0 ? [d, start] : [start, d];
+    fireChange(nextRange);
+    setHoverDate(null);
     toggleOpen(false);
-  }, [fireChange, toggleOpen]);
+  }, [range, rangeValue, fireChange, toggleOpen]);
 
   const handleMonthSelect = useCallback((d: Date) => {
     if (picker === 'month') {
@@ -125,7 +189,7 @@ const DatePicker = (props: DatePickerProps) => {
       toggleOpen(false);
     } else {
       setPanelDate(d);
-      setMode(picker === 'month' ? 'month' : 'month');
+      setMode('month');
       onPanelChange?.(d, 'month');
     }
   }, [picker, fireChange, toggleOpen, onPanelChange]);
@@ -137,21 +201,42 @@ const DatePicker = (props: DatePickerProps) => {
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
-    fireChange(null);
+    fireChange(range ? [null, null] : null);
     toggleOpen(false);
   };
 
   const handleToday = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+    if (range) {
+      fireChange([today, null]);
+      setPanelDate(today);
+      return;
+    }
     fireChange(today);
     setPanelDate(today);
     toggleOpen(false);
   };
 
-  const hasValue = date !== null;
-  const displayValue = hasValue ? formatDate(date, format) : '';
-  const defaultPlaceholder = placeholder ?? (picker === 'month' ? locale.DatePicker.selectMonth : picker === 'year' ? locale.DatePicker.selectYear : locale.DatePicker.selectDate);
+  const hasValue = range ? !!(rangeValue[0] || rangeValue[1]) : date !== null;
+  const displayValue = range
+    ? rangeValue[0] && rangeValue[1]
+      ? `${formatDate(rangeValue[0], format)} ~ ${formatDate(rangeValue[1], format)}`
+      : rangeValue[0]
+        ? `${formatDate(rangeValue[0], format)} ~ `
+        : ''
+    : hasValue && date
+      ? formatDate(date, format)
+      : '';
+  const defaultPlaceholder = placeholder ?? (
+    range
+      ? `${locale.DatePicker.selectDate} ~ ${locale.DatePicker.selectDate}`
+      : picker === 'month'
+        ? locale.DatePicker.selectMonth
+        : picker === 'year'
+          ? locale.DatePicker.selectYear
+          : locale.DatePicker.selectDate
+  );
 
   const cls = classNames(prefixCls, className, `${prefixCls}_${size}`, {
     [`${prefixCls}_disabled`]: disabled,
@@ -169,10 +254,14 @@ const DatePicker = (props: DatePickerProps) => {
         return (
           <PickerDay
             date={date}
+            range={range}
+            rangeValue={rangeValue}
+            hoverDate={hoverDate}
             panelDate={panelDate}
             weeks={locale.DatePicker.weeks}
             disabledDate={disabledDate}
             onChange={handleDateSelect}
+            onHoverDateChange={setHoverDate}
             panelOnChange={setPanelDate}
             prefixCls={prefixCls}
           />

@@ -4,17 +4,29 @@ exports[`<Calendar /> should match the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="ty-calendar ty-calendar_fullscreen"
+    tabindex="0"
   >
     <div
       class="ty-calendar__header"
     >
-      <button
-        aria-label="Previous"
-        class="ty-calendar__nav-btn"
-        type="button"
+      <div
+        class="ty-calendar__header-nav"
       >
-        ‹
-      </button>
+        <button
+          aria-label="Previous year"
+          class="ty-calendar__nav-btn"
+          type="button"
+        >
+          «
+        </button>
+        <button
+          aria-label="Previous month"
+          class="ty-calendar__nav-btn"
+          type="button"
+        >
+          ‹
+        </button>
+      </div>
       <span
         class="ty-calendar__title"
       >
@@ -25,13 +37,24 @@ exports[`<Calendar /> should match the snapshot 1`] = `
           January 2024
         </button>
       </span>
-      <button
-        aria-label="Next"
-        class="ty-calendar__nav-btn"
-        type="button"
+      <div
+        class="ty-calendar__header-nav"
       >
-        ›
-      </button>
+        <button
+          aria-label="Next month"
+          class="ty-calendar__nav-btn"
+          type="button"
+        >
+          ›
+        </button>
+        <button
+          aria-label="Next year"
+          class="ty-calendar__nav-btn"
+          type="button"
+        >
+          »
+        </button>
+      </div>
     </div>
     <div
       class="ty-calendar__body"
@@ -89,8 +112,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
         <tbody>
           <tr>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2023-11-31"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -103,8 +130,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-1"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -117,8 +148,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-2"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -131,8 +166,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-3"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -145,8 +184,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-4"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -159,8 +202,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-5"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -173,8 +220,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-6"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -189,8 +240,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
           </tr>
           <tr>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-7"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -203,8 +258,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-8"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -217,8 +276,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-9"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -231,8 +294,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-10"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -245,8 +312,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-11"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -259,8 +330,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-12"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -273,8 +348,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-13"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -289,8 +368,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
           </tr>
           <tr>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-14"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -303,8 +386,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="true"
               class="ty-calendar__cell ty-calendar__cell_in-view ty-calendar__cell_selected"
+              data-date-key="2024-0-15"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -317,8 +404,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-16"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -331,8 +422,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-17"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -345,8 +440,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-18"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -359,8 +458,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-19"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -373,8 +476,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-20"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -389,8 +496,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
           </tr>
           <tr>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-21"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -403,8 +514,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-22"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -417,8 +532,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-23"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -431,8 +550,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-24"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -445,8 +568,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-25"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -459,8 +586,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-26"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -473,8 +604,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-27"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -489,8 +624,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
           </tr>
           <tr>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-28"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -503,8 +642,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-29"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -517,8 +660,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-30"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -531,8 +678,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell ty-calendar__cell_in-view"
+              data-date-key="2024-0-31"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -545,8 +696,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-1"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -559,8 +714,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-2"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -573,8 +732,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-3"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -589,8 +752,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
           </tr>
           <tr>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-4"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -603,8 +770,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-5"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -617,8 +788,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-6"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -631,8 +806,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-7"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -645,8 +824,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-8"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -659,8 +842,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-9"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"
@@ -673,8 +860,12 @@ exports[`<Calendar /> should match the snapshot 1`] = `
               </div>
             </td>
             <td
+              aria-disabled="false"
+              aria-selected="false"
               class="ty-calendar__cell"
+              data-date-key="2024-1-10"
               role="gridcell"
+              tabindex="-1"
             >
               <div
                 class="ty-calendar__cell-inner"

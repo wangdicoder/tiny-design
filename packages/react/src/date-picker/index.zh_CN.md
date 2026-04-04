@@ -10,6 +10,10 @@ import DisabledDemo from './demo/Disabled';
 import DisabledSource from './demo/Disabled.tsx?raw';
 import ExtraFooterDemo from './demo/ExtraFooter';
 import ExtraFooterSource from './demo/ExtraFooter.tsx?raw';
+import RangeDemo from './demo/Range';
+import RangeSource from './demo/Range.tsx?raw';
+import RangeDisabledDemo from './demo/RangeDisabled';
+import RangeDisabledSource from './demo/RangeDisabled.tsx?raw';
 
 # DatePicker 日期选择器
 
@@ -52,6 +56,15 @@ import { DatePicker } from 'tiny-design';
 <DemoBlock component={DisabledDateDemo} source={DisabledDateSource} />
 
     </Demo>
+    <Demo>
+
+### 日期范围
+
+开启 `range` 后，可在同一个选择器中选择开始和结束日期。
+
+<DemoBlock component={RangeDemo} source={RangeSource} />
+
+    </Demo>
   </Column>
   <Column>
     <Demo>
@@ -81,6 +94,15 @@ import { DatePicker } from 'tiny-design';
 <DemoBlock component={ExtraFooterDemo} source={ExtraFooterSource} />
 
     </Demo>
+    <Demo>
+
+### 范围选择与禁用日期
+
+范围模式同样支持 `disabledDate`。此示例禁止选择周末。
+
+<DemoBlock component={RangeDisabledDemo} source={RangeDisabledSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -88,10 +110,11 @@ import { DatePicker } from 'tiny-design';
 
 | 属性                | 说明                                 | 类型                                              | 默认值        |
 | ------------------- | ------------------------------------ | ------------------------------------------------- | ------------- |
-| defaultValue        | 默认日期                             | Date                                              | -             |
-| value               | 受控日期值                           | Date                                              | -             |
+| defaultValue        | 默认日期或日期范围                   | Date &#124; [Date &#124; null, Date &#124; null]  | -             |
+| value               | 受控日期值或日期范围                 | Date &#124; [Date &#124; null, Date &#124; null]  | -             |
 | open                | 控制弹出层显示                       | boolean                                           | -             |
 | picker              | 选择粒度                             | `date` &#124; `month` &#124; `year`               | `date`        |
+| range               | 启用日期范围选择                     | boolean                                           | false         |
 | format              | 显示格式                             | string                                            | `YYYY-MM-DD`  |
 | disabled            | 禁用选择器                           | boolean                                           | false         |
 | placeholder         | 输入框占位文本                       | string                                            | `Select date` |
@@ -102,7 +125,7 @@ import { DatePicker } from 'tiny-design';
 | disabledDate        | 禁用特定日期                         | (current: Date) => boolean                        | -             |
 | renderExtraFooter   | 页脚附加内容                         | (mode: PanelMode) => ReactNode                    | -             |
 | suffixIcon          | 自定义后缀图标                       | ReactNode                                         | Calendar icon |
-| onChange            | 日期变化时的回调                     | (date: Date &#124; null, dateString: string) => void | -          |
+| onChange            | 日期变化时的回调                     | (date: Date &#124; null &#124; [Date &#124; null, Date &#124; null], dateString: string &#124; [string, string]) => void | - |
 | onOpenChange        | 弹出层打开/关闭时的回调             | (open: boolean) => void                           | -             |
 | onPanelChange       | 面板模式切换时的回调                 | (date: Date, mode: PanelMode) => void             | -             |
 | style               | 容器的样式对象                       | CSSProperties                                     | -             |
