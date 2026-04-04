@@ -115,7 +115,7 @@ describe('<Calendar />', () => {
 
   it('should render Today button when showToday is true', () => {
     const { container } = render(<Calendar showToday value={new Date(2024, 0, 15)} />);
-    const todayBtn = container.querySelector('.ty-calendar__today-btn');
+    const todayBtn = container.querySelector('.ty-calendar__today-link');
     expect(todayBtn).toBeTruthy();
     expect(todayBtn!.textContent).toBe('Today');
   });

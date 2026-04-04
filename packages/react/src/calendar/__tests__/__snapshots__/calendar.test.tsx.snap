@@ -9,13 +9,24 @@ exports[`<Calendar /> should match the snapshot 1`] = `
     <div
       class="ty-calendar__header"
     >
-      <button
-        aria-label="Previous"
-        class="ty-calendar__nav-btn"
-        type="button"
+      <div
+        class="ty-calendar__header-nav"
       >
-        ‹
-      </button>
+        <button
+          aria-label="Previous year"
+          class="ty-calendar__nav-btn"
+          type="button"
+        >
+          «
+        </button>
+        <button
+          aria-label="Previous month"
+          class="ty-calendar__nav-btn"
+          type="button"
+        >
+          ‹
+        </button>
+      </div>
       <span
         class="ty-calendar__title"
       >
@@ -26,13 +37,24 @@ exports[`<Calendar /> should match the snapshot 1`] = `
           January 2024
         </button>
       </span>
-      <button
-        aria-label="Next"
-        class="ty-calendar__nav-btn"
-        type="button"
+      <div
+        class="ty-calendar__header-nav"
       >
-        ›
-      </button>
+        <button
+          aria-label="Next month"
+          class="ty-calendar__nav-btn"
+          type="button"
+        >
+          ›
+        </button>
+        <button
+          aria-label="Next year"
+          class="ty-calendar__nav-btn"
+          type="button"
+        >
+          »
+        </button>
+      </div>
     </div>
     <div
       class="ty-calendar__body"
