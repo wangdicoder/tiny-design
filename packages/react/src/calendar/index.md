@@ -74,7 +74,7 @@ Click dates to toggle individual selection. Great for marking availability.
 
 ### Week Numbers
 
-Show ISO week numbers with `showWeekNumber` and use `weekStartsOn={1}` for Monday start.
+Show ISO week numbers with `showWeekNumber` and use `weekStartsOn={1}` for Monday start. Use `weekNumberRender` to customise the week number display.
 
 <DemoBlock component={WeekNumberDemo} source={WeekNumberSource} />
 
@@ -135,7 +135,8 @@ Compact card calendar with keyboard navigation. Use arrow keys, Enter, and Escap
 | onMultipleChange | Multi-select change callback | (dates: Date[]) => void | |
 | weekStartsOn | First day of week (0=Sun) | 0\|1\|2\|3\|4\|5\|6 | 0 |
 | showWeekNumber | Show ISO week number column | boolean | false |
-| showToday | Show "Today" button in header | boolean | false |
+| weekNumberRender | Custom render for week number | (weekNumber: number) => ReactNode | |
+| showToday | Show "Today" button in footer | boolean | false |
 | validRange | Restrict navigable date range | [Date, Date] | |
 | disabledDate | Disable specific dates | (date: Date) => boolean | |
 | cellClassName | Per-cell custom class name | (date: Date) => string | |

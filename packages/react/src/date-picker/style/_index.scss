@@ -141,13 +141,13 @@ $dp: #{$prefix}-date-picker;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border: none;
     background: transparent;
     color: var(--ty-color-text-tertiary);
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
     border-radius: 4px;
     transition: color 0.2s;
 
@@ -165,8 +165,9 @@ $dp: #{$prefix}-date-picker;
 
   &__header-label {
     font-weight: 500;
+    font-size: 16px;
     cursor: pointer;
-    padding: 0 4px;
+    padding: 2px 6px;
     border-radius: 4px;
     transition: color 0.2s;
 

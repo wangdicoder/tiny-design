@@ -68,6 +68,8 @@ export interface CalendarProps
   cellStyle?: (date: Date) => React.CSSProperties | undefined;
   /** Dot indicator: return true for primary color, or a color string */
   dotRender?: (date: Date) => boolean | string;
+  /** Custom render for week number cell */
+  weekNumberRender?: (weekNumber: number) => React.ReactNode;
   /** Fires when the displayed month changes via navigation */
   onMonthChange?: (date: Date) => void;
   /** Fires when the displayed year changes via navigation */

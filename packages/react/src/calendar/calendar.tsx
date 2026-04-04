@@ -64,6 +64,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>((props, ref) =>
     cellClassName,
     cellStyle: cellStyleProp,
     dotRender,
+    weekNumberRender,
     onMonthChange,
     onYearChange,
     ...otherProps
@@ -422,6 +423,22 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>((props, ref) =>
 
   // ── header title ───────────────────────────────────────────────────────────
 
+  const goPrevYear = () => {
+    setFocusedDate(null);
+    const newDate = getPrevYearDate(panelDate);
+    handlePanelChange(newDate);
+    onYearChange?.(newDate);
+  };
+
+  const goNextYear = () => {
+    setFocusedDate(null);
+    const newDate = getNextYearDate(panelDate);
+    handlePanelChange(newDate);
+    onYearChange?.(newDate);
+  };
+
+  // ── header title ───────────────────────────────────────────────────────────
+
   const getTitleText = (): string => {
     const year = panelDate.getFullYear();
     if (mode === 'decade') {
@@ -429,8 +446,11 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>((props, ref) =>
       return `${decadeStart} – ${decadeStart + 9}`;
     }
     if (mode === 'year') return `${year}`;
-    const monthName = getFullMonthName(panelDate);
-    return `${monthName} ${year}`;
+    if (fullscreen) {
+      const monthName = getFullMonthName(panelDate);
+      return `${monthName} ${year}`;
+    }
+    return `${months[panelDate.getMonth()]} ${year}`;
   };
 
   const handleTitleClick = () => {
@@ -451,19 +471,36 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>((props, ref) =>
       });
     }
 
+    const yearUnit = mode === 'year' ? 'decade' : 'year';
+
     return (
       <div className={`${prefixCls}__header`}>
-        <button
-          type="button"
-          className={classNames(`${prefixCls}__nav-btn`, {
-            [`${prefixCls}__nav-btn_disabled`]: !canGoPrev(),
-          })}
-          onClick={goPrev}
-          disabled={!canGoPrev()}
-          aria-label="Previous"
-        >
-          ‹
-        </button>
+        <div className={`${prefixCls}__header-nav`}>
+          <button
+            type="button"
+            className={classNames(`${prefixCls}__nav-btn`, {
+              [`${prefixCls}__nav-btn_disabled`]: !canGoPrev(),
+            })}
+            onClick={yearUnit === 'decade' ? goPrev : goPrevYear}
+            disabled={!canGoPrev()}
+            aria-label="Previous year"
+          >
+            «
+          </button>
+          {mode === 'month' && (
+            <button
+              type="button"
+              className={classNames(`${prefixCls}__nav-btn`, {
+                [`${prefixCls}__nav-btn_disabled`]: !canGoPrev(),
+              })}
+              onClick={goPrev}
+              disabled={!canGoPrev()}
+              aria-label="Previous month"
+            >
+              ‹
+            </button>
+          )}
+        </div>
         <span className={`${prefixCls}__title`}>
           <button
             type="button"
@@ -472,27 +509,33 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>((props, ref) =>
           >
             {getTitleText()}
           </button>
-          {showToday && (
+        </span>
+        <div className={`${prefixCls}__header-nav`}>
+          {mode === 'month' && (
             <button
               type="button"
-              className={`${prefixCls}__today-btn`}
-              onClick={goToday}
+              className={classNames(`${prefixCls}__nav-btn`, {
+                [`${prefixCls}__nav-btn_disabled`]: !canGoNext(),
+              })}
+              onClick={goNext}
+              disabled={!canGoNext()}
+              aria-label="Next month"
             >
-              Today
+              ›
             </button>
           )}
-        </span>
-        <button
-          type="button"
-          className={classNames(`${prefixCls}__nav-btn`, {
-            [`${prefixCls}__nav-btn_disabled`]: !canGoNext(),
-          })}
-          onClick={goNext}
-          disabled={!canGoNext()}
-          aria-label="Next"
-        >
-          ›
-        </button>
+          <button
+            type="button"
+            className={classNames(`${prefixCls}__nav-btn`, {
+              [`${prefixCls}__nav-btn_disabled`]: !canGoNext(),
+            })}
+            onClick={yearUnit === 'decade' ? goNext : goNextYear}
+            disabled={!canGoNext()}
+            aria-label="Next year"
+          >
+            »
+          </button>
+        </div>
       </div>
     );
   };
@@ -527,7 +570,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>((props, ref) =>
               <tr key={row}>
                 {showWeekNumber && (
                   <td className={`${prefixCls}__week-number`}>
-                    {weekNum}
+                    {weekNumberRender ? weekNumberRender(weekNum) : weekNum}
                   </td>
                 )}
                 {rowDays.map((dayCell, col) => {
@@ -661,6 +704,20 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>((props, ref) =>
     return renderMonthPanel();
   };
 
+  // ── render footer ──────────────────────────────────────────────────────────
+
+  const renderFooter = () => {
+    if (!showToday || mode !== 'month') return null;
+    const todayLabel = locale?.DatePicker?.today ?? 'Today';
+    return (
+      <div className={`${prefixCls}__footer`}>
+        <a className={`${prefixCls}__today-link`} onClick={goToday}>
+          {todayLabel}
+        </a>
+      </div>
+    );
+  };
+
   // ── main render ────────────────────────────────────────────────────────────
 
   return (
@@ -680,6 +737,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>((props, ref) =>
       <div className={`${prefixCls}__body`}>
         {renderBody()}
       </div>
+      {renderFooter()}
     </div>
   );
 });

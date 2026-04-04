@@ -20,8 +20,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 8px 12px;
     border-bottom: 1px solid var(--ty-calendar-border, #{$gray-200});
+  }
+
+  &__header-nav {
+    display: flex;
+    align-items: center;
   }
 
   &__nav-btn {
@@ -33,13 +38,13 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    border-radius: var(--ty-border-radius);
+    border-radius: 4px;
     font-size: 18px;
-    color: var(--ty-color-text, #{$gray-700});
-    transition: background 0.2s, opacity 0.2s;
+    color: var(--ty-color-text-tertiary);
+    transition: color 0.2s;
 
     &:hover:not(&_disabled) {
-      background: var(--ty-calendar-hover, #{$gray-100});
+      color: var(--ty-color-primary);
     }
 
     &_disabled {
@@ -53,37 +58,22 @@
     align-items: center;
     gap: 8px;
     font-weight: 500;
-    font-size: var(--ty-font-size-base);
+    font-size: 16px;
   }
 
   &__title-btn {
     border: none;
     background: transparent;
     cursor: pointer;
-    font-weight: inherit;
-    font-size: inherit;
-    padding: 4px 8px;
-    border-radius: var(--ty-border-radius);
-    color: var(--ty-color-text, #{$gray-800});
-
-    &:hover {
-      background: var(--ty-calendar-hover, #{$gray-100});
-    }
-  }
-
-  &__today-btn {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: var(--ty-font-size-sm);
-    padding: 2px 10px;
-    border-radius: var(--ty-border-radius);
-    color: var(--ty-color-primary, #{$primary-color});
     font-weight: 500;
-    transition: background 0.2s;
+    font-size: inherit;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--ty-color-text, #{$gray-800});
+    transition: color 0.2s;
 
     &:hover {
-      background: var(--ty-color-primary-bg, rgba($primary-color, 0.08));
+      color: var(--ty-color-primary);
     }
   }
 
@@ -136,23 +126,11 @@
     &_disabled {
       cursor: not-allowed;
       color: var(--ty-color-text-quaternary);
-      pointer-events: none;
 
-      .#{$prefix}-calendar__cell-date {
-        text-decoration: line-through;
-        text-decoration-color: var(--ty-color-text-quaternary);
-        text-decoration-thickness: 1px;
+      .#{$prefix}-calendar__cell-inner {
+        background: var(--ty-picker-cell-disabled-bg);
       }
 
-      // Disabled dates in the current month should be darker than out-of-month dates
-      &#{&}_in-view {
-        color: var(--ty-color-text-tertiary);
-
-        .#{$prefix}-calendar__cell-date {
-          text-decoration-color: var(--ty-color-text-tertiary);
-          text-decoration-thickness: 1px;
-        }
-      }
     }
 
     &:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
@@ -163,7 +141,7 @@
       background: var(--ty-color-primary-active);
     }
 
-    &_in-view {
+    &_in-view:not(&_disabled) {
       color: var(--ty-color-text, #{$gray-900});
     }
 
@@ -175,9 +153,9 @@
       }
     }
 
-    &_today .#{$prefix}-calendar__cell-date {
-      color: var(--ty-color-primary, #{$primary-color});
-      font-weight: 600;
+    &_today .#{$prefix}-calendar__cell-inner {
+      border: 1px solid var(--ty-color-primary);
+      color: var(--ty-color-primary);
     }
 
     &_selected .#{$prefix}-calendar__cell-inner {
@@ -350,6 +328,24 @@
 
     &_out {
       color: var(--ty-color-text-secondary, #{$gray-400});
+    }
+  }
+
+  // ── Footer ──────────────────────────────────────────────────────────────
+
+  &__footer {
+    padding: 8px 12px;
+    border-top: 1px solid var(--ty-calendar-border, #{$gray-200});
+    text-align: center;
+  }
+
+  &__today-link {
+    color: var(--ty-color-primary);
+    cursor: pointer;
+    font-size: 13px;
+
+    &:hover {
+      opacity: 0.8;
     }
   }
 }

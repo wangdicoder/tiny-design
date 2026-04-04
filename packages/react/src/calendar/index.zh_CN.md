@@ -74,7 +74,7 @@ import { Calendar } from 'tiny-design';
 
 ### 周数显示
 
-使用 `showWeekNumber` 显示 ISO 周数，`weekStartsOn={1}` 设置周一为一周的开始。
+使用 `showWeekNumber` 显示 ISO 周数，`weekStartsOn={1}` 设置周一为一周的开始。通过 `weekNumberRender` 自定义周数的显示样式。
 
 <DemoBlock component={WeekNumberDemo} source={WeekNumberSource} />
 
@@ -135,6 +135,7 @@ import { Calendar } from 'tiny-design';
 | onMultipleChange | 多选变化回调 | (dates: Date[]) => void | |
 | weekStartsOn | 一周的起始天（0=周日） | 0\|1\|2\|3\|4\|5\|6 | 0 |
 | showWeekNumber | 显示 ISO 周数列 | boolean | false |
+| weekNumberRender | 自定义周数渲染 | (weekNumber: number) => ReactNode | |
 | showToday | 显示"今天"按钮 | boolean | false |
 | validRange | 限制可导航的日期范围 | [Date, Date] | |
 | disabledDate | 禁用特定日期 | (date: Date) => boolean | |

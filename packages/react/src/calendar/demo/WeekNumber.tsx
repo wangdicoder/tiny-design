@@ -10,6 +10,9 @@ export default function WeekNumberDemo() {
       onChange={(date) => setValue(date)}
       showWeekNumber
       weekStartsOn={1}
+      weekNumberRender={(weekNum) => (
+        <span style={{ color: '#8b5cf6', fontWeight: 500, fontSize: 11 }}>W{weekNum}</span>
+      )}
       fullscreen={false}
     />
   );
