@@ -1,0 +1,124 @@
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+import Tour from '../index';
+import { TourStepProps } from '../types';
+
+const steps: TourStepProps[] = [
+  { title: 'Step 1', description: 'Description 1' },
+  { title: 'Step 2', description: 'Description 2' },
+  { title: 'Step 3', description: 'Description 3' },
+];
+
+describe('<Tour />', () => {
+  it('should not render when open is false', () => {
+    const { baseElement } = render(<Tour open={false} steps={steps} />);
+    expect(baseElement.querySelector('.ty-tour')).not.toBeInTheDocument();
+  });
+
+  it('should render when open is true', () => {
+    const { getByText } = render(<Tour open steps={steps} />);
+    expect(getByText('Step 1')).toBeInTheDocument();
+    expect(getByText('Description 1')).toBeInTheDocument();
+  });
+
+  it('should render step title and description', () => {
+    const { getByText } = render(<Tour open steps={steps} />);
+    expect(getByText('Step 1')).toBeInTheDocument();
+    expect(getByText('Description 1')).toBeInTheDocument();
+  });
+
+  it('should navigate to next step', () => {
+    const onChange = jest.fn();
+    const { getByText } = render(<Tour open steps={steps} onChange={onChange} />);
+    fireEvent.click(getByText('Next'));
+    expect(onChange).toHaveBeenCalledWith(1);
+  });
+
+  it('should navigate to previous step', () => {
+    const onChange = jest.fn();
+    const { getByText } = render(<Tour open steps={steps} current={1} onChange={onChange} />);
+    fireEvent.click(getByText('Previous'));
+    expect(onChange).toHaveBeenCalledWith(0);
+  });
+
+  it('should call onClose when close button is clicked', () => {
+    const onClose = jest.fn();
+    const { baseElement } = render(<Tour open steps={steps} onClose={onClose} />);
+    const closeBtn = baseElement.querySelector('.ty-tour__close-btn') as HTMLElement;
+    fireEvent.click(closeBtn);
+    expect(onClose).toHaveBeenCalled();
+  });
+
+  it('should call onFinish on last step next click', () => {
+    const onFinish = jest.fn();
+    const onClose = jest.fn();
+    const { getByText } = render(
+      <Tour open steps={steps} current={2} onFinish={onFinish} onClose={onClose} />
+    );
+    fireEvent.click(getByText('Finish'));
+    expect(onFinish).toHaveBeenCalled();
+    expect(onClose).toHaveBeenCalled();
+  });
+
+  it('should render indicators', () => {
+    const { baseElement } = render(<Tour open steps={steps} />);
+    const indicators = baseElement.querySelectorAll('.ty-tour__indicator');
+    expect(indicators).toHaveLength(3);
+  });
+
+  it('should show active indicator for current step', () => {
+    const { baseElement } = render(<Tour open steps={steps} current={1} />);
+    const indicators = baseElement.querySelectorAll('.ty-tour__indicator');
+    expect(indicators[1]).toHaveClass('ty-tour__indicator_active');
+  });
+
+  it('should render mask by default', () => {
+    const { baseElement } = render(<Tour open steps={steps} />);
+    expect(baseElement.querySelector('.ty-tour__mask')).toBeInTheDocument();
+  });
+
+  it('should not render mask when mask is false', () => {
+    const { baseElement } = render(<Tour open steps={steps} mask={false} />);
+    expect(baseElement.querySelector('.ty-tour__mask')).not.toBeInTheDocument();
+  });
+
+  it('should render primary type', () => {
+    const { baseElement } = render(<Tour open steps={steps} type="primary" />);
+    expect(baseElement.querySelector('.ty-tour__panel_primary')).toBeInTheDocument();
+  });
+
+  it('should handle keyboard Escape', () => {
+    const onClose = jest.fn();
+    render(<Tour open steps={steps} onClose={onClose} />);
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(onClose).toHaveBeenCalled();
+  });
+
+  it('should center panel when no target', () => {
+    const { baseElement } = render(<Tour open steps={[{ title: 'Centered' }]} />);
+    expect(
+      baseElement.querySelector('.ty-tour__panel-wrapper_centered')
+    ).toBeInTheDocument();
+  });
+
+  it('should not render previous button on first step', () => {
+    const { queryByText } = render(<Tour open steps={steps} />);
+    expect(queryByText('Previous')).not.toBeInTheDocument();
+  });
+
+  it('should show Finish text on last step', () => {
+    const { getByText } = render(<Tour open steps={steps} current={2} />);
+    expect(getByText('Finish')).toBeInTheDocument();
+  });
+
+  it('should support custom indicatorsRender', () => {
+    const { getByText } = render(
+      <Tour
+        open
+        steps={steps}
+        indicatorsRender={(current, total) => <span>{`${current + 1}/${total}`}</span>}
+      />
+    );
+    expect(getByText('1/3')).toBeInTheDocument();
+  });
+});

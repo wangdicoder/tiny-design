@@ -39,6 +39,11 @@ const en_US: Locale = {
     rgb: 'RGB',
     hsb: 'HSB',
   },
+  Tour: {
+    prevText: 'Previous',
+    nextText: 'Next',
+    finishText: 'Finish',
+  },
 };
 
 export default en_US;
