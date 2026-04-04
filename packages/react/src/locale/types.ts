@@ -37,4 +37,9 @@ export type Locale = {
     rgb: string;
     hsb: string;
   };
+  Tour: {
+    prevText: string;
+    nextText: string;
+    finishText: string;
+  };
 };

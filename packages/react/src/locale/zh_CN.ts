@@ -39,6 +39,11 @@ const zh_CN: Locale = {
     rgb: 'RGB',
     hsb: 'HSB',
   },
+  Tour: {
+    prevText: '上一步',
+    nextText: '下一步',
+    finishText: '完成',
+  },
 };
 
 export default zh_CN;
