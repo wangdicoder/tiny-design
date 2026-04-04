@@ -33,6 +33,7 @@ export default defineConfig({
       '@tiny-design/react': reactSrc,
       '@tiny-design/icons': iconsSrc,
       '@tiny-design/charts': chartsSrc,
+      '@mdx-js/react': path.resolve(__dirname, 'node_modules/@mdx-js/react'),
     },
     dedupe: ['react', 'react-dom'],
   },

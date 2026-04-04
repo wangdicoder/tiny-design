@@ -141,13 +141,13 @@ $dp: #{$prefix}-date-picker;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border: none;
     background: transparent;
     color: var(--ty-color-text-tertiary);
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
     border-radius: 4px;
     transition: color 0.2s;
 
@@ -165,8 +165,9 @@ $dp: #{$prefix}-date-picker;
 
   &__header-label {
     font-weight: 500;
+    font-size: 16px;
     cursor: pointer;
-    padding: 0 4px;
+    padding: 2px 6px;
     border-radius: 4px;
     transition: color 0.2s;
 
@@ -237,6 +238,37 @@ $dp: #{$prefix}-date-picker;
 
   &__cell_selected:hover &__cell-inner {
     background: var(--ty-picker-cell-selected-hover-bg);
+  }
+
+  &__cell_in-range,
+  &__cell_in-preview-range {
+    background: var(--ty-color-primary-bg, rgb(24 144 255 / 12%));
+  }
+
+  &__cell_range-start,
+  &__cell_range-end {
+    background: var(--ty-color-primary-bg, rgb(24 144 255 / 12%));
+  }
+
+  &__cell_range-start &__cell-inner,
+  &__cell_range-end &__cell-inner {
+    background: var(--ty-color-primary);
+    color: #fff;
+    font-weight: 500;
+  }
+
+  &__cell_in-preview-range &__cell-inner,
+  &__cell_in-range &__cell-inner {
+    background: transparent;
+    color: var(--ty-color-text);
+  }
+
+  &__cell_range-start.#{$dp}__cell_in-preview-range &__cell-inner,
+  &__cell_range-end.#{$dp}__cell_in-preview-range &__cell-inner,
+  &__cell_range-start.#{$dp}__cell_in-range &__cell-inner,
+  &__cell_range-end.#{$dp}__cell_in-range &__cell-inner {
+    background: var(--ty-color-primary);
+    color: #fff;
   }
 
   &__cell_disabled &__cell-inner {
