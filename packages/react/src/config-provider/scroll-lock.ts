@@ -14,7 +14,7 @@ function resolveScrollLockTarget(container?: HTMLElement | Window | null): HTMLE
     return document.body;
   }
 
-  return container;
+  return container as HTMLElement;
 }
 
 export function acquireScrollLock(container?: HTMLElement | Window | null): () => void {

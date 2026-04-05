@@ -2,7 +2,7 @@ import React from 'react';
 import { StaticConfig } from './static-config';
 import { ConfigContextProps } from './config-context';
 
-export interface ConfigProviderProps extends ConfigContextProps {
+export interface ConfigProviderProps extends Omit<ConfigContextProps, 'theme'> {
   // Props accept both ThemeMode and ThemeConfig so callers can provide token overrides.
   // Context keeps `theme` normalized as ThemeMode and exposes ThemeConfig separately.
   theme?: ConfigContextProps['theme'] | import('./token-utils').ThemeConfig;
