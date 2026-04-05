@@ -6,6 +6,8 @@ import PositionDemo from './demo/Position';
 import PositionSource from './demo/Position.tsx?raw';
 import AnimationDemo from './demo/Animation';
 import AnimationSource from './demo/Animation.tsx?raw';
+import ContextDemo from './demo/Context';
+import ContextSource from './demo/Context.tsx?raw';
 
 # Modal 模态对话框
 
@@ -19,6 +21,23 @@ import AnimationSource from './demo/Animation.tsx?raw';
 
 ```jsx
 import { Modal } from 'tiny-design';
+```
+
+## 静态方法
+
+当需要在当前 React 树之外以命令式方式触发对话框时，可以使用 `Modal.open()` 或 `Modal.confirm()`。
+
+```jsx
+const instance = Modal.open({
+  header: '删除项目',
+  children: '这个操作不可撤销。',
+});
+
+instance.update({
+  confirmLoading: true,
+});
+
+instance.destroy();
 ```
 
 ## 代码示例
@@ -64,6 +83,15 @@ import { Modal } from 'tiny-design';
 <DemoBlock component={AnimationDemo} source={AnimationSource} />
 
     </Demo>
+    <Demo>
+
+### 上下文
+
+使用 `Modal.Provider` 和 `Modal.useModal` 通过 ID 管理多个对话框。
+
+<DemoBlock component={ContextDemo} source={ContextSource} />
+
+    </Demo>
   </Column>
 </Layout>
 
@@ -98,3 +126,7 @@ import { Modal } from 'tiny-design';
 | maskStyle          | 遮罩层的内联样式                           | CSSProperties                                     | -         |
 | style              | 容器的样式对象                             | CSSProperties                                     | -         |
 | className          | 容器的类名                                 | string                                            | -         |
+
+## StaticModalProps
+
+`Modal.open()` 和 `Modal.confirm()` 接收与 `Modal` 相同的参数，但 `visible` 由内部管理。

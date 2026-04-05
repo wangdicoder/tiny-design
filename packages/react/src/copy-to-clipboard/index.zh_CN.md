@@ -44,5 +44,6 @@ import { CopyToClipboard } from 'tiny-design';
 | --------- | ----------------------------- | ----------------- | --------- |
 | text      | 复制的内容                    | string            | -         |
 | onClick   | 点击内容时的回调              | React.MouseEvent  | -         |
+| onCopy    | 复制尝试结束后的回调，返回是否复制成功和复制文本 | `(copied: boolean, text: string) => void` | - |
 | style	    | 容器的样式对象                | CSSProperties     | -         |
 | className	| 容器的类名                    | string            | -         |

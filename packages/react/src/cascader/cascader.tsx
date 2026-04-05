@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef, useContext, useMemo } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useState, useEffect, useRef, useContext, useMemo, useCallback } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
+import { resolvePopupContainer } from '../config-provider/container-utils';
+import { getScrollParents } from '../_utils/dom';
 import { getPrefixCls } from '../_utils/general';
 import { ArrowDown } from '../_utils/components';
+import Portal from '../portal';
 import { CascaderProps, CascaderOption, CascaderValue } from './types';
 
 const getOptionsByValue = (
@@ -67,6 +69,33 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     }
   }, [props.open]);
 
+  const updateDropdownPosition = useCallback(() => {
+    if (!open || !wrapperRef.current || !dropdownRef.current) {
+      return;
+    }
+
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const offsetParent = dropdownRef.current.offsetParent;
+
+    if (offsetParent && offsetParent instanceof HTMLElement) {
+      const offsetParentRect = offsetParent.getBoundingClientRect();
+      setDropdownStyle({
+        position: 'absolute',
+        top: rect.bottom - offsetParentRect.top + offsetParent.scrollTop + 4,
+        left: rect.left - offsetParentRect.left + offsetParent.scrollLeft,
+        zIndex: 1050,
+      });
+      return;
+    }
+
+    setDropdownStyle({
+      position: 'absolute',
+      top: rect.bottom + window.scrollY + 4,
+      left: rect.left + window.scrollX,
+      zIndex: 1050,
+    });
+  }, [open]);
+
   // Build columns from selected value on mount
   useEffect(() => {
     const cols: CascaderOption[][] = [options];
@@ -84,18 +113,30 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     setActiveColumns(cols);
   }, [options, selectedValue]);
 
-  // Position dropdown below selector
   useEffect(() => {
-    if (open && wrapperRef.current) {
-      const rect = wrapperRef.current.getBoundingClientRect();
-      setDropdownStyle({
-        position: 'absolute',
-        top: rect.bottom + 4 + window.scrollY,
-        left: rect.left + window.scrollX,
-        zIndex: 1050,
-      });
+    if (!open) {
+      return undefined;
     }
-  }, [open]);
+
+    const popupContainer = resolvePopupContainer(configContext, wrapperRef.current);
+    const scrollTargets = new Set<HTMLElement | Window>([
+      ...getScrollParents(wrapperRef.current),
+      ...getScrollParents(popupContainer),
+    ]);
+
+    updateDropdownPosition();
+    window.addEventListener('resize', updateDropdownPosition);
+    scrollTargets.forEach((target) => {
+      target.addEventListener('scroll', updateDropdownPosition);
+    });
+
+    return () => {
+      window.removeEventListener('resize', updateDropdownPosition);
+      scrollTargets.forEach((target) => {
+        target.removeEventListener('scroll', updateDropdownPosition);
+      });
+    };
+  }, [configContext, open, updateDropdownPosition]);
 
   // Click outside
   useEffect(() => {
@@ -195,7 +236,8 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
   });
 
   const dropdown = open
-    ? createPortal(
+    ? (
+      <Portal container={resolvePopupContainer(configContext, wrapperRef.current)}>
         <div className={`${prefixCls}__dropdown`} ref={dropdownRef} style={dropdownStyle}>
           <div className={`${prefixCls}__menus`}>
             {activeColumns.map((columnOptions, level) => (
@@ -232,9 +274,9 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
               </ul>
             ))}
           </div>
-        </div>,
-        document.body
-      )
+        </div>
+      </Portal>
+    )
     : null;
 
   return (

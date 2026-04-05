@@ -1,10 +1,13 @@
 import React, { ReactNode } from 'react';
-import { createRoot, Root } from 'react-dom/client';
 import Message from './message';
 import { MessageProps, MessageType } from './types';
+import {
+  createStaticHost,
+  destroyStaticHost,
+  renderStaticHost,
+} from '../config-provider/static-host';
 
 const className = '.ty-message-container';
-const rootMap = new Map<HTMLElement, Root>();
 
 export type Options = {
   top?: number;
@@ -32,12 +35,7 @@ type UnmountDom = (
 let offset: number;
 
 const unmountDom: UnmountDom = (containerDiv, top, height, onClose) => {
-  const root = rootMap.get(containerDiv);
-  if (root) {
-    root.unmount();
-    rootMap.delete(containerDiv);
-  }
-  document.body.removeChild(containerDiv);
+  destroyStaticHost(containerDiv);
   requestAnimationFrame(() => {
     const containers = document.querySelectorAll(className);
     const len = containers.length;
@@ -66,9 +64,7 @@ const createComponent: CreateComponent = (
     ? parseInt(lastContainer.style.top || '0', 10) + lastContainer.offsetHeight + offset
     : options.top || 15;
 
-  const div = document.createElement('div');
-  div.className = 'ty-message-container';
-  document.body.appendChild(div);
+  const div = createStaticHost('ty-message-container');
   div.style.top = `${top}px`;
 
   const props: MessageProps = {
@@ -83,10 +79,7 @@ const createComponent: CreateComponent = (
       unmountDom(div, updatedTop, height, onClose);
     },
   };
-  const component = React.createElement(Message, props);
-  const root = createRoot(div);
-  rootMap.set(div, root);
-  root.render(component);
+  renderStaticHost(div, React.createElement(Message, props));
 };
 
 const messageContainer: any = (

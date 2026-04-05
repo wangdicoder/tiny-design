@@ -4,6 +4,8 @@ import { createPopper, Instance } from '@popperjs/core';
 import Portal from '../portal';
 import Transition from '../transition';
 import { ConfigContext } from '../config-provider/config-context';
+import { resolveTargetContainer } from '../config-provider/container-utils';
+import { acquireScrollLock } from '../config-provider/scroll-lock';
 import { getPrefixCls } from '../_utils/general';
 import { useLocale } from '../_utils/use-locale';
 import { Placement } from '../popup/types';
@@ -149,17 +151,18 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
   useEffect(() => {
     if (!open) return undefined;
 
+    const targetContainer = resolveTargetContainer(configContext);
     const handleUpdate = () => {
       updateTargetRect();
       popperRef.current?.update();
     };
-    window.addEventListener('scroll', handleUpdate, true);
+    targetContainer.addEventListener('scroll', handleUpdate, true);
     window.addEventListener('resize', handleUpdate);
     return () => {
-      window.removeEventListener('scroll', handleUpdate, true);
+      targetContainer.removeEventListener('scroll', handleUpdate, true);
       window.removeEventListener('resize', handleUpdate);
     };
-  }, [open, updateTargetRect]);
+  }, [configContext, open, updateTargetRect]);
 
   const handleTransitionExited = useCallback(() => {
     destroyPopper();
@@ -185,12 +188,8 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
   // Scroll lock
   useEffect(() => {
     if (!open) return undefined;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [open]);
+    return acquireScrollLock(resolveTargetContainer(configContext));
+  }, [configContext, open]);
 
   // Keyboard navigation
   useEffect(() => {

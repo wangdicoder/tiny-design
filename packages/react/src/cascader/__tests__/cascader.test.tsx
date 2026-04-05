@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Cascader from '../index';
+import ConfigProvider from '../../config-provider';
 
 const options = [
   {
@@ -80,5 +81,26 @@ describe('<Cascader />', () => {
       <Cascader options={options} value={['zhejiang', 'hangzhou', 'xihu']} />
     );
     expect(getByText('Zhejiang / Hangzhou / West Lake')).toBeInTheDocument();
+  });
+
+  it('should respect the configured popup container', () => {
+    const popupContainer = document.createElement('div');
+    document.body.appendChild(popupContainer);
+
+    const { container } = render(
+      <ConfigProvider getPopupContainer={() => popupContainer}>
+        <Cascader options={options} />
+      </ConfigProvider>
+    );
+
+    const selector = container.querySelector('.ty-cascader__selector');
+    fireEvent.click(selector!);
+
+    const dropdown = popupContainer.querySelector('.ty-cascader__dropdown');
+
+    expect(dropdown).toBeTruthy();
+    expect(dropdown?.parentElement).toBe(popupContainer);
+
+    document.body.removeChild(popupContainer);
   });
 });

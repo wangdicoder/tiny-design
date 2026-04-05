@@ -1,11 +1,14 @@
 import React, { ReactNode, MouseEventHandler } from 'react';
-import { createRoot, Root } from 'react-dom/client';
 import Notification from './notification';
 import { camelCaseToDash } from '../_utils/general';
 import { NotificationProps, NotificationType } from './types';
+import {
+  createStaticHost,
+  destroyStaticHost,
+  renderStaticHost,
+} from '../config-provider/static-host';
 
 const className = 'ty-notification-container';
-const rootMap = new Map<HTMLElement, Root>();
 
 type Direction = 'top' | 'bottom';
 type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
@@ -32,12 +35,7 @@ type UnmountDom = (
 let offset: number;
 
 const unmountDom: UnmountDom = (queryName, containerDiv, position, height, direction) => {
-  const root = rootMap.get(containerDiv);
-  if (root) {
-    root.unmount();
-    rootMap.delete(containerDiv);
-  }
-  document.body.removeChild(containerDiv);
+  destroyStaticHost(containerDiv);
   requestAnimationFrame(() => {
     const containers = document.querySelectorAll(`.${queryName}`);
     const len = containers.length;
@@ -57,9 +55,7 @@ const createComponent = (options: Options, type: NotificationType) => {
   const lastContainer =
     containers.length > 0 ? (containers[containers.length - 1] as HTMLElement) : null;
 
-  const div = document.createElement('div');
-  div.className = `${className} ${queryName}`;
-  document.body.appendChild(div);
+  const div = createStaticHost(`${className} ${queryName}`);
 
   offset = options.offset || 24;
   const direction: Direction = placement.includes('top') ? 'top' : 'bottom';
@@ -85,10 +81,7 @@ const createComponent = (options: Options, type: NotificationType) => {
       unmountDom(queryName, div, updatedPosition, height, direction);
     },
   };
-  const element = React.createElement(Notification, props);
-  const root = createRoot(div);
-  rootMap.set(div, root);
-  root.render(element);
+  renderStaticHost(div, React.createElement(Notification, props));
 };
 
 const open = (options: Options) => {

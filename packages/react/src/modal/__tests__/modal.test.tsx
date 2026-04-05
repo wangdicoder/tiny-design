@@ -1,8 +1,13 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import Modal from '../index';
+import ConfigProvider from '../../config-provider';
 
 describe('<Modal />', () => {
+  afterEach(() => {
+    ConfigProvider.config({ holderRender: undefined });
+  });
+
   it('should match the snapshot', () => {
     const { asFragment } = render(<Modal visible>Content</Modal>);
     expect(asFragment()).toMatchSnapshot();
@@ -38,5 +43,65 @@ describe('<Modal />', () => {
   it('should render null footer', () => {
     const { container } = render(<Modal visible footer={null}>Content</Modal>);
     expect(container.querySelector('.ty-modal__footer')).toBeFalsy();
+  });
+
+  it('should support static modal open', () => {
+    let instance!: ReturnType<typeof Modal.open>;
+
+    act(() => {
+      instance = Modal.open({
+        header: 'Static Modal',
+        children: 'Static Content',
+      });
+    });
+
+    expect(document.body.textContent).toContain('Static Modal');
+    expect(document.body.textContent).toContain('Static Content');
+
+    act(() => {
+      instance.destroy();
+    });
+  });
+
+  it('should support static modal confirm', () => {
+    let instance!: ReturnType<typeof Modal.confirm>;
+
+    act(() => {
+      instance = Modal.confirm({
+        header: 'Confirm Modal',
+        children: 'Confirm Content',
+      });
+    });
+
+    expect(document.body.textContent).toContain('Confirm Modal');
+    expect(document.body.textContent).toContain('Confirm Content');
+
+    act(() => {
+      instance.destroy();
+    });
+  });
+
+  it('should apply holderRender to static modal APIs', () => {
+    ConfigProvider.config({
+      holderRender: (children) => (
+        <div data-testid="modal-holder">{children}</div>
+      ),
+    });
+
+    let instance!: ReturnType<typeof Modal.open>;
+
+    act(() => {
+      instance = Modal.open({
+        header: 'Static Holder Modal',
+        children: 'Holder Content',
+      });
+    });
+
+    expect(document.body.querySelector('[data-testid="modal-holder"]')).toBeTruthy();
+    expect(document.body.textContent).toContain('Static Holder Modal');
+
+    act(() => {
+      instance.destroy();
+    });
   });
 });

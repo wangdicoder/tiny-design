@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Tour from '../index';
 import { TourStepProps } from '../types';
+import ConfigProvider from '../../config-provider';
 
 const steps: TourStepProps[] = [
   { title: 'Step 1', description: 'Description 1' },
@@ -120,5 +121,24 @@ describe('<Tour />', () => {
       />
     );
     expect(getByText('1/3')).toBeInTheDocument();
+  });
+
+  it('should lock and restore the configured target container', () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    const { unmount } = render(
+      <ConfigProvider getTargetContainer={() => container}>
+        <Tour open steps={steps} />
+      </ConfigProvider>
+    );
+
+    expect(container.style.overflow).toBe('hidden');
+    expect(document.body.style.overflow).toBe('');
+
+    unmount();
+
+    expect(container.style.overflow).toBe('');
+    document.body.removeChild(container);
   });
 });

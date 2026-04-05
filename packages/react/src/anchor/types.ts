@@ -6,7 +6,7 @@ export interface AnchorProps extends BaseProps {
   type?: 'dot' | 'line';
   offsetBottom?: number;
   offsetTop?: number;
-  getContainer?: () => HTMLElement;
+  getContainer?: () => HTMLElement | Window;
   onChange?: (currentActiveLink: string) => void;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>, link: { title: string; href: string }) => void;
   children?: React.ReactNode;

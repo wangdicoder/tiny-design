@@ -44,5 +44,6 @@ import { CopyToClipboard } from 'tiny-design';
 | --------- | ------------------------------------- | ----------------- | --------- |
 | text      | copied contents                       | string            | -         |
 | onClick   | callback when clicking the contents   | React.MouseEvent  | -         |
+| onCopy    | callback after the copy attempt, receives whether the copy succeeded | `(copied: boolean, text: string) => void` | - |
 | style	    | style object of container	object      | CSSProperties     | -         |
 | className	| className of container                | string            | -         |

@@ -1,7 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { Target } from '../_utils/dom';
+import { getScroll, Target } from '../_utils/dom';
 import { ConfigContext } from '../config-provider/config-context';
+import { resolveTargetContainer } from '../config-provider/container-utils';
 import { getPrefixCls } from '../_utils/general';
 import { BackTopProps } from './types';
 
@@ -18,7 +19,7 @@ const easeInOutCubic = (t: number, b: number, c: number, d: number): number => {
 const BackTop = (props: BackTopProps): JSX.Element | null => {
   const {
     visibilityHeight = 300,
-    target = (): Target => window,
+    target,
     prefixCls: customisedCls,
     onClick,
     className,
@@ -31,17 +32,17 @@ const BackTop = (props: BackTopProps): JSX.Element | null => {
     [`${prefixCls}_custom`]: !!children,
   });
   const [visible, setVisible] = useState(true);
+  const resolvedTarget = useCallback(
+    (): Target => resolveTargetContainer(configContext, target),
+    [configContext, target]
+  );
 
   const getDistanceFromTop = useCallback((): number => {
-    const targetNode = target();
-    if (targetNode === window) {
-      return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
-    }
-    return (targetNode as HTMLElement).scrollTop;
-  }, [target]);
+    return getScroll(resolvedTarget(), true);
+  }, [resolvedTarget]);
 
   const setScrollToTop = (distance: number): void => {
-    const targetNode = target();
+    const targetNode = resolvedTarget();
     if (targetNode === window) {
       document.body.scrollTop = distance;
       document.documentElement.scrollTop = distance;
@@ -76,14 +77,14 @@ const BackTop = (props: BackTopProps): JSX.Element | null => {
   }, [getDistanceFromTop, visible, visibilityHeight]);
 
   useEffect(() => {
-    const targetNode = target();
+    const targetNode = resolvedTarget();
     targetNode.addEventListener('scroll', handleOnScroll);
     handleOnScroll();
 
     return (): void => {
       targetNode.removeEventListener('scroll', handleOnScroll);
     };
-  }, [target, handleOnScroll]);
+  }, [resolvedTarget, handleOnScroll]);
 
   if (visible) {
     return (

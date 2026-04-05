@@ -49,7 +49,7 @@ Use custom children to replace the default button.
 
 | Property          | Description                                                                   | Type              | Default       |
 | ----------------- | ----------------------------------------------------------------------------- | ----------------- | ------------- |
-| target            | Specifies the scrollable area dom node                                        | () => HTMLElement | () => window  |
+| target            | Specifies the scrollable area dom node. Defaults to `ConfigProvider.getTargetContainer()` when available. | () => HTMLElement &#124; Window | provider target container |
 | visibilityHeight  | The `BackTop` button will not show until the scroll height reaches this value | number            | 300           |
 | onClick           | A callback function, which can be executed when you click the button          | () => void        | -             |
 | style	            | Style object of container	object                                              | CSSProperties     | -             |

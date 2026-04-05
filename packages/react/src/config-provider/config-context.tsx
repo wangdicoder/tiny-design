@@ -11,8 +11,11 @@ export interface ConfigContextProps {
   componentSize?: SizeType;
   shimmer?: boolean;
   space?: SpaceSize;
-  theme?: ThemeMode | ThemeConfig;
+  theme?: ThemeMode;
+  themeConfig?: ThemeConfig;
   locale?: Locale;
+  getPopupContainer?: (trigger?: HTMLElement | null) => HTMLElement;
+  getTargetContainer?: () => HTMLElement | Window;
 }
 
 export const ConfigContext = React.createContext<ConfigContextProps>({
@@ -20,4 +23,10 @@ export const ConfigContext = React.createContext<ConfigContextProps>({
   componentSize: 'md',
   shimmer: false,
   space: 'sm',
+  getPopupContainer: () => document.body,
+  getTargetContainer: () => window,
 });
+
+export function useConfig(): ConfigContextProps {
+  return React.useContext(ConfigContext);
+}
