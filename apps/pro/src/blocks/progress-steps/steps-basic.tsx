@@ -43,13 +43,13 @@ export default function StepsBasic() {
         <Divider />
 
         <Flex justify="space-between">
-          <Button btnType="outline" style={{ borderRadius: 8, height: 40, paddingLeft: 20, paddingRight: 20 }}>
+          <Button btnType="outline" style={{ borderRadius: 12, height: 40, paddingLeft: 20, paddingRight: 20 }}>
             Previous
           </Button>
           <Flex gap="sm">
-            <Button btnType="ghost" style={{ borderRadius: 8, height: 40 }}>Save Draft</Button>
+            <Button btnType="ghost" style={{ borderRadius: 12, height: 40 }}>Save Draft</Button>
             <Button btnType="primary" style={{
-              borderRadius: 8,
+              borderRadius: 12,
               height: 40,
               paddingLeft: 24,
               paddingRight: 24,

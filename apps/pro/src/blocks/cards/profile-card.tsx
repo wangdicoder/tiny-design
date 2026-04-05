@@ -5,26 +5,35 @@ const { Heading, Text } = Typography;
 
 export default function ProfileCard() {
   return (
-    <Flex justify="center" style={{ padding: 24 }}>
-      <Card variant="elevated" style={{ width: 380, borderRadius: 16, overflow: 'hidden', padding: 0 }}>
-        {/* Gradient header */}
+    <Flex justify="center" style={{ padding: 32, background: '#f8fafc' }}>
+      <Card
+        variant="elevated"
+        style={{
+          width: 392,
+          borderRadius: 20,
+          overflow: 'hidden',
+          padding: 0,
+          border: '1px solid #dbe3ef',
+          boxShadow: '0 16px 36px rgba(15, 23, 42, 0.08)',
+        }}
+      >
         <div style={{
-          height: 100,
-          background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%)',
+          height: 108,
+          background: '#e8eef8',
           position: 'relative',
+          borderBottom: '1px solid #dbe3ef',
         }} />
 
-        {/* Avatar overlapping header */}
         <div style={{ padding: '0 24px 24px', marginTop: -44 }}>
           <Flex vertical align="center" gap="sm">
             <Avatar
               size={88}
               style={{
-                backgroundColor: '#1e1b4b',
+                backgroundColor: '#0f172a',
                 fontSize: 32,
                 fontWeight: 700,
                 border: '4px solid var(--ty-color-bg-container)',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                boxShadow: '0 8px 18px rgba(15, 23, 42, 0.14)',
               }}
             >
               JD
@@ -40,9 +49,9 @@ export default function ProfileCard() {
               Building beautiful UIs with Tiny Design. Open-source enthusiast and design systems advocate.
             </Text>
             <Flex gap="sm" wrap="wrap" justify="center">
-              <Tag variant="soft" color="purple" style={{ borderRadius: 20 }}>React</Tag>
-              <Tag variant="soft" color="blue" style={{ borderRadius: 20 }}>TypeScript</Tag>
-              <Tag variant="soft" color="cyan" style={{ borderRadius: 20 }}>Design Systems</Tag>
+              <Tag variant="soft" color="blue" style={{ borderRadius: 20 }}>React</Tag>
+              <Tag variant="soft" color="cyan" style={{ borderRadius: 20 }}>TypeScript</Tag>
+              <Tag variant="soft" color="default" style={{ borderRadius: 20 }}>Design Systems</Tag>
             </Flex>
           </Flex>
 
@@ -65,15 +74,15 @@ export default function ProfileCard() {
 
           <Flex gap="sm">
             <Button block btnType="primary" style={{
-              borderRadius: 10,
-              height: 40,
+              borderRadius: 12,
+              height: 42,
               fontWeight: 600,
-              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-              border: 'none',
+              background: '#0f172a',
+              border: '1px solid #0f172a',
             }}>
               Follow
             </Button>
-            <Button block btnType="outline" style={{ borderRadius: 10, height: 40, fontWeight: 600 }}>
+            <Button block btnType="outline" style={{ borderRadius: 12, height: 42, fontWeight: 600 }}>
               Message
             </Button>
           </Flex>

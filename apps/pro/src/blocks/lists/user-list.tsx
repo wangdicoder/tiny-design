@@ -30,9 +30,9 @@ export default function UserList() {
                 placeholder="Search members..."
                 prefix={<IconSearch style={{ color: 'var(--ty-color-text-tertiary)' }} />}
                 size="sm"
-                style={{ width: 200, borderRadius: 8 }}
+                style={{ width: 200, borderRadius: 12 }}
               />
-              <Button size="sm" btnType="primary" style={{ borderRadius: 8 }}>
+              <Button size="sm" btnType="primary" style={{ borderRadius: 12 }}>
                 <Flex align="center" gap="sm">
                   <IconAddUser style={{ fontSize: 14 }} />
                   <span>Invite</span>
@@ -46,8 +46,8 @@ export default function UserList() {
             renderItem={(user) => (
               <List.Item
                 actions={[
-                  <Button key="edit" size="sm" btnType="outline" style={{ borderRadius: 8 }}>Edit</Button>,
-                  <Button key="remove" size="sm" btnType="ghost" style={{ borderRadius: 8 }}>Remove</Button>,
+                  <Button key="edit" size="sm" btnType="outline" style={{ borderRadius: 12 }}>Edit</Button>,
+                  <Button key="remove" size="sm" btnType="ghost" style={{ borderRadius: 12 }}>Remove</Button>,
                 ]}
               >
                 <Flex align="center" gap="md">

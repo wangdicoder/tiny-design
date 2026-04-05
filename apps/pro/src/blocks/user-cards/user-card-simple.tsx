@@ -92,14 +92,14 @@ export default function UserCardSimple() {
             </Flex>
             <Flex gap="sm" style={{ marginTop: 14 }}>
               <Button block size="sm" btnType="primary" style={{
-                borderRadius: 8,
+                borderRadius: 12,
                 fontWeight: 600,
                 background: user.gradient,
                 border: 'none',
               }}>
                 Connect
               </Button>
-              <Button block size="sm" btnType="outline" style={{ borderRadius: 8 }}>
+              <Button block size="sm" btnType="outline" style={{ borderRadius: 12 }}>
                 <Flex align="center" justify="center" gap="sm">
                   <IconComment style={{ fontSize: 14 }} />
                   <span>Message</span>

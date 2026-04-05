@@ -72,8 +72,8 @@ const columns = [
     key: 'action',
     render: () => (
       <Flex gap="sm" justify="end">
-        <Button size="sm" btnType="outline" style={{ borderRadius: 8 }}>Edit</Button>
-        <Button size="sm" btnType="ghost" style={{ borderRadius: 8 }}>Remove</Button>
+        <Button size="sm" btnType="outline" style={{ borderRadius: 12 }}>Edit</Button>
+        <Button size="sm" btnType="ghost" style={{ borderRadius: 12 }}>Remove</Button>
       </Flex>
     ),
   },
@@ -81,8 +81,8 @@ const columns = [
 
 export default function DataTable() {
   return (
-    <div style={{ padding: 24 }}>
-      <Card variant="elevated" style={{ borderRadius: 14 }}>
+    <div style={{ padding: 24, background: '#f8fafc' }}>
+      <Card variant="elevated" style={{ borderRadius: 16, border: '1px solid #dbe3ef', boxShadow: '0 16px 36px rgba(15, 23, 42, 0.06)' }}>
         <div style={{ padding: 16 }}>
           <Flex justify="space-between" align="center" style={{ marginBottom: 16 }}>
           <div>
@@ -96,15 +96,15 @@ export default function DataTable() {
               placeholder="Search..."
               prefix={<IconSearch style={{ color: 'var(--ty-color-text-tertiary)', fontSize: 14 }} />}
               size="sm"
-              style={{ width: 180, borderRadius: 8 }}
+              style={{ width: 180, borderRadius: 12, background: '#fbfcfe' }}
             />
-            <Button size="sm" btnType="outline" style={{ borderRadius: 8 }}>
+            <Button size="sm" btnType="outline" style={{ borderRadius: 12 }}>
               <Flex align="center" gap="sm">
                 <IconDownload style={{ fontSize: 14 }} />
                 <span>Export</span>
               </Flex>
             </Button>
-            <Button size="sm" btnType="primary" style={{ borderRadius: 8, fontWeight: 600 }}>
+            <Button size="sm" btnType="primary" style={{ borderRadius: 12, fontWeight: 600, background: '#0f172a', border: '1px solid #0f172a' }}>
               <Flex align="center" gap="sm">
                 <IconPlus style={{ fontSize: 14 }} />
                 <span>Add Member</span>
@@ -113,12 +113,12 @@ export default function DataTable() {
           </Flex>
         </Flex>
         <Table columns={columns} dataSource={data} />
-        <Flex justify="space-between" align="center" style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid var(--ty-color-border)' }}>
+        <Flex justify="space-between" align="center" style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid #e2e8f0' }}>
           <Text style={{ fontSize: 13, color: 'var(--ty-color-text-tertiary)' }}>
             Showing 5 results
           </Text>
           <Flex gap="sm">
-            <Tag variant="soft" color="purple">2 Admin</Tag>
+            <Tag variant="soft" color="default">2 Admin</Tag>
             <Tag variant="soft" color="blue">2 Engineer</Tag>
             <Tag variant="soft" color="cyan">1 Designer</Tag>
           </Flex>

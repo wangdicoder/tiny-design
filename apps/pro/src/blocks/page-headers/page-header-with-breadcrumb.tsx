@@ -85,14 +85,14 @@ export default function PageHeaderWithBreadcrumb() {
         </Flex>
 
         <Flex gap="sm">
-          <Button btnType="outline" style={{ borderRadius: 8 }}>
+          <Button btnType="outline" style={{ borderRadius: 12 }}>
             <Flex align="center" gap="sm">
               <IconSetting style={{ fontSize: 16 }} />
               <span>Settings</span>
             </Flex>
           </Button>
           <Button btnType="primary" style={{
-            borderRadius: 8,
+            borderRadius: 12,
             fontWeight: 600,
             background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
             border: 'none',

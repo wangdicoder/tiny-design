@@ -7,9 +7,9 @@ export default function NavbarSimple() {
   return (
     <div
       style={{
-        borderBottom: '1px solid var(--ty-color-border)',
+        borderBottom: '1px solid #dbe3ef',
         padding: '0 24px',
-        background: 'var(--ty-color-bg-container)',
+        background: '#fff',
       }}
     >
       <Flex align="center" justify="space-between" style={{ height: 60 }}>
@@ -18,8 +18,8 @@ export default function NavbarSimple() {
             <div style={{
               width: 32,
               height: 32,
-              borderRadius: 8,
-              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+              borderRadius: 10,
+              background: '#0f172a',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -36,17 +36,17 @@ export default function NavbarSimple() {
           </Menu>
         </Flex>
         <Flex align="center" gap="sm">
-          <Button size="sm" btnType="ghost" style={{ borderRadius: 8 }}>
+          <Button size="sm" btnType="ghost" style={{ borderRadius: 12 }}>
             <IconFeedback style={{ fontSize: 18 }} />
           </Button>
-          <Button size="sm" btnType="ghost" style={{ borderRadius: 8 }}>
+          <Button size="sm" btnType="ghost" style={{ borderRadius: 12 }}>
             <Badge dot>
               <IconSetting style={{ fontSize: 18 }} />
             </Badge>
           </Button>
-          <div style={{ width: 1, height: 24, background: 'var(--ty-color-border)', margin: '0 4px' }} />
+          <div style={{ width: 1, height: 24, background: '#dbe3ef', margin: '0 4px' }} />
           <Flex align="center" gap="sm" style={{ cursor: 'pointer' }}>
-            <Avatar size={32} presence="online" style={{ backgroundColor: '#6366f1', fontWeight: 600 }}>
+            <Avatar size={32} presence="online" style={{ backgroundColor: '#0f172a', fontWeight: 600 }}>
               JD
             </Avatar>
             <div style={{ lineHeight: 1.3 }}>

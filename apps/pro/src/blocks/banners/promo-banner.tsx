@@ -43,7 +43,7 @@ export default function PromoBanner() {
           background: 'rgba(255,255,255,0.2)',
           border: '1px solid rgba(255,255,255,0.3)',
           color: '#fff',
-          borderRadius: 8,
+          borderRadius: 12,
           fontWeight: 600,
           backdropFilter: 'blur(8px)',
           flexShrink: 0,

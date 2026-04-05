@@ -37,17 +37,17 @@ export default function ContactForm() {
             <Form layout="vertical">
               <Flex gap="sm">
                 <Form.Item label="First name" style={{ flex: 1 }}>
-                  <Input placeholder="John" style={{ height: 42, borderRadius: 10 }} />
+                  <Input placeholder="John" style={{ height: 42, borderRadius: 12 }} />
                 </Form.Item>
                 <Form.Item label="Last name" style={{ flex: 1 }}>
-                  <Input placeholder="Doe" style={{ height: 42, borderRadius: 10 }} />
+                  <Input placeholder="Doe" style={{ height: 42, borderRadius: 12 }} />
                 </Form.Item>
               </Flex>
               <Form.Item label="Email">
-                <Input placeholder="john@example.com" style={{ height: 42, borderRadius: 10 }} />
+                <Input placeholder="john@example.com" style={{ height: 42, borderRadius: 12 }} />
               </Form.Item>
               <Form.Item label="Subject">
-                <NativeSelect style={{ height: 42, borderRadius: 10 }}>
+                <NativeSelect style={{ height: 42, borderRadius: 12 }}>
                   <NativeSelect.Option value="">Select a topic...</NativeSelect.Option>
                   <NativeSelect.Option value="general">General Inquiry</NativeSelect.Option>
                   <NativeSelect.Option value="support">Technical Support</NativeSelect.Option>
@@ -56,15 +56,15 @@ export default function ContactForm() {
                 </NativeSelect>
               </Form.Item>
               <Form.Item label="Message">
-                <Textarea defaultValue="" rows={4} style={{ borderRadius: 10 }} />
+                <Textarea defaultValue="" rows={4} style={{ borderRadius: 12 }} />
               </Form.Item>
               <Flex justify="end" gap="sm">
-                <Button btnType="outline" style={{ height: 42, borderRadius: 10, paddingLeft: 24, paddingRight: 24 }}>
+                <Button btnType="outline" style={{ height: 42, borderRadius: 12, paddingLeft: 24, paddingRight: 24 }}>
                   Cancel
                 </Button>
                 <Button btnType="primary" style={{
                   height: 42,
-                  borderRadius: 10,
+                  borderRadius: 12,
                   paddingLeft: 24,
                   paddingRight: 24,
                   fontWeight: 600,

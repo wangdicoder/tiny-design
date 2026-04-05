@@ -1,12 +1,12 @@
 // ── Block Preview Card ──────────────────────────────────────────────
 .blockPreview {
-  border: 1px solid var(--ty-color-border-secondary);
-  border-radius: 12px;
+  border: 1px solid var(--ty-color-border);
+  border-radius: 16px;
   overflow: hidden;
   background: var(--ty-color-bg-container);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 2px 8px rgba(0, 0, 0, 0.02);
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 12px 32px rgba(15, 23, 42, 0.05);
   transition:
     border-color 0.25s,
     background-color 0.25s,
@@ -17,9 +17,10 @@
   }
 
   &:hover {
+    border-color: color-mix(in srgb, var(--ty-color-primary) 30%, var(--ty-color-border));
     box-shadow:
-      0 2px 4px rgba(0, 0, 0, 0.06),
-      0 4px 16px rgba(0, 0, 0, 0.04);
+      0 4px 12px rgba(15, 23, 42, 0.06),
+      0 16px 40px rgba(15, 23, 42, 0.08);
   }
 }
 
@@ -28,9 +29,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--ty-color-border-secondary);
-  background: var(--ty-color-bg-elevated);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--ty-color-border);
+  background: color-mix(in srgb, var(--ty-color-bg-elevated) 92%, #f8fafc);
   transition:
     background-color 0.25s,
     border-color 0.25s;
@@ -38,9 +39,9 @@
 
 .title {
   margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
   color: var(--ty-color-text);
 }
 
@@ -55,8 +56,9 @@
 .viewportGroup {
   display: flex;
   align-items: center;
-  background: var(--ty-color-fill-secondary);
-  border-radius: 8px;
+  background: var(--ty-color-bg-container);
+  border: 1px solid var(--ty-color-border);
+  border-radius: 10px;
   padding: 3px;
   gap: 2px;
 }
@@ -84,11 +86,10 @@
 }
 
 .viewportBtnActive {
-  background: var(--ty-color-bg-container);
+  background: color-mix(in srgb, var(--ty-color-primary) 10%, var(--ty-color-bg-container));
   color: var(--ty-color-text);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.06),
-    0 1px 3px rgba(0, 0, 0, 0.04);
+    inset 0 0 0 1px color-mix(in srgb, var(--ty-color-primary) 22%, transparent);
 }
 
 // Divider between viewport and actions
@@ -142,15 +143,23 @@
 .previewOuter {
   position: relative;
   overflow: hidden;
-  min-height: 120px;
+  min-height: 180px;
+  padding: 24px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--ty-color-bg) 94%, #f8fafc) 0%, var(--ty-color-bg) 100%);
   transition: background-color 0.3s;
 }
 
 .previewOuterScaled {
-  // Subtle dot grid to indicate constrained viewport
-  background-image: radial-gradient(circle, var(--ty-color-border-secondary) 0.8px, transparent 0.8px);
-  background-size: 16px 16px;
-  background-position: 8px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--ty-color-border-secondary) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--ty-color-border-secondary) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(180deg, color-mix(in srgb, var(--ty-color-bg) 94%, #f8fafc) 0%, var(--ty-color-bg) 100%);
+  background-size: 24px 24px, 24px 24px, auto;
+  background-position: center;
 }
 
 .previewInner {
@@ -160,9 +169,11 @@
 .previewInnerScaled {
   margin: 0 auto;
   box-shadow:
-    -1px 0 0 var(--ty-color-border-secondary),
-    1px 0 0 var(--ty-color-border-secondary);
+    0 0 0 1px var(--ty-color-border),
+    0 16px 36px rgba(15, 23, 42, 0.08);
   background: var(--ty-color-bg-container);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 // ── Action Bar (between preview and code) ──────────────────────────
@@ -171,9 +182,9 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 6px 16px;
-  border-top: 1px dashed var(--ty-color-border-secondary);
-  background: var(--ty-color-bg-elevated);
+  padding: 10px 16px;
+  border-top: 1px solid var(--ty-color-border);
+  background: color-mix(in srgb, var(--ty-color-bg-elevated) 92%, #f8fafc);
   transition:
     background-color 0.25s,
     border-color 0.25s;
@@ -209,6 +220,7 @@
 
 .actionBarBtnActive {
   color: var(--ty-color-primary);
+  background: color-mix(in srgb, var(--ty-color-primary) 10%, transparent);
 
   &:hover {
     color: var(--ty-color-primary);
@@ -233,7 +245,7 @@
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.3s ease;
-  border-top: 1px solid var(--ty-color-border-secondary);
+  border-top: 1px solid var(--ty-color-border);
 }
 
 .codePanelWrapperOpen {

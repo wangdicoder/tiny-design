@@ -36,7 +36,7 @@ export function PreviewFrame({ viewport, children }: PreviewFrameProps) {
       setScale(newScale);
 
       if (innerRef.current) {
-        setInnerHeight(innerRef.current.scrollHeight * newScale);
+        setInnerHeight(innerRef.current.scrollHeight * newScale + 48);
       }
     });
 
@@ -64,7 +64,7 @@ export function PreviewFrame({ viewport, children }: PreviewFrameProps) {
             ? {
                 width: targetWidth,
                 transform: `scale(${scale})`,
-                transformOrigin: 'top left',
+                transformOrigin: 'top center',
               }
             : undefined
         }

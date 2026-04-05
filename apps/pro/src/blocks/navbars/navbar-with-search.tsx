@@ -7,9 +7,9 @@ export default function NavbarWithSearch() {
   return (
     <div
       style={{
-        borderBottom: '1px solid var(--ty-color-border)',
+        borderBottom: '1px solid #dbe3ef',
         padding: '0 24px',
-        background: 'var(--ty-color-bg-container)',
+        background: '#fff',
       }}
     >
       <Flex align="center" justify="space-between" style={{ height: 60 }}>
@@ -18,8 +18,8 @@ export default function NavbarWithSearch() {
             <div style={{
               width: 32,
               height: 32,
-              borderRadius: 8,
-              background: 'linear-gradient(135deg, #0891b2, #06b6d4)',
+              borderRadius: 10,
+              background: '#0f172a',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -27,7 +27,7 @@ export default function NavbarWithSearch() {
               <Text style={{ color: '#fff', fontWeight: 800, fontSize: 16, lineHeight: 1 }}>W</Text>
             </div>
             <Text style={{ fontWeight: 700, fontSize: 17 }}>Workspace</Text>
-            <Tag variant="soft" color="cyan" style={{ borderRadius: 20, fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <Tag variant="soft" color="default" style={{ borderRadius: 20, fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Pro
             </Tag>
           </Flex>
@@ -44,20 +44,20 @@ export default function NavbarWithSearch() {
             prefix={<IconSearch style={{ color: 'var(--ty-color-text-tertiary)', fontSize: 14 }} />}
             suffix={<Keyboard>/</Keyboard>}
             size="sm"
-            style={{ width: 220, borderRadius: 8 }}
+            style={{ width: 220, borderRadius: 12, background: '#fbfcfe' }}
           />
           <Button size="sm" btnType="primary" style={{
-            borderRadius: 8,
+            borderRadius: 12,
             fontWeight: 600,
-            background: 'linear-gradient(135deg, #0891b2, #06b6d4)',
-            border: 'none',
+            background: '#0f172a',
+            border: '1px solid #0f172a',
           }}>
             <Flex align="center" gap="sm">
               <IconBroadcast style={{ fontSize: 14 }} />
               <span>Upgrade</span>
             </Flex>
           </Button>
-          <Avatar size={32} presence="online" style={{ backgroundColor: '#0891b2', fontWeight: 600, cursor: 'pointer' }}>
+          <Avatar size={32} presence="online" style={{ backgroundColor: '#334155', fontWeight: 600, cursor: 'pointer' }}>
             U
           </Avatar>
         </Flex>
