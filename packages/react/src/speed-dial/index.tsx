@@ -9,3 +9,4 @@ const DefaultSpeedDial = SpeedDial as ISpeedDial;
 DefaultSpeedDial.Action = SpeedDialAction;
 
 export default DefaultSpeedDial;
+export type * from './types';

@@ -18,3 +18,4 @@ DefaultMenu.ItemGroup = MenuItemGroup;
 DefaultMenu.Divider = MenuDivider;
 
 export default DefaultMenu;
+export type * from './types';

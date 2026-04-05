@@ -9,3 +9,4 @@ const DefaultAnchor = Anchor as IAnchor;
 DefaultAnchor.Link = AnchorLink;
 
 export default DefaultAnchor;
+export type * from './types';

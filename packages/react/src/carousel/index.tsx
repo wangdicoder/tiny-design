@@ -1,7 +1,7 @@
 import Carousel from './carousel';
 import CarouselItem from './carousel-item';
 
-export type { CarouselProps, CarouselRef, DotPlacement, CarouselEffect } from './types';
+export type * from './types';
 export type { CarouselItemProps } from './carousel-item';
 
 type ICarousel = typeof Carousel & {

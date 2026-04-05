@@ -9,3 +9,4 @@ const DefaultDesc = Descriptions as IDesc;
 DefaultDesc.Item = DescriptionsItem;
 
 export default DefaultDesc;
+export type * from './types';

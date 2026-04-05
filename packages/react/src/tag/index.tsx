@@ -9,3 +9,4 @@ const DefaultTag = Tag as ITag;
 DefaultTag.CheckableTag = CheckableTag;
 
 export default DefaultTag;
+export type * from './types';

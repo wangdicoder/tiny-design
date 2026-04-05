@@ -9,3 +9,4 @@ const DefaultCheckbox = Checkbox as ICheckbox;
 DefaultCheckbox.Group = CheckboxGroup;
 
 export default DefaultCheckbox;
+export type * from './types';

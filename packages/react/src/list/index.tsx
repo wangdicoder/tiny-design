@@ -17,3 +17,4 @@ DefaultList.Item = ListItem;
 DefaultList.ItemMeta = ListItemMeta;
 
 export default DefaultList;
+export type * from './types';

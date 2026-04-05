@@ -12,3 +12,4 @@ DefaultInput.Group = InputGroup;
 DefaultInput.Addon = InputGroupAddon;
 
 export default DefaultInput;
+export type * from './types';

@@ -9,3 +9,4 @@ const DefaultTimeline = Timeline as ITimeline;
 DefaultTimeline.Item = TimelineItem;
 
 export default DefaultTimeline;
+export type * from './types';

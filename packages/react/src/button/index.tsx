@@ -9,3 +9,4 @@ const DefaultButton = Button as IButton;
 DefaultButton.Group = ButtonGroup;
 
 export default DefaultButton;
+export type * from './types';

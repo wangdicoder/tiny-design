@@ -12,3 +12,4 @@ DefaultSelect.Option = NativeOption;
 DefaultSelect.OptGroup = NativeOptGroup;
 
 export default DefaultSelect;
+export type * from './types';

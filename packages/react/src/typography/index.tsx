@@ -15,3 +15,4 @@ DefaultTypo.Paragraph = Paragraph;
 DefaultTypo.Text = Text;
 
 export default DefaultTypo;
+export type * from './types';

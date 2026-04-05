@@ -69,6 +69,19 @@ your-component/
 3. Export the component from `packages/react/src/index.ts`
 4. Add the route in `apps/docs/src/routers.tsx`
 
+### Public Type Exports
+
+Every component module must export its public TypeScript types from its own `index.tsx`.
+
+- If the component has a `types.ts` file, re-export its public types from `packages/react/src/your-component/index.tsx`
+- If the component exposes public types from related files, re-export them from the same module barrel as well
+- Keep component-level type exports consistent with the runtime component export instead of creating one-off type exceptions elsewhere
+
+The package root barrel must also re-export those public component types from `packages/react/src/index.ts`.
+
+- Do not add root-level type exports for only one or two special-case components
+- Do not rely on consumers importing public component types from internal file paths when the type is part of the supported API surface
+
 ## Code Style
 
 - TypeScript strict mode is enabled

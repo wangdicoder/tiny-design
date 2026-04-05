@@ -15,3 +15,4 @@ DefaultForm.useForm = useForm;
 DefaultForm.FormInstance = FormInstance;
 
 export default DefaultForm;
+export type * from './types';

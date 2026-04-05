@@ -22,4 +22,5 @@ ModalWithContext.open = openStaticModal;
 ModalWithContext.confirm = confirmStaticModal;
 
 export default ModalWithContext;
+export type * from './types';
 export type { ModalProviderProps, UseModalReturn, StaticModalInstance, StaticModalProps };
