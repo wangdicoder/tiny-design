@@ -1,6 +1,6 @@
 {
   "name": "@tiny-design/charts",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Theme-aware chart components for Tiny Design, built on Recharts",
   "license": "MIT",
   "repository": {
