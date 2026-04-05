@@ -13,6 +13,7 @@ export { default as Carousel } from './carousel';
 export { default as Cascader } from './cascader';
 export { default as Checkbox } from './checkbox';
 export { default as ConfigProvider } from './config-provider';
+export type { ThemeConfig } from './config-provider';
 export { default as CopyToClipboard } from './copy-to-clipboard';
 export { default as Col } from './col';
 export { default as Collapse } from './collapse';

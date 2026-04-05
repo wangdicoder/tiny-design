@@ -24,3 +24,8 @@ html[data-tiny-theme='dark'] {
     @include generate-theme-vars($dark-theme);
   }
 }
+
+// ConfigProvider token wrapper — transparent to layout
+.ty-config-provider {
+  display: contents;
+}

@@ -2,8 +2,8 @@
 
 .#{$prefix}-notification {
   position: relative;
-  padding: 16px 24px;
-  border-radius: 3px;
+  padding: var(--ty-notification-padding);
+  border-radius: var(--ty-notification-border-radius);
   color: var(--ty-color-text-secondary);
   font-size: var(--ty-font-size-base);
   box-shadow: var(--ty-shadow-modal);
@@ -21,14 +21,14 @@
 
     &_top-right,
     &_bottom-right {
-      right: -($notification-width + $notification-margin);
-      margin-right: $notification-margin;
+      right: calc(-1 * (var(--ty-notification-width) + var(--ty-notification-margin)));
+      margin-right: var(--ty-notification-margin);
     }
 
     &_top-left,
     &_bottom-left {
-      left: -($notification-width + $notification-margin);
-      margin-left: $notification-margin;
+      left: calc(-1 * (var(--ty-notification-width) + var(--ty-notification-margin)));
+      margin-left: var(--ty-notification-margin);
     }
   }
 
@@ -55,7 +55,7 @@
     padding-right: 24px;
     margin-bottom: 5px;
     color: var(--ty-color-text);
-    font-size: 16px;
+    font-size: var(--ty-notification-title-font-size);
     line-height: 24px;
   }
 

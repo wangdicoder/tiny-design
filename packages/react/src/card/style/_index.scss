@@ -5,12 +5,12 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  border-radius: var(--ty-border-radius);
+  border-radius: var(--ty-card-border-radius, var(--ty-border-radius));
   transition: all 0.3s;
   background-color: var(--ty-card-bg);
 
   & > img:first-child {
-    border-radius: var(--ty-border-radius) var(--ty-border-radius) 0 0;
+    border-radius: var(--ty-card-border-radius, var(--ty-border-radius)) var(--ty-card-border-radius, var(--ty-border-radius)) 0 0;
   }
 
   &_outlined {
@@ -43,11 +43,11 @@
     justify-content: space-between;
     padding: $card-header-padding;
     color: var(--ty-card-header-color);
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: var(--ty-card-header-font-weight);
+    font-size: var(--ty-card-header-font-size);
     background: transparent;
     border-bottom: 1px solid var(--ty-card-border);
-    border-radius: var(--ty-border-radius) var(--ty-border-radius) 0 0;
+    border-radius: var(--ty-card-border-radius, var(--ty-border-radius)) var(--ty-card-border-radius, var(--ty-border-radius)) 0 0;
   }
 
   &__body {
