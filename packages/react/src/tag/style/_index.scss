@@ -11,7 +11,7 @@ $tag-status-colors: success, info, warning, danger;
   padding: 3px 7px;
   font-size: 12px;
   border: 1px solid var(--ty-tag-border);
-  border-radius: $tag-border-radius;
+  border-radius: var(--ty-border-radius);
   color: var(--ty-color-text);
   background: var(--ty-tag-bg);
 

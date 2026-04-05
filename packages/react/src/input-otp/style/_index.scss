@@ -13,26 +13,26 @@
     height: 36px;
     text-align: center;
     padding: 0;
-    font-size: $input-md-font-size;
-    border-radius: $input-border-radius;
+    font-size: var(--ty-font-size-base);
+    border-radius: var(--ty-border-radius);
     caret-color: currentcolor;
 
     &_sm {
       width: 28px;
       height: 28px;
-      font-size: $input-sm-font-size;
+      font-size: var(--ty-font-size-sm);
     }
 
     &_md {
       width: 36px;
       height: 36px;
-      font-size: $input-md-font-size;
+      font-size: var(--ty-font-size-base);
     }
 
     &_lg {
       width: 44px;
       height: 44px;
-      font-size: $input-lg-font-size;
+      font-size: var(--ty-font-size-lg);
     }
 
     &_disabled {

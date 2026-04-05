@@ -4,7 +4,7 @@ Tiny UI provides three ways to customise the look and feel:
 
 1. **Theme Editor** — a visual, no-code tool for real-time theming (great for exploration and quick customisation).
 2. **Design tokens** — CSS custom properties that power light and dark mode. These are the runtime values every component reads.
-3. **SCSS variables** — compile-time variables (sizes, font stacks, border radii, etc.) that can be overridden when you build your own stylesheet.
+3. **SCSS constants** — compile-time structural constants (padding, transitions, arrow sizes, etc.) that can be overridden when you build your own stylesheet.
 
 ## Theme Editor
 
@@ -14,7 +14,7 @@ The built-in [Theme Editor](/theme/theme-editor) lets you visually customise des
 - Adjust primary, success, warning, danger, and info colours, background, text, and border colours.
 - Tweak typography (font size, line height, font weight) and details (border radius, spacing, sizing).
 - Preview changes live on real components.
-- Export your customised tokens as CSS or SCSS to use in your project.
+- Export your customised tokens as CSS or JSON to use in your project.
 
 Changes are applied instantly via CSS custom properties — no rebuild required.
 
@@ -55,13 +55,23 @@ The hook returns:
 
 ## Design tokens (CSS custom properties)
 
-Every colour, shadow, and visual state is exposed as a `--ty-*` CSS custom property on `:root`. You can override any token in your own stylesheet:
+Every colour, shadow, and visual state is exposed as a `--ty-*` CSS custom property on `:root`. This is the **primary way** to customise Tiny UI. You can override any token in your own stylesheet:
 
 ```css
 :root {
   --ty-color-primary: #007bff;
   --ty-color-primary-hover: #3d9bff;
   --ty-color-primary-active: #0062d6;
+}
+```
+
+For dark mode overrides, target the dark theme selector:
+
+```css
+html[data-tiny-theme='dark'] {
+  --ty-color-primary: #3d9bff;
+  --ty-color-primary-hover: #66b3ff;
+  --ty-color-primary-active: #007bff;
 }
 ```
 
@@ -76,16 +86,21 @@ Every colour, shadow, and visual state is exposed as a `--ty-*` CSS custom prope
 | `--ty-color-text` | `rgba(0,0,0,0.85)` | Primary text colour |
 | `--ty-color-text-secondary` | `rgba(0,0,0,0.65)` | Secondary text colour |
 | `--ty-color-border` | `#d9d9d9` | Default border colour |
+| `--ty-border-radius` | `2px` | Global border radius |
+| `--ty-font-size-base` | `1rem` | Base font size |
+| `--ty-height-sm` | `24px` | Small control height |
+| `--ty-height-md` | `32px` | Medium control height |
+| `--ty-height-lg` | `42px` | Large control height |
 
-The full list of tokens can be found in the source:
+Every component also has its own tokens for fine-grained control. For example, Button uses `--ty-btn-default-bg`, `--ty-btn-default-color`, etc. The full list of tokens can be found in the source:
 - [Light theme tokens](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/themes/_light.scss)
 - [Dark theme tokens](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/themes/_dark.scss)
 
-## SCSS variables
+## SCSS constants
 
-If you import Tiny UI's SCSS source instead of the pre-built CSS, you can override compile-time variables such as sizes, spacing, font stacks, and border radii. Every variable uses the `!default` flag, so your overrides take precedence.
+If you import Tiny UI's SCSS source instead of the pre-built CSS, you can override compile-time structural constants such as padding, transitions, and arrow sizes. These are values that don't need to change at runtime.
 
-> **What's `!default`?** A Sass variable with `!default` is only assigned if it hasn't already been defined. By declaring your value *before* importing Tiny UI's styles, your value wins.
+Every constant uses the `!default` flag, so your overrides take precedence.
 
 ### 1. Install Sass
 
@@ -95,13 +110,13 @@ $ npm install sass --save-dev
 
 ### 2. Create your overrides file
 
-Create a file, e.g. `theme-variables.scss`. Your overrides **must come before** the Tiny UI import:
+Create a file, e.g. `theme-overrides.scss`. Your overrides **must come before** the Tiny UI import:
 
 ```scss
-// Your overrides
-$primary-color: #007bff;
-$border-radius: 4px;
-$font-size-base: 14px;
+// Override structural constants
+$btn-padding-md: 0 20px;
+$card-body-padding: 20px;
+$tooltip-arrow-size: 6px;
 
 // Import Tiny UI styles (applies your overrides via !default)
 @use "@tiny-design/react/es/style/index" as *;
@@ -110,32 +125,27 @@ $font-size-base: 14px;
 ### 3. Import in your entry file
 
 ```js
-import './theme-variables.scss';
+import './theme-overrides.scss';
 ```
 
-The full list of SCSS variables can be found in [_variables.scss](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/_variables.scss).
+The full list of SCSS constants can be found in [_constants.scss](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/_constants.scss).
 
-Some commonly overridden variables:
+Some commonly overridden constants:
 
 ```scss
-// Color
-$primary-color: #6e41bf !default;
+// Button
+$btn-padding-sm: 0 10px !default;
+$btn-padding-md: 0 15px !default;
+$btn-padding-lg: 0 28px !default;
 
-// Font
-$font-size-base: 1rem !default;
-$font-size-lg: $font-size-base * 1.25 !default;
-$font-size-sm: $font-size-base * 0.875 !default;
-$font-weight: 400 !default;
+// Card
+$card-header-padding: 13px 16px !default;
+$card-body-padding: 16px !default;
 
-// Border
-$border-radius: 2px !default;
-$border-width: 1px !default;
-$border-color: $gray-300 !default;
-
-// Component sizes
-$height-sm: 24px !default;
-$height-md: 32px !default;
-$height-lg: 42px !default;
+// Notification
+$notification-width: 380px !default;
 ```
 
-Please report an issue if the existing list of variables is not enough for you.
+> **Note:** Colours, font sizes, border radii, shadows, and all other visual tokens should be customised via CSS custom properties (see above), not SCSS variables. SCSS constants are only for structural values like padding and sizing.
+
+Please report an issue if the existing list of tokens or constants is not enough for you.

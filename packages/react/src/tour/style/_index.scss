@@ -55,7 +55,7 @@ $arrow-size: 8px;
   // Panel
   &__panel {
     position: relative;
-    border-radius: $popover-border-radius;
+    border-radius: var(--ty-border-radius);
     box-shadow: var(--ty-shadow-modal);
     max-width: 360px;
     min-width: 260px;
@@ -173,7 +173,7 @@ $arrow-size: 8px;
 
     img {
       max-width: 100%;
-      border-radius: $popover-border-radius $popover-border-radius 0 0;
+      border-radius: var(--ty-border-radius) var(--ty-border-radius) 0 0;
     }
   }
 

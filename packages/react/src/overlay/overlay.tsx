@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import Portal from '../portal';
 import Transition from '../transition';
 import { ConfigContext } from '../config-provider/config-context';
+import { resolveTargetContainer } from '../config-provider/container-utils';
+import { acquireScrollLock } from '../config-provider/scroll-lock';
 import { getPrefixCls } from '../_utils/general';
 import { OverlayProps } from './types';
-
-let scrollLockCount = 0;
 
 const Overlay = (props: OverlayProps): JSX.Element => {
   const {
@@ -30,20 +30,12 @@ const Overlay = (props: OverlayProps): JSX.Element => {
   const nodeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isShow) {
-      scrollLockCount++;
-      document.body.style.overflow = 'hidden';
+    if (!isShow) {
+      return undefined;
     }
-    return () => {
-      if (isShow) {
-        scrollLockCount--;
-        if (scrollLockCount <= 0) {
-          scrollLockCount = 0;
-          document.body.style.overflow = '';
-        }
-      }
-    };
-  }, [isShow]);
+
+    return acquireScrollLock(resolveTargetContainer(configContext));
+  }, [configContext, isShow]);
 
   return (
     <Portal>

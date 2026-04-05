@@ -4,7 +4,7 @@ Tiny UI 提供三种方式来定制外观：
 
 1. **主题编辑器** — 一个可视化的实时主题工具，无需编写代码（非常适合探索和快速定制）。
 2. **设计令牌（Design tokens）** — 驱动亮色/暗色模式的 CSS 自定义属性，所有组件在运行时读取这些值。
-3. **SCSS 变量** — 编译时变量（尺寸、字体、圆角等），可在构建自定义样式表时覆盖。
+3. **SCSS 常量** — 编译时结构常量（内边距、过渡动画、箭头尺寸等），可在构建自定义样式表时覆盖。
 
 ## 主题编辑器
 
@@ -14,7 +14,7 @@ Tiny UI 提供三种方式来定制外观：
 - 调整主色、成功色、警告色、危险色和信息色，以及背景色、文本色和边框色。
 - 调整排版（字号、行高、字重）和细节（圆角、间距、尺寸）。
 - 在真实组件上实时预览更改效果。
-- 导出自定义的令牌为 CSS 或 SCSS，在你的项目中使用。
+- 导出自定义的令牌为 CSS 或 JSON，在你的项目中使用。
 
 更改通过 CSS 自定义属性即时生效 — 无需重新构建。
 
@@ -55,13 +55,23 @@ const App = () => {
 
 ## 设计令牌（CSS 自定义属性）
 
-所有颜色、阴影和视觉状态都以 `--ty-*` CSS 自定义属性的形式暴露在 `:root` 上。你可以在自己的样式表中覆盖任意令牌：
+所有颜色、阴影和视觉状态都以 `--ty-*` CSS 自定义属性的形式暴露在 `:root` 上。这是定制 Tiny UI 的**主要方式**。你可以在自己的样式表中覆盖任意令牌：
 
 ```css
 :root {
   --ty-color-primary: #007bff;
   --ty-color-primary-hover: #3d9bff;
   --ty-color-primary-active: #0062d6;
+}
+```
+
+暗色模式下的覆盖，使用暗色主题选择器：
+
+```css
+html[data-tiny-theme='dark'] {
+  --ty-color-primary: #3d9bff;
+  --ty-color-primary-hover: #66b3ff;
+  --ty-color-primary-active: #007bff;
 }
 ```
 
@@ -76,16 +86,21 @@ const App = () => {
 | `--ty-color-text` | `rgba(0,0,0,0.85)` | 主文本色 |
 | `--ty-color-text-secondary` | `rgba(0,0,0,0.65)` | 次要文本色 |
 | `--ty-color-border` | `#d9d9d9` | 默认边框色 |
+| `--ty-border-radius` | `2px` | 全局圆角 |
+| `--ty-font-size-base` | `1rem` | 基础字号 |
+| `--ty-height-sm` | `24px` | 小尺寸控件高度 |
+| `--ty-height-md` | `32px` | 中尺寸控件高度 |
+| `--ty-height-lg` | `42px` | 大尺寸控件高度 |
 
-完整的令牌列表请参考源码：
+每个组件也有自己的令牌，用于细粒度控制。例如，Button 使用 `--ty-btn-default-bg`、`--ty-btn-default-color` 等。完整的令牌列表请参考源码：
 - [亮色主题令牌](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/themes/_light.scss)
 - [暗色主题令牌](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/themes/_dark.scss)
 
-## SCSS 变量
+## SCSS 常量
 
-如果你引入的是 Tiny UI 的 SCSS 源文件而非预编译的 CSS，可以覆盖编译时变量，如尺寸、间距、字体和圆角等。每个变量都使用了 `!default` 标志，因此你的覆盖值会优先生效。
+如果你引入的是 Tiny UI 的 SCSS 源文件而非预编译的 CSS，可以覆盖编译时结构常量，如内边距、过渡动画和箭头尺寸。这些是不需要在运行时变化的值。
 
-> **什么是 `!default`？** 带有 `!default` 的 Sass 变量仅在尚未定义时才会赋值。在引入 Tiny UI 样式*之前*声明你的值，你的值就会生效。
+每个常量都使用了 `!default` 标志，因此你的覆盖值会优先生效。
 
 ### 1. 安装 Sass
 
@@ -95,13 +110,13 @@ $ npm install sass --save-dev
 
 ### 2. 创建覆盖文件
 
-创建一个文件，例如 `theme-variables.scss`。你的覆盖值**必须写在** Tiny UI 引入语句之前：
+创建一个文件，例如 `theme-overrides.scss`。你的覆盖值**必须写在** Tiny UI 引入语句之前：
 
 ```scss
-// 你的覆盖值
-$primary-color: #007bff;
-$border-radius: 4px;
-$font-size-base: 14px;
+// 覆盖结构常量
+$btn-padding-md: 0 20px;
+$card-body-padding: 20px;
+$tooltip-arrow-size: 6px;
 
 // 引入 Tiny UI 样式（通过 !default 应用你的覆盖值）
 @use "@tiny-design/react/es/style/index" as *;
@@ -110,32 +125,27 @@ $font-size-base: 14px;
 ### 3. 在入口文件中引入
 
 ```js
-import './theme-variables.scss';
+import './theme-overrides.scss';
 ```
 
-完整的 SCSS 变量列表请参考 [_variables.scss](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/_variables.scss)。
+完整的 SCSS 常量列表请参考 [_constants.scss](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/_constants.scss)。
 
-以下是一些常用的可覆盖变量：
+以下是一些常用的可覆盖常量：
 
 ```scss
-// 颜色
-$primary-color: #6e41bf !default;
+// 按钮
+$btn-padding-sm: 0 10px !default;
+$btn-padding-md: 0 15px !default;
+$btn-padding-lg: 0 28px !default;
 
-// 字体
-$font-size-base: 1rem !default;
-$font-size-lg: $font-size-base * 1.25 !default;
-$font-size-sm: $font-size-base * 0.875 !default;
-$font-weight: 400 !default;
+// 卡片
+$card-header-padding: 13px 16px !default;
+$card-body-padding: 16px !default;
 
-// 边框
-$border-radius: 2px !default;
-$border-width: 1px !default;
-$border-color: $gray-300 !default;
-
-// 组件尺寸
-$height-sm: 24px !default;
-$height-md: 32px !default;
-$height-lg: 42px !default;
+// 通知
+$notification-width: 380px !default;
 ```
 
-如果现有的变量列表无法满足你的需求，请提交 issue 反馈。
+> **注意：** 颜色、字号、圆角、阴影等所有视觉令牌应通过 CSS 自定义属性定制（见上方），而非 SCSS 变量。SCSS 常量仅用于内边距、尺寸等结构性值。
+
+如果现有的令牌或常量列表无法满足你的需求，请提交 issue 反馈。

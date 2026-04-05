@@ -1,0 +1,82 @@
+// Static structural constants — bridged to CSS custom properties.
+// These values do not change between themes.
+// The var() references allow runtime customization while
+// maintaining backward compatibility with existing SCSS usage.
+
+// Alert
+$alert-border-radius: var(--ty-alert-border-radius) !default;
+
+// Avatar
+$avatar-border-radius: var(--ty-avatar-border-radius) !default;
+
+// Badge
+$badge-font-size: var(--ty-badge-font-size) !default;
+$badge-size: var(--ty-badge-size) !default;
+$badge-dot-size: var(--ty-badge-dot-size) !default;
+
+// Button
+$btn-padding-sm: var(--ty-btn-padding-sm) !default;
+$btn-padding-md: var(--ty-btn-padding-md) !default;
+$btn-padding-lg: var(--ty-btn-padding-lg) !default;
+$btn-loading-opacity: var(--ty-btn-loading-opacity) !default;
+$btn-transition: var(--ty-btn-transition) !default;
+
+// Card
+$card-header-padding: var(--ty-card-header-padding) !default;
+$card-body-padding: var(--ty-card-body-padding) !default;
+$card-footer-padding: var(--ty-card-footer-padding) !default;
+
+// Description
+$description-sm-padding-vt: var(--ty-description-sm-padding-vt) !default;
+$description-md-padding-vt: var(--ty-description-md-padding-vt) !default;
+$description-lg-padding-vt: var(--ty-description-lg-padding-vt) !default;
+$description-sm-padding-hr: var(--ty-description-sm-padding-hr) !default;
+$description-md-padding-hr: var(--ty-description-md-padding-hr) !default;
+$description-lg-padding-hr: var(--ty-description-lg-padding-hr) !default;
+
+// Input
+$input-sm-padding: var(--ty-input-sm-padding) !default;
+$input-md-padding: var(--ty-input-md-padding) !default;
+$input-lg-padding: var(--ty-input-lg-padding) !default;
+
+// Menu
+$menu-item-padding-vertical: var(--ty-menu-item-padding-vertical) !default;
+
+// Native Select
+$native-select-sm-padding: var(--ty-native-select-sm-padding) !default;
+$native-select-md-padding: var(--ty-native-select-md-padding) !default;
+$native-select-lg-padding: var(--ty-native-select-lg-padding) !default;
+
+// Notification
+$notification-width: var(--ty-notification-width) !default;
+$notification-margin: var(--ty-notification-margin) !default;
+
+// Popover
+$popover-arrow-size: var(--ty-popover-arrow-size) !default;
+
+// Select
+$select-selected-font-weight: var(--ty-select-selected-font-weight) !default;
+$select-dropdown-max-height: var(--ty-select-dropdown-max-height) !default;
+$select-dropdown-shadow: var(--ty-select-dropdown-shadow) !default;
+
+// Slider
+$slider-size: var(--ty-slider-size) !default;
+$slider-track-size: var(--ty-slider-track-size) !default;
+
+// Steps
+$steps-title-font-size: var(--ty-steps-title-font-size) !default;
+
+// Strength Indicator
+$strength-indicator-border-radius: var(--ty-strength-indicator-border-radius) !default;
+
+// Switch
+$switch-md-font-size: var(--ty-switch-md-font-size) !default;
+$switch-sm-font-size: var(--ty-switch-sm-font-size) !default;
+$switch-lg-font-size: var(--ty-switch-lg-font-size) !default;
+
+// Textarea
+$textarea-padding: var(--ty-textarea-padding) !default;
+
+// Tooltip
+$tooltip-arrow-size: var(--ty-tooltip-arrow-size) !default;
+$tooltip-content-padding: var(--ty-tooltip-content-padding) !default;

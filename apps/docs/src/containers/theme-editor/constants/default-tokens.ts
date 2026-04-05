@@ -6,7 +6,7 @@ export interface TokenDef {
   labelZh: string;
   type: TokenType;
   defaultValue: string;
-  scssVar?: string;
+
   options?: { label: string; value: string }[];
   min?: number;
   max?: number;
@@ -22,7 +22,7 @@ export const COLOR_TOKENS: TokenDef[] = [
     labelZh: '主色',
     type: 'color',
     defaultValue: '#6e41bf',
-    scssVar: '$primary-color',
+
   },
   {
     key: 'color-success',
@@ -30,7 +30,7 @@ export const COLOR_TOKENS: TokenDef[] = [
     labelZh: '成功色',
     type: 'color',
     defaultValue: '#52c41a',
-    scssVar: '$success-color',
+
   },
   {
     key: 'color-warning',
@@ -38,7 +38,7 @@ export const COLOR_TOKENS: TokenDef[] = [
     labelZh: '警告色',
     type: 'color',
     defaultValue: '#ff9800',
-    scssVar: '$warning-color',
+
   },
   {
     key: 'color-danger',
@@ -46,7 +46,7 @@ export const COLOR_TOKENS: TokenDef[] = [
     labelZh: '危险色',
     type: 'color',
     defaultValue: '#f44336',
-    scssVar: '$danger-color',
+
   },
   {
     key: 'color-info',
@@ -54,7 +54,7 @@ export const COLOR_TOKENS: TokenDef[] = [
     labelZh: '信息色',
     type: 'color',
     defaultValue: '#1890ff',
-    scssVar: '$info-color',
+
   },
   {
     key: 'color-bg',
@@ -88,7 +88,7 @@ export const FONT_TOKENS: TokenDef[] = [
     type: 'font',
     defaultValue:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
-    scssVar: '$font-family-sans-serif',
+
   },
   {
     key: 'font-family-monospace',
@@ -97,7 +97,7 @@ export const FONT_TOKENS: TokenDef[] = [
     type: 'font',
     defaultValue:
       '"Lucida Console", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-    scssVar: '$font-family-monospace',
+
   },
 ];
 
@@ -109,7 +109,7 @@ export const TYPOGRAPHY_TOKENS: TokenDef[] = [
     labelZh: '基础字号',
     type: 'size',
     defaultValue: '1rem',
-    scssVar: '$font-size-base',
+
     min: 12,
     max: 20,
     step: 1,
@@ -121,7 +121,7 @@ export const TYPOGRAPHY_TOKENS: TokenDef[] = [
     labelZh: '小号字号',
     type: 'size',
     defaultValue: '0.875rem',
-    scssVar: '$font-size-sm',
+
     min: 10,
     max: 16,
     step: 1,
@@ -133,7 +133,7 @@ export const TYPOGRAPHY_TOKENS: TokenDef[] = [
     labelZh: '大号字号',
     type: 'size',
     defaultValue: '1.25rem',
-    scssVar: '$font-size-lg',
+
     min: 14,
     max: 24,
     step: 1,
@@ -145,7 +145,7 @@ export const TYPOGRAPHY_TOKENS: TokenDef[] = [
     labelZh: '字重',
     type: 'select',
     defaultValue: '400',
-    scssVar: '$font-weight',
+
     options: [
       { label: 'Light (300)', value: '300' },
       { label: 'Regular (400)', value: '400' },
@@ -160,7 +160,7 @@ export const TYPOGRAPHY_TOKENS: TokenDef[] = [
     labelZh: '行高',
     type: 'number',
     defaultValue: '1.5',
-    scssVar: '$line-height-base',
+
     min: 1,
     max: 2.5,
     step: 0.1,
@@ -171,7 +171,7 @@ export const TYPOGRAPHY_TOKENS: TokenDef[] = [
     labelZh: '标题字重',
     type: 'select',
     defaultValue: '500',
-    scssVar: '$headings-font-weight',
+
     options: [
       { label: 'Regular (400)', value: '400' },
       { label: 'Medium (500)', value: '500' },
@@ -200,7 +200,7 @@ export const DETAIL_TOKENS: TokenDef[] = [
     labelZh: '圆角',
     type: 'size',
     defaultValue: '2px',
-    scssVar: '$border-radius',
+
     min: 0,
     max: 20,
     step: 1,
@@ -212,7 +212,7 @@ export const DETAIL_TOKENS: TokenDef[] = [
     labelZh: '小尺寸高度',
     type: 'size',
     defaultValue: '24px',
-    scssVar: '$height-sm',
+
     min: 20,
     max: 36,
     step: 2,
@@ -224,7 +224,7 @@ export const DETAIL_TOKENS: TokenDef[] = [
     labelZh: '中尺寸高度',
     type: 'size',
     defaultValue: '32px',
-    scssVar: '$height-md',
+
     min: 28,
     max: 44,
     step: 2,
@@ -236,7 +236,7 @@ export const DETAIL_TOKENS: TokenDef[] = [
     labelZh: '大尺寸高度',
     type: 'size',
     defaultValue: '42px',
-    scssVar: '$height-lg',
+
     min: 36,
     max: 56,
     step: 2,
@@ -269,7 +269,7 @@ export const SPACING_TOKENS: TokenDef[] = [
     labelZh: '基础间距',
     type: 'size',
     defaultValue: '16px',
-    scssVar: '$spacer',
+
     min: 8,
     max: 24,
     step: 2,

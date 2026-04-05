@@ -5,12 +5,12 @@
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  color: var(--ty-color-text);
+  color: var(--ty-input-color, var(--ty-color-text));
   border: 1px solid var(--ty-input-border);
   transition: all 0.3s;
   outline: 0;
-  border-radius: $input-border-radius;
-  font-size: var(--ty-font-size-base);
+  border-radius: var(--ty-input-border-radius, var(--ty-border-radius));
+  font-size: var(--ty-input-font-size, var(--ty-font-size-base));
   background-color: var(--ty-input-bg);
 
   &:hover {

@@ -1,7 +1,7 @@
 @use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-table {
-  color: var(--ty-color-text, #{$gray-800});
+  color: var(--ty-color-text);
   font-size: var(--ty-font-size-base);
 
   &__wrapper {
@@ -15,11 +15,11 @@
   }
 
   &_bordered &__table {
-    border: 1px solid var(--ty-table-border, #{$gray-300});
+    border: 1px solid var(--ty-table-border);
   }
 
   &_bordered &__cell {
-    border: 1px solid var(--ty-table-border, #{$gray-300});
+    border: 1px solid var(--ty-table-border);
   }
 
   // Sizes
@@ -53,9 +53,9 @@
   // Header
   &__thead {
     .#{$prefix}-table__cell {
-      background: var(--ty-table-header-bg, #{$gray-100});
+      background: var(--ty-table-header-bg);
       font-weight: 500;
-      border-bottom: 1px solid var(--ty-table-border, #{$gray-300});
+      border-bottom: 1px solid var(--ty-table-border);
     }
   }
 
@@ -69,7 +69,7 @@
       user-select: none;
 
       &:hover {
-        background: var(--ty-table-hover, #{$gray-200});
+        background: var(--ty-table-hover);
       }
     }
 
@@ -91,15 +91,15 @@
 
   // Rows
   &__tbody &__row {
-    border-bottom: 1px solid var(--ty-table-border, #{$gray-200});
+    border-bottom: 1px solid var(--ty-table-border);
     transition: background 0.2s;
 
     &:hover {
-      background: var(--ty-table-hover, #{$gray-100});
+      background: var(--ty-table-hover);
     }
 
     &_selected {
-      background: var(--ty-table-selected-bg, rgb(110 65 191 / 6%));
+      background: var(--ty-table-selected-bg);
     }
   }
 
@@ -125,10 +125,10 @@
   &__sorter-icon {
     font-size: 8px;
     line-height: 8px;
-    color: var(--ty-color-text-secondary, #{$gray-400});
+    color: var(--ty-color-text-quaternary);
 
     &_active {
-      color: var(--ty-color-primary, #{$primary-color});
+      color: var(--ty-color-primary);
     }
   }
 
@@ -137,7 +137,7 @@
   &__loading-cell {
     text-align: center;
     padding: 32px !important;
-    color: var(--ty-color-text-secondary, #{$gray-500});
+    color: var(--ty-color-text-secondary);
   }
 
 }

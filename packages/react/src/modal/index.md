@@ -23,6 +23,23 @@ When requiring users to interact with the application, but without jumping to a 
 import { Modal } from 'tiny-design';
 ```
 
+## Static Methods
+
+Use `Modal.open()` or `Modal.confirm()` when the dialog needs to be triggered imperatively outside the local React tree.
+
+```jsx
+const instance = Modal.open({
+  header: 'Delete item',
+  children: 'This action cannot be undone.',
+});
+
+instance.update({
+  confirmLoading: true,
+});
+
+instance.destroy();
+```
+
 ## Examples
 
 <Layout>
@@ -109,3 +126,7 @@ Manage multiple modals by ID with `Modal.Provider` and `Modal.useModal`.
 | maskStyle          | inline style of the mask                           | CSSProperties                                     | -         |
 | style              | style object of container                          | CSSProperties                                     | -         |
 | className          | className of container                             | string                                            | -         |
+
+## StaticModalProps
+
+`Modal.open()` and `Modal.confirm()` accept the same props as `Modal`, except `visible` is managed internally.

@@ -94,7 +94,7 @@
   }
 
   &_disabled {
-    color: $gray-700 !important;
+    color: var(--ty-color-text-secondary) !important;
     opacity: .5;
     cursor: not-allowed;
   }

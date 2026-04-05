@@ -18,13 +18,13 @@ describe('extractTokens', () => {
   it('extracts color tokens', () => {
     const result = extractTokens({ variablesPath: VARIABLES_PATH });
 
-    expect(result.colors['primary-color']).toEqual({
-      variable: '$primary-color',
+    expect(result.colors['color-primary']).toEqual({
+      variable: '--ty-color-primary',
       value: '#6e41bf',
     });
 
-    expect(result.colors['info-color']).toEqual({
-      variable: '$info-color',
+    expect(result.colors['color-info']).toEqual({
+      variable: '--ty-color-info',
       value: '#1890ff',
     });
   });
@@ -33,7 +33,7 @@ describe('extractTokens', () => {
     const result = extractTokens({ variablesPath: VARIABLES_PATH });
 
     expect(result.typography['font-size-base']).toEqual({
-      variable: '$font-size-base',
+      variable: '--ty-font-size-base',
       value: '1rem',
     });
   });
@@ -51,6 +51,6 @@ describe('extractTokens', () => {
     const result = extractTokens({ variablesPath: VARIABLES_PATH });
 
     expect(result.shadows).toBeDefined();
-    expect(result.shadows['box-shadow-sm']).toBeDefined();
+    expect(result.shadows['shadow-sm']).toBeDefined();
   });
 });

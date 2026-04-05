@@ -5,7 +5,7 @@
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  color: var(--ty-color-text);
+  color: var(--ty-input-color, var(--ty-color-text));
 
   &__input {
     @include input-default;
@@ -17,7 +17,7 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
-    margin: 0 8px;
+    margin: var(--ty-input-affix-margin);
   }
 
   &__prefix {
@@ -31,8 +31,8 @@
   &__clear-btn {
     display: inline-block;
     color: var(--ty-color-text-quaternary);
-    width: 14px;
-    height: 14px;
+    width: var(--ty-input-clear-size);
+    height: var(--ty-input-clear-size);
     position: relative;
     top: 2px;
     cursor: pointer;
@@ -41,9 +41,9 @@
   &_sm {
     .#{$prefix}-input {
       &__input {
-        font-size: $input-sm-font-size;
-        height: $input-sm-height;
-        line-height: $input-sm-height;
+        font-size: var(--ty-input-font-size-sm, var(--ty-font-size-sm));
+        height: var(--ty-input-height-sm, var(--ty-height-sm));
+        line-height: var(--ty-input-height-sm, var(--ty-height-sm));
       }
 
       &__clear-btn {
@@ -55,9 +55,9 @@
   &_md {
     .#{$prefix}-input {
       &__input {
-        font-size: $input-md-font-size;
-        height: $input-md-height;
-        line-height: $input-md-height;
+        font-size: var(--ty-input-font-size, var(--ty-font-size-base));
+        height: var(--ty-input-height-md, var(--ty-height-md));
+        line-height: var(--ty-input-height-md, var(--ty-height-md));
       }
 
       &__clear-btn {
@@ -69,9 +69,9 @@
   &_lg {
     .#{$prefix}-input {
       &__input {
-        font-size: $input-lg-font-size;
-        height: $input-lg-height;
-        line-height: $input-lg-height;
+        font-size: var(--ty-input-font-size-lg, var(--ty-font-size-lg));
+        height: var(--ty-input-height-lg, var(--ty-height-lg));
+        line-height: var(--ty-input-height-lg, var(--ty-height-lg));
       }
     }
   }
@@ -96,15 +96,15 @@
   }
 
   &_sm {
-    height: $input-sm-height;
+    height: var(--ty-input-height-sm, var(--ty-height-sm));
   }
 
   &_md {
-    height: $input-md-height;
+    height: var(--ty-input-height-md, var(--ty-height-md));
   }
 
   &_lg {
-    height: $input-lg-height;
+    height: var(--ty-input-height-lg, var(--ty-height-lg));
   }
 
   .#{$prefix}-input {
@@ -139,20 +139,20 @@
   box-sizing: border-box;
   text-align: center;
   line-height: 1;
-  border-radius: $input-border-radius;
-  color: var(--ty-color-text);
-  padding: 0 7px;
+  border-radius: var(--ty-input-border-radius, var(--ty-border-radius));
+  color: var(--ty-input-color, var(--ty-color-text));
+  padding: var(--ty-input-addon-padding);
 
   &_sm {
-    font-size: $input-sm-font-size;
+    font-size: var(--ty-input-font-size-sm, var(--ty-font-size-sm));
   }
 
   &_md {
-    font-size: $input-md-font-size;
+    font-size: var(--ty-input-font-size, var(--ty-font-size-base));
   }
 
   &_lg {
-    font-size: $input-lg-font-size;
+    font-size: var(--ty-input-font-size-lg, var(--ty-font-size-lg));
   }
 
   &:first-child {
@@ -171,7 +171,7 @@
     border-radius: 0;
     border-left: 0;
     border-right: 0;
-    padding: 0 7px;
+    padding: var(--ty-input-addon-padding);
   }
 
   &_no-border {

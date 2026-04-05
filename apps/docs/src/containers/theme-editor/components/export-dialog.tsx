@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, Tabs } from '@tiny-design/react';
-import { generateCSS, generateSCSS, generateJSON } from '../utils/export-theme';
+import { generateCSS, generateJSON } from '../utils/export-theme';
 
 interface ExportDialogProps {
   visible: boolean;
@@ -28,7 +28,6 @@ export const ExportDialog = ({
   const [copied, setCopied] = useState(false);
 
   const cssCode = generateCSS(appliedTokens);
-  const scssCode = generateSCSS(seeds);
   const jsonCode = generateJSON(seeds);
 
   const handleCopy = (code: string) => {
@@ -70,9 +69,6 @@ export const ExportDialog = ({
       <Tabs defaultActiveKey="css">
         <Tabs.Panel tab="CSS Variables" tabKey="css">
           {renderBlock(cssCode, 'tiny-theme.css', 'text/css')}
-        </Tabs.Panel>
-        <Tabs.Panel tab="SCSS Variables" tabKey="scss">
-          {renderBlock(scssCode, 'tiny-theme.scss', 'text/x-scss')}
         </Tabs.Panel>
         <Tabs.Panel tab="JSON Tokens" tabKey="json">
           {renderBlock(jsonCode, 'tiny-theme.json', 'application/json')}

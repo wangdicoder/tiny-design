@@ -1,6 +1,7 @@
 import React, { useContext, useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
+import { resolveTargetContainer } from '../config-provider/container-utils';
 import { getPrefixCls } from '../_utils/general';
 import { AnchorLinkProps, AnchorProps } from './types';
 import { AnchorContext } from './anchor-context';
@@ -59,16 +60,17 @@ const Anchor = (props: AnchorProps): JSX.Element => {
   }, [prefixCls, type]);
 
   const getScrollContainer = useCallback((): HTMLElement | Window => {
-    return getContainer ? getContainer() : window;
-  }, [getContainer]);
+    return resolveTargetContainer(configContext, getContainer);
+  }, [configContext, getContainer]);
 
   const scrollToAnchor = useCallback(
     (anchorName: string): void => {
       const element = document.getElementById(anchorName);
       if (!element) return;
 
-      if (getContainer) {
-        const container = getContainer();
+      const scrollContainer = resolveTargetContainer(configContext, getContainer);
+      if (scrollContainer && scrollContainer !== window) {
+        const container = scrollContainer as HTMLElement;
         const containerRect = container.getBoundingClientRect();
         const elementRect = element.getBoundingClientRect();
         container.scrollTo({
@@ -79,7 +81,7 @@ const Anchor = (props: AnchorProps): JSX.Element => {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     },
-    [getContainer]
+    [configContext, getContainer]
   );
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, anchorName: string) => {
@@ -115,7 +117,8 @@ const Anchor = (props: AnchorProps): JSX.Element => {
     const links = linksRef.current;
     if (links.size === 0) return;
 
-    const container = getContainer?.();
+    const targetContainer = resolveTargetContainer(configContext, getContainer);
+    const container = targetContainer && targetContainer !== window ? (targetContainer as HTMLElement) : undefined;
     const containerTop = container
       ? container.getBoundingClientRect().top
       : 0;
@@ -171,7 +174,7 @@ const Anchor = (props: AnchorProps): JSX.Element => {
       }
       return newActiveId;
     });
-  }, [onChange, getContainer, offsetTop]);
+  }, [configContext, onChange, getContainer, offsetTop]);
 
   useEffect(() => {
     updateInk();

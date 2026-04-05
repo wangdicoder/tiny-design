@@ -46,7 +46,7 @@
     .#{$prefix}-descriptions {
       &__body {
         border: 1px solid var(--ty-descriptions-border);
-        border-radius: $description-border-radius;
+        border-radius: var(--ty-border-radius);
       }
 
       &__row {

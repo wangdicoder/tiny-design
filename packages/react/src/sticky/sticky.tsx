@@ -1,6 +1,7 @@
 import { CSSProperties, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
+import { resolveTargetContainer } from '../config-provider/container-utils';
 import { getPrefixCls } from '../_utils/general';
 import { getRect, getScroll, getNodeHeight } from '../_utils/dom';
 import { StickyProps } from './types';
@@ -9,7 +10,7 @@ const Sticky = (props: StickyProps): JSX.Element => {
   const {
     offsetTop,
     offsetBottom,
-    container = () => window,
+    container,
     onChange,
     className,
     style,
@@ -24,7 +25,11 @@ const Sticky = (props: StickyProps): JSX.Element => {
   const stickyRef = useRef<HTMLDivElement | null>(null);
   const [stickyStyle, setStickyStyle] = useState<CSSProperties>({});
   const [placeholderStyle, setPlaceholderStyle] = useState<CSSProperties>({});
-  const [stickyContainer, setStickyContainer] = useState(container());
+  const resolvedContainer = useCallback(
+    () => resolveTargetContainer(configContext, container),
+    [configContext, container]
+  );
+  const [stickyContainer, setStickyContainer] = useState(resolvedContainer());
 
   const getStickyMode = () => {
     const mode = {
@@ -134,20 +139,39 @@ const Sticky = (props: StickyProps): JSX.Element => {
    * If the container is changed, update the listeners
    */
   useEffect(() => {
-    const stickyContainer = container();
+    const stickyContainer = resolvedContainer();
     if (!stickyContainer) {
       return;
     }
     setStickyContainer(stickyContainer);
 
+    const placeholderNode = placeholderRef.current;
+    const stickyNode = stickyRef.current;
+    const resizeObserver =
+      typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver(() => {
+            updateNodePosition();
+          })
+        : null;
+
     stickyContainer.addEventListener('scroll', updateNodePosition);
-    stickyContainer.addEventListener('resize', updateNodePosition);
+    window.addEventListener('resize', updateNodePosition);
+
+    if (resizeObserver) {
+      placeholderNode && resizeObserver.observe(placeholderNode);
+      stickyNode && resizeObserver.observe(stickyNode);
+
+      if (stickyContainer !== window) {
+        resizeObserver.observe(stickyContainer as HTMLElement);
+      }
+    }
 
     return () => {
       stickyContainer.removeEventListener('scroll', updateNodePosition);
-      stickyContainer.removeEventListener('resize', updateNodePosition);
+      window.removeEventListener('resize', updateNodePosition);
+      resizeObserver?.disconnect();
     };
-  }, [updateNodePosition, container]);
+  }, [updateNodePosition, resolvedContainer]);
 
   useEffect(() => {
     updateNodePosition();

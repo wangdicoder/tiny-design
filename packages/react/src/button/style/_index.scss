@@ -14,14 +14,14 @@ $btn-prefix: #{$prefix}-btn;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 50px;
+  min-width: var(--ty-btn-min-width);
   vertical-align: middle;
   text-decoration: none;
   white-space: nowrap;
   user-select: none;
-  border-radius: $btn-border-radius;
+  border-radius: var(--ty-btn-border-radius, var(--ty-border-radius));
   transition: $btn-transition;
-  line-height: $btn-line-height;
+  line-height: var(--ty-btn-line-height, var(--ty-line-height-base));
 
   &__loader {
     @include loader;
@@ -31,7 +31,7 @@ $btn-prefix: #{$prefix}-btn;
     display: inline-block;
     flex-shrink: 0;
     pointer-events: none;
-    line-height: $btn-line-height;
+    line-height: var(--ty-btn-line-height, var(--ty-line-height-base));
     vertical-align: middle;
 
     & + span {
@@ -117,15 +117,15 @@ $btn-prefix: #{$prefix}-btn;
 
   // Sizes
   &_sm {
-    @include btn-size($btn-padding-sm, $btn-font-size-sm, $btn-height-sm);
+    @include btn-size($btn-padding-sm, var(--ty-btn-font-size-sm, var(--ty-font-size-sm)), var(--ty-btn-height-sm, var(--ty-height-sm)));
   }
 
   &_md {
-    @include btn-size($btn-padding-md, $btn-font-size-md, $btn-height-md);
+    @include btn-size($btn-padding-md, var(--ty-btn-font-size, var(--ty-font-size-base)), var(--ty-btn-height-md, var(--ty-height-md)));
   }
 
   &_lg {
-    @include btn-size($btn-padding-lg, $btn-font-size-lg, $btn-height-lg);
+    @include btn-size($btn-padding-lg, var(--ty-btn-font-size-lg, var(--ty-font-size-lg)), var(--ty-btn-height-lg, var(--ty-height-lg)));
   }
 
   &_block {
@@ -137,7 +137,7 @@ $btn-prefix: #{$prefix}-btn;
   }
 
   &_round {
-    border-radius: $btn-height-lg;
+    border-radius: var(--ty-height-lg);
   }
 
   &_loading {
@@ -166,7 +166,7 @@ $btn-prefix: #{$prefix}-btn;
   display: inline-block;
 
   & + .#{$btn-prefix}-group {
-    margin-left: 10px;
+    margin-left: var(--ty-btn-group-gap);
   }
 
   .#{$btn-prefix} {
@@ -183,26 +183,26 @@ $btn-prefix: #{$prefix}-btn;
     }
 
     &:first-child {
-      border-top-left-radius: $btn-border-radius;
-      border-bottom-left-radius: $btn-border-radius;
+      border-top-left-radius: var(--ty-btn-border-radius, var(--ty-border-radius));
+      border-bottom-left-radius: var(--ty-btn-border-radius, var(--ty-border-radius));
     }
 
     &:last-child {
-      border-top-right-radius: $btn-border-radius;
-      border-bottom-right-radius: $btn-border-radius;
+      border-top-right-radius: var(--ty-btn-border-radius, var(--ty-border-radius));
+      border-bottom-right-radius: var(--ty-btn-border-radius, var(--ty-border-radius));
     }
   }
 
   &_round {
     .#{$btn-prefix} {
       &:first-child {
-        border-top-left-radius: 30px;
-        border-bottom-left-radius: 30px;
+        border-top-left-radius: var(--ty-btn-round-radius);
+        border-bottom-left-radius: var(--ty-btn-round-radius);
       }
 
       &:last-child {
-        border-top-right-radius: 30px;
-        border-bottom-right-radius: 30px;
+        border-top-right-radius: var(--ty-btn-round-radius);
+        border-bottom-right-radius: var(--ty-btn-round-radius);
       }
     }
   }
@@ -214,7 +214,7 @@ $btn-prefix: #{$prefix}-btn;
   &_danger {
     .#{$btn-prefix} {
       &:not(:first-child) {
-        border-left-color: rgb(255 255 255 / 20%);
+        border-left-color: var(--ty-btn-group-divider-color);
       }
     }
   }

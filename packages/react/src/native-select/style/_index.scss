@@ -14,7 +14,7 @@ $select-arrow: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcm
   vertical-align: middle;
   box-sizing: border-box;
   border: 1px solid var(--ty-input-border);
-  border-radius: $native-select-border-radius;
+  border-radius: var(--ty-border-radius);
   background-color: var(--ty-native-select-bg);
   background-image: url($select-arrow);
   background-repeat: no-repeat, repeat;
@@ -52,14 +52,14 @@ $select-arrow: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcm
   }
 
   &_sm {
-    @include native-size($native-select-sm-padding, $native-select-sm-font-size);
+    @include native-size($native-select-sm-padding, var(--ty-font-size-sm));
   }
 
   &_md {
-    @include native-size($native-select-md-padding, $native-select-md-font-size);
+    @include native-size($native-select-md-padding, var(--ty-font-size-base));
   }
 
   &_lg {
-    @include native-size($native-select-lg-padding, $native-select-lg-font-size);
+    @include native-size($native-select-lg-padding, var(--ty-font-size-lg));
   }
 }

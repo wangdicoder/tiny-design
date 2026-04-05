@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Overlay from '../index';
+import ConfigProvider from '../../config-provider';
 
 describe('<Overlay />', () => {
   it('should match the snapshot', () => {
@@ -16,5 +17,24 @@ describe('<Overlay />', () => {
   it('should render blurred', () => {
     const { baseElement } = render(<Overlay isShow blurred>Content</Overlay>);
     expect(baseElement.querySelector('.ty-overlay_blurred')).toBeInTheDocument();
+  });
+
+  it('should lock and restore the configured target container', () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    const { unmount } = render(
+      <ConfigProvider getTargetContainer={() => container}>
+        <Overlay isShow>Content</Overlay>
+      </ConfigProvider>
+    );
+
+    expect(container.style.overflow).toBe('hidden');
+    expect(document.body.style.overflow).toBe('');
+
+    unmount();
+
+    expect(container.style.overflow).toBe('');
+    document.body.removeChild(container);
   });
 });

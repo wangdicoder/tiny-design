@@ -3,7 +3,8 @@ import { BaseProps } from '../_utils/props';
 
 export interface CopyToClipboardProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['span']> {
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['span']>, 'onCopy'> {
   text: string;
+  onCopy?: (copied: boolean, text: string) => void;
   children?: React.ReactNode;
 }

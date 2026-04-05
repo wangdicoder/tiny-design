@@ -32,21 +32,21 @@
     display: flex;
     align-items: center;
     width: 100%;
-    border: 1px solid var(--ty-cascader-border, #{$gray-300});
+    border: 1px solid var(--ty-cascader-border);
     border-radius: var(--ty-border-radius);
-    background: var(--ty-cascader-bg, #fff);
+    background: var(--ty-cascader-bg);
     cursor: pointer;
     transition: all 0.2s;
     position: relative;
 
     &:hover {
-      border-color: var(--ty-color-primary, #{$primary-color});
+      border-color: var(--ty-color-primary);
     }
   }
 
   &_open &__selector {
-    border-color: var(--ty-color-primary, #{$primary-color});
-    box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    border-color: var(--ty-color-primary);
+    box-shadow: var(--ty-input-focus-shadow);
   }
 
   &__display {
@@ -54,18 +54,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: var(--ty-color-text, #{$gray-800});
+    color: var(--ty-color-text);
   }
 
   &__placeholder {
-    color: var(--ty-color-text-secondary, #{$gray-400});
+    color: var(--ty-color-text-placeholder);
   }
 
   &__clear {
     position: absolute;
     right: 24px;
     font-size: 12px;
-    color: var(--ty-color-text-secondary, #{$gray-400});
+    color: var(--ty-color-text-tertiary);
     cursor: pointer;
     display: none;
 
@@ -74,7 +74,7 @@
     }
 
     &:hover {
-      color: var(--ty-color-text, #{$gray-600});
+      color: var(--ty-color-text-secondary);
     }
   }
 
@@ -82,7 +82,7 @@
     position: absolute;
     right: 8px;
     font-size: 12px;
-    color: var(--ty-color-text-secondary, #{$gray-400});
+    color: var(--ty-color-text-tertiary);
     transition: transform 0.2s;
     display: inline-flex;
     align-items: center;
@@ -94,7 +94,7 @@
   }
 
   &__dropdown {
-    background: var(--ty-cascader-dropdown-bg, #fff);
+    background: var(--ty-cascader-dropdown-bg);
     border-radius: var(--ty-border-radius);
     box-shadow: $select-dropdown-shadow;
     font-size: var(--ty-font-size-base);
@@ -113,13 +113,13 @@
     overflow-y: auto;
 
     &:not(:last-child) {
-      border-right: 1px solid var(--ty-cascader-border, #{$gray-200});
+      border-right: 1px solid var(--ty-cascader-border);
     }
   }
 
   &__menu-empty {
     padding: 8px 12px;
-    color: var(--ty-color-text-secondary, #{$gray-500});
+    color: var(--ty-color-text-secondary);
     text-align: center;
   }
 
@@ -132,13 +132,13 @@
     transition: background 0.15s;
 
     &:hover:not(&_disabled) {
-      background: var(--ty-cascader-hover, #{$gray-100});
+      background: var(--ty-cascader-hover);
     }
 
     &_active {
-      color: var(--ty-color-primary, #{$primary-color});
+      color: var(--ty-color-primary);
       font-weight: $select-selected-font-weight;
-      background: var(--ty-cascader-selected-bg, rgba($primary-color, 0.06));
+      background: var(--ty-cascader-selected-bg);
     }
 
     &_disabled {
@@ -157,6 +157,6 @@
   &__menu-item-arrow {
     margin-left: 8px;
     font-size: 12px;
-    color: var(--ty-color-text-secondary, #{$gray-400});
+    color: var(--ty-color-text-tertiary);
   }
 }

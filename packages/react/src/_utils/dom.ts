@@ -56,3 +56,27 @@ export const getNodeScrollHeight = (node: Target): number => {
   }
   return (node as HTMLElement).scrollHeight;
 };
+
+export const getScrollParents = (node: HTMLElement | null): Array<HTMLElement | Window> => {
+  if (typeof window === 'undefined' || !node) {
+    return [];
+  }
+
+  const parents = new Set<HTMLElement | Window>();
+  let current: HTMLElement | null = node.parentElement;
+
+  while (current) {
+    const style = window.getComputedStyle(current);
+    const overflow = `${style.overflow}${style.overflowX}${style.overflowY}`;
+
+    if (/(auto|scroll|overlay)/.test(overflow)) {
+      parents.add(current);
+    }
+
+    current = current.parentElement;
+  }
+
+  parents.add(window);
+
+  return Array.from(parents);
+};

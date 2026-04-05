@@ -266,7 +266,13 @@ const Popup = (props: PopupProps): JSX.Element => {
   return (
     <>
       {React.cloneElement(children, elementProps)}
-      {usePortal ? <Portal>{renderContent()}</Portal> : renderContent()}
+      {usePortal ? (
+        <Portal container={configContext.getPopupContainer?.(targetRef.current)}>
+          {renderContent()}
+        </Portal>
+      ) : (
+        renderContent()
+      )}
     </>
   );
 };

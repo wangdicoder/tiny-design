@@ -2,7 +2,7 @@
 
 .#{$prefix}-collapse {
   box-sizing: border-box;
-  border-radius: $collapse-border-radius;
+  border-radius: var(--ty-border-radius);
   color: var(--ty-color-text);
   font-size: 14px;
   border: 1px solid var(--ty-collapse-border);
@@ -15,10 +15,10 @@
     border-bottom: 1px solid var(--ty-collapse-border);
 
     &:last-child {
-      border-radius: 0 0 $collapse-border-radius $collapse-border-radius;
+      border-radius: 0 0 var(--ty-border-radius) var(--ty-border-radius);
 
       .#{$prefix}-collapse-item__content {
-        border-radius: 0 0 $collapse-border-radius $collapse-border-radius;
+        border-radius: 0 0 var(--ty-border-radius) var(--ty-border-radius);
       }
     }
 

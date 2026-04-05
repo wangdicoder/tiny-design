@@ -1,11 +1,11 @@
 @use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-list {
-  color: var(--ty-color-text, #{$gray-800});
+  color: var(--ty-color-text);
   font-size: var(--ty-font-size-base);
 
   &_bordered {
-    border: 1px solid var(--ty-list-border, #{$gray-300});
+    border: 1px solid var(--ty-list-border);
     border-radius: var(--ty-border-radius);
   }
 
@@ -33,11 +33,11 @@
   }
 
   &_bordered &__header {
-    border-bottom: 1px solid var(--ty-list-border, #{$gray-300});
+    border-bottom: 1px solid var(--ty-list-border);
   }
 
   &_bordered &__footer {
-    border-top: 1px solid var(--ty-list-border, #{$gray-300});
+    border-top: 1px solid var(--ty-list-border);
   }
 
   &__body_virtual {
@@ -45,7 +45,7 @@
     will-change: transform;
 
     .#{$prefix}-list-item:last-child {
-      border-bottom: 1px solid var(--ty-list-border, #{$gray-200});
+      border-bottom: 1px solid var(--ty-list-border);
     }
   }
 
@@ -59,13 +59,13 @@
   &__empty {
     padding: 24px;
     text-align: center;
-    color: var(--ty-color-text-secondary, #{$gray-500});
+    color: var(--ty-color-text-secondary);
   }
 
   &__loading {
     padding: 24px;
     text-align: center;
-    color: var(--ty-color-text-secondary, #{$gray-500});
+    color: var(--ty-color-text-secondary);
   }
 
 }
@@ -75,7 +75,7 @@
   align-items: flex-start;
 
   .#{$prefix}-list_split & {
-    border-bottom: 1px solid var(--ty-list-border, #{$gray-200});
+    border-bottom: 1px solid var(--ty-list-border);
 
     &:last-child {
       border-bottom: none;
@@ -106,11 +106,11 @@
   }
 
   &__action {
-    color: var(--ty-color-text-secondary, #{$gray-600});
+    color: var(--ty-color-text-secondary);
     cursor: pointer;
 
     &:hover {
-      color: var(--ty-color-primary, #{$primary-color});
+      color: var(--ty-color-primary);
     }
   }
 
@@ -137,12 +137,12 @@
 
   &__title {
     font-weight: 500;
-    color: var(--ty-color-text, #{$gray-900});
+    color: var(--ty-color-text);
     margin-bottom: 4px;
   }
 
   &__description {
-    color: var(--ty-color-text-secondary, #{$gray-600});
+    color: var(--ty-color-text-secondary);
     font-size: var(--ty-font-size-sm);
   }
 }

@@ -7,3 +7,4 @@ const Progress = {
 };
 
 export default Progress;
+export type * from './types';

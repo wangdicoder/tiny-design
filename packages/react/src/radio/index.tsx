@@ -9,3 +9,4 @@ const DefaultRadio = Radio as IRadio;
 DefaultRadio.Group = RadioGroup;
 
 export default DefaultRadio;
+export type * from './types';

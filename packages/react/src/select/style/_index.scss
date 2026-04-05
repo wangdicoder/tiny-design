@@ -4,7 +4,7 @@
   position: relative;
   display: inline-block;
   width: 100%;
-  font-size: var(--ty-font-size-base);
+  font-size: var(--ty-select-font-size, var(--ty-font-size-base));
   cursor: pointer;
   outline: none;
 
@@ -20,19 +20,19 @@
 
   // Sizes
   &_sm .#{$prefix}-select__selector {
-    min-height: var(--ty-height-sm);
+    min-height: var(--ty-select-height-sm, var(--ty-height-sm));
     font-size: var(--ty-font-size-sm);
     padding: 0 24px 0 8px;
   }
 
   &_md .#{$prefix}-select__selector {
-    min-height: var(--ty-height-md);
-    font-size: var(--ty-font-size-base);
+    min-height: var(--ty-select-height-md, var(--ty-height-md));
+    font-size: var(--ty-select-font-size, var(--ty-font-size-base));
     padding: 0 28px 0 10px;
   }
 
   &_lg .#{$prefix}-select__selector {
-    min-height: var(--ty-height-lg);
+    min-height: var(--ty-select-height-lg, var(--ty-height-lg));
     font-size: var(--ty-font-size-lg);
     padding: 0 32px 0 12px;
   }
@@ -61,8 +61,8 @@
     display: flex;
     align-items: center;
     width: 100%;
-    border: $border-width solid var(--ty-input-border);
-    border-radius: var(--ty-border-radius);
+    border: 1px solid var(--ty-input-border);
+    border-radius: var(--ty-select-border-radius, var(--ty-border-radius));
     background-color: var(--ty-input-bg);
     box-sizing: border-box;
     transition: all 0.3s;
@@ -126,8 +126,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 14px;
-    height: 14px;
+    width: var(--ty-select-suffix-size);
+    height: var(--ty-select-suffix-size);
     color: var(--ty-color-text-quaternary);
   }
 
@@ -171,9 +171,9 @@
     display: inline-flex;
     align-items: center;
     max-width: 100%;
-    height: 22px;
+    height: var(--ty-select-tag-height);
     padding: 0 4px 0 8px;
-    border-radius: var(--ty-border-radius);
+    border-radius: var(--ty-select-border-radius, var(--ty-border-radius));
     background-color: var(--ty-color-fill-secondary);
     font-size: var(--ty-font-size-sm);
     line-height: 20px;
@@ -214,9 +214,9 @@
     box-sizing: border-box;
     overflow: hidden auto;
     z-index: 10;
-    box-shadow: var(--ty-shadow-popup);
-    border-radius: var(--ty-border-radius);
-    font-size: var(--ty-font-size-base);
+    box-shadow: $select-dropdown-shadow;
+    border-radius: var(--ty-select-border-radius, var(--ty-border-radius));
+    font-size: var(--ty-select-font-size, var(--ty-font-size-base));
     max-height: $select-dropdown-max-height;
   }
 
@@ -246,8 +246,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 12px;
-  font-size: 14px;
+  padding: var(--ty-select-option-padding);
+  font-size: var(--ty-select-option-font-size);
   line-height: 22px;
   cursor: pointer;
   color: var(--ty-color-text);
@@ -286,8 +286,8 @@
   &__title {
     font-size: var(--ty-font-size-sm);
     cursor: default;
-    color: $gray-600;
-    padding: 7px 12px;
+    color: var(--ty-color-text-secondary);
+    padding: var(--ty-select-option-padding);
   }
 
   &__list {

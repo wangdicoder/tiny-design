@@ -1,20 +1,19 @@
 import React from 'react';
-import { createRoot, Root } from 'react-dom/client';
 import LoadingBar from './loading-bar';
+import {
+  createStaticHost,
+  destroyStaticHost,
+  renderStaticHost,
+} from '../config-provider/static-host';
 
 let rafId: number | null = null;
 let loadingBar: HTMLElement | null = null;
 let outerDiv: HTMLElement | null = null;
-let root: Root | null = null;
 let width = 0;
 
 const reset = (): void => {
-  if (root) {
-    root.unmount();
-    root = null;
-  }
   if (outerDiv) {
-    document.body.removeChild(outerDiv);
+    destroyStaticHost(outerDiv);
   }
   loadingBar = null;
   outerDiv = null;
@@ -34,18 +33,13 @@ const move = (): void => {
 };
 
 const createComponent = (): void => {
-  outerDiv = document.createElement('div');
-  document.body.appendChild(outerDiv);
-
-  const component = React.createElement(LoadingBar, {
+  outerDiv = createStaticHost();
+  renderStaticHost(outerDiv, React.createElement(LoadingBar, {
     didMount: () => {
       loadingBar = document.getElementById('ty-loading-bar');
       rafId = requestAnimationFrame(move);
     },
-  });
-
-  root = createRoot(outerDiv);
-  root.render(component);
+  }));
 };
 
 const unmountDom = (): void => {
@@ -88,3 +82,5 @@ export default {
   succeed,
   fail,
 };
+
+export type * from './types';

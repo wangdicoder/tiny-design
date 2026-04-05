@@ -1,5 +1,4 @@
 /* stylelint-disable scss/comment-no-empty */
-@use "./variables" as *;
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -53,48 +52,45 @@ main {
 
 %heading {
   margin-top: 0; // 1
-  margin-bottom: $headings-margin-bottom;
-  font-family: $headings-font-family;
-  font-style: $headings-font-style;
-  font-weight: $headings-font-weight;
-  line-height: $headings-line-height;
-  color: $headings-color;
+  margin-bottom: 0.5rem;
+  font-weight: var(--ty-headings-font-weight);
+  line-height: 1.2;
 }
 
 h1 {
   @extend %heading;
 
-  font-size: $h1-font-size;
+  font-size: var(--ty-h1-font-size);
 }
 
 h2 {
   @extend %heading;
 
-  font-size: $h2-font-size;
+  font-size: var(--ty-h2-font-size);
 }
 
 h3 {
   @extend %heading;
 
-  font-size: $h3-font-size;
+  font-size: var(--ty-h3-font-size);
 }
 
 h4 {
   @extend %heading;
 
-  font-size: $h4-font-size;
+  font-size: var(--ty-h4-font-size);
 }
 
 h5 {
   @extend %heading;
 
-  font-size: $h5-font-size;
+  font-size: var(--ty-h5-font-size);
 }
 
 h6 {
   @extend %heading;
 
-  font-size: $h6-font-size;
+  font-size: var(--ty-h6-font-size);
 }
 
 /* Grouping content
@@ -121,12 +117,12 @@ hr {
 a {
   background-color: transparent;
   color: var(--ty-color-primary);
-  text-decoration: $link-decoration;
+  text-decoration: none;
   cursor: pointer;
 
   &:hover {
     color: var(--ty-color-primary-hover);
-    text-decoration: $link-hover-decoration;
+    text-decoration: underline;
   }
 }
 

@@ -108,7 +108,7 @@ $light-theme: (
   input-disabled-bg: #f4f4f5,
   input-disabled-color: #999,
   input-addon-bg: #fafafa,
-  input-focus-shadow: 0 0 0 2px rgba(110, 65, 191, 0.2),
+  input-focus-shadow: 0 0 0 3px rgba(110, 65, 191, 0.2),
   input-focus-border: rgba(110, 65, 191, 0.8),
 
   // ---- Component-specific: Select ----
@@ -262,6 +262,23 @@ $light-theme: (
   picker-cell-disabled-bg: #f5f5f5,
   picker-clear-bg: #fff,
 
+  // ---- Component-specific: Color Picker ----
+  color-picker-bg: #fff,
+  color-picker-border: #dee2e6,
+
+  // ---- Component-specific: List ----
+  list-border: #dee2e6,
+
+  // ---- Component-specific: Speed Dial ----
+  speed-dial-bg: #6e41bf,
+  speed-dial-color: #fff,
+  speed-dial-bg-hover: #5a30a8,
+  speed-dial-action-bg: #fff,
+  speed-dial-action-color: #32325d,
+  speed-dial-action-bg-hover: #f6f9fc,
+  speed-dial-tooltip-bg: #32325d,
+  speed-dial-tooltip-color: #fff,
+
   // ---- Component-specific: Split ----
   split-bar-bg: #f8f8f9,
   split-bar-border: #dcdee2,
@@ -345,8 +362,11 @@ $light-theme: (
   carousel-dot-active-bg: #fff,
 
   // ---- Component-specific: Avatar ----
+  avatar-bg: #ccc,
+  avatar-color: #fff,
   avatar-border: #fff,
   avatar-presence-shadow: 0 0 0 0.1rem #fff,
+  avatar-offline-color: #ced4da,
 
   // ---- Component-specific: BackTop ----
   back-top-bg: rgba(0, 0, 0, 0.3),
@@ -386,6 +406,7 @@ $light-theme: (
   calendar-hover: #f6f9fc,
 
   // ---- Typography ----
+  // stylelint-disable-next-line scss/operator-no-unspaced
   font-family: #{-apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"},
   font-family-monospace: #{lucida console, consolas, monaco, andale mono, ubuntu mono, monospace},
   font-size-base: 1rem,
@@ -414,4 +435,108 @@ $light-theme: (
   chart-3: #52c41a,
   chart-4: #ff9800,
   chart-5: #f44336,
+
+  // ---- Component-specific: Button (structural) ----
+  btn-min-width: 50px,
+  btn-round-radius: 30px,
+  btn-group-gap: 10px,
+  btn-group-divider-color: rgb(255 255 255 / 20%),
+
+  // ---- Component-specific: Input (structural) ----
+  input-affix-margin: 0 8px,
+  input-clear-size: 14px,
+  input-addon-padding: 0 7px,
+
+  // ---- Component-specific: Card (structural) ----
+  card-header-font-size: 16px,
+  card-header-font-weight: 500,
+
+  // ---- Component-specific: Select (structural) ----
+  select-option-padding: 7px 12px,
+  select-option-font-size: 14px,
+  select-tag-height: 22px,
+  select-suffix-size: 14px,
+
+  // ---- Component-specific: Notification (structural) ----
+  notification-padding: 16px 24px,
+  notification-border-radius: 3px,
+  notification-title-font-size: 16px,
+
+  // ---- Structural: Alert ----
+  alert-border-radius: 3px,
+
+  // ---- Structural: Avatar ----
+  avatar-border-radius: 2px,
+
+  // ---- Structural: Badge ----
+  badge-font-size: 12px,
+  badge-size: 18px,
+  badge-dot-size: 6px,
+
+  // ---- Structural: Button ----
+  btn-padding-sm: 0 10px,
+  btn-padding-md: 0 15px,
+  btn-padding-lg: 0 28px,
+  btn-loading-opacity: 0.35,
+  btn-transition: #{color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out},
+
+  // ---- Structural: Card ----
+  card-header-padding: 13px 16px,
+  card-body-padding: 16px,
+  card-footer-padding: 5px 16px 16px,
+
+  // ---- Structural: Description ----
+  description-sm-padding-vt: 8px,
+  description-md-padding-vt: 12px,
+  description-lg-padding-vt: 16px,
+  description-sm-padding-hr: 16px,
+  description-md-padding-hr: 24px,
+  description-lg-padding-hr: 24px,
+
+  // ---- Structural: Input ----
+  input-sm-padding: 0 4px,
+  input-md-padding: 0 6px,
+  input-lg-padding: 0 8px,
+
+  // ---- Structural: Menu ----
+  menu-item-padding-vertical: 15px 20px,
+
+  // ---- Structural: Native Select ----
+  native-select-sm-padding: 3px 25px 3px 7px,
+  native-select-md-padding: 6px 25px 6px 7px,
+  native-select-lg-padding: 9px 25px 9px 7px,
+
+  // ---- Structural: Notification ----
+  notification-width: 380px,
+  notification-margin: 20px,
+
+  // ---- Structural: Popover ----
+  popover-arrow-size: 8px,
+
+  // ---- Structural: Select ----
+  select-selected-font-weight: 600,
+  select-dropdown-max-height: 300px,
+  select-dropdown-shadow: #{0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%)},
+
+  // ---- Structural: Slider ----
+  slider-size: 12px,
+  slider-track-size: 4px,
+
+  // ---- Structural: Steps ----
+  steps-title-font-size: 16px,
+
+  // ---- Structural: Strength Indicator ----
+  strength-indicator-border-radius: 99px,
+
+  // ---- Structural: Switch ----
+  switch-md-font-size: 12px,
+  switch-sm-font-size: 9px,
+  switch-lg-font-size: 14px,
+
+  // ---- Structural: Textarea ----
+  textarea-padding: 5px,
+
+  // ---- Structural: Tooltip ----
+  tooltip-arrow-size: 4px,
+  tooltip-content-padding: 5px 8px,
 );
