@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react';
 import { ConfigContext, ThemeMode } from './config-context';
 import { ConfigProviderProps } from './types';
 import { buildCssVars, ThemeConfig } from './token-utils';
+import { acquireMode, releaseMode, acquireProps, releaseProps } from './global-style-registry';
 import IntlProvider from '../intl-provider';
 
 function isThemeConfig(theme: unknown): theme is ThemeConfig {
@@ -18,29 +19,21 @@ const ConfigProvider = (props: ConfigProviderProps): JSX.Element => {
     [themeConfig]
   );
 
-  // Apply theme mode to <html> attribute, clean up when mode is removed
   useEffect(() => {
-    const html = document.documentElement;
-    if (mode) {
-      html.setAttribute('data-tiny-theme', mode);
-    }
+    if (!mode) return;
+    acquireMode(mode);
     return () => {
-      html.removeAttribute('data-tiny-theme');
+      releaseMode();
     };
   }, [mode]);
 
-  // Apply token overrides as inline styles on <html>, clean up on unmount/change
   useEffect(() => {
     if (!cssVars) return;
-    const html = document.documentElement;
-    const keys = Object.keys(cssVars);
-    for (const key of keys) {
-      html.style.setProperty(key, (cssVars as Record<string, string>)[key]);
-    }
+    const vars = cssVars as Record<string, string>;
+    acquireProps(vars);
+    const keys = Object.keys(vars);
     return () => {
-      for (const key of keys) {
-        html.style.removeProperty(key);
-      }
+      releaseProps(keys);
     };
   }, [cssVars]);
 
