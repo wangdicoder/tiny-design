@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { ConfigContext, ThemeMode } from './config-context';
 import { ConfigProviderProps } from './types';
 import { buildCssVars, ThemeConfig } from './token-utils';
@@ -11,6 +11,7 @@ function isThemeConfig(theme: unknown): theme is ThemeConfig {
 
 const ConfigProvider = (props: ConfigProviderProps): JSX.Element => {
   const { children, theme, locale, ...otherProps } = props;
+  const idRef = useRef(Symbol('ConfigProvider'));
 
   const themeConfig = isThemeConfig(theme) ? theme : undefined;
   const mode = themeConfig ? themeConfig.mode : (theme as ThemeMode | undefined);
@@ -21,19 +22,21 @@ const ConfigProvider = (props: ConfigProviderProps): JSX.Element => {
 
   useEffect(() => {
     if (!mode) return;
-    acquireMode(mode);
+    const id = idRef.current;
+    acquireMode(id, mode);
     return () => {
-      releaseMode();
+      releaseMode(id);
     };
   }, [mode]);
 
   useEffect(() => {
     if (!cssVars) return;
+    const id = idRef.current;
     const vars = cssVars as Record<string, string>;
-    acquireProps(vars);
+    acquireProps(id, vars);
     const keys = Object.keys(vars);
     return () => {
-      releaseProps(keys);
+      releaseProps(id, keys);
     };
   }, [cssVars]);
 

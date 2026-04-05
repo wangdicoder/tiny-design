@@ -1,47 +1,66 @@
 /**
- * Ref-counted registry for global styles and attributes on <html>.
+ * Stack-based registry for global styles and attributes on <html>.
  *
- * Multiple ConfigProvider instances may coexist.  Each one calls acquire()
- * when it applies a value and release() when it unmounts or its deps change.
- * The actual DOM mutation (set / remove) only happens on the first acquire
- * and when the last holder releases.
+ * Multiple ConfigProvider instances may coexist and set overlapping values.
+ * Each provider gets a stable id (Symbol). Values are stacked per-key:
+ * the topmost (last-registered, not-yet-released) entry wins.
+ * When a provider unmounts, the previous value is restored automatically.
  */
 
-// theme-mode ref count
-let modeCount = 0;
+type Entry = { id: symbol; value: string };
 
-export function acquireMode(mode: string): void {
-  modeCount++;
+// ---- theme mode ----
+
+const modeStack: Entry[] = [];
+
+export function acquireMode(id: symbol, mode: string): void {
+  const idx = modeStack.findIndex((e) => e.id === id);
+  if (idx !== -1) modeStack.splice(idx, 1);
+  modeStack.push({ id, value: mode });
   document.documentElement.setAttribute('data-tiny-theme', mode);
 }
 
-export function releaseMode(): void {
-  modeCount = Math.max(0, modeCount - 1);
-  if (modeCount === 0) {
+export function releaseMode(id: symbol): void {
+  const idx = modeStack.findIndex((e) => e.id === id);
+  if (idx !== -1) modeStack.splice(idx, 1);
+  if (modeStack.length > 0) {
+    document.documentElement.setAttribute('data-tiny-theme', modeStack[modeStack.length - 1].value);
+  } else {
     document.documentElement.removeAttribute('data-tiny-theme');
   }
 }
 
-// CSS custom-property ref counts  (key → count)
-const propCounts = new Map<string, number>();
+// ---- CSS custom properties ----
 
-export function acquireProps(vars: Record<string, string>): void {
+const propStacks = new Map<string, Entry[]>();
+
+export function acquireProps(id: symbol, vars: Record<string, string>): void {
   const style = document.documentElement.style;
   for (const [key, value] of Object.entries(vars)) {
-    propCounts.set(key, (propCounts.get(key) ?? 0) + 1);
+    let stack = propStacks.get(key);
+    if (!stack) {
+      stack = [];
+      propStacks.set(key, stack);
+    }
+    const idx = stack.findIndex((e) => e.id === id);
+    if (idx !== -1) stack.splice(idx, 1);
+    stack.push({ id, value });
     style.setProperty(key, value);
   }
 }
 
-export function releaseProps(keys: string[]): void {
+export function releaseProps(id: symbol, keys: string[]): void {
   const style = document.documentElement.style;
   for (const key of keys) {
-    const count = (propCounts.get(key) ?? 1) - 1;
-    if (count <= 0) {
-      propCounts.delete(key);
-      style.removeProperty(key);
+    const stack = propStacks.get(key);
+    if (!stack) continue;
+    const idx = stack.findIndex((e) => e.id === id);
+    if (idx !== -1) stack.splice(idx, 1);
+    if (stack.length > 0) {
+      style.setProperty(key, stack[stack.length - 1].value);
     } else {
-      propCounts.set(key, count);
+      propStacks.delete(key);
+      style.removeProperty(key);
     }
   }
 }
