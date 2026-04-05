@@ -63,6 +63,8 @@ import { ConfigProvider } from 'tiny-design';
 
 Token keys use camelCase and are automatically converted to CSS custom properties. For example, `colorPrimary` becomes `--ty-color-primary`, and `Button.borderRadius` becomes `--ty-btn-border-radius`.
 
+Token overrides are applied as inline styles on the `<html>` element, so they are inherited by all components including portal-rendered UI (modals, tooltips, dropdowns, etc.). Overrides are automatically cleaned up when the ConfigProvider unmounts or when the `theme` prop changes.
+
 ### CSS Custom Property Overrides
 
 You can also customize components directly via CSS without using `ThemeConfig`:

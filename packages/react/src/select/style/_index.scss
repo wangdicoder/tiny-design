@@ -214,7 +214,7 @@
     box-sizing: border-box;
     overflow: hidden auto;
     z-index: 10;
-    box-shadow: var(--ty-shadow-popup);
+    box-shadow: $select-dropdown-shadow;
     border-radius: var(--ty-select-border-radius, var(--ty-border-radius));
     font-size: var(--ty-select-font-size, var(--ty-font-size-base));
     max-height: $select-dropdown-max-height;

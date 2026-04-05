@@ -18,11 +18,31 @@ const ConfigProvider = (props: ConfigProviderProps): JSX.Element => {
     [themeConfig]
   );
 
+  // Apply theme mode to <html> attribute, clean up when mode is removed
   useEffect(() => {
-    if (!mode) return;
     const html = document.documentElement;
-    html.setAttribute('data-tiny-theme', mode);
+    if (mode) {
+      html.setAttribute('data-tiny-theme', mode);
+    }
+    return () => {
+      html.removeAttribute('data-tiny-theme');
+    };
   }, [mode]);
+
+  // Apply token overrides as inline styles on <html>, clean up on unmount/change
+  useEffect(() => {
+    if (!cssVars) return;
+    const html = document.documentElement;
+    const keys = Object.keys(cssVars);
+    for (const key of keys) {
+      html.style.setProperty(key, (cssVars as Record<string, string>)[key]);
+    }
+    return () => {
+      for (const key of keys) {
+        html.style.removeProperty(key);
+      }
+    };
+  }, [cssVars]);
 
   const content = locale ? (
     <IntlProvider locale={locale}>{children}</IntlProvider>
@@ -30,17 +50,9 @@ const ConfigProvider = (props: ConfigProviderProps): JSX.Element => {
     children
   );
 
-  const wrapped = cssVars ? (
-    <div className="ty-config-provider" style={cssVars}>
-      {content}
-    </div>
-  ) : (
-    content
-  );
-
   return (
     <ConfigContext.Provider value={{ theme: mode, locale, ...otherProps }}>
-      {wrapped}
+      {content}
     </ConfigContext.Provider>
   );
 };

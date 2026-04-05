@@ -63,6 +63,8 @@ import { ConfigProvider } from 'tiny-design';
 
 令牌键名使用 camelCase 格式，会自动转换为 CSS 自定义属性。例如 `colorPrimary` 会转换为 `--ty-color-primary`，`Button.borderRadius` 会转换为 `--ty-btn-border-radius`。
 
+令牌覆盖以内联样式的方式应用到 `<html>` 元素上，因此所有组件（包括通过 Portal 渲染的弹窗、提示框、下拉菜单等）都会继承这些覆盖值。当 ConfigProvider 卸载或 `theme` 属性变更时，覆盖值会自动清理。
+
 ### CSS 自定义属性覆盖
 
 也可以直接通过 CSS 自定义属性来定制组件，无需使用 `ThemeConfig`：
