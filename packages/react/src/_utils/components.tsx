@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef, type SVGAttributes } from 'react';
 
 type IconProps = {
   className?: string;
@@ -6,6 +6,12 @@ type IconProps = {
   size?: number | string;
   color?: string;
 };
+
+/** Props compatible with @tiny-design/icons IconProps */
+export interface SvgIconProps extends SVGAttributes<SVGSVGElement> {
+  size?: string | number;
+  color?: string;
+}
 export const ArrowDown = (props: IconProps): React.ReactElement => {
   const { size = 20, color = 'currentcolor', ...otherProps } = props;
   return (
@@ -198,3 +204,45 @@ export const TreeArrow = (props: IconProps): React.ReactElement => {
     </svg>
   );
 };
+
+export const LeftIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
+  const { size = '1em', color = 'currentColor', className, style, ...rest } = props;
+  return (
+    <svg
+      ref={ref}
+      viewBox="0 0 1024 1024"
+      width={size}
+      height={size}
+      fill={color}
+      className={className}
+      style={{ verticalAlign: 'middle', ...style }}
+      {...rest}
+    >
+      <g transform="translate(0, 896) scale(1, -1)">
+        <path d="M724 677.7V755c0 6.7-7.7 10.4-12.9 6.3L260.3 409.2c-16.4-12.8-16.4-37.5 0-50.3l450.8-352.1c5.3-4.1 12.9-0.4 12.9 6.3v77.3c0 4.9-2.3 9.6-6.1 12.6l-360 281 360 281.1c3.8 3 6.1 7.7 6.1 12.6z" />
+      </g>
+    </svg>
+  );
+});
+LeftIcon.displayName = 'LeftIcon';
+
+export const StarFillIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
+  const { size = '1em', color = 'currentColor', className, style, ...rest } = props;
+  return (
+    <svg
+      ref={ref}
+      viewBox="0 0 1024 1024"
+      width={size}
+      height={size}
+      fill={color}
+      className={className}
+      style={{ verticalAlign: 'middle', ...style }}
+      {...rest}
+    >
+      <g transform="translate(0, 896) scale(1, -1)">
+        <path d="M908.1 542.9l-253.9 36.9L540.7 809.9c-3.1 6.3-8.2 11.4-14.5 14.5-15.8 7.8-35 1.3-42.9-14.5L369.8 579.8l-253.9-36.9c-7-1-13.4-4.3-18.3-9.3-12.3-12.7-12.1-32.9 0.6-45.3l183.7-179.1-43.4-252.9c-1.2-6.9-0.1-14.1 3.2-20.3 8.2-15.6 27.6-21.7 43.2-13.4L512 142l227.1-119.4c6.2-3.3 13.4-4.4 20.3-3.2 17.4 3 29.1 19.5 26.1 36.9l-43.4 252.9 183.7 179.1c5 4.9 8.3 11.3 9.3 18.3 2.7 17.5-9.5 33.7-27 36.3z" />
+      </g>
+    </svg>
+  );
+});
+StarFillIcon.displayName = 'StarFillIcon';

@@ -53,10 +53,10 @@
   --ty-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   --ty-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   --ty-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-  --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.12) , 0 6px 16px 0 rgba(0, 0, 0, 0.08) , 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
   --ty-shadow-card: 0 1px 6px rgba(0, 0, 0, 0.12);
   --ty-shadow-modal: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.15) , 0 1px 1px rgba(0, 0, 0, 0.075);
+  --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
   --ty-color-overlay-bg: rgba(0, 0, 0, 0.55);
   --ty-color-overlay-inverted: rgba(255, 255, 255, 0.75);
   --ty-btn-default-color: #32325d;
@@ -82,7 +82,7 @@
   --ty-input-disabled-bg: #f4f4f5;
   --ty-input-disabled-color: #999;
   --ty-input-addon-bg: #fafafa;
-  --ty-input-focus-shadow: 0 0 0 2px rgba(110, 65, 191, 0.2);
+  --ty-input-focus-shadow: 0 0 0 3px rgba(110, 65, 191, 0.2);
   --ty-input-focus-border: rgba(110, 65, 191, 0.8);
   --ty-select-dropdown-bg: #fff;
   --ty-select-option-active-bg: #f5f5f5;
@@ -351,10 +351,10 @@ html[data-tiny-theme=dark] {
   --ty-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
   --ty-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
   --ty-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.5);
-  --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.48) , 0 6px 16px 0 rgba(0, 0, 0, 0.32) , 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
   --ty-shadow-card: 0 1px 6px rgba(0, 0, 0, 0.35);
   --ty-shadow-modal: 0 4px 12px rgba(0, 0, 0, 0.45);
-  --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.05) , 0 1px 1px rgba(0, 0, 0, 0.2);
+  --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 1px rgba(0, 0, 0, 0.2);
   --ty-color-overlay-bg: rgba(0, 0, 0, 0.65);
   --ty-color-overlay-inverted: rgba(50, 50, 50, 0.75);
   --ty-btn-default-color: rgba(255, 255, 255, 0.85);
@@ -380,7 +380,7 @@ html[data-tiny-theme=dark] {
   --ty-input-disabled-bg: #2a2a2a;
   --ty-input-disabled-color: rgba(255, 255, 255, 0.25);
   --ty-input-addon-bg: #262626;
-  --ty-input-focus-shadow: 0 0 0 2px rgba(144, 101, 208, 0.2);
+  --ty-input-focus-shadow: 0 0 0 3px rgba(144, 101, 208, 0.2);
   --ty-input-focus-border: rgba(144, 101, 208, 0.8);
   --ty-select-dropdown-bg: #1f1f1f;
   --ty-select-option-active-bg: #2a2a2a;
@@ -650,10 +650,10 @@ html[data-tiny-theme=dark] {
     --ty-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
     --ty-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
     --ty-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.5);
-    --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.48) , 0 6px 16px 0 rgba(0, 0, 0, 0.32) , 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+    --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
     --ty-shadow-card: 0 1px 6px rgba(0, 0, 0, 0.35);
     --ty-shadow-modal: 0 4px 12px rgba(0, 0, 0, 0.45);
-    --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.05) , 0 1px 1px rgba(0, 0, 0, 0.2);
+    --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 1px rgba(0, 0, 0, 0.2);
     --ty-color-overlay-bg: rgba(0, 0, 0, 0.65);
     --ty-color-overlay-inverted: rgba(50, 50, 50, 0.75);
     --ty-btn-default-color: rgba(255, 255, 255, 0.85);
@@ -679,7 +679,7 @@ html[data-tiny-theme=dark] {
     --ty-input-disabled-bg: #2a2a2a;
     --ty-input-disabled-color: rgba(255, 255, 255, 0.25);
     --ty-input-addon-bg: #262626;
-    --ty-input-focus-shadow: 0 0 0 2px rgba(144, 101, 208, 0.2);
+    --ty-input-focus-shadow: 0 0 0 3px rgba(144, 101, 208, 0.2);
     --ty-input-focus-border: rgba(144, 101, 208, 0.8);
     --ty-select-dropdown-bg: #1f1f1f;
     --ty-select-option-active-bg: #2a2a2a;
@@ -893,6 +893,7 @@ html[data-tiny-theme=dark] {
     --ty-chart-5: #d32029;
   }
 }
+
 /* stylelint-disable scss/comment-no-empty */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /**
@@ -901,10 +902,12 @@ html[data-tiny-theme=dark] {
  */
 html {
   font-size: 14px;
-  line-height: 1.15; /* 1 */
+  line-height: 1.15;
+  /* 1 */
   -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-          text-size-adjust: 100%; /* 2 */
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* 2 */
 }
 
 /* Sections
@@ -928,7 +931,12 @@ main {
   display: block;
 }
 
-h6, h5, h4, h3, h2, h1 {
+h6,
+h5,
+h4,
+h3,
+h2,
+h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -966,9 +974,12 @@ h6 {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  box-sizing: content-box; /* 1 */
-  height: 0; /* 1 */
-  overflow: visible; /* 2 */
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
 }
 
 /* Text-level semantics
@@ -982,12 +993,14 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
 a:hover {
   color: var(--ty-color-primary-hover);
   text-decoration: underline;
 }
 
-a:not([href]), a:not([href]):hover {
+a:not([href]),
+a:not([href]):hover {
   text-decoration: none;
 }
 
@@ -996,10 +1009,13 @@ a:not([href]), a:not([href]):hover {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 abbr[title] {
-  border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2 */
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
 }
 
 /**
@@ -1018,8 +1034,10 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--ty-font-family-monospace); /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: var(--ty-font-family-monospace);
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 /**
@@ -1069,10 +1087,14 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
 }
 
 /**
@@ -1080,7 +1102,8 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -1089,7 +1112,8 @@ input { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -1101,8 +1125,8 @@ button,
 [type=reset],
 [type=submit] {
   -webkit-appearance: button;
-     -moz-appearance: button;
-          appearance: button;
+  -moz-appearance: button;
+  appearance: button;
 }
 
 /**
@@ -1140,12 +1164,18 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  box-sizing: border-box; /* 1 */
-  color: inherit; /* 2 */
-  display: table; /* 1 */
-  max-width: 100%; /* 1 */
-  padding: 0; /* 3 */
-  white-space: normal; /* 1 */
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
 }
 
 /**
@@ -1168,8 +1198,10 @@ textarea {
  */
 [type=checkbox],
 [type=radio] {
-  box-sizing: border-box; /* 1 */
-  padding: 0; /* 2 */
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
 }
 
 /**
@@ -1186,9 +1218,11 @@ textarea {
  */
 [type=search] {
   -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
+  -moz-appearance: textfield;
+  appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
 }
 
 /**
@@ -1196,7 +1230,7 @@ textarea {
  */
 [type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
 }
 
 /**
@@ -1205,8 +1239,10 @@ textarea {
  */
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
-          appearance: button; /* 1 */
-  font: inherit; /* 2 */
+  appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
 }
 
 /* Interactive
@@ -1245,23 +1281,28 @@ template {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
+
 @keyframes ty-rotate-reverse {
   from {
     transform: rotate(0);
   }
+
   to {
     transform: rotate(-360deg);
   }
 }
+
 @keyframes ty-processing {
   0% {
     transform: scale(0.8);
     opacity: 0.5;
   }
+
   100% {
     transform: scale(2.8);
     opacity: 0;

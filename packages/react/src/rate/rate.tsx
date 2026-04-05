@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import classNames from 'classnames';
-import { IconStarFill } from '@tiny-design/icons';
+import { StarFillIcon } from '../_utils/components';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { RateProps } from './types';
@@ -10,7 +10,7 @@ const Rate = React.forwardRef<HTMLUListElement, RateProps>(
   (props: RateProps, ref): JSX.Element => {
     const {
       color = '#FADB14',
-      character = <IconStarFill size={20} />,
+      character = <StarFillIcon size={20} />,
       clearable = true,
       half = false,
       count = 5,

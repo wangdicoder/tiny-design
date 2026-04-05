@@ -1,11 +1,11 @@
 import { forwardRef, type ForwardRefExoticComponent, type RefAttributes } from 'react';
-import type { IconProps } from '@tiny-design/icons';
+import type { SvgIconProps } from '../_utils/components';
 import classNames from 'classnames';
 
-type IconComponent = ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
+type IconComponent = ForwardRefExoticComponent<SvgIconProps & RefAttributes<SVGSVGElement>>;
 
 export function withSpin(Icon: IconComponent): IconComponent {
-  const SpinIcon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
+  const SpinIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
     const { className, ...rest } = props;
 
     return (
