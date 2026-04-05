@@ -319,9 +319,6 @@ importers:
       '@popperjs/core':
         specifier: ^2.11.4
         version: 2.11.8
-      '@tiny-design/icons':
-        specifier: workspace:*
-        version: link:../icons
       '@tiny-design/tokens':
         specifier: workspace:*
         version: link:../tokens
@@ -338,6 +335,9 @@ importers:
       '@testing-library/react':
         specifier: ^14.0.0
         version: 14.3.1(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tiny-design/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@types/jest':
         specifier: ^29.0.0
         version: 29.5.14
