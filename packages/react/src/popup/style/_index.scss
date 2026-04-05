@@ -3,7 +3,7 @@
 
 .#{$prefix}-popup {
   box-sizing: border-box;
-  border-radius: $popover-border-radius;
+  border-radius: var(--ty-border-radius);
   white-space: nowrap;
   font-size: var(--ty-font-size-base);
   text-align: left;

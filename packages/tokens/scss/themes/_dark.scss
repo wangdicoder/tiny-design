@@ -108,7 +108,7 @@ $dark-theme: (
   input-disabled-bg: #2a2a2a,
   input-disabled-color: rgba(255, 255, 255, 0.25),
   input-addon-bg: #262626,
-  input-focus-shadow: 0 0 0 2px rgba(144, 101, 208, 0.2),
+  input-focus-shadow: 0 0 0 3px rgba(144, 101, 208, 0.2),
   input-focus-border: rgba(144, 101, 208, 0.8),
 
   // ---- Component-specific: Select ----
@@ -262,6 +262,23 @@ $dark-theme: (
   picker-cell-disabled-bg: #2a2a2a,
   picker-clear-bg: #1f1f1f,
 
+  // ---- Component-specific: Color Picker ----
+  color-picker-bg: #1f1f1f,
+  color-picker-border: #424242,
+
+  // ---- Component-specific: List ----
+  list-border: #363636,
+
+  // ---- Component-specific: Speed Dial ----
+  speed-dial-bg: #9065d0,
+  speed-dial-color: #fff,
+  speed-dial-bg-hover: #7a50bf,
+  speed-dial-action-bg: #1f1f1f,
+  speed-dial-action-color: rgba(255, 255, 255, 0.85),
+  speed-dial-action-bg-hover: #2a2a2a,
+  speed-dial-tooltip-bg: #363636,
+  speed-dial-tooltip-color: rgba(255, 255, 255, 0.85),
+
   // ---- Component-specific: Split ----
   split-bar-bg: #262626,
   split-bar-border: #424242,
@@ -345,8 +362,11 @@ $dark-theme: (
   carousel-dot-active-bg: #fff,
 
   // ---- Component-specific: Avatar ----
+  avatar-bg: #555,
+  avatar-color: #e8e8e8,
   avatar-border: #1f1f1f,
   avatar-presence-shadow: 0 0 0 0.1rem #1f1f1f,
+  avatar-offline-color: #525252,
 
   // ---- Component-specific: BackTop ----
   back-top-bg: rgba(255, 255, 255, 0.2),

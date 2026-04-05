@@ -19,9 +19,9 @@ $btn-prefix: #{$prefix}-btn;
   text-decoration: none;
   white-space: nowrap;
   user-select: none;
-  border-radius: $btn-border-radius;
+  border-radius: var(--ty-border-radius);
   transition: $btn-transition;
-  line-height: $btn-line-height;
+  line-height: var(--ty-line-height-base);
 
   &__loader {
     @include loader;
@@ -31,7 +31,7 @@ $btn-prefix: #{$prefix}-btn;
     display: inline-block;
     flex-shrink: 0;
     pointer-events: none;
-    line-height: $btn-line-height;
+    line-height: var(--ty-line-height-base);
     vertical-align: middle;
 
     & + span {
@@ -117,15 +117,15 @@ $btn-prefix: #{$prefix}-btn;
 
   // Sizes
   &_sm {
-    @include btn-size($btn-padding-sm, $btn-font-size-sm, $btn-height-sm);
+    @include btn-size($btn-padding-sm, var(--ty-font-size-sm), var(--ty-height-sm));
   }
 
   &_md {
-    @include btn-size($btn-padding-md, $btn-font-size-md, $btn-height-md);
+    @include btn-size($btn-padding-md, var(--ty-font-size-base), var(--ty-height-md));
   }
 
   &_lg {
-    @include btn-size($btn-padding-lg, $btn-font-size-lg, $btn-height-lg);
+    @include btn-size($btn-padding-lg, var(--ty-font-size-lg), var(--ty-height-lg));
   }
 
   &_block {
@@ -137,7 +137,7 @@ $btn-prefix: #{$prefix}-btn;
   }
 
   &_round {
-    border-radius: $btn-height-lg;
+    border-radius: var(--ty-height-lg);
   }
 
   &_loading {
@@ -183,13 +183,13 @@ $btn-prefix: #{$prefix}-btn;
     }
 
     &:first-child {
-      border-top-left-radius: $btn-border-radius;
-      border-bottom-left-radius: $btn-border-radius;
+      border-top-left-radius: var(--ty-border-radius);
+      border-bottom-left-radius: var(--ty-border-radius);
     }
 
     &:last-child {
-      border-top-right-radius: $btn-border-radius;
-      border-bottom-right-radius: $btn-border-radius;
+      border-top-right-radius: var(--ty-border-radius);
+      border-bottom-right-radius: var(--ty-border-radius);
     }
   }
 

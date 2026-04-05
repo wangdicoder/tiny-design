@@ -1,0 +1,80 @@
+// Static structural constants — compile-time only.
+// These values do not change between themes.
+
+// Alert
+$alert-border-radius: 3px !default;
+
+// Avatar
+$avatar-border-radius: 2px !default;
+
+// Badge
+$badge-font-size: 12px !default;
+$badge-size: 18px !default;
+$badge-dot-size: 6px !default;
+
+// Button
+$btn-padding-sm: 0 10px !default;
+$btn-padding-md: 0 15px !default;
+$btn-padding-lg: 0 28px !default;
+$btn-loading-opacity: 0.35 !default;
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+
+// Card
+$card-header-padding: 13px 16px !default;
+$card-body-padding: 16px !default;
+$card-footer-padding: 5px 16px 16px !default;
+
+// Description
+$description-sm-padding-vt: 8px !default;
+$description-md-padding-vt: 12px !default;
+$description-lg-padding-vt: 16px !default;
+$description-sm-padding-hr: 16px !default;
+$description-md-padding-hr: 24px !default;
+$description-lg-padding-hr: 24px !default;
+
+// Input
+$input-sm-padding: 0 4px !default;
+$input-md-padding: 0 6px !default;
+$input-lg-padding: 0 8px !default;
+
+// Menu
+$menu-item-padding-vertical: 15px 20px !default;
+
+// Native Select
+$native-select-sm-padding: 3px 25px 3px 7px !default;
+$native-select-md-padding: 6px 25px 6px 7px !default;
+$native-select-lg-padding: 9px 25px 9px 7px !default;
+
+// Notification
+$notification-width: 380px !default;
+$notification-margin: 20px !default;
+
+// Popover
+$popover-arrow-size: 8px !default;
+
+// Select
+$select-selected-font-weight: 600 !default;
+$select-dropdown-max-height: 300px !default;
+$select-dropdown-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%) !default;
+
+// Slider
+$slider-size: 12px !default;
+$slider-track-size: 4px !default;
+
+// Steps
+$steps-title-font-size: 16px !default;
+
+// Strength Indicator
+$strength-indicator-border-radius: 99px !default;
+
+// Switch
+$switch-md-font-size: 12px !default;
+$switch-sm-font-size: 9px !default;
+$switch-lg-font-size: 14px !default;
+
+// Textarea
+$textarea-padding: 5px !default;
+
+// Tooltip
+$tooltip-arrow-size: 4px !default;
+$tooltip-content-padding: 5px 8px !default;

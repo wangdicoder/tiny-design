@@ -13,13 +13,13 @@
 
 .#{$prefix}-layout-header {
   box-sizing: border-box;
-  height: $layout-header-height;
+  height: 60px;
   background-color: var(--ty-color-bg-layout);
 }
 
 .#{$prefix}-layout-footer {
   box-sizing: border-box;
-  padding: $layout-footer-padding;
+  padding: 24px 50px;
   background-color: var(--ty-color-bg-layout);
 }
 

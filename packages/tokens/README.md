@@ -27,8 +27,7 @@ import '@tiny-design/tokens/css/base.css';
 Import individual SCSS modules for custom builds:
 
 ```scss
-@use '@tiny-design/tokens/scss/variables';
-@use '@tiny-design/tokens/scss/tokens';
+@use '@tiny-design/tokens/scss/variables';  // $prefix, breakpoints, structural constants
 @use '@tiny-design/tokens/scss/animation';
 @use '@tiny-design/tokens/scss/mixins';
 ```
@@ -37,8 +36,8 @@ Import individual SCSS modules for custom builds:
 
 | Module | Description |
 | --- | --- |
-| `_variables.scss` | Core variables — colors, typography, spacing, breakpoints, component dimensions |
-| `_tokens.scss` | CSS custom property wrappers (`--ty-*` prefix) |
+| `_variables.scss` | `$prefix`, responsive breakpoints, and `@forward` of structural constants |
+| `_constants.scss` | Compile-time structural constants — padding, sizing, transitions |
 | `_theme.scss` | Theme generation (light/dark via `data-tiny-theme` attribute) |
 | `_normalise.scss` | HTML normalization (based on Normalize.css) |
 | `_animation.scss` | Keyframe animations (`ty-rotate`, `ty-rotate-reverse`, `ty-processing`) |
@@ -46,7 +45,16 @@ Import individual SCSS modules for custom builds:
 
 ## Theming
 
-Tokens supports light and dark themes via the `data-tiny-theme` attribute on the document root:
+All visual tokens are delivered as CSS custom properties (`--ty-*`). Override them in your stylesheet:
+
+```css
+:root {
+  --ty-color-primary: #007bff;
+  --ty-border-radius: 4px;
+}
+```
+
+Light and dark themes are supported via the `data-tiny-theme` attribute on the document root:
 
 ```html
 <html data-tiny-theme="dark">

@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     color: var(--ty-color-text-tertiary);
-    font-size: $breadcrumb-font-size;
+    font-size: var(--ty-font-size-base);
   }
 
   &-item {

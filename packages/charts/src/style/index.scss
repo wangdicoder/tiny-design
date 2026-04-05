@@ -1,5 +1,3 @@
-@use '@tiny-design/tokens/scss/tokens' as *;
-
 // ---- Chart Container ----
 .ty-chart {
   position: relative;
@@ -8,12 +6,12 @@
 
   // Recharts text elements inherit chart-friendly styles
   .recharts-cartesian-axis-tick-value {
-    font-size: $token-font-size-sm;
-    fill: $token-color-text-secondary;
+    font-size: var(--ty-font-size-sm);
+    fill: var(--ty-color-text-secondary);
   }
 
   .recharts-cartesian-grid line {
-    stroke: $token-color-border-light;
+    stroke: var(--ty-color-border-light);
   }
 }
 
@@ -31,25 +29,25 @@
 }
 
 .ty-chart-tooltip {
-  background-color: $token-color-bg-elevated;
+  background-color: var(--ty-color-bg-elevated);
   backdrop-filter: blur(12px);
-  border: 1px solid $token-color-border-light;
+  border: 1px solid var(--ty-color-border-light);
   border-radius: 8px;
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.07),
     0 2px 4px -2px rgba(0, 0, 0, 0.05),
     0 0 0 1px rgba(0, 0, 0, 0.03);
   padding: 10px 14px;
-  font-size: $token-font-size-sm;
+  font-size: var(--ty-font-size-sm);
   min-width: 140px;
   line-height: 1.5;
 
   &__label {
     font-weight: 600;
-    color: $token-color-text;
+    color: var(--ty-color-text);
     margin-bottom: 6px;
     padding-bottom: 6px;
-    border-bottom: 1px solid $token-color-border-light;
+    border-bottom: 1px solid var(--ty-color-border-light);
     letter-spacing: -0.01em;
   }
 
@@ -103,14 +101,14 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    color: $token-color-text-secondary;
+    color: var(--ty-color-text-secondary);
     white-space: nowrap;
   }
 
   &__item-value {
     font-weight: 600;
     font-variant-numeric: tabular-nums;
-    color: $token-color-text;
+    color: var(--ty-color-text);
     font-feature-settings: 'tnum';
   }
 }
@@ -121,7 +119,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
-  font-size: $token-font-size-sm;
+  font-size: var(--ty-font-size-sm);
 
   &_top {
     padding-bottom: 8px;
@@ -146,6 +144,6 @@
   }
 
   &__label {
-    color: $token-color-text-secondary;
+    color: var(--ty-color-text-secondary);
   }
 }

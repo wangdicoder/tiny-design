@@ -24,7 +24,7 @@
     width: 32px;
     height: 32px;
     border-radius: var(--ty-border-radius);
-    border: 1px solid var(--ty-color-picker-border, #{$gray-300});
+    border: 1px solid var(--ty-color-picker-border);
     padding: 3px;
     cursor: pointer;
   }
@@ -37,7 +37,7 @@
 
   &__panel {
     padding: 12px;
-    background: var(--ty-color-picker-bg, #fff);
+    background: var(--ty-color-picker-bg);
     border-radius: 8px;
     box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     width: 240px;
@@ -86,7 +86,7 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 1px solid var(--ty-color-picker-border, #{$gray-300});
+    border: 1px solid var(--ty-color-picker-border);
     flex-shrink: 0;
   }
 
@@ -116,7 +116,7 @@
       position: absolute;
       inset: 0;
       border-radius: 6px;
-      background: repeating-conic-gradient(#{$gray-300} 0% 25%, transparent 0% 50%) 0 0 / 8px 8px;
+      background: repeating-conic-gradient(var(--ty-color-border) 0% 25%, transparent 0% 50%) 0 0 / 8px 8px;
       z-index: -1;
     }
   }
@@ -142,33 +142,33 @@
   }
 
   &__format-btn {
-    border: 1px solid var(--ty-color-picker-border, #{$gray-300});
+    border: 1px solid var(--ty-color-picker-border);
     background: transparent;
     border-radius: var(--ty-border-radius);
     padding: 2px 6px;
     cursor: pointer;
     font-size: 12px;
-    color: var(--ty-color-text, #{$gray-700});
+    color: var(--ty-color-text);
     white-space: nowrap;
 
     &:hover {
-      border-color: var(--ty-color-primary, #{$primary-color});
+      border-color: var(--ty-color-primary);
     }
   }
 
   &__hex-input {
     flex: 1;
-    border: 1px solid var(--ty-color-picker-border, #{$gray-300});
+    border: 1px solid var(--ty-color-picker-border);
     border-radius: var(--ty-border-radius);
     padding: 2px 6px;
     font-size: 12px;
     font-family: var(--ty-font-family-monospace);
-    color: var(--ty-color-text, #{$gray-800});
+    color: var(--ty-color-text);
     outline: none;
     min-width: 0;
 
     &:focus {
-      border-color: var(--ty-color-primary, #{$primary-color});
+      border-color: var(--ty-color-primary);
     }
   }
 
@@ -178,7 +178,7 @@
     gap: 6px;
     margin-top: 12px;
     padding-top: 12px;
-    border-top: 1px solid var(--ty-color-picker-border, #{$gray-200});
+    border-top: 1px solid var(--ty-color-picker-border);
   }
 
   &__preset {
@@ -186,7 +186,7 @@
     height: 20px;
     border-radius: var(--ty-border-radius);
     cursor: pointer;
-    border: 1px solid var(--ty-color-picker-border, #{$gray-300});
+    border: 1px solid var(--ty-color-picker-border);
     transition: transform 0.15s;
 
     &:hover {

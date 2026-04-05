@@ -2,7 +2,7 @@
 @use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-tooltip {
-  font-size: $tooltip-font-size;
+  font-size: var(--ty-font-size-sm);
 
   &__inner {
     padding: $tooltip-content-padding;

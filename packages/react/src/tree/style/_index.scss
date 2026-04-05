@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: $tree-font-size;
+  font-size: var(--ty-font-size-base);
 }
 
 .#{$prefix}-tree-node {

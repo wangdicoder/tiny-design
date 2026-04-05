@@ -4,7 +4,7 @@
   display: inline-flex;
   align-items: center;
   padding: 2px;
-  background: var(--ty-segmented-bg, #{$gray-200});
+  background: var(--ty-segmented-bg);
   border-radius: var(--ty-border-radius);
   box-sizing: border-box;
 
@@ -58,12 +58,12 @@
     white-space: nowrap;
 
     &:hover:not(&_active, &_disabled) {
-      color: var(--ty-color-text, #{$gray-900});
+      color: var(--ty-color-text);
     }
 
     &_active {
-      background: var(--ty-segmented-active-bg, #fff);
-      color: var(--ty-color-text, #{$gray-900});
+      background: var(--ty-segmented-active-bg);
+      color: var(--ty-color-text);
       box-shadow: 0 1px 2px 0 rgb(0 0 0 / 6%), 0 1px 3px 0 rgb(0 0 0 / 10%);
       font-weight: 500;
     }

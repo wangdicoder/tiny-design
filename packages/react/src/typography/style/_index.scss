@@ -66,32 +66,32 @@ h6.#{$tp-prefix} {
 }
 
 h1.#{$tp-prefix} {
-  font-size: $h1-font-size;
+  font-size: var(--ty-h1-font-size);
   line-height: 1.23;
 }
 
 h2.#{$tp-prefix} {
-  font-size: $h2-font-size;
+  font-size: var(--ty-h2-font-size);
   line-height: 1.35;
 }
 
 h3.#{$tp-prefix} {
-  font-size: $h3-font-size;
+  font-size: var(--ty-h3-font-size);
   line-height: 1.35;
 }
 
 h4.#{$tp-prefix} {
-  font-size: $h4-font-size;
+  font-size: var(--ty-h4-font-size);
   line-height: 1.4;
 }
 
 h5.#{$tp-prefix} {
-  font-size: $h5-font-size;
+  font-size: var(--ty-h5-font-size);
   line-height: 1.2;
 }
 
 h6.#{$tp-prefix} {
-  font-size: $h6-font-size;
+  font-size: var(--ty-h6-font-size);
   line-height: 1.2;
 }
 

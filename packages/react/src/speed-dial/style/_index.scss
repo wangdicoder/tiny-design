@@ -17,20 +17,20 @@ $speed-dial-actions-gap: 16px;
     height: $speed-dial-fab-size;
     border-radius: 50%;
     border: none;
-    background-color: var(--ty-speed-dial-bg, var(--ty-color-primary));
-    color: var(--ty-speed-dial-color, #fff);
+    background-color: var(--ty-speed-dial-bg);
+    color: var(--ty-speed-dial-color);
     font-size: 24px;
     cursor: pointer;
-    box-shadow: $box-shadow;
+    box-shadow: var(--ty-shadow);
     transition: background-color 0.2s ease;
     outline: none;
 
     &:hover:not(.#{$prefix}-speed-dial__button_disabled) {
-      background-color: var(--ty-speed-dial-bg-hover, var(--ty-color-primary-active));
+      background-color: var(--ty-speed-dial-bg-hover);
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px var(--ty-input-focus-shadow, rgb(110 65 191 / 20%)), $box-shadow;
+      box-shadow: 0 0 0 3px var(--ty-input-focus-shadow), var(--ty-shadow);
     }
 
     &_open {
@@ -168,21 +168,21 @@ $speed-dial-actions-gap: 16px;
     height: $speed-dial-action-size;
     border-radius: 50%;
     border: none;
-    background-color: var(--ty-speed-dial-action-bg, #{$white-color});
-    color: var(--ty-speed-dial-action-color, #{$gray-800});
+    background-color: var(--ty-speed-dial-action-bg);
+    color: var(--ty-speed-dial-action-color);
     font-size: 16px;
     cursor: pointer;
-    box-shadow: $box-shadow-sm;
+    box-shadow: var(--ty-shadow-sm);
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
     outline: none;
 
     &:hover:not(.#{$prefix}-speed-dial__action_disabled) {
-      background-color: var(--ty-speed-dial-action-bg-hover, #{$gray-100});
-      box-shadow: $box-shadow;
+      background-color: var(--ty-speed-dial-action-bg-hover);
+      box-shadow: var(--ty-shadow);
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px var(--ty-input-focus-shadow, rgb(110 65 191 / 20%)), $box-shadow-sm;
+      box-shadow: 0 0 0 3px var(--ty-input-focus-shadow), var(--ty-shadow-sm);
     }
 
     &_disabled {
@@ -195,8 +195,8 @@ $speed-dial-actions-gap: 16px;
   &__action-tooltip {
     position: absolute;
     white-space: nowrap;
-    background-color: var(--ty-speed-dial-tooltip-bg, #{$gray-800});
-    color: var(--ty-speed-dial-tooltip-color, #{$white-color});
+    background-color: var(--ty-speed-dial-tooltip-bg);
+    color: var(--ty-speed-dial-tooltip-color);
     font-size: var(--ty-font-size-sm);
     padding: 4px 8px;
     border-radius: var(--ty-border-radius);

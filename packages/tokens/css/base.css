@@ -53,10 +53,10 @@
   --ty-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   --ty-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   --ty-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-  --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.12) , 0 6px 16px 0 rgba(0, 0, 0, 0.08) , 0 9px 28px 8px rgba(0, 0, 0, 0.05);
   --ty-shadow-card: 0 1px 6px rgba(0, 0, 0, 0.12);
   --ty-shadow-modal: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+  --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.15) , 0 1px 1px rgba(0, 0, 0, 0.075);
   --ty-color-overlay-bg: rgba(0, 0, 0, 0.55);
   --ty-color-overlay-inverted: rgba(255, 255, 255, 0.75);
   --ty-btn-default-color: #32325d;
@@ -195,6 +195,17 @@
   --ty-picker-cell-selected-hover-bg: #5a30a8;
   --ty-picker-cell-disabled-bg: #f5f5f5;
   --ty-picker-clear-bg: #fff;
+  --ty-color-picker-bg: #fff;
+  --ty-color-picker-border: #dee2e6;
+  --ty-list-border: #dee2e6;
+  --ty-speed-dial-bg: #6e41bf;
+  --ty-speed-dial-color: #fff;
+  --ty-speed-dial-bg-hover: #5a30a8;
+  --ty-speed-dial-action-bg: #fff;
+  --ty-speed-dial-action-color: #32325d;
+  --ty-speed-dial-action-bg-hover: #f6f9fc;
+  --ty-speed-dial-tooltip-bg: #32325d;
+  --ty-speed-dial-tooltip-color: #fff;
   --ty-split-bar-bg: #f8f8f9;
   --ty-split-bar-border: #dcdee2;
   --ty-split-bar-line: #d5d5d5;
@@ -247,8 +258,11 @@
   --ty-carousel-dot-bg: rgba(255, 255, 255, 0.3);
   --ty-carousel-dot-hover-bg: rgba(255, 255, 255, 0.6);
   --ty-carousel-dot-active-bg: #fff;
+  --ty-avatar-bg: #ccc;
+  --ty-avatar-color: #fff;
   --ty-avatar-border: #fff;
   --ty-avatar-presence-shadow: 0 0 0 0.1rem #fff;
+  --ty-avatar-offline-color: #ced4da;
   --ty-back-top-bg: rgba(0, 0, 0, 0.3);
   --ty-input-number-control-border: #d9d9d9;
   --ty-input-number-control-active-bg: #f4f4f4;
@@ -351,10 +365,10 @@ html[data-tiny-theme=dark] {
   --ty-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
   --ty-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
   --ty-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.5);
-  --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.48) , 0 6px 16px 0 rgba(0, 0, 0, 0.32) , 0 9px 28px 8px rgba(0, 0, 0, 0.2);
   --ty-shadow-card: 0 1px 6px rgba(0, 0, 0, 0.35);
   --ty-shadow-modal: 0 4px 12px rgba(0, 0, 0, 0.45);
-  --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 1px rgba(0, 0, 0, 0.2);
+  --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.05) , 0 1px 1px rgba(0, 0, 0, 0.2);
   --ty-color-overlay-bg: rgba(0, 0, 0, 0.65);
   --ty-color-overlay-inverted: rgba(50, 50, 50, 0.75);
   --ty-btn-default-color: rgba(255, 255, 255, 0.85);
@@ -493,6 +507,17 @@ html[data-tiny-theme=dark] {
   --ty-picker-cell-selected-hover-bg: #7a50bf;
   --ty-picker-cell-disabled-bg: #2a2a2a;
   --ty-picker-clear-bg: #1f1f1f;
+  --ty-color-picker-bg: #1f1f1f;
+  --ty-color-picker-border: #424242;
+  --ty-list-border: #363636;
+  --ty-speed-dial-bg: #9065d0;
+  --ty-speed-dial-color: #fff;
+  --ty-speed-dial-bg-hover: #7a50bf;
+  --ty-speed-dial-action-bg: #1f1f1f;
+  --ty-speed-dial-action-color: rgba(255, 255, 255, 0.85);
+  --ty-speed-dial-action-bg-hover: #2a2a2a;
+  --ty-speed-dial-tooltip-bg: #363636;
+  --ty-speed-dial-tooltip-color: rgba(255, 255, 255, 0.85);
   --ty-split-bar-bg: #262626;
   --ty-split-bar-border: #424242;
   --ty-split-bar-line: #525252;
@@ -545,8 +570,11 @@ html[data-tiny-theme=dark] {
   --ty-carousel-dot-bg: rgba(255, 255, 255, 0.3);
   --ty-carousel-dot-hover-bg: rgba(255, 255, 255, 0.6);
   --ty-carousel-dot-active-bg: #fff;
+  --ty-avatar-bg: #555;
+  --ty-avatar-color: #e8e8e8;
   --ty-avatar-border: #1f1f1f;
   --ty-avatar-presence-shadow: 0 0 0 0.1rem #1f1f1f;
+  --ty-avatar-offline-color: #525252;
   --ty-back-top-bg: rgba(255, 255, 255, 0.2);
   --ty-input-number-control-border: #424242;
   --ty-input-number-control-active-bg: #2a2a2a;
@@ -650,10 +678,10 @@ html[data-tiny-theme=dark] {
     --ty-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
     --ty-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
     --ty-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.5);
-    --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+    --ty-shadow-popup: 0 3px 6px -4px rgba(0, 0, 0, 0.48) , 0 6px 16px 0 rgba(0, 0, 0, 0.32) , 0 9px 28px 8px rgba(0, 0, 0, 0.2);
     --ty-shadow-card: 0 1px 6px rgba(0, 0, 0, 0.35);
     --ty-shadow-modal: 0 4px 12px rgba(0, 0, 0, 0.45);
-    --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 1px rgba(0, 0, 0, 0.2);
+    --ty-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.05) , 0 1px 1px rgba(0, 0, 0, 0.2);
     --ty-color-overlay-bg: rgba(0, 0, 0, 0.65);
     --ty-color-overlay-inverted: rgba(50, 50, 50, 0.75);
     --ty-btn-default-color: rgba(255, 255, 255, 0.85);
@@ -792,6 +820,17 @@ html[data-tiny-theme=dark] {
     --ty-picker-cell-selected-hover-bg: #7a50bf;
     --ty-picker-cell-disabled-bg: #2a2a2a;
     --ty-picker-clear-bg: #1f1f1f;
+    --ty-color-picker-bg: #1f1f1f;
+    --ty-color-picker-border: #424242;
+    --ty-list-border: #363636;
+    --ty-speed-dial-bg: #9065d0;
+    --ty-speed-dial-color: #fff;
+    --ty-speed-dial-bg-hover: #7a50bf;
+    --ty-speed-dial-action-bg: #1f1f1f;
+    --ty-speed-dial-action-color: rgba(255, 255, 255, 0.85);
+    --ty-speed-dial-action-bg-hover: #2a2a2a;
+    --ty-speed-dial-tooltip-bg: #363636;
+    --ty-speed-dial-tooltip-color: rgba(255, 255, 255, 0.85);
     --ty-split-bar-bg: #262626;
     --ty-split-bar-border: #424242;
     --ty-split-bar-line: #525252;
@@ -844,8 +883,11 @@ html[data-tiny-theme=dark] {
     --ty-carousel-dot-bg: rgba(255, 255, 255, 0.3);
     --ty-carousel-dot-hover-bg: rgba(255, 255, 255, 0.6);
     --ty-carousel-dot-active-bg: #fff;
+    --ty-avatar-bg: #555;
+    --ty-avatar-color: #e8e8e8;
     --ty-avatar-border: #1f1f1f;
     --ty-avatar-presence-shadow: 0 0 0 0.1rem #1f1f1f;
+    --ty-avatar-offline-color: #525252;
     --ty-back-top-bg: rgba(255, 255, 255, 0.2);
     --ty-input-number-control-border: #424242;
     --ty-input-number-control-active-bg: #2a2a2a;
@@ -893,7 +935,6 @@ html[data-tiny-theme=dark] {
     --ty-chart-5: #d32029;
   }
 }
-
 /* stylelint-disable scss/comment-no-empty */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /**
@@ -902,12 +943,10 @@ html[data-tiny-theme=dark] {
  */
 html {
   font-size: 14px;
-  line-height: 1.15;
-  /* 1 */
+  line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  /* 2 */
+     -moz-text-size-adjust: 100%;
+          text-size-adjust: 100%; /* 2 */
 }
 
 /* Sections
@@ -931,40 +970,35 @@ main {
   display: block;
 }
 
-h6,
-h5,
-h4,
-h3,
-h2,
-h1 {
+h6, h5, h4, h3, h2, h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: var(--ty-headings-font-weight);
   line-height: 1.2;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: var(--ty-h1-font-size);
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: var(--ty-h2-font-size);
 }
 
 h3 {
-  font-size: 1.75rem;
+  font-size: var(--ty-h3-font-size);
 }
 
 h4 {
-  font-size: 1.5rem;
+  font-size: var(--ty-h4-font-size);
 }
 
 h5 {
-  font-size: 1.25rem;
+  font-size: var(--ty-h5-font-size);
 }
 
 h6 {
-  font-size: 1rem;
+  font-size: var(--ty-h6-font-size);
 }
 
 /* Grouping content
@@ -974,12 +1008,9 @@ h6 {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  box-sizing: content-box;
-  /* 1 */
-  height: 0;
-  /* 1 */
-  overflow: visible;
-  /* 2 */
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
 }
 
 /* Text-level semantics
@@ -993,14 +1024,12 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
-
 a:hover {
   color: var(--ty-color-primary-hover);
   text-decoration: underline;
 }
 
-a:not([href]),
-a:not([href]):hover {
+a:not([href]), a:not([href]):hover {
   text-decoration: none;
 }
 
@@ -1009,13 +1038,10 @@ a:not([href]):hover {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 abbr[title] {
-  border-bottom: none;
-  /* 1 */
-  text-decoration: underline;
-  /* 2 */
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
   -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-  /* 2 */
+          text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -1034,10 +1060,8 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--ty-font-family-monospace);
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
+  font-family: var(--ty-font-family-monospace); /* 1 */
+  font-size: 1em; /* 2 */
 }
 
 /**
@@ -1087,14 +1111,10 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit;
-  /* 1 */
-  font-size: 100%;
-  /* 1 */
-  line-height: 1.15;
-  /* 1 */
-  margin: 0;
-  /* 2 */
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
 }
 
 /**
@@ -1102,8 +1122,7 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 button,
-input {
-  /* 1 */
+input { /* 1 */
   overflow: visible;
 }
 
@@ -1112,8 +1131,7 @@ input {
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select {
-  /* 1 */
+select { /* 1 */
   text-transform: none;
 }
 
@@ -1125,8 +1143,8 @@ button,
 [type=reset],
 [type=submit] {
   -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
+     -moz-appearance: button;
+          appearance: button;
 }
 
 /**
@@ -1164,18 +1182,12 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  box-sizing: border-box;
-  /* 1 */
-  color: inherit;
-  /* 2 */
-  display: table;
-  /* 1 */
-  max-width: 100%;
-  /* 1 */
-  padding: 0;
-  /* 3 */
-  white-space: normal;
-  /* 1 */
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
 }
 
 /**
@@ -1198,10 +1210,8 @@ textarea {
  */
 [type=checkbox],
 [type=radio] {
-  box-sizing: border-box;
-  /* 1 */
-  padding: 0;
-  /* 2 */
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
 }
 
 /**
@@ -1218,11 +1228,9 @@ textarea {
  */
 [type=search] {
   -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
-  /* 1 */
-  outline-offset: -2px;
-  /* 2 */
+     -moz-appearance: textfield;
+          appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
 }
 
 /**
@@ -1230,7 +1238,7 @@ textarea {
  */
 [type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
 
 /**
@@ -1239,10 +1247,8 @@ textarea {
  */
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
-  appearance: button;
-  /* 1 */
-  font: inherit;
-  /* 2 */
+          appearance: button; /* 1 */
+  font: inherit; /* 2 */
 }
 
 /* Interactive
@@ -1281,28 +1287,23 @@ template {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
 }
-
 @keyframes ty-rotate-reverse {
   from {
     transform: rotate(0);
   }
-
   to {
     transform: rotate(-360deg);
   }
 }
-
 @keyframes ty-processing {
   0% {
     transform: scale(0.8);
     opacity: 0.5;
   }
-
   100% {
     transform: scale(2.8);
     opacity: 0;

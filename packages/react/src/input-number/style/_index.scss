@@ -84,9 +84,9 @@
   &_sm {
     .#{$prefix}-input-number {
       &__input {
-        font-size: $input-sm-font-size;
-        height: $input-sm-height;
-        line-height: $input-sm-height;
+        font-size: var(--ty-font-size-sm);
+        height: var(--ty-height-sm);
+        line-height: var(--ty-height-sm);
       }
     }
   }
@@ -94,9 +94,9 @@
   &_md {
     .#{$prefix}-input-number {
       &__input {
-        font-size: $input-md-font-size;
-        height: $input-md-height;
-        line-height: $input-md-height;
+        font-size: var(--ty-font-size-base);
+        height: var(--ty-height-md);
+        line-height: var(--ty-height-md);
       }
     }
   }
@@ -104,9 +104,9 @@
   &_lg {
     .#{$prefix}-input-number {
       &__input {
-        font-size: $input-lg-font-size;
-        height: $input-lg-height;
-        line-height: $input-lg-height;
+        font-size: var(--ty-font-size-lg);
+        height: var(--ty-height-lg);
+        line-height: var(--ty-height-lg);
       }
     }
   }

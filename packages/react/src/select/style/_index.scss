@@ -61,7 +61,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    border: $border-width solid var(--ty-input-border);
+    border: 1px solid var(--ty-input-border);
     border-radius: var(--ty-border-radius);
     background-color: var(--ty-input-bg);
     box-sizing: border-box;
@@ -286,7 +286,7 @@
   &__title {
     font-size: var(--ty-font-size-sm);
     cursor: default;
-    color: $gray-600;
+    color: var(--ty-color-text-secondary);
     padding: 7px 12px;
   }
 

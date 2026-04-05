@@ -1,8 +1,8 @@
 @use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-calendar {
-  background: var(--ty-calendar-bg, #fff);
-  border: 1px solid var(--ty-calendar-border, #{$gray-200});
+  background: var(--ty-calendar-bg);
+  border: 1px solid var(--ty-calendar-border);
   border-radius: var(--ty-border-radius);
   outline: none;
 
@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 8px 12px;
-    border-bottom: 1px solid var(--ty-calendar-border, #{$gray-200});
+    border-bottom: 1px solid var(--ty-calendar-border);
   }
 
   &__header-nav {
@@ -69,7 +69,7 @@
     font-size: inherit;
     padding: 2px 6px;
     border-radius: 4px;
-    color: var(--ty-color-text, #{$gray-800});
+    color: var(--ty-color-text);
     transition: color 0.2s;
 
     &:hover {
@@ -96,14 +96,14 @@
     text-align: center;
     font-weight: 500;
     font-size: var(--ty-font-size-sm);
-    color: var(--ty-color-text-secondary, #{$gray-600});
+    color: var(--ty-color-text-secondary);
   }
 
   // ── Week number ─────────────────────────────────────────────────────────
 
   &__week-number-header {
     width: 32px;
-    color: var(--ty-color-text-secondary, #{$gray-400});
+    color: var(--ty-color-text-quaternary);
     font-weight: 400;
     font-size: 12px;
   }
@@ -111,7 +111,7 @@
   &__week-number {
     text-align: center;
     font-size: 12px;
-    color: var(--ty-color-text-secondary, #{$gray-400});
+    color: var(--ty-color-text-quaternary);
     padding: 4px 0;
     user-select: none;
   }
@@ -134,7 +134,7 @@
     }
 
     &:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-calendar-hover, #{$gray-100});
+      background: var(--ty-calendar-hover);
     }
 
     &_selected:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
@@ -142,11 +142,11 @@
     }
 
     &_in-view:not(&_disabled) {
-      color: var(--ty-color-text, #{$gray-900});
+      color: var(--ty-color-text);
     }
 
     &:not(&_in-view) {
-      color: var(--ty-color-text-quaternary, #{$gray-300});
+      color: var(--ty-color-text-quaternary);
 
       .#{$prefix}-calendar__cell-dot {
         opacity: 0.4;
@@ -159,7 +159,7 @@
     }
 
     &_selected .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-color-primary, #{$primary-color});
+      background: var(--ty-color-primary);
       color: #fff;
       border-radius: var(--ty-border-radius);
     }
@@ -171,27 +171,27 @@
     // ── Range selection ─────────────────────────────────────────────────
 
     &_in-range {
-      background: var(--ty-color-primary-bg, rgba($primary-color, 0.08));
+      background: var(--ty-color-primary-bg);
     }
 
     &_range-start {
       border-radius: var(--ty-border-radius) 0 0 var(--ty-border-radius);
-      background: var(--ty-color-primary-bg, rgba($primary-color, 0.08));
+      background: var(--ty-color-primary-bg);
     }
 
     &_range-start .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-color-primary, #{$primary-color});
+      background: var(--ty-color-primary);
       color: #fff;
       border-radius: var(--ty-border-radius);
     }
 
     &_range-end {
       border-radius: 0 var(--ty-border-radius) var(--ty-border-radius) 0;
-      background: var(--ty-color-primary-bg, rgba($primary-color, 0.08));
+      background: var(--ty-color-primary-bg);
     }
 
     &_range-end .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-color-primary, #{$primary-color});
+      background: var(--ty-color-primary);
       color: #fff;
       border-radius: var(--ty-border-radius);
     }
@@ -204,7 +204,7 @@
 
     &_focused .#{$prefix}-calendar__cell-inner,
     &:focus-visible .#{$prefix}-calendar__cell-inner {
-      outline: 2px solid var(--ty-color-primary, #{$primary-color});
+      outline: 2px solid var(--ty-color-primary);
       outline-offset: 1px;
     }
   }
@@ -250,7 +250,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background-color: var(--ty-color-primary, #{$primary-color});
+    background-color: var(--ty-color-primary);
   }
 
   // ── Month panel (year mode) ─────────────────────────────────────────────
@@ -270,15 +270,15 @@
     transition: all 0.2s;
 
     &:hover {
-      background: var(--ty-calendar-hover, #{$gray-100});
+      background: var(--ty-calendar-hover);
     }
 
     &_selected {
-      background: var(--ty-color-primary, #{$primary-color});
+      background: var(--ty-color-primary);
       color: #fff;
 
       &:hover {
-        background: var(--ty-color-primary, #{$primary-color});
+        background: var(--ty-color-primary);
         opacity: 0.9;
       }
     }
@@ -313,21 +313,21 @@
     font-size: var(--ty-font-size-base);
 
     &:hover {
-      background: var(--ty-calendar-hover, #{$gray-100});
+      background: var(--ty-calendar-hover);
     }
 
     &_selected {
-      background: var(--ty-color-primary, #{$primary-color});
+      background: var(--ty-color-primary);
       color: #fff;
 
       &:hover {
-        background: var(--ty-color-primary, #{$primary-color});
+        background: var(--ty-color-primary);
         opacity: 0.9;
       }
     }
 
     &_out {
-      color: var(--ty-color-text-secondary, #{$gray-400});
+      color: var(--ty-color-text-quaternary);
     }
   }
 
@@ -335,7 +335,7 @@
 
   &__footer {
     padding: 8px 12px;
-    border-top: 1px solid var(--ty-calendar-border, #{$gray-200});
+    border-top: 1px solid var(--ty-calendar-border);
     text-align: center;
   }
 
