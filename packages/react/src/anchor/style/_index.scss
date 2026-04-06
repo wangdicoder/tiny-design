@@ -33,14 +33,14 @@
     width: 8px;
     height: 8px;
     background-color: var(--ty-anchor-ball-bg);
-    border: 2px solid var(--ty-color-primary);
+    border: 2px solid var(--ty-anchor-ball-border);
     border-radius: 8px;
     transform: translateX(-50%);
     transition: top .3s ease-in-out;
   }
 
   &__link {
-    padding: 7px 0 7px 16px;
+    padding: var(--ty-anchor-link-padding);
 
     .#{$prefix}-anchor {
       border: 0;
@@ -48,7 +48,7 @@
 
     &_active {
       & > a {
-        color: var(--ty-color-primary);
+        color: var(--ty-anchor-link-color-active);
       }
     }
   }
@@ -56,18 +56,18 @@
   &__link-title {
     display: block;
     overflow: hidden;
-    color: var(--ty-color-text-secondary);
+    color: var(--ty-anchor-link-color);
     white-space: nowrap;
     text-overflow: ellipsis;
     border-left: 2px solid transparent;
 
     &:hover {
-      color: var(--ty-color-primary);
+      color: var(--ty-anchor-link-color-active);
       text-decoration: none;
     }
 
     &:not(:only-child) {
-      margin-bottom: 5px;
+      margin-bottom: var(--ty-anchor-link-title-margin-bottom);
     }
   }
 
@@ -76,7 +76,7 @@
       width: 2px;
       border: 0;
       border-radius: 0;
-      background-color: var(--ty-color-primary);
+      background-color: var(--ty-anchor-link-color-active);
       transition: top .3s ease-in-out, height .3s ease-in-out;
     }
   }

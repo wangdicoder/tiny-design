@@ -3,25 +3,25 @@
 .#{$prefix}-popover {
   &__title {
     margin: 0;
-    padding: 9px 16px 7px;
-    font-weight: 500;
-    min-width: 177px;
-    min-height: 32px;
+    padding: var(--ty-popover-title-padding);
+    font-weight: var(--ty-popover-title-font-weight);
+    min-width: var(--ty-popover-title-min-width);
+    min-height: var(--ty-popover-title-min-height);
   }
 
   &__content {
-    padding: 12px 15px;
+    padding: var(--ty-popover-content-padding);
   }
 
   &_light {
     .#{$prefix}-popover {
       &__title {
-        color: var(--ty-color-text);
-        border-bottom: 1px solid var(--ty-color-border-secondary);
+        color: var(--ty-popover-title-color);
+        border-bottom: 1px solid var(--ty-popover-title-border);
       }
 
       &__content {
-        color: var(--ty-color-text-secondary);
+        color: var(--ty-popover-content-color);
       }
     }
   }
@@ -29,12 +29,12 @@
   &_dark {
     .#{$prefix}-popover {
       &__title {
-        color: #fff;
+        color: var(--ty-popover-title-color-dark);
         border-bottom: 1px solid var(--ty-popover-dark-border);
       }
 
       &__content {
-        color: #fff;
+        color: var(--ty-popover-content-color-dark);
       }
     }
   }

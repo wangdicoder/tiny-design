@@ -6,12 +6,12 @@
   align-items: center;
   font-size: var(--ty-font-size-base);
   margin-right: 8px;
-  color: var(--ty-color-text);
+  color: var(--ty-checkbox-label-color, var(--ty-color-text));
   box-sizing: border-box;
 
   &:hover {
     .#{$prefix}-checkbox__inner {
-      border-color: var(--ty-color-primary);
+      border-color: var(--ty-checkbox-border-hover, var(--ty-color-primary));
     }
   }
 
@@ -31,11 +31,11 @@
     position: relative;
     box-sizing: border-box;
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 2px;
-    border: 1px solid var(--ty-checkbox-border);
-    background-color: var(--ty-checkbox-bg);
+    width: var(--ty-checkbox-size, 16px);
+    height: var(--ty-checkbox-size, 16px);
+    border-radius: var(--ty-checkbox-radius, 2px);
+    border: 1px solid var(--ty-checkbox-border, var(--ty-color-border));
+    background-color: var(--ty-checkbox-bg, var(--ty-color-bg-container));
     transition: 200ms;
     line-height: 1;
     vertical-align: middle;
@@ -44,7 +44,7 @@
       content: '';
       position: absolute;
       display: block;
-      border: 1px solid var(--ty-checkbox-check-color);
+      border: 1px solid var(--ty-checkbox-indicator-color, #fff);
       margin-top: -1px;
       left: 3px;
       right: 3px;
@@ -54,10 +54,9 @@
     }
 
     &::after {
-      transform: rotate(45deg) scaleY(1);
       pointer-events: none;
       box-sizing: content-box;
-      border: 2px solid var(--ty-checkbox-check-color);
+      border: 2px solid var(--ty-checkbox-indicator-color, #fff);
       border-left: 0;
       border-top: 0;
       height: 7px;
@@ -65,67 +64,63 @@
       position: absolute;
       top: 1px;
       width: 4px;
+      transform: rotate(45deg) scale(0);
       transform-origin: center;
     }
 
     & + span {
-      padding: 0 5px 0 8px;
-      line-height: 16px;
+      padding: 0 var(--ty-checkbox-label-padding-inline-end, 5px) 0 var(--ty-checkbox-label-gap, 8px);
+      line-height: var(--ty-checkbox-size, 16px);
     }
   }
 
   &_checked {
-    .#{$prefix}-checkbox {
-      &__inner {
-        background-color: var(--ty-color-primary);
-        border-color: var(--ty-color-primary);
+    .#{$prefix}-checkbox__inner {
+      background-color: var(--ty-checkbox-bg-checked, var(--ty-color-primary));
+      border-color: var(--ty-checkbox-border-checked, var(--ty-color-primary));
 
-        &::after {
-          content: '';
-          transform: rotate(45deg) scale(1);
-        }
+      &::after {
+        content: '';
+        transform: rotate(45deg) scale(1);
+      }
 
-        &::before {
-          transform: scale(0);
-        }
+      &::before {
+        transform: scale(0);
       }
     }
   }
 
   &_indeterminate {
-    .#{$prefix}-checkbox {
-      &__inner {
-        background-color: var(--ty-color-primary);
-        border-color: var(--ty-color-primary);
+    .#{$prefix}-checkbox__inner {
+      background-color: var(--ty-checkbox-bg-checked, var(--ty-color-primary));
+      border-color: var(--ty-checkbox-border-checked, var(--ty-color-primary));
 
-        &::before {
-          transform: scale(1);
-        }
+      &::before {
+        transform: scale(1);
+      }
 
-        &::after {
-          transform: rotate(45deg) scale(0);
-        }
+      &::after {
+        transform: rotate(45deg) scale(0);
       }
     }
   }
 
   &_disabled {
-    .#{$prefix}-checkbox {
-      &__native {
-        cursor: not-allowed;
+    .#{$prefix}-checkbox__native {
+      cursor: not-allowed;
+    }
+
+    .#{$prefix}-checkbox__inner {
+      background-color: var(--ty-checkbox-bg-disabled, var(--ty-color-fill-secondary));
+      border-color: var(--ty-checkbox-border-disabled, var(--ty-color-border)) !important;
+
+      &::after,
+      &::before {
+        border-color: var(--ty-checkbox-indicator-color-disabled, var(--ty-color-text-quaternary));
       }
 
-      &__inner {
-        background-color: var(--ty-checkbox-disabled-bg);
-        border-color: var(--ty-checkbox-border) !important;
-
-        &::after {
-          border-color: var(--ty-color-text-quaternary);
-        }
-
-        & + span {
-          color: var(--ty-color-text-quaternary);
-        }
+      & + span {
+        color: var(--ty-checkbox-label-color-disabled, var(--ty-color-text-quaternary));
       }
     }
   }

@@ -1,0 +1,23 @@
+{
+  "tooltip.arrow-size": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Tooltip arrow size."
+  },
+  "tooltip.content-padding": {
+    "$value": "5px 8px",
+    "$type": "dimension",
+    "description": "Tooltip content padding."
+  },
+  "tooltip.color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Tooltip text color."
+  },
+  "tooltip.font-size": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Tooltip font size.",
+    "fallback": "--ty-font-size-sm"
+  }
+}

@@ -9,23 +9,23 @@ export default function DynamicThemeDemo() {
       theme={
         danger
           ? {
-              token: {
-                colorPrimary: '#ff4d4f',
-                borderRadius: '2px',
-              },
-              components: {
-                Button: {
-                  borderRadius: '2px',
+              tokens: {
+                semantic: {
+                  'color-primary': '#ff4d4f',
+                  'border-radius': '2px',
+                },
+                components: {
+                  'button.radius': '2px',
                 },
               },
             }
           : {
-              token: {
-                colorPrimary: '#1677ff',
-              },
-              components: {
-                Button: {
-                  borderRadius: '999px',
+              tokens: {
+                semantic: {
+                  'color-primary': '#1677ff',
+                },
+                components: {
+                  'button.radius': '999px',
                 },
               },
             }

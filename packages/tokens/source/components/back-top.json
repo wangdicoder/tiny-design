@@ -1,0 +1,27 @@
+{
+  "back-top.bg": {
+    "$value": "rgba(0, 0, 0, 0.3)",
+    "$type": "color",
+    "description": "Back Top button background color."
+  },
+  "back-top.offset-inline-end": {
+    "$value": "40px",
+    "$type": "dimension",
+    "description": "Back Top horizontal offset."
+  },
+  "back-top.offset-bottom": {
+    "$value": "30px",
+    "$type": "dimension",
+    "description": "Back Top vertical offset."
+  },
+  "back-top.size": {
+    "$value": "45px",
+    "$type": "dimension",
+    "description": "Back Top button size."
+  },
+  "back-top.radius": {
+    "$value": "50%",
+    "$type": "string",
+    "description": "Back Top button radius."
+  }
+}

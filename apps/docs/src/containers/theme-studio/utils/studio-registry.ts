@@ -10,7 +10,6 @@ export interface RegistryToken {
   source?: string;
   defaultValue: string;
   status?: string;
-  aliases?: string[];
 }
 
 interface RegistryFile {

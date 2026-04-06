@@ -23,16 +23,16 @@
     }
 
     .#{$prefix}-menu-item {
-      height: 48px;
-      padding: 0 15px;
-      line-height: 48px;
-      margin: 0 5px;
-      border-bottom: 2px solid transparent;
+      height: var(--ty-menu-horizontal-item-height);
+      padding: var(--ty-menu-horizontal-item-padding);
+      line-height: var(--ty-menu-horizontal-item-height);
+      margin: var(--ty-menu-horizontal-item-margin);
+      border-bottom: var(--ty-menu-horizontal-active-border-width) solid transparent;
       position: relative;
 
       &_active {
-        color: var(--ty-color-primary);
-        border-bottom-color: var(--ty-color-primary);
+        color: var(--ty-menu-item-color-active);
+        border-bottom-color: var(--ty-menu-item-color-active);
       }
     }
   }
@@ -51,17 +51,17 @@
 
     .#{$prefix}-menu-item {
       padding: $menu-item-padding-vertical;
-      margin: 5px 0;
+      margin: var(--ty-menu-inline-item-margin);
       position: relative;
     }
   }
 
   &_inline li.#{$prefix}-menu-item_active {
-    @include menu-item-active(var(--ty-color-primary), true);
+    @include menu-item-active(var(--ty-menu-item-color-active), true);
   }
 
   &_vertical li.#{$prefix}-menu-item_active {
-    @include menu-item-active(var(--ty-color-primary));
+    @include menu-item-active(var(--ty-menu-item-color-active));
   }
 
   &_light {
@@ -90,11 +90,11 @@
   transition: background-color 300ms, color 250ms;
 
   &:hover {
-    color: var(--ty-color-primary);
+    color: var(--ty-menu-item-color-hover);
   }
 
   &_disabled {
-    color: var(--ty-color-text-secondary) !important;
+    color: var(--ty-menu-item-color-disabled) !important;
     opacity: .5;
     cursor: not-allowed;
   }
@@ -118,10 +118,10 @@
     }
 
     &_popup {
-      min-width: 160px;
+      min-width: var(--ty-menu-sub-list-popup-min-width);
 
       li.#{$prefix}-menu-item_active {
-        @include menu-item-active(var(--ty-color-primary));
+        @include menu-item-active(var(--ty-menu-item-color-active));
       }
     }
   }
@@ -132,14 +132,14 @@
     align-items: center;
 
     &.#{$prefix}-menu-item_active {
-      color: var(--ty-color-primary);
+      color: var(--ty-menu-item-color-active);
     }
   }
 
   &__arrow {
     display: inline-block;
     transition: transform 300ms;
-    margin-left: 20px;
+    margin-left: var(--ty-menu-sub-arrow-margin-start);
 
     &_reverse {
       transform: rotate(180deg);
@@ -155,13 +155,13 @@
   box-sizing: border-box;
 
   &__title {
-    padding: 10px 16px;
+    padding: var(--ty-menu-group-title-padding);
     color: var(--ty-menu-group-title-color);
-    font-size: 14px;
+    font-size: var(--ty-menu-group-title-font-size);
     cursor: default;
 
     &:first-child {
-      margin-top: 4px;
+      margin-top: var(--ty-menu-group-title-first-margin-top);
     }
   }
 
@@ -171,7 +171,7 @@
     white-space: nowrap;
 
     > .#{$prefix}-menu-item {
-      padding: 12px 35px 12px 25px;
+      padding: var(--ty-menu-group-list-item-padding);
     }
   }
 }
@@ -179,5 +179,5 @@
 .#{$prefix}-menu-divider {
   height: 1px;
   background-color: var(--ty-menu-divider-color);
-  margin: 5px 0;
+  margin: var(--ty-menu-divider-margin);
 }

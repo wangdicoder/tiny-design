@@ -1,0 +1,70 @@
+{
+  "result.content-bg": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "Result content bg.",
+    "fallback": "--ty-color-fill"
+  },
+  "result.padding": {
+    "$value": "48px 32px",
+    "$type": "string",
+    "description": "Result container padding."
+  },
+  "result.icon-margin-bottom": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Result icon bottom margin."
+  },
+  "result.title-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Result title color.",
+    "fallback": "--ty-color-text"
+  },
+  "result.title-font-size": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Result title font size."
+  },
+  "result.title-line-height": {
+    "$value": "1.8",
+    "$type": "line-height",
+    "description": "Result title line height."
+  },
+  "result.subtitle-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Result subtitle color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "result.subtitle-font-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Result subtitle font size."
+  },
+  "result.subtitle-line-height": {
+    "$value": "1.6",
+    "$type": "line-height",
+    "description": "Result subtitle line height."
+  },
+  "result.extra-margin-top": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Result extra actions top margin."
+  },
+  "result.content-margin-top": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Result content top margin."
+  },
+  "result.content-margin-inline": {
+    "$value": "30px",
+    "$type": "dimension",
+    "description": "Result content horizontal margin."
+  },
+  "result.content-padding": {
+    "$value": "24px 40px",
+    "$type": "string",
+    "description": "Result content padding."
+  }
+}

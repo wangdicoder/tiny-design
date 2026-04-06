@@ -6,7 +6,7 @@
   align-items: center;
   font-size: var(--ty-font-size-base);
   margin-right: 8px;
-  color: var(--ty-color-text);
+  color: var(--ty-radio-label-color, var(--ty-color-text));
 
   &__native {
     position: absolute;
@@ -23,11 +23,11 @@
   &__inner {
     box-sizing: border-box;
     display: flex;
-    width: 16px;
-    height: 16px;
+    width: var(--ty-radio-size, 16px);
+    height: var(--ty-radio-size, 16px);
     border-radius: 100%;
-    background-color: var(--ty-radio-bg);
-    border: 1px solid var(--ty-color-primary);
+    background-color: var(--ty-radio-bg, var(--ty-color-bg-container));
+    border: 1px solid var(--ty-radio-border, var(--ty-color-primary));
     align-items: center;
     justify-content: center;
 
@@ -35,44 +35,44 @@
       box-sizing: border-box;
       display: inline-block;
       content: '';
-      width: 10px;
-      height: 10px;
+      width: var(--ty-radio-dot-size, 10px);
+      height: var(--ty-radio-dot-size, 10px);
       border-radius: 100%;
-      background-color: var(--ty-color-primary);
+      background-color: var(--ty-radio-dot-bg, var(--ty-color-primary));
       transition: all 200ms;
       transform: scale(0);
     }
 
     & + span {
-      padding: 0 5px;
-      line-height: 16px;
+      padding: 0 var(--ty-radio-label-gap, 5px);
+      line-height: var(--ty-radio-size, 16px);
     }
   }
 
   &_checked {
-    .#{$prefix}-radio {
-      &__inner::after {
+    .#{$prefix}-radio__inner {
+      border-color: var(--ty-radio-border-checked, var(--ty-color-primary));
+
+      &::after {
         transform: scale(1);
       }
     }
   }
 
   &_disabled {
-    .#{$prefix}-radio {
-      &__native {
-        cursor: not-allowed;
+    .#{$prefix}-radio__native {
+      cursor: not-allowed;
+    }
+
+    .#{$prefix}-radio__inner {
+      border-color: var(--ty-radio-border-disabled, var(--ty-color-border));
+
+      &::after {
+        background-color: var(--ty-radio-dot-bg-disabled, rgb(0 0 0 / 20%));
       }
 
-      &__inner {
-        border-color: var(--ty-radio-disabled-border);
-
-        &::after {
-          background-color: var(--ty-radio-disabled-dot);
-        }
-
-        & + span {
-          color: var(--ty-color-text-quaternary);
-        }
+      & + span {
+        color: var(--ty-radio-label-color-disabled, var(--ty-color-text-quaternary));
       }
     }
   }

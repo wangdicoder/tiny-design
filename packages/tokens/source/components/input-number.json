@@ -1,0 +1,85 @@
+{
+  "input-number.control-active-bg": {
+    "$value": "#f4f4f4",
+    "$type": "color",
+    "description": "Input Number control active bg."
+  },
+  "input-number.control-border": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Input Number control border.",
+    "fallback": "--ty-color-border"
+  },
+  "input-number.icon-color": {
+    "$value": "#999",
+    "$type": "color",
+    "description": "Input Number icon color."
+  },
+  "input-number.icon-color-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Input Number icon hover color.",
+    "fallback": "--ty-color-primary"
+  },
+  "input-number.input-padding-inline-start": {
+    "$value": "7px",
+    "$type": "dimension",
+    "description": "Input Number input leading padding."
+  },
+  "input-number.input-padding-inline-end": {
+    "$value": "25px",
+    "$type": "dimension",
+    "description": "Input Number input trailing padding."
+  },
+  "input-number.controls-padding": {
+    "$value": "1px",
+    "$type": "dimension",
+    "description": "Input Number controls inset padding."
+  },
+  "input-number.control-padding-inline": {
+    "$value": "0 7px",
+    "$type": "string",
+    "description": "Input Number control button inline padding."
+  },
+  "input-number.control-transition-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Input Number control transition duration."
+  },
+  "input-number.font-size.sm": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Small Input Number font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "input-number.font-size.md": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Medium Input Number font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "input-number.font-size.lg": {
+    "$value": "{font-size-lg}",
+    "$type": "dimension",
+    "description": "Large Input Number font size.",
+    "fallback": "--ty-font-size-lg"
+  },
+  "input-number.height.sm": {
+    "$value": "{height-sm}",
+    "$type": "dimension",
+    "description": "Small Input Number height.",
+    "fallback": "--ty-height-sm"
+  },
+  "input-number.height.md": {
+    "$value": "{height-md}",
+    "$type": "dimension",
+    "description": "Medium Input Number height.",
+    "fallback": "--ty-height-md"
+  },
+  "input-number.height.lg": {
+    "$value": "{height-lg}",
+    "$type": "dimension",
+    "description": "Large Input Number height.",
+    "fallback": "--ty-height-lg"
+  }
+}

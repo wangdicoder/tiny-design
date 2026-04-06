@@ -55,12 +55,12 @@ $carousel-prefix: #{$prefix}-carousel;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: var(--ty-carousel-arrow-size);
+    height: var(--ty-carousel-arrow-size);
     border: none;
     border-radius: 50%;
     background: var(--ty-carousel-arrow-bg);
-    color: #fff;
+    color: var(--ty-carousel-arrow-color);
     cursor: pointer;
     transition: background 0.3s;
     outline: none;
@@ -70,11 +70,11 @@ $carousel-prefix: #{$prefix}-carousel;
     }
 
     &_prev {
-      left: 12px;
+      left: var(--ty-carousel-arrow-offset);
     }
 
     &_next {
-      right: 12px;
+      right: var(--ty-carousel-arrow-offset);
     }
   }
 
@@ -88,28 +88,28 @@ $carousel-prefix: #{$prefix}-carousel;
     z-index: 1;
 
     &_bottom {
-      bottom: 12px;
+      bottom: var(--ty-carousel-arrow-offset);
       left: 50%;
       transform: translateX(-50%);
       flex-direction: row;
     }
 
     &_top {
-      top: 12px;
+      top: var(--ty-carousel-arrow-offset);
       left: 50%;
       transform: translateX(-50%);
       flex-direction: row;
     }
 
     &_left {
-      left: 12px;
+      left: var(--ty-carousel-arrow-offset);
       top: 50%;
       transform: translateY(-50%);
       flex-direction: column;
     }
 
     &_right {
-      right: 12px;
+      right: var(--ty-carousel-arrow-offset);
       top: 50%;
       transform: translateY(-50%);
       flex-direction: column;
@@ -117,10 +117,10 @@ $carousel-prefix: #{$prefix}-carousel;
   }
 
   &__dot {
-    width: 16px;
-    height: 3px;
-    margin: 0 4px;
-    border-radius: 1px;
+    width: var(--ty-carousel-dot-width);
+    height: var(--ty-carousel-dot-height);
+    margin: 0 var(--ty-carousel-dot-gap);
+    border-radius: var(--ty-carousel-dot-radius);
     background: var(--ty-carousel-dot-bg);
     cursor: pointer;
     transition: all 0.3s;
@@ -140,19 +140,19 @@ $carousel-prefix: #{$prefix}-carousel;
     }
 
     &_active {
-      width: 24px;
+      width: var(--ty-carousel-dot-width-active);
       background: var(--ty-carousel-dot-active-bg);
     }
   }
 
   &_vertical-dots &__dot {
-    width: 3px;
-    height: 16px;
-    margin: 4px 0;
+    width: var(--ty-carousel-dot-height);
+    height: var(--ty-carousel-dot-width);
+    margin: var(--ty-carousel-dot-gap) 0;
 
     &_active {
-      width: 3px;
-      height: 24px;
+      width: var(--ty-carousel-dot-height);
+      height: var(--ty-carousel-dot-height-active);
     }
   }
 }

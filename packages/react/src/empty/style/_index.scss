@@ -7,20 +7,20 @@
   flex-direction: column;
 
   &__image-container {
-    margin-bottom: 8px;
+    margin-bottom: var(--ty-empty-image-margin-bottom);
   }
 
   &__image {
-    max-width: 120px;
+    max-width: var(--ty-empty-image-max-width);
   }
 
   &__desc {
     color: var(--ty-empty-desc-color);
-    font-size: var(--ty-font-size-base);
+    font-size: var(--ty-empty-desc-font-size);
     margin: 0;
   }
 
   &__footer {
-    margin-top: 16px;
+    margin-top: var(--ty-empty-footer-margin-top);
   }
 }

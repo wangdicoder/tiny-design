@@ -1,0 +1,130 @@
+{
+  "modal.radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Modal panel border radius."
+  },
+  "modal.shadow": {
+    "$value": "{shadow-modal}",
+    "$type": "shadow",
+    "description": "Modal panel shadow.",
+    "fallback": "--ty-shadow-modal"
+  },
+  "modal.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Modal panel background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "modal.offset-top": {
+    "$value": "100px",
+    "$type": "dimension",
+    "description": "Default modal vertical offset."
+  },
+  "modal.enter-offset-y": {
+    "$value": "-20px",
+    "$type": "dimension",
+    "description": "Modal slide enter and exit offset."
+  },
+  "modal.scale-enter": {
+    "$value": "0",
+    "$type": "number",
+    "description": "Modal scale enter and exit start value."
+  },
+  "modal.transition-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Modal content transition duration."
+  },
+  "modal.header-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Modal header background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "modal.header-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Modal header text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "modal.header-padding-block": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Modal header vertical padding."
+  },
+  "modal.header-padding-inline": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Modal header horizontal padding."
+  },
+  "modal.header-border": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "Modal header border color.",
+    "fallback": "--ty-color-border-secondary"
+  },
+  "modal.title-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Modal title text color.",
+    "fallback": "--ty-color-text"
+  },
+  "modal.title-font-weight": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Modal title font weight."
+  },
+  "modal.title-font-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Modal title font size."
+  },
+  "modal.title-line-height": {
+    "$value": "22px",
+    "$type": "dimension",
+    "description": "Modal title line height."
+  },
+  "modal.close-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Modal close button color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "modal.close-size": {
+    "$value": "56px",
+    "$type": "dimension",
+    "description": "Modal close button square size."
+  },
+  "modal.body-padding": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Modal body padding."
+  },
+  "modal.body-font-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Modal body font size."
+  },
+  "modal.body-line-height": {
+    "$value": "1.5",
+    "$type": "line-height",
+    "description": "Modal body line height."
+  },
+  "modal.footer-padding-block": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Modal footer vertical padding."
+  },
+  "modal.footer-padding-inline": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Modal footer horizontal padding."
+  },
+  "modal.footer-border": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "Modal footer border color.",
+    "fallback": "--ty-color-border-secondary"
+  }
+}

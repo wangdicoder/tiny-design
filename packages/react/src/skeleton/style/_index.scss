@@ -3,13 +3,13 @@
 .#{$prefix}-skeleton {
   display: inline-block;
   width: 100%;
-  height: 1em;
+  height: var(--ty-skeleton-height);
   position: relative;
   overflow: hidden;
   background-color: var(--ty-skeleton-bg);
 
   & + & {
-    margin-top: 10px;
+    margin-top: var(--ty-skeleton-stack-gap);
   }
 
   &::after {
@@ -18,7 +18,7 @@
     transform: translateX(-100%);
     background-image: var(--ty-skeleton-shimmer);
     background-size: 200% 100%;
-    animation: ty-shimmer 1.5s ease infinite;
+    animation: ty-shimmer var(--ty-skeleton-animation-duration) ease infinite;
   }
 
   &_rounded {

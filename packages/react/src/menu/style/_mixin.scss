@@ -3,14 +3,15 @@
   margin-top: 4px;
   margin-bottom: 4px;
   overflow: hidden;
-  font-size: 14px;
+  font-size: var(--ty-menu-group-title-font-size);
   text-overflow: ellipsis;
 }
 
 @mixin menu-item-active($color, $display-right-border: false){
-  background-color: var(--ty-color-primary-bg);
+  background-color: var(--ty-menu-active-bg);
   color: $color;
+
   @if $display-right-border {
-    border-right: 3px solid $color;
+    border-right: var(--ty-menu-active-border-width-inline) solid $color;
   }
 }

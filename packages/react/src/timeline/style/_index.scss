@@ -2,8 +2,8 @@
 
 .#{$prefix}-timeline {
   box-sizing: border-box;
-  color: var(--ty-color-text-secondary);
-  font-size: var(--ty-font-size-base);
+  color: var(--ty-timeline-color);
+  font-size: var(--ty-timeline-font-size);
   line-height: 1.5;
   margin: 0;
   padding: 0;
@@ -14,8 +14,8 @@
   position: relative;
   box-sizing: border-box;
   margin: 0;
-  padding: 0 0 20px;
-  font-size: 14px;
+  padding: 0 0 var(--ty-timeline-item-padding-bottom);
+  font-size: var(--ty-timeline-item-font-size);
   list-style: none;
 
   &:last-child {
@@ -30,7 +30,7 @@
     width: 16px;
     background-color: transparent;
     position: absolute;
-    color: var(--ty-color-primary);
+    color: var(--ty-timeline-head-color);
     height: 100%;
 
     &::before {
@@ -53,9 +53,9 @@
 
   &__dot {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    border: 2px solid var(--ty-color-primary);
+    width: var(--ty-timeline-dot-size);
+    height: var(--ty-timeline-dot-size);
+    border: var(--ty-timeline-dot-border-width) solid var(--ty-timeline-dot-border-color);
     border-radius: 100px;
     background-color: var(--ty-color-bg);
   }
@@ -63,7 +63,7 @@
   &__content {
     position: relative;
     top: 0;
-    padding-left: 25px;
+    padding-left: var(--ty-timeline-content-offset);
   }
 
   &_left,

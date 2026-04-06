@@ -1,20 +1,20 @@
 @use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-divider {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: var(--ty-divider-font-size);
+  line-height: var(--ty-divider-line-height);
   box-sizing: border-box;
   padding: 0;
   list-style: none;
 
   &_vertical {
-    margin: 0 8px;
+    margin: var(--ty-divider-vertical-margin);
     display: inline-block;
-    height: 0.9em;
+    height: var(--ty-divider-vertical-height);
     width: 1px;
     vertical-align: middle;
     position: relative;
-    top: -0.1em;
+    top: var(--ty-divider-vertical-offset);
     background: var(--ty-divider-color);
 
     &-dashed {
@@ -27,7 +27,7 @@
     display: block;
     height: 1px;
     width: 100%;
-    margin: 16px 0;
+    margin: var(--ty-divider-horizontal-margin);
     background: var(--ty-divider-color);
 
     &-dashed:not(.#{$prefix}-divider_text) {
@@ -68,7 +68,7 @@
 
   &_inner-text {
     display: inline-block;
-    padding: 0 10px;
+    padding: var(--ty-divider-inner-text-padding);
   }
 
   &_dashed {

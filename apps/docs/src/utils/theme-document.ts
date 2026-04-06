@@ -1,13 +1,6 @@
 import type { ThemeDocument } from '@tiny-design/react';
 import { deriveAllTokens } from '../containers/theme-studio/utils/color-utils';
-import semanticColors from '../../../../packages/tokens/source/semantic/colors.json';
-import semanticTypography from '../../../../packages/tokens/source/semantic/typography.json';
-import semanticSize from '../../../../packages/tokens/source/semantic/size.json';
-import semanticSpacing from '../../../../packages/tokens/source/semantic/spacing.json';
-import semanticEffects from '../../../../packages/tokens/source/semantic/effects.json';
-import buttonTokens from '../../../../packages/tokens/source/components/button.json';
-import inputTokens from '../../../../packages/tokens/source/components/input.json';
-import cardTokens from '../../../../packages/tokens/source/components/card.json';
+import tokenRegistry from '../../../../packages/tokens/dist/registry.json';
 import lightTheme from '../../../../packages/tokens/source/themes/light.json';
 import darkTheme from '../../../../packages/tokens/source/themes/dark.json';
 
@@ -15,27 +8,33 @@ type TokenDefinition = {
   $value: string | number;
 };
 
+type TokenRegistryEntry = {
+  key: string;
+  defaultValue: string | number;
+};
+
+type TokenRegistryDocument = {
+  tokens: TokenRegistryEntry[];
+};
+
 const META_KEYS = new Set(['shadow-intensity']);
 const STUDIO_THEME_DOCUMENT_KEY = 'ty-theme-studio-document';
 
-const SOURCE_TOKENS: Record<string, TokenDefinition> = {
-  ...semanticColors,
-  ...semanticTypography,
-  ...semanticSize,
-  ...semanticSpacing,
-  ...semanticEffects,
-  ...buttonTokens,
-  ...inputTokens,
-  ...cardTokens,
-};
+const SOURCE_TOKENS: Record<string, TokenDefinition> = (tokenRegistry as TokenRegistryDocument).tokens
+  .reduce<Record<string, TokenDefinition>>((acc, token) => {
+    acc[token.key] = { $value: token.defaultValue };
+    return acc;
+  }, {});
 
 const SOURCE_TOKEN_KEYS = new Set(Object.keys(SOURCE_TOKENS));
+const SOURCE_SEMANTIC_KEYS = new Set(
+  (tokenRegistry as TokenRegistryDocument).tokens
+    .filter((token) => !token.key.includes('.'))
+    .map((token) => token.key)
+);
 
 const EDITOR_THEME_DOCUMENT_KEYS = new Set([
-  ...Object.keys(semanticColors),
-  ...Object.keys(semanticTypography),
-  ...Object.keys(semanticSize),
-  ...Object.keys(semanticEffects),
+  ...SOURCE_SEMANTIC_KEYS,
   'color-bg',
   'color-bg-elevated',
   'color-bg-layout',
@@ -156,7 +155,8 @@ export function mergeThemeDocuments(
 
 export function resolveThemeDocument(theme: ThemeDocument): Record<string, string> {
   const baseTheme = getBaseTheme(theme);
-  const baseOverrides = baseTheme.tokens?.semantic ?? {};
+  const baseSemanticOverrides = baseTheme.tokens?.semantic ?? {};
+  const baseComponentOverrides = baseTheme.tokens?.components ?? {};
   const semanticOverrides = theme.tokens?.semantic ?? {};
   const componentOverrides = theme.tokens?.components ?? {};
 
@@ -166,8 +166,10 @@ export function resolveThemeDocument(theme: ThemeDocument): Record<string, strin
       ? componentOverrides[key]
       : key in semanticOverrides
         ? semanticOverrides[key]
-        : key in baseOverrides
-          ? baseOverrides[key]
+        : key in baseComponentOverrides
+          ? baseComponentOverrides[key]
+          : key in baseSemanticOverrides
+            ? baseSemanticOverrides[key]
           : definition.$value;
     rawValues[key] = String(override);
   }
@@ -193,22 +195,6 @@ export function resolveThemeDocument(theme: ThemeDocument): Record<string, strin
   }
 
   return resolved;
-}
-
-export function buildLegacyPreviewOverrides(
-  seeds: Record<string, string>,
-  isDark: boolean
-): Record<string, string> {
-  const derived = deriveAllTokens(seeds, isDark);
-  const extras: Record<string, string> = {};
-
-  for (const [key, value] of Object.entries(derived)) {
-    if (META_KEYS.has(key)) continue;
-    if (EDITOR_THEME_DOCUMENT_KEYS.has(key)) continue;
-    extras[key] = value;
-  }
-
-  return extras;
 }
 
 export function generateThemeDocumentJSON(theme: ThemeDocument): string {

@@ -1,0 +1,92 @@
+{
+  "native-select.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Native Select bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "native-select.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Native Select text color.",
+    "fallback": "--ty-color-text"
+  },
+  "native-select.border": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Native Select border color.",
+    "fallback": "--ty-color-border"
+  },
+  "native-select.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Native Select radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "native-select.border-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Native Select hover border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "native-select.border-focus": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Native Select focus border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "native-select.shadow-focus": {
+    "$value": "{shadow-focus}",
+    "$type": "shadow",
+    "description": "Native Select focus shadow.",
+    "fallback": "--ty-shadow-focus"
+  },
+  "native-select.disabled-bg": {
+    "$value": "#ddd",
+    "$type": "color",
+    "description": "Native Select disabled bg."
+  },
+  "native-select.disabled-color": {
+    "$value": "#a5a5a5",
+    "$type": "color",
+    "description": "Native Select disabled color."
+  },
+  "native-select.opacity-disabled": {
+    "$value": "0.75",
+    "$type": "number",
+    "description": "Native Select disabled opacity."
+  },
+  "native-select.lg-padding": {
+    "$value": "9px 25px 9px 7px",
+    "$type": "string",
+    "description": "Native Select lg padding."
+  },
+  "native-select.md-padding": {
+    "$value": "6px 25px 6px 7px",
+    "$type": "string",
+    "description": "Native Select md padding."
+  },
+  "native-select.sm-padding": {
+    "$value": "3px 25px 3px 7px",
+    "$type": "string",
+    "description": "Native Select sm padding."
+  },
+  "native-select.font-size.sm": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Small Native Select font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "native-select.font-size.md": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Medium Native Select font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "native-select.font-size.lg": {
+    "$value": "{font-size-lg}",
+    "$type": "dimension",
+    "description": "Large Native Select font size.",
+    "fallback": "--ty-font-size-lg"
+  }
+}

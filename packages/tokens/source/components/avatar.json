@@ -1,0 +1,62 @@
+{
+  "avatar.bg": {
+    "$value": "#ccc",
+    "$type": "color",
+    "description": "Avatar background color."
+  },
+  "avatar.border": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Avatar border.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "avatar.border-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Avatar square border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "avatar.color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Avatar color."
+  },
+  "avatar.offline-color": {
+    "$value": "#ced4da",
+    "$type": "color",
+    "description": "Avatar offline color."
+  },
+  "avatar.presence-shadow": {
+    "$value": "0 0 0 0.1rem #fff",
+    "$type": "shadow",
+    "description": "Avatar presence indicator ring shadow."
+  },
+  "avatar.border-width": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Avatar border width."
+  },
+  "avatar.presence-size": {
+    "$value": "0.4em",
+    "$type": "dimension",
+    "description": "Avatar presence indicator size."
+  },
+  "avatar.presence-color.online": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "Avatar online presence color.",
+    "fallback": "--ty-color-success"
+  },
+  "avatar.presence-color.busy": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "Avatar busy presence color.",
+    "fallback": "--ty-color-danger"
+  },
+  "avatar.presence-color.away": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "Avatar away presence color.",
+    "fallback": "--ty-color-warning"
+  }
+}

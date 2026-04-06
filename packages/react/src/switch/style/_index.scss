@@ -10,8 +10,8 @@
   &__bg {
     position: absolute;
     inset: 0;
-    background-color: var(--ty-switch-bg);
-    transition: background-color 300ms;
+    background-color: var(--ty-switch-bg, var(--ty-color-text-quaternary));
+    transition: background-color var(--ty-switch-transition-duration, 300ms);
     user-select: none;
   }
 
@@ -23,53 +23,52 @@
     left: 0;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    background-color: var(--ty-switch-thumb-bg);
-    border: 1px solid var(--ty-switch-thumb-border);
+    background-color: var(--ty-switch-thumb-bg, #fff);
+    border: 1px solid var(--ty-switch-thumb-border, var(--ty-color-text-quaternary));
     box-shadow: var(--ty-switch-thumb-shadow);
-    transition: all 300ms;
-    color: var(--ty-switch-bg);
+    transition: all var(--ty-switch-transition-duration, 300ms);
+    color: var(--ty-switch-bg, var(--ty-color-text-quaternary));
   }
 
   &__label {
     box-sizing: border-box;
     display: block;
-    color: #fff;
+    color: var(--ty-switch-label-color, #fff);
     text-align: center;
     position: absolute;
     left: 0;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    padding-left: 11px;
-    padding-right: 5px;
-    transition: all 300ms;
+    padding-left: var(--ty-switch-label-padding-inline-start-default, 11px);
+    padding-right: var(--ty-switch-label-padding-inline-end-default, 5px);
+    transition: all var(--ty-switch-transition-duration, 300ms);
   }
 
   &_checked {
     .#{$prefix}-switch {
       &__bg {
-        background-color: var(--ty-color-primary);
+        background-color: var(--ty-switch-bg-checked, var(--ty-color-primary));
       }
 
       &__thumb {
         left: 100%;
-        border-color: var(--ty-color-primary);
-        color: var(--ty-color-primary);
+        border-color: var(--ty-switch-thumb-border-checked, var(--ty-color-primary));
+        color: var(--ty-switch-bg-checked, var(--ty-color-primary));
       }
 
       &__label {
-        padding-left: 5px;
-        padding-right: 11px;
+        padding-left: var(--ty-switch-label-padding-inline-start-checked, 5px);
+        padding-right: var(--ty-switch-label-padding-inline-end-checked, 11px);
       }
     }
   }
 
   &_disabled {
     cursor: not-allowed;
-    opacity: 0.4;
+    opacity: var(--ty-switch-disabled-opacity, 0.4);
   }
 
-  // TODO: optimise
   &_loading {
     .#{$prefix}-switch__thumb:before {
       display: inline-block !important;
@@ -77,14 +76,14 @@
   }
 
   &_sm {
-    margin: 0 10px;
-    font-size: $switch-sm-font-size;
-    width: 29px;
-    height: 14px;
+    margin: 0 var(--ty-switch-margin-inline-sm, 10px);
+    font-size: var(--ty-switch-font-size-sm, 9px);
+    width: var(--ty-switch-width-sm, 29px);
+    height: var(--ty-switch-height-sm, 14px);
 
     .#{$prefix}-switch {
       &__bg {
-        border-radius: 18px;
+        border-radius: var(--ty-switch-radius-sm, 18px);
       }
 
       &__thumb {
@@ -92,20 +91,20 @@
       }
 
       &__label {
-        line-height: 14px;
+        line-height: var(--ty-switch-height-sm, 14px);
       }
     }
   }
 
   &_md {
-    margin: 0 12px;
-    font-size: $switch-md-font-size;
-    width: 36px;
-    height: 16px;
+    margin: 0 var(--ty-switch-margin-inline-md, 12px);
+    font-size: var(--ty-switch-font-size-md, 12px);
+    width: var(--ty-switch-width-md, 36px);
+    height: var(--ty-switch-height-md, 16px);
 
     .#{$prefix}-switch {
       &__bg {
-        border-radius: 22px;
+        border-radius: var(--ty-switch-radius-md, 22px);
       }
 
       &__thumb {
@@ -119,14 +118,14 @@
   }
 
   &_lg {
-    margin: 0 14px;
-    font-size: $switch-lg-font-size;
-    width: 42px;
-    height: 20px;
+    margin: 0 var(--ty-switch-margin-inline-lg, 14px);
+    font-size: var(--ty-switch-font-size-lg, 14px);
+    width: var(--ty-switch-width-lg, 42px);
+    height: var(--ty-switch-height-lg, 20px);
 
     .#{$prefix}-switch {
       &__bg {
-        border-radius: 26px;
+        border-radius: var(--ty-switch-radius-lg, 26px);
       }
 
       &__thumb {
@@ -134,7 +133,7 @@
       }
 
       &__label {
-        line-height: 20px;
+        line-height: var(--ty-switch-height-lg, 20px);
       }
     }
   }

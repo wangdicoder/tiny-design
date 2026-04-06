@@ -7,9 +7,9 @@
 - Migrate component styles from SCSS variables to CSS custom properties (`--ty-*`) for better runtime theming support. - [#90](https://github.com/wangdicoder/tiny-design/pull/90) [`49b4bfc`](https://github.com/wangdicoder/tiny-design/commit/49b4bfcba6c9536a966ba5b5a64e53b56a25da76)
   - Migrate ~80 structural SCSS constants (padding, sizing, transitions) to runtime-customizable CSS custom properties
   - Tokenize hardcoded values in Button, Input, Card, Select, and Notification components
-  - Add component-scoped CSS variable fallback chains (e.g., `--ty-btn-border-radius` falls back to `--ty-border-radius`)
-  - Add `ThemeConfig` API to `ConfigProvider` for programmatic token and component-level overrides
-  - Three-level customization: global tokens, component tokens, and scoped instance overrides via CSS
+  - Introduce component-scoped v2 CSS variables such as `--ty-button-radius` and `--ty-card-header-padding`
+  - Add `ThemeConfig` support in `ConfigProvider` for semantic and component token overrides
+  - Support global token overrides, component token overrides, and scoped instance overrides via CSS variables
 
 ## 1.8.0
 

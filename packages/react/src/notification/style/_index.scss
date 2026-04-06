@@ -4,18 +4,18 @@
   position: relative;
   padding: var(--ty-notification-padding);
   border-radius: var(--ty-notification-border-radius);
-  color: var(--ty-color-text-secondary);
-  font-size: var(--ty-font-size-base);
-  box-shadow: var(--ty-shadow-modal);
+  color: var(--ty-notification-color);
+  font-size: var(--ty-notification-font-size);
+  box-shadow: var(--ty-notification-shadow);
   box-sizing: border-box;
   display: flex;
   align-items: flex-start;
 
   &-container {
-    width: $notification-width;
+    width: var(--ty-notification-width);
     position: fixed;
     background-color: var(--ty-notification-bg);
-    z-index: 999;
+    z-index: var(--ty-notification-z-index);
     box-sizing: border-box;
     transition: all 200ms;
 
@@ -34,8 +34,8 @@
 
   &__close {
     position: absolute;
-    right: 24px;
-    top: 16px;
+    right: var(--ty-notification-close-offset-inline-end);
+    top: var(--ty-notification-close-offset-top);
     cursor: pointer;
     color: var(--ty-notification-close-color);
     user-select: none;
@@ -52,15 +52,15 @@
   }
 
   &__title {
-    padding-right: 24px;
-    margin-bottom: 5px;
-    color: var(--ty-color-text);
+    padding-right: var(--ty-notification-title-padding-inline-end);
+    margin-bottom: var(--ty-notification-title-margin-bottom);
+    color: var(--ty-notification-title-color);
     font-size: var(--ty-notification-title-font-size);
-    line-height: 24px;
+    line-height: var(--ty-notification-title-line-height);
   }
 
   &__icon {
-    margin-right: 15px;
-    height: 30px;
+    margin-right: var(--ty-notification-icon-gap);
+    height: var(--ty-notification-icon-height);
   }
 }

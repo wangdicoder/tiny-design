@@ -30,7 +30,7 @@ $speed-dial-actions-gap: 16px;
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px var(--ty-input-focus-shadow), var(--ty-shadow);
+      box-shadow: 0 0 0 3px var(--ty-input-shadow-focus, var(--ty-shadow-focus)), var(--ty-shadow);
     }
 
     &_open {
@@ -182,7 +182,7 @@ $speed-dial-actions-gap: 16px;
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px var(--ty-input-focus-shadow), var(--ty-shadow-sm);
+      box-shadow: 0 0 0 3px var(--ty-input-shadow-focus, var(--ty-shadow-focus)), var(--ty-shadow-sm);
     }
 
     &_disabled {

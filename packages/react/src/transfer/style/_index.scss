@@ -2,8 +2,8 @@
 
 .#{$prefix}-transfer {
   box-sizing: border-box;
-  font-size: var(--ty-font-size-base);
-  color: var(--ty-color-text);
+  font-size: var(--ty-transfer-font-size);
+  color: var(--ty-transfer-color);
 
   &__left-arrow {
     transform: rotate(-90deg);
@@ -16,14 +16,14 @@
   &__buttons {
     display: inline-block;
     box-sizing: border-box;
-    margin: 0 8px;
+    margin: var(--ty-transfer-buttons-margin);
     vertical-align: middle;
 
     .#{$prefix}-btn {
       display: block;
-      margin: 3px 0;
-      padding: 3px;
-      min-width: 30px;
+      margin: var(--ty-transfer-button-margin);
+      padding: var(--ty-transfer-button-padding);
+      min-width: var(--ty-transfer-button-min-width);
     }
   }
 }
@@ -32,29 +32,29 @@
   box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
-  width: 180px;
+  width: var(--ty-transfer-panel-width);
   border: 1px solid var(--ty-transfer-border);
-  border-radius: var(--ty-border-radius);
+  border-radius: var(--ty-transfer-panel-radius);
 
   &__header {
-    padding: 8px 12px 9px;
-    color: var(--ty-color-text);
+    padding: var(--ty-transfer-header-padding);
+    color: var(--ty-transfer-color);
     background: var(--ty-transfer-header-bg);
     border-bottom: 1px solid var(--ty-transfer-footer-border);
-    border-radius: var(--ty-border-radius) var(--ty-border-radius) 0 0;
+    border-radius: var(--ty-transfer-panel-radius) var(--ty-transfer-panel-radius) 0 0;
   }
 
   &__body {
     position: relative;
-    padding: 6px 0;
+    padding: var(--ty-transfer-body-padding);
   }
 
   &__input-container{
-    padding: 6px 12px 12px;
+    padding: var(--ty-transfer-input-container-padding);
   }
 
   &__list-container{
-    height: 192px;
+    height: var(--ty-transfer-list-height);
   }
 
   &__list {
@@ -68,11 +68,11 @@
 
   &__list-item {
     box-sizing: border-box;
-    padding: 0 12px;
+    padding: 0 var(--ty-transfer-item-padding-inline);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    min-height: 32px;
+    min-height: var(--ty-transfer-item-min-height);
     display: flex;
     margin-right: 0;
     transition: background-color 250ms;
@@ -90,9 +90,9 @@
   }
 
   &__footer {
-    padding: 8px 12px 9px;
+    padding: var(--ty-transfer-footer-padding);
     border-top: 1px solid var(--ty-transfer-footer-border);
     background-color: var(--ty-transfer-footer-bg);
-    border-radius: 0 0 var(--ty-border-radius) var(--ty-border-radius);
+    border-radius: 0 0 var(--ty-transfer-panel-radius) var(--ty-transfer-panel-radius);
   }
 }

@@ -1,4 +1,9 @@
 {
+  "spacer": {
+    "$value": "1rem",
+    "$type": "dimension",
+    "description": "Base spacing unit."
+  },
   "spacing-3": {
     "$value": "8px",
     "$type": "dimension",

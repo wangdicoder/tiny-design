@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: var(--ty-color-text);
+  color: var(--ty-steps-color);
   display: flex;
   width: 100%;
 
@@ -84,9 +84,9 @@
   }
 
   &__icon {
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--ty-color-primary);
+    width: var(--ty-steps-icon-size);
+    height: var(--ty-steps-icon-size);
+    border: 1px solid var(--ty-steps-icon-border);
     border-radius: 50%;
     background-color: var(--ty-steps-icon-bg);
     display: flex;
@@ -112,13 +112,13 @@
   }
 
   &__title {
-    line-height: 32px;
-    font-size: $steps-title-font-size;
-    color: var(--ty-color-text-secondary);
+    line-height: var(--ty-steps-icon-size);
+    font-size: var(--ty-steps-title-font-size);
+    color: var(--ty-steps-title-color);
   }
 
   &__desc {
-    color: var(--ty-color-text-tertiary);
+    color: var(--ty-steps-desc-color);
   }
 
   &:last-child {
@@ -138,22 +138,22 @@
   &_process {
     .#{$prefix}-steps-item {
       &__icon {
-        background-color: var(--ty-color-primary);
-        color: #fff;
+        background-color: var(--ty-steps-process-color);
+        color: var(--ty-steps-process-color-contrast);
 
         &_has-icon {
           background-color: transparent;
-          color: var(--ty-color-primary);
+          color: var(--ty-steps-process-color);
         }
       }
 
       &__title {
-        font-weight: 600;
-        color: var(--ty-color-primary);
+        font-weight: var(--ty-steps-title-font-weight-process);
+        color: var(--ty-steps-process-color);
       }
 
       &__desc {
-        color: var(--ty-color-primary);
+        color: var(--ty-steps-process-color);
       }
     }
   }
@@ -161,11 +161,11 @@
   &_finish {
     .#{$prefix}-steps-item {
       &__icon {
-        color: var(--ty-color-primary);
+        color: var(--ty-steps-process-color);
       }
 
       &__tail, &__title::after {
-        background-color: var(--ty-color-primary);
+        background-color: var(--ty-steps-process-color);
       }
     }
   }
@@ -173,16 +173,16 @@
   &_wait {
     .#{$prefix}-steps-item {
       &__icon {
-        border-color: var(--ty-color-text-quaternary);
-        color: var(--ty-color-text-quaternary);
+        border-color: var(--ty-steps-wait-color);
+        color: var(--ty-steps-wait-color);
       }
 
       &__title {
-        color: var(--ty-color-text-quaternary);
+        color: var(--ty-steps-wait-color);
       }
 
       &__desc {
-        color: var(--ty-color-text-quaternary);
+        color: var(--ty-steps-wait-color);
       }
     }
   }
@@ -190,16 +190,16 @@
   &_error {
     .#{$prefix}-steps-item {
       &__icon {
-        border-color: var(--ty-color-danger);
-        color: var(--ty-color-danger);
+        border-color: var(--ty-steps-error-color);
+        color: var(--ty-steps-error-color);
       }
 
       &__title {
-        color: var(--ty-color-danger);
+        color: var(--ty-steps-error-color);
       }
 
       &__desc {
-        color: var(--ty-color-danger);
+        color: var(--ty-steps-error-color);
       }
     }
   }

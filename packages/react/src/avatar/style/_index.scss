@@ -12,7 +12,7 @@
   position: relative;
   vertical-align: middle;
   user-select: none;
-  border: 2px solid var(--ty-avatar-border);
+  border: var(--ty-avatar-border-width) solid var(--ty-avatar-border);
 
   &__img {
     width: 100%;
@@ -32,19 +32,19 @@
     right: 0;
     border-radius: 50%;
     box-shadow: var(--ty-avatar-presence-shadow);
-    height: 0.4em;
-    width: 0.4em;
+    height: var(--ty-avatar-presence-size);
+    width: var(--ty-avatar-presence-size);
 
     &_online {
-      background-color: var(--ty-color-success);
+      background-color: var(--ty-avatar-presence-color-online);
     }
 
     &_busy {
-      background-color: var(--ty-color-danger);
+      background-color: var(--ty-avatar-presence-color-busy);
     }
 
     &_away {
-      background-color: var(--ty-color-warning);
+      background-color: var(--ty-avatar-presence-color-away);
     }
 
     &_offline {
@@ -61,7 +61,7 @@
   }
 
   &_square {
-    border-radius: $avatar-border-radius;
+    border-radius: var(--ty-avatar-border-radius);
   }
 
   &_clickable {

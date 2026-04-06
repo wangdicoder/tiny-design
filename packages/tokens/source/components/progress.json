@@ -1,0 +1,82 @@
+{
+  "progress.circle-trail": {
+    "$value": "#e5e9f2",
+    "$type": "color",
+    "description": "Progress circle trail."
+  },
+  "progress.font-size": {
+    "$value": "13px",
+    "$type": "dimension",
+    "description": "Progress bar text font size."
+  },
+  "progress.text-color": {
+    "$value": "#48576a",
+    "$type": "color",
+    "description": "Progress text color."
+  },
+  "progress.text-offset": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Progress text inline offset."
+  },
+  "progress.text-min-width": {
+    "$value": "40px",
+    "$type": "dimension",
+    "description": "Progress text min width."
+  },
+  "progress.inner-text-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Progress inner text color."
+  },
+  "progress.inner-text-font-size": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Progress inner text font size."
+  },
+  "progress.inner-text-margin": {
+    "$value": "0 5px",
+    "$type": "string",
+    "description": "Progress inner text margin."
+  },
+  "progress.trail-bg": {
+    "$value": "#e4e8f1",
+    "$type": "color",
+    "description": "Progress trail bg."
+  },
+  "progress.stroke-color.primary": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Primary progress stroke color.",
+    "fallback": "--ty-color-primary"
+  },
+  "progress.stroke-color.warning": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "Warning progress stroke color.",
+    "fallback": "--ty-color-warning"
+  },
+  "progress.stroke-color.info": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "Info progress stroke color.",
+    "fallback": "--ty-color-info"
+  },
+  "progress.stroke-color.danger": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "Danger progress stroke color.",
+    "fallback": "--ty-color-danger"
+  },
+  "progress.stroke-color.success": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "Success progress stroke color.",
+    "fallback": "--ty-color-success"
+  },
+  "progress.circle-text-font-size": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Progress circle text font size."
+  }
+}

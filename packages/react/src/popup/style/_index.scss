@@ -2,16 +2,16 @@
 
 .#{$prefix}-popup {
   box-sizing: border-box;
-  border-radius: var(--ty-border-radius);
+  border-radius: var(--ty-popup-radius);
   white-space: nowrap;
-  font-size: var(--ty-font-size-base);
+  font-size: var(--ty-popup-font-size);
   text-align: left;
-  box-shadow: var(--ty-shadow-popup);
-  z-index: 999;
+  box-shadow: var(--ty-popup-shadow);
+  z-index: var(--ty-popup-z-index);
 
   &__arrow, &__arrow::before {
-    width: $popover-arrow-size;
-    height: $popover-arrow-size;
+    width: var(--ty-popover-arrow-size);
+    height: var(--ty-popover-arrow-size);
     box-sizing: border-box;
     position: absolute;
   }
@@ -23,7 +23,7 @@
 
   &_light {
     background-color: var(--ty-popup-light-bg);
-    color: var(--ty-color-text-secondary);
+    color: var(--ty-popup-color-light);
     .#{$prefix}-popup {
       &__arrow::before {
         background: var(--ty-popup-light-bg);
@@ -33,7 +33,7 @@
 
   &_dark {
     background-color: var(--ty-popup-dark-bg);
-    color: #fff;
+    color: var(--ty-popup-color-dark);
     .#{$prefix}-popup {
       &__arrow::before {
         background: var(--ty-popup-dark-bg);

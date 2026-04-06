@@ -1,0 +1,74 @@
+{
+  "alert.border-radius": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Alert panel border radius."
+  },
+  "alert.padding": {
+    "$value": "10px 30px 10px 13px",
+    "$type": "string",
+    "description": "Alert panel padding."
+  },
+  "alert.font-weight": {
+    "$value": "{font-weight}",
+    "$type": "font-weight",
+    "description": "Alert panel font weight.",
+    "fallback": "--ty-font-weight"
+  },
+  "alert.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Alert panel font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "alert.transition-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Alert panel transition duration."
+  },
+  "alert.stack-gap": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Gap between stacked alerts."
+  },
+  "alert.title-font-size": {
+    "$value": "17px",
+    "$type": "dimension",
+    "description": "Alert title font size."
+  },
+  "alert.title-font-weight": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Alert title font weight."
+  },
+  "alert.title-margin-bottom": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Alert title bottom margin when description exists."
+  },
+  "alert.desc-line-height": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Alert description line height."
+  },
+  "alert.icon-gap": {
+    "$value": "7px",
+    "$type": "dimension",
+    "description": "Gap between alert icon and content."
+  },
+  "alert.icon-offset-top": {
+    "$value": "1px",
+    "$type": "dimension",
+    "description": "Alert icon visual top offset."
+  },
+  "alert.close-offset-top": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Alert close button top offset."
+  },
+  "alert.close-offset-inline-end": {
+    "$value": "13px",
+    "$type": "dimension",
+    "description": "Alert close button inline end offset."
+  }
+}

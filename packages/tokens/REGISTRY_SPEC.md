@@ -7,7 +7,6 @@ The token registry is the canonical machine-readable index of all supported v2 t
 - theme validation
 - docs generation
 - migration tooling
-- compatibility alias resolution
 
 The registry is metadata, not a theme document. It describes what tokens exist, how they map to CSS variables, and what fallback behavior they expect.
 
@@ -41,8 +40,7 @@ The build step should generate:
   "source": "source/components/button.json",
   "defaultValue": "{color-primary}",
   "fallback": "--ty-color-primary",
-  "status": "active",
-  "aliases": ["--ty-btn-default-bg"]
+  "status": "active"
 }
 ```
 
@@ -78,14 +76,11 @@ The build step should generate:
   Recommended authored-SCSS fallback target. This field is guidance metadata for component authors and docs tooling; it does not mean the build step will emit an automatic fallback chain in generated CSS.
 - `status`
   One of: `active`, `deprecated`, `internal`
-- `aliases`
-  Legacy CSS vars or legacy token keys that map to this token.
-
 ## Naming Rules
 - `key` must match the theme schema token key pattern.
 - `cssVar` must always use kebab-case.
 - `component` names must use full nouns such as `button`, `input`, `card`.
-- New entries must not introduce aliases like `btn`, `picker`, or `kbd` as primary names.
+- New entries must use the primary v2 names directly. Short prefixes like `btn`, `picker`, or `kbd` are not allowed.
 
 ## Fallback Rules
 - Primitive tokens should not appear in authored component SCSS.
@@ -105,12 +100,6 @@ Examples:
 - `internal`
   Not allowed in user-authored themes.
 
-## Alias Handling
-- Aliases exist for compatibility only.
-- The registry entry owns its aliases.
-- Theme Studio should expose only the primary `key`.
-- Build output may choose to emit both primary vars and alias vars for one compatibility cycle.
-
 ## Example Entries
 
 ```json
@@ -124,8 +113,7 @@ Examples:
     "description": "Primary brand color.",
     "source": "source/semantic/colors.json",
     "defaultValue": "{color.brand.500}",
-    "status": "active",
-    "aliases": []
+    "status": "active"
   },
   {
     "key": "button.radius",
@@ -138,8 +126,7 @@ Examples:
     "source": "source/components/button.json",
     "defaultValue": "{border-radius}",
     "fallback": "--ty-border-radius",
-    "status": "active",
-    "aliases": ["--ty-btn-border-radius"]
+    "status": "active"
   }
 ]
 ```
@@ -150,5 +137,4 @@ Build should fail when:
 1. Two entries share the same `key`
 2. Two entries share the same `cssVar`
 3. A `component` token is missing its `component`
-4. A `deprecated` alias points to multiple active tokens
-5. A `fallback` points to a CSS var not present in the registry or approved semantic baseline
+4. A `fallback` points to a CSS var not present in the registry or approved semantic baseline

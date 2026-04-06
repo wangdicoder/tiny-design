@@ -1,0 +1,220 @@
+{
+  "calendar.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Calendar panel background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "calendar.border": {
+    "$value": "#e9ecef",
+    "$type": "color",
+    "description": "Calendar panel border color."
+  },
+  "calendar.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Calendar panel border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "calendar.hover": {
+    "$value": "#f6f9fc",
+    "$type": "color",
+    "description": "Calendar cell hover background color."
+  },
+  "calendar.header-padding": {
+    "$value": "8px 12px",
+    "$type": "string",
+    "description": "Calendar header padding."
+  },
+  "calendar.nav-button-size": {
+    "$value": "28px",
+    "$type": "dimension",
+    "description": "Calendar nav button size."
+  },
+  "calendar.nav-button-radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Calendar nav button radius."
+  },
+  "calendar.nav-button-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Calendar nav button color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "calendar.nav-button-color-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Calendar nav button hover color.",
+    "fallback": "--ty-color-primary"
+  },
+  "calendar.title-font-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Calendar title font size."
+  },
+  "calendar.title-font-weight": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Calendar title font weight."
+  },
+  "calendar.title-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Calendar title color.",
+    "fallback": "--ty-color-text"
+  },
+  "calendar.title-color-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Calendar title action hover color.",
+    "fallback": "--ty-color-primary"
+  },
+  "calendar.body-padding": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Calendar body padding."
+  },
+  "calendar.cell-header-font-size": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Calendar weekday header font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "calendar.cell-header-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Calendar weekday header color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "calendar.week-number-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Calendar week number color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "calendar.cell-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Calendar in-view cell text color.",
+    "fallback": "--ty-color-text"
+  },
+  "calendar.cell-color-muted": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Calendar out-of-view and disabled cell text color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "calendar.cell-disabled-bg": {
+    "$value": "{color-bg-disabled}",
+    "$type": "color",
+    "description": "Calendar disabled cell inner background color.",
+    "fallback": "--ty-color-bg-disabled"
+  },
+  "calendar.cell-today-border": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Calendar today cell border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "calendar.cell-selected-bg": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Calendar selected cell background color.",
+    "fallback": "--ty-color-primary"
+  },
+  "calendar.cell-selected-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Calendar selected cell text color."
+  },
+  "calendar.range-bg": {
+    "$value": "{color-primary-bg}",
+    "$type": "color",
+    "description": "Calendar range background color.",
+    "fallback": "--ty-color-primary-bg"
+  },
+  "calendar.cell-focus-outline": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Calendar focused cell outline color.",
+    "fallback": "--ty-color-primary"
+  },
+  "calendar.cell-date-font-size": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Calendar date cell font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "calendar.cell-dot-size": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Calendar cell event dot size."
+  },
+  "calendar.cell-dot-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Calendar cell event dot color.",
+    "fallback": "--ty-color-primary"
+  },
+  "calendar.panel-grid-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Calendar month and decade grid gap."
+  },
+  "calendar.panel-padding": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Calendar month and decade panel padding."
+  },
+  "calendar.panel-cell-padding": {
+    "$value": "16px 8px",
+    "$type": "string",
+    "description": "Calendar month and decade cell padding."
+  },
+  "calendar.panel-cell-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Calendar month and decade cell radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "calendar.panel-cell-color-selected": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Calendar selected month and decade cell text color."
+  },
+  "calendar.panel-cell-bg-selected": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Calendar selected month and decade cell background color.",
+    "fallback": "--ty-color-primary"
+  },
+  "calendar.decade-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Calendar decade cell font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "calendar.decade-color-out": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Calendar out-of-range decade cell color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "calendar.footer-padding": {
+    "$value": "8px 12px",
+    "$type": "string",
+    "description": "Calendar footer padding."
+  },
+  "calendar.today-link-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Calendar today link color.",
+    "fallback": "--ty-color-primary"
+  },
+  "calendar.today-link-font-size": {
+    "$value": "13px",
+    "$type": "dimension",
+    "description": "Calendar today link font size."
+  }
+}

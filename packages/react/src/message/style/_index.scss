@@ -3,16 +3,16 @@
 
 .#{$prefix}-message {
   position: relative;
-  padding: 10px 16px;
+  padding: var(--ty-message-padding);
   background: var(--ty-message-bg);
-  border-radius: 4px;
-  box-shadow: var(--ty-shadow-modal);
-  transition: all 300ms;
+  border-radius: var(--ty-message-radius);
+  box-shadow: var(--ty-message-shadow);
+  transition: all var(--ty-message-transition-duration);
   opacity: 0;
-  transform: translateY(-5px);
+  transform: translateY(var(--ty-message-offset-y-enter));
   box-sizing: border-box;
   display: flex;
-  font-size: 14px;
+  font-size: var(--ty-message-font-size);
   align-items: center;
   pointer-events: all;
 
@@ -23,20 +23,20 @@
     width: 100%;
     pointer-events: none;
     transition: top 200ms;
-    z-index: 999;
+    z-index: var(--ty-message-z-index);
     box-sizing: border-box;
   }
 
   &__content {
-    font-size: 14px;
-    line-height: 14px;
-    color: var(--ty-color-text-secondary);
+    font-size: inherit;
+    line-height: var(--ty-message-content-line-height);
+    color: var(--ty-message-content-color);
   }
 
   &_fade-slide {
     &-enter {
       opacity: 0;
-      transform: translateY(-5px);
+      transform: translateY(var(--ty-message-offset-y-enter));
     }
 
     &-enter-done {
@@ -46,7 +46,7 @@
   }
 
   &__icon {
-    margin-right: 5px;
+    margin-right: var(--ty-message-icon-gap);
 
     &_loading{
       animation: ty-rotate 1s linear infinite;
@@ -54,6 +54,6 @@
   }
 
   &__extra {
-    margin-left: 15px;
+    margin-left: var(--ty-message-extra-gap);
   }
 }

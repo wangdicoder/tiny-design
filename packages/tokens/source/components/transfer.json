@@ -1,0 +1,110 @@
+{
+  "transfer.border": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Transfer border.",
+    "fallback": "--ty-color-border"
+  },
+  "transfer.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Transfer text color.",
+    "fallback": "--ty-color-text"
+  },
+  "transfer.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Transfer font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "transfer.panel-width": {
+    "$value": "180px",
+    "$type": "dimension",
+    "description": "Transfer panel width."
+  },
+  "transfer.panel-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Transfer panel radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "transfer.buttons-margin": {
+    "$value": "0 8px",
+    "$type": "string",
+    "description": "Transfer buttons margin."
+  },
+  "transfer.button-margin": {
+    "$value": "3px 0",
+    "$type": "string",
+    "description": "Transfer inner button margin."
+  },
+  "transfer.button-padding": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Transfer inner button padding."
+  },
+  "transfer.button-min-width": {
+    "$value": "30px",
+    "$type": "dimension",
+    "description": "Transfer inner button min width."
+  },
+  "transfer.footer-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Transfer footer bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "transfer.footer-border": {
+    "$value": "{color-fill-tertiary}",
+    "$type": "color",
+    "description": "Transfer footer border.",
+    "fallback": "--ty-color-fill-tertiary"
+  },
+  "transfer.header-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Transfer header bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "transfer.item-hover-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Transfer item hover bg.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "transfer.header-padding": {
+    "$value": "8px 12px 9px",
+    "$type": "string",
+    "description": "Transfer header padding."
+  },
+  "transfer.body-padding": {
+    "$value": "6px 0",
+    "$type": "string",
+    "description": "Transfer body padding."
+  },
+  "transfer.input-container-padding": {
+    "$value": "6px 12px 12px",
+    "$type": "string",
+    "description": "Transfer input container padding."
+  },
+  "transfer.list-height": {
+    "$value": "192px",
+    "$type": "dimension",
+    "description": "Transfer list height."
+  },
+  "transfer.item-padding-inline": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Transfer item horizontal padding."
+  },
+  "transfer.item-min-height": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Transfer item min height."
+  },
+  "transfer.footer-padding": {
+    "$value": "8px 12px 9px",
+    "$type": "string",
+    "description": "Transfer footer padding."
+  }
+}

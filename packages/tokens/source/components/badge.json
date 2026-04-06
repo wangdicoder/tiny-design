@@ -1,0 +1,42 @@
+{
+  "badge.dot-size": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Badge dot size."
+  },
+  "badge.font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Badge count font size."
+  },
+  "badge.shadow": {
+    "$value": "0 0 0 1.5px #fff",
+    "$type": "shadow",
+    "description": "Badge outline shadow."
+  },
+  "badge.size": {
+    "$value": "18px",
+    "$type": "dimension",
+    "description": "Badge count size."
+  },
+  "badge.count-padding": {
+    "$value": "0 5px",
+    "$type": "string",
+    "description": "Badge count padding."
+  },
+  "badge.count-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Badge count text color."
+  },
+  "badge.font-weight": {
+    "$value": "400",
+    "$type": "font-weight",
+    "description": "Badge count font weight."
+  },
+  "badge.z-index": {
+    "$value": "10",
+    "$type": "number",
+    "description": "Badge stacking order."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "textarea.counter-color": {
+    "$value": "#666",
+    "$type": "color",
+    "description": "Textarea counter color."
+  },
+  "textarea.padding": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Textarea padding."
+  },
+  "textarea.padding-bottom-with-counter": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Textarea bottom padding when counter is visible."
+  },
+  "textarea.counter-offset-bottom": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Textarea counter bottom offset."
+  },
+  "textarea.counter-offset-inline-end": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Textarea counter inline end offset."
+  },
+  "textarea.counter-font-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Textarea counter font size."
+  }
+}

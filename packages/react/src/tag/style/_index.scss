@@ -2,22 +2,21 @@
 
 $tag-preset-colors: 'magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue',
   'geekblue', 'purple';
-$tag-status-colors: success, info, warning, danger;
 
 .#{$prefix}-tag {
   user-select: none;
   display: none;
-  margin-right: 8px;
-  padding: 3px 7px;
-  font-size: 12px;
-  border: 1px solid var(--ty-tag-border);
-  border-radius: var(--ty-border-radius);
-  color: var(--ty-color-text);
-  background: var(--ty-tag-bg);
+  margin-right: var(--ty-tag-margin-inline-end, 8px);
+  padding: var(--ty-tag-padding, 3px 7px);
+  font-size: var(--ty-tag-font-size, 12px);
+  border: 1px solid var(--ty-tag-border, var(--ty-color-border));
+  border-radius: var(--ty-tag-radius, var(--ty-border-radius));
+  color: var(--ty-tag-color, var(--ty-color-text));
+  background: var(--ty-tag-bg, var(--ty-color-fill));
 
   a,
   a:hover {
-    color: var(--ty-color-text-secondary);
+    color: var(--ty-tag-link-color, var(--ty-color-text-secondary));
   }
 
   &_visible {
@@ -26,10 +25,10 @@ $tag-status-colors: success, info, warning, danger;
 
   &__close-btn {
     cursor: pointer;
-    font-size: 10px;
-    margin-left: 5px;
+    font-size: var(--ty-tag-close-font-size, 10px);
+    margin-left: var(--ty-tag-close-gap, 5px);
     line-height: 1;
-    transition: all 300ms;
+    transition: all var(--ty-tag-transition-duration, 300ms);
     background: none;
     border: none;
     padding: 0;
@@ -37,11 +36,10 @@ $tag-status-colors: success, info, warning, danger;
     font-family: inherit;
 
     &:hover {
-      opacity: 0.8;
+      opacity: var(--ty-tag-close-opacity-hover, 0.8);
     }
   }
 
-  // ============= Preset colors: filled (default) =============
   @each $color in $tag-preset-colors {
     &_#{$color} {
       color: var(--ty-tag-#{$color}-color);
@@ -50,7 +48,6 @@ $tag-status-colors: success, info, warning, danger;
     }
   }
 
-  // ============= Status colors: filled (default) =============
   &_success {
     color: var(--ty-color-success);
     background: var(--ty-color-success-bg);
@@ -75,7 +72,6 @@ $tag-status-colors: success, info, warning, danger;
     border-color: var(--ty-color-danger-border);
   }
 
-  // ============= Preset colors: soft =============
   @each $color in $tag-preset-colors {
     &_#{$color}-soft {
       color: var(--ty-tag-#{$color}-color);
@@ -84,7 +80,6 @@ $tag-status-colors: success, info, warning, danger;
     }
   }
 
-  // ============= Status colors: soft =============
   &_success-soft {
     color: var(--ty-color-success);
     background: var(--ty-color-success-bg);
@@ -109,7 +104,6 @@ $tag-status-colors: success, info, warning, danger;
     border-color: transparent;
   }
 
-  // ============= Preset colors: solid =============
   @each $color in $tag-preset-colors {
     &_#{$color}-solid {
       color: #fff;
@@ -118,7 +112,6 @@ $tag-status-colors: success, info, warning, danger;
     }
   }
 
-  // ============= Status colors: solid =============
   &_success-solid {
     color: #fff;
     background: var(--ty-color-success);
@@ -143,7 +136,6 @@ $tag-status-colors: success, info, warning, danger;
     border-color: var(--ty-color-danger);
   }
 
-  // ============= Preset colors: outlined =============
   @each $color in $tag-preset-colors {
     &_#{$color}-outlined {
       color: var(--ty-tag-#{$color}-color);
@@ -152,7 +144,6 @@ $tag-status-colors: success, info, warning, danger;
     }
   }
 
-  // ============= Status colors: outlined =============
   &_success-outlined {
     color: var(--ty-color-success);
     background: transparent;
@@ -179,15 +170,15 @@ $tag-status-colors: success, info, warning, danger;
 }
 
 .#{$prefix}-checkable-tag {
-  background-color: var(--ty-tag-checkable-bg);
-  color: var(--ty-color-primary);
-  border-color: var(--ty-tag-checkable-bg);
-  transition: all 300ms;
+  background-color: var(--ty-tag-checkable-bg, var(--ty-color-bg-container));
+  color: var(--ty-tag-checkable-color, var(--ty-color-primary));
+  border-color: var(--ty-tag-checkable-border, var(--ty-color-bg-container));
+  transition: all var(--ty-tag-transition-duration, 300ms);
   cursor: pointer;
 
   &_checked {
-    background-color: var(--ty-color-primary);
-    color: #fff;
-    border-color: var(--ty-color-primary);
+    background-color: var(--ty-tag-checkable-bg-checked, var(--ty-color-primary));
+    color: var(--ty-tag-checkable-color-checked, #fff);
+    border-color: var(--ty-tag-checkable-border-checked, var(--ty-color-primary));
   }
 }

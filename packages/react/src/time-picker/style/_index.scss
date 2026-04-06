@@ -5,32 +5,32 @@ $tp: #{$prefix}-time-picker;
 .#{$tp} {
   display: inline-flex;
   position: relative;
-  font-size: var(--ty-font-size-base);
+  font-size: var(--ty-picker-input-font-size);
 
   // ---- Input ----
   &__input {
     display: inline-flex;
     align-items: center;
     width: 100%;
-    padding: 4px 11px;
-    border: 1px solid var(--ty-input-border);
-    border-radius: 6px;
+    padding: var(--ty-picker-input-padding-md);
+    border: 1px solid var(--ty-picker-input-border);
+    border-radius: var(--ty-picker-input-radius);
     background: var(--ty-picker-input-bg);
     cursor: pointer;
     transition: border-color 0.3s, box-shadow 0.3s;
 
     &:hover {
-      border-color: var(--ty-color-primary);
+      border-color: var(--ty-picker-input-border-hover);
     }
   }
 
   &_open &__input {
-    border-color: var(--ty-color-primary);
-    box-shadow: var(--ty-input-focus-shadow);
+    border-color: var(--ty-picker-input-border-focus);
+    box-shadow: var(--ty-picker-input-shadow-focus);
   }
 
   &_pending &__input-field {
-    color: var(--ty-color-text-tertiary);
+    color: var(--ty-picker-input-color-muted);
   }
 
   &__input-field {
@@ -40,12 +40,12 @@ $tp: #{$prefix}-time-picker;
     background: transparent;
     font-size: inherit;
     font-family: inherit;
-    color: var(--ty-color-text);
+    color: var(--ty-picker-input-color);
     cursor: pointer;
-    min-width: 90px;
+    min-width: var(--ty-picker-input-min-width-time-md);
 
     &::placeholder {
-      color: var(--ty-color-text-quaternary);
+      color: var(--ty-picker-input-color-placeholder);
     }
 
     &:disabled {
@@ -58,10 +58,10 @@ $tp: #{$prefix}-time-picker;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 14px;
-    height: 14px;
-    margin-left: 4px;
-    color: var(--ty-color-text-quaternary);
+    width: var(--ty-picker-suffix-size);
+    height: var(--ty-picker-suffix-size);
+    margin-left: var(--ty-picker-suffix-gap);
+    color: var(--ty-picker-suffix-color);
   }
 
   &__icon {
@@ -75,8 +75,8 @@ $tp: #{$prefix}-time-picker;
     inset: 0;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    color: var(--ty-color-text-quaternary);
+    font-size: var(--ty-picker-suffix-size);
+    color: var(--ty-picker-clear-color);
     background: var(--ty-picker-clear-bg);
     cursor: pointer;
     transition: color 0.2s;
@@ -84,7 +84,7 @@ $tp: #{$prefix}-time-picker;
     padding: 0;
 
     &:hover {
-      color: var(--ty-color-text-tertiary);
+      color: var(--ty-picker-clear-color-hover);
     }
   }
 
@@ -94,21 +94,21 @@ $tp: #{$prefix}-time-picker;
 
   // ---- Sizes ----
   &_sm &__input {
-    padding: 0 7px;
+    padding: var(--ty-picker-input-padding-sm);
     font-size: 12px;
   }
 
   &_sm &__input-field {
-    min-width: 70px;
+    min-width: var(--ty-picker-input-min-width-time-sm);
   }
 
   &_lg &__input {
-    padding: 6px 11px;
+    padding: var(--ty-picker-input-padding-lg);
     font-size: 16px;
   }
 
   &_lg &__input-field {
-    min-width: 110px;
+    min-width: var(--ty-picker-input-min-width-time-lg);
   }
 
   // ---- Disabled ----
@@ -116,25 +116,25 @@ $tp: #{$prefix}-time-picker;
     opacity: 0.65;
 
     .#{$tp}__input {
-      background: var(--ty-color-bg-disabled);
+      background: var(--ty-picker-input-bg-disabled);
       cursor: not-allowed;
-      border-color: var(--ty-input-border);
+      border-color: var(--ty-picker-input-border);
 
       &:hover {
-        border-color: var(--ty-input-border);
+        border-color: var(--ty-picker-input-border);
       }
     }
 
     .#{$tp}__input-field {
-      color: var(--ty-color-text-quaternary);
+      color: var(--ty-picker-cell-color-muted);
     }
   }
 
   // ---- Dropdown ----
   &__dropdown {
     background: var(--ty-picker-dropdown-bg);
-    border-radius: 8px;
-    box-shadow: var(--ty-shadow-popup);
+    border-radius: var(--ty-picker-dropdown-radius);
+    box-shadow: var(--ty-picker-dropdown-shadow);
     overflow: hidden;
   }
 
@@ -145,9 +145,9 @@ $tp: #{$prefix}-time-picker;
 
   &__column {
     flex: 1;
-    max-height: 224px;
+    max-height: var(--ty-picker-time-column-max-height);
     overflow-y: auto;
-    border-left: 1px solid var(--ty-color-border-light);
+    border-left: 1px solid var(--ty-picker-time-column-border);
     scrollbar-width: thin;
 
     &:first-child {
@@ -159,14 +159,14 @@ $tp: #{$prefix}-time-picker;
     }
 
     &::-webkit-scrollbar-thumb {
-      background: var(--ty-color-text-quaternary);
+      background: var(--ty-picker-time-scrollbar-thumb);
       border-radius: 2px;
     }
   }
 
   &__column-list {
     list-style: none;
-    padding: 4px 0;
+    padding: var(--ty-picker-time-cell-padding);
     margin: 0;
   }
 
@@ -174,11 +174,11 @@ $tp: #{$prefix}-time-picker;
   &__cell {
     padding: 4px 0;
     text-align: center;
-    min-width: 52px;
+    min-width: var(--ty-picker-time-cell-min-width);
     cursor: pointer;
-    border-radius: 4px;
-    margin: 0 4px;
-    line-height: 20px;
+    border-radius: var(--ty-picker-time-cell-radius);
+    margin: 0 var(--ty-picker-time-cell-margin-inline);
+    line-height: var(--ty-picker-time-cell-line-height);
     transition: background 0.2s;
     user-select: none;
 
@@ -187,25 +187,25 @@ $tp: #{$prefix}-time-picker;
     }
 
     &_selected {
-      background: var(--ty-color-primary-bg);
+      background: var(--ty-picker-time-cell-bg-selected);
       font-weight: 500;
 
       &:hover {
-        background: var(--ty-color-primary-bg-hover);
+        background: var(--ty-picker-time-cell-bg-selected-hover);
       }
     }
 
     &_pending {
-      background: var(--ty-color-primary-bg);
-      color: var(--ty-color-text-tertiary);
+      background: var(--ty-picker-time-cell-bg-selected);
+      color: var(--ty-picker-input-color-muted);
 
       &:hover {
-        background: var(--ty-color-primary-bg-hover);
+        background: var(--ty-picker-time-cell-bg-selected-hover);
       }
     }
 
     &_disabled {
-      color: var(--ty-color-text-quaternary);
+      color: var(--ty-picker-cell-color-muted);
       cursor: not-allowed;
 
       &:hover {
@@ -216,9 +216,9 @@ $tp: #{$prefix}-time-picker;
 
   // ---- Footer ----
   &__footer {
-    padding: 8px 12px;
-    border-top: 1px solid var(--ty-color-border-light);
-    font-size: 12px;
+    padding: var(--ty-picker-footer-padding);
+    border-top: 1px solid var(--ty-picker-header-border);
+    font-size: var(--ty-picker-footer-font-size);
   }
 
   &__extra-footer {
@@ -233,21 +233,21 @@ $tp: #{$prefix}-time-picker;
   }
 
   &__now-btn {
-    color: var(--ty-color-primary);
+    color: var(--ty-picker-today-color);
     cursor: pointer;
-    &:hover { color: var(--ty-color-primary-hover); }
+    &:hover { color: var(--ty-picker-today-color-hover); }
   }
 
   &__ok-btn {
-    padding: 0 8px;
-    height: 24px;
-    font-size: 12px;
+    padding: var(--ty-picker-ok-button-padding);
+    height: var(--ty-picker-ok-button-height);
+    font-size: var(--ty-picker-ok-button-font-size);
     border: none;
-    border-radius: 4px;
-    background: var(--ty-color-primary);
-    color: #fff;
+    border-radius: var(--ty-picker-ok-button-radius);
+    background: var(--ty-picker-ok-button-bg);
+    color: var(--ty-picker-ok-button-color);
     cursor: pointer;
     margin-left: auto;
-    &:hover { background: var(--ty-color-primary-hover); }
+    &:hover { background: var(--ty-picker-ok-button-bg-hover); }
   }
 }

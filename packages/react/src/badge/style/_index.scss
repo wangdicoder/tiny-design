@@ -11,13 +11,13 @@
   &__count {
     @include badge-base;
 
-    min-width: $badge-size;
-    min-height: $badge-size;
-    line-height: $badge-size;
-    padding: 0 5px;
-    color: #fff;
-    font-weight: normal;
-    font-size: $badge-font-size;
+    min-width: var(--ty-badge-size);
+    min-height: var(--ty-badge-size);
+    line-height: var(--ty-badge-size);
+    padding: var(--ty-badge-count-padding);
+    color: var(--ty-badge-count-color);
+    font-weight: var(--ty-badge-font-weight);
+    font-size: var(--ty-badge-font-size);
     white-space: nowrap;
     text-align: center;
   }
@@ -32,9 +32,9 @@
   &__dot {
     @include badge-base;
 
-    width: $badge-dot-size;
-    height: $badge-dot-size;
-    line-height: $badge-dot-size;
+    width: var(--ty-badge-dot-size);
+    height: var(--ty-badge-dot-size);
+    line-height: var(--ty-badge-dot-size);
 
     &_wave {
       &::after {

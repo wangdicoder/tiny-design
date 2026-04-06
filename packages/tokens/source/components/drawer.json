@@ -1,0 +1,66 @@
+{
+  "drawer.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Drawer panel background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "drawer.shadow": {
+    "$value": "{shadow-modal}",
+    "$type": "shadow",
+    "description": "Drawer panel shadow.",
+    "fallback": "--ty-shadow-modal"
+  },
+  "drawer.transition-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Drawer panel transition duration."
+  },
+  "drawer.header-padding-block": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Drawer header vertical padding."
+  },
+  "drawer.header-padding-inline": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Drawer header horizontal padding."
+  },
+  "drawer.body-padding-block": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Drawer body vertical padding."
+  },
+  "drawer.body-padding-inline": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Drawer body horizontal padding."
+  },
+  "drawer.footer-padding-block": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Drawer footer vertical padding."
+  },
+  "drawer.footer-padding-inline": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Drawer footer horizontal padding."
+  },
+  "drawer.border": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "Drawer divider border color.",
+    "fallback": "--ty-color-border-secondary"
+  },
+  "drawer.close-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Drawer close button color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "drawer.close-size": {
+    "$value": "56px",
+    "$type": "dimension",
+    "description": "Drawer close button square size."
+  }
+}

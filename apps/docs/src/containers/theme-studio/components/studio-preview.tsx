@@ -387,7 +387,7 @@ function SettingsTemplate(): React.ReactElement {
           <Card title="Release Steps">
             <Card.Content>
               <Tabs defaultActiveKey="1">
-                <Tabs.Panel tab="Validate" tabKey="1">Contrast, alias, and schema validation should pass before publishing.</Tabs.Panel>
+                <Tabs.Panel tab="Validate" tabKey="1">Contrast and schema validation should pass before publishing.</Tabs.Panel>
                 <Tabs.Panel tab="Preview" tabKey="2">Review templates side-by-side across light and dark.</Tabs.Panel>
                 <Tabs.Panel tab="Ship" tabKey="3">Publish to Theme Hub and open a remixable detail page.</Tabs.Panel>
               </Tabs>

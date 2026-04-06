@@ -1,35 +1,35 @@
 @use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-list {
-  color: var(--ty-color-text);
-  font-size: var(--ty-font-size-base);
+  color: var(--ty-list-color);
+  font-size: var(--ty-list-font-size);
 
   &_bordered {
     border: 1px solid var(--ty-list-border);
-    border-radius: var(--ty-border-radius);
+    border-radius: var(--ty-list-radius);
   }
 
   &_sm {
     .#{$prefix}-list-item {
-      padding: 8px 16px;
+      padding: var(--ty-list-item-padding-sm);
     }
   }
 
   &_md {
     .#{$prefix}-list-item {
-      padding: 12px 16px;
+      padding: var(--ty-list-item-padding-md);
     }
   }
 
   &_lg {
     .#{$prefix}-list-item {
-      padding: 16px 24px;
+      padding: var(--ty-list-item-padding-lg);
     }
   }
 
   &__header,
   &__footer {
-    padding: 12px 16px;
+    padding: var(--ty-list-header-padding);
   }
 
   &_bordered &__header {
@@ -57,15 +57,15 @@
   }
 
   &__empty {
-    padding: 24px;
+    padding: var(--ty-list-empty-padding);
     text-align: center;
-    color: var(--ty-color-text-secondary);
+    color: var(--ty-list-empty-color);
   }
 
   &__loading {
-    padding: 24px;
+    padding: var(--ty-list-empty-padding);
     text-align: center;
-    color: var(--ty-color-text-secondary);
+    color: var(--ty-list-empty-color);
   }
 
 }
@@ -97,25 +97,25 @@
   &__actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: var(--ty-list-action-gap);
     list-style: none;
     margin: 0;
     padding: 0;
-    margin-left: 24px;
+    margin-left: var(--ty-list-action-offset);
     flex-shrink: 0;
   }
 
   &__action {
-    color: var(--ty-color-text-secondary);
+    color: var(--ty-list-action-color);
     cursor: pointer;
 
     &:hover {
-      color: var(--ty-color-primary);
+      color: var(--ty-list-action-color-hover);
     }
   }
 
   &__extra {
-    margin-left: 24px;
+    margin-left: var(--ty-list-action-offset);
     flex-shrink: 0;
   }
 }
@@ -126,7 +126,7 @@
   flex: 1;
 
   &__avatar {
-    margin-right: 12px;
+    margin-right: var(--ty-list-meta-avatar-gap);
     flex-shrink: 0;
   }
 
@@ -136,13 +136,13 @@
   }
 
   &__title {
-    font-weight: 500;
-    color: var(--ty-color-text);
-    margin-bottom: 4px;
+    font-weight: var(--ty-list-meta-title-font-weight);
+    color: var(--ty-list-meta-title-color);
+    margin-bottom: var(--ty-list-meta-title-margin-bottom);
   }
 
   &__description {
-    color: var(--ty-color-text-secondary);
-    font-size: var(--ty-font-size-sm);
+    color: var(--ty-list-meta-description-color);
+    font-size: var(--ty-list-meta-description-font-size);
   }
 }

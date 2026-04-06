@@ -3,8 +3,7 @@
     "$value": "{border-radius}",
     "$type": "dimension",
     "description": "Input border radius.",
-    "fallback": "--ty-border-radius",
-    "aliases": ["--ty-input-border-radius"]
+    "fallback": "--ty-border-radius"
   },
   "input.color": {
     "$value": "{color-text}",
@@ -22,8 +21,7 @@
     "$value": "{color-bg-disabled}",
     "$type": "color",
     "description": "Disabled input background color.",
-    "fallback": "--ty-color-bg-disabled",
-    "aliases": ["--ty-input-disabled-bg"]
+    "fallback": "--ty-color-bg-disabled"
   },
   "input.border": {
     "$value": "{color-border}",
@@ -41,15 +39,13 @@
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Input focus border color.",
-    "fallback": "--ty-color-primary",
-    "aliases": ["--ty-input-focus-border"]
+    "fallback": "--ty-color-primary"
   },
   "input.shadow.focus": {
     "$value": "{shadow-focus}",
     "$type": "shadow",
     "description": "Input focus ring shadow.",
-    "fallback": "--ty-shadow-focus",
-    "aliases": ["--ty-input-focus-shadow"]
+    "fallback": "--ty-shadow-focus"
   },
   "input.placeholder": {
     "$value": "{color-text-placeholder}",
@@ -69,9 +65,9 @@
     "description": "Addon padding."
   },
   "input.affix-margin": {
-    "$value": "{spacing-3}",
-    "$type": "dimension",
-    "description": "Prefix and suffix inset spacing."
+    "$value": "0 8px",
+    "$type": "string",
+    "description": "Prefix and suffix inset margin."
   },
   "input.clear-size": {
     "$value": "1em",
@@ -94,8 +90,7 @@
     "$value": "{font-size-base}",
     "$type": "dimension",
     "description": "Medium input font size.",
-    "fallback": "--ty-font-size-base",
-    "aliases": ["--ty-input-font-size"]
+    "fallback": "--ty-font-size-base"
   },
   "input.font-size-lg": {
     "$value": "{font-size-lg}",
@@ -124,26 +119,22 @@
   "input.padding-inline-sm": {
     "$value": "{spacing-3}",
     "$type": "dimension",
-    "description": "Small input inline padding.",
-    "aliases": ["--ty-input-sm-padding"]
+    "description": "Small input inline padding."
   },
   "input.padding-inline-md": {
     "$value": "{spacing-4}",
     "$type": "dimension",
-    "description": "Medium input inline padding.",
-    "aliases": ["--ty-input-md-padding"]
+    "description": "Medium input inline padding."
   },
   "input.padding-inline-lg": {
     "$value": "{spacing-5}",
     "$type": "dimension",
-    "description": "Large input inline padding.",
-    "aliases": ["--ty-input-lg-padding"]
+    "description": "Large input inline padding."
   },
   "input.text.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Disabled input text color.",
-    "fallback": "--ty-color-text-quaternary",
-    "aliases": ["--ty-input-disabled-color"]
+    "fallback": "--ty-color-text-quaternary"
   }
 }

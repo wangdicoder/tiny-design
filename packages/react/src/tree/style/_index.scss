@@ -4,15 +4,15 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: var(--ty-font-size-base);
+  font-size: var(--ty-tree-font-size);
 }
 
 .#{$prefix}-tree-node {
-  margin: 2px 0;
+  margin: var(--ty-tree-node-margin);
 
   &__switcher {
-    width: 20px;
-    height: 20px;
+    width: var(--ty-tree-switcher-size);
+    height: var(--ty-tree-switcher-size);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,14 +29,14 @@
   }
 
   &__label {
-    padding: 1px 2px;
-    margin-left: -4px;
+    padding: var(--ty-tree-label-padding);
+    margin-left: var(--ty-tree-label-offset);
   }
 
   &__title {
     cursor: pointer;
     align-items: center;
-    min-height: 24px;
+    min-height: var(--ty-tree-title-min-height);
     display: inline-flex;
     transition: background-color 250ms;
   }

@@ -17,7 +17,6 @@
     "./css/*": "./css/*",
     "./scss/*": "./scss/*",
     "./registry": "./dist/registry.json",
-    "./alias-map": "./dist/alias-map.json",
     "./dist/*": "./dist/*"
   },
   "sideEffects": [
@@ -30,9 +29,8 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "build:legacy": "node -e \"require('./scripts/build').buildLegacy()\"",
-    "build:v2": "node build/build-v2.js",
-    "build:v2-prototype": "node build/build-v2.js",
+    "build:base-css": "node -e \"require('./scripts/build').buildBaseCss()\"",
+    "build:runtime": "node build/build-v2.js",
     "clean": "rimraf css dist"
   },
   "devDependencies": {

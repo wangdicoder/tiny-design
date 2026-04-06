@@ -3,21 +3,21 @@
 
 .#{$prefix}-alert {
   border: 1px solid;
-  border-radius: $alert-border-radius;
+  border-radius: var(--ty-alert-border-radius);
   box-sizing: border-box;
-  padding: 10px 30px 10px 13px;
+  padding: var(--ty-alert-padding);
   position: relative;
-  font-weight: var(--ty-font-weight);
+  font-weight: var(--ty-alert-font-weight);
   opacity: 1;
-  font-size: var(--ty-font-size-base);
-  transition: all 300ms;
+  font-size: var(--ty-alert-font-size);
+  transition: all var(--ty-alert-transition-duration);
   transform-origin: center top;
   overflow: hidden;
   display: flex;
   align-items: flex-start;
 
   & + & {
-    margin-top: 14px;
+    margin-top: var(--ty-alert-stack-gap);
   }
 
   &__content {
@@ -28,30 +28,30 @@
   &__title {
     box-sizing: border-box;
     margin: 0;
-    font-size: 17px;
-    font-weight: 500;
+    font-size: var(--ty-alert-title-font-size);
+    font-weight: var(--ty-alert-title-font-weight);
 
     &_has-content {
-      margin-bottom: 5px;
+      margin-bottom: var(--ty-alert-title-margin-bottom);
     }
   }
 
   &__desc {
     box-sizing: border-box;
-    line-height: 16px;
+    line-height: var(--ty-alert-desc-line-height);
   }
 
   &__icon {
-    line-height: 16px;
-    margin-right: 7px;
+    line-height: var(--ty-alert-desc-line-height);
+    margin-right: var(--ty-alert-icon-gap);
     position: relative;
-    top: 1px;
+    top: var(--ty-alert-icon-offset-top);
   }
 
   &__close-btn {
     position: absolute;
-    top: 10px;
-    right: 13px;
+    top: var(--ty-alert-close-offset-top);
+    right: var(--ty-alert-close-offset-inline-end);
     cursor: pointer;
     float: right;
     user-select: none;

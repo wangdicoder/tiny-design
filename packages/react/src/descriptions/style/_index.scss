@@ -17,36 +17,36 @@
 
   &__title {
     text-align: left;
-    margin-bottom: 20px;
-    color: var(--ty-color-text);
-    font-weight: 600;
-    font-size: 16px;
+    margin-bottom: var(--ty-descriptions-title-margin-bottom);
+    color: var(--ty-descriptions-title-color);
+    font-weight: var(--ty-descriptions-title-font-weight);
+    font-size: var(--ty-descriptions-title-font-size);
   }
 
   &__item_colon::after {
     content: ':';
-    margin-left: 2px;
-    margin-right: 5px;
+    margin-left: var(--ty-descriptions-item-colon-margin-start);
+    margin-right: var(--ty-descriptions-item-colon-margin-end);
   }
 
   &__item-label {
-    color: var(--ty-color-text-label);
-    font-size: var(--ty-font-size-base);
+    color: var(--ty-descriptions-label-color);
+    font-size: var(--ty-descriptions-label-font-size);
     font-weight: 400;
-    line-height: var(--ty-line-height-base);
+    line-height: var(--ty-descriptions-label-line-height);
   }
 
   &__item-content {
-    color: var(--ty-color-text-secondary);
-    font-size: var(--ty-font-size-base);
-    line-height: var(--ty-line-height-base);
+    color: var(--ty-descriptions-content-color);
+    font-size: var(--ty-descriptions-content-font-size);
+    line-height: var(--ty-descriptions-content-line-height);
   }
 
   &_bordered {
     .#{$prefix}-descriptions {
       &__body {
         border: 1px solid var(--ty-descriptions-border);
-        border-radius: var(--ty-border-radius);
+        border-radius: var(--ty-descriptions-radius);
       }
 
       &__row {
@@ -73,13 +73,13 @@
 
   &_sm {
     .#{$prefix}-descriptions__item {
-      padding-bottom: $description-sm-padding-vt;
+      padding-bottom: var(--ty-descriptions-sm-padding-vt);
     }
 
     &.#{$prefix}-descriptions_bordered {
       .#{$prefix}-descriptions {
         &__item-label, &__item-content {
-          padding: $description-sm-padding-vt $description-sm-padding-hr;
+          padding: var(--ty-descriptions-sm-padding-vt) var(--ty-descriptions-sm-padding-hr);
         }
       }
     }
@@ -87,13 +87,13 @@
 
   &_md {
     .#{$prefix}-descriptions__item {
-      padding-bottom: $description-md-padding-vt;
+      padding-bottom: var(--ty-descriptions-md-padding-vt);
     }
 
     &.#{$prefix}-descriptions_bordered {
       .#{$prefix}-descriptions {
         &__item-label, &__item-content {
-          padding: $description-md-padding-vt $description-md-padding-hr;
+          padding: var(--ty-descriptions-md-padding-vt) var(--ty-descriptions-md-padding-hr);
         }
       }
     }
@@ -101,13 +101,13 @@
 
   &_lg {
     .#{$prefix}-descriptions__item {
-      padding-bottom: $description-lg-padding-vt;
+      padding-bottom: var(--ty-descriptions-lg-padding-vt);
     }
 
     &.#{$prefix}-descriptions_bordered {
       .#{$prefix}-descriptions {
         &__item-label, &__item-content {
-          padding: $description-lg-padding-vt $description-lg-padding-hr;
+          padding: var(--ty-descriptions-lg-padding-vt) var(--ty-descriptions-lg-padding-hr);
         }
       }
     }

@@ -80,8 +80,8 @@ describe('<ConfigProvider />', () => {
 
   it('should restore parent token overrides when nested provider unmounts', () => {
     const nested = render(
-      <ConfigProvider theme={{ token: { colorPrimary: 'blue' } }}>
-        <ConfigProvider theme={{ token: { colorPrimary: 'red' } }}>
+      <ConfigProvider theme={{ tokens: { semantic: { 'color-primary': 'blue' } } }}>
+        <ConfigProvider theme={{ tokens: { semantic: { 'color-primary': 'red' } } }}>
           <div>Content</div>
         </ConfigProvider>
       </ConfigProvider>
@@ -92,7 +92,7 @@ describe('<ConfigProvider />', () => {
     expect((providers[1] as HTMLElement).style.getPropertyValue('--ty-color-primary')).toBe('red');
 
     nested.rerender(
-      <ConfigProvider theme={{ token: { colorPrimary: 'blue' } }}>
+      <ConfigProvider theme={{ tokens: { semantic: { 'color-primary': 'blue' } } }}>
         <div>Content</div>
       </ConfigProvider>
     );
@@ -106,7 +106,7 @@ describe('<ConfigProvider />', () => {
 
   it('should replace old token values when the same provider updates theme config', () => {
     const { rerender } = render(
-      <ConfigProvider theme={{ token: { colorPrimary: 'blue', borderRadius: '8px' } }}>
+      <ConfigProvider theme={{ tokens: { semantic: { 'color-primary': 'blue', 'border-radius': '8px' } } }}>
         <div>Content</div>
       </ConfigProvider>
     );
@@ -117,7 +117,7 @@ describe('<ConfigProvider />', () => {
     expect(getProvider().style.getPropertyValue('--ty-border-radius')).toBe('8px');
 
     rerender(
-      <ConfigProvider theme={{ token: { colorSuccess: 'green' } }}>
+      <ConfigProvider theme={{ tokens: { semantic: { 'color-success': 'green' } } }}>
         <div>Content</div>
       </ConfigProvider>
     );
@@ -129,8 +129,8 @@ describe('<ConfigProvider />', () => {
 
   it('should isolate different token keys across multiple providers', () => {
     const nested = render(
-      <ConfigProvider theme={{ token: { colorPrimary: 'blue' } }}>
-        <ConfigProvider theme={{ token: { borderRadius: '12px' } }}>
+      <ConfigProvider theme={{ tokens: { semantic: { 'color-primary': 'blue' } } }}>
+        <ConfigProvider theme={{ tokens: { semantic: { 'border-radius': '12px' } } }}>
           <div>Content</div>
         </ConfigProvider>
       </ConfigProvider>
@@ -141,7 +141,7 @@ describe('<ConfigProvider />', () => {
     expect((providers[1] as HTMLElement).style.getPropertyValue('--ty-border-radius')).toBe('12px');
 
     nested.rerender(
-      <ConfigProvider theme={{ token: { colorPrimary: 'blue' } }}>
+      <ConfigProvider theme={{ tokens: { semantic: { 'color-primary': 'blue' } } }}>
         <div>Content</div>
       </ConfigProvider>
     );

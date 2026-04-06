@@ -2,11 +2,11 @@
 @use '@tiny-design/tokens/scss/animation' as *;
 
 .#{$prefix}-result {
-  padding: 48px 32px;
+  padding: var(--ty-result-padding);
   box-sizing: border-box;
 
   &__icon-container {
-    margin-bottom: 24px;
+    margin-bottom: var(--ty-result-icon-margin-bottom);
     text-align: center;
     box-sizing: border-box;
   }
@@ -16,32 +16,32 @@
   }
 
   &__title {
-    color: var(--ty-color-text);
-    font-size: 24px;
-    line-height: 1.8;
+    color: var(--ty-result-title-color);
+    font-size: var(--ty-result-title-font-size);
+    line-height: var(--ty-result-title-line-height);
     text-align: center;
     box-sizing: border-box;
   }
 
   &__subtitle {
-    color: var(--ty-color-text-tertiary);
-    font-size: 14px;
-    line-height: 1.6;
+    color: var(--ty-result-subtitle-color);
+    font-size: var(--ty-result-subtitle-font-size);
+    line-height: var(--ty-result-subtitle-line-height);
     text-align: center;
     box-sizing: border-box;
   }
 
   &__extra {
-    margin-top: 32px;
+    margin-top: var(--ty-result-extra-margin-top);
     text-align: center;
     box-sizing: border-box;
   }
 
   &__content {
-    margin-top: 24px;
-    margin-left: 30px;
-    margin-right: 30px;
-    padding: 24px 40px;
+    margin-top: var(--ty-result-content-margin-top);
+    margin-left: var(--ty-result-content-margin-inline);
+    margin-right: var(--ty-result-content-margin-inline);
+    padding: var(--ty-result-content-padding);
     background-color: var(--ty-result-content-bg);
     box-sizing: border-box;
   }

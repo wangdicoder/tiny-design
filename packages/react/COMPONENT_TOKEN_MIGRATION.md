@@ -14,7 +14,7 @@ These three components are the first migration targets because they define the b
 - Source token keys use dot notation with kebab-case segments.
 - Runtime CSS vars stay on the `--ty-*` prefix for v2 compatibility.
 - New component names use full nouns: `button`, `input`, `card`.
-- Existing legacy vars such as `--ty-btn-*` remain supported through an alias layer during migration.
+- Legacy vars are not part of the target architecture. Component authoring should move directly to primary v2 token names.
 
 ## Button
 
@@ -161,11 +161,11 @@ Only variants with distinct structural or non-semantic behavior should get dedic
 }
 ```
 
-### Legacy to v2 alias examples
-- `--ty-btn-border-radius` -> `--ty-button-radius`
-- `--ty-btn-height-md` -> `--ty-button-height-md`
-- `--ty-btn-default-bg` -> `--ty-button-bg-default`
-- `--ty-btn-default-hover-bg` -> `--ty-button-bg-default-hover`
+### Primary token examples
+- `--ty-button-radius`
+- `--ty-button-height-md`
+- `--ty-button-bg-default`
+- `--ty-button-bg-default-hover`
 
 ## Input
 
@@ -211,11 +211,11 @@ Only variants with distinct structural or non-semantic behavior should get dedic
 }
 ```
 
-### Legacy to v2 alias examples
-- `--ty-input-border-radius` -> `--ty-input-radius`
-- `--ty-input-focus-border` -> `--ty-input-border-focus`
-- `--ty-input-focus-shadow` -> `--ty-input-shadow-focus`
-- `--ty-input-disabled-color` -> `--ty-input-text-disabled`
+### Primary token examples
+- `--ty-input-radius`
+- `--ty-input-border-focus`
+- `--ty-input-shadow-focus`
+- `--ty-input-text-disabled`
 
 ## Card
 
@@ -248,14 +248,14 @@ Only variants with distinct structural or non-semantic behavior should get dedic
 }
 ```
 
-### Legacy to v2 alias examples
-- `--ty-card-border-radius` -> `--ty-card-radius`
-- `--ty-shadow-card` -> `--ty-card-shadow`
+### Primary token examples
+- `--ty-card-radius`
+- `--ty-card-shadow`
 
 ## SCSS Migration Patterns
 
-### 1. Replace legacy component aliases gradually
-Do not rename class selectors in v2. Migrate variables first.
+### 1. Replace legacy variable names outright
+Do not rename class selectors in v2. Migrate variables directly to primary token names.
 
 ```scss
 .ty-btn {
@@ -263,10 +263,7 @@ Do not rename class selectors in v2. Migrate variables first.
 }
 ```
 
-This allows:
-- new token source to emit `--ty-button-*`
-- old themes to keep working through build-emitted alias vars
-- SCSS to move once without breaking user overrides
+This keeps authored SCSS aligned with the public runtime API and avoids carrying compatibility indirection in the build.
 
 ### 2. Prefer component token + semantic fallback
 
@@ -319,8 +316,7 @@ Avoid:
 - `input.affix.prefix.margin`
 
 ## Initial Migration Order
-1. Add registry entries and alias map for `button`, `input`, `card`
-2. Update SCSS to prefer `--ty-button-*`, `--ty-input-*`, `--ty-card-*`
-3. Keep legacy `--ty-btn-*` fallbacks for one compatibility cycle
+1. Add registry entries for `button`, `input`, `card`
+2. Update SCSS to use `--ty-button-*`, `--ty-input-*`, `--ty-card-*`
+3. Delete legacy variable references instead of extending them through compatibility layers
 4. Update Theme Studio to edit only v2 names
-5. Mark legacy names as deprecated in docs and generated registry metadata

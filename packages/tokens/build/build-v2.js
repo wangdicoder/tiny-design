@@ -6,7 +6,6 @@ const SOURCE_DIR = path.join(ROOT, 'source');
 const DIST_DIR = path.join(ROOT, 'dist');
 const DIST_CSS_DIR = path.join(DIST_DIR, 'css');
 const REGISTRY_DTS_PATH = path.join(DIST_DIR, 'registry.d.ts');
-const ALIAS_MAP_DTS_PATH = path.join(DIST_DIR, 'alias-map.d.ts');
 
 const SEMANTIC_DIR = path.join(SOURCE_DIR, 'semantic');
 const COMPONENT_DIR = path.join(SOURCE_DIR, 'components');
@@ -22,6 +21,12 @@ function readJson(filePath) {
 
 function writeJson(filePath, value) {
   fs.writeFileSync(filePath, JSON.stringify(value, null, 2) + '\n');
+}
+
+function removeIfExists(filePath) {
+  if (fs.existsSync(filePath)) {
+    fs.rmSync(filePath);
+  }
 }
 
 function listJsonFiles(dir) {
@@ -86,7 +91,6 @@ function loadTokenFiles(dir, category) {
 function validateTokens(tokens) {
   const keys = new Set();
   const cssVars = new Set();
-  const aliasVars = new Set();
 
   for (const token of tokens) {
     assert(!keys.has(token.key), `Duplicate token key: ${token.key}`);
@@ -98,20 +102,6 @@ function validateTokens(tokens) {
 
     if (token.category === 'component') {
       assert(token.component, `Missing component name for token: ${token.key}`);
-    }
-
-    const aliases = token.aliases || [];
-    for (const aliasCssVar of aliases) {
-      assert(
-        aliasCssVar !== cssVar,
-        `Alias css var matches primary css var for token: ${token.key}`
-      );
-      assert(
-        !cssVars.has(aliasCssVar),
-        `Alias css var collides with primary css var: ${aliasCssVar}`
-      );
-      assert(!aliasVars.has(aliasCssVar), `Duplicate alias css var: ${aliasCssVar}`);
-      aliasVars.add(aliasCssVar);
     }
   }
 }
@@ -144,31 +134,7 @@ function buildRegistry(tokens) {
       defaultValue: token.$value,
       ...(token.fallback ? { fallback: token.fallback } : {}),
       status: token.status || 'active',
-      aliases: token.aliases || [],
     })),
-  };
-}
-
-function buildAliasMap(tokens) {
-  const entries = [];
-
-  for (const token of tokens) {
-    const aliases = token.aliases || [];
-    for (const aliasCssVar of aliases) {
-      entries.push({
-        aliasCssVar,
-        targetKey: token.key,
-        targetCssVar: tokenKeyToCssVar(token.key),
-        status: 'active',
-        removeAfter: 3,
-        notes: `Compatibility alias for ${token.key}.`,
-      });
-    }
-  }
-
-  return {
-    version: 1,
-    entries,
   };
 }
 
@@ -177,19 +143,6 @@ function buildCss(tokens, resolvedValues) {
 
   for (const token of tokens) {
     rootLines.push(`  ${tokenKeyToCssVar(token.key)}: ${resolvedValues.get(token.key)};`);
-  }
-
-  const aliasLines = [];
-  for (const token of tokens) {
-    const aliases = token.aliases || [];
-    for (const aliasCssVar of aliases) {
-      aliasLines.push(`  ${aliasCssVar}: var(${tokenKeyToCssVar(token.key)});`);
-    }
-  }
-
-  if (aliasLines.length > 0) {
-    rootLines.push('');
-    rootLines.push(...aliasLines);
   }
 
   rootLines.push('}');
@@ -207,19 +160,6 @@ function buildThemeCss(tokens, resolvedValues, overrides, selector) {
     lines.push(`  ${tokenKeyToCssVar(token.key)}: ${value};`);
   }
 
-  const aliasLines = [];
-  for (const token of tokens) {
-    const aliases = token.aliases || [];
-    for (const aliasCssVar of aliases) {
-      aliasLines.push(`  ${aliasCssVar}: var(${tokenKeyToCssVar(token.key)});`);
-    }
-  }
-
-  if (aliasLines.length > 0) {
-    lines.push('');
-    lines.push(...aliasLines);
-  }
-
   lines.push('}');
   lines.push('');
 
@@ -227,8 +167,14 @@ function buildThemeCss(tokens, resolvedValues, overrides, selector) {
 }
 
 function buildBaseThemeCss(tokens, resolvedValues, lightTheme, darkTheme) {
-  const lightOverrides = (lightTheme && lightTheme.tokens && lightTheme.tokens.semantic) || {};
-  const darkOverrides = (darkTheme && darkTheme.tokens && darkTheme.tokens.semantic) || {};
+  const lightOverrides = {
+    ...((lightTheme && lightTheme.tokens && lightTheme.tokens.semantic) || {}),
+    ...((lightTheme && lightTheme.tokens && lightTheme.tokens.components) || {}),
+  };
+  const darkOverrides = {
+    ...((darkTheme && darkTheme.tokens && darkTheme.tokens.semantic) || {}),
+    ...((darkTheme && darkTheme.tokens && darkTheme.tokens.components) || {}),
+  };
 
   const parts = [];
   parts.push(buildThemeCss(tokens, resolvedValues, lightOverrides, ':root'));
@@ -268,7 +214,6 @@ export interface TokenRegistryEntry {
   defaultValue: string | number;
   fallback?: string;
   status: 'active' | 'deprecated' | 'internal';
-  aliases: string[];
 }
 
 export interface TokenRegistryDocument {
@@ -279,25 +224,8 @@ export interface TokenRegistryDocument {
 `;
 }
 
-function buildAliasMapDts() {
-  return `export interface AliasMapEntry {
-  aliasCssVar: string;
-  targetKey: string;
-  targetCssVar: string;
-  status: 'active' | 'deprecated' | 'removed';
-  removeAfter?: number;
-  notes?: string;
-}
-
-export interface AliasMapDocument {
-  version: number;
-  entries: AliasMapEntry[];
-}
-`;
-}
-
-function buildV2() {
-  console.log('Building v2 token prototype...\n');
+function buildRuntimeTokens() {
+  console.log('Building runtime tokens...\n');
 
   const semanticTokens = loadTokenFiles(SEMANTIC_DIR, 'semantic');
   const componentTokens = loadTokenFiles(COMPONENT_DIR, 'component');
@@ -312,44 +240,49 @@ function buildV2() {
   );
 
   const registry = buildRegistry(allTokens);
-  const aliasMap = buildAliasMap(allTokens);
   const lightTheme = themes.find((theme) => theme.meta && theme.meta.mode === 'light');
   const darkTheme = themes.find((theme) => theme.meta && theme.meta.mode === 'dark');
+  const lightThemeOverrides = {
+    ...((lightTheme && lightTheme.tokens && lightTheme.tokens.semantic) || {}),
+    ...((lightTheme && lightTheme.tokens && lightTheme.tokens.components) || {}),
+  };
+  const darkThemeOverrides = {
+    ...((darkTheme && darkTheme.tokens && darkTheme.tokens.semantic) || {}),
+    ...((darkTheme && darkTheme.tokens && darkTheme.tokens.components) || {}),
+  };
   const lightCss = buildThemeCss(
     allTokens,
     resolvedValues,
-    (lightTheme && lightTheme.tokens && lightTheme.tokens.semantic) || {},
+    lightThemeOverrides,
     ':root'
   );
   const darkCss = buildThemeCss(
     allTokens,
     resolvedValues,
-    (darkTheme && darkTheme.tokens && darkTheme.tokens.semantic) || {},
+    darkThemeOverrides,
     "[data-tiny-theme='dark']"
   );
   const baseCss = buildBaseThemeCss(allTokens, resolvedValues, lightTheme, darkTheme);
 
   mkdirp(DIST_CSS_DIR);
+  removeIfExists(path.join(DIST_DIR, 'alias-map.json'));
+  removeIfExists(path.join(DIST_DIR, 'alias-map.d.ts'));
   writeJson(path.join(DIST_DIR, 'registry.json'), registry);
-  writeJson(path.join(DIST_DIR, 'alias-map.json'), aliasMap);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'v2-light.css'), lightCss);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'v2-dark.css'), darkCss);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'base.css'), baseCss);
   fs.writeFileSync(REGISTRY_DTS_PATH, buildRegistryDts());
-  fs.writeFileSync(ALIAS_MAP_DTS_PATH, buildAliasMapDts());
 
   console.log('  dist/registry.json');
-  console.log('  dist/alias-map.json');
   console.log('  dist/registry.d.ts');
-  console.log('  dist/alias-map.d.ts');
   console.log('  dist/css/v2-light.css');
   console.log('  dist/css/v2-dark.css');
   console.log('  dist/css/base.css');
-  console.log('\nV2 token prototype done.');
+  console.log('\nRuntime tokens done.');
 }
 
-module.exports = { buildV2 };
+module.exports = { buildRuntimeTokens };
 
 if (require.main === module) {
-  buildV2();
+  buildRuntimeTokens();
 }

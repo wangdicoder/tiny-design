@@ -3,8 +3,7 @@
     "$value": "{border-radius}",
     "$type": "dimension",
     "description": "Card border radius.",
-    "fallback": "--ty-border-radius",
-    "aliases": ["--ty-card-border-radius"]
+    "fallback": "--ty-border-radius"
   },
   "card.bg": {
     "$value": "{color-bg-container}",

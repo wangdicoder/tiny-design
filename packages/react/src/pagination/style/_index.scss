@@ -4,8 +4,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: var(--ty-color-text-secondary);
-  font-size: 14px;
+  color: var(--ty-pagination-color, var(--ty-color-text-secondary));
+  font-size: var(--ty-pagination-font-size, 14px);
   list-style: none;
 
   &_left {
@@ -22,9 +22,9 @@
 
   &_disabled {
     .#{$prefix}-pagination__item_active {
-      background: var(--ty-pagination-disabled-active-bg) !important;
+      background: var(--ty-pagination-disabled-active-bg, #dbdbdb) !important;
       border-color: transparent !important;
-      color: #fff !important;
+      color: var(--ty-pagination-disabled-active-color, #fff) !important;
     }
   }
 
@@ -36,12 +36,12 @@
     text-align: center;
     vertical-align: middle;
     list-style: none;
-    background-color: var(--ty-pagination-bg);
-    border-radius: 2px;
+    background-color: var(--ty-pagination-item-bg, var(--ty-color-bg-container));
+    border-radius: var(--ty-pagination-item-radius, 2px);
     outline: 0;
     cursor: pointer;
     user-select: none;
-    transition: all 400ms;
+    transition: all var(--ty-pagination-item-transition-duration, 400ms);
 
     > button {
       background: none;
@@ -62,10 +62,10 @@
     }
 
     &_ellipsis {
-      color: var(--ty-color-text-quaternary);
+      color: var(--ty-pagination-item-color-ellipsis, var(--ty-color-text-quaternary));
 
       &:hover {
-        color: var(--ty-color-primary);
+        color: var(--ty-pagination-item-color-ellipsis-hover, var(--ty-color-primary));
       }
     }
   }
@@ -80,29 +80,29 @@
 
   &_md {
     .#{$prefix}-pagination__item {
-      min-width: 32px;
-      height: 32px;
-      margin-left: 4px;
-      margin-right: 4px;
-      line-height: 30px;
-      border: 1px solid var(--ty-color-border);
+      min-width: var(--ty-pagination-item-size-md, 32px);
+      height: var(--ty-pagination-item-size-md, 32px);
+      margin-left: var(--ty-pagination-item-gap-md, 4px);
+      margin-right: var(--ty-pagination-item-gap-md, 4px);
+      line-height: var(--ty-pagination-item-line-height-md, 30px);
+      border: 1px solid var(--ty-pagination-item-border-md, var(--ty-color-border));
 
       &_active {
-        color: var(--ty-color-primary);
-        border-color: var(--ty-color-primary);
+        color: var(--ty-pagination-item-color-active, var(--ty-color-primary));
+        border-color: var(--ty-pagination-item-border-active, var(--ty-color-primary));
       }
 
       &:hover {
-        border-color: var(--ty-color-primary);
+        border-color: var(--ty-pagination-item-border-hover, var(--ty-color-primary));
       }
 
       &_disabled {
-        color: var(--ty-color-text-tertiary);
-        background: var(--ty-pagination-disabled-bg);
-        border-color: var(--ty-color-border);
+        color: var(--ty-pagination-disabled-color-md, var(--ty-color-text-tertiary));
+        background: var(--ty-pagination-disabled-bg, var(--ty-color-fill-secondary));
+        border-color: var(--ty-pagination-item-border-md, var(--ty-color-border));
 
         &:hover {
-          border-color: var(--ty-color-border);
+          border-color: var(--ty-pagination-item-border-md, var(--ty-color-border));
         }
       }
 
@@ -114,28 +114,28 @@
 
   &_sm {
     .#{$prefix}-pagination__item {
-      min-width: 24px;
-      height: 24px;
-      margin-left: 0.5px;
-      margin-right: 0.5px;
-      line-height: 22px;
+      min-width: var(--ty-pagination-item-size-sm, 24px);
+      height: var(--ty-pagination-item-size-sm, 24px);
+      margin-left: var(--ty-pagination-item-gap-sm, 0.5px);
+      margin-right: var(--ty-pagination-item-gap-sm, 0.5px);
+      line-height: var(--ty-pagination-item-line-height-sm, 22px);
       border-color: transparent;
 
       &_active {
-        color: var(--ty-color-primary);
-        border: 1px solid var(--ty-color-primary);
+        color: var(--ty-pagination-item-color-active, var(--ty-color-primary));
+        border: 1px solid var(--ty-pagination-item-border-active, var(--ty-color-primary));
       }
 
       &:hover {
-        color: var(--ty-color-primary);
+        color: var(--ty-pagination-item-color-hover-sm, var(--ty-color-primary));
       }
 
       &_disabled {
-        color: var(--ty-pagination-disabled-color);
-        border-color: var(--ty-pagination-disabled-color);
+        color: var(--ty-pagination-disabled-color-sm, #d9d9d9);
+        border-color: var(--ty-pagination-disabled-color-sm, #d9d9d9);
 
         &:hover {
-          color: var(--ty-pagination-disabled-color);
+          color: var(--ty-pagination-disabled-color-sm, #d9d9d9);
         }
       }
     }

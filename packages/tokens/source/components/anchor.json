@@ -1,0 +1,48 @@
+{
+  "anchor.ball-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Anchor ball bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "anchor.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Anchor panel background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "anchor.ball-border": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Anchor active ball border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "anchor.link-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Anchor link text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "anchor.link-color-active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Anchor active link text color.",
+    "fallback": "--ty-color-primary"
+  },
+  "anchor.link-padding": {
+    "$value": "7px 0 7px 16px",
+    "$type": "string",
+    "description": "Anchor link padding."
+  },
+  "anchor.link-title-margin-bottom": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Anchor link title bottom margin when nested."
+  },
+  "anchor.ink-bg": {
+    "$value": "{color-fill-tertiary}",
+    "$type": "color",
+    "description": "Anchor rail color.",
+    "fallback": "--ty-color-fill-tertiary"
+  }
+}

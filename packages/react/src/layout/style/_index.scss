@@ -13,20 +13,20 @@
 
 .#{$prefix}-layout-header {
   box-sizing: border-box;
-  height: 60px;
-  background-color: var(--ty-color-bg-layout);
+  height: var(--ty-layout-header-height);
+  background-color: var(--ty-layout-header-bg);
 }
 
 .#{$prefix}-layout-footer {
   box-sizing: border-box;
-  padding: 24px 50px;
-  background-color: var(--ty-color-bg-layout);
+  padding: var(--ty-layout-footer-padding);
+  background-color: var(--ty-layout-footer-bg);
 }
 
 .#{$prefix}-layout-content {
   flex: 1;
   box-sizing: border-box;
-  background-color: var(--ty-color-bg-layout);
+  background-color: var(--ty-layout-content-bg);
 }
 
 .#{$prefix}-layout-sidebar {
@@ -34,9 +34,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: all 200ms;
+  transition: all var(--ty-layout-sidebar-transition-duration);
   background: var(--ty-layout-sidebar-bg);
-  color: #fff;
+  color: var(--ty-layout-sidebar-color);
 
   &:last-child {
     .#{$prefix}-layout-sidebar__trigger-icon {
@@ -54,7 +54,7 @@
     width: 100%;
     z-index: 1;
     cursor: pointer;
-    height: 40px;
+    height: var(--ty-layout-sidebar-trigger-height);
     background-color: var(--ty-layout-sidebar-trigger-bg);
     display: flex;
     justify-content: center;

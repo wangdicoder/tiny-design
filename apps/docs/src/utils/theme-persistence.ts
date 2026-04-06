@@ -1,7 +1,6 @@
 import { applyTokens, clearAllTokenOverrides } from '../containers/theme-studio/utils/apply-theme';
 import { loadFontFromValue } from '../containers/theme-studio/utils/font-loader';
 import {
-  buildLegacyPreviewOverrides,
   buildThemeDocumentFromSeeds,
   mergeThemeDocuments,
   resolveThemeDocument,
@@ -65,12 +64,7 @@ export function applyThemeToDOM(
   if (resolvedSeeds['font-family-monospace']) loadFontFromValue(resolvedSeeds['font-family-monospace']);
 
   const themeDocument = buildThemeDocumentFromSeeds(resolvedSeeds, darkMode);
-  const resolvedV2Vars = resolveThemeDocument(themeDocument);
-  const legacyPreviewVars = buildLegacyPreviewOverrides(resolvedSeeds, darkMode);
-  const applied = {
-    ...resolvedV2Vars,
-    ...legacyPreviewVars,
-  };
+  const applied = resolveThemeDocument(themeDocument);
 
   lastApplied = applied;
   applyTokens(applied);
@@ -95,12 +89,7 @@ export function applyThemeDocumentToDOM(
 
   const seedTheme = buildThemeDocumentFromSeeds(resolvedSeeds, darkMode);
   const mergedTheme = mergeThemeDocuments(theme, seedTheme);
-  const resolvedV2Vars = resolveThemeDocument(mergedTheme);
-  const legacyPreviewVars = buildLegacyPreviewOverrides(resolvedSeeds, darkMode);
-  const applied = {
-    ...resolvedV2Vars,
-    ...legacyPreviewVars,
-  };
+  const applied = resolveThemeDocument(mergedTheme);
 
   lastApplied = applied;
   applyTokens(applied);

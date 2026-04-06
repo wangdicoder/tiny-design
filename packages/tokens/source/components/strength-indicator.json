@@ -1,0 +1,39 @@
+{
+  "strength-indicator.border-radius": {
+    "$value": "99px",
+    "$type": "dimension",
+    "description": "Strength Indicator border radius."
+  },
+  "strength-indicator.gap": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Strength Indicator item gap."
+  },
+  "strength-indicator.min-height": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Strength Indicator bar min height."
+  },
+  "strength-indicator.bg": {
+    "$value": "{color-bg-disabled}",
+    "$type": "color",
+    "description": "Strength Indicator inactive background color.",
+    "fallback": "--ty-color-bg-disabled"
+  },
+  "strength-indicator.label-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Strength Indicator label color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "strength-indicator.label-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Strength Indicator label font size."
+  },
+  "strength-indicator.label-margin-top": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Strength Indicator label top margin."
+  }
+}

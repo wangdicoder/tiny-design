@@ -1,0 +1,52 @@
+{
+  "popup.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Popup panel border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "popup.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Popup panel font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "popup.shadow": {
+    "$value": "{shadow-popup}",
+    "$type": "shadow",
+    "description": "Popup panel shadow.",
+    "fallback": "--ty-shadow-popup"
+  },
+  "popup.color.light": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Light popup text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "popup.color.dark": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Dark popup text color."
+  },
+  "popup.arrow-shadow": {
+    "$value": "rgba(0, 0, 0, 0.07)",
+    "$type": "shadow",
+    "description": "Popup arrow shadow."
+  },
+  "popup.dark-bg": {
+    "$value": "#262626",
+    "$type": "color",
+    "description": "Popup dark bg."
+  },
+  "popup.light-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Popup light bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "popup.z-index": {
+    "$value": "999",
+    "$type": "number",
+    "description": "Popup stacking order."
+  }
+}

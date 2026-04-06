@@ -1,0 +1,28 @@
+{
+  "empty.desc-color": {
+    "$value": "rgba(0, 0, 0, 0.35)",
+    "$type": "color",
+    "description": "Empty description color."
+  },
+  "empty.desc-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Empty description font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "empty.image-max-width": {
+    "$value": "120px",
+    "$type": "dimension",
+    "description": "Empty image max width."
+  },
+  "empty.image-margin-bottom": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Empty image container bottom margin."
+  },
+  "empty.footer-margin-top": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Empty footer top margin."
+  }
+}

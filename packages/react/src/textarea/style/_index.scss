@@ -4,7 +4,7 @@
 .#{$prefix}-textarea {
   @include input-default;
 
-  padding: $textarea-padding;
+  padding: var(--ty-textarea-padding);
   overflow: hidden;
 
   &_disabled {
@@ -15,13 +15,13 @@
     position: relative;
 
     .#{$prefix}-textarea {
-      padding-bottom: 20px;
+      padding-bottom: var(--ty-textarea-padding-bottom-with-counter);
 
       &__counter {
         position: absolute;
-        bottom: 6px;
-        right: 6px;
-        font-size: 14px;
+        bottom: var(--ty-textarea-counter-offset-bottom);
+        right: var(--ty-textarea-counter-offset-inline-end);
+        font-size: var(--ty-textarea-counter-font-size);
         color: var(--ty-textarea-counter-color);
       }
     }

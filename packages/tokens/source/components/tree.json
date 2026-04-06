@@ -1,0 +1,44 @@
+{
+  "tree.arrow-color": {
+    "$value": "#999",
+    "$type": "color",
+    "description": "Tree arrow color."
+  },
+  "tree.hover-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Tree hover background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "tree.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Tree font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "tree.node-margin": {
+    "$value": "2px 0",
+    "$type": "string",
+    "description": "Tree node vertical margin."
+  },
+  "tree.switcher-size": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Tree switcher square size."
+  },
+  "tree.label-padding": {
+    "$value": "1px 2px",
+    "$type": "string",
+    "description": "Tree label padding."
+  },
+  "tree.label-offset": {
+    "$value": "-4px",
+    "$type": "dimension",
+    "description": "Tree label inline start offset."
+  },
+  "tree.title-min-height": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Tree title min height."
+  }
+}

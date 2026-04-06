@@ -7,19 +7,19 @@
 
   &_horizontal {
     width: 100%;
-    min-height: $slider-size;
-    margin: 13px 7px;
-    padding: 4px 0;
+    min-height: var(--ty-slider-size);
+    margin: var(--ty-slider-horizontal-margin);
+    padding: var(--ty-slider-horizontal-padding);
 
     .#{$prefix}-slider {
       &__rail {
         width: 100%;
-        height: $slider-track-size;
+        height: var(--ty-slider-track-size);
         left: 0;
       }
 
       &__track {
-        height: $slider-track-size;
+        height: var(--ty-slider-track-size);
       }
 
       &__thumb-container, &__dot {
@@ -34,20 +34,20 @@
   }
 
   &_vertical {
-    width: 12px;
+    width: var(--ty-slider-vertical-width);
     height: 100%;
-    margin: 6px 10px;
-    padding: 0 4px;
+    margin: var(--ty-slider-vertical-margin);
+    padding: var(--ty-slider-vertical-padding);
 
     .#{$prefix}-slider {
       &__rail {
-        width: $slider-track-size;
+        width: var(--ty-slider-track-size);
         height: 100%;
         top: 0;
       }
 
       &__track {
-        width: $slider-track-size;
+        width: var(--ty-slider-track-size);
       }
 
       &__thumb-container, &__dot {
@@ -63,15 +63,15 @@
 
   &__rail {
     position: absolute;
-    border-radius: 3px;
+    border-radius: var(--ty-slider-rail-radius);
     box-sizing: border-box;
     background-color: var(--ty-slider-rail-bg);
   }
 
   &__track {
     box-sizing: border-box;
-    border-radius: 3px;
-    background-color: var(--ty-color-primary);
+    border-radius: var(--ty-slider-rail-radius);
+    background-color: var(--ty-slider-primary-color);
     position: absolute;
 
     &_invisible{
@@ -82,8 +82,8 @@
   &__thumb-container {
     position: absolute;
     z-index: 1;
-    width: 36px;
-    height: 36px;
+    width: var(--ty-slider-thumb-hit-size);
+    height: var(--ty-slider-thumb-hit-size);
     outline: none;
     display: flex;
     justify-content: center;
@@ -93,7 +93,7 @@
       cursor: grab;
 
       .#{$prefix}-slider__thumb {
-        transform: scale(1.2);
+        transform: scale(var(--ty-slider-thumb-scale-hover));
       }
     }
 
@@ -104,9 +104,9 @@
 
   &__thumb {
     box-sizing: border-box;
-    width: 14px;
-    height: 14px;
-    border: 1px solid var(--ty-color-primary);
+    width: var(--ty-slider-thumb-size);
+    height: var(--ty-slider-thumb-size);
+    border: 1px solid var(--ty-slider-primary-color);
     background-color: var(--ty-slider-thumb-bg);
     border-radius: 50%;
     transition: transform 250ms;
@@ -116,15 +116,15 @@
   &__dot {
     box-sizing: border-box;
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: var(--ty-slider-dot-size);
+    height: var(--ty-slider-dot-size);
     border-radius: 50%;
     background-color: var(--ty-slider-dot-bg);
     border: 2px solid var(--ty-slider-dot-border);
     transform: translate(-50%, -50%);
 
     &_active {
-      border-color: var(--ty-color-primary);
+      border-color: var(--ty-slider-primary-color);
     }
   }
 
@@ -147,11 +147,11 @@
 
     .#{$prefix}-slider {
       &__track {
-        background-color: var(--ty-color-text-quaternary);
+        background-color: var(--ty-slider-disabled-color);
       }
 
       &__thumb {
-        border-color: var(--ty-color-text-quaternary);
+        border-color: var(--ty-slider-disabled-color);
         transform: scale(1);
       }
 

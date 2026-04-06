@@ -73,7 +73,7 @@ return (
 
 ### 令牌覆盖
 
-使用 `ThemeConfig` 自定义全局令牌和组件级令牌：
+使用 `ThemeConfig` 自定义语义令牌和组件级令牌：
 
 ```jsx
 import { ConfigProvider } from 'tiny-design';
@@ -81,14 +81,18 @@ import { ConfigProvider } from 'tiny-design';
 <ConfigProvider
   theme={{
     mode: 'light',
-    token: {
-      colorPrimary: '#1890ff',
-      borderRadius: '8px',
-    },
-    components: {
-      Button: { borderRadius: '20px', heightMd: '40px' },
-      Card: { headerFontSize: '20px', borderRadius: '12px' },
-      Input: { borderRadius: '8px' },
+    tokens: {
+      semantic: {
+        'color-primary': '#1890ff',
+        'border-radius': '8px',
+      },
+      components: {
+        'button.radius': '20px',
+        'button.height.md': '40px',
+        'card.header-font-size': '20px',
+        'card.radius': '12px',
+        'input.radius': '8px',
+      },
     },
   }}
 >
@@ -101,10 +105,11 @@ import { ConfigProvider } from 'tiny-design';
 | 属性       | 说明                                             | 类型                                          | 默认值  |
 | ---------- | ------------------------------------------------ | --------------------------------------------- | ------- |
 | mode       | 主题模式                                         | enum: `light` &#124; `dark` &#124; `system`   | -       |
-| token      | 全局设计令牌覆盖（camelCase 键名）               | `Record<string, string \| number>`            | -       |
-| components | 组件级令牌覆盖（camelCase 键名）                 | `Record<string, Record<string, string \| number>>` | -  |
+| extends    | 要继承的基础主题 id                              | `string`                                      | 根据 `mode` 自动选择 |
+| meta       | 可选的主题元信息                                 | `ThemeDocumentMeta`                           | -       |
+| tokens     | 语义令牌和组件级令牌覆盖                         | `{ semantic?: Record<string, string \| number>; components?: Record<string, string \| number> }` | - |
 
-令牌键名使用 camelCase 格式，会自动转换为 CSS 自定义属性。例如 `colorPrimary` 会转换为 `--ty-color-primary`，`Button.borderRadius` 会转换为 `--ty-btn-border-radius`。ConfigProvider 会把这些值应用到自己的作用域节点上，而不是直接写到全局 `<html>`。因此嵌套 provider 会形成真正的嵌套作用域，弹层类组件也会通过 provider 的 popup holder 继承相同的值。
+语义令牌键名使用 kebab-case，组件令牌键名使用点分路径。例如 `color-primary` 会转换为 `--ty-color-primary`，`button.radius` 会转换为 `--ty-button-radius`。ConfigProvider 会把这些值应用到自己的作用域节点上，而不是直接写到全局 `<html>`。因此嵌套 provider 会形成真正的嵌套作用域，弹层类组件也会通过 provider 的 popup holder 继承相同的值。
 
 当启用局部主题时，`ConfigProvider` 会渲染一个带 `display: contents` 的内部作用域节点，用来承载局部 CSS 变量和 popup holder。它对布局影响很小，但这个节点仍然存在于 DOM 中，依赖直接父子关系的 DOM 逻辑需要注意这一点。
 
@@ -115,9 +120,9 @@ import { ConfigProvider } from 'tiny-design';
 内层 `ConfigProvider` 会覆盖外层配置；当内层卸载时，外层值会自动恢复。
 
 ```jsx
-<ConfigProvider theme={{ mode: 'dark', token: { colorPrimary: '#1677ff' } }}>
+<ConfigProvider theme={{ mode: 'dark', tokens: { semantic: { 'color-primary': '#1677ff' } } }}>
   <AppShell>
-    <ConfigProvider theme={{ token: { colorPrimary: '#f5222d' } }}>
+    <ConfigProvider theme={{ tokens: { semantic: { 'color-primary': '#f5222d' } } }}>
       <DangerSection />
     </ConfigProvider>
   </AppShell>
@@ -137,10 +142,12 @@ import { ConfigProvider } from 'tiny-design';
 ```jsx
 <ConfigProvider
   theme={{
-    token: { colorPrimary: '#13c2c2' },
-    components: {
-      Select: { dropdownShadow: '0 0 0 2px rgba(19, 194, 194, 0.2)' },
-      Tooltip: { contentPadding: '8px 12px' },
+    tokens: {
+      semantic: { 'color-primary': '#13c2c2' },
+      components: {
+        'select.dropdown-shadow': '0 0 0 2px rgba(19, 194, 194, 0.2)',
+        'tooltip.content-padding': '8px 12px',
+      },
     },
   }}
 >
@@ -163,8 +170,8 @@ const [danger, setDanger] = useState(false);
 <ConfigProvider
   theme={
     danger
-      ? { token: { colorPrimary: '#ff4d4f', borderRadius: '2px' } }
-      : { token: { colorPrimary: '#1677ff' } }
+      ? { tokens: { semantic: { 'color-primary': '#ff4d4f', 'border-radius': '2px' } } }
+      : { tokens: { semantic: { 'color-primary': '#1677ff' } } }
   }
 >
   <Button onClick={() => setDanger((prev) => !prev)}>Toggle theme</Button>
@@ -182,10 +189,10 @@ const [danger, setDanger] = useState(false);
 :root { --ty-border-radius: 8px; }
 
 /* 组件级 — 仅影响 Button */
-:root { --ty-btn-border-radius: 20px; }
+:root { --ty-button-radius: 20px; }
 
 /* 作用域 — 仅影响 .my-section 内的 Button */
-.my-section { --ty-btn-border-radius: 0; }
+.my-section { --ty-button-radius: 0; }
 ```
 
 ## 静态方法
@@ -196,7 +203,7 @@ const [danger, setDanger] = useState(false);
 ConfigProvider.config({
   holderRender: (children) => (
     <ConfigProvider
-      theme={{ token: { colorPrimary: '#1677ff' } }}
+      theme={{ tokens: { semantic: { 'color-primary': '#1677ff' } } }}
       prefixCls="ty"
     >
       {children}

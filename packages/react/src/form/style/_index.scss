@@ -14,31 +14,31 @@
 }
 
 .#{$prefix}-form-item {
-  margin-bottom: 22px;
+  margin-bottom: var(--ty-form-item-margin-bottom);
   vertical-align: top;
 
   &__label {
-    line-height: 30px;
+    line-height: var(--ty-form-label-line-height);
     text-align: right;
     vertical-align: top;
-    color: var(--ty-color-text);
-    font-size: var(--ty-font-size-base);
+    color: var(--ty-form-label-color);
+    font-size: var(--ty-form-label-font-size);
 
     &_required::before {
       content: '*';
-      margin-right: 3px;
+      margin-right: var(--ty-form-label-required-margin-end);
       color: var(--ty-form-error-color);
     }
 
     &_colon::after {
       content: ':';
-      margin: 0 8px 0 2px;
+      margin: var(--ty-form-label-colon-margin);
     }
   }
 
   &__input {
     position: relative;
-    min-height: 32px;
+    min-height: var(--ty-form-input-min-height);
     display: flex;
     align-items: center;
   }
@@ -49,26 +49,26 @@
   }
 
   &__error {
-    min-height: 22px;
-    line-height: 22px;
-    font-size: 13px;
+    min-height: var(--ty-form-feedback-line-height);
+    line-height: var(--ty-form-feedback-line-height);
+    font-size: var(--ty-form-feedback-font-size);
     color: var(--ty-form-error-color);
   }
 
   &__helper {
-    min-height: 22px;
-    line-height: 22px;
-    font-size: 13px;
-    color: var(--ty-color-text-tertiary);
+    min-height: var(--ty-form-feedback-line-height);
+    line-height: var(--ty-form-feedback-line-height);
+    font-size: var(--ty-form-feedback-font-size);
+    color: var(--ty-form-helper-color);
   }
 
   &__notice {
-    font-size: 13px;
-    border-radius: var(--ty-border-radius);
+    font-size: var(--ty-form-notice-font-size);
+    border-radius: var(--ty-form-notice-radius);
     background: var(--ty-form-notice-bg);
     color: var(--ty-form-notice-color);
-    padding: 5px;
-    margin-top: 5px;
+    padding: var(--ty-form-notice-padding);
+    margin-top: var(--ty-form-notice-margin-top);
   }
 
   &_with-err-label {
@@ -85,7 +85,7 @@
 
       &:focus{
         border-color: var(--ty-form-error-hover);
-        box-shadow: 0 0 0 3px rgb(255 77 79 / 20%);
+        box-shadow: var(--ty-form-error-shadow);
       }
     }
   }

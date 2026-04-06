@@ -15,8 +15,8 @@
   &__input {
     @include input-default;
 
-    padding-left: 7px;
-    padding-right: 25px;
+    padding-left: var(--ty-input-number-input-padding-inline-start);
+    padding-right: var(--ty-input-number-input-padding-inline-end);
 
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
@@ -34,9 +34,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1px;
+    padding: var(--ty-input-number-controls-padding);
     opacity: 0;
-    transition: all 300ms;
+    transition: all var(--ty-input-number-control-transition-duration);
   }
 
   &__up,
@@ -47,15 +47,15 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    padding: 0 7px;
+    padding: var(--ty-input-number-control-padding-inline);
     border-left: 1px solid var(--ty-input-number-control-border);
-    transition: all 300ms;
+    transition: all var(--ty-input-number-control-transition-duration);
 
     &:hover {
       flex: 2;
 
       .ty-icon {
-        color: var(--ty-color-primary) !important;
+        color: var(--ty-input-number-icon-color-hover) !important;
       }
     }
 
@@ -84,9 +84,9 @@
   &_sm {
     .#{$prefix}-input-number {
       &__input {
-        font-size: var(--ty-font-size-sm);
-        height: var(--ty-height-sm);
-        line-height: var(--ty-height-sm);
+        font-size: var(--ty-input-number-font-size-sm);
+        height: var(--ty-input-number-height-sm);
+        line-height: var(--ty-input-number-height-sm);
       }
     }
   }
@@ -94,9 +94,9 @@
   &_md {
     .#{$prefix}-input-number {
       &__input {
-        font-size: var(--ty-font-size-base);
-        height: var(--ty-height-md);
-        line-height: var(--ty-height-md);
+        font-size: var(--ty-input-number-font-size-md);
+        height: var(--ty-input-number-height-md);
+        line-height: var(--ty-input-number-height-md);
       }
     }
   }
@@ -104,9 +104,9 @@
   &_lg {
     .#{$prefix}-input-number {
       &__input {
-        font-size: var(--ty-font-size-lg);
-        height: var(--ty-height-lg);
-        line-height: var(--ty-height-lg);
+        font-size: var(--ty-input-number-font-size-lg);
+        height: var(--ty-input-number-height-lg);
+        line-height: var(--ty-input-number-height-lg);
       }
     }
   }

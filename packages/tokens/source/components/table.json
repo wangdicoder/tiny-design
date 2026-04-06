@@ -1,0 +1,109 @@
+{
+  "table.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Table root text color.",
+    "fallback": "--ty-color-text"
+  },
+  "table.font-size.md": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Medium table font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "table.font-size.sm": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Small table font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "table.font-size.lg": {
+    "$value": "{font-size-lg}",
+    "$type": "dimension",
+    "description": "Large table font size.",
+    "fallback": "--ty-font-size-lg"
+  },
+  "table.border": {
+    "$value": "#e9ecef",
+    "$type": "color",
+    "description": "Table border color."
+  },
+  "table.cell-padding.sm": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Small table cell padding."
+  },
+  "table.cell-padding.md": {
+    "$value": "12px 16px",
+    "$type": "string",
+    "description": "Medium table cell padding."
+  },
+  "table.cell-padding.lg": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Large table cell padding."
+  },
+  "table.header-bg": {
+    "$value": "#f6f9fc",
+    "$type": "color",
+    "description": "Table header background color."
+  },
+  "table.header-font-weight": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Table header font weight."
+  },
+  "table.row-hover-bg": {
+    "$value": "#f6f9fc",
+    "$type": "color",
+    "description": "Table row hover background color."
+  },
+  "table.cell-sortable-hover-bg": {
+    "$value": "#f6f9fc",
+    "$type": "color",
+    "description": "Sortable table cell hover background color."
+  },
+  "table.row-selected-bg": {
+    "$value": "rgba(110, 65, 191, 0.06)",
+    "$type": "color",
+    "description": "Selected table row background color."
+  },
+  "table.selection-column-width": {
+    "$value": "40px",
+    "$type": "dimension",
+    "description": "Table selection column width."
+  },
+  "table.sorter-gap": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Gap between table title and sorter."
+  },
+  "table.sorter-icon-size": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Table sorter icon size."
+  },
+  "table.sorter-icon-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Table sorter icon color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "table.sorter-icon-color.active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Active table sorter icon color.",
+    "fallback": "--ty-color-primary"
+  },
+  "table.empty-padding": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Table empty and loading cell padding."
+  },
+  "table.empty-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Table empty and loading text color.",
+    "fallback": "--ty-color-text-secondary"
+  }
+}

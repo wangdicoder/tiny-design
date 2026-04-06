@@ -2,23 +2,23 @@
 
 .#{$prefix}-collapse {
   box-sizing: border-box;
-  border-radius: var(--ty-border-radius);
-  color: var(--ty-color-text);
-  font-size: 14px;
-  border: 1px solid var(--ty-collapse-border);
+  border-radius: var(--ty-collapse-radius, var(--ty-border-radius));
+  color: var(--ty-collapse-color, var(--ty-color-text));
+  font-size: var(--ty-collapse-font-size, 14px);
+  border: 1px solid var(--ty-collapse-border, var(--ty-color-border));
   border-bottom: 0;
-  background-color: var(--ty-collapse-bg);
+  background-color: var(--ty-collapse-bg, var(--ty-color-fill));
   overflow: hidden;
 
   &-item {
     box-sizing: border-box;
-    border-bottom: 1px solid var(--ty-collapse-border);
+    border-bottom: 1px solid var(--ty-collapse-border, var(--ty-color-border));
 
     &:last-child {
-      border-radius: 0 0 var(--ty-border-radius) var(--ty-border-radius);
+      border-radius: 0 0 var(--ty-collapse-radius, var(--ty-border-radius)) var(--ty-collapse-radius, var(--ty-border-radius));
 
       .#{$prefix}-collapse-item__content {
-        border-radius: 0 0 var(--ty-border-radius) var(--ty-border-radius);
+        border-radius: 0 0 var(--ty-collapse-radius, var(--ty-border-radius)) var(--ty-collapse-radius, var(--ty-border-radius));
       }
     }
 
@@ -27,16 +27,16 @@
       align-items: center;
       box-sizing: border-box;
       position: relative;
-      color: var(--ty-color-text);
-      line-height: 22px;
-      transition: all 300ms;
+      color: var(--ty-collapse-header-color, var(--ty-color-text));
+      line-height: var(--ty-collapse-header-line-height, 22px);
+      transition: all var(--ty-collapse-content-transition-duration, 300ms);
 
       &:hover {
-        background-color: var(--ty-collapse-header-hover-bg);
+        background-color: var(--ty-collapse-header-hover-bg, #efefef);
       }
 
       &_disabled {
-        color: var(--ty-color-text-quaternary);
+        color: var(--ty-collapse-header-disabled-color, var(--ty-color-text-quaternary));
         cursor: not-allowed;
       }
     }
@@ -47,7 +47,7 @@
       flex: 1;
       min-width: 0;
       box-sizing: border-box;
-      padding: 12px 16px;
+      padding: var(--ty-collapse-toggle-padding, 12px 16px);
       cursor: pointer;
       background: none;
       border: none;
@@ -64,11 +64,11 @@
     }
 
     &__arrow {
-      margin-right: 10px;
+      margin-right: var(--ty-collapse-arrow-gap, 10px);
       transform: rotate(-90deg);
       text-align: center;
       color: currentcolor;
-      transition: all 300ms;
+      transition: all var(--ty-collapse-content-transition-duration, 300ms);
 
       &_active {
         transform: rotate(0deg);
@@ -83,25 +83,25 @@
       display: flex;
       align-items: center;
       color: inherit;
-      font-size: 11px;
-      padding-right: 16px;
+      font-size: var(--ty-collapse-extra-font-size, 11px);
+      padding-right: var(--ty-collapse-extra-padding-inline-end, 16px);
       margin-left: auto;
     }
 
     &__content {
       overflow: hidden;
-      color: var(--ty-color-text-secondary);
-      background-color: var(--ty-collapse-content-bg);
-      border-top: 1px solid var(--ty-collapse-border);
-      padding: 16px;
+      color: var(--ty-collapse-content-color, var(--ty-color-text-secondary));
+      background-color: var(--ty-collapse-content-bg, var(--ty-color-bg-container));
+      border-top: 1px solid var(--ty-collapse-border, var(--ty-color-border));
+      padding: var(--ty-collapse-content-padding, 16px);
       box-sizing: border-box;
-      transition: height 300ms;
+      transition: height var(--ty-collapse-content-transition-duration, 300ms);
     }
   }
 
   &_borderless {
     border: 0;
-    background-color: var(--ty-collapse-borderless-bg);
+    background-color: var(--ty-collapse-borderless-bg, var(--ty-color-bg-container));
   }
 
   &_borderless > .#{$prefix}-collapse-item {
@@ -113,6 +113,6 @@
   &_borderless > .#{$prefix}-collapse-item > .#{$prefix}-collapse-item__content {
     border-radius: 0;
     border-top: 0;
-    padding-top: 4px;
+    padding-top: var(--ty-collapse-borderless-content-padding-top, 4px);
   }
 }

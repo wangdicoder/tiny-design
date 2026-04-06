@@ -2,12 +2,12 @@
 
 .#{$prefix}-back-top {
   position: fixed;
-  right: 40px;
-  bottom: 30px;
+  right: var(--ty-back-top-offset-inline-end);
+  bottom: var(--ty-back-top-offset-bottom);
   background-color: var(--ty-back-top-bg);
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+  width: var(--ty-back-top-size);
+  height: var(--ty-back-top-size);
+  border-radius: var(--ty-back-top-radius);
   display: flex;
   justify-content: center;
   align-items: center;

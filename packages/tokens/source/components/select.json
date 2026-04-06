@@ -1,0 +1,286 @@
+{
+  "select.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Select trigger border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "select.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Select trigger text color.",
+    "fallback": "--ty-color-text"
+  },
+  "select.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Select trigger background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "select.bg.disabled": {
+    "$value": "{color-bg-disabled}",
+    "$type": "color",
+    "description": "Disabled select trigger background color.",
+    "fallback": "--ty-color-bg-disabled"
+  },
+  "select.border": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Select trigger border color.",
+    "fallback": "--ty-color-border"
+  },
+  "select.border.hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Select trigger hover border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "select.border.focus": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Select trigger focus border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "select.shadow.focus": {
+    "$value": "{shadow-focus}",
+    "$type": "shadow",
+    "description": "Select trigger focus ring shadow.",
+    "fallback": "--ty-shadow-focus"
+  },
+  "select.placeholder": {
+    "$value": "{color-text-placeholder}",
+    "$type": "color",
+    "description": "Select placeholder text color.",
+    "fallback": "--ty-color-text-placeholder"
+  },
+  "select.suffix-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Select suffix icon color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "select.suffix-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Select suffix icon box size."
+  },
+  "select.clear-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Select clear button background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "select.clear-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Select clear button icon color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "select.clear-color-hover": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Select clear button icon hover color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "select.font-size.sm": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Small select trigger font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "select.font-size.md": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Medium select trigger font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "select.font-size.lg": {
+    "$value": "{font-size-lg}",
+    "$type": "dimension",
+    "description": "Large select trigger font size.",
+    "fallback": "--ty-font-size-lg"
+  },
+  "select.height.sm": {
+    "$value": "{height-sm}",
+    "$type": "dimension",
+    "description": "Small select trigger height.",
+    "fallback": "--ty-height-sm"
+  },
+  "select.height.md": {
+    "$value": "{height-md}",
+    "$type": "dimension",
+    "description": "Medium select trigger height.",
+    "fallback": "--ty-height-md"
+  },
+  "select.height.lg": {
+    "$value": "{height-lg}",
+    "$type": "dimension",
+    "description": "Large select trigger height.",
+    "fallback": "--ty-height-lg"
+  },
+  "select.padding-inline-start.sm": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Small select trigger leading padding."
+  },
+  "select.padding-inline-start.md": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Medium select trigger leading padding."
+  },
+  "select.padding-inline-start.lg": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Large select trigger leading padding."
+  },
+  "select.padding-inline-end.sm": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Small select trigger trailing padding."
+  },
+  "select.padding-inline-end.md": {
+    "$value": "28px",
+    "$type": "dimension",
+    "description": "Medium select trigger trailing padding."
+  },
+  "select.padding-inline-end.lg": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Large select trigger trailing padding."
+  },
+  "select.multiple.padding-inline-end": {
+    "$value": "28px",
+    "$type": "dimension",
+    "description": "Multiple select trigger trailing padding."
+  },
+  "select.multiple.gap": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Gap between multiple select tags."
+  },
+  "select.multiple.padding-block": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Vertical padding for multiple select tag rows."
+  },
+  "select.tag.height": {
+    "$value": "22px",
+    "$type": "dimension",
+    "description": "Multiple select tag height."
+  },
+  "select.tag.padding": {
+    "$value": "0 4px 0 8px",
+    "$type": "string",
+    "description": "Multiple select tag padding."
+  },
+  "select.tag.padding.max": {
+    "$value": "0 8px",
+    "$type": "string",
+    "description": "Collapsed multiple select tag padding."
+  },
+  "select.tag.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Multiple select tag border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "select.tag.bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Multiple select tag background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "select.tag.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Multiple select tag text color.",
+    "fallback": "--ty-color-text"
+  },
+  "select.tag.font-size": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Multiple select tag font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "select.tag.line-height": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Multiple select tag line height."
+  },
+  "select.tag-close-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Multiple select tag close icon color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "select.tag-close-color-hover": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Multiple select tag close icon hover color.",
+    "fallback": "--ty-color-text"
+  },
+  "select.empty-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Select empty state text color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "select.dropdown-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Select dropdown background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "select.dropdown-shadow": {
+    "$value": "{shadow-popup}",
+    "$type": "shadow",
+    "description": "Select dropdown shadow.",
+    "fallback": "--ty-shadow-popup"
+  },
+  "select.dropdown-max-height": {
+    "$value": "300px",
+    "$type": "dimension",
+    "description": "Select dropdown max height."
+  },
+  "select.option.padding": {
+    "$value": "7px 12px",
+    "$type": "string",
+    "description": "Select option padding."
+  },
+  "select.option.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Select option font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "select.option.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Select option text color.",
+    "fallback": "--ty-color-text"
+  },
+  "select.option.active-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Select option hover and active background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "select.option.selected-bg": {
+    "$value": "{color-primary-bg}",
+    "$type": "color",
+    "description": "Select option selected background color.",
+    "fallback": "--ty-color-primary-bg"
+  },
+  "select.option.disabled-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Select option disabled background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "select.option.disabled-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Select option disabled text color.",
+    "fallback": "--ty-color-text-quaternary"
+  }
+}

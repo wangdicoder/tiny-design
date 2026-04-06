@@ -10,14 +10,14 @@
   &__item {
     box-sizing: border-box;
     flex: 1;
-    margin: 0 2px;
+    margin: 0 var(--ty-strength-indicator-gap);
 
     &:first-child {
       margin-left: 0;
 
       .#{$prefix}-strength-indicator__inner {
-        border-top-left-radius: $strength-indicator-border-radius;
-        border-bottom-left-radius: $strength-indicator-border-radius;
+        border-top-left-radius: var(--ty-strength-indicator-border-radius);
+        border-bottom-left-radius: var(--ty-strength-indicator-border-radius);
       }
     }
 
@@ -25,22 +25,22 @@
       margin-right: 0;
 
       .#{$prefix}-strength-indicator__inner {
-        border-top-right-radius: $strength-indicator-border-radius;
-        border-bottom-right-radius: $strength-indicator-border-radius;
+        border-top-right-radius: var(--ty-strength-indicator-border-radius);
+        border-bottom-right-radius: var(--ty-strength-indicator-border-radius);
       }
     }
   }
 
   &__inner {
-    background-color: var(--ty-color-bg-disabled);
-    min-height: 8px;
+    background-color: var(--ty-strength-indicator-bg);
+    min-height: var(--ty-strength-indicator-min-height);
     transition: background-color 300ms;
   }
 
   &__label {
     text-align: center;
-    margin-top: 4px;
-    color: var(--ty-color-text-secondary);
-    font-size: 12px;
+    margin-top: var(--ty-strength-indicator-label-margin-top);
+    color: var(--ty-strength-indicator-label-color);
+    font-size: var(--ty-strength-indicator-label-font-size);
   }
 }

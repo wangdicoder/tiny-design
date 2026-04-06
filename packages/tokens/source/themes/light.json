@@ -5,6 +5,7 @@
     "mode": "light"
   },
   "tokens": {
-    "semantic": {}
+    "semantic": {},
+    "components": {}
   }
 }

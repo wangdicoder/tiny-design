@@ -1,0 +1,62 @@
+{
+  "typography.body-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Typography body color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "typography.body-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Typography body font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "typography.body-line-height": {
+    "$value": "1.5",
+    "$type": "line-height",
+    "description": "Typography body line height."
+  },
+  "typography.block-margin-bottom": {
+    "$value": "1em",
+    "$type": "dimension",
+    "description": "Typography block bottom margin."
+  },
+  "typography.heading-font-weight": {
+    "$value": "600",
+    "$type": "font-weight",
+    "description": "Typography heading font weight."
+  },
+  "typography.heading-margin-bottom": {
+    "$value": "0.5em",
+    "$type": "dimension",
+    "description": "Typography heading bottom margin."
+  },
+  "typography.code-bg": {
+    "$value": "rgba(0, 0, 0, 0.06)",
+    "$type": "color",
+    "description": "Typography code bg."
+  },
+  "typography.code-border": {
+    "$value": "rgba(0, 0, 0, 0.06)",
+    "$type": "color",
+    "description": "Typography code border."
+  },
+  "typography.code-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Typography inline code radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "typography.heading-color": {
+    "$value": "{color-text-label}",
+    "$type": "color",
+    "description": "Typography heading color.",
+    "fallback": "--ty-color-text-label"
+  },
+  "typography.mark-bg": {
+    "$value": "{color-warning-border}",
+    "$type": "color",
+    "description": "Typography mark bg.",
+    "fallback": "--ty-color-warning-border"
+  }
+}

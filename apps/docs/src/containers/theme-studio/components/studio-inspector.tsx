@@ -164,10 +164,6 @@ export const StudioInspector = ({ token, currentValue, onChangeValue, onReset }:
             <span>Control</span>
             <code>{token.type}</code>
           </div>
-          <div>
-            <span>Aliases</span>
-            <code>{token.aliases?.length ? token.aliases.join(', ') : 'None'}</code>
-          </div>
         </div>
         {currentValue && onChangeValue ? (
           <div className="theme-studio__inspector-editor">
