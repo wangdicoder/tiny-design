@@ -28,6 +28,8 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@tiny-design/
 import { Bar, BarChart } from 'recharts';
 ```
 
+`ChartContainer` handles responsive sizing for you, so pass the chart element directly.
+
 ## Examples
 
 <Layout>
@@ -148,6 +150,8 @@ const chartData = [
 | children  | Recharts chart element                         | `React.ReactElement`  | -       |
 | className | className of container                         | `string`              | -       |
 | style     | style object (must include height or min-height) | `CSSProperties`     | -       |
+
+Do not nest another `ResponsiveContainer` inside `ChartContainer`.
 
 ### ChartTooltipContent
 

@@ -2,7 +2,15 @@
 .ty-chart {
   position: relative;
   width: 100%;
+  min-width: 0;
   min-height: 200px;
+
+  // Recharts makes chart primitives focusable for accessibility and
+  // browsers may draw a focus outline after click/keyboard interaction.
+  svg:focus,
+  svg *:focus {
+    outline: none;
+  }
 
   // Recharts text elements inherit chart-friendly styles
   .recharts-cartesian-axis-tick-value {

@@ -125,8 +125,9 @@
   &__version {
     font-size: 11px;
     font-weight: 600;
-    color: $docs-accent;
-    background: $docs-accent-subtle;
+    color: var(--ty-color-primary);
+    background: color-mix(in srgb, var(--ty-color-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--ty-color-primary) 18%, transparent);
     border-radius: 6px;
     padding: 3px 10px;
     letter-spacing: 0.02em;

@@ -1,5 +1,120 @@
 import { Color } from './types';
 
+function rgbStringToHsb(input: string): Color | null {
+  const rgbMatch = input.match(/rgba?\(\s*(\d+)\s*[, ]\s*(\d+)\s*[, ]\s*(\d+)\s*(?:[,/]\s*([\d.]+))?\s*\)/i);
+  if (!rgbMatch) return null;
+
+  const r = parseInt(rgbMatch[1], 10) / 255;
+  const g = parseInt(rgbMatch[2], 10) / 255;
+  const b = parseInt(rgbMatch[3], 10) / 255;
+  const a = rgbMatch[4] ? parseFloat(rgbMatch[4]) : 1;
+  const hex = `#${Math.round(r * 255).toString(16).padStart(2, '0')}${Math.round(g * 255).toString(16).padStart(2, '0')}${Math.round(b * 255).toString(16).padStart(2, '0')}`;
+  return { ...hexToHsb(hex), a };
+}
+
+function resolveCssColor(input: string): string | null {
+  if (typeof document === 'undefined') return null;
+
+  const probe = document.createElement('div');
+  probe.style.color = '';
+  probe.style.color = input;
+
+  if (!probe.style.color) return null;
+
+  probe.style.position = 'absolute';
+  probe.style.visibility = 'hidden';
+  probe.style.pointerEvents = 'none';
+  document.body.appendChild(probe);
+  const computed = window.getComputedStyle(probe).color;
+  probe.remove();
+
+  return computed || null;
+}
+
+function clamp01(value: number): number {
+  return Math.min(1, Math.max(0, value));
+}
+
+function normalizeHue(value: number, unit?: string): number {
+  if (!Number.isFinite(value)) return 0;
+
+  switch ((unit ?? '').toLowerCase()) {
+    case 'deg':
+    case '':
+      return ((value % 360) + 360) % 360;
+    case 'turn':
+      return ((value * 360) % 360 + 360) % 360;
+    case 'grad':
+      return (((value * 0.9) % 360) + 360) % 360;
+    case 'rad':
+      return (((value * 180) / Math.PI) % 360 + 360) % 360;
+    default:
+      return ((value % 360) + 360) % 360;
+  }
+}
+
+function parseCssNumber(token: string): number | null {
+  const trimmed = token.trim();
+  if (!trimmed) return null;
+  if (trimmed.endsWith('%')) {
+    const value = Number.parseFloat(trimmed.slice(0, -1));
+    return Number.isFinite(value) ? value / 100 : null;
+  }
+  const value = Number.parseFloat(trimmed);
+  return Number.isFinite(value) ? value : null;
+}
+
+function parseHueToken(token: string): number | null {
+  const trimmed = token.trim();
+  const match = /^(-?\d*\.?\d+)(deg|rad|grad|turn)?$/i.exec(trimmed);
+  if (!match) return null;
+  return normalizeHue(Number.parseFloat(match[1]), match[2]);
+}
+
+function linearToSrgb(value: number): number {
+  if (value <= 0.0031308) return 12.92 * value;
+  return 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
+}
+
+function oklchToHsb(input: string): Color | null {
+  const match = /^oklch\(\s*([^)]+)\s*\)$/i.exec(input.trim());
+  if (!match) return null;
+
+  const [leftPart, alphaPart] = match[1].split('/').map((part) => part.trim());
+  const channels = leftPart.split(/\s+/).filter(Boolean);
+  if (channels.length < 3) return null;
+
+  const l = parseCssNumber(channels[0]);
+  const c = parseCssNumber(channels[1]);
+  const h = parseHueToken(channels[2]);
+  const alpha = alphaPart ? parseCssNumber(alphaPart) : 1;
+
+  if (l == null || c == null || h == null || alpha == null) return null;
+
+  const hueRadians = (h * Math.PI) / 180;
+  const a = c * Math.cos(hueRadians);
+  const b = c * Math.sin(hueRadians);
+
+  const lComponent = l + 0.3963377774 * a + 0.2158037573 * b;
+  const mComponent = l - 0.1055613458 * a - 0.0638541728 * b;
+  const sComponent = l - 0.0894841775 * a - 1.291485548 * b;
+
+  const lLinear = lComponent ** 3;
+  const mLinear = mComponent ** 3;
+  const sLinear = sComponent ** 3;
+
+  const redLinear = +4.0767416621 * lLinear - 3.3077115913 * mLinear + 0.2309699292 * sLinear;
+  const greenLinear = -1.2684380046 * lLinear + 2.6097574011 * mLinear - 0.3413193965 * sLinear;
+  const blueLinear = -0.0041960863 * lLinear - 0.7034186147 * mLinear + 1.707614701 * sLinear;
+
+  const red = Math.round(clamp01(linearToSrgb(redLinear)) * 255);
+  const green = Math.round(clamp01(linearToSrgb(greenLinear)) * 255);
+  const blue = Math.round(clamp01(linearToSrgb(blueLinear)) * 255);
+
+  const hex = `#${red.toString(16).padStart(2, '0')}${green.toString(16).padStart(2, '0')}${blue.toString(16).padStart(2, '0')}`;
+  return { ...hexToHsb(hex), a: clamp01(alpha) };
+}
+
 export const hexToHsb = (hex: string): Color => {
   let h = hex.replace('#', '');
   if (h.length === 3) h = h.split('').map((c) => c + c).join('');
@@ -89,14 +204,16 @@ export const parseColor = (input: string): Color => {
   }
 
   // rgb/rgba
-  const rgbMatch = input.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+))?\s*\)/);
-  if (rgbMatch) {
-    const r = parseInt(rgbMatch[1]) / 255;
-    const g = parseInt(rgbMatch[2]) / 255;
-    const b = parseInt(rgbMatch[3]) / 255;
-    const a = rgbMatch[4] ? parseFloat(rgbMatch[4]) : 1;
-    const hex = `#${Math.round(r * 255).toString(16).padStart(2, '0')}${Math.round(g * 255).toString(16).padStart(2, '0')}${Math.round(b * 255).toString(16).padStart(2, '0')}`;
-    return { ...hexToHsb(hex), a };
+  const directRgb = rgbStringToHsb(input);
+  if (directRgb) return directRgb;
+
+  const directOklch = oklchToHsb(input);
+  if (directOklch) return directOklch;
+
+  const resolvedCssColor = resolveCssColor(input);
+  if (resolvedCssColor) {
+    const resolvedRgb = rgbStringToHsb(resolvedCssColor);
+    if (resolvedRgb) return resolvedRgb;
   }
 
   return { h: 0, s: 100, b: 100, a: 1 };
