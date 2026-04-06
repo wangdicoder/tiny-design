@@ -12,29 +12,37 @@
   color: $color;
   background: $background;
   border-color: $border;
+
   &:hover {
     color: $hover-color;
+
     @if $hover-background { background: $hover-background; }
+
     @if $hover-border { border-color: $hover-border; }
   }
 
   &:focus {
     color: $hover-color;
+
     @if $hover-background { background: $hover-background; }
+
     @if $hover-border { border-color: $hover-border; }
+
     z-index: 1;
   }
 
   &:active {
     color: $active-color;
+
     @if $active-background { background: $active-background; }
+
     @if $active-border { border-color: $active-border; }
   }
 
   &:disabled {
-    color: var(--ty-btn-disabled-color);
-    background-color: var(--ty-btn-disabled-bg);
-    border-color: var(--ty-btn-disabled-border);
+    color: var(--ty-button-text-disabled, var(--ty-color-text-quaternary));
+    background-color: var(--ty-button-bg-disabled, var(--ty-color-bg-disabled));
+    border-color: var(--ty-button-border-disabled, var(--ty-color-border));
   }
 }
 

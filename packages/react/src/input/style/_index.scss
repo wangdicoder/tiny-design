@@ -30,9 +30,9 @@
 
   &__clear-btn {
     display: inline-block;
-    color: var(--ty-color-text-quaternary);
-    width: var(--ty-input-clear-size);
-    height: var(--ty-input-clear-size);
+    color: var(--ty-input-clear-color, var(--ty-color-text-quaternary));
+    width: var(--ty-input-clear-size, 1em);
+    height: var(--ty-input-clear-size, 1em);
     position: relative;
     top: 2px;
     cursor: pointer;
@@ -55,7 +55,7 @@
   &_md {
     .#{$prefix}-input {
       &__input {
-        font-size: var(--ty-input-font-size, var(--ty-font-size-base));
+        font-size: var(--ty-input-font-size-md, var(--ty-font-size-base));
         height: var(--ty-input-height-md, var(--ty-height-md));
         line-height: var(--ty-input-height-md, var(--ty-height-md));
       }
@@ -134,21 +134,21 @@
 }
 
 .#{$prefix}-input-group-addon {
-  background-color: var(--ty-input-addon-bg);
+  background-color: var(--ty-input-addon-bg, var(--ty-color-fill));
   border: 1px solid var(--ty-input-border);
   box-sizing: border-box;
   text-align: center;
   line-height: 1;
-  border-radius: var(--ty-input-border-radius, var(--ty-border-radius));
+  border-radius: var(--ty-input-radius, var(--ty-border-radius));
   color: var(--ty-input-color, var(--ty-color-text));
-  padding: var(--ty-input-addon-padding);
+  padding: var(--ty-input-addon-padding, var(--ty-spacing-3));
 
   &_sm {
     font-size: var(--ty-input-font-size-sm, var(--ty-font-size-sm));
   }
 
   &_md {
-    font-size: var(--ty-input-font-size, var(--ty-font-size-base));
+    font-size: var(--ty-input-font-size-md, var(--ty-font-size-base));
   }
 
   &_lg {
@@ -171,7 +171,7 @@
     border-radius: 0;
     border-left: 0;
     border-right: 0;
-    padding: var(--ty-input-addon-padding);
+    padding: var(--ty-input-addon-padding, var(--ty-spacing-3));
   }
 
   &_no-border {

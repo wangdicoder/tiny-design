@@ -1,0 +1,71 @@
+{
+  "card.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Card border radius.",
+    "fallback": "--ty-border-radius",
+    "aliases": ["--ty-card-border-radius"]
+  },
+  "card.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Card background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "card.bg.filled": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "Filled card background color.",
+    "fallback": "--ty-color-fill"
+  },
+  "card.border": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "Card border color.",
+    "fallback": "--ty-color-border-secondary"
+  },
+  "card.shadow": {
+    "$value": "{shadow-card}",
+    "$type": "shadow",
+    "description": "Elevated card shadow.",
+    "fallback": "--ty-shadow-card"
+  },
+  "card.shadow.hover": {
+    "$value": "{shadow-card}",
+    "$type": "shadow",
+    "description": "Hoverable card shadow.",
+    "fallback": "--ty-shadow-card"
+  },
+  "card.header-padding": {
+    "$value": "{spacing-5}",
+    "$type": "dimension",
+    "description": "Card header padding."
+  },
+  "card.body-padding": {
+    "$value": "{spacing-5}",
+    "$type": "dimension",
+    "description": "Card body padding."
+  },
+  "card.footer-padding": {
+    "$value": "{spacing-5}",
+    "$type": "dimension",
+    "description": "Card footer padding."
+  },
+  "card.header-color": {
+    "$value": "{color-text-heading}",
+    "$type": "color",
+    "description": "Card header text color.",
+    "fallback": "--ty-color-text-heading"
+  },
+  "card.header-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Card header font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "card.header-font-weight": {
+    "$value": "{font-weight-medium}",
+    "$type": "font-weight",
+    "description": "Card header font weight."
+  }
+}

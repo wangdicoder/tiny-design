@@ -24,7 +24,7 @@ function loadPresetId(): string | undefined {
 }
 
 const ThemeEditor = (): React.ReactElement => {
-  const { seeds, applied, isDark, setSeed, applyPreset, reset, isOverridden, resetToken } =
+  const { seeds, applied, themeDocument, isDark, setSeed, applyPreset, reset, isOverridden, resetToken } =
     useThemeState();
   const [exportVisible, setExportVisible] = useState(false);
   const [activePresetId, setActivePresetId] = useState<string | undefined>(loadPresetId);
@@ -135,8 +135,8 @@ const ThemeEditor = (): React.ReactElement => {
       <ExportDialog
         visible={exportVisible}
         onClose={() => setExportVisible(false)}
-        seeds={seeds}
         appliedTokens={applied}
+        themeDocument={themeDocument}
       />
     </div>
   );

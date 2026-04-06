@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "id": "tiny-light",
+    "name": "Tiny Light",
+    "mode": "light"
+  },
+  "tokens": {
+    "semantic": {}
+  }
+}

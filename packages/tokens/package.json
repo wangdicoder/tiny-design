@@ -15,18 +15,25 @@
   "exports": {
     ".": "./css/base.css",
     "./css/*": "./css/*",
-    "./scss/*": "./scss/*"
+    "./scss/*": "./scss/*",
+    "./registry": "./dist/registry.json",
+    "./alias-map": "./dist/alias-map.json",
+    "./dist/*": "./dist/*"
   },
   "sideEffects": [
     "**/*.css"
   ],
   "files": [
     "css",
+    "dist",
     "scss"
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "clean": "rimraf css"
+    "build:legacy": "node -e \"require('./scripts/build').buildLegacy()\"",
+    "build:v2": "node build/build-v2.js",
+    "build:v2-prototype": "node build/build-v2.js",
+    "clean": "rimraf css dist"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",

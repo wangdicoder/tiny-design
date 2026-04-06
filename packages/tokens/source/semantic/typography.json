@@ -1,0 +1,27 @@
+{
+  "font-size-sm": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Small font size."
+  },
+  "font-size-base": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Base font size."
+  },
+  "font-size-lg": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Large font size."
+  },
+  "font-weight-medium": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Medium font weight."
+  },
+  "line-height-base": {
+    "$value": "1.5715",
+    "$type": "line-height",
+    "description": "Base line height."
+  }
+}

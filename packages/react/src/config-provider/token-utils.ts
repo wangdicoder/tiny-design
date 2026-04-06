@@ -69,25 +69,43 @@ function camelToKebab(str: string): string {
   return str.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
 }
 
-export interface ThemeConfig {
-  mode?: 'light' | 'dark' | 'system';
-  token?: Record<string, string | number>;
-  components?: Record<string, Record<string, string | number>>;
+function dotToKebab(str: string): string {
+  return str.replace(/\./g, '-');
 }
 
-/**
- * Builds a CSSProperties object from a ThemeConfig.
- *
- * - `token` entries: `colorPrimary: '#1890ff'` → `'--ty-color-primary': '#1890ff'`
- * - `components.Button` entries: `borderRadius: '20px'` → `'--ty-btn-border-radius': '20px'`
- */
-export function buildCssVars(
-  theme: ThemeConfig
-): React.CSSProperties | undefined {
-  const { token, components } = theme;
-  if (!token && !components) return undefined;
+export type ThemeTokenValue = string | number;
 
+export interface ThemeDocumentMeta {
+  id?: string;
+  name?: string;
+  author?: string;
+  schemaVersion?: number;
+}
+
+export interface ThemeDocumentTokens {
+  semantic?: Record<string, ThemeTokenValue>;
+  components?: Record<string, ThemeTokenValue>;
+}
+
+export interface ThemeDocument {
+  meta?: ThemeDocumentMeta;
+  mode: 'light' | 'dark' | 'system';
+  extends?: string;
+  tokens?: ThemeDocumentTokens;
+}
+
+export interface ThemeConfig {
+  mode?: 'light' | 'dark' | 'system';
+  token?: Record<string, ThemeTokenValue>;
+  components?: Record<string, Record<string, ThemeTokenValue>>;
+  tokens?: ThemeDocumentTokens;
+  extends?: string;
+  meta?: ThemeDocumentMeta;
+}
+
+function buildLegacyCssVars(theme: ThemeConfig): Record<string, string> {
   const vars: Record<string, string> = {};
+  const { token, components } = theme;
 
   if (token) {
     for (const [key, value] of Object.entries(token)) {
@@ -104,6 +122,42 @@ export function buildCssVars(
       }
     }
   }
+
+  return vars;
+}
+
+function buildDocumentCssVars(tokens?: ThemeDocumentTokens): Record<string, string> {
+  const vars: Record<string, string> = {};
+  if (!tokens) return vars;
+
+  if (tokens.semantic) {
+    for (const [key, value] of Object.entries(tokens.semantic)) {
+      vars[`--ty-${key}`] = String(value);
+    }
+  }
+
+  if (tokens.components) {
+    for (const [key, value] of Object.entries(tokens.components)) {
+      vars[`--ty-${dotToKebab(key)}`] = String(value);
+    }
+  }
+
+  return vars;
+}
+
+/**
+ * Builds a CSSProperties object from a ThemeConfig.
+ *
+ * - `token` entries: `colorPrimary: '#1890ff'` → `'--ty-color-primary': '#1890ff'`
+ * - `components.Button` entries: `borderRadius: '20px'` → `'--ty-btn-border-radius': '20px'`
+ */
+export function buildCssVars(
+  theme: ThemeConfig
+): React.CSSProperties | undefined {
+  const vars = {
+    ...buildLegacyCssVars(theme),
+    ...buildDocumentCssVars(theme.tokens),
+  };
 
   if (Object.keys(vars).length === 0) return undefined;
   return vars as React.CSSProperties;

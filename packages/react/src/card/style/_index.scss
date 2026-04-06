@@ -5,24 +5,24 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  border-radius: var(--ty-card-border-radius, var(--ty-border-radius));
+  border-radius: var(--ty-card-radius, var(--ty-border-radius));
   transition: all 0.3s;
-  background-color: var(--ty-card-bg);
+  background-color: var(--ty-card-bg, var(--ty-color-bg-container));
 
   & > img:first-child {
-    border-radius: var(--ty-card-border-radius, var(--ty-border-radius)) var(--ty-card-border-radius, var(--ty-border-radius)) 0 0;
+    border-radius: var(--ty-card-radius, var(--ty-border-radius)) var(--ty-card-radius, var(--ty-border-radius)) 0 0;
   }
 
   &_outlined {
-    border: 1px solid var(--ty-card-border);
+    border: 1px solid var(--ty-card-border, var(--ty-color-border-secondary));
   }
 
   &_elevated {
-    box-shadow: var(--ty-shadow-card);
+    box-shadow: var(--ty-card-shadow, var(--ty-shadow-card));
   }
 
   &_filled {
-    background-color: var(--ty-color-fill);
+    background-color: var(--ty-card-bg-filled, var(--ty-color-fill));
   }
 
   &_hoverable {
@@ -41,22 +41,22 @@
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-    padding: $card-header-padding;
-    color: var(--ty-card-header-color);
-    font-weight: var(--ty-card-header-font-weight);
-    font-size: var(--ty-card-header-font-size);
+    padding: var(--ty-card-header-padding, $card-header-padding);
+    color: var(--ty-card-header-color, var(--ty-color-text-heading));
+    font-weight: var(--ty-card-header-font-weight, var(--ty-font-weight-medium));
+    font-size: var(--ty-card-header-font-size, var(--ty-font-size-base));
     background: transparent;
-    border-bottom: 1px solid var(--ty-card-border);
-    border-radius: var(--ty-card-border-radius, var(--ty-border-radius)) var(--ty-card-border-radius, var(--ty-border-radius)) 0 0;
+    border-bottom: 1px solid var(--ty-card-border, var(--ty-color-border-secondary));
+    border-radius: var(--ty-card-radius, var(--ty-border-radius)) var(--ty-card-radius, var(--ty-border-radius)) 0 0;
   }
 
   &__body {
     box-sizing: border-box;
-    padding: $card-body-padding;
+    padding: var(--ty-card-body-padding, $card-body-padding);
   }
 
   &__footer {
     box-sizing: border-box;
-    padding: $card-footer-padding;
+    padding: var(--ty-card-footer-padding, $card-footer-padding);
   }
 }

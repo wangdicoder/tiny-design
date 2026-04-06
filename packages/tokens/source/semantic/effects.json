@@ -1,0 +1,12 @@
+{
+  "shadow-card": {
+    "$value": "0 1px 6px rgba(0, 0, 0, 0.12)",
+    "$type": "shadow",
+    "description": "Card elevation shadow."
+  },
+  "shadow-focus": {
+    "$value": "0 0 0 3px rgba(110, 65, 191, 0.2)",
+    "$type": "shadow",
+    "description": "Default focus ring shadow."
+  }
+}

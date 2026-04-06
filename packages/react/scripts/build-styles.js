@@ -19,15 +19,15 @@ async function processWithPostcss(css) {
   return result.css;
 }
 
-// 1. Base CSS: copy pre-built base.css from @tiny-design/tokens
+// 1. Base CSS: copy the v2 runtime theme bundle from @tiny-design/tokens
 function copyBaseCss() {
-  const src = require.resolve('@tiny-design/tokens/css/base.css');
+  const src = require.resolve('@tiny-design/tokens/dist/css/base.css');
   for (const dir of [ES_DIR, LIB_DIR]) {
     const outDir = path.join(dir, 'style');
     mkdirp(outDir);
     fs.copyFileSync(src, path.join(outDir, 'base.css'));
   }
-  console.log('  es/style/base.css + lib/style/base.css (copied from @tiny-design/tokens)');
+  console.log('  es/style/base.css + lib/style/base.css (copied from @tiny-design/tokens v2 base theme CSS)');
 }
 
 // 2. Per-component CSS: compile each component's _index.scss partial

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import type { ThemeDocument } from '@tiny-design/react';
 import { Button, Modal, Tabs } from '@tiny-design/react';
 import { generateCSS, generateJSON } from '../utils/export-theme';
 
 interface ExportDialogProps {
   visible: boolean;
   onClose: () => void;
-  seeds: Record<string, string>;
   appliedTokens: Record<string, string>;
+  themeDocument: ThemeDocument;
 }
 
 function downloadFile(content: string, filename: string, mime: string): void {
@@ -22,13 +23,13 @@ function downloadFile(content: string, filename: string, mime: string): void {
 export const ExportDialog = ({
   visible,
   onClose,
-  seeds,
   appliedTokens,
+  themeDocument,
 }: ExportDialogProps): React.ReactElement => {
   const [copied, setCopied] = useState(false);
 
   const cssCode = generateCSS(appliedTokens);
-  const jsonCode = generateJSON(seeds);
+  const jsonCode = generateJSON(themeDocument);
 
   const handleCopy = (code: string) => {
     navigator.clipboard.writeText(code).then(() => {
@@ -70,8 +71,8 @@ export const ExportDialog = ({
         <Tabs.Panel tab="CSS Variables" tabKey="css">
           {renderBlock(cssCode, 'tiny-theme.css', 'text/css')}
         </Tabs.Panel>
-        <Tabs.Panel tab="JSON Tokens" tabKey="json">
-          {renderBlock(jsonCode, 'tiny-theme.json', 'application/json')}
+        <Tabs.Panel tab="Theme Document" tabKey="json">
+          {renderBlock(jsonCode, 'tiny-theme.document.json', 'application/json')}
         </Tabs.Panel>
       </Tabs>
     </Modal>

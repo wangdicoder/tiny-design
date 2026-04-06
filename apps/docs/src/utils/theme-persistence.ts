@@ -1,6 +1,10 @@
-import { deriveAllTokens } from '../containers/theme-editor/utils/color-utils';
 import { applyTokens, clearAllTokenOverrides } from '../containers/theme-editor/utils/apply-theme';
 import { loadFontFromValue } from '../containers/theme-editor/utils/font-loader';
+import {
+  buildLegacyPreviewOverrides,
+  buildThemeDocumentFromSeeds,
+  resolveThemeDocument,
+} from './theme-document';
 
 const STORAGE_KEY = 'ty-theme-editor-overrides';
 const STORAGE_KEY_DARK = 'ty-theme-editor-overrides-dark';
@@ -58,11 +62,17 @@ export function applyThemeToDOM(
   if (resolvedSeeds['font-family']) loadFontFromValue(resolvedSeeds['font-family']);
   if (resolvedSeeds['font-family-monospace']) loadFontFromValue(resolvedSeeds['font-family-monospace']);
 
-  // Derive and apply
-  const derived = deriveAllTokens(resolvedSeeds, darkMode);
-  lastApplied = derived;
-  applyTokens(derived);
-  return derived;
+  const themeDocument = buildThemeDocumentFromSeeds(resolvedSeeds, darkMode);
+  const resolvedV2Vars = resolveThemeDocument(themeDocument);
+  const legacyPreviewVars = buildLegacyPreviewOverrides(resolvedSeeds, darkMode);
+  const applied = {
+    ...resolvedV2Vars,
+    ...legacyPreviewVars,
+  };
+
+  lastApplied = applied;
+  applyTokens(applied);
+  return applied;
 }
 
 /**
@@ -102,6 +112,8 @@ export function clearStoredSeeds(): void {
   localStorage.removeItem(STORAGE_KEY);
   localStorage.removeItem(STORAGE_KEY_DARK);
 }
+
+export { buildThemeDocumentFromSeeds } from './theme-document';
 
 // Global MutationObserver: re-apply theme tokens when dark mode toggles,
 // even when the theme editor page is not mounted.

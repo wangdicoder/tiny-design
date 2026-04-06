@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "noUnusedLocals": false,
+    "resolveJsonModule": true,
     "paths": {
       "@tiny-design/react": ["../../packages/react/src"],
       "@tiny-design/react/*": ["../../packages/react/src/*"]

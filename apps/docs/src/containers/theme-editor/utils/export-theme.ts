@@ -1,21 +1,17 @@
-/** Keys that should be excluded from CSS variable export (they are meta-seeds, not real tokens) */
-const META_KEYS = new Set(['shadow-intensity']);
+import type { ThemeDocument } from '@tiny-design/react';
+import { generateThemeDocumentJSON } from '../../../utils/theme-document';
 
 export function generateCSS(overrides: Record<string, string>): string {
   const lines = Object.entries(overrides)
-    .filter(([key]) => !META_KEYS.has(key))
-    .map(([key, value]) => `  --ty-${key}: ${value};`)
+    .map(([key, value]) => {
+      const cssVarName = key.startsWith('--') ? key : `--ty-${key}`;
+      return `  ${cssVarName}: ${value};`;
+    })
     .join('\n');
 
   return `:root {\n${lines}\n}`;
 }
 
-export function generateJSON(seeds: Record<string, string>): string {
-  const clean: Record<string, string> = {};
-  for (const [key, value] of Object.entries(seeds)) {
-    if (!META_KEYS.has(key)) {
-      clean[key] = value;
-    }
-  }
-  return JSON.stringify(clean, null, 2);
+export function generateJSON(themeDocument: ThemeDocument): string {
+  return generateThemeDocumentJSON(themeDocument);
 }

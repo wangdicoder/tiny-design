@@ -1,7 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
+import type { ThemeDocument } from '@tiny-design/react';
 import { ALL_TOKENS } from '../constants/default-tokens';
 import {
   applyThemeToDOM,
+  buildThemeDocumentFromSeeds,
   clearThemeFromDOM,
   saveSeeds,
   clearStoredSeeds,
@@ -28,6 +30,8 @@ export interface ThemeState {
   seeds: Record<string, string>;
   /** All derived + seed tokens currently applied */
   applied: Record<string, string>;
+  /** Current v2 theme document exported from editor state */
+  themeDocument: ThemeDocument;
   /** Whether dark mode is active */
   isDark: boolean;
   /** Update a single seed token */
@@ -46,13 +50,12 @@ export function useThemeState(): ThemeState {
   const [seeds, setSeeds] = useState<Record<string, string>>(loadFromStorage);
   const [isDark, setIsDark] = useState(detectDarkMode);
   const appliedRef = useRef<Record<string, string>>({});
+  const themeDocumentRef = useRef<ThemeDocument>(buildThemeDocumentFromSeeds({}, detectDarkMode()));
 
   const applyAll = useCallback((newSeeds: Record<string, string>, dark?: boolean) => {
     const darkMode = dark ?? detectDarkMode();
-
-    // Delegate DOM application to the global persistence module
-    const derived = applyThemeToDOM(newSeeds, darkMode);
-    appliedRef.current = derived;
+    appliedRef.current = applyThemeToDOM(newSeeds, darkMode);
+    themeDocumentRef.current = buildThemeDocumentFromSeeds(newSeeds, darkMode);
   }, []);
 
   // Apply on mount
@@ -162,6 +165,7 @@ export function useThemeState(): ThemeState {
   return {
     seeds,
     applied: appliedRef.current,
+    themeDocument: themeDocumentRef.current,
     isDark,
     setSeed,
     applyPreset,
