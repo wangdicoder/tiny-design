@@ -1,5 +1,5 @@
 import type { ThemeDocument } from '@tiny-design/react';
-import { deriveAllTokens } from '../containers/theme-editor/utils/color-utils';
+import { deriveAllTokens } from '../containers/theme-studio/utils/color-utils';
 import semanticColors from '../../../../packages/tokens/source/semantic/colors.json';
 import semanticTypography from '../../../../packages/tokens/source/semantic/typography.json';
 import semanticSize from '../../../../packages/tokens/source/semantic/size.json';
@@ -16,6 +16,7 @@ type TokenDefinition = {
 };
 
 const META_KEYS = new Set(['shadow-intensity']);
+const STUDIO_THEME_DOCUMENT_KEY = 'ty-theme-studio-document';
 
 const SOURCE_TOKENS: Record<string, TokenDefinition> = {
   ...semanticColors,
@@ -112,8 +113,8 @@ export function buildThemeDocumentFromSeeds(
 
   return {
     meta: {
-      id: 'docs-theme-editor',
-      name: 'Docs Theme Editor',
+      id: 'docs-theme-studio',
+      name: 'Docs Theme Studio',
       schemaVersion: 1,
     },
     mode: isDark ? 'dark' : 'light',
@@ -121,6 +122,34 @@ export function buildThemeDocumentFromSeeds(
     tokens: {
       semantic,
       components: {},
+    },
+  };
+}
+
+export function mergeThemeDocuments(
+  baseTheme: ThemeDocument | undefined,
+  overrideTheme: ThemeDocument
+): ThemeDocument {
+  if (!baseTheme) return overrideTheme;
+
+  return {
+    ...baseTheme,
+    ...overrideTheme,
+    meta: {
+      ...baseTheme.meta,
+      ...overrideTheme.meta,
+    },
+    mode: overrideTheme.mode ?? baseTheme.mode,
+    extends: overrideTheme.extends ?? baseTheme.extends,
+    tokens: {
+      semantic: {
+        ...(baseTheme.tokens?.semantic ?? {}),
+        ...(overrideTheme.tokens?.semantic ?? {}),
+      },
+      components: {
+        ...(baseTheme.tokens?.components ?? {}),
+        ...(overrideTheme.tokens?.components ?? {}),
+      },
     },
   };
 }
@@ -184,4 +213,34 @@ export function buildLegacyPreviewOverrides(
 
 export function generateThemeDocumentJSON(theme: ThemeDocument): string {
   return JSON.stringify(theme, null, 2);
+}
+
+export function savePendingThemeDocument(theme: ThemeDocument): void {
+  localStorage.setItem(STUDIO_THEME_DOCUMENT_KEY, JSON.stringify(theme));
+}
+
+export function loadPendingThemeDocument(): ThemeDocument | undefined {
+  try {
+    const raw = localStorage.getItem(STUDIO_THEME_DOCUMENT_KEY);
+    return raw ? JSON.parse(raw) as ThemeDocument : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+export function clearPendingThemeDocument(): void {
+  localStorage.removeItem(STUDIO_THEME_DOCUMENT_KEY);
+}
+
+export function themeDocumentToEditableSeeds(theme: ThemeDocument): Record<string, string> {
+  const semantic = theme.tokens?.semantic ?? {};
+  const seeds: Record<string, string> = {};
+
+  for (const [key, value] of Object.entries(semantic)) {
+    if (EDITOR_THEME_DOCUMENT_KEYS.has(key)) {
+      seeds[key] = String(value);
+    }
+  }
+
+  return seeds;
 }

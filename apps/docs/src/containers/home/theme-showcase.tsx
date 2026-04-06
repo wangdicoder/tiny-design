@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Button, Marquee } from '@tiny-design/react';
 import { useTheme } from '@tiny-design/react';
-import { PRESETS, getPresetSeeds, ThemePreset } from '../theme-editor/constants/presets';
+import { PRESETS, getPresetSeeds, ThemePreset } from '../theme-studio/constants/presets';
 import { applyThemeToDOM, saveSeeds } from '../../utils/theme-persistence';
 import { useLocaleContext } from '../../context/locale-context';
 
@@ -114,7 +114,7 @@ export const ThemeShowcase = (): React.ReactElement => {
       </div>
 
       <div className="home__theme-showcase-cta">
-        <Button btnType="link" onClick={() => navigate('/theme/theme-editor')}>
+        <Button btnType="link" onClick={() => navigate('/theme/theme-studio')}>
           {s.home.themeShowcaseCustomize} &rarr;
         </Button>
       </div>

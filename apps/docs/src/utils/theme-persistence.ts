@@ -1,13 +1,15 @@
-import { applyTokens, clearAllTokenOverrides } from '../containers/theme-editor/utils/apply-theme';
-import { loadFontFromValue } from '../containers/theme-editor/utils/font-loader';
+import { applyTokens, clearAllTokenOverrides } from '../containers/theme-studio/utils/apply-theme';
+import { loadFontFromValue } from '../containers/theme-studio/utils/font-loader';
 import {
   buildLegacyPreviewOverrides,
   buildThemeDocumentFromSeeds,
+  mergeThemeDocuments,
   resolveThemeDocument,
 } from './theme-document';
+import type { ThemeDocument } from '@tiny-design/react';
 
-const STORAGE_KEY = 'ty-theme-editor-overrides';
-const STORAGE_KEY_DARK = 'ty-theme-editor-overrides-dark';
+const STORAGE_KEY = 'ty-theme-studio-overrides';
+const STORAGE_KEY_DARK = 'ty-theme-studio-overrides-dark';
 
 function detectDarkMode(): boolean {
   return document.documentElement.getAttribute('data-tiny-theme') === 'dark';
@@ -64,6 +66,36 @@ export function applyThemeToDOM(
 
   const themeDocument = buildThemeDocumentFromSeeds(resolvedSeeds, darkMode);
   const resolvedV2Vars = resolveThemeDocument(themeDocument);
+  const legacyPreviewVars = buildLegacyPreviewOverrides(resolvedSeeds, darkMode);
+  const applied = {
+    ...resolvedV2Vars,
+    ...legacyPreviewVars,
+  };
+
+  lastApplied = applied;
+  applyTokens(applied);
+  return applied;
+}
+
+export function applyThemeDocumentToDOM(
+  theme: ThemeDocument,
+  seeds?: Record<string, string>,
+  isDark?: boolean
+): Record<string, string> {
+  const darkMode = isDark ?? detectDarkMode();
+  const resolvedSeeds = seeds ?? {};
+
+  if (Object.keys(lastApplied).length > 0) {
+    clearAllTokenOverrides(lastApplied);
+    lastApplied = {};
+  }
+
+  if (resolvedSeeds['font-family']) loadFontFromValue(resolvedSeeds['font-family']);
+  if (resolvedSeeds['font-family-monospace']) loadFontFromValue(resolvedSeeds['font-family-monospace']);
+
+  const seedTheme = buildThemeDocumentFromSeeds(resolvedSeeds, darkMode);
+  const mergedTheme = mergeThemeDocuments(theme, seedTheme);
+  const resolvedV2Vars = resolveThemeDocument(mergedTheme);
   const legacyPreviewVars = buildLegacyPreviewOverrides(resolvedSeeds, darkMode);
   const applied = {
     ...resolvedV2Vars,
