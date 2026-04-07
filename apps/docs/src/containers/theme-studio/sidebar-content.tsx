@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Collapse, Input, Select, Typography } from '@tiny-design/react';
+import { Collapse, Select, Typography } from '@tiny-design/react';
 import { COLOR_GROUPS, CORE_COLOR_GROUP_TITLES, FONT_OPTIONS, MONO_OPTIONS } from './editor-config';
 import { ColorField, SliderField, TextField } from './editor-fields';
 import type { FieldKey, ThemeEditorDraft, ThemeEditorSection, ThemeEditorColorGroup } from './types';
@@ -31,64 +31,19 @@ function renderColorGroups(
 export function ThemeStudioSidebarContent({
   section,
   draft,
-  sidebarSync,
-  colorQuery,
-  setSidebarSync,
-  setColorQuery,
   updateField,
 }: {
   section: ThemeEditorSection;
   draft: ThemeEditorDraft;
-  sidebarSync: boolean;
-  colorQuery: string;
-  setSidebarSync: (next: boolean) => void;
-  setColorQuery: (next: string) => void;
   updateField: (key: FieldKey, value: string) => void;
 }): React.ReactElement | null {
   const { Panel } = Collapse;
-  const filteredColorGroups = COLOR_GROUPS
-    .map((group) => ({
-      ...group,
-      fields: group.fields.filter((field) => {
-        const query = colorQuery.trim().toLowerCase();
-        if (!query) return true;
-
-        const value = draft.fields[field.key];
-        return (
-          group.title.toLowerCase().includes(query) ||
-          field.label.toLowerCase().includes(query) ||
-          field.key.toLowerCase().includes(query) ||
-          value.toLowerCase().includes(query)
-        );
-      }),
-    }))
-    .filter((group) => group.fields.length > 0);
-
-  const coreColorGroups = filteredColorGroups.filter((group) => CORE_COLOR_GROUP_TITLES.has(group.title));
-  const advancedColorGroups = filteredColorGroups.filter((group) => !CORE_COLOR_GROUP_TITLES.has(group.title));
+  const coreColorGroups = COLOR_GROUPS.filter((group) => CORE_COLOR_GROUP_TITLES.has(group.title));
+  const advancedColorGroups = COLOR_GROUPS.filter((group) => !CORE_COLOR_GROUP_TITLES.has(group.title));
 
   if (section === 'colors') {
-    const showAdvancedByDefault = colorQuery.trim().length > 0;
-
     return (
       <div className="theme-studio__panel-stack">
-        <div className="theme-studio__group-card theme-studio__group-card_toolbar">
-          <div className="theme-studio__group-toolbar">
-            <div>
-              <Typography.Text strong>Color System</Typography.Text>
-              <Typography.Text type="secondary">Brand, surfaces, states, focus.</Typography.Text>
-            </div>
-            <Checkbox checked={sidebarSync} onChange={(event) => setSidebarSync(Boolean(event.target.checked))}>
-              Sync Sidebar
-            </Checkbox>
-          </div>
-          <Input
-            value={colorQuery}
-            placeholder="Search tokens, labels, values..."
-            onChange={(event) => setColorQuery(event.target.value)}
-            className="theme-studio__search-input"
-          />
-        </div>
         <div className="theme-studio__group-section">
           <div className="theme-studio__section-header">
             <Typography.Text strong>Core Colors</Typography.Text>
@@ -103,7 +58,7 @@ export function ThemeStudioSidebarContent({
             <Collapse
               bordered={false}
               className="theme-studio__advanced-collapse"
-              defaultActiveKey={showAdvancedByDefault ? ['advanced-colors'] : []}
+              defaultActiveKey={[]}
             >
               <Panel
                 itemKey="advanced-colors"

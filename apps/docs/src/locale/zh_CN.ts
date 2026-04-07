@@ -84,7 +84,6 @@ const zh_CN: SiteLocale = {
     customiseTheme: '自定义主题',
     colors: '色彩',
     themeStudio: '主题工作台',
-    themeCommunity: '社区主题',
   },
   color: {
     title: '色彩',

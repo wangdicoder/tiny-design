@@ -417,25 +417,31 @@ function DashboardPreview(): React.ReactElement {
 
   return (
     <Grid className="theme-studio__dashboard-shell" columns="240px minmax(0, 1fr)" gap="sm">
-      <aside className="theme-studio__dashboard-sidebar">
-        <div className="theme-studio__sidebar-brand">
-          <Avatar>TD</Avatar>
-          <div>
-            <Typography.Text strong>Tiny Theme</Typography.Text>
-            <Typography.Text className="theme-studio__sidebar-subtle">Dashboard</Typography.Text>
+      <Card className="theme-studio__dashboard-sidebar">
+        <Card.Content>
+          <div className="theme-studio__sidebar-brand">
+            <Avatar>TD</Avatar>
+            <div>
+              <Typography.Text strong>Tiny Theme</Typography.Text>
+              <Typography.Text className="theme-studio__sidebar-subtle">Dashboard</Typography.Text>
+            </div>
           </div>
-        </div>
-        <div className="theme-studio__sidebar-section-label">Workspace</div>
-        {['Overview', 'Themes', 'Revenue', 'Activity', 'Settings'].map((item, index) => (
-          <button key={item} className={`theme-studio__sidebar-link${index === 0 ? ' theme-studio__sidebar-link_active' : ''}`}>
-            {item}
-          </button>
-        ))}
-        <div className="theme-studio__dashboard-sidebar-footer">
-          <Typography.Text strong>Live Sync</Typography.Text>
-          <Typography.Text className="theme-studio__sidebar-subtle">Theme changes are applied across docs in real time.</Typography.Text>
-        </div>
-      </aside>
+          <div className="theme-studio__sidebar-section-label">Workspace</div>
+          {['Overview', 'Themes', 'Revenue', 'Activity', 'Settings'].map((item, index) => (
+            <Button
+              key={item}
+              className={`theme-studio__sidebar-link${index === 0 ? ' theme-studio__sidebar-link_active' : ''}`}
+              btnType={index === 0 ? 'primary' : 'ghost'}
+            >
+              {item}
+            </Button>
+          ))}
+          <div className="theme-studio__dashboard-sidebar-footer">
+            <Typography.Text strong>Live Sync</Typography.Text>
+            <Typography.Text className="theme-studio__sidebar-subtle">Theme changes are applied across docs in real time.</Typography.Text>
+          </div>
+        </Card.Content>
+      </Card>
 
       <div className="theme-studio__dashboard-main">
         <div className="theme-studio__dashboard-top">
@@ -539,103 +545,125 @@ function DashboardPreview(): React.ReactElement {
 function MailPreview(): React.ReactElement {
   return (
     <Grid className="theme-studio__mail-shell" columns="260px minmax(280px, 360px) minmax(0, 1fr)" gap="sm">
-      <aside className="theme-studio__mail-sidebar">
-        <div className="theme-studio__mail-sidebar-head">
-          <div>
-            <Typography.Text className="theme-studio__eyebrow">Mailbox</Typography.Text>
-            <Typography.Heading level={4}>Studio Mail</Typography.Heading>
-          </div>
-          <Button btnType="primary" style={{ width: '100%' }}>Compose</Button>
-        </div>
-
-        <div className="theme-studio__mail-folder-list">
-          {[
-            ['Inbox', '128'],
-            ['Drafts', '9'],
-            ['Sent', '24'],
-            ['Junk', '3'],
-            ['Trash', '0'],
-          ].map(([item, count], index) => (
-            <button key={item} className={`theme-studio__mail-nav-item${index === 0 ? ' theme-studio__mail-nav-item_active' : ''}`}>
-              <span>{item}</span>
-              <small>{count}</small>
-            </button>
-          ))}
-        </div>
-
-        <div className="theme-studio__mail-labels">
-          <Typography.Text strong>Labels</Typography.Text>
-          <Flex gap="sm" wrap>
-            <Tag color="info">Design</Tag>
-            <Tag color="success">Work</Tag>
-            <Tag color="warning">Personal</Tag>
-          </Flex>
-        </div>
-      </aside>
-
-      <section className="theme-studio__mail-panel">
-        <div className="theme-studio__mail-panel-head">
-          <Input placeholder="Search mail" />
-          <Button>Filter</Button>
-        </div>
-        <div className="theme-studio__mail-toolbar">
-          <Tag color="info">All mail</Tag>
-          <Tag>Unread</Tag>
-          <Tag>Assigned</Tag>
-        </div>
-
-        <div className="theme-studio__mail-thread-list">
-          {[
-            ['Sofia Davis', 'New message', 'Hi, how can I help you today?', '12m', true],
-            ['Jackson Lee', 'Billing issue', 'I cannot update my card.', '1h', false],
-            ['Olivia Martin', 'Access request', 'Can you grant me editor permissions?', '3h', false],
-            ['William Kim', 'Design review', 'Please review the new dashboard polish.', 'Yesterday', false],
-          ].map(([sender, subject, preview, time, unread], index) => (
-            <button key={sender} className={`theme-studio__mail-item${index === 0 ? ' theme-studio__mail-item_active' : ''}`}>
-              <div className="theme-studio__mail-item-head">
-                <strong>{sender}</strong>
-                <span>{time}</span>
-              </div>
-              <span className="theme-studio__mail-item-subject">
-                {subject}
-                {unread ? <i className="theme-studio__mail-item-dot" /> : null}
-              </span>
-              <small>{preview}</small>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="theme-studio__mail-detail">
-        <div className="theme-studio__mail-message-head">
-          <div className="theme-studio__mail-message-meta">
-            <Avatar>S</Avatar>
+      <Card className="theme-studio__mail-sidebar">
+        <Card.Content>
+          <div className="theme-studio__mail-sidebar-head">
             <div>
-              <Typography.Text strong>Re: New message</Typography.Text>
-              <Typography.Text type="secondary">support@tiny.design</Typography.Text>
+              <Typography.Text className="theme-studio__eyebrow">Mailbox</Typography.Text>
+              <Typography.Heading level={4}>Studio Mail</Typography.Heading>
+            </div>
+            <Button btnType="primary" style={{ width: '100%' }}>Compose</Button>
+          </div>
+
+          <div className="theme-studio__mail-folder-list">
+            {[
+              ['Inbox', '128'],
+              ['Drafts', '9'],
+              ['Sent', '24'],
+              ['Junk', '3'],
+              ['Trash', '0'],
+            ].map(([item, count], index) => (
+              <Button
+                key={item}
+                className={`theme-studio__mail-nav-item${index === 0 ? ' theme-studio__mail-nav-item_active' : ''}`}
+                btnType={index === 0 ? 'primary' : 'ghost'}
+              >
+                <span>{item}</span>
+                <small>{count}</small>
+              </Button>
+            ))}
+          </div>
+
+          <div className="theme-studio__mail-labels">
+            <Typography.Text strong>Labels</Typography.Text>
+            <Flex gap="sm" wrap>
+              <Tag color="info">Design</Tag>
+              <Tag color="success">Work</Tag>
+              <Tag color="warning">Personal</Tag>
+            </Flex>
+          </div>
+        </Card.Content>
+      </Card>
+
+      <Card className="theme-studio__mail-panel">
+        <Card.Content>
+          <div className="theme-studio__mail-panel-head">
+            <Input placeholder="Search mail" />
+            <Button>Filter</Button>
+          </div>
+          <div className="theme-studio__mail-toolbar">
+            <Tag color="info">All mail</Tag>
+            <Tag>Unread</Tag>
+            <Tag>Assigned</Tag>
+          </div>
+
+          <div className="theme-studio__mail-thread-list">
+            {[
+              ['Sofia Davis', 'New message', 'Hi, how can I help you today?', '12m', true],
+              ['Jackson Lee', 'Billing issue', 'I cannot update my card.', '1h', false],
+              ['Olivia Martin', 'Access request', 'Can you grant me editor permissions?', '3h', false],
+              ['William Kim', 'Design review', 'Please review the new dashboard polish.', 'Yesterday', false],
+            ].map(([sender, subject, preview, time, unread], index) => (
+              <Card key={sender} className={`theme-studio__mail-item${index === 0 ? ' theme-studio__mail-item_active' : ''}`} active={index === 0} hoverable>
+                <Card.Content>
+                  <div className="theme-studio__mail-item-head">
+                    <strong>{sender}</strong>
+                    <span>{time}</span>
+                  </div>
+                  <span className="theme-studio__mail-item-subject">
+                    {subject}
+                    {unread ? <i className="theme-studio__mail-item-dot" /> : null}
+                  </span>
+                  <small>{preview}</small>
+                </Card.Content>
+              </Card>
+            ))}
+          </div>
+        </Card.Content>
+      </Card>
+
+      <Card className="theme-studio__mail-detail">
+        <Card.Content>
+          <div className="theme-studio__mail-message-head">
+            <div className="theme-studio__mail-message-meta">
+              <Avatar>S</Avatar>
+              <div>
+                <Typography.Text strong>Re: New message</Typography.Text>
+                <Typography.Text type="secondary">support@tiny.design</Typography.Text>
+              </div>
+            </div>
+            <div className="theme-studio__mail-message-actions">
+              <Tag color="info">Unread</Tag>
+              <Button btnType="outline">Archive</Button>
             </div>
           </div>
-          <div className="theme-studio__mail-message-actions">
-            <Tag color="info">Unread</Tag>
-            <Button btnType="outline">Archive</Button>
-          </div>
-        </div>
 
-        <div className="theme-studio__chat-thread">
-          <div className="theme-studio__chat-bubble theme-studio__chat-bubble_in">Hi, how can I help you today?</div>
-          <div className="theme-studio__chat-bubble theme-studio__chat-bubble_out">Hey, I&apos;m having trouble with my account.</div>
-          <div className="theme-studio__chat-bubble theme-studio__chat-bubble_in">What seems to be the problem?</div>
-          <div className="theme-studio__chat-bubble theme-studio__chat-bubble_out">I can&apos;t log in after resetting my password.</div>
-        </div>
-
-        <div className="theme-studio__mail-compose-card">
-          <Textarea rows={5} placeholder="Reply Sofia Davis..." />
-          <div className="theme-studio__mail-compose">
-            <Button>Save Draft</Button>
-            <Button btnType="primary">Send</Button>
+          <div className="theme-studio__chat-thread">
+            <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
+              <Card.Content>Hi, how can I help you today?</Card.Content>
+            </Card>
+            <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
+              <Card.Content>Hey, I&apos;m having trouble with my account.</Card.Content>
+            </Card>
+            <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
+              <Card.Content>What seems to be the problem?</Card.Content>
+            </Card>
+            <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
+              <Card.Content>I can&apos;t log in after resetting my password.</Card.Content>
+            </Card>
           </div>
-        </div>
-      </section>
+
+          <Card className="theme-studio__mail-compose-card">
+            <Card.Content>
+              <Textarea rows={5} placeholder="Reply Sofia Davis..." />
+              <div className="theme-studio__mail-compose">
+                <Button>Save Draft</Button>
+                <Button btnType="primary">Send</Button>
+              </div>
+            </Card.Content>
+          </Card>
+        </Card.Content>
+      </Card>
     </Grid>
   );
 }
@@ -668,25 +696,30 @@ function PricingPreview(): React.ReactElement {
           { name: 'Pro', price: '$89', description: 'More features and storage.', featured: true, features: ['5 workspaces', 'Advanced analytics', 'Priority support'] },
           { name: 'Scale', price: '$199', description: 'For larger teams and advanced reporting.', features: ['Unlimited workspaces', 'SSO + audit log', 'Dedicated onboarding'] },
         ].map((plan) => (
-          <div key={plan.name} className={`theme-studio__pricing-card${plan.featured ? ' theme-studio__pricing-card_featured' : ''}`}>
-            <div className="theme-studio__pricing-card-head">
-              {plan.featured ? <Tag color="success">Popular</Tag> : null}
-              <Typography.Text strong>{plan.name}</Typography.Text>
-            </div>
-            <div className="theme-studio__pricing-price">
-              <Typography.Heading level={2}>{plan.price}</Typography.Heading>
-              <Typography.Text type="secondary">Per workspace / month</Typography.Text>
-            </div>
-            <Typography.Paragraph>{plan.description}</Typography.Paragraph>
-            <div className="theme-studio__pricing-feature-list">
-              {plan.features.map((feature) => (
-                <Typography.Text key={feature}>{feature}</Typography.Text>
-              ))}
-            </div>
-            <div className="theme-studio__pricing-card-footer">
-              <Button btnType={plan.featured ? 'primary' : 'default'}>{plan.featured ? 'Upgrade plan' : 'Choose plan'}</Button>
-            </div>
-          </div>
+          <Card
+            key={plan.name}
+            className={`theme-studio__pricing-card${plan.featured ? ' theme-studio__pricing-card_featured' : ''}`}
+          >
+            <Card.Content>
+              <div className="theme-studio__pricing-card-head">
+                {plan.featured ? <Tag color="success">Popular</Tag> : null}
+                <Typography.Text strong>{plan.name}</Typography.Text>
+              </div>
+              <div className="theme-studio__pricing-price">
+                <Typography.Heading level={2}>{plan.price}</Typography.Heading>
+                <Typography.Text type="secondary">Per workspace / month</Typography.Text>
+              </div>
+              <Typography.Paragraph>{plan.description}</Typography.Paragraph>
+              <div className="theme-studio__pricing-feature-list">
+                {plan.features.map((feature) => (
+                  <Typography.Text key={feature}>{feature}</Typography.Text>
+                ))}
+              </div>
+              <div className="theme-studio__pricing-card-footer">
+                <Button btnType={plan.featured ? 'primary' : 'default'}>{plan.featured ? 'Upgrade plan' : 'Choose plan'}</Button>
+              </div>
+            </Card.Content>
+          </Card>
         ))}
       </Grid>
 

@@ -10,7 +10,7 @@ SCSS constants still exist, but they are only for compile-time structural overri
 
 ## Theme Editor
 
-The built-in [Theme Editor](/theme/theme-editor) lets you visually customise design tokens in real time. You can:
+The built-in [Theme Editor](/theme/theme-studio) lets you visually customise design tokens in real time. You can:
 
 - Pick from **20+ preset themes** (e.g. Catppuccin, Mocha Mousse, Cyberpunk) or start from scratch.
 - Adjust primary, success, warning, danger, and info colours, background, text, and border colours.

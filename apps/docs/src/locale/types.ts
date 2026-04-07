@@ -82,7 +82,6 @@ export type SiteLocale = {
     customiseTheme: string;
     colors: string;
     themeStudio: string;
-    themeCommunity: string;
   };
   color: {
     title: string;

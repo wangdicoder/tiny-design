@@ -33,7 +33,7 @@
 
 <p align="center">
   <a href="https://wangdicoder.github.io/tiny-design/"><strong>Documentation</strong></a> &nbsp;&bull;&nbsp;
-  <a href="https://wangdicoder.github.io/tiny-design/theme/theme-editor"><strong>Theme Editor</strong></a> &nbsp;&bull;&nbsp;
+  <a href="https://wangdicoder.github.io/tiny-design/theme/theme-studio"><strong>Theme Editor</strong></a> &nbsp;&bull;&nbsp;
   <a href="https://wangdicoder.github.io/tiny-design/theme/customise-theme"><strong>Theming Guide</strong></a>
 </p>
 
@@ -73,7 +73,7 @@ No separate CSS import needed — styles are bundled with each component and tre
 
 ### Visual Theme Editor
 
-The built-in [Theme Editor](https://wangdicoder.github.io/tiny-design/theme/theme-editor) lets you pick from 20+ preset themes or fine-tune individual tokens — colours, typography, border radius, spacing — and see changes live on real components. Export as CSS or SCSS when you're done.
+The built-in [Theme Editor](https://wangdicoder.github.io/tiny-design/theme/theme-studio) lets you pick from 20+ preset themes or fine-tune individual tokens — colours, typography, border radius, spacing — and see changes live on real components. Export as CSS or SCSS when you're done.
 
 ### Dark mode
 

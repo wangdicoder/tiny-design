@@ -62,10 +62,6 @@ const guide = {
     () => import('./containers/theme-studio'),
     () => import('./containers/theme-studio'),
   ),
-  themeCommunity: ll(
-    () => import('./containers/theme-community'),
-    () => import('./containers/theme-community'),
-  ),
 };
 
 // Component lazy imports
@@ -197,7 +193,6 @@ export const getThemeMenu = (s: SiteLocale): RouterItem[] => {
     { title: s.themeMenu.customiseTheme, route: 'customise-theme', component: pick(guide.customiseTheme, isZh) },
     { title: s.themeMenu.colors, route: 'colors', component: pick(guide.colors, isZh) },
     { title: s.themeMenu.themeStudio, route: 'theme-studio', component: pick(guide.themeStudio, isZh) },
-    { title: s.themeMenu.themeCommunity, route: 'theme-community', component: pick(guide.themeCommunity, isZh) },
   ];
 };
 

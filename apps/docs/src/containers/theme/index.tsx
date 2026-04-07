@@ -13,9 +13,7 @@ const ThemePage = (): React.ReactElement => {
   const { siteLocale } = useLocaleContext();
   const themeMenu = useMemo(() => getThemeMenu(siteLocale), [siteLocale]);
   const location = useLocation();
-  const isStudioRoute =
-    location.pathname.startsWith('/theme/theme-studio') ||
-    location.pathname.startsWith('/theme/theme-community');
+  const isStudioRoute = location.pathname.startsWith('/theme/theme-studio');
 
   return (
     <Layout className="doc-container">
@@ -32,7 +30,7 @@ const ThemePage = (): React.ReactElement => {
             <Routes>
               {themeMenu.map((menu) => {
                 const Component = menu.component;
-                const routePath = ['theme-studio', 'theme-community'].includes(menu.route ?? '')
+                const routePath = ['theme-studio'].includes(menu.route ?? '')
                   ? `${menu.route}/*`
                   : menu.route;
                 return (

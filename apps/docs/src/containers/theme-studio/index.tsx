@@ -26,7 +26,6 @@ import {
   THEME_SECTION_LABELS,
 } from './presets';
 import { buildPreviewVars, DRAFT_KEY, loadInitialDraft, PRESET_ID_KEY } from './editor-draft';
-import { SIDEBAR_SYNC_MAP } from './editor-config';
 import { renderPreview } from './preview-components';
 import { ThemeStudioSidebarContent } from './sidebar-content';
 import {
@@ -38,6 +37,7 @@ import {
   applyThemeDocumentToDOM,
   saveThemeDocument,
 } from '../../utils/theme-persistence';
+import { syncThemeStudioFonts } from './font-loader';
 import './theme-studio.scss';
 
 const ThemeStudioPage = (): React.ReactElement => {
@@ -45,8 +45,6 @@ const ThemeStudioPage = (): React.ReactElement => {
   const [draft, setDraft] = useState<ThemeEditorDraft>(loadInitialDraft);
   const [importVisible, setImportVisible] = useState(false);
   const [codeVisible, setCodeVisible] = useState(false);
-  const [sidebarSync, setSidebarSync] = useState(true);
-  const [colorQuery, setColorQuery] = useState('');
   const [importText, setImportText] = useState('');
   const [importError, setImportError] = useState<string | null>(null);
   const [status, setStatus] = useState<string>('Editing local draft');
@@ -79,15 +77,29 @@ const ThemeStudioPage = (): React.ReactElement => {
     setStatus('Applied globally');
   }, [draft.presetId, themeDocument]);
 
+  useEffect(() => {
+    syncThemeStudioFonts([draft.fields.fontSans, draft.fields.fontMono]);
+  }, [draft.fields.fontMono, draft.fields.fontSans]);
+
   const updateField = (key: FieldKey, value: string) => {
-    setDraft((current) => ({
-      ...current,
-      fields: {
+    setDraft((current) => {
+      const nextFields = {
         ...current.fields,
         [key]: value,
-        ...(sidebarSync && SIDEBAR_SYNC_MAP[key] ? { [SIDEBAR_SYNC_MAP[key] as FieldKey]: value } : {}),
-      },
-    }));
+      };
+
+      // Treat global radius as the baseline shape control for the whole studio.
+      if (key === 'radius') {
+        nextFields.buttonRadius = value;
+        nextFields.inputRadius = value;
+        nextFields.cardRadius = value;
+      }
+
+      return {
+        ...current,
+        fields: nextFields,
+      };
+    });
   };
 
   const resetToPreset = () => {
@@ -163,10 +175,6 @@ const ThemeStudioPage = (): React.ReactElement => {
             <ThemeStudioSidebarContent
               section={draft.activeSection}
               draft={draft}
-              sidebarSync={sidebarSync}
-              colorQuery={colorQuery}
-              setSidebarSync={setSidebarSync}
-              setColorQuery={setColorQuery}
               updateField={updateField}
             />
           </aside>
@@ -198,16 +206,13 @@ const ThemeStudioPage = (): React.ReactElement => {
           header="Import Theme Document"
           width={760}
           bodyStyle={{ maxHeight: 'min(70vh, 720px)', overflow: 'auto' }}
+          cancelText="Cancel"
+          confirmText="Apply Theme"
+          onConfirm={handleImport}
           onClose={() => {
             setImportVisible(false);
             setImportError(null);
           }}
-          footer={(
-            <div className="theme-studio__modal-actions">
-              <Button onClick={() => setImportVisible(false)}>Cancel</Button>
-              <Button btnType="primary" onClick={handleImport}>Apply Theme</Button>
-            </div>
-          )}
         >
           <div className="theme-studio__modal-copy">
             <Typography.Paragraph>
@@ -230,14 +235,15 @@ const ThemeStudioPage = (): React.ReactElement => {
           header="Theme Output"
           width={980}
           bodyStyle={{ maxHeight: 'min(74vh, 760px)', overflow: 'auto' }}
+          cancelText="Close"
+          confirmText={draft.activeCodeView === 'json' ? 'Copy JSON' : draft.activeCodeView === 'css' ? 'Copy CSS' : 'Done'}
+          confirmButtonProps={draft.activeCodeView === 'tokens' ? { style: { display: 'none' } } : undefined}
+          onConfirm={draft.activeCodeView === 'json'
+            ? () => handleCopy(themeJson, 'Theme JSON')
+            : draft.activeCodeView === 'css'
+              ? () => handleCopy(cssVars, 'CSS variables')
+              : undefined}
           onClose={() => setCodeVisible(false)}
-          footer={(
-            <div className="theme-studio__modal-actions">
-              <Button onClick={() => setCodeVisible(false)}>Close</Button>
-              {draft.activeCodeView === 'json' ? <Button btnType="primary" onClick={() => handleCopy(themeJson, 'Theme JSON')}>Copy JSON</Button> : null}
-              {draft.activeCodeView === 'css' ? <Button btnType="primary" onClick={() => handleCopy(cssVars, 'CSS variables')}>Copy CSS</Button> : null}
-            </div>
-          )}
         >
           <div className="theme-studio__code-head">
             <div>

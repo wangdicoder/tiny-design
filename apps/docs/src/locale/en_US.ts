@@ -88,7 +88,6 @@ const en_US: SiteLocale = {
     customiseTheme: 'Customise Theme',
     colors: 'Colors',
     themeStudio: 'Theme Studio',
-    themeCommunity: 'Community Themes',
   },
   color: {
     title: 'Color',

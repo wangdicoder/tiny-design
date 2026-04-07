@@ -70,6 +70,17 @@ export function loadInitialDraft(): ThemeEditorDraft {
 
 export function buildPreviewVars(fields: ThemeEditorFields): React.CSSProperties {
   return {
+    fontFamily: fields.fontSans,
+    fontSize: fields.fontSizeBase,
+    lineHeight: fields.lineHeightBase,
+    letterSpacing: fields.letterSpacing,
+    '--ty-font-family': fields.fontSans,
+    '--ty-font-family-monospace': fields.fontMono,
+    '--ty-font-size-base': fields.fontSizeBase,
+    '--ty-line-height-base': fields.lineHeightBase,
+    '--ty-letter-spacing': fields.letterSpacing,
+    '--ty-h1-font-size': fields.h1Size,
+    '--ty-h2-font-size': fields.h2Size,
     '--editor-primary': fields.primary,
     '--editor-primary-foreground': fields.primaryForeground,
     '--editor-secondary': fields.secondary,
