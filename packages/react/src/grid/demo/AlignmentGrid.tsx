@@ -1,0 +1,24 @@
+import React from 'react';
+import { Button, Grid } from '@tiny-design/react';
+
+export default function AlignmentGridDemo() {
+  return (
+    <Grid
+      columns={3}
+      gap="sm"
+      align="center"
+      justify="center"
+      style={{
+        minHeight: 180,
+        padding: 16,
+        border: '1px dashed var(--ty-color-border)',
+        borderRadius: 12,
+        background: 'linear-gradient(180deg, rgba(110,65,191,0.06), rgba(110,65,191,0.01))',
+      }}
+    >
+      <Button btnType="primary">Primary</Button>
+      <Button>Default</Button>
+      <Button btnType="outline">Outline</Button>
+    </Grid>
+  );
+}

@@ -1,0 +1,9 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-grid {
+  display: grid;
+}
+
+.#{$prefix}-grid-item {
+  min-width: 0;
+}

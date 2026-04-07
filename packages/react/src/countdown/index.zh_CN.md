@@ -2,6 +2,8 @@ import BasicDemo from './demo/Basic';
 import BasicSource from './demo/Basic.tsx?raw';
 import MillisecondDemo from './demo/Millisecond';
 import MillisecondSource from './demo/Millisecond.tsx?raw';
+import ScrollNumberDemo from './demo/ScrollNumber';
+import ScrollNumberSource from './demo/ScrollNumber.tsx?raw';
 
 # Countdown 倒计时
 
@@ -28,6 +30,15 @@ import { Countdown } from 'tiny-design';
 基本的例子。
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### 数字翻滚
+
+结合 `ScrollNumber` 实现数字翻滚倒计时效果。
+
+<DemoBlock component={ScrollNumberDemo} source={ScrollNumberSource} />
 
     </Demo>
   </Column>

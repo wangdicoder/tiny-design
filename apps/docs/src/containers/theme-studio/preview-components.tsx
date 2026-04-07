@@ -8,6 +8,7 @@ import {
   Checkbox,
   DatePicker,
   Flex,
+  Grid,
   Input,
   Progress,
   Radio,
@@ -76,7 +77,7 @@ function MetricsStrip({
   items?: Array<[string, string, string]>;
 }): React.ReactElement {
   return (
-    <div className="theme-studio__metrics">
+    <Grid className="theme-studio__metrics" minColumnWidth={180} gap="sm">
       {items.map(([label, value, meta]) => (
         <div key={label} className="theme-studio__metric">
           <span>{label}</span>
@@ -84,7 +85,7 @@ function MetricsStrip({
           <small>{meta}</small>
         </div>
       ))}
-    </div>
+    </Grid>
   );
 }
 
@@ -103,13 +104,13 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
     <div className="theme-studio__response-panel">
       <div className="theme-studio__response-section">
         <span className="theme-studio__response-label">Live Colors</span>
-        <div className="theme-studio__response-swatches">
+        <Grid className="theme-studio__response-swatches" columns={2} gap={6}>
           {colorPairs.map(([label, background, foreground]) => (
             <div key={label} className="theme-studio__response-swatch" style={swatchTextStyle(background, foreground)}>
               <span>{label}</span>
             </div>
           ))}
-        </div>
+        </Grid>
       </div>
 
       <div className="theme-studio__response-section">
@@ -154,7 +155,7 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
 function CardsPreview(): React.ReactElement {
   return (
     <div className="theme-studio__preview-stack">
-      <div className="theme-studio__preview-grid theme-studio__preview-grid_cards">
+      <Grid className="theme-studio__preview-grid theme-studio__preview-grid_cards" minColumnWidth={280} gap="sm">
         <Card title="Total Revenue" className="theme-studio__card-metric">
           <Card.Content>
             <div className="theme-studio__metric theme-studio__metric_preview">
@@ -342,7 +343,7 @@ function CardsPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-      </div>
+      </Grid>
     </div>
   );
 }
@@ -362,7 +363,7 @@ function DashboardPreview(): React.ReactElement {
   ];
 
   return (
-    <div className="theme-studio__dashboard-shell">
+    <Grid className="theme-studio__dashboard-shell" columns="240px minmax(0, 1fr)" gap="sm">
       <aside className="theme-studio__dashboard-sidebar">
         <div className="theme-studio__sidebar-brand">
           <Avatar>TD</Avatar>
@@ -402,7 +403,7 @@ function DashboardPreview(): React.ReactElement {
           ]}
         />
 
-        <div className="theme-studio__preview-grid">
+        <Grid className="theme-studio__preview-grid" minColumnWidth={260} gap="sm">
           <Card title="Overview">
             <Card.Content>
               <ChartContainer config={revenueChartConfig} style={{ height: 260, width: '100%' }}>
@@ -463,15 +464,15 @@ function DashboardPreview(): React.ReactElement {
               </div>
             </Card.Content>
           </Card>
-        </div>
+        </Grid>
       </div>
-    </div>
+    </Grid>
   );
 }
 
 function MailPreview(): React.ReactElement {
   return (
-    <div className="theme-studio__mail-shell">
+    <Grid className="theme-studio__mail-shell" columns="260px minmax(280px, 360px) minmax(0, 1fr)" gap="sm">
       <aside className="theme-studio__mail-sidebar">
         <div className="theme-studio__mail-sidebar-head">
           <div>
@@ -561,7 +562,7 @@ function MailPreview(): React.ReactElement {
           </div>
         </div>
       </section>
-    </div>
+    </Grid>
   );
 }
 
@@ -583,7 +584,7 @@ function PricingPreview(): React.ReactElement {
         />
       </div>
 
-      <div className="theme-studio__pricing-grid">
+      <Grid className="theme-studio__pricing-grid" minColumnWidth={240} gap="sm">
         {[
           { name: 'Starter', price: '$29', description: 'Perfect for small businesses.', features: ['1 workspace', 'Basic analytics', 'Community support'] },
           { name: 'Pro', price: '$89', description: 'More features and storage.', featured: true, features: ['5 workspaces', 'Advanced analytics', 'Priority support'] },
@@ -602,9 +603,9 @@ function PricingPreview(): React.ReactElement {
             <Button btnType={plan.featured ? 'primary' : 'default'}>{plan.featured ? 'Upgrade plan' : 'Choose plan'}</Button>
           </div>
         ))}
-      </div>
+      </Grid>
 
-      <div className="theme-studio__preview-grid">
+      <Grid className="theme-studio__preview-grid" minColumnWidth={280} gap="sm">
         <Card title="Frequently Asked Questions">
           <Card.Content>
             <div className="theme-studio__settings-list">
@@ -627,7 +628,7 @@ function PricingPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-      </div>
+      </Grid>
     </div>
   );
 }

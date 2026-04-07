@@ -1,108 +1,137 @@
-import BasicDemo from './demo/Basic';
-import BasicSource from './demo/Basic.tsx?raw';
-import GutterDemo from './demo/Gutter';
-import GutterSource from './demo/Gutter.tsx?raw';
-import OffsetDemo from './demo/Offset';
-import OffsetSource from './demo/Offset.tsx?raw';
-import OrderDemo from './demo/Order';
-import OrderSource from './demo/Order.tsx?raw';
-import AlignmentDemo from './demo/Alignment';
-import AlignmentSource from './demo/Alignment.tsx?raw';
-import ResponsiveDemo from './demo/Responsive';
-import ResponsiveSource from './demo/Responsive.tsx?raw';
+import ExplicitColumnsDemo from './demo/ExplicitColumns';
+import ExplicitColumnsSource from './demo/ExplicitColumns.tsx?raw';
+import AutoFitDemo from './demo/AutoFit';
+import AutoFitSource from './demo/AutoFit.tsx?raw';
+import AlignmentGridDemo from './demo/AlignmentGrid';
+import AlignmentGridSource from './demo/AlignmentGrid.tsx?raw';
+import ResponsiveLayoutDemo from './demo/ResponsiveLayout';
+import ResponsiveLayoutSource from './demo/ResponsiveLayout.tsx?raw';
+import NamedAreasDemo from './demo/NamedAreas';
+import NamedAreasSource from './demo/NamedAreas.tsx?raw';
+import OffsetAutoDemo from './demo/OffsetAuto';
+import OffsetAutoSource from './demo/OffsetAuto.tsx?raw';
+import DashboardShellDemo from './demo/DashboardShell';
+import DashboardShellSource from './demo/DashboardShell.tsx?raw';
 
 # Grid
 
-Quickly and easily create layouts with the basic 24-column.
+Build modern two-dimensional layouts with CSS Grid semantics.
 
 ## Usage
 
 ```jsx
-import { Row, Col } from 'tiny-design';
+import { Grid } from 'tiny-design';
 ```
+
+## When To Use
+
+- Use `Grid System` (`Row` / `Col`) for classic page columns, marketing layouts, and 24-column responsive structure.
+- Use `Grid` for dashboard shells, editor workbenches, card walls, named areas, row spanning, and two-dimensional composition.
+- If you are migrating from MUI `Grid`, start with `spacing`, `rowSpacing`, `columnSpacing`, `size`, and `offset`, then adopt `areas` or `rowSpan` when you need layouts that flex grids cannot express.
 
 ## Examples
 
 <Demo>
 
-### Basic Grid
+### Explicit Columns
 
-Create basic grid layout using columns.
+Define tracks directly with `columns`.
 
-<DemoBlock component={BasicDemo} source={BasicSource} />
-
-</Demo>
-<Demo>
-
-### Gutter
-
-Use the `gutter` property of `Row` as grid spacing. It is recommended to set it to `8n` px. (`n` stands for natural number.)
-
-<DemoBlock component={GutterDemo} source={GutterSource} />
+<DemoBlock component={ExplicitColumnsDemo} source={ExplicitColumnsSource} />
 
 </Demo>
 <Demo>
 
-### Column offset
+### Auto Fit
 
-`Offset` can set the column to the right side.
+Use `minColumnWidth` to create responsive cards without manual breakpoints.
 
-<DemoBlock component={OffsetDemo} source={OffsetSource} />
-
-</Demo>
-<Demo>
-
-### Order
-
-Change the element sort by `order`.
-
-<DemoBlock component={OrderDemo} source={OrderSource} />
+<DemoBlock component={AutoFitDemo} source={AutoFitSource} />
 
 </Demo>
 <Demo>
 
-### Alignment
+### Item Alignment
 
-Child elements vertically aligned.
+Use `justify` and `align` to control placement inside each cell.
 
-<DemoBlock component={AlignmentDemo} source={AlignmentSource} />
+<DemoBlock component={AlignmentGridDemo} source={AlignmentGridSource} />
 
 </Demo>
 <Demo>
 
-### Responsive
+### Responsive Layout
 
-Columns respond to viewport width using `xs`, `sm`, `md`, `lg`, `xl`, `xxl` breakpoints. Resize the browser to see columns reflow.
+Use responsive `columns`, `gap`, and `Grid.Item size` values, similar to MUI's breakpoint-driven grid.
 
-<DemoBlock component={ResponsiveDemo} source={ResponsiveSource} />
+<DemoBlock component={ResponsiveLayoutDemo} source={ResponsiveLayoutSource} />
+
+</Demo>
+<Demo>
+
+### Named Areas
+
+Use `areas` and `Grid.Item area` for dashboard-style shells that MUI's flex grid cannot express directly.
+
+<DemoBlock component={NamedAreasDemo} source={NamedAreasSource} />
+
+</Demo>
+<Demo>
+
+### Offset Auto
+
+Use `offset="auto"` to push an item to the far right, similar to MUI Grid.
+
+<DemoBlock component={OffsetAutoDemo} source={OffsetAutoSource} />
+
+</Demo>
+<Demo>
+
+### Dashboard Shell
+
+Use `areas` plus nested `Grid` blocks to build an application shell instead of a simple stacked demo.
+
+<DemoBlock component={DashboardShellDemo} source={DashboardShellSource} />
 
 </Demo>
 
 ## Props
 
-### Row
+| Property       | Description                                          | Type                                                     | Default |
+| -------------- | ---------------------------------------------------- | -------------------------------------------------------- | ------- |
+| columns        | grid template columns or equal columns count         | responsive `number \| CSSProperties['gridTemplateColumns']` | -    |
+| rows           | grid template rows                                   | responsive `CSSProperties['gridTemplateRows']`           | -       |
+| spacing        | MUI-style alias for `gap`                            | responsive ``sm` \| `md` \| `lg` \| CSSProperties['gap']`` | -    |
+| gap            | gap between rows and columns                         | responsive ``sm` \| `md` \| `lg` \| CSSProperties['gap']`` | -    |
+| columnSpacing  | MUI-style alias for `columnGap`                      | responsive ``sm` \| `md` \| `lg` \| CSSProperties['columnGap']`` | - |
+| columnGap      | column gap                                           | responsive ``sm` \| `md` \| `lg` \| CSSProperties['columnGap']`` | - |
+| rowSpacing     | MUI-style alias for `rowGap`                         | responsive ``sm` \| `md` \| `lg` \| CSSProperties['rowGap']`` | -   |
+| rowGap         | row gap                                              | responsive ``sm` \| `md` \| `lg` \| CSSProperties['rowGap']`` | -   |
+| minColumnWidth | min width used with auto-fit/auto-fill columns       | responsive `number \| string`                            | -       |
+| autoFlow       | CSS grid auto-flow                                   | responsive `CSSProperties['gridAutoFlow']`               | -       |
+| autoFit        | use `auto-fit` instead of `auto-fill` when auto grid | boolean                                                  | true    |
+| justify        | justify items inside each grid cell                  | responsive `CSSProperties['justifyItems']`               | -       |
+| align          | align items inside each grid cell                    | responsive `CSSProperties['alignItems']`                 | -       |
+| justifyContent | distribute the whole grid inside its container       | responsive `CSSProperties['justifyContent']`             | -       |
+| alignContent   | align grid tracks along the block axis               | responsive `CSSProperties['alignContent']`               | -       |
+| placeItems     | shorthand for `alignItems` and `justifyItems`        | responsive `CSSProperties['placeItems']`                 | -       |
+| placeContent   | shorthand for `alignContent` and `justifyContent`    | responsive `CSSProperties['placeContent']`               | -       |
+| areas          | named grid-template-areas                            | responsive `string \| string[]`                          | -       |
+| component      | rendered root element                                | React.ElementType                                        | `div`   |
+| style          | style object of container                            | CSSProperties                                            | -       |
+| className      | className of container                               | string                                                   | -       |
 
-| Property   | Description                                                     | Type                                                                                         | Default |
-| ---------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| gutter     | spacing between grids                                           | number &#124; [number, number]                                                               | 0       |
-| gutterSide | gutter padding includes first and end child                     | boolean                                                                                      | false   |
-| align      | vertical alignment                                              | enum: `top` &#124; `center` &#124; `bottom`                                                  | -       |
-| justify    | horizontal arrangement                                          | enum: `start` &#124; `end` &#124; `center` &#124; `space-around` &#124; `space-between`      | -       |
-| style      | style object of container                                       | CSSProperties                                                                                | -       |
-| className  | className of container                                          | string                                                                                       | -       |
+## Grid.Item Props
 
-### Col
-
-| Property  | Description                                      | Type                                          | Default |
-| --------- | ------------------------------------------------ | --------------------------------------------- | ------- |
-| span      | number of cells to occupy (out of 24)            | number                                        | -       |
-| offset    | number of cells to offset from the left          | number                                        | 0       |
-| order     | rearrange order                                  | number                                        | 0       |
-| xs        | screen < 480px, or a config object               | number &#124; \{ span, offset, order \}         | -       |
-| sm        | screen >= 600px, or a config object              | number &#124; \{ span, offset, order \}         | -       |
-| md        | screen >= 840px, or a config object              | number &#124; \{ span, offset, order \}         | -       |
-| lg        | screen >= 960px, or a config object              | number &#124; \{ span, offset, order \}         | -       |
-| xl        | screen >= 1280px, or a config object             | number &#124; \{ span, offset, order \}         | -       |
-| xxl       | screen >= 1440px, or a config object             | number &#124; \{ span, offset, order \}         | -       |
-| style     | style object of container                        | CSSProperties                                 | -       |
-| className | className of container                           | string                                        | -       |
+| Property    | Description                                  | Type                                            | Default |
+| ----------- | -------------------------------------------- | ----------------------------------------------- | ------- |
+| size        | item column span                             | responsive `number \| 'auto' \| 'grow' \| 'full'` | -    |
+| offset      | push item to the right                       | responsive `number \| 'auto'`                   | -       |
+| column      | raw `grid-column` value                      | responsive `CSSProperties['gridColumn']`        | -       |
+| row         | raw `grid-row` value                         | responsive `CSSProperties['gridRow']`           | -       |
+| colSpan     | explicit column span                         | responsive `number \| 'full'`                   | -       |
+| rowSpan     | explicit row span                            | responsive `number \| 'full'`                   | -       |
+| area        | named grid area                              | responsive `CSSProperties['gridArea']`          | -       |
+| justifySelf | justify the item inside its own grid cell    | responsive `CSSProperties['justifySelf']`       | -       |
+| alignSelf   | align the item inside its own grid cell      | responsive `CSSProperties['alignSelf']`         | -       |
+| component   | rendered element for the grid item           | React.ElementType                               | `div`   |
