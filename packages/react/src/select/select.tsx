@@ -34,6 +34,7 @@ const Select = (props: SelectProps): React.ReactElement => {
     placeholder,
     className,
     children,
+    scrollToSelected = true,
     dropdownStyle,
     ...otherProps
   } = props;
@@ -48,6 +49,18 @@ const Select = (props: SelectProps): React.ReactElement => {
 
   const ref = useRef<HTMLDivElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const dropdownRef = useCallback(
+    (node: HTMLUListElement | null) => {
+      if (!node || !scrollToSelected) return;
+      requestAnimationFrame(() => {
+        const selectedEl = node.querySelector('[aria-selected="true"]') as HTMLElement | null;
+        if (selectedEl) {
+          node.scrollTop = selectedEl.offsetTop - node.offsetTop;
+        }
+      });
+    },
+    [scrollToSelected]
+  );
   const listboxId = useId();
 
   const configContext = useContext(ConfigContext);
@@ -360,6 +373,7 @@ const Select = (props: SelectProps): React.ReactElement => {
     return (
       <SelectContext.Provider value={contextValue}>
         <ul
+          ref={dropdownRef}
           className={`${prefixCls}__dropdown`}
           style={{ minWidth: selectorWidth || undefined, ...dropdownStyle }}
           role="listbox"
