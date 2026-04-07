@@ -77,6 +77,8 @@ function mapRuntimeStylesToFields(styles: RuntimeStyles): Partial<ThemeEditorFie
 function buildPresetFromRuntimeSource(source: TweakcnRuntimePresetSource): ThemeEditorPreset {
   const lightStyles = source.styles.light;
   const darkStyles = source.styles.dark;
+  const lightFields = mapRuntimeStylesToFields(lightStyles);
+  const darkFields = mapRuntimeStylesToFields(darkStyles);
 
   return {
     id: source.id,
@@ -94,14 +96,14 @@ function buildPresetFromRuntimeSource(source: TweakcnRuntimePresetSource): Theme
         source.label,
         'tweakcn',
         'light',
-        mapRuntimeStylesToFields(lightStyles),
+        lightFields,
       ),
       dark: createDraft(
         source.id,
         source.label,
         'tweakcn',
         'dark',
-        mapRuntimeStylesToFields(darkStyles),
+        darkFields,
       ),
     },
   };

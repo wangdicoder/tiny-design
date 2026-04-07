@@ -6,7 +6,6 @@ import {
   Modal,
   Segmented,
   Select,
-  Tag,
   Textarea,
   Typography,
   useTheme,
@@ -34,7 +33,6 @@ import {
   compareThemeAgainstBase,
   generateThemeCssVariables,
   generateThemeDocumentJSON,
-  listChangedThemeTokens,
 } from '../../utils/theme-document';
 import {
   applyThemeDocumentToDOM,
@@ -62,12 +60,10 @@ const ThemeStudioPage = (): React.ReactElement => {
   const themeJson = useMemo(() => generateThemeDocumentJSON(themeDocument), [themeDocument]);
   const cssVars = useMemo(() => generateThemeCssVariables(themeDocument), [themeDocument]);
   const changedTokens = useMemo(() => compareThemeAgainstBase(themeDocument), [themeDocument]);
-  const changedTokenList = useMemo(() => listChangedThemeTokens(themeDocument), [themeDocument]);
   const activePreset = useMemo(
     () => THEME_EDITOR_PRESETS.find((preset) => preset.id === draft.presetId) ?? THEME_EDITOR_PRESETS[0],
     [draft.presetId],
   );
-
   useEffect(() => {
     setDraft((current) => (
       current.mode === globalMode
@@ -188,8 +184,6 @@ const ThemeStudioPage = (): React.ReactElement => {
                   </button>
                 ))}
               </div>
-              <Tag color="info">{draft.mode}</Tag>
-              <Tag>{changedTokenList.length} changed</Tag>
             </div>
 
             <div className={`theme-studio__preview theme-studio__preview_${draft.mode}`}>
@@ -215,6 +209,12 @@ const ThemeStudioPage = (): React.ReactElement => {
             </div>
           )}
         >
+          <div className="theme-studio__modal-copy">
+            <Typography.Paragraph>
+              Paste a Tiny theme document JSON export to replace the current global theme.
+            </Typography.Paragraph>
+            <Typography.Text type="secondary">Preset selection and all editor controls will sync to the imported values.</Typography.Text>
+          </div>
           <Textarea
             rows={16}
             className="theme-studio__import-textarea"
@@ -242,7 +242,7 @@ const ThemeStudioPage = (): React.ReactElement => {
           <div className="theme-studio__code-head">
             <div>
               <Typography.Text strong>Output</Typography.Text>
-              <Typography.Text type="secondary">{status}</Typography.Text>
+              <Typography.Text type="secondary">{activePreset.name} · {status}</Typography.Text>
             </div>
             <Segmented
               options={CODE_VIEW_OPTIONS}

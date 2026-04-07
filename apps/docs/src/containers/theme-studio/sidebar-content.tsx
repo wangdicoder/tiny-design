@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Input, Select, Typography } from '@tiny-design/react';
+import { Checkbox, Collapse, Input, Select, Typography } from '@tiny-design/react';
 import { COLOR_GROUPS, CORE_COLOR_GROUP_TITLES, FONT_OPTIONS, MONO_OPTIONS } from './editor-config';
 import { ColorField, SliderField, TextField } from './editor-fields';
 import type { FieldKey, ThemeEditorDraft, ThemeEditorSection, ThemeEditorColorGroup } from './types';
@@ -45,6 +45,7 @@ export function ThemeStudioSidebarContent({
   setColorQuery: (next: string) => void;
   updateField: (key: FieldKey, value: string) => void;
 }): React.ReactElement | null {
+  const { Panel } = Collapse;
   const filteredColorGroups = COLOR_GROUPS
     .map((group) => ({
       ...group,
@@ -67,13 +68,15 @@ export function ThemeStudioSidebarContent({
   const advancedColorGroups = filteredColorGroups.filter((group) => !CORE_COLOR_GROUP_TITLES.has(group.title));
 
   if (section === 'colors') {
+    const showAdvancedByDefault = colorQuery.trim().length > 0;
+
     return (
       <div className="theme-studio__panel-stack">
         <div className="theme-studio__group-card theme-studio__group-card_toolbar">
           <div className="theme-studio__group-toolbar">
             <div>
               <Typography.Text strong>Color System</Typography.Text>
-              <Typography.Text type="secondary">Edit paired surfaces exactly where tweakcn concentrates attention.</Typography.Text>
+              <Typography.Text type="secondary">Brand, surfaces, states, focus.</Typography.Text>
             </div>
             <Checkbox checked={sidebarSync} onChange={(event) => setSidebarSync(Boolean(event.target.checked))}>
               Sync Sidebar
@@ -97,13 +100,25 @@ export function ThemeStudioSidebarContent({
         </div>
         {advancedColorGroups.length > 0 ? (
           <div className="theme-studio__group-section">
-            <div className="theme-studio__section-header">
-              <Typography.Text strong>Advanced Tokens</Typography.Text>
-              <Typography.Text type="secondary">
-                Refine overlays, navigation, chart accents, and specialized surfaces.
-              </Typography.Text>
-            </div>
-            {renderColorGroups(advancedColorGroups, draft, updateField)}
+            <Collapse
+              bordered={false}
+              className="theme-studio__advanced-collapse"
+              defaultActiveKey={showAdvancedByDefault ? ['advanced-colors'] : []}
+            >
+              <Panel
+                itemKey="advanced-colors"
+                header={(
+                  <div className="theme-studio__section-header theme-studio__section-header_inline">
+                    <Typography.Text strong>Advanced Tokens</Typography.Text>
+                    <Typography.Text type="secondary">
+                      Card, popover, sidebar, chart.
+                    </Typography.Text>
+                  </div>
+                )}
+              >
+                {renderColorGroups(advancedColorGroups, draft, updateField)}
+              </Panel>
+            </Collapse>
           </div>
         ) : null}
       </div>
@@ -117,7 +132,7 @@ export function ThemeStudioSidebarContent({
           <div className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
             <div>
               <Typography.Text strong>Typography System</Typography.Text>
-              <Typography.Text type="secondary">Tune the reading voice first, then scale and spacing.</Typography.Text>
+              <Typography.Text type="secondary">Font, scale, rhythm.</Typography.Text>
             </div>
           </div>
           <div className="theme-studio__summary-grid theme-studio__summary-grid_compact">
@@ -193,7 +208,7 @@ export function ThemeStudioSidebarContent({
           <div className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
             <div>
               <Typography.Text strong>Surface & Shape</Typography.Text>
-              <Typography.Text type="secondary">Match corners, density and elevation to the product tone.</Typography.Text>
+              <Typography.Text type="secondary">Corners, density, elevation.</Typography.Text>
             </div>
           </div>
           <div className="theme-studio__summary-grid theme-studio__summary-grid_compact">

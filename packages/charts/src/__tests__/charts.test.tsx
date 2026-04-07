@@ -126,6 +126,41 @@ describe('charts package', () => {
     expect(screen.getByText('320')).toBeInTheDocument();
   });
 
+  it('does not forward recharts-only tooltip props onto the DOM', () => {
+    const error = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(
+      <ChartContextProvider
+        config={{
+          desktop: { label: 'Desktop Revenue' },
+        }}
+      >
+        <ChartTooltipContent
+          active
+          label="April"
+          cursorStyle={{ stroke: '#1890ff' }}
+          payload={[
+            {
+              graphicalItemId: 'desktop',
+              dataKey: 'desktop',
+              name: 'desktop',
+              value: 320,
+              color: '#1890ff',
+              payload: {},
+            },
+          ]}
+        />
+      </ChartContextProvider>
+    );
+
+    const tooltip = document.querySelector('.ty-chart-tooltip');
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip).not.toHaveAttribute('cursorStyle');
+    expect(error).not.toHaveBeenCalledWith(
+      expect.stringContaining('React does not recognize the `cursorStyle` prop on a DOM element')
+    );
+  });
+
   it('renders legend labels from chart config', () => {
     render(
       <ChartContextProvider

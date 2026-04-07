@@ -19,6 +19,7 @@ import {
   Tag,
   Textarea,
   Typography,
+  Waterfall,
 } from '@tiny-design/react';
 import {
   ChartContainer,
@@ -153,9 +154,10 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
 }
 
 function CardsPreview(): React.ReactElement {
-  return (
-    <div className="theme-studio__preview-stack">
-      <Grid className="theme-studio__preview-grid theme-studio__preview-grid_cards" minColumnWidth={280} gap="sm">
+  const items = [
+    {
+      key: 'metric-revenue',
+      children: (
         <Card title="Total Revenue" className="theme-studio__card-metric">
           <Card.Content>
             <div className="theme-studio__metric theme-studio__metric_preview">
@@ -165,7 +167,11 @@ function CardsPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-
+      ),
+    },
+    {
+      key: 'metric-subscriptions',
+      children: (
         <Card title="Subscriptions" className="theme-studio__card-metric">
           <Card.Content>
             <div className="theme-studio__metric theme-studio__metric_preview">
@@ -175,9 +181,17 @@ function CardsPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-
-        <Card title="Upgrade your subscription" className="theme-studio__card-tall">
+      ),
+    },
+    {
+      key: 'upgrade',
+      children: (
+        <Card title="Upgrade your subscription" className="theme-studio__card-tall theme-studio__preview-card">
           <Card.Content>
+            <div className="theme-studio__card-kicker-row">
+              <Tag color="warning">Billing</Tag>
+              <Typography.Text type="secondary">Update your seat plan before the next invoice.</Typography.Text>
+            </div>
             <Typography.Paragraph>
               You are currently on the free plan. Upgrade to the pro plan to get access to all features.
             </Typography.Paragraph>
@@ -209,8 +223,12 @@ function CardsPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-
-        <Card title="Create an account" className="theme-studio__card-tall">
+      ),
+    },
+    {
+      key: 'account',
+      children: (
+        <Card title="Create an account" className="theme-studio__card-tall theme-studio__preview-card">
           <Card.Content>
             <Typography.Paragraph>Enter your email below to create your account.</Typography.Paragraph>
             <div className="theme-studio__mail-compose theme-studio__mail-compose_auth">
@@ -225,8 +243,12 @@ function CardsPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-
-        <Card title="Team Members">
+      ),
+    },
+    {
+      key: 'team',
+      children: (
+        <Card title="Team Members" className="theme-studio__preview-card">
           <Card.Content>
             <Typography.Paragraph>Invite your team members to collaborate.</Typography.Paragraph>
             <div className="theme-studio__member-list">
@@ -247,8 +269,12 @@ function CardsPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-
-        <Card title="Cookie Settings">
+      ),
+    },
+    {
+      key: 'cookies',
+      children: (
+        <Card title="Cookie Settings" className="theme-studio__preview-card">
           <Card.Content>
             <Typography.Paragraph>Manage your cookie settings here.</Typography.Paragraph>
             <div className="theme-studio__settings-list">
@@ -270,14 +296,22 @@ function CardsPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-
-        <Card title="June 2025">
+      ),
+    },
+    {
+      key: 'calendar',
+      children: (
+        <Card title="June 2025" className="theme-studio__preview-card">
           <Card.Content>
             <Calendar value={new Date(2025, 5, 18)} fullscreen={false} />
           </Card.Content>
         </Card>
-
-        <Card title="Move Goal">
+      ),
+    },
+    {
+      key: 'goal',
+      children: (
+        <Card title="Move Goal" className="theme-studio__preview-card">
           <Card.Content>
             <Typography.Paragraph>Set your daily activity goal.</Typography.Paragraph>
             <div className="theme-studio__goal-display">
@@ -293,8 +327,12 @@ function CardsPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-
-        <Card title="Exercise Minutes">
+      ),
+    },
+    {
+      key: 'exercise',
+      children: (
+        <Card title="Exercise Minutes" className="theme-studio__preview-card">
           <Card.Content>
             <Typography.Paragraph>
               Your exercise minutes are ahead of where you normally are.
@@ -322,8 +360,12 @@ function CardsPreview(): React.ReactElement {
             </ChartContainer>
           </Card.Content>
         </Card>
-
-        <Card title="Selection Controls">
+      ),
+    },
+    {
+      key: 'controls',
+      children: (
+        <Card title="Selection Controls" className="theme-studio__preview-card">
           <Card.Content>
             <div className="theme-studio__form-stack">
               <DatePicker placeholder="Launch date" defaultValue={new Date(2025, 5, 18)} />
@@ -343,7 +385,18 @@ function CardsPreview(): React.ReactElement {
             </div>
           </Card.Content>
         </Card>
-      </Grid>
+      ),
+    },
+  ];
+
+  return (
+    <div className="theme-studio__preview-stack">
+      <Waterfall
+        className="theme-studio__cards-waterfall"
+        columns={{ xs: 1, md: 1, xl: 2 }}
+        gutter={[18, 18]}
+        items={items}
+      />
     </div>
   );
 }
@@ -372,11 +425,16 @@ function DashboardPreview(): React.ReactElement {
             <Typography.Text className="theme-studio__sidebar-subtle">Dashboard</Typography.Text>
           </div>
         </div>
+        <div className="theme-studio__sidebar-section-label">Workspace</div>
         {['Overview', 'Themes', 'Revenue', 'Activity', 'Settings'].map((item, index) => (
           <button key={item} className={`theme-studio__sidebar-link${index === 0 ? ' theme-studio__sidebar-link_active' : ''}`}>
             {item}
           </button>
         ))}
+        <div className="theme-studio__dashboard-sidebar-footer">
+          <Typography.Text strong>Live Sync</Typography.Text>
+          <Typography.Text className="theme-studio__sidebar-subtle">Theme changes are applied across docs in real time.</Typography.Text>
+        </div>
       </aside>
 
       <div className="theme-studio__dashboard-main">
@@ -384,6 +442,10 @@ function DashboardPreview(): React.ReactElement {
           <div>
             <Typography.Text className="theme-studio__eyebrow">Dashboard</Typography.Text>
             <Typography.Heading level={3}>Revenue snapshot</Typography.Heading>
+            <div className="theme-studio__pill-row">
+              <Tag color="success">Healthy</Tag>
+              <Tag color="info">Synced</Tag>
+            </div>
           </div>
           <div className="theme-studio__dashboard-actions">
             <Select defaultValue="30d">
@@ -404,8 +466,12 @@ function DashboardPreview(): React.ReactElement {
         />
 
         <Grid className="theme-studio__preview-grid" minColumnWidth={260} gap="sm">
-          <Card title="Overview">
+          <Card title="Overview" className="theme-studio__preview-card">
             <Card.Content>
+              <div className="theme-studio__card-kicker-row">
+                <Typography.Text strong>$7.6k</Typography.Text>
+                <Typography.Text type="secondary">vs $6.6k target</Typography.Text>
+              </div>
               <ChartContainer config={revenueChartConfig} style={{ height: 260, width: '100%' }}>
                 <AreaChart data={revenueData} margin={{ top: 12, right: 8, left: -18, bottom: 0 }}>
                   <defs>
@@ -425,13 +491,13 @@ function DashboardPreview(): React.ReactElement {
             </Card.Content>
           </Card>
 
-          <Card title="Performance Channels">
+          <Card title="Performance Channels" className="theme-studio__preview-card">
             <Card.Content>
               <Table columns={columns} dataSource={data} pagination={false} bordered />
             </Card.Content>
           </Card>
 
-          <Card title="Theme Health">
+          <Card title="Theme Health" className="theme-studio__preview-card">
             <Card.Content>
               <Flex vertical gap="sm">
                 <div>
@@ -444,7 +510,7 @@ function DashboardPreview(): React.ReactElement {
             </Card.Content>
           </Card>
 
-          <Card title="Traffic Sources">
+          <Card title="Traffic Sources" className="theme-studio__preview-card">
             <Card.Content>
               <div className="theme-studio__member-list">
                 {[
@@ -512,6 +578,11 @@ function MailPreview(): React.ReactElement {
           <Input placeholder="Search mail" />
           <Button>Filter</Button>
         </div>
+        <div className="theme-studio__mail-toolbar">
+          <Tag color="info">All mail</Tag>
+          <Tag>Unread</Tag>
+          <Tag>Assigned</Tag>
+        </div>
 
         <div className="theme-studio__mail-thread-list">
           {[
@@ -537,9 +608,12 @@ function MailPreview(): React.ReactElement {
 
       <section className="theme-studio__mail-detail">
         <div className="theme-studio__mail-message-head">
-          <div>
-            <Typography.Text strong>Re: New message</Typography.Text>
-            <Typography.Text type="secondary">support@tiny.design</Typography.Text>
+          <div className="theme-studio__mail-message-meta">
+            <Avatar>S</Avatar>
+            <div>
+              <Typography.Text strong>Re: New message</Typography.Text>
+              <Typography.Text type="secondary">support@tiny.design</Typography.Text>
+            </div>
           </div>
           <div className="theme-studio__mail-message-actions">
             <Tag color="info">Unread</Tag>
@@ -574,6 +648,10 @@ function PricingPreview(): React.ReactElement {
           <Typography.Text className="theme-studio__eyebrow">Pricing</Typography.Text>
           <Typography.Heading level={2}>Simple pricing for modern teams</Typography.Heading>
           <Typography.Paragraph>Choose a plan that scales from solo work to multi-product organizations.</Typography.Paragraph>
+          <div className="theme-studio__pill-row">
+            <Tag color="success">No setup fee</Tag>
+            <Tag>Cancel anytime</Tag>
+          </div>
         </div>
         <Segmented
           options={[
@@ -591,30 +669,43 @@ function PricingPreview(): React.ReactElement {
           { name: 'Scale', price: '$199', description: 'For larger teams and advanced reporting.', features: ['Unlimited workspaces', 'SSO + audit log', 'Dedicated onboarding'] },
         ].map((plan) => (
           <div key={plan.name} className={`theme-studio__pricing-card${plan.featured ? ' theme-studio__pricing-card_featured' : ''}`}>
-            {plan.featured ? <Tag color="success">Popular</Tag> : null}
-            <Typography.Text strong>{plan.name}</Typography.Text>
-            <Typography.Heading level={2}>{plan.price}</Typography.Heading>
+            <div className="theme-studio__pricing-card-head">
+              {plan.featured ? <Tag color="success">Popular</Tag> : null}
+              <Typography.Text strong>{plan.name}</Typography.Text>
+            </div>
+            <div className="theme-studio__pricing-price">
+              <Typography.Heading level={2}>{plan.price}</Typography.Heading>
+              <Typography.Text type="secondary">Per workspace / month</Typography.Text>
+            </div>
             <Typography.Paragraph>{plan.description}</Typography.Paragraph>
             <div className="theme-studio__pricing-feature-list">
               {plan.features.map((feature) => (
                 <Typography.Text key={feature}>{feature}</Typography.Text>
               ))}
             </div>
-            <Button btnType={plan.featured ? 'primary' : 'default'}>{plan.featured ? 'Upgrade plan' : 'Choose plan'}</Button>
+            <div className="theme-studio__pricing-card-footer">
+              <Button btnType={plan.featured ? 'primary' : 'default'}>{plan.featured ? 'Upgrade plan' : 'Choose plan'}</Button>
+            </div>
           </div>
         ))}
       </Grid>
 
       <Grid className="theme-studio__preview-grid" minColumnWidth={280} gap="sm">
-        <Card title="Frequently Asked Questions">
+        <Card title="Frequently Asked Questions" className="theme-studio__preview-card">
           <Card.Content>
-            <div className="theme-studio__settings-list">
-              <Alert type="info" title="Can I cancel anytime?" description="Yes, plans can be changed or canceled without lock-in." />
-              <Alert type="success" title="Do you offer team migration?" description="Pro and Scale include assisted import and onboarding." />
+            <div className="theme-studio__faq-list">
+              <div className="theme-studio__faq-item">
+                <Typography.Text strong>Can I cancel anytime?</Typography.Text>
+                <Typography.Text type="secondary">Yes. Plans can be changed or canceled without lock-in.</Typography.Text>
+              </div>
+              <div className="theme-studio__faq-item">
+                <Typography.Text strong>Do you offer team migration?</Typography.Text>
+                <Typography.Text type="secondary">Pro and Scale include assisted import and onboarding.</Typography.Text>
+              </div>
             </div>
           </Card.Content>
         </Card>
-        <Card title="Usage Snapshot">
+        <Card title="Usage Snapshot" className="theme-studio__preview-card">
           <Card.Content>
             <div className="theme-studio__settings-list">
               <div>

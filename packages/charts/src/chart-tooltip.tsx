@@ -62,6 +62,7 @@ export const ChartTooltipContent = React.forwardRef<
       contentStyle: _contentStyle,
       coordinate: _coordinate,
       cursor: _cursor,
+      cursorStyle: _cursorStyle,
       defaultIndex: _defaultIndex,
       filterNull: _filterNull,
       includeHidden: _includeHidden,
