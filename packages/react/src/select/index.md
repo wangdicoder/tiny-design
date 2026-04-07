@@ -12,6 +12,8 @@ import CustomDemo from './demo/Custom';
 import CustomSource from './demo/Custom.tsx?raw';
 import RenderDemo from './demo/Render';
 import RenderSource from './demo/Render.tsx?raw';
+import ScrollToSelectedDemo from './demo/ScrollToSelected';
+import ScrollToSelectedSource from './demo/ScrollToSelected.tsx?raw';
 
 # Select
 
@@ -60,6 +62,15 @@ Select with search functionality. Set `showSearch` to enable filtering.
 Multiple selection mode displays selected items as tags. Set `mode="multiple"` and optionally `showSearch` for filtering.
 
 <DemoBlock component={MultipleDemo} source={MultipleSource} />
+
+    </Demo>
+    <Demo>
+
+### Scroll to Selected
+
+Automatically scrolls the dropdown to the selected option when opened. Enabled by default, set `scrollToSelected={false}` to disable.
+
+<DemoBlock component={ScrollToSelectedDemo} source={ScrollToSelectedSource} />
 
     </Demo>
   </Column>
@@ -130,6 +141,7 @@ Use `optionRender` to customize dropdown items and `labelRender` to customize th
 | defaultOpen             | Initial open state of dropdown                   | boolean                                                       | false       |
 | open                    | Controlled open state of dropdown                | boolean                                                       | -           |
 | onDropdownVisibleChange | Callback when dropdown open state changes        | (open: boolean) => void                                       | -           |
+| scrollToSelected        | Scroll to selected option when dropdown opens    | boolean                                                       | true        |
 | dropdownStyle           | Style of dropdown menu                           | CSSProperties                                                 | -           |
 | style                   | Style of container                               | CSSProperties                                                 | -           |
 | className               | Class name of container                          | string                                                        | -           |

@@ -52,6 +52,7 @@ export interface SelectProps
   defaultOpen?: boolean;
   open?: boolean;
   onDropdownVisibleChange?: (open: boolean) => void;
+  scrollToSelected?: boolean;
   dropdownStyle?: React.CSSProperties;
   children?: React.ReactNode;
 }
