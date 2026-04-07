@@ -35,6 +35,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build tokens
+        run: pnpm --filter @tiny-design/tokens build
+
       - name: Build docs site
         run: pnpm --filter @tiny-design/docs build
         env:
