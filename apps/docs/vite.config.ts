@@ -10,6 +10,7 @@ const reactPkg = path.resolve(__dirname, '../../packages/react/package.json');
 const reactSrc = path.resolve(__dirname, '../../packages/react/src');
 const iconsSrc = path.resolve(__dirname, '../../packages/icons/src');
 const chartsSrc = path.resolve(__dirname, '../../packages/charts/src');
+const tokensDir = path.resolve(__dirname, '../../packages/tokens');
 
 const tinyVersion = JSON.parse(readFileSync(reactPkg, 'utf-8')).version;
 
@@ -33,6 +34,7 @@ export default defineConfig({
       '@tiny-design/react': reactSrc,
       '@tiny-design/icons': iconsSrc,
       '@tiny-design/charts': chartsSrc,
+      '@tiny-design/tokens/registry': path.join(tokensDir, 'dist/registry.json'),
       '@mdx-js/react': path.resolve(__dirname, 'node_modules/@mdx-js/react'),
     },
     dedupe: ['react', 'react-dom'],
