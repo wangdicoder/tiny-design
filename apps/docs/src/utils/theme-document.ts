@@ -1,5 +1,5 @@
 import type { ThemeDocument } from '@tiny-design/react';
-import tokenRegistry from '../../../../packages/tokens/dist/registry.json';
+import tokenRegistry from '@tiny-design/tokens/registry';
 import lightTheme from '../../../../packages/tokens/source/themes/light.json';
 import darkTheme from '../../../../packages/tokens/source/themes/dark.json';
 
