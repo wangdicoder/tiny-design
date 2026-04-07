@@ -1,112 +1,104 @@
-import { deriveAllTokens } from '../containers/theme-editor/utils/color-utils';
-import { applyTokens, clearAllTokenOverrides } from '../containers/theme-editor/utils/apply-theme';
-import { loadFontFromValue } from '../containers/theme-editor/utils/font-loader';
+import type { ThemeDocument } from '@tiny-design/react';
+import { buildThemeDocumentFromDraft, getPresetById, getPresetDraft, inferPresetIdFromThemeDocument, type ThemeMode } from '../containers/theme-studio/presets';
+import { resolveThemeDocument } from './theme-document';
 
-const STORAGE_KEY = 'ty-theme-editor-overrides';
-const STORAGE_KEY_DARK = 'ty-theme-editor-overrides-dark';
+const STORAGE_KEY = 'ty-theme-studio-active-document';
+
+let lastApplied: string[] = [];
 
 function detectDarkMode(): boolean {
   return document.documentElement.getAttribute('data-tiny-theme') === 'dark';
 }
 
-function loadSeeds(isDark: boolean): Record<string, string> {
-  try {
-    const key = isDark ? STORAGE_KEY_DARK : STORAGE_KEY;
-    const raw = localStorage.getItem(key);
-    if (raw) return JSON.parse(raw);
+function getThemeTargets(): HTMLElement[] {
+  const targets: HTMLElement[] = [document.documentElement];
+  if (document.body) targets.push(document.body);
 
-    // Fallback: if no dark-specific seeds, use light seeds
-    // (for presets without darkSeeds, the derivation handles mode differences)
-    if (isDark) {
-      const lightRaw = localStorage.getItem(STORAGE_KEY);
-      return lightRaw ? JSON.parse(lightRaw) : {};
+  const root = document.getElementById('root');
+  if (root) targets.push(root);
+
+  return targets;
+}
+
+function applyCssVars(vars: Record<string, string>): void {
+  const targets = getThemeTargets();
+  targets.forEach((target) => {
+    lastApplied.forEach((key) => target.style.removeProperty(key));
+  });
+  lastApplied = Object.keys(vars);
+
+  targets.forEach((target) => {
+    for (const [key, value] of Object.entries(vars)) {
+      target.style.setProperty(key, value);
     }
+  });
+}
 
-    return {};
+function clearCssVars(): void {
+  getThemeTargets().forEach((target) => {
+    lastApplied.forEach((key) => target.style.removeProperty(key));
+  });
+  lastApplied = [];
+}
+
+export function saveThemeDocument(theme: ThemeDocument): void {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(theme));
+}
+
+export function loadStoredThemeDocument(): ThemeDocument | undefined {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) as ThemeDocument : undefined;
   } catch {
-    return {};
+    return undefined;
   }
 }
 
-let lastApplied: Record<string, string> = {};
-
-/**
- * Apply theme tokens to the DOM. This is the single source of truth
- * for setting inline CSS custom properties.
- *
- * @param seeds - seed overrides (if omitted, reads from localStorage for current mode)
- * @param isDark - dark mode flag (if omitted, detects from DOM attribute)
- */
-export function applyThemeToDOM(
-  seeds?: Record<string, string>,
-  isDark?: boolean
-): Record<string, string> {
-  const darkMode = isDark ?? detectDarkMode();
-  const resolvedSeeds = seeds ?? loadSeeds(darkMode);
-
-  // Clear previous overrides
-  if (Object.keys(lastApplied).length > 0) {
-    clearAllTokenOverrides(lastApplied);
-    lastApplied = {};
-  }
-
-  if (Object.keys(resolvedSeeds).length === 0) {
-    return {};
-  }
-
-  // Load custom fonts if present
-  if (resolvedSeeds['font-family']) loadFontFromValue(resolvedSeeds['font-family']);
-  if (resolvedSeeds['font-family-monospace']) loadFontFromValue(resolvedSeeds['font-family-monospace']);
-
-  // Derive and apply
-  const derived = deriveAllTokens(resolvedSeeds, darkMode);
-  lastApplied = derived;
-  applyTokens(derived);
-  return derived;
-}
-
-/**
- * Clear all theme overrides from the DOM.
- */
-export function clearThemeFromDOM(): void {
-  if (Object.keys(lastApplied).length > 0) {
-    clearAllTokenOverrides(lastApplied);
-    lastApplied = {};
-  }
-}
-
-/**
- * Save seeds for both light and dark modes.
- */
-export function saveSeeds(
-  lightSeeds: Record<string, string>,
-  darkSeeds?: Record<string, string>
-): void {
-  if (Object.keys(lightSeeds).length === 0) {
-    localStorage.removeItem(STORAGE_KEY);
-  } else {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(lightSeeds));
-  }
-
-  if (darkSeeds && Object.keys(darkSeeds).length > 0) {
-    localStorage.setItem(STORAGE_KEY_DARK, JSON.stringify(darkSeeds));
-  } else {
-    localStorage.removeItem(STORAGE_KEY_DARK);
-  }
-}
-
-/**
- * Clear all stored seeds.
- */
-export function clearStoredSeeds(): void {
+export function clearStoredThemeDocument(): void {
   localStorage.removeItem(STORAGE_KEY);
-  localStorage.removeItem(STORAGE_KEY_DARK);
+  clearCssVars();
 }
 
-// Global MutationObserver: re-apply theme tokens when dark mode toggles,
-// even when the theme editor page is not mounted.
+export function applyThemeDocumentToDOM(
+  theme?: ThemeDocument,
+  options?: { respectThemeMode?: boolean }
+): Record<string, string> {
+  let stored = theme ?? loadStoredThemeDocument();
+  if (!stored) {
+    clearCssVars();
+    return {};
+  }
+
+  const currentMode: ThemeMode = detectDarkMode() ? 'dark' : 'light';
+  const presetId = inferPresetIdFromThemeDocument(stored);
+
+  if (!options?.respectThemeMode && getPresetById(presetId).id === presetId && stored.mode !== currentMode) {
+    const nextDraft = getPresetDraft(presetId, currentMode);
+    const nextTheme = buildThemeDocumentFromDraft({
+      ...nextDraft,
+      meta: {
+        name: stored.meta?.name ?? nextDraft.meta.name,
+        author: stored.meta?.author ?? nextDraft.meta.author,
+      },
+    });
+    saveThemeDocument(nextTheme);
+    stored = nextTheme;
+  }
+
+  const preferThemeMode = options?.respectThemeMode && stored.mode;
+  const isDark = preferThemeMode ? stored.mode === 'dark' : currentMode === 'dark';
+  const effectiveTheme: ThemeDocument = {
+    ...stored,
+    mode: isDark ? 'dark' : 'light',
+    extends: isDark ? 'tiny-dark' : 'tiny-light',
+  };
+  const vars = resolveThemeDocument(effectiveTheme);
+  applyCssVars(vars);
+  return vars;
+}
+
 const observer = new MutationObserver(() => {
-  applyThemeToDOM();
+  applyThemeDocumentToDOM();
 });
 
 observer.observe(document.documentElement, {
@@ -114,5 +106,4 @@ observer.observe(document.documentElement, {
   attributeFilter: ['data-tiny-theme'],
 });
 
-// Apply on initial load
-applyThemeToDOM();
+applyThemeDocumentToDOM();

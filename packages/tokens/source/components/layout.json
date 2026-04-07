@@ -1,0 +1,76 @@
+{
+  "layout.header-height": {
+    "$value": "60px",
+    "$type": "dimension",
+    "description": "Layout header height."
+  },
+  "layout.header-bg": {
+    "$value": "{color-bg-layout}",
+    "$type": "color",
+    "description": "Layout header background color.",
+    "fallback": "--ty-color-bg-layout"
+  },
+  "layout.footer-padding": {
+    "$value": "24px 50px",
+    "$type": "string",
+    "description": "Layout footer padding."
+  },
+  "layout.footer-bg": {
+    "$value": "{color-bg-layout}",
+    "$type": "color",
+    "description": "Layout footer background color.",
+    "fallback": "--ty-color-bg-layout"
+  },
+  "layout.content-bg": {
+    "$value": "{color-bg-layout}",
+    "$type": "color",
+    "description": "Layout content background color.",
+    "fallback": "--ty-color-bg-layout"
+  },
+  "layout.sidebar-bg": {
+    "$value": "#12131a",
+    "$type": "color",
+    "description": "Layout sidebar bg."
+  },
+  "layout.sidebar-light-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Layout sidebar light bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "layout.sidebar-light-color": {
+    "$value": "#333",
+    "$type": "color",
+    "description": "Layout sidebar light color."
+  },
+  "layout.sidebar-light-trigger-bg": {
+    "$value": "#efefef",
+    "$type": "color",
+    "description": "Layout sidebar light trigger bg."
+  },
+  "layout.sidebar-light-trigger-icon": {
+    "$value": "#bbb",
+    "$type": "color",
+    "description": "Layout sidebar light trigger icon."
+  },
+  "layout.sidebar-trigger-bg": {
+    "$value": "rgb(0, 33, 64)",
+    "$type": "color",
+    "description": "Layout sidebar trigger bg."
+  },
+  "layout.sidebar-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Layout sidebar text color."
+  },
+  "layout.sidebar-transition-duration": {
+    "$value": "200ms",
+    "$type": "duration",
+    "description": "Layout sidebar transition duration."
+  },
+  "layout.sidebar-trigger-height": {
+    "$value": "40px",
+    "$type": "dimension",
+    "description": "Layout sidebar trigger height."
+  }
+}

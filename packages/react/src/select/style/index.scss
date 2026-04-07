@@ -1,0 +1,299 @@
+@use "@tiny-design/tokens/scss/variables" as *;
+
+.#{$prefix}-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-size: var(--ty-select-font-size-md, var(--ty-font-size-base));
+  cursor: pointer;
+  outline: none;
+
+  &_disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .#{$prefix}-select__selector {
+      background-color: var(--ty-select-bg-disabled, var(--ty-color-bg-disabled));
+      cursor: not-allowed;
+    }
+  }
+
+  &_sm .#{$prefix}-select__selector {
+    min-height: var(--ty-select-height-sm, var(--ty-height-sm));
+    font-size: var(--ty-select-font-size-sm, var(--ty-font-size-sm));
+    padding: 0 var(--ty-select-padding-inline-end-sm, 24px) 0 var(--ty-select-padding-inline-start-sm, 8px);
+  }
+
+  &_md .#{$prefix}-select__selector {
+    min-height: var(--ty-select-height-md, var(--ty-height-md));
+    font-size: var(--ty-select-font-size-md, var(--ty-font-size-base));
+    padding: 0 var(--ty-select-padding-inline-end-md, 28px) 0 var(--ty-select-padding-inline-start-md, 10px);
+  }
+
+  &_lg .#{$prefix}-select__selector {
+    min-height: var(--ty-select-height-lg, var(--ty-height-lg));
+    font-size: var(--ty-select-font-size-lg, var(--ty-font-size-lg));
+    padding: 0 var(--ty-select-padding-inline-end-lg, 32px) 0 var(--ty-select-padding-inline-start-lg, 12px);
+  }
+
+  &_multiple {
+    .#{$prefix}-select__selector {
+      padding-right: var(--ty-select-multiple-padding-inline-end, 28px);
+    }
+
+    .#{$prefix}-select__selection {
+      flex-wrap: wrap;
+      gap: var(--ty-select-multiple-gap, 4px);
+      padding: var(--ty-select-multiple-padding-block, 2px) 0;
+    }
+  }
+
+  &_open .#{$prefix}-select__selector {
+    border-color: var(--ty-select-border-focus, var(--ty-input-border-focus, var(--ty-color-primary)));
+    box-shadow: var(--ty-select-shadow-focus, var(--ty-input-shadow-focus, var(--ty-shadow-focus)));
+  }
+
+  &__selector {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid var(--ty-select-border, var(--ty-input-border, var(--ty-color-border)));
+    border-radius: var(--ty-select-radius, var(--ty-border-radius));
+    background-color: var(--ty-select-bg, var(--ty-input-bg, var(--ty-color-bg-container)));
+    box-sizing: border-box;
+    transition: all 0.3s;
+
+    &:hover {
+      border-color: var(--ty-select-border-hover, var(--ty-input-border-hover, var(--ty-color-primary)));
+    }
+  }
+
+  &__selection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  &__selection-text {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ty-select-color, var(--ty-color-text));
+  }
+
+  &__placeholder {
+    color: var(--ty-select-placeholder, var(--ty-color-text-placeholder));
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  &__search {
+    flex: 1;
+    min-width: 4px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    color: var(--ty-select-color, var(--ty-color-text));
+    appearance: none;
+
+    &::placeholder {
+      color: var(--ty-select-placeholder, var(--ty-color-text-placeholder));
+    }
+  }
+
+  &__suffix {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ty-select-suffix-size, 14px);
+    height: var(--ty-select-suffix-size, 14px);
+    color: var(--ty-select-suffix-color, var(--ty-color-text-quaternary));
+  }
+
+  &__arrow {
+    display: inline-flex;
+    align-items: center;
+    transition: transform 300ms;
+
+    &_reverse {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__clear {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--ty-select-suffix-size, 14px);
+    color: var(--ty-select-clear-color, var(--ty-color-text-quaternary));
+    background: var(--ty-select-clear-bg, var(--ty-select-bg, var(--ty-input-bg, var(--ty-color-bg-container))));
+    cursor: pointer;
+    transition: color 0.2s;
+    border: none;
+    padding: 0;
+
+    &:hover {
+      color: var(--ty-select-clear-color-hover, var(--ty-color-text-tertiary));
+    }
+  }
+
+  &_has-value:hover &__clear {
+    display: inline-flex;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    height: var(--ty-select-tag-height, 22px);
+    padding: var(--ty-select-tag-padding, 0 4px 0 8px);
+    border-radius: var(--ty-select-tag-radius, var(--ty-select-radius, var(--ty-border-radius)));
+    background-color: var(--ty-select-tag-bg, var(--ty-color-fill-secondary));
+    font-size: var(--ty-select-tag-font-size, var(--ty-font-size-sm));
+    line-height: var(--ty-select-tag-line-height, 20px);
+    color: var(--ty-select-tag-color, var(--ty-color-text));
+    box-sizing: border-box;
+
+    &_max {
+      padding: var(--ty-select-tag-padding-max, 0 8px);
+    }
+  }
+
+  &__tag-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__tag-close {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+    cursor: pointer;
+    color: var(--ty-select-tag-close-color, var(--ty-color-text-quaternary));
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--ty-select-tag-close-color-hover, var(--ty-color-text));
+    }
+  }
+
+  &__dropdown {
+    width: 100%;
+    margin: 0;
+    padding: 4px 0;
+    list-style-type: none;
+    background-color: var(--ty-select-dropdown-bg, var(--ty-color-bg-container));
+    box-sizing: border-box;
+    overflow: hidden auto;
+    z-index: 10;
+    box-shadow: var(--ty-select-dropdown-shadow, $select-dropdown-shadow);
+    border-radius: var(--ty-select-radius, var(--ty-border-radius));
+    font-size: var(--ty-select-font-size-md, var(--ty-font-size-base));
+    max-height: var(--ty-select-dropdown-max-height, $select-dropdown-max-height);
+  }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+
+    svg {
+      animation: ty-select-spin 1s linear infinite;
+    }
+  }
+
+  &__empty {
+    padding: 16px;
+    text-align: center;
+    color: var(--ty-select-empty-color, var(--ty-color-text-quaternary));
+    font-size: var(--ty-select-font-size-sm, var(--ty-font-size-sm));
+  }
+}
+
+.#{$prefix}-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ty-select-option-padding, 7px 12px);
+  font-size: var(--ty-select-option-font-size, var(--ty-font-size-base));
+  line-height: 22px;
+  cursor: pointer;
+  color: var(--ty-select-option-color, var(--ty-color-text));
+  transition: background-color 0.2s;
+
+  &__content {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__check {
+    flex-shrink: 0;
+    margin-left: 8px;
+    color: var(--ty-select-border-focus, var(--ty-input-border-focus, var(--ty-color-primary)));
+  }
+
+  &_active {
+    background-color: var(--ty-select-option-active-bg, var(--ty-color-fill-secondary));
+  }
+
+  &_selected {
+    background-color: var(--ty-select-option-selected-bg, var(--ty-color-primary-bg));
+    font-weight: var(--ty-select-selected-font-weight, $select-selected-font-weight);
+  }
+
+  &_disabled {
+    cursor: not-allowed;
+    background-color: var(--ty-select-option-disabled-bg, var(--ty-color-bg-container));
+    color: var(--ty-select-option-disabled-color, var(--ty-color-text-quaternary));
+    opacity: 0.5;
+  }
+}
+
+.#{$prefix}-select-group {
+  &__title {
+    font-size: var(--ty-select-font-size-sm, var(--ty-font-size-sm));
+    cursor: default;
+    color: var(--ty-color-text-secondary);
+    padding: var(--ty-select-option-padding, 7px 12px);
+  }
+
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    > .#{$prefix}-select-option {
+      padding-left: 24px;
+    }
+  }
+}
+
+@keyframes ty-select-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

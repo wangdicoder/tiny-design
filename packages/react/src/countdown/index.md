@@ -2,6 +2,8 @@ import BasicDemo from './demo/Basic';
 import BasicSource from './demo/Basic.tsx?raw';
 import MillisecondDemo from './demo/Millisecond';
 import MillisecondSource from './demo/Millisecond.tsx?raw';
+import ScrollNumberDemo from './demo/ScrollNumber';
+import ScrollNumberSource from './demo/ScrollNumber.tsx?raw';
 
 # Countdown
 
@@ -28,6 +30,15 @@ import { Countdown } from 'tiny-design';
 A basic example.
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
+
+    </Demo>
+    <Demo>
+
+### Scroll Number
+
+Use with `ScrollNumber` to create a rolling countdown display.
+
+<DemoBlock component={ScrollNumberDemo} source={ScrollNumberSource} />
 
     </Demo>
   </Column>

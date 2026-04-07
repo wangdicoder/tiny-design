@@ -1,0 +1,65 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+@use './mixin' as *;
+
+$select-arrow: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDEyIDE2Ij4gIDxwYXRoIGZpbGw9IiMzOTNFNDgiIGQ9Ik0wLjIyMiw1LjYxMyBMNS40NTEsMC4yMjMgQzUuNzU2MjEyMDksLTAuMDc0MzYzMjMzMyA2LjI0Mjc4NzkxLC0wLjA3NDM2MzIzMzMgNi41NDgsMC4yMjMgTDExLjc3OCw1LjYxMyBDMTIuMTgsNi4wMjcgMTIuMDI1LDYuNjY3IDExLjQwNyw2LjY2NyBMMC41OTIsNi42NjcgQy0wLjAyNCw2LjY2NyAtMC4xOCw2LjAyNyAwLjIyMiw1LjYxMyBaIE0wLjU5Miw5LjMzMyBMMTEuNDA3LDkuMzMzIEMxMi4wMjUsOS4zMzMgMTIuMTgsOS45NzMgMTEuNzc3LDEwLjM4NyBMNi41NDcsMTUuNzc3IEM2LjI0MTkxMjU4LDE2LjA3MzcxNDMgNS43NTYwODc0MiwxNi4wNzM3MTQzIDUuNDUxLDE1Ljc3NyBMMC4yMjIsMTAuMzg3IEMtMC4xOCw5Ljk3MyAtMC4wMjQsOS4zMzMgMC41OTIsOS4zMzMgWiIvPjwvc3ZnPg==';
+
+.#{$prefix}-select-native {
+  display: inline-flex;
+  appearance: none;
+  cursor: pointer;
+  color: var(--ty-native-select-color);
+  min-width: 200px;
+  margin: 0;
+  line-height: 18px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  border: 1px solid var(--ty-native-select-border);
+  border-radius: var(--ty-native-select-radius);
+  background-color: var(--ty-native-select-bg);
+  background-image: url($select-arrow);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.62em auto, 100%;
+  transition: all 0.3s;
+  outline: none;
+
+  &:hover {
+    border-color: var(--ty-native-select-border-hover);
+  }
+
+  &:focus {
+    border-color: var(--ty-native-select-border-focus);
+    box-shadow: var(--ty-native-select-shadow-focus);
+  }
+
+  &_disabled {
+    background-image: url($select-arrow);
+    background-size: 0.52em auto, 100%;
+    background-color: var(--ty-native-select-disabled-bg);
+    opacity: var(--ty-native-select-opacity-disabled);
+    color: var(--ty-native-select-disabled-color);
+    cursor: not-allowed;
+    resize: none;
+
+    &:hover {
+      border-color: transparent;
+    }
+
+    &:focus {
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+
+  &_sm {
+    @include native-size(var(--ty-native-select-sm-padding), var(--ty-native-select-font-size-sm));
+  }
+
+  &_md {
+    @include native-size(var(--ty-native-select-md-padding), var(--ty-native-select-font-size-md));
+  }
+
+  &_lg {
+    @include native-size(var(--ty-native-select-lg-padding), var(--ty-native-select-font-size-lg));
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "keyboard.bg": {
+    "$value": "#f6f6f6",
+    "$type": "color",
+    "description": "Keyboard bg."
+  },
+  "keyboard.border": {
+    "$value": "#d8d8d8",
+    "$type": "color",
+    "description": "Keyboard border."
+  },
+  "keyboard.border-bottom": {
+    "$value": "#ccc",
+    "$type": "color",
+    "description": "Keyboard border bottom."
+  },
+  "keyboard.color": {
+    "$value": "#333",
+    "$type": "color",
+    "description": "Keyboard color."
+  },
+  "keyboard.shadow": {
+    "$value": "inset 0 -1px 0 #ccc",
+    "$type": "shadow",
+    "description": "Keyboard shadow."
+  },
+  "keyboard.font-family": {
+    "$value": "{font-family-monospace}",
+    "$type": "font-family",
+    "description": "Keyboard font family.",
+    "fallback": "--ty-font-family-monospace"
+  },
+  "keyboard.padding": {
+    "$value": "4px 8px",
+    "$type": "string",
+    "description": "Keyboard padding."
+  },
+  "keyboard.radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Keyboard border radius."
+  },
+  "keyboard.font-size": {
+    "$value": "11px",
+    "$type": "dimension",
+    "description": "Keyboard font size."
+  }
+}

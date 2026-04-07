@@ -28,6 +28,8 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@tiny-design/
 import { Bar, BarChart } from 'recharts';
 ```
 
+`ChartContainer` 会自动处理响应式尺寸，直接传入图表组件即可。
+
 ## 代码演示
 
 <Layout>
@@ -148,6 +150,8 @@ const chartData = [
 | children  | Recharts 图表元素                      | `React.ReactElement`  | -       |
 | className | 容器类名                               | `string`              | -       |
 | style     | 样式对象（必须包含 height 或 min-height） | `CSSProperties`     | -       |
+
+不要在 `ChartContainer` 内再嵌套一层 `ResponsiveContainer`。
 
 ### ChartTooltipContent
 

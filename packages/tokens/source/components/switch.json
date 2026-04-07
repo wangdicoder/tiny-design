@@ -1,0 +1,146 @@
+{
+  "switch.bg": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Unchecked switch track background color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "switch.bg.checked": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Checked switch track background color.",
+    "fallback": "--ty-color-primary"
+  },
+  "switch.thumb-bg": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Switch thumb background color."
+  },
+  "switch.thumb-border": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Unchecked switch thumb border color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "switch.thumb-border.checked": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Checked switch thumb border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "switch.thumb-shadow": {
+    "$value": "0 1px 3px 1px rgba(0, 0, 0, 0.2)",
+    "$type": "shadow",
+    "description": "Switch thumb shadow."
+  },
+  "switch.label-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Switch label color."
+  },
+  "switch.font-size.sm": {
+    "$value": "9px",
+    "$type": "dimension",
+    "description": "Small switch label font size."
+  },
+  "switch.font-size.md": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Medium switch label font size."
+  },
+  "switch.font-size.lg": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Large switch label font size."
+  },
+  "switch.margin-inline.sm": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Small switch horizontal margin."
+  },
+  "switch.margin-inline.md": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Medium switch horizontal margin."
+  },
+  "switch.margin-inline.lg": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Large switch horizontal margin."
+  },
+  "switch.width.sm": {
+    "$value": "29px",
+    "$type": "dimension",
+    "description": "Small switch width."
+  },
+  "switch.width.md": {
+    "$value": "36px",
+    "$type": "dimension",
+    "description": "Medium switch width."
+  },
+  "switch.width.lg": {
+    "$value": "42px",
+    "$type": "dimension",
+    "description": "Large switch width."
+  },
+  "switch.height.sm": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Small switch height."
+  },
+  "switch.height.md": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Medium switch height."
+  },
+  "switch.height.lg": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Large switch height."
+  },
+  "switch.radius.sm": {
+    "$value": "18px",
+    "$type": "dimension",
+    "description": "Small switch track radius."
+  },
+  "switch.radius.md": {
+    "$value": "22px",
+    "$type": "dimension",
+    "description": "Medium switch track radius."
+  },
+  "switch.radius.lg": {
+    "$value": "26px",
+    "$type": "dimension",
+    "description": "Large switch track radius."
+  },
+  "switch.label-padding-inline-start.default": {
+    "$value": "11px",
+    "$type": "dimension",
+    "description": "Unchecked switch label leading padding."
+  },
+  "switch.label-padding-inline-end.default": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Unchecked switch label trailing padding."
+  },
+  "switch.label-padding-inline-start.checked": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Checked switch label leading padding."
+  },
+  "switch.label-padding-inline-end.checked": {
+    "$value": "11px",
+    "$type": "dimension",
+    "description": "Checked switch label trailing padding."
+  },
+  "switch.transition-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Switch transition duration."
+  },
+  "switch.disabled-opacity": {
+    "$value": "0.4",
+    "$type": "number",
+    "description": "Disabled switch opacity."
+  }
+}

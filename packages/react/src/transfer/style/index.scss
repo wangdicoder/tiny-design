@@ -1,0 +1,98 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-transfer {
+  box-sizing: border-box;
+  font-size: var(--ty-transfer-font-size);
+  color: var(--ty-transfer-color);
+
+  &__left-arrow {
+    transform: rotate(-90deg);
+  }
+
+  &__right-arrow {
+    transform: rotate(90deg);
+  }
+
+  &__buttons {
+    display: inline-block;
+    box-sizing: border-box;
+    margin: var(--ty-transfer-buttons-margin);
+    vertical-align: middle;
+
+    .#{$prefix}-btn {
+      display: block;
+      margin: var(--ty-transfer-button-margin);
+      padding: var(--ty-transfer-button-padding);
+      min-width: var(--ty-transfer-button-min-width);
+    }
+  }
+}
+
+.#{$prefix}-transfer-panel {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  width: var(--ty-transfer-panel-width);
+  border: 1px solid var(--ty-transfer-border);
+  border-radius: var(--ty-transfer-panel-radius);
+
+  &__header {
+    padding: var(--ty-transfer-header-padding);
+    color: var(--ty-transfer-color);
+    background: var(--ty-transfer-header-bg);
+    border-bottom: 1px solid var(--ty-transfer-footer-border);
+    border-radius: var(--ty-transfer-panel-radius) var(--ty-transfer-panel-radius) 0 0;
+  }
+
+  &__body {
+    position: relative;
+    padding: var(--ty-transfer-body-padding);
+  }
+
+  &__input-container{
+    padding: var(--ty-transfer-input-container-padding);
+  }
+
+  &__list-container{
+    height: var(--ty-transfer-list-height);
+  }
+
+  &__list {
+    display: block;
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__list-item {
+    box-sizing: border-box;
+    padding: 0 var(--ty-transfer-item-padding-inline);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-height: var(--ty-transfer-item-min-height);
+    display: flex;
+    margin-right: 0;
+    transition: background-color 250ms;
+
+    &:not(.#{$prefix}-checkbox_disabled):hover{
+      background-color: var(--ty-transfer-item-hover-bg);
+    }
+  }
+
+  &__not-found {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+
+  &__footer {
+    padding: var(--ty-transfer-footer-padding);
+    border-top: 1px solid var(--ty-transfer-footer-border);
+    background-color: var(--ty-transfer-footer-bg);
+    border-radius: 0 0 var(--ty-transfer-panel-radius) var(--ty-transfer-panel-radius);
+  }
+}

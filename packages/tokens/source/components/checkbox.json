@@ -1,0 +1,87 @@
+{
+  "checkbox.size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Checkbox control size."
+  },
+  "checkbox.radius": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Checkbox control border radius."
+  },
+  "checkbox.label-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Gap between checkbox control and label."
+  },
+  "checkbox.label-padding-inline-end": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Checkbox label trailing padding."
+  },
+  "checkbox.label-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Checkbox label color.",
+    "fallback": "--ty-color-text"
+  },
+  "checkbox.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Checkbox background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "checkbox.border": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Checkbox border color.",
+    "fallback": "--ty-color-border"
+  },
+  "checkbox.border.hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Checkbox hover border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "checkbox.bg.checked": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Checked checkbox background color.",
+    "fallback": "--ty-color-primary"
+  },
+  "checkbox.border.checked": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Checked checkbox border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "checkbox.indicator-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Checkbox check and indeterminate indicator color."
+  },
+  "checkbox.bg.disabled": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Disabled checkbox background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "checkbox.border.disabled": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Disabled checkbox border color.",
+    "fallback": "--ty-color-border"
+  },
+  "checkbox.indicator-color.disabled": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Disabled checkbox indicator color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "checkbox.label-color.disabled": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Disabled checkbox label color.",
+    "fallback": "--ty-color-text-quaternary"
+  }
+}

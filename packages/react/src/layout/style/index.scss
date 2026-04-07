@@ -1,0 +1,82 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-layout {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  &_has-sidebar {
+    flex-direction: row;
+  }
+}
+
+.#{$prefix}-layout-header {
+  box-sizing: border-box;
+  height: var(--ty-layout-header-height);
+  background-color: var(--ty-layout-header-bg);
+}
+
+.#{$prefix}-layout-footer {
+  box-sizing: border-box;
+  padding: var(--ty-layout-footer-padding);
+  background-color: var(--ty-layout-footer-bg);
+}
+
+.#{$prefix}-layout-content {
+  flex: 1;
+  box-sizing: border-box;
+  background-color: var(--ty-layout-content-bg);
+}
+
+.#{$prefix}-layout-sidebar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--ty-layout-sidebar-transition-duration);
+  background: var(--ty-layout-sidebar-bg);
+  color: var(--ty-layout-sidebar-color);
+
+  &:last-child {
+    .#{$prefix}-layout-sidebar__trigger-icon {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &__children {
+    height: 100%;
+  }
+
+  &__trigger {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    cursor: pointer;
+    height: var(--ty-layout-sidebar-trigger-height);
+    background-color: var(--ty-layout-sidebar-trigger-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  &_light {
+    background-color: var(--ty-layout-sidebar-light-bg);
+    color: var(--ty-layout-sidebar-light-color);
+
+    .#{$prefix}-layout-sidebar {
+      &__trigger {
+        background-color: var(--ty-layout-sidebar-light-trigger-bg);
+      }
+
+      &__trigger-icon {
+        color: var(--ty-layout-sidebar-light-trigger-icon);
+      }
+    }
+  }
+}

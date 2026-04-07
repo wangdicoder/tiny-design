@@ -1,0 +1,23 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-kbd {
+  font-family: var(--ty-keyboard-font-family);
+  display: inline-block;
+  padding: var(--ty-keyboard-padding);
+  border: 1px solid var(--ty-keyboard-border);
+  border-bottom-color: var(--ty-keyboard-border-bottom);
+  border-radius: var(--ty-keyboard-radius);
+  font-size: var(--ty-keyboard-font-size);
+  line-height: 1;
+  vertical-align: middle;
+  background-color: var(--ty-keyboard-bg);
+  box-shadow: var(--ty-keyboard-shadow);
+  color: var(--ty-keyboard-color);
+  cursor: pointer;
+  user-select: none;
+
+  &:active {
+    transform: translate3d(0, 1px, 0);
+    box-shadow: none;
+  }
+}

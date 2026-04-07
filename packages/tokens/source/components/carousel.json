@@ -1,0 +1,72 @@
+{
+  "carousel.arrow-bg": {
+    "$value": "rgba(0, 0, 0, 0.25)",
+    "$type": "color",
+    "description": "Carousel arrow background color."
+  },
+  "carousel.arrow-hover-bg": {
+    "$value": "rgba(0, 0, 0, 0.45)",
+    "$type": "color",
+    "description": "Carousel arrow hover background color."
+  },
+  "carousel.arrow-size": {
+    "$value": "36px",
+    "$type": "dimension",
+    "description": "Carousel arrow control size."
+  },
+  "carousel.arrow-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Carousel arrow icon color."
+  },
+  "carousel.arrow-offset": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Carousel arrow and dots inset offset."
+  },
+  "carousel.dot-active-bg": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Carousel dot active bg."
+  },
+  "carousel.dot-bg": {
+    "$value": "rgba(255, 255, 255, 0.3)",
+    "$type": "color",
+    "description": "Carousel dot bg."
+  },
+  "carousel.dot-hover-bg": {
+    "$value": "rgba(255, 255, 255, 0.6)",
+    "$type": "color",
+    "description": "Carousel dot hover background color."
+  },
+  "carousel.dot-width": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Carousel dot width."
+  },
+  "carousel.dot-height": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Carousel dot height."
+  },
+  "carousel.dot-gap": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Carousel dot gap."
+  },
+  "carousel.dot-radius": {
+    "$value": "1px",
+    "$type": "dimension",
+    "description": "Carousel dot radius."
+  },
+  "carousel.dot-width-active": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Carousel active horizontal dot width."
+  },
+  "carousel.dot-height-active": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Carousel active vertical dot height."
+  }
+}

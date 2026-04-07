@@ -1,0 +1,64 @@
+{
+  "radio.size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Radio control size."
+  },
+  "radio.dot-size": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Radio inner dot size."
+  },
+  "radio.label-gap": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Gap between radio control and label."
+  },
+  "radio.label-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Radio label color.",
+    "fallback": "--ty-color-text"
+  },
+  "radio.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Radio background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "radio.border": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Radio border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "radio.border.checked": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Checked radio border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "radio.dot-bg": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Radio dot color.",
+    "fallback": "--ty-color-primary"
+  },
+  "radio.border.disabled": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Disabled radio border color.",
+    "fallback": "--ty-color-border"
+  },
+  "radio.dot-bg.disabled": {
+    "$value": "rgba(0, 0, 0, 0.2)",
+    "$type": "color",
+    "description": "Disabled radio dot color."
+  },
+  "radio.label-color.disabled": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Disabled radio label color.",
+    "fallback": "--ty-color-text-quaternary"
+  }
+}

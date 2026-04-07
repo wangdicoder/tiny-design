@@ -3,9 +3,9 @@
 @mixin badge-base {
   box-sizing: border-box;
   display: inline-block;
-  z-index: 10;
+  z-index: var(--ty-badge-z-index);
   position: absolute;
   transform: translateX(-50%) translateY(-50%);
-  border-radius: $badge-size;
+  border-radius: var(--ty-badge-size);
   box-shadow: var(--ty-badge-shadow);
 }

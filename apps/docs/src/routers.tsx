@@ -58,9 +58,9 @@ const guide = {
     () => import('../guides/cli.md'),
     () => import('../guides/cli.zh_CN.md'),
   ),
-  themeEditor: ll(
-    () => import('./containers/theme-editor'),
-    () => import('./containers/theme-editor'),
+  themeStudio: ll(
+    () => import('./containers/theme-studio'),
+    () => import('./containers/theme-studio'),
   ),
 };
 
@@ -73,6 +73,7 @@ const c = {
   typography: ll(() => import('../../../packages/react/src/typography/index.md'), () => import('../../../packages/react/src/typography/index.zh_CN.md')),
   aspectRatio: ll(() => import('../../../packages/react/src/aspect-ratio/index.md'), () => import('../../../packages/react/src/aspect-ratio/index.zh_CN.md')),
   divider: ll(() => import('../../../packages/react/src/divider/index.md'), () => import('../../../packages/react/src/divider/index.zh_CN.md')),
+  gridSystem: ll(() => import('../../../packages/react/src/row/index.md'), () => import('../../../packages/react/src/row/index.zh_CN.md')),
   grid: ll(() => import('../../../packages/react/src/grid/index.md'), () => import('../../../packages/react/src/grid/index.zh_CN.md')),
   layout: ll(() => import('../../../packages/react/src/layout/index.md'), () => import('../../../packages/react/src/layout/index.zh_CN.md')),
   space: ll(() => import('../../../packages/react/src/space/index.md'), () => import('../../../packages/react/src/space/index.zh_CN.md')),
@@ -191,7 +192,7 @@ export const getThemeMenu = (s: SiteLocale): RouterItem[] => {
   return [
     { title: s.themeMenu.customiseTheme, route: 'customise-theme', component: pick(guide.customiseTheme, isZh) },
     { title: s.themeMenu.colors, route: 'colors', component: pick(guide.colors, isZh) },
-    { title: s.themeMenu.themeEditor, route: 'theme-editor', component: pick(guide.themeEditor, isZh) },
+    { title: s.themeMenu.themeStudio, route: 'theme-studio', component: pick(guide.themeStudio, isZh) },
   ];
 };
 
@@ -214,6 +215,7 @@ export const getComponentMenu = (s: SiteLocale): RouterItem[] => {
         { title: 'AspectRatio', route: 'aspect-ratio', component: pick(c.aspectRatio, z) },
         { title: 'Divider', route: 'divider', component: pick(c.divider, z) },
         { title: 'Flex', route: 'flex', component: pick(c.flex, z) },
+        { title: 'Grid System', route: 'grid-system', component: pick(c.gridSystem, z) },
         { title: 'Grid', route: 'grid', component: pick(c.grid, z) },
         { title: 'Layout', route: 'layout', component: pick(c.layout, z) },
         { title: 'Space', route: 'space', component: pick(c.space, z) },

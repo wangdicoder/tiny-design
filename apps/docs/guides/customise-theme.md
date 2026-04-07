@@ -1,14 +1,16 @@
 # Customise Theme
 
-Tiny UI provides three ways to customise the look and feel:
+Tiny UI now uses a v2 token system with one primary runtime model:
 
-1. **Theme Editor** — a visual, no-code tool for real-time theming (great for exploration and quick customisation).
-2. **Design tokens** — CSS custom properties that power light and dark mode. These are the runtime values every component reads.
-3. **SCSS constants** — compile-time structural constants (padding, transitions, arrow sizes, etc.) that can be overridden when you build your own stylesheet.
+1. **CSS custom properties** for direct runtime overrides.
+2. **ThemeDocument** for portable theme JSON.
+3. **ConfigProvider `theme.tokens`** for React-scoped theming.
+
+SCSS constants still exist, but they are only for compile-time structural overrides.
 
 ## Theme Editor
 
-The built-in [Theme Editor](/theme/theme-editor) lets you visually customise design tokens in real time. You can:
+The built-in [Theme Editor](/theme/theme-studio) lets you visually customise design tokens in real time. You can:
 
 - Pick from **20+ preset themes** (e.g. Catppuccin, Mocha Mousse, Cyberpunk) or start from scratch.
 - Adjust primary, success, warning, danger, and info colours, background, text, and border colours.
@@ -17,6 +19,8 @@ The built-in [Theme Editor](/theme/theme-editor) lets you visually customise des
 - Export your customised tokens as CSS or JSON to use in your project.
 
 Changes are applied instantly via CSS custom properties — no rebuild required.
+
+The editor exports the same v2 token model used by the runtime, so the result can be applied as CSS variables, stored as a `ThemeDocument`, or passed into `ConfigProvider`.
 
 ## Dark mode
 
@@ -55,13 +59,17 @@ The hook returns:
 
 ## Design tokens (CSS custom properties)
 
-Every colour, shadow, and visual state is exposed as a `--ty-*` CSS custom property on `:root`. This is the **primary way** to customise Tiny UI. You can override any token in your own stylesheet:
+Every semantic token and component token is exposed as a `--ty-*` CSS custom property. This is the lowest-level runtime API and works in any stack.
+
+You can override tokens directly in your own stylesheet:
 
 ```css
 :root {
   --ty-color-primary: #007bff;
   --ty-color-primary-hover: #3d9bff;
   --ty-color-primary-active: #0062d6;
+  --ty-button-radius: 999px;
+  --ty-card-header-padding: 20px;
 }
 ```
 
@@ -72,8 +80,16 @@ html[data-tiny-theme='dark'] {
   --ty-color-primary: #3d9bff;
   --ty-color-primary-hover: #66b3ff;
   --ty-color-primary-active: #007bff;
+  --ty-color-bg-container: #111827;
+  --ty-color-text: rgba(249, 250, 251, 0.92);
 }
 ```
+
+### Naming rules
+
+- Semantic token keys use kebab-case, for example `color-primary`.
+- Component token keys use dot paths, for example `button.radius` or `card.header-padding`.
+- Runtime CSS variables are the same keys with dots converted to hyphens, for example `--ty-button-radius` and `--ty-card-header-padding`.
 
 ### Commonly used tokens
 
@@ -92,9 +108,77 @@ html[data-tiny-theme='dark'] {
 | `--ty-height-md` | `32px` | Medium control height |
 | `--ty-height-lg` | `42px` | Large control height |
 
-Every component also has its own tokens for fine-grained control. For example, Button uses `--ty-btn-default-bg`, `--ty-btn-default-color`, etc. The full list of tokens can be found in the source:
-- [Light theme tokens](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/themes/_light.scss)
-- [Dark theme tokens](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/themes/_dark.scss)
+Every component also has its own tokens for fine-grained control. For example, Button uses `--ty-button-bg-default`, `--ty-button-text-default`, and `--ty-button-radius`. The full list of supported tokens is generated from the v2 registry and component sources:
+- [Token registry](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/dist/registry.json)
+- [Component token sources](https://github.com/wangdicoder/tiny-design/tree/master/packages/tokens/source/components)
+
+## ThemeDocument
+
+`ThemeDocument` is the canonical JSON format for sharing, exporting, saving, and applying themes.
+
+```json
+{
+  "meta": {
+    "id": "brand-ocean",
+    "name": "Brand Ocean",
+    "schemaVersion": 1
+  },
+  "mode": "light",
+  "extends": "tiny-light",
+  "tokens": {
+    "semantic": {
+      "color-primary": "#0ea5e9",
+      "border-radius": "12px"
+    },
+    "components": {
+      "button.radius": "999px",
+      "card.header-padding": "20px"
+    }
+  }
+}
+```
+
+Use `ThemeDocument` when you need:
+
+- a serializable theme file
+- import/export between tools
+- community themes or preset themes
+- mode-aware overrides built on top of `tiny-light` or `tiny-dark`
+
+## React: ConfigProvider
+
+In React apps, the recommended API is `ConfigProvider theme={{ tokens: ... }}`.
+
+```tsx
+import { ConfigProvider } from '@tiny-design/react';
+
+<ConfigProvider
+  theme={{
+    mode: 'light',
+    extends: 'tiny-light',
+    tokens: {
+      semantic: {
+        'color-primary': '#0ea5e9',
+        'border-radius': '12px',
+      },
+      components: {
+        'button.radius': '999px',
+        'card.header-padding': '20px',
+      },
+    },
+  }}
+>
+  <App />
+</ConfigProvider>
+```
+
+Use this when you want:
+
+- scoped theming for part of the React tree
+- nested theme overrides
+- popup / portal content to inherit the same token scope
+
+`ConfigProvider` no longer uses the old `theme.token` or `theme.components` API. Use `theme.tokens.semantic` and `theme.tokens.components` only.
 
 ## SCSS constants
 
@@ -146,6 +230,13 @@ $card-body-padding: 16px !default;
 $notification-width: 380px !default;
 ```
 
-> **Note:** Colours, font sizes, border radii, shadows, and all other visual tokens should be customised via CSS custom properties (see above), not SCSS variables. SCSS constants are only for structural values like padding and sizing.
+> **Note:** Colours, typography, radii, shadows, and all other visual tokens should be customised through v2 tokens, not SCSS variables. SCSS constants are only for compile-time structural values like padding and sizing.
+
+## Recommended approach
+
+- Use CSS variables when you want the simplest runtime override.
+- Use `ThemeDocument` when you need a portable JSON theme format.
+- Use `ConfigProvider` when you need scoped theming in React.
+- Use SCSS constants only when a value must be decided at build time.
 
 Please report an issue if the existing list of tokens or constants is not enough for you.

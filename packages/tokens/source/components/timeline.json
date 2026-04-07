@@ -1,0 +1,69 @@
+{
+  "timeline.dot-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Timeline dot bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "timeline.color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Timeline text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "timeline.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Timeline root font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "timeline.item-font-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Timeline item font size."
+  },
+  "timeline.item-padding-bottom": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Timeline item bottom padding."
+  },
+  "timeline.head-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Timeline head bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "timeline.line-color": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "Timeline line color.",
+    "fallback": "--ty-color-border-secondary"
+  },
+  "timeline.head-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Timeline head accent color.",
+    "fallback": "--ty-color-primary"
+  },
+  "timeline.dot-size": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Timeline dot size."
+  },
+  "timeline.dot-border-width": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Timeline dot border width."
+  },
+  "timeline.dot-border-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Timeline dot border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "timeline.content-offset": {
+    "$value": "25px",
+    "$type": "dimension",
+    "description": "Timeline content leading padding."
+  }
+}

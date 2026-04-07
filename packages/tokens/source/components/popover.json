@@ -1,0 +1,65 @@
+{
+  "popover.arrow-size": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Popover arrow size."
+  },
+  "popover.title-padding": {
+    "$value": "9px 16px 7px",
+    "$type": "string",
+    "description": "Popover title padding."
+  },
+  "popover.title-font-weight": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Popover title font weight."
+  },
+  "popover.title-min-width": {
+    "$value": "177px",
+    "$type": "dimension",
+    "description": "Popover title min width."
+  },
+  "popover.title-min-height": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Popover title min height."
+  },
+  "popover.title-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Light popover title color.",
+    "fallback": "--ty-color-text"
+  },
+  "popover.title-color.dark": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Dark popover title color."
+  },
+  "popover.title-border": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "Light popover title border color.",
+    "fallback": "--ty-color-border-secondary"
+  },
+  "popover.dark-border": {
+    "$value": "#4a4a4a",
+    "$type": "color",
+    "description": "Dark popover title border color."
+  },
+  "popover.content-padding": {
+    "$value": "12px 15px",
+    "$type": "string",
+    "description": "Popover content padding."
+  },
+  "popover.content-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Light popover content color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "popover.content-color.dark": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Dark popover content color."
+  }
+}

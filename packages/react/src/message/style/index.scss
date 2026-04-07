@@ -1,0 +1,59 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+@use '@tiny-design/tokens/scss/animation' as *;
+
+.#{$prefix}-message {
+  position: relative;
+  padding: var(--ty-message-padding);
+  background: var(--ty-message-bg);
+  border-radius: var(--ty-message-radius);
+  box-shadow: var(--ty-message-shadow);
+  transition: all var(--ty-message-transition-duration);
+  opacity: 0;
+  transform: translateY(var(--ty-message-offset-y-enter));
+  box-sizing: border-box;
+  display: flex;
+  font-size: var(--ty-message-font-size);
+  align-items: center;
+  pointer-events: all;
+
+  &-container {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    pointer-events: none;
+    transition: top 200ms;
+    z-index: var(--ty-message-z-index);
+    box-sizing: border-box;
+  }
+
+  &__content {
+    font-size: inherit;
+    line-height: var(--ty-message-content-line-height);
+    color: var(--ty-message-content-color);
+  }
+
+  &_fade-slide {
+    &-enter {
+      opacity: 0;
+      transform: translateY(var(--ty-message-offset-y-enter));
+    }
+
+    &-enter-done {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__icon {
+    margin-right: var(--ty-message-icon-gap);
+
+    &_loading{
+      animation: ty-rotate 1s linear infinite;
+    }
+  }
+
+  &__extra {
+    margin-left: var(--ty-message-extra-gap);
+  }
+}

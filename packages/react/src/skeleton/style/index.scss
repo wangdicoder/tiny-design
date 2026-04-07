@@ -1,0 +1,39 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-skeleton {
+  display: inline-block;
+  width: 100%;
+  height: var(--ty-skeleton-height);
+  position: relative;
+  overflow: hidden;
+  background-color: var(--ty-skeleton-bg);
+
+  & + & {
+    margin-top: var(--ty-skeleton-stack-gap);
+  }
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background-image: var(--ty-skeleton-shimmer);
+    background-size: 200% 100%;
+    animation: ty-shimmer var(--ty-skeleton-animation-duration) ease infinite;
+  }
+
+  &_rounded {
+    border-radius: 50%;
+  }
+
+  &_active {
+    &::after {
+      content: '';
+    }
+  }
+}
+
+@keyframes ty-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

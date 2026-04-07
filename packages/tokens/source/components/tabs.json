@@ -1,0 +1,236 @@
+{
+  "tabs.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Tabs root font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "tabs.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Tabs root text color.",
+    "fallback": "--ty-color-text"
+  },
+  "tabs.nav-margin": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Tabs navigation spacing from content."
+  },
+  "tabs.border": {
+    "$value": "{color-fill-tertiary}",
+    "$type": "color",
+    "description": "Tabs navigation divider color.",
+    "fallback": "--ty-color-fill-tertiary"
+  },
+  "tabs.tab-padding-block.sm": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Small tab vertical padding."
+  },
+  "tabs.tab-padding-block.md": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Medium tab vertical padding."
+  },
+  "tabs.tab-padding-block.lg": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Large tab vertical padding."
+  },
+  "tabs.tab-gap": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Gap between adjacent tabs."
+  },
+  "tabs.tab-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Inactive tab text color.",
+    "fallback": "--ty-color-text"
+  },
+  "tabs.tab-hover-color": {
+    "$value": "{color-primary-text-hover}",
+    "$type": "color",
+    "description": "Tab hover text color.",
+    "fallback": "--ty-color-primary-text-hover"
+  },
+  "tabs.tab-active-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Active tab text color.",
+    "fallback": "--ty-color-primary"
+  },
+  "tabs.tab-active-font-weight": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Active tab font weight."
+  },
+  "tabs.tab-disabled-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Disabled tab text color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "tabs.icon-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Gap between tab icon and label."
+  },
+  "tabs.remove-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Gap between tab label and close icon."
+  },
+  "tabs.remove-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Editable tab close icon font size."
+  },
+  "tabs.remove-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Editable tab close icon color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "tabs.remove-color-hover": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Editable tab close icon hover color.",
+    "fallback": "--ty-color-text"
+  },
+  "tabs.ink-bar-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Tabs ink bar color.",
+    "fallback": "--ty-color-primary"
+  },
+  "tabs.ink-bar-height": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Tabs ink bar height."
+  },
+  "tabs.nav-button-size": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Scrollable tabs nav button size."
+  },
+  "tabs.nav-button-font-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Scrollable tabs nav button font size."
+  },
+  "tabs.nav-button-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Scrollable tabs nav button color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "tabs.nav-button-color-hover": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Scrollable tabs nav button hover color.",
+    "fallback": "--ty-color-text"
+  },
+  "tabs.nav-button-color-disabled": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Scrollable tabs nav button disabled color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "tabs.add-size": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Editable tabs add button size."
+  },
+  "tabs.add-font-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Editable tabs add button font size."
+  },
+  "tabs.add-margin": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Editable tabs add button margin."
+  },
+  "tabs.add-radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Editable tabs add button border radius."
+  },
+  "tabs.add-border-color": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Editable tabs add button border color.",
+    "fallback": "--ty-color-border"
+  },
+  "tabs.add-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Editable tabs add button color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "tabs.add-color-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Editable tabs add button hover color.",
+    "fallback": "--ty-color-primary"
+  },
+  "tabs.add-border-color-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Editable tabs add button hover border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "tabs.extra-gap": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Gap between tab nav and extra content."
+  },
+  "tabs.size.sm": {
+    "$value": "13px",
+    "$type": "dimension",
+    "description": "Small tabs font size."
+  },
+  "tabs.size.lg": {
+    "$value": "15px",
+    "$type": "dimension",
+    "description": "Large tabs font size."
+  },
+  "tabs.card-padding-block": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Card tabs vertical padding."
+  },
+  "tabs.card-padding-inline": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Card tabs horizontal padding."
+  },
+  "tabs.card-padding-inline-editable-end": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Editable card tabs trailing padding."
+  },
+  "tabs.card-gap": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Gap between adjacent card tabs."
+  },
+  "tabs.card-radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Card tabs border radius."
+  },
+  "tabs.card-bg": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "Card tabs background color.",
+    "fallback": "--ty-color-fill"
+  },
+  "tabs.card-active-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Active card tabs background color.",
+    "fallback": "--ty-color-bg-container"
+  }
+}

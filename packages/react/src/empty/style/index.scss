@@ -1,0 +1,26 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__image-container {
+    margin-bottom: var(--ty-empty-image-margin-bottom);
+  }
+
+  &__image {
+    max-width: var(--ty-empty-image-max-width);
+  }
+
+  &__desc {
+    color: var(--ty-empty-desc-color);
+    font-size: var(--ty-empty-desc-font-size);
+    margin: 0;
+  }
+
+  &__footer {
+    margin-top: var(--ty-empty-footer-margin-top);
+  }
+}

@@ -1,0 +1,116 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-modal {
+  position: relative;
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  top: var(--ty-modal-offset-top, 100px);
+
+  &__content {
+    box-sizing: border-box;
+    background-color: var(--ty-modal-bg, var(--ty-color-bg-container));
+    position: relative;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: var(--ty-modal-radius, 4px);
+    box-shadow: var(--ty-modal-shadow, var(--ty-shadow-modal));
+    transition: all var(--ty-modal-transition-duration, 300ms);
+
+    &_slide {
+      &-enter {
+        transform: translateY(var(--ty-modal-enter-offset-y, -20px));
+        transition: none;
+      }
+
+      &-enter-done {
+        transform: translateY(0);
+      }
+
+      &-exit {
+        transform: translateY(0);
+      }
+
+      &-exit-done {
+        transform: translateY(var(--ty-modal-enter-offset-y, -20px));
+      }
+    }
+
+    &_scale {
+      &-enter {
+        transform: scale(var(--ty-modal-scale-enter, 0));
+        transition: none;
+      }
+
+      &-enter-done {
+        transform: scale(1);
+      }
+
+      &-exit {
+        transform: scale(1);
+      }
+
+      &-exit-done {
+        transform: scale(var(--ty-modal-scale-enter, 0));
+      }
+    }
+  }
+
+  &__header {
+    box-sizing: border-box;
+    padding: var(--ty-modal-header-padding-block, 16px) var(--ty-modal-header-padding-inline, 24px);
+    color: var(--ty-modal-header-color, var(--ty-color-text-secondary));
+    background: var(--ty-modal-header-bg, var(--ty-color-bg-container));
+    border-bottom: 1px solid var(--ty-modal-header-border, var(--ty-color-border-secondary));
+    border-radius: var(--ty-modal-radius, 4px) var(--ty-modal-radius, 4px) 0 0;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--ty-modal-title-color, var(--ty-color-text));
+    font-weight: var(--ty-modal-title-font-weight, 500);
+    font-size: var(--ty-modal-title-font-size, 16px);
+    line-height: var(--ty-modal-title-line-height, 22px);
+  }
+
+  &__close-btn {
+    cursor: pointer;
+    color: var(--ty-modal-close-color, var(--ty-color-text-tertiary));
+    width: var(--ty-modal-close-size, 56px);
+    height: var(--ty-modal-close-size, 56px);
+    line-height: var(--ty-modal-close-size, 56px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  &__body {
+    box-sizing: border-box;
+    padding: var(--ty-modal-body-padding, 24px);
+    font-size: var(--ty-modal-body-font-size, 14px);
+    line-height: var(--ty-modal-body-line-height, 1.5);
+    word-wrap: break-word;
+  }
+
+  &__footer {
+    box-sizing: border-box;
+    padding: var(--ty-modal-footer-padding-block, 12px) var(--ty-modal-footer-padding-inline, 16px);
+    border-top: 1px solid var(--ty-modal-footer-border, var(--ty-color-border-secondary));
+    border-radius: 0 0 var(--ty-modal-radius, 4px) var(--ty-modal-radius, 4px);
+  }
+
+  &__footer-btn {
+    margin-bottom: 0;
+  }
+
+  &_centered {
+    align-items: center;
+    top: 0;
+  }
+}

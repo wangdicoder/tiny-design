@@ -1,0 +1,115 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-descriptions {
+  &__body {
+    width: 100%;
+    overflow: hidden;
+
+    > table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      box-sizing: border-box;
+      text-align: left;
+      background-color: transparent;
+    }
+  }
+
+  &__title {
+    text-align: left;
+    margin-bottom: var(--ty-descriptions-title-margin-bottom);
+    color: var(--ty-descriptions-title-color);
+    font-weight: var(--ty-descriptions-title-font-weight);
+    font-size: var(--ty-descriptions-title-font-size);
+  }
+
+  &__item_colon::after {
+    content: ':';
+    margin-left: var(--ty-descriptions-item-colon-margin-start);
+    margin-right: var(--ty-descriptions-item-colon-margin-end);
+  }
+
+  &__item-label {
+    color: var(--ty-descriptions-label-color);
+    font-size: var(--ty-descriptions-label-font-size);
+    font-weight: 400;
+    line-height: var(--ty-descriptions-label-line-height);
+  }
+
+  &__item-content {
+    color: var(--ty-descriptions-content-color);
+    font-size: var(--ty-descriptions-content-font-size);
+    line-height: var(--ty-descriptions-content-line-height);
+  }
+
+  &_bordered {
+    .#{$prefix}-descriptions {
+      &__body {
+        border: 1px solid var(--ty-descriptions-border);
+        border-radius: var(--ty-descriptions-radius);
+      }
+
+      &__row {
+        border-bottom: 1px solid var(--ty-descriptions-border);
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+
+      &__item-label {
+        background-color: var(--ty-descriptions-label-bg);
+      }
+
+      &__item-label, &__item-content {
+        border-right: 1px solid var(--ty-descriptions-border);
+
+        &:last-child {
+          border-right: 0;
+        }
+      }
+    }
+  }
+
+  &_sm {
+    .#{$prefix}-descriptions__item {
+      padding-bottom: var(--ty-descriptions-sm-padding-vt);
+    }
+
+    &.#{$prefix}-descriptions_bordered {
+      .#{$prefix}-descriptions {
+        &__item-label, &__item-content {
+          padding: var(--ty-descriptions-sm-padding-vt) var(--ty-descriptions-sm-padding-hr);
+        }
+      }
+    }
+  }
+
+  &_md {
+    .#{$prefix}-descriptions__item {
+      padding-bottom: var(--ty-descriptions-md-padding-vt);
+    }
+
+    &.#{$prefix}-descriptions_bordered {
+      .#{$prefix}-descriptions {
+        &__item-label, &__item-content {
+          padding: var(--ty-descriptions-md-padding-vt) var(--ty-descriptions-md-padding-hr);
+        }
+      }
+    }
+  }
+
+  &_lg {
+    .#{$prefix}-descriptions__item {
+      padding-bottom: var(--ty-descriptions-lg-padding-vt);
+    }
+
+    &.#{$prefix}-descriptions_bordered {
+      .#{$prefix}-descriptions {
+        &__item-label, &__item-content {
+          padding: var(--ty-descriptions-lg-padding-vt) var(--ty-descriptions-lg-padding-hr);
+        }
+      }
+    }
+  }
+}

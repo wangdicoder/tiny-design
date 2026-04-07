@@ -1,0 +1,118 @@
+{
+  "descriptions.border": {
+    "$value": "#dfe2e5",
+    "$type": "color",
+    "description": "Descriptions bordered container border color."
+  },
+  "descriptions.label-bg": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "Descriptions label cell background color.",
+    "fallback": "--ty-color-fill"
+  },
+  "descriptions.title-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Descriptions title color.",
+    "fallback": "--ty-color-text"
+  },
+  "descriptions.title-font-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Descriptions title font size."
+  },
+  "descriptions.title-font-weight": {
+    "$value": "600",
+    "$type": "font-weight",
+    "description": "Descriptions title font weight."
+  },
+  "descriptions.title-margin-bottom": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Descriptions title bottom margin."
+  },
+  "descriptions.item-colon-margin-start": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Descriptions colon margin on the start side."
+  },
+  "descriptions.item-colon-margin-end": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Descriptions colon margin on the end side."
+  },
+  "descriptions.label-color": {
+    "$value": "{color-text-label}",
+    "$type": "color",
+    "description": "Descriptions label text color.",
+    "fallback": "--ty-color-text-label"
+  },
+  "descriptions.label-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Descriptions label font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "descriptions.label-line-height": {
+    "$value": "{line-height-base}",
+    "$type": "line-height",
+    "description": "Descriptions label line height.",
+    "fallback": "--ty-line-height-base"
+  },
+  "descriptions.content-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Descriptions content text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "descriptions.content-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Descriptions content font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "descriptions.content-line-height": {
+    "$value": "{line-height-base}",
+    "$type": "line-height",
+    "description": "Descriptions content line height.",
+    "fallback": "--ty-line-height-base"
+  },
+  "descriptions.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Descriptions bordered container radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "descriptions.lg-padding-hr": {
+    "$value": "{height-sm}",
+    "$type": "dimension",
+    "description": "Descriptions lg padding hr.",
+    "fallback": "--ty-height-sm"
+  },
+  "descriptions.lg-padding-vt": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Descriptions lg padding vt."
+  },
+  "descriptions.md-padding-hr": {
+    "$value": "{height-sm}",
+    "$type": "dimension",
+    "description": "Descriptions md padding hr.",
+    "fallback": "--ty-height-sm"
+  },
+  "descriptions.md-padding-vt": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Descriptions md padding vt."
+  },
+  "descriptions.sm-padding-hr": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Descriptions sm padding hr."
+  },
+  "descriptions.sm-padding-vt": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Descriptions sm padding vt."
+  }
+}

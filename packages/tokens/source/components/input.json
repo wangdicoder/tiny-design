@@ -1,0 +1,140 @@
+{
+  "input.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Input border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "input.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Input text color.",
+    "fallback": "--ty-color-text"
+  },
+  "input.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Input background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "input.bg.disabled": {
+    "$value": "{color-bg-disabled}",
+    "$type": "color",
+    "description": "Disabled input background color.",
+    "fallback": "--ty-color-bg-disabled"
+  },
+  "input.border": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Input border color.",
+    "fallback": "--ty-color-border"
+  },
+  "input.border.hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Input hover border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "input.border.focus": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Input focus border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "input.shadow.focus": {
+    "$value": "{shadow-focus}",
+    "$type": "shadow",
+    "description": "Input focus ring shadow.",
+    "fallback": "--ty-shadow-focus"
+  },
+  "input.placeholder": {
+    "$value": "{color-text-placeholder}",
+    "$type": "color",
+    "description": "Input placeholder color.",
+    "fallback": "--ty-color-text-placeholder"
+  },
+  "input.addon-bg": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "Addon background color.",
+    "fallback": "--ty-color-fill"
+  },
+  "input.addon-padding": {
+    "$value": "{spacing-3}",
+    "$type": "dimension",
+    "description": "Addon padding."
+  },
+  "input.affix-margin": {
+    "$value": "0 8px",
+    "$type": "string",
+    "description": "Prefix and suffix inset margin."
+  },
+  "input.clear-size": {
+    "$value": "1em",
+    "$type": "dimension",
+    "description": "Clear button square size."
+  },
+  "input.clear-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Clear button icon color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "input.font-size-sm": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Small input font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "input.font-size-md": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Medium input font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "input.font-size-lg": {
+    "$value": "{font-size-lg}",
+    "$type": "dimension",
+    "description": "Large input font size.",
+    "fallback": "--ty-font-size-lg"
+  },
+  "input.height.sm": {
+    "$value": "{height-sm}",
+    "$type": "dimension",
+    "description": "Small input height.",
+    "fallback": "--ty-height-sm"
+  },
+  "input.height.md": {
+    "$value": "{height-md}",
+    "$type": "dimension",
+    "description": "Medium input height.",
+    "fallback": "--ty-height-md"
+  },
+  "input.height.lg": {
+    "$value": "{height-lg}",
+    "$type": "dimension",
+    "description": "Large input height.",
+    "fallback": "--ty-height-lg"
+  },
+  "input.padding-inline-sm": {
+    "$value": "{spacing-3}",
+    "$type": "dimension",
+    "description": "Small input inline padding."
+  },
+  "input.padding-inline-md": {
+    "$value": "{spacing-4}",
+    "$type": "dimension",
+    "description": "Medium input inline padding."
+  },
+  "input.padding-inline-lg": {
+    "$value": "{spacing-5}",
+    "$type": "dimension",
+    "description": "Large input inline padding."
+  },
+  "input.text.disabled": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Disabled input text color.",
+    "fallback": "--ty-color-text-quaternary"
+  }
+}

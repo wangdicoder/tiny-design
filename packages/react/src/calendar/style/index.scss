@@ -1,0 +1,351 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-calendar {
+  background: var(--ty-calendar-bg);
+  border: 1px solid var(--ty-calendar-border);
+  border-radius: var(--ty-calendar-radius);
+  outline: none;
+
+  &_fullscreen {
+    width: 100%;
+  }
+
+  &_card {
+    width: 300px;
+  }
+
+  // ── Header ──────────────────────────────────────────────────────────────
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ty-calendar-header-padding);
+    border-bottom: 1px solid var(--ty-calendar-border);
+  }
+
+  &__header-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  &__nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ty-calendar-nav-button-size);
+    height: var(--ty-calendar-nav-button-size);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--ty-calendar-nav-button-radius);
+    font-size: 18px;
+    color: var(--ty-calendar-nav-button-color);
+    transition: color 0.2s;
+
+    &:hover:not(&_disabled) {
+      color: var(--ty-calendar-nav-button-color-hover);
+    }
+
+    &_disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: var(--ty-calendar-title-font-weight);
+    font-size: var(--ty-calendar-title-font-size);
+  }
+
+  &__title-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: var(--ty-calendar-title-font-weight);
+    font-size: inherit;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--ty-calendar-title-color);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--ty-calendar-title-color-hover);
+    }
+  }
+
+  // ── Body & animation ────────────────────────────────────────────────────
+
+  &__body {
+    padding: var(--ty-calendar-body-padding);
+  }
+
+  // ── Table (month panel) ─────────────────────────────────────────────────
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  &__cell-header {
+    padding: 8px 0;
+    text-align: center;
+    font-weight: 500;
+    font-size: var(--ty-calendar-cell-header-font-size);
+    color: var(--ty-calendar-cell-header-color);
+  }
+
+  // ── Week number ─────────────────────────────────────────────────────────
+
+  &__week-number-header {
+    width: 32px;
+    color: var(--ty-calendar-week-number-color);
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  &__week-number {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ty-calendar-week-number-color);
+    padding: 4px 0;
+    user-select: none;
+  }
+
+  // ── Day cell ────────────────────────────────────────────────────────────
+
+  &__cell {
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &_disabled {
+      cursor: not-allowed;
+      color: var(--ty-calendar-cell-color-muted);
+
+      .#{$prefix}-calendar__cell-inner {
+        background: var(--ty-calendar-cell-disabled-bg);
+      }
+
+    }
+
+    &:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
+      background: var(--ty-calendar-hover);
+    }
+
+    &_selected:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
+      background: var(--ty-calendar-cell-selected-bg);
+    }
+
+    &_in-view:not(&_disabled) {
+      color: var(--ty-calendar-cell-color);
+    }
+
+    &:not(&_in-view) {
+      color: var(--ty-calendar-cell-color-muted);
+
+      .#{$prefix}-calendar__cell-dot {
+        opacity: 0.4;
+      }
+    }
+
+    &_today .#{$prefix}-calendar__cell-inner {
+      border: 1px solid var(--ty-calendar-cell-today-border);
+      color: var(--ty-calendar-cell-today-border);
+    }
+
+    &_selected .#{$prefix}-calendar__cell-inner {
+      background: var(--ty-calendar-cell-selected-bg);
+      color: var(--ty-calendar-cell-selected-color);
+      border-radius: var(--ty-calendar-radius);
+    }
+
+    &_selected .#{$prefix}-calendar__cell-date {
+      color: inherit;
+    }
+
+    // ── Range selection ─────────────────────────────────────────────────
+
+    &_in-range {
+      background: var(--ty-calendar-range-bg);
+    }
+
+    &_range-start {
+      border-radius: var(--ty-calendar-radius) 0 0 var(--ty-calendar-radius);
+      background: var(--ty-calendar-range-bg);
+    }
+
+    &_range-start .#{$prefix}-calendar__cell-inner {
+      background: var(--ty-calendar-cell-selected-bg);
+      color: var(--ty-calendar-cell-selected-color);
+      border-radius: var(--ty-calendar-radius);
+    }
+
+    &_range-end {
+      border-radius: 0 var(--ty-calendar-radius) var(--ty-calendar-radius) 0;
+      background: var(--ty-calendar-range-bg);
+    }
+
+    &_range-end .#{$prefix}-calendar__cell-inner {
+      background: var(--ty-calendar-cell-selected-bg);
+      color: var(--ty-calendar-cell-selected-color);
+      border-radius: var(--ty-calendar-radius);
+    }
+
+    &_range-start#{&}_range-end {
+      border-radius: var(--ty-calendar-radius);
+    }
+
+    // ── Keyboard focus ──────────────────────────────────────────────────
+
+    &_focused .#{$prefix}-calendar__cell-inner,
+    &:focus-visible .#{$prefix}-calendar__cell-inner {
+      outline: 2px solid var(--ty-calendar-cell-focus-outline);
+      outline-offset: 1px;
+    }
+  }
+
+  // ── Cell inner ──────────────────────────────────────────────────────────
+
+  &__cell-inner {
+    padding: 4px;
+    border-radius: var(--ty-calendar-radius);
+    min-height: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  &_fullscreen &__cell-inner {
+    min-height: 60px;
+    padding: 4px 8px;
+    align-items: stretch;
+  }
+
+  &__cell-date {
+    display: inline-block;
+    line-height: 24px;
+    min-width: 24px;
+    text-align: center;
+    font-size: var(--ty-calendar-cell-date-font-size);
+  }
+
+  &__cell-content {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  // ── Dot indicator ───────────────────────────────────────────────────────
+
+  &__cell-dot {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--ty-calendar-cell-dot-size);
+    height: var(--ty-calendar-cell-dot-size);
+    border-radius: 50%;
+    background-color: var(--ty-calendar-cell-dot-color);
+  }
+
+  // ── Month panel (year mode) ─────────────────────────────────────────────
+
+  &__months {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--ty-calendar-panel-grid-gap);
+    padding: var(--ty-calendar-panel-padding);
+  }
+
+  &__month-cell {
+    text-align: center;
+    padding: var(--ty-calendar-panel-cell-padding);
+    cursor: pointer;
+    border-radius: var(--ty-calendar-panel-cell-radius);
+    transition: all 0.2s;
+
+    &:hover {
+      background: var(--ty-calendar-hover);
+    }
+
+    &_selected {
+      background: var(--ty-calendar-panel-cell-bg-selected);
+      color: var(--ty-calendar-panel-cell-color-selected);
+
+      &:hover {
+        background: var(--ty-calendar-panel-cell-bg-selected);
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &__month-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__month-content {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  // ── Decade panel ────────────────────────────────────────────────────────
+
+  &__decades {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--ty-calendar-panel-grid-gap);
+    padding: var(--ty-calendar-panel-padding);
+  }
+
+  &__decade-cell {
+    text-align: center;
+    padding: var(--ty-calendar-panel-cell-padding);
+    cursor: pointer;
+    border-radius: var(--ty-calendar-panel-cell-radius);
+    transition: all 0.2s;
+    font-size: var(--ty-calendar-decade-font-size);
+
+    &:hover {
+      background: var(--ty-calendar-hover);
+    }
+
+    &_selected {
+      background: var(--ty-calendar-panel-cell-bg-selected);
+      color: var(--ty-calendar-panel-cell-color-selected);
+
+      &:hover {
+        background: var(--ty-calendar-panel-cell-bg-selected);
+        opacity: 0.9;
+      }
+    }
+
+    &_out {
+      color: var(--ty-calendar-decade-color-out);
+    }
+  }
+
+  // ── Footer ──────────────────────────────────────────────────────────────
+
+  &__footer {
+    padding: var(--ty-calendar-footer-padding);
+    border-top: 1px solid var(--ty-calendar-border);
+    text-align: center;
+  }
+
+  &__today-link {
+    color: var(--ty-calendar-today-link-color);
+    cursor: pointer;
+    font-size: var(--ty-calendar-today-link-font-size);
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

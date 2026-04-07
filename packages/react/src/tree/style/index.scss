@@ -1,0 +1,66 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-tree {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--ty-tree-font-size);
+}
+
+.#{$prefix}-tree-node {
+  margin: var(--ty-tree-node-margin);
+
+  &__switcher {
+    width: var(--ty-tree-switcher-size);
+    height: var(--ty-tree-switcher-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__arrow {
+    color: var(--ty-tree-arrow-color);
+    transform: rotate(-90deg);
+    transition: transform 250ms;
+
+    &_active {
+      transform: rotate(0deg);
+    }
+  }
+
+  &__label {
+    padding: var(--ty-tree-label-padding);
+    margin-left: var(--ty-tree-label-offset);
+  }
+
+  &__title {
+    cursor: pointer;
+    align-items: center;
+    min-height: var(--ty-tree-title-min-height);
+    display: inline-flex;
+    transition: background-color 250ms;
+  }
+
+  &__label {
+    flex: 1;
+    transition: background-color 250ms;
+
+    &:hover {
+      background-color: var(--ty-tree-hover-bg);
+    }
+  }
+
+  .#{$prefix}-checkbox {
+    margin-right: 0;
+  }
+
+  &_block {
+    .#{$prefix}-tree-node__title {
+      display: flex;
+
+      &:hover {
+        background-color: var(--ty-tree-hover-bg);
+      }
+    }
+  }
+}

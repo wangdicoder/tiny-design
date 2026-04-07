@@ -1,0 +1,80 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-divider {
+  font-size: var(--ty-divider-font-size);
+  line-height: var(--ty-divider-line-height);
+  box-sizing: border-box;
+  padding: 0;
+  list-style: none;
+
+  &_vertical {
+    margin: var(--ty-divider-vertical-margin);
+    display: inline-block;
+    height: var(--ty-divider-vertical-height);
+    width: 1px;
+    vertical-align: middle;
+    position: relative;
+    top: var(--ty-divider-vertical-offset);
+    background: var(--ty-divider-color);
+
+    &-dashed {
+      background: none;
+      border-left: 1px dashed var(--ty-divider-color);
+    }
+  }
+
+  &_horizontal {
+    display: block;
+    height: 1px;
+    width: 100%;
+    margin: var(--ty-divider-horizontal-margin);
+    background: var(--ty-divider-color);
+
+    &-dashed:not(.#{$prefix}-divider_text) {
+      background: none;
+      border-top: 1px dashed var(--ty-divider-color);
+    }
+  }
+
+  &_text {
+    display: table;
+    white-space: nowrap;
+    text-align: center;
+    background: transparent;
+    font-weight: 500;
+    color: var(--ty-divider-text-color);
+
+    &::before,
+    &::after {
+      content: '';
+      display: table-cell;
+      position: relative;
+      top: 50%;
+      width: 50%;
+      border-top: 1px solid var(--ty-divider-color);
+      transform: translateY(50%);
+    }
+  }
+
+  &_left::before,
+  &_right::after {
+    width: 5%;
+  }
+
+  &_left::after,
+  &_right::before {
+    width: 95%;
+  }
+
+  &_inner-text {
+    display: inline-block;
+    padding: var(--ty-divider-inner-text-padding);
+  }
+
+  &_dashed {
+    &::before,
+    &::after {
+      border-top-style: dashed;
+    }
+  }
+}

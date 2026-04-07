@@ -1,0 +1,66 @@
+{
+  "message.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Message panel background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "message.radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Message panel border radius."
+  },
+  "message.padding": {
+    "$value": "10px 16px",
+    "$type": "string",
+    "description": "Message panel padding."
+  },
+  "message.shadow": {
+    "$value": "{shadow-modal}",
+    "$type": "shadow",
+    "description": "Message panel shadow.",
+    "fallback": "--ty-shadow-modal"
+  },
+  "message.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Message panel font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "message.content-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Message content color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "message.content-line-height": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Message content line height."
+  },
+  "message.icon-gap": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Gap between message icon and content."
+  },
+  "message.extra-gap": {
+    "$value": "15px",
+    "$type": "dimension",
+    "description": "Gap between message content and extra action."
+  },
+  "message.transition-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Message panel transition duration."
+  },
+  "message.offset-y.enter": {
+    "$value": "-5px",
+    "$type": "dimension",
+    "description": "Message enter transform offset."
+  },
+  "message.z-index": {
+    "$value": "999",
+    "$type": "number",
+    "description": "Message container stacking order."
+  }
+}

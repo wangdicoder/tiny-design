@@ -19,18 +19,18 @@ async function processWithPostcss(css) {
   return result.css;
 }
 
-// 1. Base CSS: copy pre-built base.css from @tiny-design/tokens
+// 1. Base CSS: copy the v2 runtime theme bundle from @tiny-design/tokens
 function copyBaseCss() {
-  const src = require.resolve('@tiny-design/tokens/css/base.css');
+  const src = require.resolve('@tiny-design/tokens/dist/css/base.css');
   for (const dir of [ES_DIR, LIB_DIR]) {
     const outDir = path.join(dir, 'style');
     mkdirp(outDir);
     fs.copyFileSync(src, path.join(outDir, 'base.css'));
   }
-  console.log('  es/style/base.css + lib/style/base.css (copied from @tiny-design/tokens)');
+  console.log('  es/style/base.css + lib/style/base.css (copied from @tiny-design/tokens v2 base theme CSS)');
 }
 
-// 2. Per-component CSS: compile each component's _index.scss partial
+// 2. Per-component CSS: compile each component's style/index.scss entry
 async function buildComponentCss() {
   const entries = fs.readdirSync(COMPONENTS, { withFileTypes: true });
   let count = 0;
@@ -40,25 +40,16 @@ async function buildComponentCss() {
     if (entry.name === 'style' || entry.name.startsWith('_')) continue;
 
     const styleDir = path.join(COMPONENTS, entry.name, 'style');
-    const partialPath = path.join(styleDir, '_index.scss');
     const directPath = path.join(styleDir, 'index.scss');
 
-    let css;
-    if (fs.existsSync(partialPath)) {
-      // Sass partial: compile via @use
-      const result = sass.compileString("@use 'index';", {
-        loadPaths: [styleDir, COMPONENTS, NODE_MODULES],
-      });
-      css = await processWithPostcss(result.css);
-    } else if (fs.existsSync(directPath)) {
-      // Direct scss file (e.g. tabs)
-      const result = sass.compile(directPath, {
-        loadPaths: [COMPONENTS, NODE_MODULES],
-      });
-      css = await processWithPostcss(result.css);
-    } else {
+    if (!fs.existsSync(directPath)) {
       continue;
     }
+
+    const result = sass.compile(directPath, {
+      loadPaths: [COMPONENTS, NODE_MODULES],
+    });
+    const css = await processWithPostcss(result.css);
 
     for (const dir of [ES_DIR, LIB_DIR]) {
       const outDir = path.join(dir, entry.name, 'style');

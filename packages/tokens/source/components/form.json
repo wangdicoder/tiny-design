@@ -1,0 +1,101 @@
+{
+  "form.error-color": {
+    "$value": "#ff4d4f",
+    "$type": "color",
+    "description": "Form error color."
+  },
+  "form.error-hover": {
+    "$value": "#ff7875",
+    "$type": "color",
+    "description": "Form error hover."
+  },
+  "form.item-margin-bottom": {
+    "$value": "22px",
+    "$type": "dimension",
+    "description": "Form item bottom margin."
+  },
+  "form.label-line-height": {
+    "$value": "30px",
+    "$type": "dimension",
+    "description": "Form label line height."
+  },
+  "form.label-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Form label color.",
+    "fallback": "--ty-color-text"
+  },
+  "form.label-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Form label font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "form.label-required-margin-end": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Required asterisk inline end margin."
+  },
+  "form.label-colon-margin": {
+    "$value": "0 8px 0 2px",
+    "$type": "string",
+    "description": "Label colon margin."
+  },
+  "form.input-min-height": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Form input container min height."
+  },
+  "form.notice-font-size": {
+    "$value": "13px",
+    "$type": "dimension",
+    "description": "Form notice font size."
+  },
+  "form.notice-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Form notice radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "form.notice-padding": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Form notice padding."
+  },
+  "form.notice-margin-top": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Form notice top margin."
+  },
+  "form.helper-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Form helper text color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "form.feedback-font-size": {
+    "$value": "13px",
+    "$type": "dimension",
+    "description": "Form error and helper text font size."
+  },
+  "form.feedback-line-height": {
+    "$value": "22px",
+    "$type": "dimension",
+    "description": "Form error and helper text line height."
+  },
+  "form.error-shadow": {
+    "$value": "0 0 0 3px rgb(255 77 79 / 20%)",
+    "$type": "shadow",
+    "description": "Form error focus shadow."
+  },
+  "form.notice-bg": {
+    "$value": "#fff7cc",
+    "$type": "color",
+    "description": "Form notice bg."
+  },
+  "form.notice-color": {
+    "$value": "#555",
+    "$type": "color",
+    "description": "Form notice color."
+  }
+}

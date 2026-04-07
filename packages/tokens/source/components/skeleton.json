@@ -1,0 +1,27 @@
+{
+  "skeleton.bg": {
+    "$value": "#f2f2f2",
+    "$type": "color",
+    "description": "Skeleton bg."
+  },
+  "skeleton.height": {
+    "$value": "1em",
+    "$type": "dimension",
+    "description": "Skeleton default height."
+  },
+  "skeleton.stack-gap": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Skeleton vertical stack gap."
+  },
+  "skeleton.shimmer": {
+    "$value": "linear-gradient(to right, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%)",
+    "$type": "string",
+    "description": "Skeleton shimmer."
+  },
+  "skeleton.animation-duration": {
+    "$value": "1.5s",
+    "$type": "duration",
+    "description": "Skeleton shimmer animation duration."
+  }
+}

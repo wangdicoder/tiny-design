@@ -1,0 +1,128 @@
+{
+  "pagination.color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Pagination text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "pagination.font-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Pagination font size."
+  },
+  "pagination.item-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Pagination item background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "pagination.item-radius": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Pagination item border radius."
+  },
+  "pagination.item-transition-duration": {
+    "$value": "400ms",
+    "$type": "duration",
+    "description": "Pagination item transition duration."
+  },
+  "pagination.item-color.ellipsis": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Pagination ellipsis color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "pagination.item-color.ellipsis-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Pagination ellipsis hover color.",
+    "fallback": "--ty-color-primary"
+  },
+  "pagination.item-size.md": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Medium pagination item size."
+  },
+  "pagination.item-size.sm": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Small pagination item size."
+  },
+  "pagination.item-gap.md": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Medium pagination item gap."
+  },
+  "pagination.item-gap.sm": {
+    "$value": "0.5px",
+    "$type": "dimension",
+    "description": "Small pagination item gap."
+  },
+  "pagination.item-line-height.md": {
+    "$value": "30px",
+    "$type": "dimension",
+    "description": "Medium pagination item line height."
+  },
+  "pagination.item-line-height.sm": {
+    "$value": "22px",
+    "$type": "dimension",
+    "description": "Small pagination item line height."
+  },
+  "pagination.item-border.md": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Medium pagination item border color.",
+    "fallback": "--ty-color-border"
+  },
+  "pagination.item-color.active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Active pagination item text color.",
+    "fallback": "--ty-color-primary"
+  },
+  "pagination.item-border.active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Active pagination item border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "pagination.item-border.hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Medium pagination item hover border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "pagination.item-color.hover.sm": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Small pagination item hover text color.",
+    "fallback": "--ty-color-primary"
+  },
+  "pagination.disabled-active-bg": {
+    "$value": "#dbdbdb",
+    "$type": "color",
+    "description": "Disabled active pagination item background color."
+  },
+  "pagination.disabled-active-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Disabled active pagination item text color."
+  },
+  "pagination.disabled-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Disabled pagination item background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "pagination.disabled-color.md": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Medium disabled pagination item text color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "pagination.disabled-color.sm": {
+    "$value": "#d9d9d9",
+    "$type": "color",
+    "description": "Small disabled pagination item text and border color."
+  }
+}

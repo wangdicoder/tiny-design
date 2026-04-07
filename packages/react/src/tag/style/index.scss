@@ -1,0 +1,184 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+$tag-preset-colors: 'magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue',
+  'geekblue', 'purple';
+
+.#{$prefix}-tag {
+  user-select: none;
+  display: none;
+  margin-right: var(--ty-tag-margin-inline-end, 8px);
+  padding: var(--ty-tag-padding, 3px 7px);
+  font-size: var(--ty-tag-font-size, 12px);
+  border: 1px solid var(--ty-tag-border, var(--ty-color-border));
+  border-radius: var(--ty-tag-radius, var(--ty-border-radius));
+  color: var(--ty-tag-color, var(--ty-color-text));
+  background: var(--ty-tag-bg, var(--ty-color-fill));
+
+  a,
+  a:hover {
+    color: var(--ty-tag-link-color, var(--ty-color-text-secondary));
+  }
+
+  &_visible {
+    display: inline-block;
+  }
+
+  &__close-btn {
+    cursor: pointer;
+    font-size: var(--ty-tag-close-font-size, 10px);
+    margin-left: var(--ty-tag-close-gap, 5px);
+    line-height: 1;
+    transition: all var(--ty-tag-transition-duration, 300ms);
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-family: inherit;
+
+    &:hover {
+      opacity: var(--ty-tag-close-opacity-hover, 0.8);
+    }
+  }
+
+  @each $color in $tag-preset-colors {
+    &_#{$color} {
+      color: var(--ty-tag-#{$color}-color);
+      background: var(--ty-tag-#{$color}-bg);
+      border-color: var(--ty-tag-#{$color}-border);
+    }
+  }
+
+  &_success {
+    color: var(--ty-color-success);
+    background: var(--ty-color-success-bg);
+    border-color: var(--ty-color-success-border);
+  }
+
+  &_info {
+    color: var(--ty-color-info);
+    background: var(--ty-color-info-bg);
+    border-color: var(--ty-color-info-border);
+  }
+
+  &_warning {
+    color: var(--ty-color-warning);
+    background: var(--ty-color-warning-bg);
+    border-color: var(--ty-color-warning-border);
+  }
+
+  &_danger {
+    color: var(--ty-color-danger);
+    background: var(--ty-color-danger-bg);
+    border-color: var(--ty-color-danger-border);
+  }
+
+  @each $color in $tag-preset-colors {
+    &_#{$color}-soft {
+      color: var(--ty-tag-#{$color}-color);
+      background: var(--ty-tag-#{$color}-bg);
+      border-color: transparent;
+    }
+  }
+
+  &_success-soft {
+    color: var(--ty-color-success);
+    background: var(--ty-color-success-bg);
+    border-color: transparent;
+  }
+
+  &_info-soft {
+    color: var(--ty-color-info);
+    background: var(--ty-color-info-bg);
+    border-color: transparent;
+  }
+
+  &_warning-soft {
+    color: var(--ty-color-warning);
+    background: var(--ty-color-warning-bg);
+    border-color: transparent;
+  }
+
+  &_danger-soft {
+    color: var(--ty-color-danger);
+    background: var(--ty-color-danger-bg);
+    border-color: transparent;
+  }
+
+  @each $color in $tag-preset-colors {
+    &_#{$color}-solid {
+      color: #fff;
+      background: var(--ty-tag-#{$color}-color);
+      border-color: var(--ty-tag-#{$color}-color);
+    }
+  }
+
+  &_success-solid {
+    color: #fff;
+    background: var(--ty-color-success);
+    border-color: var(--ty-color-success);
+  }
+
+  &_info-solid {
+    color: #fff;
+    background: var(--ty-color-info);
+    border-color: var(--ty-color-info);
+  }
+
+  &_warning-solid {
+    color: #fff;
+    background: var(--ty-color-warning);
+    border-color: var(--ty-color-warning);
+  }
+
+  &_danger-solid {
+    color: #fff;
+    background: var(--ty-color-danger);
+    border-color: var(--ty-color-danger);
+  }
+
+  @each $color in $tag-preset-colors {
+    &_#{$color}-outlined {
+      color: var(--ty-tag-#{$color}-color);
+      background: transparent;
+      border-color: var(--ty-tag-#{$color}-border);
+    }
+  }
+
+  &_success-outlined {
+    color: var(--ty-color-success);
+    background: transparent;
+    border-color: var(--ty-color-success-border);
+  }
+
+  &_info-outlined {
+    color: var(--ty-color-info);
+    background: transparent;
+    border-color: var(--ty-color-info-border);
+  }
+
+  &_warning-outlined {
+    color: var(--ty-color-warning);
+    background: transparent;
+    border-color: var(--ty-color-warning-border);
+  }
+
+  &_danger-outlined {
+    color: var(--ty-color-danger);
+    background: transparent;
+    border-color: var(--ty-color-danger-border);
+  }
+}
+
+.#{$prefix}-checkable-tag {
+  background-color: var(--ty-tag-checkable-bg, var(--ty-color-bg-container));
+  color: var(--ty-tag-checkable-color, var(--ty-color-primary));
+  border-color: var(--ty-tag-checkable-border, var(--ty-color-bg-container));
+  transition: all var(--ty-tag-transition-duration, 300ms);
+  cursor: pointer;
+
+  &_checked {
+    background-color: var(--ty-tag-checkable-bg-checked, var(--ty-color-primary));
+    color: var(--ty-tag-checkable-color-checked, #fff);
+    border-color: var(--ty-tag-checkable-border-checked, var(--ty-color-primary));
+  }
+}

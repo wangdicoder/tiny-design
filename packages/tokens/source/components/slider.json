@@ -1,0 +1,115 @@
+{
+  "slider.dot-active-border": {
+    "$value": "#9570d4",
+    "$type": "color",
+    "description": "Slider dot active border."
+  },
+  "slider.dot-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Slider dot bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "slider.dot-border": {
+    "$value": "#f0f0f0",
+    "$type": "color",
+    "description": "Slider dot border."
+  },
+  "slider.mark-active-color": {
+    "$value": "rgba(0, 0, 0, 0.7)",
+    "$type": "color",
+    "description": "Slider mark active color."
+  },
+  "slider.mark-color": {
+    "$value": "rgba(0, 0, 0, 0.4)",
+    "$type": "color",
+    "description": "Slider mark color."
+  },
+  "slider.primary-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Slider primary accent color.",
+    "fallback": "--ty-color-primary"
+  },
+  "slider.disabled-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Slider disabled color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "slider.rail-bg": {
+    "$value": "#e4e8f1",
+    "$type": "color",
+    "description": "Slider rail bg."
+  },
+  "slider.size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Slider size."
+  },
+  "slider.thumb-bg": {
+    "$value": "rgb(245, 248, 250)",
+    "$type": "color",
+    "description": "Slider thumb bg."
+  },
+  "slider.thumb-border": {
+    "$value": "#9570d4",
+    "$type": "color",
+    "description": "Slider thumb border."
+  },
+  "slider.track-size": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Slider track size."
+  },
+  "slider.thumb-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Slider thumb size."
+  },
+  "slider.thumb-hit-size": {
+    "$value": "36px",
+    "$type": "dimension",
+    "description": "Slider thumb hit target size."
+  },
+  "slider.dot-size": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Slider dot size."
+  },
+  "slider.thumb-scale-hover": {
+    "$value": "1.2",
+    "$type": "number",
+    "description": "Slider thumb hover scale."
+  },
+  "slider.rail-radius": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Slider rail and track radius."
+  },
+  "slider.horizontal-margin": {
+    "$value": "13px 7px",
+    "$type": "string",
+    "description": "Horizontal slider margin."
+  },
+  "slider.horizontal-padding": {
+    "$value": "4px 0",
+    "$type": "string",
+    "description": "Horizontal slider padding."
+  },
+  "slider.vertical-width": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Vertical slider width."
+  },
+  "slider.vertical-margin": {
+    "$value": "6px 10px",
+    "$type": "string",
+    "description": "Vertical slider margin."
+  },
+  "slider.vertical-padding": {
+    "$value": "0 4px",
+    "$type": "string",
+    "description": "Vertical slider padding."
+  }
+}

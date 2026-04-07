@@ -1,0 +1,143 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-pagination {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: var(--ty-pagination-color, var(--ty-color-text-secondary));
+  font-size: var(--ty-pagination-font-size, 14px);
+  list-style: none;
+
+  &_left {
+    text-align: left;
+  }
+
+  &_center {
+    text-align: center;
+  }
+
+  &_right {
+    text-align: right;
+  }
+
+  &_disabled {
+    .#{$prefix}-pagination__item_active {
+      background: var(--ty-pagination-disabled-active-bg, #dbdbdb) !important;
+      border-color: transparent !important;
+      color: var(--ty-pagination-disabled-active-color, #fff) !important;
+    }
+  }
+
+  &__item {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: middle;
+    list-style: none;
+    background-color: var(--ty-pagination-item-bg, var(--ty-color-bg-container));
+    border-radius: var(--ty-pagination-item-radius, 2px);
+    outline: 0;
+    cursor: pointer;
+    user-select: none;
+    transition: all var(--ty-pagination-item-transition-duration, 400ms);
+
+    > button {
+      background: none;
+      border: none;
+      padding: 0;
+      color: inherit;
+      font: inherit;
+      cursor: inherit;
+      width: 100%;
+      height: 100%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &_disabled {
+      cursor: not-allowed;
+    }
+
+    &_ellipsis {
+      color: var(--ty-pagination-item-color-ellipsis, var(--ty-color-text-quaternary));
+
+      &:hover {
+        color: var(--ty-pagination-item-color-ellipsis-hover, var(--ty-color-primary));
+      }
+    }
+  }
+
+  &__left-arrow {
+    transform: rotate(90deg);
+  }
+
+  &__right-arrow {
+    transform: rotate(-90deg);
+  }
+
+  &_md {
+    .#{$prefix}-pagination__item {
+      min-width: var(--ty-pagination-item-size-md, 32px);
+      height: var(--ty-pagination-item-size-md, 32px);
+      margin-left: var(--ty-pagination-item-gap-md, 4px);
+      margin-right: var(--ty-pagination-item-gap-md, 4px);
+      line-height: var(--ty-pagination-item-line-height-md, 30px);
+      border: 1px solid var(--ty-pagination-item-border-md, var(--ty-color-border));
+
+      &_active {
+        color: var(--ty-pagination-item-color-active, var(--ty-color-primary));
+        border-color: var(--ty-pagination-item-border-active, var(--ty-color-primary));
+      }
+
+      &:hover {
+        border-color: var(--ty-pagination-item-border-hover, var(--ty-color-primary));
+      }
+
+      &_disabled {
+        color: var(--ty-pagination-disabled-color-md, var(--ty-color-text-tertiary));
+        background: var(--ty-pagination-disabled-bg, var(--ty-color-fill-secondary));
+        border-color: var(--ty-pagination-item-border-md, var(--ty-color-border));
+
+        &:hover {
+          border-color: var(--ty-pagination-item-border-md, var(--ty-color-border));
+        }
+      }
+
+      &_ellipsis {
+        border: 0;
+      }
+    }
+  }
+
+  &_sm {
+    .#{$prefix}-pagination__item {
+      min-width: var(--ty-pagination-item-size-sm, 24px);
+      height: var(--ty-pagination-item-size-sm, 24px);
+      margin-left: var(--ty-pagination-item-gap-sm, 0.5px);
+      margin-right: var(--ty-pagination-item-gap-sm, 0.5px);
+      line-height: var(--ty-pagination-item-line-height-sm, 22px);
+      border-color: transparent;
+
+      &_active {
+        color: var(--ty-pagination-item-color-active, var(--ty-color-primary));
+        border: 1px solid var(--ty-pagination-item-border-active, var(--ty-color-primary));
+      }
+
+      &:hover {
+        color: var(--ty-pagination-item-color-hover-sm, var(--ty-color-primary));
+      }
+
+      &_disabled {
+        color: var(--ty-pagination-disabled-color-sm, #d9d9d9);
+        border-color: var(--ty-pagination-disabled-color-sm, #d9d9d9);
+
+        &:hover {
+          color: var(--ty-pagination-disabled-color-sm, #d9d9d9);
+        }
+      }
+    }
+  }
+}

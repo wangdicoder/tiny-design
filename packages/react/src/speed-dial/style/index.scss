@@ -1,0 +1,229 @@
+@use "@tiny-design/tokens/scss/variables" as *;
+
+$speed-dial-fab-size: 56px;
+$speed-dial-action-size: 40px;
+$speed-dial-actions-gap: 16px;
+
+.#{$prefix}-speed-dial {
+  position: relative;
+  display: inline-flex;
+
+  // FAB button
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $speed-dial-fab-size;
+    height: $speed-dial-fab-size;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--ty-speed-dial-bg);
+    color: var(--ty-speed-dial-color);
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: var(--ty-shadow);
+    transition: background-color 0.2s ease;
+    outline: none;
+
+    &:hover:not(.#{$prefix}-speed-dial__button_disabled) {
+      background-color: var(--ty-speed-dial-bg-hover);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px var(--ty-input-shadow-focus, var(--ty-shadow-focus)), var(--ty-shadow);
+    }
+
+    &_open {
+      .#{$prefix}-speed-dial__icon-default {
+        transform: rotate(45deg);
+      }
+    }
+
+    &_disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__icon-default {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    transition: transform 0.3s ease;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-color: currentcolor;
+      border-radius: 1px;
+      translate: -50% -50%;
+    }
+
+    &::before {
+      width: 55%;
+      height: 2px;
+    }
+
+    &::after {
+      width: 2px;
+      height: 55%;
+    }
+  }
+
+  // Actions container
+  &__actions {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.5);
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+
+    &_open {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+  }
+
+  // Direction variants
+  &_up &__actions {
+    flex-direction: column-reverse;
+    bottom: 100%;
+    left: 50%;
+    transform-origin: bottom center;
+    translate: -50% 0;
+    padding-bottom: $speed-dial-actions-gap;
+  }
+
+  &_up &__actions_open {
+    transform: scale(1);
+  }
+
+  &_down &__actions {
+    flex-direction: column;
+    top: 100%;
+    left: 50%;
+    transform-origin: top center;
+    translate: -50% 0;
+    padding-top: $speed-dial-actions-gap;
+  }
+
+  &_down &__actions_open {
+    transform: scale(1);
+  }
+
+  &_left &__actions {
+    flex-direction: row-reverse;
+    right: 100%;
+    top: 50%;
+    transform-origin: center right;
+    translate: 0 -50%;
+    padding-right: $speed-dial-actions-gap;
+  }
+
+  &_left &__actions_open {
+    transform: scale(1);
+  }
+
+  &_right &__actions {
+    flex-direction: row;
+    left: 100%;
+    top: 50%;
+    transform-origin: center left;
+    translate: 0 -50%;
+    padding-left: $speed-dial-actions-gap;
+  }
+
+  &_right &__actions_open {
+    transform: scale(1);
+  }
+
+  // Action wrapper (contains button + tooltip)
+  &__action-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0;
+  }
+
+  &_left &__action-wrapper,
+  &_right &__action-wrapper {
+    margin: 0 4px;
+  }
+
+  // Action button
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $speed-dial-action-size;
+    height: $speed-dial-action-size;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--ty-speed-dial-action-bg);
+    color: var(--ty-speed-dial-action-color);
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: var(--ty-shadow-sm);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+
+    &:hover:not(.#{$prefix}-speed-dial__action_disabled) {
+      background-color: var(--ty-speed-dial-action-bg-hover);
+      box-shadow: var(--ty-shadow);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px var(--ty-input-shadow-focus, var(--ty-shadow-focus)), var(--ty-shadow-sm);
+    }
+
+    &_disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  // Tooltip
+  &__action-tooltip {
+    position: absolute;
+    white-space: nowrap;
+    background-color: var(--ty-speed-dial-tooltip-bg);
+    color: var(--ty-speed-dial-tooltip-color);
+    font-size: var(--ty-font-size-sm);
+    padding: 4px 8px;
+    border-radius: var(--ty-border-radius);
+    pointer-events: none;
+
+    &_left {
+      right: calc(100% + 8px);
+      top: 50%;
+      translate: 0 -50%;
+    }
+
+    &_right {
+      left: calc(100% + 8px);
+      top: 50%;
+      translate: 0 -50%;
+    }
+
+    &_top {
+      bottom: calc(100% + 8px);
+      left: 50%;
+      translate: -50% 0;
+    }
+
+    &_bottom {
+      top: calc(100% + 8px);
+      left: 50%;
+      translate: -50% 0;
+    }
+  }
+}

@@ -1,0 +1,92 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-form {
+  &_vertical {
+    .#{$prefix}-form-item__label {
+      text-align: left;
+    }
+  }
+
+  &_inline {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.#{$prefix}-form-item {
+  margin-bottom: var(--ty-form-item-margin-bottom);
+  vertical-align: top;
+
+  &__label {
+    line-height: var(--ty-form-label-line-height);
+    text-align: right;
+    vertical-align: top;
+    color: var(--ty-form-label-color);
+    font-size: var(--ty-form-label-font-size);
+
+    &_required::before {
+      content: '*';
+      margin-right: var(--ty-form-label-required-margin-end);
+      color: var(--ty-form-error-color);
+    }
+
+    &_colon::after {
+      content: ':';
+      margin: var(--ty-form-label-colon-margin);
+    }
+  }
+
+  &__input {
+    position: relative;
+    min-height: var(--ty-form-input-min-height);
+    display: flex;
+    align-items: center;
+  }
+
+  &__input-content {
+    flex: auto;
+    max-width: 100%;
+  }
+
+  &__error {
+    min-height: var(--ty-form-feedback-line-height);
+    line-height: var(--ty-form-feedback-line-height);
+    font-size: var(--ty-form-feedback-font-size);
+    color: var(--ty-form-error-color);
+  }
+
+  &__helper {
+    min-height: var(--ty-form-feedback-line-height);
+    line-height: var(--ty-form-feedback-line-height);
+    font-size: var(--ty-form-feedback-font-size);
+    color: var(--ty-form-helper-color);
+  }
+
+  &__notice {
+    font-size: var(--ty-form-notice-font-size);
+    border-radius: var(--ty-form-notice-radius);
+    background: var(--ty-form-notice-bg);
+    color: var(--ty-form-notice-color);
+    padding: var(--ty-form-notice-padding);
+    margin-top: var(--ty-form-notice-margin-top);
+  }
+
+  &_with-err-label {
+    margin-bottom: 0;
+  }
+
+  &_has-error {
+    .#{$prefix}-input__input, .#{$prefix}-input-number__input, .#{$prefix}-textarea {
+      border-color: var(--ty-form-error-color);
+
+      &:not([disabled]):hover{
+        border-color: var(--ty-form-error-color);
+      }
+
+      &:focus{
+        border-color: var(--ty-form-error-hover);
+        box-shadow: var(--ty-form-error-shadow);
+      }
+    }
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "color-bg-container": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "description": "Default container background color."
+  },
+  "color-bg": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Page background color."
+  },
+  "color-bg-elevated": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Elevated surface background color."
+  },
+  "color-bg-layout": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Layout background color."
+  },
+  "color-bg-spotlight": {
+    "$value": "#f5f5f5",
+    "$type": "color",
+    "description": "Spotlight surface background color."
+  },
+  "color-bg-disabled": {
+    "$value": "#f5f5f5",
+    "$type": "color",
+    "description": "Disabled surface background color."
+  },
+  "color-fill": {
+    "$value": "#fafafa",
+    "$type": "color",
+    "description": "Secondary filled surface color."
+  },
+  "color-text": {
+    "$value": "rgba(0, 0, 0, 0.85)",
+    "$type": "color",
+    "description": "Default text color."
+  },
+  "color-text-label": {
+    "$value": "rgba(0, 0, 0, 0.85)",
+    "$type": "color",
+    "description": "Label text color."
+  },
+  "color-text-secondary": {
+    "$value": "rgba(0, 0, 0, 0.65)",
+    "$type": "color",
+    "description": "Secondary text color."
+  },
+  "color-text-tertiary": {
+    "$value": "rgba(0, 0, 0, 0.45)",
+    "$type": "color",
+    "description": "Tertiary text color."
+  },
+  "color-text-heading": {
+    "$value": "rgba(0, 0, 0, 0.85)",
+    "$type": "color",
+    "description": "Heading text color."
+  },
+  "color-text-placeholder": {
+    "$value": "#bfbfbf",
+    "$type": "color",
+    "description": "Placeholder text color."
+  },
+  "color-text-quaternary": {
+    "$value": "rgba(0, 0, 0, 0.25)",
+    "$type": "color",
+    "description": "Low-emphasis text color."
+  },
+  "color-border": {
+    "$value": "#d9d9d9",
+    "$type": "color",
+    "description": "Default border color."
+  },
+  "color-border-light": {
+    "$value": "#f0f0f0",
+    "$type": "color",
+    "description": "Light border color."
+  },
+  "color-border-secondary": {
+    "$value": "#e8e8e8",
+    "$type": "color",
+    "description": "Secondary border color."
+  },
+  "color-border-btn-default": {
+    "$value": "#d0d0d5",
+    "$type": "color",
+    "description": "Default button border color."
+  },
+  "color-primary": {
+    "$value": "#6e41bf",
+    "$type": "color",
+    "description": "Primary brand color."
+  },
+  "color-primary-hover": {
+    "$value": "#8b62d0",
+    "$type": "color",
+    "description": "Primary hover color."
+  },
+  "color-primary-active": {
+    "$value": "#5a30a8",
+    "$type": "color",
+    "description": "Primary active color."
+  },
+  "color-primary-bg": {
+    "$value": "#f3eefa",
+    "$type": "color",
+    "description": "Primary tinted background color."
+  },
+  "color-primary-border": {
+    "$value": "#c4a7e6",
+    "$type": "color",
+    "description": "Primary border color."
+  },
+  "color-primary-bg-hover": {
+    "$value": "#ece3f7",
+    "$type": "color",
+    "description": "Primary tinted background hover color."
+  },
+  "color-primary-text-hover": {
+    "$value": "#8b62d0",
+    "$type": "color",
+    "description": "Primary text hover color."
+  },
+  "color-info": {
+    "$value": "#1890ff",
+    "$type": "color",
+    "description": "Info semantic color."
+  },
+  "color-info-bg": {
+    "$value": "#e6f7ff",
+    "$type": "color",
+    "description": "Info background color."
+  },
+  "color-info-border": {
+    "$value": "#91d5ff",
+    "$type": "color",
+    "description": "Info border color."
+  },
+  "color-info-text": {
+    "$value": "#096dd9",
+    "$type": "color",
+    "description": "Info text color."
+  },
+  "color-info-hover": {
+    "$value": "#40a9ff",
+    "$type": "color",
+    "description": "Info hover color."
+  },
+  "color-info-active": {
+    "$value": "#096dd9",
+    "$type": "color",
+    "description": "Info active color."
+  },
+  "color-success": {
+    "$value": "#52c41a",
+    "$type": "color",
+    "description": "Success semantic color."
+  },
+  "color-success-bg": {
+    "$value": "#f6ffed",
+    "$type": "color",
+    "description": "Success background color."
+  },
+  "color-success-border": {
+    "$value": "#b7eb8f",
+    "$type": "color",
+    "description": "Success border color."
+  },
+  "color-success-text": {
+    "$value": "#49b10e",
+    "$type": "color",
+    "description": "Success text color."
+  },
+  "color-success-hover": {
+    "$value": "#73d13d",
+    "$type": "color",
+    "description": "Success hover color."
+  },
+  "color-success-active": {
+    "$value": "#389e0d",
+    "$type": "color",
+    "description": "Success active color."
+  },
+  "color-warning": {
+    "$value": "#ff9800",
+    "$type": "color",
+    "description": "Warning semantic color."
+  },
+  "color-warning-bg": {
+    "$value": "#fffbe6",
+    "$type": "color",
+    "description": "Warning background color."
+  },
+  "color-warning-border": {
+    "$value": "#ffe58f",
+    "$type": "color",
+    "description": "Warning border color."
+  },
+  "color-warning-text": {
+    "$value": "#d48806",
+    "$type": "color",
+    "description": "Warning text color."
+  },
+  "color-warning-hover": {
+    "$value": "#ffad33",
+    "$type": "color",
+    "description": "Warning hover color."
+  },
+  "color-warning-active": {
+    "$value": "#e68a00",
+    "$type": "color",
+    "description": "Warning active color."
+  },
+  "color-danger": {
+    "$value": "#f44336",
+    "$type": "color",
+    "description": "Danger semantic color."
+  },
+  "color-danger-bg": {
+    "$value": "#fff1f0",
+    "$type": "color",
+    "description": "Danger background color."
+  },
+  "color-danger-border": {
+    "$value": "#ffa39e",
+    "$type": "color",
+    "description": "Danger border color."
+  },
+  "color-danger-text": {
+    "$value": "#cf1322",
+    "$type": "color",
+    "description": "Danger text color."
+  },
+  "color-danger-hover": {
+    "$value": "#ff7875",
+    "$type": "color",
+    "description": "Danger hover color."
+  },
+  "color-danger-active": {
+    "$value": "#cf1322",
+    "$type": "color",
+    "description": "Danger active color."
+  },
+  "color-fill-secondary": {
+    "$value": "#f5f5f5",
+    "$type": "color",
+    "description": "Secondary fill color."
+  },
+  "color-fill-tertiary": {
+    "$value": "#f0f0f0",
+    "$type": "color",
+    "description": "Tertiary fill color."
+  },
+  "color-overlay-bg": {
+    "$value": "rgba(0, 0, 0, 0.55)",
+    "$type": "color",
+    "description": "Overlay background color."
+  },
+  "color-overlay-inverted": {
+    "$value": "rgba(255, 255, 255, 0.75)",
+    "$type": "color",
+    "description": "Inverted overlay color."
+  }
+}

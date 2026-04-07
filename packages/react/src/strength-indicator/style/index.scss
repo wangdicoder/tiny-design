@@ -1,0 +1,46 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-strength-indicator {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  &__item {
+    box-sizing: border-box;
+    flex: 1;
+    margin: 0 var(--ty-strength-indicator-gap);
+
+    &:first-child {
+      margin-left: 0;
+
+      .#{$prefix}-strength-indicator__inner {
+        border-top-left-radius: var(--ty-strength-indicator-border-radius);
+        border-bottom-left-radius: var(--ty-strength-indicator-border-radius);
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+
+      .#{$prefix}-strength-indicator__inner {
+        border-top-right-radius: var(--ty-strength-indicator-border-radius);
+        border-bottom-right-radius: var(--ty-strength-indicator-border-radius);
+      }
+    }
+  }
+
+  &__inner {
+    background-color: var(--ty-strength-indicator-bg);
+    min-height: var(--ty-strength-indicator-min-height);
+    transition: background-color 300ms;
+  }
+
+  &__label {
+    text-align: center;
+    margin-top: var(--ty-strength-indicator-label-margin-top);
+    color: var(--ty-strength-indicator-label-color);
+    font-size: var(--ty-strength-indicator-label-font-size);
+  }
+}

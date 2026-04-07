@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import type { LegendPayload, LegendProps as RechartsLegendProps } from 'recharts';
 import { Legend as RechartsLegend } from 'recharts';
 import { useChart } from './chart-context';
 
@@ -9,15 +10,10 @@ export const ChartLegend = RechartsLegend;
 
 export interface ChartLegendContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  payload?: Array<{
-    value?: string;
-    dataKey?: string;
-    color?: string;
-    type?: string;
-  }>;
+  payload?: ReadonlyArray<LegendPayload>;
   nameKey?: string;
   hideIcon?: boolean;
-  verticalAlign?: 'top' | 'bottom';
+  verticalAlign?: Extract<RechartsLegendProps['verticalAlign'], 'top' | 'bottom'>;
 }
 
 export const ChartLegendContent = React.forwardRef<
@@ -31,6 +27,22 @@ export const ChartLegendContent = React.forwardRef<
       hideIcon = false,
       verticalAlign = 'bottom',
       className,
+      align: _align,
+      chartHeight: _chartHeight,
+      chartWidth: _chartWidth,
+      formatter: _formatter,
+      height: _height,
+      iconSize: _iconSize,
+      iconType: _iconType,
+      inactiveColor: _inactiveColor,
+      itemSorter: _itemSorter,
+      layout: _layout,
+      margin: _margin,
+      onBBoxUpdate: _onBBoxUpdate,
+      payloadUniqBy: _payloadUniqBy,
+      portal: _portal,
+      width: _width,
+      wrapperStyle: _wrapperStyle,
       ...props
     },
     ref

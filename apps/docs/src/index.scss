@@ -1,7 +1,7 @@
 @use './variables' as *;
 
 // Override the default font-family token so the docs site uses DM Sans,
-// while still responding to theme-editor changes via CSS custom properties.
+// while still responding to theme studio changes via CSS custom properties.
 :root {
   --ty-font-family: #{$font-family};
 }
@@ -47,8 +47,30 @@ body {
     }
   }
 
+  &__layout_wide {
+    padding-right: 40px;
+
+    @media (max-width: $size-xl) {
+      padding-right: 24px;
+    }
+
+    @media (max-width: $size-md) {
+      padding-right: 20px;
+    }
+  }
+
   &__divider {
     margin: 40px 0 30px;
+  }
+
+  &__content {
+    min-width: 0;
+  }
+
+  &__content_wide {
+    width: 100%;
+    max-width: none;
+    flex: 1 1 auto;
   }
 
   &__footer {

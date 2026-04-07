@@ -1,0 +1,106 @@
+{
+  "collapse.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Collapse container border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "collapse.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Collapse text color.",
+    "fallback": "--ty-color-text"
+  },
+  "collapse.font-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Collapse font size."
+  },
+  "collapse.bg": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "Collapse background color.",
+    "fallback": "--ty-color-fill"
+  },
+  "collapse.border": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Collapse border color.",
+    "fallback": "--ty-color-border"
+  },
+  "collapse.header-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Collapse header text color.",
+    "fallback": "--ty-color-text"
+  },
+  "collapse.header-line-height": {
+    "$value": "22px",
+    "$type": "dimension",
+    "description": "Collapse header line height."
+  },
+  "collapse.header-hover-bg": {
+    "$value": "#efefef",
+    "$type": "color",
+    "description": "Collapse header hover background color."
+  },
+  "collapse.header-disabled-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Disabled collapse header color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "collapse.toggle-padding": {
+    "$value": "12px 16px",
+    "$type": "string",
+    "description": "Collapse toggle padding."
+  },
+  "collapse.arrow-gap": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Gap between collapse arrow and title."
+  },
+  "collapse.extra-font-size": {
+    "$value": "11px",
+    "$type": "dimension",
+    "description": "Collapse extra content font size."
+  },
+  "collapse.extra-padding-inline-end": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Collapse extra content trailing padding."
+  },
+  "collapse.content-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Collapse content text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "collapse.content-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Collapse content background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "collapse.content-padding": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Collapse content padding."
+  },
+  "collapse.content-transition-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Collapse content height transition duration."
+  },
+  "collapse.borderless-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Borderless collapse background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "collapse.borderless-content-padding-top": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Borderless collapse content top padding."
+  }
+}

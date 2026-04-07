@@ -1,0 +1,27 @@
+{
+  "chart-1": {
+    "$value": "#6e41bf",
+    "$type": "color",
+    "description": "Chart palette color 1."
+  },
+  "chart-2": {
+    "$value": "#1890ff",
+    "$type": "color",
+    "description": "Chart palette color 2."
+  },
+  "chart-3": {
+    "$value": "#52c41a",
+    "$type": "color",
+    "description": "Chart palette color 3."
+  },
+  "chart-4": {
+    "$value": "#ff9800",
+    "$type": "color",
+    "description": "Chart palette color 4."
+  },
+  "chart-5": {
+    "$value": "#f44336",
+    "$type": "color",
+    "description": "Chart palette color 5."
+  }
+}

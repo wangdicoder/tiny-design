@@ -1,0 +1,81 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+@use './mixin' as *;
+
+.#{$prefix}-alert {
+  border: 1px solid;
+  border-radius: var(--ty-alert-border-radius);
+  box-sizing: border-box;
+  padding: var(--ty-alert-padding);
+  position: relative;
+  font-weight: var(--ty-alert-font-weight);
+  opacity: 1;
+  font-size: var(--ty-alert-font-size);
+  transition: all var(--ty-alert-transition-duration);
+  transform-origin: center top;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+
+  & + & {
+    margin-top: var(--ty-alert-stack-gap);
+  }
+
+  &__content {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  &__title {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: var(--ty-alert-title-font-size);
+    font-weight: var(--ty-alert-title-font-weight);
+
+    &_has-content {
+      margin-bottom: var(--ty-alert-title-margin-bottom);
+    }
+  }
+
+  &__desc {
+    box-sizing: border-box;
+    line-height: var(--ty-alert-desc-line-height);
+  }
+
+  &__icon {
+    line-height: var(--ty-alert-desc-line-height);
+    margin-right: var(--ty-alert-icon-gap);
+    position: relative;
+    top: var(--ty-alert-icon-offset-top);
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: var(--ty-alert-close-offset-top);
+    right: var(--ty-alert-close-offset-inline-end);
+    cursor: pointer;
+    float: right;
+    user-select: none;
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  &_error {
+    @include alert-mixin(var(--ty-color-danger-text), var(--ty-color-danger-border), var(--ty-color-danger-bg));
+  }
+
+  &_warning {
+    @include alert-mixin(var(--ty-color-warning-text), var(--ty-color-warning-border), var(--ty-color-warning-bg));
+  }
+
+  &_success {
+    @include alert-mixin(var(--ty-color-success-text), var(--ty-color-success-border), var(--ty-color-success-bg));
+  }
+
+  &_info {
+    @include alert-mixin(var(--ty-color-info-text), var(--ty-color-info-border), var(--ty-color-info-bg));
+  }
+}

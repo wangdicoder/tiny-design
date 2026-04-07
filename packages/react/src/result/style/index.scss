@@ -1,0 +1,48 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+@use '@tiny-design/tokens/scss/animation' as *;
+
+.#{$prefix}-result {
+  padding: var(--ty-result-padding);
+  box-sizing: border-box;
+
+  &__icon-container {
+    margin-bottom: var(--ty-result-icon-margin-bottom);
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  &__icon {
+    animation: ty-rotate 1s linear infinite;
+  }
+
+  &__title {
+    color: var(--ty-result-title-color);
+    font-size: var(--ty-result-title-font-size);
+    line-height: var(--ty-result-title-line-height);
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  &__subtitle {
+    color: var(--ty-result-subtitle-color);
+    font-size: var(--ty-result-subtitle-font-size);
+    line-height: var(--ty-result-subtitle-line-height);
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  &__extra {
+    margin-top: var(--ty-result-extra-margin-top);
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  &__content {
+    margin-top: var(--ty-result-content-margin-top);
+    margin-left: var(--ty-result-content-margin-inline);
+    margin-right: var(--ty-result-content-margin-inline);
+    padding: var(--ty-result-content-padding);
+    background-color: var(--ty-result-content-bg);
+    box-sizing: border-box;
+  }
+}

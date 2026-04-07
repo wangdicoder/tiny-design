@@ -6,11 +6,13 @@ export default function NestedThemeDemo() {
     <ConfigProvider
       theme={{
         mode: 'dark',
-        token: {
-          colorPrimary: '#1677ff',
-        },
-        components: {
-          Button: { borderRadius: '999px' },
+        tokens: {
+          semantic: {
+            'color-primary': '#1677ff',
+          },
+          components: {
+            'button.radius': '999px',
+          },
         },
       }}>
       <Card title="Outer Provider" style={{ marginBottom: 16 }}>
@@ -22,11 +24,13 @@ export default function NestedThemeDemo() {
 
       <ConfigProvider
         theme={{
-          token: {
-            colorPrimary: '#f5222d',
-          },
-          components: {
-            Button: { borderRadius: '2px' },
+          tokens: {
+            semantic: {
+              'color-primary': '#f5222d',
+            },
+            components: {
+              'button.radius': '2px',
+            },
           },
         }}>
         <Card title="Inner Provider">

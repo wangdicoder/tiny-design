@@ -73,7 +73,7 @@ The `theme` prop accepts either a theme mode string or a `ThemeConfig` object fo
 
 ### Token Overrides
 
-Use `ThemeConfig` to customize global tokens and component-level tokens:
+Use `ThemeConfig` to customize semantic tokens and component-level tokens:
 
 ```jsx
 import { ConfigProvider } from 'tiny-design';
@@ -81,14 +81,18 @@ import { ConfigProvider } from 'tiny-design';
 <ConfigProvider
   theme={{
     mode: 'light',
-    token: {
-      colorPrimary: '#1890ff',
-      borderRadius: '8px',
-    },
-    components: {
-      Button: { borderRadius: '20px', heightMd: '40px' },
-      Card: { headerFontSize: '20px', borderRadius: '12px' },
-      Input: { borderRadius: '8px' },
+    tokens: {
+      semantic: {
+        'color-primary': '#1890ff',
+        'border-radius': '8px',
+      },
+      components: {
+        'button.radius': '20px',
+        'button.height.md': '40px',
+        'card.header-font-size': '20px',
+        'card.radius': '12px',
+        'input.radius': '8px',
+      },
     },
   }}
 >
@@ -101,10 +105,11 @@ import { ConfigProvider } from 'tiny-design';
 | Property   | Description                                      | Type                                          | Default |
 | ---------- | ------------------------------------------------ | --------------------------------------------- | ------- |
 | mode       | theme mode                                       | enum: `light` &#124; `dark` &#124; `system`   | -       |
-| token      | global design token overrides (camelCase keys)   | `Record<string, string \| number>`            | -       |
-| components | per-component token overrides (camelCase keys)   | `Record<string, Record<string, string \| number>>` | -  |
+| extends    | base theme id to extend                          | `string`                                      | auto-selected from `mode` |
+| meta       | optional theme metadata                          | `ThemeDocumentMeta`                           | -       |
+| tokens     | semantic and component token overrides           | `{ semantic?: Record<string, string \| number>; components?: Record<string, string \| number> }` | - |
 
-Token keys use camelCase and are automatically converted to CSS custom properties. For example, `colorPrimary` becomes `--ty-color-primary`, and `Button.borderRadius` becomes `--ty-btn-border-radius`. The provider applies them to its own scope node, not to the global `<html>` element. Nested providers therefore behave like nested scopes, and popup-based components inherit the same values through the provider popup holder.
+Semantic token keys use kebab-case and component token keys use dotted paths. For example, `color-primary` becomes `--ty-color-primary`, and `button.radius` becomes `--ty-button-radius`. The provider applies them to its own scope node, not to the global `<html>` element. Nested providers therefore behave like nested scopes, and popup-based components inherit the same values through the provider popup holder.
 
 When scoped theming is active, `ConfigProvider` renders an internal scope node with `display: contents` so local CSS variables and popup holders have a stable attachment point. This keeps layout impact low, but the node still exists in the DOM and may affect code that relies on direct parent-child DOM relationships.
 
@@ -115,9 +120,9 @@ When scoped theming is active, `ConfigProvider` renders an internal scope node w
 The inner `ConfigProvider` overrides the outer one. When the inner provider unmounts, the outer values are restored.
 
 ```jsx
-<ConfigProvider theme={{ mode: 'dark', token: { colorPrimary: '#1677ff' } }}>
+<ConfigProvider theme={{ mode: 'dark', tokens: { semantic: { 'color-primary': '#1677ff' } } }}>
   <AppShell>
-    <ConfigProvider theme={{ token: { colorPrimary: '#f5222d' } }}>
+    <ConfigProvider theme={{ tokens: { semantic: { 'color-primary': '#f5222d' } } }}>
       <DangerSection />
     </ConfigProvider>
   </AppShell>
@@ -137,10 +142,12 @@ Because popup-based components render into the current provider holder, they inh
 ```jsx
 <ConfigProvider
   theme={{
-    token: { colorPrimary: '#13c2c2' },
-    components: {
-      Select: { dropdownShadow: '0 0 0 2px rgba(19, 194, 194, 0.2)' },
-      Tooltip: { contentPadding: '8px 12px' },
+    tokens: {
+      semantic: { 'color-primary': '#13c2c2' },
+      components: {
+        'select.dropdown-shadow': '0 0 0 2px rgba(19, 194, 194, 0.2)',
+        'tooltip.content-padding': '8px 12px',
+      },
     },
   }}
 >
@@ -163,8 +170,8 @@ const [danger, setDanger] = useState(false);
 <ConfigProvider
   theme={
     danger
-      ? { token: { colorPrimary: '#ff4d4f', borderRadius: '2px' } }
-      : { token: { colorPrimary: '#1677ff' } }
+      ? { tokens: { semantic: { 'color-primary': '#ff4d4f', 'border-radius': '2px' } } }
+      : { tokens: { semantic: { 'color-primary': '#1677ff' } } }
   }
 >
   <Button onClick={() => setDanger((prev) => !prev)}>Toggle theme</Button>
@@ -182,10 +189,10 @@ You can also customize components directly via CSS without using `ThemeConfig`:
 :root { --ty-border-radius: 8px; }
 
 /* Component-specific — only affects Button */
-:root { --ty-btn-border-radius: 20px; }
+:root { --ty-button-radius: 20px; }
 
 /* Scoped — only affects Buttons inside .my-section */
-.my-section { --ty-btn-border-radius: 0; }
+.my-section { --ty-button-radius: 0; }
 ```
 
 ## Static Functions
@@ -196,7 +203,7 @@ Static feedback APIs such as `Message.*`, `Notification.*`, `LoadingBar.*`, and 
 ConfigProvider.config({
   holderRender: (children) => (
     <ConfigProvider
-      theme={{ token: { colorPrimary: '#1677ff' } }}
+      theme={{ tokens: { semantic: { 'color-primary': '#1677ff' } } }}
       prefixCls="ty"
     >
       {children}

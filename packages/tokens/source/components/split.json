@@ -1,0 +1,27 @@
+{
+  "split.bar-bg": {
+    "$value": "#f8f8f9",
+    "$type": "color",
+    "description": "Split bar bg."
+  },
+  "split.bar-border": {
+    "$value": "#dcdee2",
+    "$type": "color",
+    "description": "Split bar border."
+  },
+  "split.bar-line": {
+    "$value": "#d5d5d5",
+    "$type": "color",
+    "description": "Split bar line."
+  },
+  "split.bar-handle-size": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Split bar handle line size."
+  },
+  "split.bar-handle-gap": {
+    "$value": "1px",
+    "$type": "dimension",
+    "description": "Split bar handle gap."
+  }
+}

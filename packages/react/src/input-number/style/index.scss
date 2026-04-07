@@ -1,0 +1,144 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+@use '../../input/style/mixin' as *;
+
+.#{$prefix}-input-number {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+
+  &:hover {
+    .#{$prefix}-input-number__controls {
+      opacity: 1;
+    }
+  }
+
+  &__input {
+    @include input-default;
+
+    padding-left: var(--ty-input-number-input-padding-inline-start);
+    padding-right: var(--ty-input-number-input-padding-inline-end);
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+    }
+  }
+
+  &__controls {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ty-input-number-controls-padding);
+    opacity: 0;
+    transition: all var(--ty-input-number-control-transition-duration);
+  }
+
+  &__up,
+  &__down {
+    cursor: pointer;
+    box-sizing: border-box;
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--ty-input-number-control-padding-inline);
+    border-left: 1px solid var(--ty-input-number-control-border);
+    transition: all var(--ty-input-number-control-transition-duration);
+
+    &:hover {
+      flex: 2;
+
+      .ty-icon {
+        color: var(--ty-input-number-icon-color-hover) !important;
+      }
+    }
+
+    &:active {
+      background-color: var(--ty-input-number-control-active-bg);
+    }
+  }
+
+  &__up {
+    border-bottom: 1px solid var(--ty-input-number-control-border);
+  }
+
+  &__down {
+    padding-top: 1px;
+  }
+
+
+  &__icon {
+    color: var(--ty-input-number-icon-color);
+
+    &_reverse {
+      transform: rotate(180deg);
+    }
+  }
+
+  &_sm {
+    .#{$prefix}-input-number {
+      &__input {
+        font-size: var(--ty-input-number-font-size-sm);
+        height: var(--ty-input-number-height-sm);
+        line-height: var(--ty-input-number-height-sm);
+      }
+    }
+  }
+
+  &_md {
+    .#{$prefix}-input-number {
+      &__input {
+        font-size: var(--ty-input-number-font-size-md);
+        height: var(--ty-input-number-height-md);
+        line-height: var(--ty-input-number-height-md);
+      }
+    }
+  }
+
+  &_lg {
+    .#{$prefix}-input-number {
+      &__input {
+        font-size: var(--ty-input-number-font-size-lg);
+        height: var(--ty-input-number-height-lg);
+        line-height: var(--ty-input-number-height-lg);
+      }
+    }
+  }
+
+  &_disabled {
+    .#{$prefix}-input-number {
+      &__input {
+        @include input-default-disabled;
+      }
+
+      &__up,
+      &__down {
+        cursor: not-allowed;
+
+        .ty-icon {
+          color: var(--ty-input-number-icon-color) !important;
+        }
+
+        &:hover {
+          flex: 1;
+        }
+
+        &:active {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  &_always-controls {
+    .#{$prefix}-input-number__controls {
+      opacity: 1;
+    }
+  }
+}

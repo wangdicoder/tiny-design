@@ -1,0 +1,37 @@
+{
+  "shadow-btn": {
+    "$value": "inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)",
+    "$type": "shadow",
+    "description": "Button elevation shadow."
+  },
+  "shadow-card": {
+    "$value": "0 1px 6px rgba(0, 0, 0, 0.12)",
+    "$type": "shadow",
+    "description": "Card elevation shadow."
+  },
+  "shadow-focus": {
+    "$value": "0 0 0 3px rgba(110, 65, 191, 0.2)",
+    "$type": "shadow",
+    "description": "Default focus ring shadow."
+  },
+  "shadow-lg": {
+    "$value": "0 1rem 3rem rgba(0, 0, 0, 0.175)",
+    "$type": "shadow",
+    "description": "Large elevation shadow."
+  },
+  "shadow-modal": {
+    "$value": "0 4px 12px rgba(0, 0, 0, 0.15)",
+    "$type": "shadow",
+    "description": "Modal elevation shadow."
+  },
+  "shadow-popup": {
+    "$value": "0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05)",
+    "$type": "shadow",
+    "description": "Popup elevation shadow."
+  },
+  "shadow-sm": {
+    "$value": "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)",
+    "$type": "shadow",
+    "description": "Small elevation shadow."
+  }
+}

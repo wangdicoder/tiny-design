@@ -1,0 +1,93 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-segmented {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--ty-segmented-padding);
+  background: var(--ty-segmented-bg);
+  border-radius: var(--ty-segmented-radius);
+  box-sizing: border-box;
+
+  &_block {
+    display: flex;
+    width: 100%;
+
+    .#{$prefix}-segmented__item {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
+  &_disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .#{$prefix}-segmented__item {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  &_sm .#{$prefix}-segmented__item {
+    padding: var(--ty-segmented-item-padding-sm);
+    height: var(--ty-segmented-item-height-sm);
+    font-size: var(--ty-segmented-font-size-sm);
+  }
+
+  &_md .#{$prefix}-segmented__item {
+    padding: var(--ty-segmented-item-padding-md);
+    height: var(--ty-segmented-item-height-md);
+    font-size: var(--ty-segmented-font-size-md);
+  }
+
+  &_lg .#{$prefix}-segmented__item {
+    padding: var(--ty-segmented-item-padding-lg);
+    height: var(--ty-segmented-item-height-lg);
+    font-size: var(--ty-segmented-font-size-lg);
+  }
+
+  &__item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ty-segmented-item-gap);
+    cursor: pointer;
+    border-radius: var(--ty-segmented-radius);
+    transition: all 0.2s;
+    user-select: none;
+    white-space: nowrap;
+
+    &:hover:not(&_active, &_disabled) {
+      color: var(--ty-segmented-item-color-hover);
+    }
+
+    &_active {
+      background: var(--ty-segmented-active-bg);
+      color: var(--ty-segmented-item-color-active);
+      box-shadow: var(--ty-segmented-item-shadow-active);
+      font-weight: var(--ty-segmented-item-font-weight-active);
+    }
+
+    &_disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__label {
+    display: inline-block;
+  }
+}

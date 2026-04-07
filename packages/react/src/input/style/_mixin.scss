@@ -9,28 +9,28 @@
   border: 1px solid var(--ty-input-border);
   transition: all 0.3s;
   outline: 0;
-  border-radius: var(--ty-input-border-radius, var(--ty-border-radius));
-  font-size: var(--ty-input-font-size, var(--ty-font-size-base));
-  background-color: var(--ty-input-bg);
+  border-radius: var(--ty-input-radius, var(--ty-border-radius));
+  font-size: var(--ty-input-font-size-md, var(--ty-font-size-base));
+  background-color: var(--ty-input-bg, var(--ty-color-bg-container));
 
   &:hover {
-    border-color: var(--ty-color-primary);
+    border-color: var(--ty-input-border-hover, var(--ty-color-primary));
   }
 
   &:focus {
-    border-color: var(--ty-input-focus-border);
-    box-shadow: var(--ty-input-focus-shadow);
+    border-color: var(--ty-input-border-focus, var(--ty-color-primary));
+    box-shadow: var(--ty-input-shadow-focus, var(--ty-shadow-focus));
   }
 
   &::placeholder {
-    color: var(--ty-color-text-placeholder);
+    color: var(--ty-input-placeholder, var(--ty-color-text-placeholder));
   }
 }
 
 @mixin input-default-disabled {
   cursor: not-allowed;
-  background-color: var(--ty-input-disabled-bg);
-  color: var(--ty-input-disabled-color);
+  background-color: var(--ty-input-bg-disabled, var(--ty-color-bg-disabled));
+  color: var(--ty-input-text-disabled, var(--ty-color-text-quaternary));
 
   &:hover {
     border-color: var(--ty-input-border);

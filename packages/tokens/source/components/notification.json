@@ -1,0 +1,107 @@
+{
+  "notification.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Notification panel background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "notification.border-radius": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Notification panel border radius."
+  },
+  "notification.color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Notification body text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "notification.close-color": {
+    "$value": "rgba(0, 0, 0, 0.2)",
+    "$type": "color",
+    "description": "Notification close button color."
+  },
+  "notification.close-hover": {
+    "$value": "rgba(0, 0, 0, 0.7)",
+    "$type": "color",
+    "description": "Notification close button hover color."
+  },
+  "notification.close-offset-inline-end": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Notification close button inline end offset."
+  },
+  "notification.close-offset-top": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Notification close button top offset."
+  },
+  "notification.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Notification body font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "notification.icon-gap": {
+    "$value": "15px",
+    "$type": "dimension",
+    "description": "Gap between notification icon and body."
+  },
+  "notification.icon-height": {
+    "$value": "30px",
+    "$type": "dimension",
+    "description": "Notification icon visual height."
+  },
+  "notification.margin": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Notification container edge margin."
+  },
+  "notification.padding": {
+    "$value": "16px 24px",
+    "$type": "dimension",
+    "description": "Notification panel padding."
+  },
+  "notification.shadow": {
+    "$value": "{shadow-modal}",
+    "$type": "shadow",
+    "description": "Notification panel shadow.",
+    "fallback": "--ty-shadow-modal"
+  },
+  "notification.title-font-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Notification title font size."
+  },
+  "notification.title-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Notification title color.",
+    "fallback": "--ty-color-text"
+  },
+  "notification.title-line-height": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Notification title line height."
+  },
+  "notification.title-margin-bottom": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Notification title bottom margin."
+  },
+  "notification.title-padding-inline-end": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Notification title inline end padding."
+  },
+  "notification.width": {
+    "$value": "380px",
+    "$type": "dimension",
+    "description": "Notification container width."
+  },
+  "notification.z-index": {
+    "$value": "999",
+    "$type": "number",
+    "description": "Notification container stacking order."
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "button.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Button border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "button.line-height": {
+    "$value": "{line-height-base}",
+    "$type": "line-height",
+    "description": "Button content line height.",
+    "fallback": "--ty-line-height-base"
+  },
+  "button.min-width": {
+    "$value": "auto",
+    "$type": "string",
+    "description": "Minimum button width."
+  },
+  "button.group-gap": {
+    "$value": "0",
+    "$type": "dimension",
+    "description": "Gap between adjacent button groups."
+  },
+  "button.group-divider-color": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "Divider color between adjacent grouped solid buttons.",
+    "fallback": "--ty-color-border-secondary"
+  },
+  "button.round-radius": {
+    "$value": "{height-lg}",
+    "$type": "dimension",
+    "description": "Pill-shaped button border radius.",
+    "fallback": "--ty-height-lg"
+  },
+  "button.loading-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Overlay background during button loading state.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "button.loading-opacity": {
+    "$value": "0.35",
+    "$type": "number",
+    "description": "Overlay opacity during button loading state."
+  },
+  "button.font-size-sm": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Small button font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "button.font-size-md": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Medium button font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "button.font-size-lg": {
+    "$value": "{font-size-lg}",
+    "$type": "dimension",
+    "description": "Large button font size.",
+    "fallback": "--ty-font-size-lg"
+  },
+  "button.height.sm": {
+    "$value": "{height-sm}",
+    "$type": "dimension",
+    "description": "Small button height.",
+    "fallback": "--ty-height-sm"
+  },
+  "button.height.md": {
+    "$value": "{height-md}",
+    "$type": "dimension",
+    "description": "Medium button height.",
+    "fallback": "--ty-height-md"
+  },
+  "button.height.lg": {
+    "$value": "{height-lg}",
+    "$type": "dimension",
+    "description": "Large button height.",
+    "fallback": "--ty-height-lg"
+  },
+  "button.padding-inline-sm": {
+    "$value": "{spacing-3}",
+    "$type": "dimension",
+    "description": "Small button inline padding."
+  },
+  "button.padding-inline-md": {
+    "$value": "{spacing-4}",
+    "$type": "dimension",
+    "description": "Medium button inline padding."
+  },
+  "button.padding-inline-lg": {
+    "$value": "{spacing-5}",
+    "$type": "dimension",
+    "description": "Large button inline padding."
+  },
+  "button.bg.default": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Default button background.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "button.bg.default-hover": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Default button hover background.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "button.bg.default-active": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "Default button active background.",
+    "fallback": "--ty-color-fill"
+  },
+  "button.border.default": {
+    "$value": "{color-border-btn-default}",
+    "$type": "color",
+    "description": "Default button border color.",
+    "fallback": "--ty-color-border-btn-default"
+  },
+  "button.border.default-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Default button hover border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "button.border.default-active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Default button active border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "button.text.default": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Default button text color.",
+    "fallback": "--ty-color-text"
+  },
+  "button.text.default-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Default button hover text color.",
+    "fallback": "--ty-color-primary"
+  },
+  "button.text.default-active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Default button active text color.",
+    "fallback": "--ty-color-primary"
+  },
+  "button.bg.primary": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Primary button background.",
+    "fallback": "--ty-color-primary"
+  },
+  "button.bg.primary-hover": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "Primary button hover background.",
+    "fallback": "--ty-color-primary-hover"
+  },
+  "button.bg.primary-active": {
+    "$value": "{color-primary-active}",
+    "$type": "color",
+    "description": "Primary button active background.",
+    "fallback": "--ty-color-primary-active"
+  },
+  "button.text.primary": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Primary button text color."
+  },
+  "button.text.link-disabled": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Disabled link button text color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "button.bg.disabled": {
+    "$value": "{color-bg-disabled}",
+    "$type": "color",
+    "description": "Disabled button background.",
+    "fallback": "--ty-color-bg-disabled"
+  },
+  "button.border.disabled": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Disabled button border color.",
+    "fallback": "--ty-color-border"
+  },
+  "button.text.disabled": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Disabled button text color.",
+    "fallback": "--ty-color-text-quaternary"
+  }
+}

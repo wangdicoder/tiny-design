@@ -1,7 +1,5 @@
-// Static structural constants — bridged to CSS custom properties.
+// Static structural constants bridged to primary v2 CSS custom properties.
 // These values do not change between themes.
-// The var() references allow runtime customization while
-// maintaining backward compatibility with existing SCSS usage.
 
 // Alert
 $alert-border-radius: var(--ty-alert-border-radius) !default;
@@ -15,11 +13,11 @@ $badge-size: var(--ty-badge-size) !default;
 $badge-dot-size: var(--ty-badge-dot-size) !default;
 
 // Button
-$btn-padding-sm: var(--ty-btn-padding-sm) !default;
-$btn-padding-md: var(--ty-btn-padding-md) !default;
-$btn-padding-lg: var(--ty-btn-padding-lg) !default;
-$btn-loading-opacity: var(--ty-btn-loading-opacity) !default;
-$btn-transition: var(--ty-btn-transition) !default;
+$btn-padding-sm: var(--ty-button-padding-inline-sm) !default;
+$btn-padding-md: var(--ty-button-padding-inline-md) !default;
+$btn-padding-lg: var(--ty-button-padding-inline-lg) !default;
+$btn-loading-opacity: var(--ty-button-loading-opacity) !default;
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
 // Card
 $card-header-padding: var(--ty-card-header-padding) !default;
@@ -27,17 +25,17 @@ $card-body-padding: var(--ty-card-body-padding) !default;
 $card-footer-padding: var(--ty-card-footer-padding) !default;
 
 // Description
-$description-sm-padding-vt: var(--ty-description-sm-padding-vt) !default;
-$description-md-padding-vt: var(--ty-description-md-padding-vt) !default;
-$description-lg-padding-vt: var(--ty-description-lg-padding-vt) !default;
-$description-sm-padding-hr: var(--ty-description-sm-padding-hr) !default;
-$description-md-padding-hr: var(--ty-description-md-padding-hr) !default;
-$description-lg-padding-hr: var(--ty-description-lg-padding-hr) !default;
+$description-sm-padding-vt: var(--ty-descriptions-sm-padding-vt) !default;
+$description-md-padding-vt: var(--ty-descriptions-md-padding-vt) !default;
+$description-lg-padding-vt: var(--ty-descriptions-lg-padding-vt) !default;
+$description-sm-padding-hr: var(--ty-descriptions-sm-padding-hr) !default;
+$description-md-padding-hr: var(--ty-descriptions-md-padding-hr) !default;
+$description-lg-padding-hr: var(--ty-descriptions-lg-padding-hr) !default;
 
 // Input
-$input-sm-padding: var(--ty-input-sm-padding) !default;
-$input-md-padding: var(--ty-input-md-padding) !default;
-$input-lg-padding: var(--ty-input-lg-padding) !default;
+$input-sm-padding: var(--ty-input-padding-inline-sm) !default;
+$input-md-padding: var(--ty-input-padding-inline-md) !default;
+$input-lg-padding: var(--ty-input-padding-inline-lg) !default;
 
 // Menu
 $menu-item-padding-vertical: var(--ty-menu-item-padding-vertical) !default;

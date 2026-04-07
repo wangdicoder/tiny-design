@@ -1,0 +1,75 @@
+{
+  "steps.icon-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Steps icon bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "steps.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Steps root color.",
+    "fallback": "--ty-color-text"
+  },
+  "steps.tail-color": {
+    "$value": "#dcdcdc",
+    "$type": "color",
+    "description": "Steps tail color."
+  },
+  "steps.title-font-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Steps title font size."
+  },
+  "steps.title-font-weight-process": {
+    "$value": "600",
+    "$type": "font-weight",
+    "description": "Steps process title font weight."
+  },
+  "steps.title-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Steps title color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "steps.desc-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Steps description color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "steps.icon-size": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Steps icon size."
+  },
+  "steps.icon-border": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Steps icon border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "steps.process-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Steps process color.",
+    "fallback": "--ty-color-primary"
+  },
+  "steps.process-color-contrast": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Steps process contrast color."
+  },
+  "steps.wait-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Steps wait color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "steps.error-color": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "Steps error color.",
+    "fallback": "--ty-color-danger"
+  }
+}

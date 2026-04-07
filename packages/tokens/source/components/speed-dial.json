@@ -1,0 +1,45 @@
+{
+  "speed-dial.action-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Speed Dial action bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "speed-dial.action-bg-hover": {
+    "$value": "#f6f9fc",
+    "$type": "color",
+    "description": "Speed Dial action bg hover."
+  },
+  "speed-dial.action-color": {
+    "$value": "#32325d",
+    "$type": "color",
+    "description": "Speed Dial action color."
+  },
+  "speed-dial.bg": {
+    "$value": "{chart-1}",
+    "$type": "color",
+    "description": "Speed Dial bg.",
+    "fallback": "--ty-chart-1"
+  },
+  "speed-dial.bg-hover": {
+    "$value": "{color-primary-active}",
+    "$type": "color",
+    "description": "Speed Dial bg hover.",
+    "fallback": "--ty-color-primary-active"
+  },
+  "speed-dial.color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Speed Dial color."
+  },
+  "speed-dial.tooltip-bg": {
+    "$value": "#32325d",
+    "$type": "color",
+    "description": "Speed Dial tooltip bg."
+  },
+  "speed-dial.tooltip-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Speed Dial tooltip color."
+  }
+}

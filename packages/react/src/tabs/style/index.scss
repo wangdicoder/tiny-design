@@ -4,15 +4,14 @@ $tab-prefix: #{$prefix}-tabs;
 
 .#{$tab-prefix} {
   position: relative;
-  font-size: 14px;
-  color: var(--ty-color-text);
+  font-size: var(--ty-tabs-font-size, var(--ty-font-size-base));
+  color: var(--ty-tabs-color, var(--ty-color-text));
 
-  // ---- Nav ----
   &__nav {
     display: flex;
     align-items: center;
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: var(--ty-tabs-nav-margin, 16px);
 
     &::before {
       content: '';
@@ -20,7 +19,7 @@ $tab-prefix: #{$prefix}-tabs;
       bottom: 0;
       left: 0;
       right: 0;
-      border-bottom: 1px solid var(--ty-tabs-border);
+      border-bottom: 1px solid var(--ty-tabs-border, var(--ty-color-fill-tertiary));
     }
   }
 
@@ -36,65 +35,63 @@ $tab-prefix: #{$prefix}-tabs;
     transition: transform 0.3s;
   }
 
-  // ---- Tab ----
   &__tab {
     display: flex;
     align-items: center;
-    padding: 12px 0;
-    margin: 0 32px 0 0;
+    padding: var(--ty-tabs-tab-padding-block-md, 12px) 0;
+    margin: 0 var(--ty-tabs-tab-gap, 32px) 0 0;
     cursor: pointer;
     position: relative;
     white-space: nowrap;
     user-select: none;
+    color: var(--ty-tabs-tab-color, var(--ty-color-text));
     transition: color 0.3s;
 
     &:hover {
-      color: var(--ty-color-primary-text-hover);
+      color: var(--ty-tabs-tab-hover-color, var(--ty-color-primary-text-hover));
     }
 
     &_active {
-      color: var(--ty-color-primary);
-      font-weight: 500;
+      color: var(--ty-tabs-tab-active-color, var(--ty-color-primary));
+      font-weight: var(--ty-tabs-tab-active-font-weight, 500);
     }
 
     &_disabled {
-      color: var(--ty-color-text-quaternary);
+      color: var(--ty-tabs-tab-disabled-color, var(--ty-color-text-quaternary));
       cursor: not-allowed;
 
       &:hover {
-        color: var(--ty-color-text-quaternary);
+        color: var(--ty-tabs-tab-disabled-color, var(--ty-color-text-quaternary));
       }
     }
 
     &-icon {
-      margin-right: 8px;
+      margin-right: var(--ty-tabs-icon-gap, 8px);
     }
 
     &-remove {
-      margin-left: 8px;
-      font-size: 12px;
-      color: var(--ty-color-text-tertiary);
+      margin-left: var(--ty-tabs-remove-gap, 8px);
+      font-size: var(--ty-tabs-remove-font-size, 12px);
+      color: var(--ty-tabs-remove-color, var(--ty-color-text-tertiary));
       cursor: pointer;
       transition: color 0.3s;
 
       &:hover {
-        color: var(--ty-color-text);
+        color: var(--ty-tabs-remove-color-hover, var(--ty-color-text));
       }
     }
   }
 
-  // ---- Ink bar ----
   &__ink-bar {
     position: absolute;
     bottom: 0;
-    height: 2px;
-    background: var(--ty-color-primary);
+    height: var(--ty-tabs-ink-bar-height, 2px);
+    background: var(--ty-tabs-ink-bar-color, var(--ty-color-primary));
     transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     pointer-events: none;
   }
 
-  // ---- Content ----
   &__content {
     position: relative;
     overflow: hidden;
@@ -128,29 +125,28 @@ $tab-prefix: #{$prefix}-tabs;
     }
   }
 
-  // ---- Scroll nav ----
   &__nav-prev,
   &__nav-next {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
+    width: var(--ty-tabs-nav-button-size, 32px);
     height: 100%;
     background: transparent;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-    color: var(--ty-color-text-tertiary);
+    font-size: var(--ty-tabs-nav-button-font-size, 16px);
+    color: var(--ty-tabs-nav-button-color, var(--ty-color-text-tertiary));
     transition: color 0.3s;
     flex-shrink: 0;
 
     &:hover {
-      color: var(--ty-color-text);
+      color: var(--ty-tabs-nav-button-color-hover, var(--ty-color-text));
     }
   }
 
   &__nav-btn_disabled {
-    color: var(--ty-color-text-quaternary);
+    color: var(--ty-tabs-nav-button-color-disabled, var(--ty-color-text-quaternary));
     cursor: not-allowed;
   }
 
@@ -158,25 +154,24 @@ $tab-prefix: #{$prefix}-tabs;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: var(--ty-tabs-add-size, 32px);
+    height: var(--ty-tabs-add-size, 32px);
     background: transparent;
-    border: 1px dashed var(--ty-color-border);
-    border-radius: 4px;
+    border: 1px dashed var(--ty-tabs-add-border-color, var(--ty-color-border));
+    border-radius: var(--ty-tabs-add-radius, 4px);
     cursor: pointer;
-    font-size: 14px;
-    color: var(--ty-color-text-tertiary);
-    margin-left: 4px;
+    font-size: var(--ty-tabs-add-font-size, 14px);
+    color: var(--ty-tabs-add-color, var(--ty-color-text-tertiary));
+    margin-left: var(--ty-tabs-add-margin, 4px);
     flex-shrink: 0;
     transition: all 0.3s;
 
     &:hover {
-      color: var(--ty-color-primary);
-      border-color: var(--ty-color-primary);
+      color: var(--ty-tabs-add-color-hover, var(--ty-color-primary));
+      border-color: var(--ty-tabs-add-border-color-hover, var(--ty-color-primary));
     }
   }
 
-  // ---- Extra content ----
   &__nav-extra_left,
   &__nav-extra_right {
     display: flex;
@@ -185,43 +180,41 @@ $tab-prefix: #{$prefix}-tabs;
   }
 
   &__nav-extra_left {
-    margin-right: 16px;
+    margin-right: var(--ty-tabs-extra-gap, 16px);
   }
 
   &__nav-extra_right {
-    margin-left: 16px;
+    margin-left: var(--ty-tabs-extra-gap, 16px);
   }
 
-  // ---- Sizes ----
   &_sm &__tab {
-    padding: 8px 0;
-    font-size: 13px;
+    padding: var(--ty-tabs-tab-padding-block-sm, 8px) 0;
+    font-size: var(--ty-tabs-size-sm, 13px);
   }
 
   &_lg &__tab {
-    padding: 16px 0;
-    font-size: 15px;
+    padding: var(--ty-tabs-tab-padding-block-lg, 16px) 0;
+    font-size: var(--ty-tabs-size-lg, 15px);
   }
 
-  // ---- Card type ----
   &_card,
   &_editable-card {
     .#{$tab-prefix}__tab {
-      padding: 8px 16px;
+      padding: var(--ty-tabs-card-padding-block, 8px) var(--ty-tabs-card-padding-inline, 16px);
       margin: 0;
-      background: var(--ty-tabs-card-bg);
-      border: 1px solid var(--ty-tabs-border);
+      background: var(--ty-tabs-card-bg, var(--ty-color-fill));
+      border: 1px solid var(--ty-tabs-border, var(--ty-color-fill-tertiary));
       border-bottom: none;
-      border-radius: 4px 4px 0 0;
+      border-radius: var(--ty-tabs-card-radius, 4px) var(--ty-tabs-card-radius, 4px) 0 0;
       transition: all 0.3s;
 
       & + .#{$tab-prefix}__tab {
-        margin-left: 2px;
+        margin-left: var(--ty-tabs-card-gap, 2px);
       }
 
       &_active {
-        background: var(--ty-tabs-card-active-bg);
-        border-bottom-color: var(--ty-tabs-card-active-bg);
+        background: var(--ty-tabs-card-active-bg, var(--ty-color-bg-container));
+        border-bottom-color: var(--ty-tabs-card-active-bg, var(--ty-color-bg-container));
       }
     }
 
@@ -231,19 +224,17 @@ $tab-prefix: #{$prefix}-tabs;
   }
 
   &_editable-card .#{$tab-prefix}__tab {
-    padding-right: 8px;
+    padding-right: var(--ty-tabs-card-padding-inline-editable-end, 8px);
   }
 
-  // ---- Centered ----
   &_centered .#{$tab-prefix}__nav-list {
     justify-content: center;
   }
 
-  // ---- Positions ----
   &_bottom {
     .#{$tab-prefix}__nav {
       margin-bottom: 0;
-      margin-top: 16px;
+      margin-top: var(--ty-tabs-nav-margin, 16px);
 
       &::before {
         top: 0;
@@ -264,15 +255,16 @@ $tab-prefix: #{$prefix}-tabs;
     .#{$tab-prefix}__nav {
       flex-direction: column;
       margin-bottom: 0;
-      min-width: 60px;
 
       &::before {
-        display: none;
+        inset: 0 0 0 auto;
+        border-bottom: none;
+        border-right: 1px solid var(--ty-tabs-border, var(--ty-color-fill-tertiary));
       }
     }
 
     .#{$tab-prefix}__nav-wrap {
-      overflow: visible;
+      flex: none;
     }
 
     .#{$tab-prefix}__nav-list {
@@ -280,45 +272,43 @@ $tab-prefix: #{$prefix}-tabs;
     }
 
     .#{$tab-prefix}__tab {
-      margin: 0 0 4px;
-      padding: 8px 24px;
+      margin: 0;
+      padding-right: var(--ty-tabs-tab-gap, 32px);
     }
 
     .#{$tab-prefix}__ink-bar {
-      width: 2px;
+      width: var(--ty-tabs-ink-bar-height, 2px);
       height: auto;
       top: 0;
+      right: 0;
       bottom: auto;
-    }
-
-    .#{$tab-prefix}__content {
-      flex: 1;
-    }
-
-    .#{$tab-prefix}__content-inner {
-      display: block;
     }
   }
 
   &_left {
-    .#{$tab-prefix}__nav {
-      margin-right: 24px;
-      border-right: 1px solid var(--ty-tabs-border);
-    }
-
-    .#{$tab-prefix}__ink-bar {
-      right: 0;
+    .#{$tab-prefix}__content {
+      padding-left: var(--ty-tabs-nav-margin, 16px);
     }
   }
 
   &_right {
+    flex-direction: row-reverse;
+
     .#{$tab-prefix}__nav {
-      order: 1;
-      margin-left: 24px;
-      border-left: 1px solid var(--ty-tabs-border);
+      &::before {
+        right: auto;
+        left: 0;
+        border-right: none;
+        border-left: 1px solid var(--ty-tabs-border, var(--ty-color-fill-tertiary));
+      }
+    }
+
+    .#{$tab-prefix}__content {
+      padding-right: var(--ty-tabs-nav-margin, 16px);
     }
 
     .#{$tab-prefix}__ink-bar {
+      right: auto;
       left: 0;
     }
   }

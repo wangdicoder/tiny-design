@@ -1,5 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
+import type {
+  NameType,
+  TooltipContentProps as RechartsTooltipContentProps,
+  TooltipPayloadEntry,
+  ValueType,
+} from 'recharts';
 import { Tooltip as RechartsTooltip } from 'recharts';
 import { useChart } from './chart-context';
 
@@ -7,30 +13,26 @@ const PREFIX = 'ty-chart-tooltip';
 
 export const ChartTooltip = RechartsTooltip;
 
-export interface ChartTooltipContentProps
+export interface ChartTooltipContentProps<
+  TValue extends ValueType = ValueType,
+  TName extends NameType = NameType,
+>
   extends React.HTMLAttributes<HTMLDivElement> {
-  active?: boolean;
-  payload?: Array<{
-    name?: string;
-    value?: number | string;
-    dataKey?: string;
-    payload?: Record<string, unknown>;
-    color?: string;
-    fill?: string;
-  }>;
-  label?: string;
+  active?: RechartsTooltipContentProps<TValue, TName>['active'];
+  payload?: ReadonlyArray<TooltipPayloadEntry>;
+  label?: RechartsTooltipContentProps<TValue, TName>['label'];
   labelKey?: string;
   nameKey?: string;
   indicator?: 'dot' | 'line' | 'dashed';
   hideLabel?: boolean;
   hideIndicator?: boolean;
-  labelFormatter?: (label: string, payload: unknown[]) => React.ReactNode;
+  labelFormatter?: RechartsTooltipContentProps<TValue, TName>['labelFormatter'];
   formatter?: (
-    value: number | string,
-    name: string,
-    item: unknown,
+    value: TValue,
+    name: TName,
+    item: TooltipPayloadEntry,
     index: number,
-    payload: unknown[]
+    payload: ReadonlyArray<TooltipPayloadEntry>
   ) => React.ReactNode;
 }
 
@@ -51,6 +53,35 @@ export const ChartTooltipContent = React.forwardRef<
       labelFormatter,
       formatter,
       className,
+      activeIndex: _activeIndex,
+      accessibilityLayer: _accessibilityLayer,
+      allowEscapeViewBox: _allowEscapeViewBox,
+      animationDuration: _animationDuration,
+      animationEasing: _animationEasing,
+      axisId: _axisId,
+      contentStyle: _contentStyle,
+      coordinate: _coordinate,
+      cursor: _cursor,
+      cursorStyle: _cursorStyle,
+      defaultIndex: _defaultIndex,
+      filterNull: _filterNull,
+      includeHidden: _includeHidden,
+      isAnimationActive: _isAnimationActive,
+      itemSorter: _itemSorter,
+      itemStyle: _itemStyle,
+      labelStyle: _labelStyle,
+      offset: _offset,
+      payloadUniqBy: _payloadUniqBy,
+      portal: _portal,
+      position: _position,
+      reverseDirection: _reverseDirection,
+      separator: _separator,
+      shared: _shared,
+      trigger: _trigger,
+      useTranslate3d: _useTranslate3d,
+      wrapperClassName: _wrapperClassName,
+      wrapperStyle: _wrapperStyle,
+      labelClassName: _labelClassName,
       ...props
     },
     ref
@@ -101,7 +132,7 @@ export const ChartTooltipContent = React.forwardRef<
 
             const displayValue =
               formatter && item.value !== undefined
-                ? formatter(item.value, String(item.name), item, index, payload)
+                ? formatter(item.value as ValueType, item.name as NameType, item, index, payload)
                 : item.value;
 
             const IconComponent = itemConfig?.icon;

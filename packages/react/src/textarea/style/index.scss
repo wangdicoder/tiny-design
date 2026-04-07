@@ -1,0 +1,29 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+@use '../../input/style/mixin' as *;
+
+.#{$prefix}-textarea {
+  @include input-default;
+
+  padding: var(--ty-textarea-padding);
+  overflow: hidden;
+
+  &_disabled {
+    @include input-default-disabled;
+  }
+
+  &-container {
+    position: relative;
+
+    .#{$prefix}-textarea {
+      padding-bottom: var(--ty-textarea-padding-bottom-with-counter);
+
+      &__counter {
+        position: absolute;
+        bottom: var(--ty-textarea-counter-offset-bottom);
+        right: var(--ty-textarea-counter-offset-inline-end);
+        font-size: var(--ty-textarea-counter-font-size);
+        color: var(--ty-textarea-counter-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "upload.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Upload root text color.",
+    "fallback": "--ty-color-text"
+  },
+  "upload.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Upload root font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "upload.list-item-margin-top": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Upload list item margin top."
+  },
+  "upload.list-item-hover-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Upload list item hover background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "upload.list-item-padding": {
+    "$value": "4px 4px 4px 2px",
+    "$type": "string",
+    "description": "Upload list item container padding."
+  },
+  "upload.list-item-name-gap": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "Gap between upload item icon and name."
+  },
+  "upload.list-item-delete-padding-end": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Upload list item delete button trailing padding."
+  },
+  "upload.status-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Upload status icon and delete action size."
+  },
+  "upload.tip-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Upload tip font size."
+  },
+  "upload.tip-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Upload tip text color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "upload.tip-margin-top": {
+    "$value": "7px",
+    "$type": "dimension",
+    "description": "Upload tip margin top."
+  },
+  "upload.dragger-padding": {
+    "$value": "15px",
+    "$type": "dimension",
+    "description": "Upload dragger padding."
+  },
+  "upload.dragger-bg": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "Upload dragger background color.",
+    "fallback": "--ty-color-fill"
+  },
+  "upload.dragger-border": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Upload dragger border color.",
+    "fallback": "--ty-color-border"
+  },
+  "upload.dragger-border-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Upload dragger hover border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "upload.dragger-hover-bg": {
+    "$value": "#efefef",
+    "$type": "color",
+    "description": "Upload dragger hover background color."
+  },
+  "upload.dragger-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Upload dragger border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "upload.transition-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Upload hover transition duration."
+  }
+}

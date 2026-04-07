@@ -1,0 +1,88 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+@use '@tiny-design/tokens/scss/animation' as *;
+@use './mixin' as *;
+
+.#{$prefix}-badge {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+
+  &__count {
+    @include badge-base;
+
+    min-width: var(--ty-badge-size);
+    min-height: var(--ty-badge-size);
+    line-height: var(--ty-badge-size);
+    padding: var(--ty-badge-count-padding);
+    color: var(--ty-badge-count-color);
+    font-weight: var(--ty-badge-font-weight);
+    font-size: var(--ty-badge-font-size);
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  &__custom {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(50%) translateY(-50%);
+  }
+
+  &__dot {
+    @include badge-base;
+
+    width: var(--ty-badge-dot-size);
+    height: var(--ty-badge-dot-size);
+    line-height: var(--ty-badge-dot-size);
+
+    &_wave {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: inherit;
+        animation: ty-processing 1.2s infinite ease-in-out;
+      }
+    }
+  }
+
+  &__scroll-number {
+    display: inline-flex;
+
+    .#{$prefix}-scroll-number__content {
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+      font-family: inherit;
+    }
+
+    .#{$prefix}-scroll-number__measure {
+      font-size: inherit;
+      font-weight: inherit;
+    }
+
+    .#{$prefix}-scroll-number__suffix {
+      margin-left: 0;
+      font-size: inherit;
+    }
+
+    .#{$prefix}-scroll-number__sr-only,
+    .#{$prefix}-scroll-number__title {
+      display: none;
+    }
+  }
+
+  &_no-wrap {
+    .#{$prefix}-badge__count,
+    .#{$prefix}-badge__dot {
+      display: block;
+      transform: none;
+      position: relative;
+    }
+  }
+}

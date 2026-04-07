@@ -1,0 +1,22 @@
+{
+  "spacer": {
+    "$value": "1rem",
+    "$type": "dimension",
+    "description": "Base spacing unit."
+  },
+  "spacing-3": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Spacing scale step 3."
+  },
+  "spacing-4": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Spacing scale step 4."
+  },
+  "spacing-5": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Spacing scale step 5."
+  }
+}

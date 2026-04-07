@@ -1,0 +1,99 @@
+{
+  "segmented.active-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Segmented active bg.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "segmented.bg": {
+    "$value": "#e9ecef",
+    "$type": "color",
+    "description": "Segmented bg."
+  },
+  "segmented.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Segmented radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "segmented.padding": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Segmented container padding."
+  },
+  "segmented.item-gap": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Segmented item content gap."
+  },
+  "segmented.item-color-hover": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Segmented hover item color.",
+    "fallback": "--ty-color-text"
+  },
+  "segmented.item-color-active": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Segmented active item color.",
+    "fallback": "--ty-color-text"
+  },
+  "segmented.item-shadow-active": {
+    "$value": "0 1px 2px 0 rgb(0 0 0 / 6%), 0 1px 3px 0 rgb(0 0 0 / 10%)",
+    "$type": "shadow",
+    "description": "Segmented active item shadow."
+  },
+  "segmented.item-font-weight-active": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Segmented active item font weight."
+  },
+  "segmented.item-padding.sm": {
+    "$value": "0 8px",
+    "$type": "string",
+    "description": "Small segmented item padding."
+  },
+  "segmented.item-padding.md": {
+    "$value": "0 12px",
+    "$type": "string",
+    "description": "Medium segmented item padding."
+  },
+  "segmented.item-padding.lg": {
+    "$value": "0 16px",
+    "$type": "string",
+    "description": "Large segmented item padding."
+  },
+  "segmented.item-height.sm": {
+    "$value": "calc({height-sm} - 4px)",
+    "$type": "string",
+    "description": "Small segmented item height."
+  },
+  "segmented.item-height.md": {
+    "$value": "calc({height-md} - 4px)",
+    "$type": "string",
+    "description": "Medium segmented item height."
+  },
+  "segmented.item-height.lg": {
+    "$value": "calc({height-lg} - 4px)",
+    "$type": "string",
+    "description": "Large segmented item height."
+  },
+  "segmented.font-size.sm": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Small segmented font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "segmented.font-size.md": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Medium segmented font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "segmented.font-size.lg": {
+    "$value": "{font-size-lg}",
+    "$type": "dimension",
+    "description": "Large segmented font size.",
+    "fallback": "--ty-font-size-lg"
+  }
+}

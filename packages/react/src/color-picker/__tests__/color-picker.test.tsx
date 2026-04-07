@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import ColorPicker from '../index';
+import { parseColor } from '../utils';
 
 describe('<ColorPicker />', () => {
   it('should match the snapshot', () => {
@@ -35,5 +36,11 @@ describe('<ColorPicker />', () => {
     render(<ColorPicker open presets={['#ff0000', '#00ff00', '#0000ff']} />);
     const presets = document.body.querySelectorAll('.ty-color-picker__preset');
     expect(presets.length).toBe(3);
+  });
+
+  it('should parse oklch values into a dark neutral color instead of the red fallback', () => {
+    const color = parseColor('oklch(0.205 0 0)');
+    expect(color.s).toBe(0);
+    expect(color.b).toBeLessThan(20);
   });
 });

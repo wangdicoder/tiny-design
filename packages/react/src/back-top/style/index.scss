@@ -1,0 +1,25 @@
+@use '@tiny-design/tokens/scss/variables' as *;
+
+.#{$prefix}-back-top {
+  position: fixed;
+  right: var(--ty-back-top-offset-inline-end);
+  bottom: var(--ty-back-top-offset-bottom);
+  background-color: var(--ty-back-top-bg);
+  width: var(--ty-back-top-size);
+  height: var(--ty-back-top-size);
+  border-radius: var(--ty-back-top-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: opacity 200ms linear 0s, visibility;
+
+  &_custom {
+    background: none;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+  }
+}

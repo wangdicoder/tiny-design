@@ -1,83 +1,78 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Button, Marquee } from '@tiny-design/react';
-import { useTheme } from '@tiny-design/react';
-import { PRESETS, getPresetSeeds, ThemePreset } from '../theme-editor/constants/presets';
-import { applyThemeToDOM, saveSeeds } from '../../utils/theme-persistence';
+import {
+  buildThemeDocumentFromDraft,
+  getPresetDraft,
+  inferPresetIdFromThemeDocument,
+  THEME_EDITOR_PRESETS,
+  type ThemeMode,
+} from '../theme-studio/presets';
+import { applyThemeDocumentToDOM, loadStoredThemeDocument, saveThemeDocument } from '../../utils/theme-persistence';
 import { useLocaleContext } from '../../context/locale-context';
 
 const PRESET_ID_KEY = 'ty-theme-preset-id';
 
 function loadActivePresetId(): string {
   try {
+    const storedTheme = loadStoredThemeDocument();
+    if (storedTheme) {
+      return inferPresetIdFromThemeDocument(storedTheme);
+    }
+
     return localStorage.getItem(PRESET_ID_KEY) || 'default';
   } catch {
     return 'default';
   }
 }
 
-interface PresetCardProps {
-  preset: ThemePreset;
-  isActive: boolean;
-  isZh: boolean;
-  onClick: () => void;
+function getCurrentMode(): ThemeMode {
+  if (typeof document === 'undefined') return 'light';
+  return document.documentElement.getAttribute('data-tiny-theme') === 'dark' ? 'dark' : 'light';
 }
-
-const PresetCard = ({ preset, isActive, isZh, onClick }: PresetCardProps): React.ReactElement => (
-  <button
-    className={`home__marquee-card${isActive ? ' home__marquee-card_active' : ''}`}
-    onClick={onClick}
-    title={isZh ? preset.nameZh : preset.name}
-    style={
-      isActive
-        ? { borderColor: preset.swatches[0], boxShadow: `0 0 0 1px ${preset.swatches[0]}` }
-        : undefined
-    }
-  >
-    <div className="home__marquee-swatches">
-      {preset.swatches.map((color, i) => (
-        <span key={i} className="home__marquee-swatch" style={{ backgroundColor: color }} />
-      ))}
-    </div>
-    <span className="home__marquee-name">{isZh ? preset.nameZh : preset.name}</span>
-  </button>
-);
 
 export const ThemeShowcase = (): React.ReactElement => {
   const navigate = useNavigate();
   const { siteLocale: s } = useLocaleContext();
-  const isZh = s.locale === 'zh_CN';
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === 'dark';
   const [activeId, setActiveId] = useState(loadActivePresetId);
 
-  const handleSelect = useCallback(
-    (preset: ThemePreset) => {
-      const lightSeeds = getPresetSeeds(preset, false);
-      const darkSeeds = preset.darkSeeds ?? undefined;
-      const currentSeeds = getPresetSeeds(preset, isDark);
+  useEffect(() => {
+    const syncActivePreset = () => setActiveId(loadActivePresetId());
 
-      applyThemeToDOM(currentSeeds, isDark);
-      saveSeeds(lightSeeds, darkSeeds);
+    syncActivePreset();
+    window.addEventListener('pageshow', syncActivePreset);
+    document.addEventListener('visibilitychange', syncActivePreset);
 
-      setActiveId(preset.id);
-      try {
-        localStorage.setItem(PRESET_ID_KEY, preset.id);
-      } catch {
-        // ignore
-      }
-    },
-    [isDark]
-  );
-
-  // Split presets into two rows
-  const { row1, row2 } = useMemo(() => {
-    const mid = Math.ceil(PRESETS.length / 2);
-    return {
-      row1: PRESETS.slice(0, mid),
-      row2: PRESETS.slice(mid),
+    return () => {
+      window.removeEventListener('pageshow', syncActivePreset);
+      document.removeEventListener('visibilitychange', syncActivePreset);
     };
   }, []);
+
+  const { row1, row2 } = useMemo(() => {
+    const mid = Math.ceil(THEME_EDITOR_PRESETS.length / 2);
+    return {
+      row1: THEME_EDITOR_PRESETS.slice(0, mid),
+      row2: THEME_EDITOR_PRESETS.slice(mid),
+    };
+  }, []);
+
+  const handleSelect = (presetId: string) => {
+    const themeDocument = buildThemeDocumentFromDraft(getPresetDraft(presetId, getCurrentMode()));
+    setActiveId(presetId);
+    saveThemeDocument(themeDocument);
+    applyThemeDocumentToDOM(themeDocument, { respectThemeMode: true });
+
+    try {
+      localStorage.setItem(PRESET_ID_KEY, presetId);
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleOpenStudio = () => {
+    navigate('/theme/theme-studio');
+  };
 
   return (
     <div className="home__section home__theme-showcase">
@@ -91,30 +86,44 @@ export const ThemeShowcase = (): React.ReactElement => {
       <div className="home__marquee-container">
         <Marquee duration={50} pauseOnHover>
           {row1.map((preset) => (
-            <PresetCard
+            <button
               key={preset.id}
-              preset={preset}
-              isActive={preset.id === activeId}
-              isZh={isZh}
-              onClick={() => handleSelect(preset)}
-            />
+              className={`home__marquee-card${preset.id === activeId ? ' home__marquee-card_active' : ''}`}
+              onClick={() => handleSelect(preset.id)}
+              title={preset.name}
+              style={preset.id === activeId ? { borderColor: preset.swatches[0], boxShadow: `0 0 0 1px ${preset.swatches[0]}` } : undefined}
+            >
+              <div className="home__marquee-swatches">
+                {preset.swatches.map((color, index) => (
+                  <span key={`${preset.id}-${color}-${index}`} className="home__marquee-swatch" style={{ backgroundColor: color }} />
+                ))}
+              </div>
+              <span className="home__marquee-name">{preset.name}</span>
+            </button>
           ))}
         </Marquee>
         <Marquee direction="right" duration={50} pauseOnHover>
           {row2.map((preset) => (
-            <PresetCard
+            <button
               key={preset.id}
-              preset={preset}
-              isActive={preset.id === activeId}
-              isZh={isZh}
-              onClick={() => handleSelect(preset)}
-            />
+              className={`home__marquee-card${preset.id === activeId ? ' home__marquee-card_active' : ''}`}
+              onClick={() => handleSelect(preset.id)}
+              title={preset.name}
+              style={preset.id === activeId ? { borderColor: preset.swatches[0], boxShadow: `0 0 0 1px ${preset.swatches[0]}` } : undefined}
+            >
+              <div className="home__marquee-swatches">
+                {preset.swatches.map((color, index) => (
+                  <span key={`${preset.id}-${color}-${index}`} className="home__marquee-swatch" style={{ backgroundColor: color }} />
+                ))}
+              </div>
+              <span className="home__marquee-name">{preset.name}</span>
+            </button>
           ))}
         </Marquee>
       </div>
 
       <div className="home__theme-showcase-cta">
-        <Button btnType="link" onClick={() => navigate('/theme/theme-editor')}>
+        <Button btnType="link" onClick={handleOpenStudio}>
           {s.home.themeShowcaseCustomize} &rarr;
         </Button>
       </div>

@@ -1,0 +1,116 @@
+{
+  "list.border": {
+    "$value": "#dee2e6",
+    "$type": "color",
+    "description": "List border color."
+  },
+  "list.color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "List text color.",
+    "fallback": "--ty-color-text"
+  },
+  "list.font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "List font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "list.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "List bordered radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "list.item-padding.sm": {
+    "$value": "8px 16px",
+    "$type": "string",
+    "description": "Small list item padding."
+  },
+  "list.item-padding.md": {
+    "$value": "12px 16px",
+    "$type": "string",
+    "description": "Medium list item padding."
+  },
+  "list.item-padding.lg": {
+    "$value": "16px 24px",
+    "$type": "string",
+    "description": "Large list item padding."
+  },
+  "list.header-padding": {
+    "$value": "12px 16px",
+    "$type": "string",
+    "description": "List header padding."
+  },
+  "list.footer-padding": {
+    "$value": "12px 16px",
+    "$type": "string",
+    "description": "List footer padding."
+  },
+  "list.empty-padding": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "List empty and loading padding."
+  },
+  "list.empty-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "List empty and loading color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "list.action-gap": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "List action item gap."
+  },
+  "list.action-offset": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "List action and extra inline offset."
+  },
+  "list.action-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "List action color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "list.action-color-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "List action hover color.",
+    "fallback": "--ty-color-primary"
+  },
+  "list.meta-avatar-gap": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "List meta avatar gap."
+  },
+  "list.meta-title-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "List meta title color.",
+    "fallback": "--ty-color-text"
+  },
+  "list.meta-title-font-weight": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "List meta title font weight."
+  },
+  "list.meta-title-margin-bottom": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "List meta title bottom margin."
+  },
+  "list.meta-description-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "List meta description color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "list.meta-description-font-size": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "List meta description font size.",
+    "fallback": "--ty-font-size-sm"
+  }
+}

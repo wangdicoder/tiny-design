@@ -87,7 +87,7 @@ const en_US: SiteLocale = {
   themeMenu: {
     customiseTheme: 'Customise Theme',
     colors: 'Colors',
-    themeEditor: 'Theme Editor',
+    themeStudio: 'Theme Studio',
   },
   color: {
     title: 'Color',
