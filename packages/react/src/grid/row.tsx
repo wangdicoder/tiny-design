@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
+import Col from './col';
 import { ColProps, RowProps } from './types';
 
 const Row = React.forwardRef<HTMLDivElement, RowProps>((props, ref) => {
@@ -40,8 +41,13 @@ const Row = React.forwardRef<HTMLDivElement, RowProps>((props, ref) => {
   return (
     <div {...otherProps} ref={ref} className={cls} style={{ ...style, ...rowGutterStyle }}>
       {React.Children.map(children, (child) => {
-        const childElement = child as React.FunctionComponentElement<ColProps>;
-        if (childElement.type.displayName === 'Col') {
+        if (!React.isValidElement<ColProps>(child)) {
+          return child;
+        }
+
+        const childElement = child;
+
+        if (childElement.type === Col) {
           const gutterStyle = gutter
             ? {
                 paddingLeft: normalisedGutter[0] / 2,
@@ -50,7 +56,7 @@ const Row = React.forwardRef<HTMLDivElement, RowProps>((props, ref) => {
             : {};
           const childProps: Partial<ColProps> = {
             style: {
-              ...child.props.style,
+              ...childElement.props.style,
               ...gutterStyle,
             },
           };
