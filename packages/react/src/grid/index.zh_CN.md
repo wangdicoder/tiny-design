@@ -25,9 +25,24 @@ import { Grid } from 'tiny-design';
 
 ## 适用场景
 
-- `Grid System`（`Row` / `Col`）更适合经典页面分栏、营销页和 24 栅格结构。
-- `Grid` 更适合 dashboard 壳层、编辑器工作台、卡片墙、命名区域、跨行布局和二维组合。
-- 如果你是从 MUI `Grid` 迁移过来，可以先使用 `spacing`、`rowSpacing`、`columnSpacing`、`size`、`offset`，再逐步使用 `areas` 和 `rowSpan` 这些更强的 CSS Grid 能力。
+Grid 是一个基于 CSS Grid 的二维布局组件，适合同时控制行**和**列的场景。
+
+- **Dashboard 壳层** — 使用 `areas` 定义命名区域，如 `"sidebar header" "sidebar main"`，构建应用级页面骨架。
+- **卡片墙 / 图库** — 使用 `minColumnWidth` 配合 `autoFit`，创建无需手动断点即可自动回流的响应式卡片网格。
+- **数据密集型界面** — 使用显式 `columns` 和 `rows`，构建类似表格或日历的布局，子项可跨越多行多列。
+- **非对称布局** — 使用 `Grid.Item` 的 `colSpan` 和 `rowSpan`，创建跨轨道的 Hero 区域或特色卡片。
+- **响应式重排** — 向 `columns`、`gap`、`areas` 传入响应式对象，在不同断点下彻底改变布局（如移动端将侧边栏堆叠到内容下方）。
+
+### Grid 与 Grid System（Row / Col）对比
+
+| | Grid | Grid System（Row / Col） |
+|---|---|---|
+| CSS 技术 | CSS Grid | Flexbox + 24 栏数学计算 |
+| 布局维度 | 二维（行 + 列） | 一维（仅列） |
+| 最佳场景 | Dashboard、卡片墙、命名区域、跨行布局 | 经典页面分栏、表单布局、营销页 |
+| 响应式方式 | 任意属性均支持响应式对象 | Col 上的断点属性（`xs`–`xxl`） |
+
+- 如果你是从 **MUI Grid** 迁移过来，可以先使用 `spacing`、`rowSpacing`、`columnSpacing`、`size`、`offset`，再逐步使用 `areas` 和 `rowSpan` 这些更强的 CSS Grid 能力。
 
 ## 代码示例
 

@@ -21,6 +21,24 @@ import ResponsiveSource from '../grid/demo/Responsive.tsx?raw';
 import { Row, Col } from 'tiny-design';
 ```
 
+## 使用场景
+
+Grid System 提供基于 Flexbox 的 24 栏栅格系统，与 Bootstrap 和 Ant Design 的心智模型一致。
+
+- **页面级内容分栏** — 将页面拆分为侧边栏（6 栏）和主内容区（18 栏），通过 `gutter` 统一控制间距。
+- **表单布局** — 将标签和输入框对齐到一致的列中，保证不同表单区域的视觉统一。
+- **营销 / 落地页** — 创建 Hero 区域、功能网格和价格表，列数计算直观可预测。
+- **响应式列变化** — 在 `Col` 上使用断点属性（`xs` 到 `xxl`），实现移动端堆叠、桌面端展开。
+- **列偏移与重排** — 使用 `offset` 创建留白，使用 `order` 在不改变 DOM 顺序的情况下调整视觉排列。
+
+### 布局组件选择指南
+
+| 场景 | 推荐组件 |
+|---|---|
+| 工具栏、按钮组、内联标签 | **Flex** |
+| 页面分栏、表单栅格、营销页 | **Grid System**（Row / Col） |
+| Dashboard 壳层、卡片墙、命名区域、跨行布局 | **Grid** |
+
 ## 代码示例
 
 <Demo>

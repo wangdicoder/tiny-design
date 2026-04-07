@@ -11,9 +11,23 @@ import WrapSource from './demo/Wrap.tsx?raw';
 
 A flexbox container component using CSS `gap` for spacing with no child wrapping.
 
-## Scenario
+## When To Use
 
-Use Flex when you need a lightweight flexbox layout without wrapping each child in additional elements.
+Flex is a one-dimensional layout container best suited for arranging items in a single row or column.
+
+- **Toolbars & action bars** — align a group of buttons, icons, or controls horizontally with consistent spacing.
+- **Navigation menus** — lay out nav items in a row or a vertical sidebar list.
+- **Form field rows** — place a label, input, and helper text side by side.
+- **Card footers / headers** — push actions to opposite ends with `justify="space-between"`.
+- **Vertical stacking** — use `vertical` to stack content like a list of cards or settings sections.
+- **Inline tag / badge groups** — render a wrapping set of tags with `wrap="wrap"` and a uniform `gap`.
+
+### Flex vs Row
+
+Both use flexbox under the hood, but they serve different purposes:
+
+- Choose **Flex** when you need a general-purpose flexbox container with CSS `gap` and no column semantics.
+- Choose **Row / Col** when you need a 24-column grid structure with `span`, `offset`, and responsive breakpoints (`xs` through `xxl`).
 
 ## Usage
 

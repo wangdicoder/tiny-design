@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useLocaleContext } from '../context/locale-context';
 
 export interface HeadingItem {
   id: string;
@@ -18,34 +19,31 @@ const queryHeadings = (): HeadingItem[] => {
 
 export const useHeadings = (): HeadingItem[] => {
   const { pathname } = useLocation();
+  const { locale } = useLocaleContext();
   const [headings, setHeadings] = useState<HeadingItem[]>([]);
 
   useEffect(() => {
     setHeadings([]);
 
-    // Try immediately in case content is already rendered
-    const initial = queryHeadings();
-    if (initial.length > 0) {
-      setHeadings(initial);
-      return;
-    }
-
-    // Otherwise observe DOM changes until headings appear
     const container = document.querySelector('.doc-container__layout');
     if (!container) return;
 
-    const observer = new MutationObserver(() => {
+    const update = () => {
       const found = queryHeadings();
       if (found.length > 0) {
         setHeadings(found);
-        observer.disconnect();
       }
-    });
+    };
 
+    // Try immediately in case content is already rendered
+    update();
+
+    // Also observe DOM changes to catch async content swaps (e.g. locale toggle)
+    const observer = new MutationObserver(update);
     observer.observe(container, { childList: true, subtree: true });
 
     return () => observer.disconnect();
-  }, [pathname]);
+  }, [pathname, locale]);
 
   return headings;
 };

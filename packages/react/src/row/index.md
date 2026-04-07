@@ -21,6 +21,24 @@ Use `Row` and `Col` to build classic 24-column page grids with responsive breakp
 import { Row, Col } from 'tiny-design';
 ```
 
+## When To Use
+
+Grid System provides a familiar 24-column grid powered by Flexbox — the same mental model used by Bootstrap and Ant Design.
+
+- **Page-level content columns** — split a page into sidebar (6 columns) and main content (18 columns) with a single `gutter`.
+- **Form layouts** — align labels and inputs into consistent columns across different form sections.
+- **Marketing / landing pages** — create hero sections, feature grids, and pricing tables with predictable column math.
+- **Responsive column shifting** — use breakpoint props (`xs` through `xxl`) on `Col` to stack columns on mobile and spread them on desktop.
+- **Column offset & reordering** — use `offset` to create whitespace and `order` to rearrange columns visually without changing DOM order.
+
+### Choosing between layout components
+
+| Scenario | Recommended |
+|---|---|
+| Toolbar, button group, inline tags | **Flex** |
+| Page columns, form grid, marketing layout | **Grid System** (Row / Col) |
+| Dashboard shell, card wall, named areas, row spanning | **Grid** |
+
 ## Examples
 
 <Demo>

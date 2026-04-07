@@ -10,6 +10,8 @@ import TitleDemo from './demo/Title';
 import TitleSource from './demo/Title.tsx?raw';
 import TypeDemo from './demo/Type';
 import TypeSource from './demo/Type.tsx?raw';
+import LoopBannerDemo from './demo/LoopBanner';
+import LoopBannerSource from './demo/LoopBanner.tsx?raw';
 
 # Alert 警告提示
 
@@ -84,6 +86,15 @@ import { Alert } from 'tiny-design';
 用自定义文字替换默认图标。
 
 <DemoBlock component={CloseBtnDemo} source={CloseBtnSource} />
+
+    </Demo>
+    <Demo>
+
+### 循环横幅
+
+结合 `Marquee` 组件创建滚动横幅警告。文本在鼠标悬停时会暂停滚动。
+
+<DemoBlock component={LoopBannerDemo} source={LoopBannerSource} />
 
     </Demo>
   </Column>
