@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.10.0
+
+### Minor Changes
+
+- Add design token governance with JSON source registry, migrate all component SCSS to token variables, introduce CSS Grid layout system, and rebuild Theme Studio - [#93](https://github.com/wangdicoder/tiny-design/pull/93) [`d515c39`](https://github.com/wangdicoder/tiny-design/commit/d515c391250007d5fa3dd7e9a6d95ca9483d02a1)
+
 ## 1.9.0
 
 ### Minor Changes
