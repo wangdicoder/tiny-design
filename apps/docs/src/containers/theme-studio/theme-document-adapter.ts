@@ -158,19 +158,19 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'button.text.default': fields.baseForeground,
         'button.text.default-hover': fields.baseForeground,
         'button.text.default-active': fields.baseForeground,
-        'control.height.sm': fields.fieldButtonHeightSm,
-        'control.height.md': fields.fieldButtonHeightMd,
-        'control.height.lg': fields.fieldButtonHeightLg,
-        'control.padding-inline.sm': fields.fieldButtonPaddingXSm,
-        'control.padding-inline.md': fields.fieldButtonPaddingXMd,
-        'control.padding-inline.lg': fields.fieldButtonPaddingXLg,
+        'control.height.sm': fields.fieldHeightSm,
+        'control.height.md': fields.fieldHeightMd,
+        'control.height.lg': fields.fieldHeightLg,
+        'control.padding-inline.sm': fields.fieldPaddingSm,
+        'control.padding-inline.md': fields.fieldPaddingMd,
+        'control.padding-inline.lg': fields.fieldPaddingLg,
         'button.radius': fields.buttonRadius,
-        'button.height.sm': fields.fieldButtonHeightSm,
-        'button.height.md': fields.fieldButtonHeightMd,
-        'button.height.lg': fields.fieldButtonHeightLg,
-        'button.padding-inline-sm': fields.fieldButtonPaddingXSm,
-        'button.padding-inline-md': fields.fieldButtonPaddingXMd,
-        'button.padding-inline-lg': fields.fieldButtonPaddingXLg,
+        'button.height.sm': fields.buttonHeightSm,
+        'button.height.md': fields.buttonHeightMd,
+        'button.height.lg': fields.buttonHeightLg,
+        'button.padding-inline-sm': fields.buttonPaddingSm,
+        'button.padding-inline-md': fields.buttonPaddingMd,
+        'button.padding-inline-lg': fields.buttonPaddingLg,
         'card.bg': fields.card,
         'card.bg.filled': fields.secondary,
         'card.border': fields.border,
@@ -187,12 +187,12 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'input.border.focus': fields.ring,
         'input.shadow.focus': fields.shadowFocus,
         'input.radius': fields.inputRadius,
-        'input.height.sm': fields.fieldButtonHeightSm,
-        'input.height.md': fields.fieldButtonHeightMd,
-        'input.height.lg': fields.fieldButtonHeightLg,
-        'input.padding-inline-sm': fields.fieldButtonPaddingXSm,
-        'input.padding-inline-md': fields.fieldButtonPaddingXMd,
-        'input.padding-inline-lg': fields.fieldButtonPaddingXLg,
+        'input.height.sm': fields.fieldHeightSm,
+        'input.height.md': fields.fieldHeightMd,
+        'input.height.lg': fields.fieldHeightLg,
+        'input.padding-inline-sm': fields.fieldPaddingSm,
+        'input.padding-inline-md': fields.fieldPaddingMd,
+        'input.padding-inline-lg': fields.fieldPaddingLg,
         'select.bg': fields.base,
         'select.color': fields.baseForeground,
         'select.border': fields.input,
@@ -200,15 +200,16 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'select.border.focus': fields.ring,
         'select.shadow.focus': fields.shadowFocus,
         'select.radius': fields.inputRadius,
-        'select.height.sm': fields.fieldButtonHeightSm,
-        'select.height.md': fields.fieldButtonHeightMd,
-        'select.height.lg': fields.fieldButtonHeightLg,
-        'select.padding-inline-start.sm': fields.fieldButtonPaddingXSm,
-        'select.padding-inline-start.md': fields.fieldButtonPaddingXMd,
-        'select.padding-inline-start.lg': fields.fieldButtonPaddingXLg,
+        'select.height.sm': fields.fieldHeightSm,
+        'select.height.md': fields.fieldHeightMd,
+        'select.height.lg': fields.fieldHeightLg,
+        'select.padding-inline-start.sm': fields.fieldPaddingSm,
+        'select.padding-inline-start.md': fields.fieldPaddingMd,
+        'select.padding-inline-start.lg': fields.fieldPaddingLg,
         'select.dropdown-bg': fields.popover,
         'select.option.active-bg': fields.muted,
         'select.option.selected-bg': fields.accent,
+        'table.radius': fields.radius,
         'picker.input-bg': fields.base,
         'picker.input-border': fields.input,
         'picker.input-border-hover': fields.ring,
@@ -218,9 +219,9 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'picker.input-color-placeholder': fields.mutedForeground,
         'picker.input-color-muted': fields.mutedForeground,
         'picker.input-radius': fields.inputRadius,
-        'picker.input-padding.sm': `0 ${fields.fieldButtonPaddingXSm}`,
-        'picker.input-padding.md': `0 ${fields.fieldButtonPaddingXMd}`,
-        'picker.input-padding.lg': `0 ${fields.fieldButtonPaddingXLg}`,
+        'picker.input-padding.sm': `0 ${fields.fieldPaddingSm}`,
+        'picker.input-padding.md': `0 ${fields.fieldPaddingMd}`,
+        'picker.input-padding.lg': `0 ${fields.fieldPaddingLg}`,
         'picker.dropdown-bg': fields.popover,
         'picker.dropdown-radius': fields.cardRadius,
         'picker.header-border': fields.border,
@@ -265,15 +266,16 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'calendar.panel-cell-color-selected': fields.primaryForeground,
         'calendar.panel-cell-bg-selected': fields.primary,
         'calendar.today-link-color': fields.primary,
-        'cascader.height.sm': fields.fieldButtonHeightSm,
-        'cascader.height.md': fields.fieldButtonHeightMd,
-        'cascader.height.lg': fields.fieldButtonHeightLg,
-        'cascader.padding.sm': `0 calc(${fields.fieldButtonPaddingXSm} + 20px) 0 ${fields.fieldButtonPaddingXSm}`,
-        'cascader.padding.md': `0 calc(${fields.fieldButtonPaddingXMd} + 20px) 0 ${fields.fieldButtonPaddingXMd}`,
-        'cascader.padding.lg': `0 calc(${fields.fieldButtonPaddingXLg} + 20px) 0 ${fields.fieldButtonPaddingXLg}`,
+        'cascader.height.sm': fields.fieldHeightSm,
+        'cascader.height.md': fields.fieldHeightMd,
+        'cascader.height.lg': fields.fieldHeightLg,
+        'cascader.padding.sm': `0 calc(${fields.fieldPaddingSm} + 20px) 0 ${fields.fieldPaddingSm}`,
+        'cascader.padding.md': `0 calc(${fields.fieldPaddingMd} + 20px) 0 ${fields.fieldPaddingMd}`,
+        'cascader.padding.lg': `0 calc(${fields.fieldPaddingLg} + 20px) 0 ${fields.fieldPaddingLg}`,
         'checkbox.bg': fields.base,
         'checkbox.border': fields.input,
         'checkbox.border.hover': fields.ring,
+        'checkbox.radius': fields.radius,
         'checkbox.bg.checked': fields.primary,
         'checkbox.border.checked': fields.primary,
         'checkbox.indicator-color': fields.primaryForeground,
@@ -285,12 +287,12 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'switch.bg.checked': fields.primary,
         'switch.thumb-border': fields.mutedForeground,
         'switch.thumb-border.checked': fields.primary,
-        'input-number.height.sm': fields.fieldButtonHeightSm,
-        'input-number.height.md': fields.fieldButtonHeightMd,
-        'input-number.height.lg': fields.fieldButtonHeightLg,
+        'input-number.height.sm': fields.fieldHeightSm,
+        'input-number.height.md': fields.fieldHeightMd,
+        'input-number.height.lg': fields.fieldHeightLg,
         'segmented.bg': fields.muted,
         'segmented.active-bg': fields.card,
-        'segmented.radius': fields.inputRadius,
+        'segmented.radius': fields.radius,
         'tag.bg': fields.secondary,
         'tag.color': fields.secondaryForeground,
         'tag.border': fields.border,
@@ -334,6 +336,18 @@ function readToken(theme: ThemeDocument, semanticKey: string, componentKey?: str
   if (componentKey) {
     const component = theme.tokens?.components?.[componentKey];
     if (component != null) return String(component);
+  }
+
+  return undefined;
+}
+
+function readComponentFirst(theme: ThemeDocument, componentKey: string, semanticKey?: string): string | undefined {
+  const component = theme.tokens?.components?.[componentKey];
+  if (component != null) return String(component);
+
+  if (semanticKey) {
+    const semantic = theme.tokens?.semantic?.[semanticKey];
+    if (semantic != null) return String(semantic);
   }
 
   return undefined;
@@ -406,26 +420,45 @@ export function buildDraftFromThemeDocument(theme: ThemeDocument): ThemeEditorDr
       buttonRadius: readToken(theme, 'border-radius', 'button.radius') ?? baseFields.buttonRadius,
       inputRadius: readToken(theme, 'border-radius', 'input.radius') ?? baseFields.inputRadius,
       cardRadius: readToken(theme, 'border-radius', 'card.radius') ?? baseFields.cardRadius,
-      fieldButtonPaddingXSm:
-        readToken(theme, 'control.padding-inline.sm', 'button.padding-inline-sm')
-        ?? baseFields.fieldButtonPaddingXSm,
-      fieldButtonPaddingXMd:
-        readToken(theme, 'control.padding-inline.md', 'button.padding-inline-md')
+      fieldPaddingSm:
+        readComponentFirst(theme, 'input.padding-inline-sm', 'control.padding-inline.sm')
+        ?? baseFields.fieldPaddingSm,
+      fieldPaddingMd:
+        readComponentFirst(theme, 'input.padding-inline-md', 'control.padding-inline.md')
         ?? readToken(theme, 'spacing-4')
-        ?? baseFields.fieldButtonPaddingXMd,
-      fieldButtonPaddingXLg:
-        readToken(theme, 'control.padding-inline.lg', 'button.padding-inline-lg')
-        ?? baseFields.fieldButtonPaddingXLg,
-      fieldButtonHeightSm:
-        readToken(theme, 'control.height.sm', 'input.height.sm')
-        ?? baseFields.fieldButtonHeightSm,
-      fieldButtonHeightMd:
-        readToken(theme, 'control.height.md', 'input.height.md')
+        ?? baseFields.fieldPaddingMd,
+      fieldPaddingLg:
+        readComponentFirst(theme, 'input.padding-inline-lg', 'control.padding-inline.lg')
+        ?? baseFields.fieldPaddingLg,
+      buttonPaddingSm:
+        readComponentFirst(theme, 'button.padding-inline-sm', 'control.padding-inline.sm')
+        ?? baseFields.buttonPaddingSm,
+      buttonPaddingMd:
+        readComponentFirst(theme, 'button.padding-inline-md', 'control.padding-inline.md')
+        ?? baseFields.buttonPaddingMd,
+      buttonPaddingLg:
+        readComponentFirst(theme, 'button.padding-inline-lg', 'control.padding-inline.lg')
+        ?? baseFields.buttonPaddingLg,
+      fieldHeightSm:
+        readComponentFirst(theme, 'input.height.sm', 'control.height.sm')
+        ?? baseFields.fieldHeightSm,
+      fieldHeightMd:
+        readComponentFirst(theme, 'input.height.md', 'control.height.md')
         ?? readToken(theme, 'height-md')
-        ?? baseFields.fieldButtonHeightMd,
-      fieldButtonHeightLg:
-        readToken(theme, 'control.height.lg', 'input.height.lg')
-        ?? baseFields.fieldButtonHeightLg,
+        ?? baseFields.fieldHeightMd,
+      fieldHeightLg:
+        readComponentFirst(theme, 'input.height.lg', 'control.height.lg')
+        ?? baseFields.fieldHeightLg,
+      buttonHeightSm:
+        readComponentFirst(theme, 'button.height.sm', 'control.height.sm')
+        ?? baseFields.buttonHeightSm,
+      buttonHeightMd:
+        readComponentFirst(theme, 'button.height.md', 'control.height.md')
+        ?? readToken(theme, 'height-md')
+        ?? baseFields.buttonHeightMd,
+      buttonHeightLg:
+        readComponentFirst(theme, 'button.height.lg', 'control.height.lg')
+        ?? baseFields.buttonHeightLg,
       cardPadding: readToken(theme, 'spacing-5', 'card.body-padding') ?? baseFields.cardPadding,
     },
   };

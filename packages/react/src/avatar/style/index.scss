@@ -12,6 +12,7 @@
   position: relative;
   vertical-align: middle;
   user-select: none;
+  flex-shrink: 0;
   border: var(--ty-avatar-border-width) solid var(--ty-avatar-border);
 
   &__img {

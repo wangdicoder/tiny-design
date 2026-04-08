@@ -86,12 +86,12 @@
     "description": "Small button inline padding."
   },
   "button.padding-inline-md": {
-    "$value": "{control.padding-inline.md}",
+    "$value": "15px",
     "$type": "dimension",
     "description": "Medium button inline padding."
   },
   "button.padding-inline-lg": {
-    "$value": "{control.padding-inline.lg}",
+    "$value": "20px",
     "$type": "dimension",
     "description": "Large button inline padding."
   },

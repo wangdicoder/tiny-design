@@ -8,6 +8,12 @@
     overflow-x: auto;
   }
 
+  &_bordered &__wrapper {
+    border: 1px solid var(--ty-table-border);
+    border-radius: var(--ty-table-radius, var(--ty-border-radius));
+    overflow: hidden;
+  }
+
   &__table {
     width: 100%;
     border-collapse: collapse;
@@ -15,11 +21,13 @@
   }
 
   &_bordered &__table {
-    border: 1px solid var(--ty-table-border);
+    border-collapse: separate;
+    border-spacing: 0;
   }
 
   &_bordered &__cell {
-    border: 1px solid var(--ty-table-border);
+    border-right: 1px solid var(--ty-table-border);
+    border-bottom: 1px solid var(--ty-table-border);
   }
 
   &_sm &__cell {
@@ -53,6 +61,18 @@
       font-weight: var(--ty-table-header-font-weight, 500);
       border-bottom: 1px solid var(--ty-table-border);
     }
+  }
+
+  &_bordered &__row .#{$prefix}-table__cell:last-child {
+    border-right: 0;
+  }
+
+  &_bordered &__thead tr .#{$prefix}-table__cell:last-child {
+    border-right: 0;
+  }
+
+  &_bordered &__tbody .#{$prefix}-table__row:last-child .#{$prefix}-table__cell {
+    border-bottom: 0;
   }
 
   &__cell {

@@ -57,12 +57,18 @@ export interface ThemeEditorFields {
   buttonRadius: string;
   inputRadius: string;
   cardRadius: string;
-  fieldButtonPaddingXSm: string;
-  fieldButtonPaddingXMd: string;
-  fieldButtonPaddingXLg: string;
-  fieldButtonHeightSm: string;
-  fieldButtonHeightMd: string;
-  fieldButtonHeightLg: string;
+  fieldPaddingSm: string;
+  fieldPaddingMd: string;
+  fieldPaddingLg: string;
+  buttonPaddingSm: string;
+  buttonPaddingMd: string;
+  buttonPaddingLg: string;
+  fieldHeightSm: string;
+  fieldHeightMd: string;
+  fieldHeightLg: string;
+  buttonHeightSm: string;
+  buttonHeightMd: string;
+  buttonHeightLg: string;
   cardPadding: string;
 }
 
@@ -92,7 +98,7 @@ export type SliderFieldConfig = {
   min: number;
   max: number;
   step: number;
-  unit?: 'px' | 'em';
+  unit?: 'px' | 'em' | 'rem';
 };
 
 export type ThemeEditorColorGroup = {

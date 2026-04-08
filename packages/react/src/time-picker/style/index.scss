@@ -37,17 +37,21 @@ $tp: #{$prefix}-time-picker;
 
   &__input-field {
     flex: 1;
+    margin: 0;
+    padding: 0;
     border: none;
     outline: none;
     background: transparent;
     font-size: inherit;
     font-family: inherit;
+    line-height: inherit;
     color: var(--ty-picker-input-color);
     cursor: pointer;
     min-width: var(--ty-picker-input-min-width-time-md);
 
     &::placeholder {
-      color: var(--ty-picker-input-color-placeholder);
+      color: var(--ty-input-placeholder, var(--ty-picker-input-color-placeholder, var(--ty-color-text-placeholder)));
+      opacity: 1;
     }
 
     &:disabled {

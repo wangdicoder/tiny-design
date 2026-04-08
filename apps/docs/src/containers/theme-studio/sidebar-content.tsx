@@ -172,8 +172,12 @@ export function ThemeStudioSidebarContent({
               <strong>{draft.fields.radius}</strong>
             </div>
             <div className="theme-studio__summary-card">
-              <span>Fields & Buttons</span>
-              <strong>{`${draft.fields.fieldButtonHeightSm} / ${draft.fields.fieldButtonHeightMd} / ${draft.fields.fieldButtonHeightLg}`}</strong>
+              <span>Fields</span>
+              <strong>{`${draft.fields.fieldHeightSm} / ${draft.fields.fieldHeightMd} / ${draft.fields.fieldHeightLg}`}</strong>
+            </div>
+            <div className="theme-studio__summary-card">
+              <span>Buttons</span>
+              <strong>{`${draft.fields.buttonHeightSm} / ${draft.fields.buttonHeightMd} / ${draft.fields.buttonHeightLg}`}</strong>
             </div>
             <div className="theme-studio__summary-card">
               <span>Padding</span>
@@ -184,21 +188,65 @@ export function ThemeStudioSidebarContent({
 
         <div className="theme-studio__group-card">
           <Typography.Text strong>Shape</Typography.Text>
-          <SliderField label="Global Radius" value={draft.fields.radius} onChange={(next) => updateField('radius', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-          <SliderField label="Button Radius" value={draft.fields.buttonRadius} onChange={(next) => updateField('buttonRadius', next)} config={{ min: 0, max: 999, step: 1, unit: 'px' }} />
-          <SliderField label="Input Radius" value={draft.fields.inputRadius} onChange={(next) => updateField('inputRadius', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-          <SliderField label="Card Radius" value={draft.fields.cardRadius} onChange={(next) => updateField('cardRadius', next)} config={{ min: 0, max: 40, step: 1, unit: 'px' }} />
+          <SliderField label="Global Radius" value={draft.fields.radius} onChange={(next) => updateField('radius', next)} config={{ min: 0, max: 2, step: 0.0625, unit: 'rem' }} />
+          <SliderField label="Button Radius" value={draft.fields.buttonRadius} onChange={(next) => updateField('buttonRadius', next)} config={{ min: 0, max: 4, step: 0.0625, unit: 'rem' }} />
+          <SliderField label="Input Radius" value={draft.fields.inputRadius} onChange={(next) => updateField('inputRadius', next)} config={{ min: 0, max: 2, step: 0.0625, unit: 'rem' }} />
+          <SliderField label="Card Radius" value={draft.fields.cardRadius} onChange={(next) => updateField('cardRadius', next)} config={{ min: 0, max: 2.5, step: 0.0625, unit: 'rem' }} />
         </div>
 
         <div className="theme-studio__group-card">
-          <Typography.Text strong>Density</Typography.Text>
-          <SliderField label="Field & Button Padding / Small" value={draft.fields.fieldButtonPaddingXSm} onChange={(next) => updateField('fieldButtonPaddingXSm', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-          <SliderField label="Field & Button Padding / Medium" value={draft.fields.fieldButtonPaddingXMd} onChange={(next) => updateField('fieldButtonPaddingXMd', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-          <SliderField label="Field & Button Padding / Large" value={draft.fields.fieldButtonPaddingXLg} onChange={(next) => updateField('fieldButtonPaddingXLg', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-          <SliderField label="Field & Button Height / Small" value={draft.fields.fieldButtonHeightSm} onChange={(next) => updateField('fieldButtonHeightSm', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
-          <SliderField label="Field & Button Height / Medium" value={draft.fields.fieldButtonHeightMd} onChange={(next) => updateField('fieldButtonHeightMd', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
-          <SliderField label="Field & Button Height / Large" value={draft.fields.fieldButtonHeightLg} onChange={(next) => updateField('fieldButtonHeightLg', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
-          <SliderField label="Card Padding" value={draft.fields.cardPadding} onChange={(next) => updateField('cardPadding', next)} config={{ min: 12, max: 40, step: 1, unit: 'px' }} />
+          <div className="theme-studio__section-header">
+            <Typography.Text strong>Density</Typography.Text>
+            <Typography.Text type="secondary">Tune spacing and heights for fields, buttons, and cards.</Typography.Text>
+          </div>
+          <div className="theme-studio__group-fields">
+            <Typography.Text className="theme-studio__subgroup-title">Fields</Typography.Text>
+            <SliderField label="Field Height / Medium" value={draft.fields.fieldHeightMd} onChange={(next) => updateField('fieldHeightMd', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+            <SliderField label="Field Padding / Medium" value={draft.fields.fieldPaddingMd} onChange={(next) => updateField('fieldPaddingMd', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+            <Collapse bordered={false} className="theme-studio__advanced-collapse" defaultActiveKey={[]}>
+              <Panel
+                itemKey="field-density-advanced"
+                header={(
+                  <div className="theme-studio__section-header theme-studio__section-header_inline">
+                    <Typography.Text strong>Advanced Sizes</Typography.Text>
+                    <Typography.Text type="secondary">Small and large field density.</Typography.Text>
+                  </div>
+                )}
+              >
+                <SliderField label="Field Height / Small" value={draft.fields.fieldHeightSm} onChange={(next) => updateField('fieldHeightSm', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+                <SliderField label="Field Height / Large" value={draft.fields.fieldHeightLg} onChange={(next) => updateField('fieldHeightLg', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+                <SliderField label="Field Padding / Small" value={draft.fields.fieldPaddingSm} onChange={(next) => updateField('fieldPaddingSm', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+                <SliderField label="Field Padding / Large" value={draft.fields.fieldPaddingLg} onChange={(next) => updateField('fieldPaddingLg', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+              </Panel>
+            </Collapse>
+          </div>
+
+          <div className="theme-studio__group-fields">
+            <Typography.Text className="theme-studio__subgroup-title">Buttons</Typography.Text>
+            <SliderField label="Button Height / Medium" value={draft.fields.buttonHeightMd} onChange={(next) => updateField('buttonHeightMd', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+            <SliderField label="Button Padding / Medium" value={draft.fields.buttonPaddingMd} onChange={(next) => updateField('buttonPaddingMd', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+            <Collapse bordered={false} className="theme-studio__advanced-collapse" defaultActiveKey={[]}>
+              <Panel
+                itemKey="button-density-advanced"
+                header={(
+                  <div className="theme-studio__section-header theme-studio__section-header_inline">
+                    <Typography.Text strong>Advanced Sizes</Typography.Text>
+                    <Typography.Text type="secondary">Small and large button density.</Typography.Text>
+                  </div>
+                )}
+              >
+                <SliderField label="Button Height / Small" value={draft.fields.buttonHeightSm} onChange={(next) => updateField('buttonHeightSm', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+                <SliderField label="Button Height / Large" value={draft.fields.buttonHeightLg} onChange={(next) => updateField('buttonHeightLg', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+                <SliderField label="Button Padding / Small" value={draft.fields.buttonPaddingSm} onChange={(next) => updateField('buttonPaddingSm', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+                <SliderField label="Button Padding / Large" value={draft.fields.buttonPaddingLg} onChange={(next) => updateField('buttonPaddingLg', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+              </Panel>
+            </Collapse>
+          </div>
+
+          <div className="theme-studio__group-fields">
+            <Typography.Text className="theme-studio__subgroup-title">Cards</Typography.Text>
+            <SliderField label="Card Padding" value={draft.fields.cardPadding} onChange={(next) => updateField('cardPadding', next)} config={{ min: 12, max: 40, step: 1, unit: 'px' }} />
+          </div>
         </div>
 
         <div className="theme-studio__group-card">

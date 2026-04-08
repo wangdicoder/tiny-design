@@ -9,7 +9,7 @@ export function swatchTextStyle(background: string, foreground: string): React.C
   };
 }
 
-function parseSliderValue(value: string, unit?: 'px' | 'em'): number | undefined {
+function parseSliderValue(value: string, unit?: 'px' | 'em' | 'rem'): number | undefined {
   if (unit === 'px') {
     const match = /^(-?\d+(?:\.\d+)?)px$/.exec(value.trim());
     return match ? Number(match[1]) : undefined;
@@ -20,11 +20,16 @@ function parseSliderValue(value: string, unit?: 'px' | 'em'): number | undefined
     return match ? Number(match[1]) : undefined;
   }
 
+  if (unit === 'rem') {
+    const match = /^(-?\d+(?:\.\d+)?)rem$/.exec(value.trim());
+    return match ? Number(match[1]) : undefined;
+  }
+
   const parsed = Number(value);
   return Number.isNaN(parsed) ? undefined : parsed;
 }
 
-function formatSliderValue(value: number, unit?: 'px' | 'em'): string {
+function formatSliderValue(value: number, unit?: 'px' | 'em' | 'rem'): string {
   if (!unit) return String(value);
   return `${value}${unit}`;
 }

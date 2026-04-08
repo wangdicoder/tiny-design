@@ -444,7 +444,6 @@ function CardsPreview(): React.ReactElement {
                 <Typography.Text strong>Sofia Davis</Typography.Text>
                 <Typography.Text type="secondary">m@example.com</Typography.Text>
               </div>
-              <Button size="sm" btnType="ghost">+</Button>
             </div>
             <div className="theme-studio__chat-thread">
               <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
@@ -460,7 +459,7 @@ function CardsPreview(): React.ReactElement {
                 <Card.Content>I can&apos;t log in.</Card.Content>
               </Card>
             </div>
-            <Input placeholder="Type your message..." />
+            <Input size='lg' placeholder="Type your message..." />
           </Card.Content>
         </Card>
 

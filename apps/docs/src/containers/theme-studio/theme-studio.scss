@@ -231,6 +231,18 @@
   gap: 8px;
 }
 
+.theme-studio__subgroup-title {
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--editor-muted-foreground);
+}
+
 .theme-studio__field {
   display: block;
 }
@@ -413,6 +425,7 @@
 }
 
 .theme-studio__advanced-collapse {
+  margin-bottom: 12px;
   border: 1px solid var(--ty-color-border-secondary, var(--ty-color-border));
   border-radius: 12px;
   background: linear-gradient(
@@ -639,8 +652,7 @@
   margin: 0;
 }
 
-.theme-studio__cards-panel .ty-input,
-.theme-studio__cards-panel .ty-textarea {
+.theme-studio__cards-panel .ty-input {
   width: 100%;
 }
 
@@ -928,11 +940,6 @@
 
 .theme-studio__cards-inline-action.ty-btn {
   min-width: 78px;
-}
-
-.theme-studio__cards-panel .ty-input,
-.theme-studio__cards-panel .ty-textarea {
-  font-size: 12px;
 }
 
 .theme-studio__cards-panel .ty-radio {

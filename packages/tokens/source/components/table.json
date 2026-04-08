@@ -28,6 +28,11 @@
     "$type": "color",
     "description": "Table border color."
   },
+  "table.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Table border radius."
+  },
   "table.cell-padding.sm": {
     "$value": "8px",
     "$type": "dimension",

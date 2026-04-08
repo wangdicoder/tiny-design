@@ -5,12 +5,12 @@
     "description": "Small control height."
   },
   "height-md": {
-    "$value": "32px",
+    "$value": "35px",
     "$type": "dimension",
     "description": "Medium control height."
   },
   "height-lg": {
-    "$value": "40px",
+    "$value": "44px",
     "$type": "dimension",
     "description": "Large control height."
   },
