@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Form,
-  Input,
   InputNumber,
   Switch,
   Checkbox,
@@ -17,6 +16,12 @@ import {
 } from '@tiny-design/react';
 
 export default function OtherControlsDemo() {
+  const fruitOptions = [
+    { value: 'apple', label: 'Apple' },
+    { value: 'banana', label: 'Banana' },
+    { value: 'cherry', label: 'Cherry' },
+  ];
+
   return (
     <Form
       onFinish={(values) => console.log(values)}
@@ -105,11 +110,7 @@ export default function OtherControlsDemo() {
       >
         <Select
           placeholder="Pick a fruit"
-          options={[
-            { value: 'apple', label: 'Apple' },
-            { value: 'banana', label: 'Banana' },
-            { value: 'cherry', label: 'Cherry' },
-          ]}
+          options={fruitOptions}
         />
       </Form.Item>
       <Form.Item

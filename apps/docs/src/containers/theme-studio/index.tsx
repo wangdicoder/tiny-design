@@ -194,9 +194,7 @@ const ThemeStudioPage = (): React.ReactElement => {
               </div>
             </div>
 
-            <div className={`theme-studio__preview theme-studio__preview_${draft.mode}`}>
-              {renderPreview(draft.activeTemplate, draft.fields, draft.activeSection)}
-            </div>
+            {renderPreview(draft.activeTemplate, draft.fields, draft.activeSection)}
           </main>
         </div>
 

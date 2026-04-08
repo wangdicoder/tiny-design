@@ -19,18 +19,21 @@
   }
 
   &_sm .#{$prefix}-select__selector {
+    height: var(--ty-select-height-sm, var(--ty-height-sm));
     min-height: var(--ty-select-height-sm, var(--ty-height-sm));
     font-size: var(--ty-select-font-size-sm, var(--ty-font-size-sm));
     padding: 0 var(--ty-select-padding-inline-end-sm, 24px) 0 var(--ty-select-padding-inline-start-sm, 8px);
   }
 
   &_md .#{$prefix}-select__selector {
+    height: var(--ty-select-height-md, var(--ty-height-md));
     min-height: var(--ty-select-height-md, var(--ty-height-md));
     font-size: var(--ty-select-font-size-md, var(--ty-font-size-base));
     padding: 0 var(--ty-select-padding-inline-end-md, 28px) 0 var(--ty-select-padding-inline-start-md, 10px);
   }
 
   &_lg .#{$prefix}-select__selector {
+    height: var(--ty-select-height-lg, var(--ty-height-lg));
     min-height: var(--ty-select-height-lg, var(--ty-height-lg));
     font-size: var(--ty-select-font-size-lg, var(--ty-font-size-lg));
     padding: 0 var(--ty-select-padding-inline-end-lg, 32px) 0 var(--ty-select-padding-inline-start-lg, 12px);
@@ -38,6 +41,7 @@
 
   &_multiple {
     .#{$prefix}-select__selector {
+      height: auto;
       padding-right: var(--ty-select-multiple-padding-inline-end, 28px);
     }
 

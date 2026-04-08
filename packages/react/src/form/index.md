@@ -14,6 +14,8 @@ import ModalDemo from './demo/Modal';
 import ModalSource from './demo/Modal.tsx?raw';
 import AsyncSubmitDemo from './demo/AsyncSubmit';
 import AsyncSubmitSource from './demo/AsyncSubmit.tsx?raw';
+import SizeAlignmentDemo from './demo/SizeAlignment';
+import SizeAlignmentSource from './demo/SizeAlignment.tsx?raw';
 import OtherControlsDemo from './demo/OtherControls';
 import OtherControlsSource from './demo/OtherControls.tsx?raw';
 import StepFormDemo from './demo/StepForm';
@@ -116,6 +118,15 @@ Simulate an async form submission with loading state.
     </Demo>
   </Column>
 </Layout>
+
+<Demo>
+### Size Alignment
+
+Compare the height consistency of input-like controls across `sm`, `md`, and `lg`.
+
+<DemoBlock component={SizeAlignmentDemo} source={SizeAlignmentSource} />
+
+</Demo>
 
 <Demo>
 ### Other Form Controls

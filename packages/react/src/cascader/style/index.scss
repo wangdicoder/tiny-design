@@ -32,6 +32,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    box-sizing: border-box;
     border: 1px solid var(--ty-cascader-border);
     border-radius: var(--ty-cascader-radius);
     background: var(--ty-cascader-bg);

@@ -12,6 +12,8 @@ $tp: #{$prefix}-time-picker;
     display: inline-flex;
     align-items: center;
     width: 100%;
+    height: var(--ty-height-md);
+    box-sizing: border-box;
     padding: var(--ty-picker-input-padding-md);
     border: 1px solid var(--ty-picker-input-border);
     border-radius: var(--ty-picker-input-radius);
@@ -94,6 +96,7 @@ $tp: #{$prefix}-time-picker;
 
   // ---- Sizes ----
   &_sm &__input {
+    height: var(--ty-height-sm);
     padding: var(--ty-picker-input-padding-sm);
     font-size: 12px;
   }
@@ -103,6 +106,7 @@ $tp: #{$prefix}-time-picker;
   }
 
   &_lg &__input {
+    height: var(--ty-height-lg);
     padding: var(--ty-picker-input-padding-lg);
     font-size: 16px;
   }
