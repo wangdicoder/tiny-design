@@ -16,8 +16,8 @@ const InputGroup = (props: InputGroupProps): React.ReactElement => {
   } = props;
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('input-group', configContext.prefixCls, customisedCls);
-  const cls = classNames(prefixCls, className);
   const inputSize = props.size || configContext.componentSize || size;
+  const cls = classNames(prefixCls, `${prefixCls}_${inputSize}`, className);
 
   return (
     <div {...otherProps} className={cls}>

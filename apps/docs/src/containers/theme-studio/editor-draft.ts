@@ -126,8 +126,12 @@ export function buildPreviewVars(fields: ThemeEditorFields): React.CSSProperties
     '--editor-button-radius': fields.buttonRadius,
     '--editor-input-radius': fields.inputRadius,
     '--editor-card-radius': fields.cardRadius,
-    '--editor-button-padding-x': fields.buttonPaddingX,
-    '--editor-input-height': fields.inputHeight,
+    '--editor-field-button-padding-x-sm': fields.fieldButtonPaddingXSm,
+    '--editor-field-button-padding-x-md': fields.fieldButtonPaddingXMd,
+    '--editor-field-button-padding-x-lg': fields.fieldButtonPaddingXLg,
+    '--editor-field-button-height-sm': fields.fieldButtonHeightSm,
+    '--editor-field-button-height-md': fields.fieldButtonHeightMd,
+    '--editor-field-button-height-lg': fields.fieldButtonHeightLg,
     '--editor-card-padding': fields.cardPadding,
   } as React.CSSProperties;
 }

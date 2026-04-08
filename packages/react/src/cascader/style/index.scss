@@ -11,21 +11,21 @@
   }
 
   &_sm &__selector {
-    height: var(--ty-cascader-height-sm);
-    font-size: var(--ty-cascader-font-size-sm);
-    padding: var(--ty-cascader-padding-sm);
+    height: var(--ty-cascader-height-sm, var(--ty-control-height-sm, var(--ty-height-sm)));
+    font-size: var(--ty-cascader-font-size-sm, var(--ty-control-font-size-sm, var(--ty-font-size-sm)));
+    padding: var(--ty-cascader-padding-sm, 0 calc(var(--ty-control-padding-inline-sm, 8px) + 20px) 0 var(--ty-control-padding-inline-sm, 8px));
   }
 
   &_md &__selector {
-    height: var(--ty-cascader-height-md);
-    font-size: var(--ty-cascader-font-size-md);
-    padding: var(--ty-cascader-padding-md);
+    height: var(--ty-cascader-height-md, var(--ty-control-height-md, var(--ty-height-md)));
+    font-size: var(--ty-cascader-font-size-md, var(--ty-control-font-size-md, var(--ty-font-size-base)));
+    padding: var(--ty-cascader-padding-md, 0 calc(var(--ty-control-padding-inline-md, 12px) + 20px) 0 var(--ty-control-padding-inline-md, 12px));
   }
 
   &_lg &__selector {
-    height: var(--ty-cascader-height-lg);
-    font-size: var(--ty-cascader-font-size-lg);
-    padding: var(--ty-cascader-padding-lg);
+    height: var(--ty-cascader-height-lg, var(--ty-control-height-lg, var(--ty-height-lg)));
+    font-size: var(--ty-cascader-font-size-lg, var(--ty-control-font-size-lg, var(--ty-font-size-lg)));
+    padding: var(--ty-cascader-padding-lg, 0 calc(var(--ty-control-padding-inline-lg, 16px) + 20px) 0 var(--ty-control-padding-inline-lg, 16px));
   }
 
   &__selector {

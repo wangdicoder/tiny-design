@@ -57,8 +57,12 @@ export interface ThemeEditorFields {
   buttonRadius: string;
   inputRadius: string;
   cardRadius: string;
-  buttonPaddingX: string;
-  inputHeight: string;
+  fieldButtonPaddingXSm: string;
+  fieldButtonPaddingXMd: string;
+  fieldButtonPaddingXLg: string;
+  fieldButtonHeightSm: string;
+  fieldButtonHeightMd: string;
+  fieldButtonHeightLg: string;
   cardPadding: string;
 }
 

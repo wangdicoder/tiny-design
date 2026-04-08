@@ -55,8 +55,12 @@ export const DEFAULT_FIELDS: ThemeEditorFields = {
   buttonRadius: '999px',
   inputRadius: '14px',
   cardRadius: '22px',
-  buttonPaddingX: '18px',
-  inputHeight: '40px',
+  fieldButtonPaddingXSm: '8px',
+  fieldButtonPaddingXMd: '8px',
+  fieldButtonPaddingXLg: '8px',
+  fieldButtonHeightSm: '24px',
+  fieldButtonHeightMd: '32px',
+  fieldButtonHeightLg: '40px',
   cardPadding: '24px',
 };
 

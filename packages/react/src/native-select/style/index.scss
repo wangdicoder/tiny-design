@@ -52,14 +52,26 @@ $select-arrow: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcm
   }
 
   &_sm {
-    @include native-size(var(--ty-height-sm), 0 24px 0 8px, var(--ty-native-select-font-size-sm));
+    @include native-size(
+      var(--ty-control-height-sm, var(--ty-height-sm)),
+      0 calc(var(--ty-control-padding-inline-sm, 8px) + 16px) 0 var(--ty-control-padding-inline-sm, 8px),
+      var(--ty-native-select-font-size-sm, var(--ty-control-font-size-sm, var(--ty-font-size-sm)))
+    );
   }
 
   &_md {
-    @include native-size(var(--ty-height-md), 0 28px 0 10px, var(--ty-native-select-font-size-md));
+    @include native-size(
+      var(--ty-control-height-md, var(--ty-height-md)),
+      0 calc(var(--ty-control-padding-inline-md, 12px) + 16px) 0 var(--ty-control-padding-inline-md, 12px),
+      var(--ty-native-select-font-size-md, var(--ty-control-font-size-md, var(--ty-font-size-base)))
+    );
   }
 
   &_lg {
-    @include native-size(var(--ty-height-lg), 0 32px 0 12px, var(--ty-native-select-font-size-lg));
+    @include native-size(
+      var(--ty-control-height-lg, var(--ty-height-lg)),
+      0 calc(var(--ty-control-padding-inline-lg, 16px) + 16px) 0 var(--ty-control-padding-inline-lg, 16px),
+      var(--ty-native-select-font-size-lg, var(--ty-control-font-size-lg, var(--ty-font-size-lg)))
+    );
   }
 }

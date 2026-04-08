@@ -12,9 +12,9 @@ $dp: #{$prefix}-date-picker;
     display: inline-flex;
     align-items: center;
     width: 100%;
-    height: var(--ty-height-md);
+    height: var(--ty-control-height-md, var(--ty-height-md));
     box-sizing: border-box;
-    padding: var(--ty-picker-input-padding-md);
+    padding: var(--ty-picker-input-padding-md, 0 var(--ty-control-padding-inline-md, 12px));
     border: 1px solid var(--ty-picker-input-border);
     border-radius: var(--ty-picker-input-radius);
     background: var(--ty-picker-input-bg);
@@ -91,9 +91,9 @@ $dp: #{$prefix}-date-picker;
 
   // ---- Sizes ----
   &_sm &__input {
-    height: var(--ty-height-sm);
-    padding: var(--ty-picker-input-padding-sm);
-    font-size: 12px;
+    height: var(--ty-control-height-sm, var(--ty-height-sm));
+    padding: var(--ty-picker-input-padding-sm, 0 var(--ty-control-padding-inline-sm, 8px));
+    font-size: var(--ty-control-font-size-sm, var(--ty-font-size-sm));
   }
 
   &_sm &__input-field {
@@ -101,9 +101,9 @@ $dp: #{$prefix}-date-picker;
   }
 
   &_lg &__input {
-    height: var(--ty-height-lg);
-    padding: var(--ty-picker-input-padding-lg);
-    font-size: 16px;
+    height: var(--ty-control-height-lg, var(--ty-height-lg));
+    padding: var(--ty-picker-input-padding-lg, 0 var(--ty-control-padding-inline-lg, 16px));
+    font-size: var(--ty-control-font-size-lg, var(--ty-font-size-lg));
   }
 
   &_lg &__input-field {

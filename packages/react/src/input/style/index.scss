@@ -7,8 +7,17 @@
   width: 100%;
   color: var(--ty-input-color, var(--ty-color-text));
 
+  --ty-input-padding-inline-start-extra: 0px;
+  --ty-input-padding-inline-end-extra: 0px;
+
   &__input {
     @include input-default;
+
+    height: var(--ty-input-height-current, var(--ty-input-height-md, var(--ty-height-md)));
+    font-size: var(--ty-input-font-size-current, var(--ty-input-font-size-md, var(--ty-font-size-base)));
+    padding-left: calc(var(--ty-input-padding-inline-current, var(--ty-input-padding-inline-md, #{$input-md-padding})) + var(--ty-input-padding-inline-start-extra, 0px));
+    padding-right: calc(var(--ty-input-padding-inline-current, var(--ty-input-padding-inline-md, #{$input-md-padding})) + var(--ty-input-padding-inline-end-extra, 0px));
+    line-height: var(--ty-input-line-height, var(--ty-line-height-base));
   }
 
   &__prefix,
@@ -31,49 +40,33 @@
   &__clear-btn {
     display: inline-block;
     color: var(--ty-input-clear-color, var(--ty-color-text-quaternary));
-    width: var(--ty-input-clear-size, 1em);
-    height: var(--ty-input-clear-size, 1em);
+    width: var(--ty-input-clear-size-current, var(--ty-input-clear-size, 1em));
+    height: var(--ty-input-clear-size-current, var(--ty-input-clear-size, 1em));
     position: relative;
     top: 2px;
     cursor: pointer;
+    flex-shrink: 0;
   }
 
   &_sm {
-    .#{$prefix}-input {
-      &__input {
-        font-size: var(--ty-input-font-size-sm, var(--ty-font-size-sm));
-        height: var(--ty-input-height-sm, var(--ty-height-sm));
-        line-height: var(--ty-input-height-sm, var(--ty-height-sm));
-      }
-
-      &__clear-btn {
-        transform: scale(0.7);
-      }
-    }
+    --ty-input-height-current: var(--ty-input-height-sm, var(--ty-height-sm));
+    --ty-input-font-size-current: var(--ty-input-font-size-sm, var(--ty-font-size-sm));
+    --ty-input-padding-inline-current: var(--ty-input-padding-inline-sm, #{$input-sm-padding});
+    --ty-input-clear-size-current: var(--ty-input-clear-size-sm, var(--ty-input-clear-size, 14px));
   }
 
   &_md {
-    .#{$prefix}-input {
-      &__input {
-        font-size: var(--ty-input-font-size-md, var(--ty-font-size-base));
-        height: var(--ty-input-height-md, var(--ty-height-md));
-        line-height: var(--ty-input-height-md, var(--ty-height-md));
-      }
-
-      &__clear-btn {
-        transform: scale(0.8);
-      }
-    }
+    --ty-input-height-current: var(--ty-input-height-md, var(--ty-height-md));
+    --ty-input-font-size-current: var(--ty-input-font-size-md, var(--ty-font-size-base));
+    --ty-input-padding-inline-current: var(--ty-input-padding-inline-md, #{$input-md-padding});
+    --ty-input-clear-size-current: var(--ty-input-clear-size-md, var(--ty-input-clear-size, 16px));
   }
 
   &_lg {
-    .#{$prefix}-input {
-      &__input {
-        font-size: var(--ty-input-font-size-lg, var(--ty-font-size-lg));
-        height: var(--ty-input-height-lg, var(--ty-height-lg));
-        line-height: var(--ty-input-height-lg, var(--ty-height-lg));
-      }
-    }
+    --ty-input-height-current: var(--ty-input-height-lg, var(--ty-height-lg));
+    --ty-input-font-size-current: var(--ty-input-font-size-lg, var(--ty-font-size-lg));
+    --ty-input-padding-inline-current: var(--ty-input-padding-inline-lg, #{$input-lg-padding});
+    --ty-input-clear-size-current: var(--ty-input-clear-size-lg, var(--ty-input-clear-size, 18px));
   }
 
   &_disabled {
@@ -88,11 +81,31 @@
   display: flex;
   box-sizing: border-box;
   position: relative;
+  align-items: stretch;
 
   & > .#{$prefix}-input-group-addon {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  & > * {
+    position: relative;
+    min-width: 0;
+    flex-shrink: 0;
+
+    &:not(:first-child) {
+      margin-left: calc(-1 * var(--ty-control-group-border-width, 1px));
+    }
+
+    &:hover {
+      z-index: var(--ty-control-group-focus-z-index, 1);
+    }
+  }
+
+  & > .#{$prefix}-input,
+  & > .#{$prefix}-input-number {
+    flex: 1;
   }
 
   &_sm {
@@ -129,6 +142,50 @@
       .#{$prefix}-input__input {
         border-radius: 0;
       }
+    }
+  }
+
+  & > .#{$prefix}-btn,
+  & > .#{$prefix}-input-group-addon.#{$prefix}-input-group-addon_control > .#{$prefix}-btn,
+  & > .#{$prefix}-input-group-addon.#{$prefix}-input-group-addon_control > .#{$prefix}-select,
+  & > .#{$prefix}-input-group-addon.#{$prefix}-input-group-addon_control > .#{$prefix}-input,
+  & > .#{$prefix}-input-group-addon.#{$prefix}-input-group-addon_control > .#{$prefix}-input-number {
+    height: 100%;
+  }
+
+  & > :not(:first-child) {
+    .#{$prefix}-btn,
+    .#{$prefix}-input__input,
+    .#{$prefix}-input-number__input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  & > :not(:last-child) {
+    .#{$prefix}-btn,
+    .#{$prefix}-input__input,
+    .#{$prefix}-input-number__input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  & > :first-child {
+    .#{$prefix}-btn,
+    .#{$prefix}-input__input,
+    .#{$prefix}-input-number__input {
+      border-top-left-radius: var(--ty-control-group-radius, var(--ty-control-radius, var(--ty-border-radius)));
+      border-bottom-left-radius: var(--ty-control-group-radius, var(--ty-control-radius, var(--ty-border-radius)));
+    }
+  }
+
+  & > :last-child {
+    .#{$prefix}-btn,
+    .#{$prefix}-input__input,
+    .#{$prefix}-input-number__input {
+      border-top-right-radius: var(--ty-control-group-radius, var(--ty-control-radius, var(--ty-border-radius)));
+      border-bottom-right-radius: var(--ty-control-group-radius, var(--ty-control-radius, var(--ty-border-radius)));
     }
   }
 }
@@ -177,5 +234,18 @@
   &_no-border {
     border: none;
     padding: 0;
+  }
+
+  &_control {
+    padding: 0;
+    background-color: transparent;
+
+    & > .#{$prefix}-btn,
+    & > .#{$prefix}-select,
+    & > .#{$prefix}-input,
+    & > .#{$prefix}-input-number {
+      height: 100%;
+      border-radius: 0;
+    }
   }
 }

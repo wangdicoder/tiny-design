@@ -1,6 +1,6 @@
 {
   "button.radius": {
-    "$value": "{border-radius}",
+    "$value": "{control.radius}",
     "$type": "dimension",
     "description": "Button border radius.",
     "fallback": "--ty-border-radius"
@@ -45,55 +45,85 @@
     "description": "Overlay opacity during button loading state."
   },
   "button.font-size-sm": {
-    "$value": "{font-size-sm}",
+    "$value": "{control.font-size.sm}",
     "$type": "dimension",
     "description": "Small button font size.",
     "fallback": "--ty-font-size-sm"
   },
   "button.font-size-md": {
-    "$value": "{font-size-base}",
+    "$value": "{control.font-size.md}",
     "$type": "dimension",
     "description": "Medium button font size.",
     "fallback": "--ty-font-size-base"
   },
   "button.font-size-lg": {
-    "$value": "{font-size-lg}",
+    "$value": "{control.font-size.lg}",
     "$type": "dimension",
     "description": "Large button font size.",
     "fallback": "--ty-font-size-lg"
   },
   "button.height.sm": {
-    "$value": "{height-sm}",
+    "$value": "{control.height.sm}",
     "$type": "dimension",
     "description": "Small button height.",
     "fallback": "--ty-height-sm"
   },
   "button.height.md": {
-    "$value": "{height-md}",
+    "$value": "{control.height.md}",
     "$type": "dimension",
     "description": "Medium button height.",
     "fallback": "--ty-height-md"
   },
   "button.height.lg": {
-    "$value": "{height-lg}",
+    "$value": "{control.height.lg}",
     "$type": "dimension",
     "description": "Large button height.",
     "fallback": "--ty-height-lg"
   },
   "button.padding-inline-sm": {
-    "$value": "{spacing-3}",
+    "$value": "{control.padding-inline.sm}",
     "$type": "dimension",
     "description": "Small button inline padding."
   },
   "button.padding-inline-md": {
-    "$value": "{spacing-4}",
+    "$value": "{control.padding-inline.md}",
     "$type": "dimension",
     "description": "Medium button inline padding."
   },
   "button.padding-inline-lg": {
-    "$value": "{spacing-5}",
+    "$value": "{control.padding-inline.lg}",
     "$type": "dimension",
     "description": "Large button inline padding."
+  },
+  "button.gap-sm": {
+    "$value": "{control.gap.sm}",
+    "$type": "dimension",
+    "description": "Small button content gap."
+  },
+  "button.gap-md": {
+    "$value": "{control.gap.md}",
+    "$type": "dimension",
+    "description": "Medium button content gap."
+  },
+  "button.gap-lg": {
+    "$value": "{control.gap.lg}",
+    "$type": "dimension",
+    "description": "Large button content gap."
+  },
+  "button.icon-size-sm": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Small button icon size."
+  },
+  "button.icon-size-md": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Medium button icon size."
+  },
+  "button.icon-size-lg": {
+    "$value": "18px",
+    "$type": "dimension",
+    "description": "Large button icon size."
   },
   "button.bg.default": {
     "$value": "{color-bg-container}",
