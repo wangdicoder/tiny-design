@@ -1,12 +1,12 @@
 import React from 'react';
-import { Tag, Typography } from '@tiny-design/react';
+import { Heading, Tag } from '@tiny-design/react';
 
 export default function ColorDemo() {
   return (
     <>
-      <Typography.Heading level={6} style={{ marginBottom: 16 }}>
+      <Heading level={6} style={{ marginBottom: 16 }}>
         Presets:
-      </Typography.Heading>
+      </Heading>
       <div>
         <Tag color="magenta">magenta</Tag>
         <Tag color="red">red</Tag>
@@ -21,9 +21,9 @@ export default function ColorDemo() {
         <Tag color="purple">purple</Tag>
       </div>
 
-      <Typography.Heading level={6} style={{ margin: '16px 0' }}>
+      <Heading level={6} style={{ margin: '16px 0' }}>
         Custom:
-      </Typography.Heading>
+      </Heading>
       <div>
         <Tag color="#f50">#f50</Tag>
         <Tag color="#2db7f5">#2db7f5</Tag>

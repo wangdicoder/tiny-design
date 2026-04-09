@@ -6,6 +6,8 @@ import DisabledDemo from './demo/Disabled';
 import DisabledSource from './demo/Disabled.tsx?raw';
 import FormatDemo from './demo/Format';
 import FormatSource from './demo/Format.tsx?raw';
+import OklchDemo from './demo/Oklch';
+import OklchSource from './demo/Oklch.tsx?raw';
 import TriggerDemo from './demo/Trigger';
 import TriggerSource from './demo/Trigger.tsx?raw';
 
@@ -40,9 +42,18 @@ Click the swatch to open the color picker panel.
 
 ### Format
 
-Toggle between `hex`, `rgb`, and `hsb` output formats.
+Toggle between `hex`, `rgb`, `hsb`, and `oklch` output formats.
 
 <DemoBlock component={FormatDemo} source={FormatSource} />
+
+    </Demo>
+    <Demo>
+
+### Structured Change Meta
+
+Read the formatted value and the structured color meta together.
+
+<DemoBlock component={OklchDemo} source={OklchSource} />
 
     </Demo>
     <Demo>
@@ -83,9 +94,12 @@ Open the panel on hover instead of click.
 | -------------- | ---------------------------------- | -------------------------------- | ------- |
 | value          | color value (controlled)           | string                           |         |
 | defaultValue   | default color value                | string                           | #6e41bf |
-| onChange       | callback when color changes        | (color: string) => void          |         |
-| format         | color format                       | 'hex' \| 'rgb' \| 'hsb'        | hex     |
-| onFormatChange | callback when format changes       | (format: string) => void         |         |
+| onChange       | callback when color changes        | `(color: string, meta: { color: Color; format: ColorFormat }) => void` |         |
+| onChangeComplete | callback when an interaction finishes | `(color: string, meta: { color: Color; format: ColorFormat }) => void` |         |
+| format         | color format                       | `'hex' \| 'rgb' \| 'hsb' \| 'oklch'` | hex     |
+| defaultFormat  | default format                     | `'hex' \| 'rgb' \| 'hsb' \| 'oklch'` | hex     |
+| formats        | available format cycle             | `ColorFormat[]`                  | `['hex', 'rgb', 'hsb', 'oklch']` |
+| onFormatChange | callback when format changes       | `(format: ColorFormat) => void` |         |
 | presets        | preset color swatches              | string[]                         |         |
 | showAlpha      | show alpha slider                  | boolean                          | false   |
 | disabled       | disable the picker                  | boolean                          | false   |

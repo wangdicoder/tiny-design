@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, Typography } from '@tiny-design/react';
+import { Card, Grid, Text } from '@tiny-design/react';
 
 const Item = ({
   title,
@@ -9,9 +9,9 @@ const Item = ({
   desc: string;
 }) => (
   <Card style={{ padding: 16, minHeight: 88 }}>
-    <Typography.Text strong>{title}</Typography.Text>
+    <Text strong>{title}</Text>
     <div style={{ marginTop: 8 }}>
-      <Typography.Text type="secondary">{desc}</Typography.Text>
+      <Text type="secondary">{desc}</Text>
     </div>
   </Card>
 );

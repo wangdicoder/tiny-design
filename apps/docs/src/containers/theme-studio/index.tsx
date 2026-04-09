@@ -4,10 +4,11 @@ import {
   Button,
   ConfigProvider,
   Modal,
+  Paragraph,
   Segmented,
   Select,
+  Text,
   Textarea,
-  Typography,
   useTheme,
 } from '@tiny-design/react';
 import {
@@ -137,7 +138,7 @@ const ThemeStudioPage = (): React.ReactElement => {
       >
         <div className="theme-studio__topbar">
           <div className="theme-studio__topbar-copy">
-            <Typography.Text className="theme-studio__eyebrow">Theme Editor</Typography.Text>
+            <Text className="theme-studio__eyebrow">Theme Editor</Text>
             <div className="theme-studio__topbar-meta">
               <span>{activePreset.name}</span>
               <span>{THEME_EDITOR_PRESETS.length} presets</span>
@@ -213,10 +214,10 @@ const ThemeStudioPage = (): React.ReactElement => {
           }}
         >
           <div className="theme-studio__modal-copy">
-            <Typography.Paragraph>
+            <Paragraph>
               Paste a Tiny theme document JSON export to replace the current global theme.
-            </Typography.Paragraph>
-            <Typography.Text type="secondary">Preset selection and all editor controls will sync to the imported values.</Typography.Text>
+            </Paragraph>
+            <Text type="secondary">Preset selection and all editor controls will sync to the imported values.</Text>
           </div>
           <Textarea
             rows={16}
@@ -224,7 +225,7 @@ const ThemeStudioPage = (): React.ReactElement => {
             value={importText}
             onChange={(next) => setImportText(next)}
           />
-          {importError ? <Typography.Paragraph className="theme-studio__error">{importError}</Typography.Paragraph> : null}
+          {importError ? <Paragraph className="theme-studio__error">{importError}</Paragraph> : null}
         </Modal>
 
         <Modal
@@ -245,8 +246,8 @@ const ThemeStudioPage = (): React.ReactElement => {
         >
           <div className="theme-studio__code-head">
             <div>
-              <Typography.Text strong>Output</Typography.Text>
-              <Typography.Text type="secondary">{activePreset.name} · {status}</Typography.Text>
+              <Text strong>Output</Text>
+              <Text type="secondary">{activePreset.name} · {status}</Text>
             </div>
             <Segmented
               options={CODE_VIEW_OPTIONS}

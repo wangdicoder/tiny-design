@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Typography, Button, Marquee } from '@tiny-design/react';
+import { Button, Heading, Marquee, Paragraph } from '@tiny-design/react';
 import {
   buildThemeDocumentFromDraft,
   getPresetDraft,
@@ -76,12 +76,12 @@ export const ThemeShowcase = (): React.ReactElement => {
 
   return (
     <div className="home__section home__theme-showcase">
-      <Typography.Heading level={1} className="home__feature-title">
+      <Heading level={1} className="home__feature-title">
         {s.home.themeShowcase}
-      </Typography.Heading>
-      <Typography.Paragraph className="home__theme-showcase-desc">
+      </Heading>
+      <Paragraph className="home__theme-showcase-desc">
         {s.home.themeShowcaseDesc}
-      </Typography.Paragraph>
+      </Paragraph>
 
       <div className="home__marquee-container">
         <Marquee duration={50} pauseOnHover>

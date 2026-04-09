@@ -1,4 +1,23 @@
-import { Color } from './types';
+import { Color, ColorFormat } from './types';
+
+function hsbStringToColor(input: string): Color | null {
+  const match = /hsb\(\s*(-?\d*\.?\d+)\s*[, ]\s*(-?\d*\.?\d+)%\s*[, ]\s*(-?\d*\.?\d+)%(?:\s*[,/]\s*([\d.]+))?\s*\)/i.exec(input);
+  if (!match) return null;
+
+  const h = Number.parseFloat(match[1]);
+  const s = Number.parseFloat(match[2]);
+  const b = Number.parseFloat(match[3]);
+  const a = match[4] ? Number.parseFloat(match[4]) : 1;
+
+  if (![h, s, b, a].every(Number.isFinite)) return null;
+
+  return {
+    h: normalizeHue(h),
+    s: Math.max(0, Math.min(100, s)),
+    b: Math.max(0, Math.min(100, b)),
+    a: clamp01(a),
+  };
+}
 
 function rgbStringToHsb(input: string): Color | null {
   const rgbMatch = input.match(/rgba?\(\s*(\d+)\s*[, ]\s*(\d+)\s*[, ]\s*(\d+)\s*(?:[,/]\s*([\d.]+))?\s*\)/i);
@@ -184,12 +203,53 @@ export const hsbToRgb = (color: Color): string => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-export const formatColor = (color: Color, format: string): string => {
+function srgbToLinear(value: number): number {
+  if (value <= 0.04045) return value / 12.92;
+  return Math.pow((value + 0.055) / 1.055, 2.4);
+}
+
+function trimNumber(value: number, digits: number): string {
+  return value.toFixed(digits).replace(/\.?0+$/, '');
+}
+
+export const hsbToOklch = (color: Color): string => {
+  const hex = hsbToHex({ ...color, a: 1 });
+  const h = hex.replace('#', '');
+  const red = parseInt(h.slice(0, 2), 16) / 255;
+  const green = parseInt(h.slice(2, 4), 16) / 255;
+  const blue = parseInt(h.slice(4, 6), 16) / 255;
+
+  const rLinear = srgbToLinear(red);
+  const gLinear = srgbToLinear(green);
+  const bLinear = srgbToLinear(blue);
+
+  const l = 0.4122214708 * rLinear + 0.5363325363 * gLinear + 0.0514459929 * bLinear;
+  const m = 0.2119034982 * rLinear + 0.6806995451 * gLinear + 0.1073969566 * bLinear;
+  const s = 0.0883024619 * rLinear + 0.2817188376 * gLinear + 0.6299787005 * bLinear;
+
+  const lRoot = Math.cbrt(l);
+  const mRoot = Math.cbrt(m);
+  const sRoot = Math.cbrt(s);
+
+  const lightness = 0.2104542553 * lRoot + 0.793617785 * mRoot - 0.0040720468 * sRoot;
+  const a = 1.9779984951 * lRoot - 2.428592205 * mRoot + 0.4505937099 * sRoot;
+  const b = 0.0259040371 * lRoot + 0.7827717662 * mRoot - 0.808675766 * sRoot;
+
+  const chroma = Math.sqrt(a * a + b * b);
+  const hue = normalizeHue((Math.atan2(b, a) * 180) / Math.PI);
+  const alphaPart = color.a < 1 ? ` / ${trimNumber(color.a, 2)}` : '';
+
+  return `oklch(${trimNumber(lightness, 3)} ${trimNumber(chroma, 3)} ${trimNumber(hue, 1)}${alphaPart})`;
+};
+
+export const formatColor = (color: Color, format: ColorFormat): string => {
   switch (format) {
     case 'rgb':
       return hsbToRgb(color);
     case 'hsb':
-      return `hsb(${color.h}, ${color.s}%, ${color.b}%)`;
+      return `hsb(${color.h}, ${color.s}%, ${color.b}%${color.a < 1 ? `, ${trimNumber(color.a, 2)}` : ''})`;
+    case 'oklch':
+      return hsbToOklch(color);
     default:
       return hsbToHex(color);
   }
@@ -206,6 +266,9 @@ export const parseColor = (input: string): Color => {
   // rgb/rgba
   const directRgb = rgbStringToHsb(input);
   if (directRgb) return directRgb;
+
+  const directHsb = hsbStringToColor(input);
+  if (directHsb) return directHsb;
 
   const directOklch = oklchToHsb(input);
   if (directOklch) return directOklch;

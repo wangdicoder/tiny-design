@@ -714,7 +714,6 @@
 .theme-studio__cards-actions-end,
 .theme-studio__cards-auth-actions,
 .theme-studio__cards-share-row,
-.theme-studio__cards-inline-card-head,
 .theme-studio__cards-goal-actions {
   display: flex;
   gap: 10px;
@@ -887,23 +886,12 @@
   padding-top: 0;
 }
 
-.theme-studio__cards-inline-card.ty-card > .ty-card__body small {
-  color: var(--editor-muted-foreground);
-}
-
 .theme-studio__cards-chat-head {
   margin-bottom: 2px;
 }
 
 .theme-studio__member-row_compact {
   padding: 0;
-}
-
-.theme-studio__cards-meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
 }
 
 .theme-studio__cards-panel .theme-studio__member-row {
@@ -923,8 +911,7 @@
 .theme-studio__cards-member-select,
 .theme-studio__cards-inline-action,
 .theme-studio__cards-report-select,
-.theme-studio__cards-share-row .ty-btn,
-.theme-studio__cards-inline-card-head .ty-btn {
+.theme-studio__cards-share-row .ty-btn {
   width: auto !important;
   flex: 0 0 auto;
 }

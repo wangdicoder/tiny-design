@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, Typography } from '@tiny-design/react';
+import { Card, Grid, Text } from '@tiny-design/react';
 
 const panelStyle: React.CSSProperties = {
   minHeight: 104,
@@ -14,16 +14,16 @@ export default function ExplicitColumnsDemo() {
   return (
     <Grid columns="220px minmax(0, 1fr) 180px" gap="sm">
       <Card style={panelStyle}>
-        <Typography.Text strong>Sidebar</Typography.Text>
-        <Typography.Text type="secondary">Fixed 220px track</Typography.Text>
+        <Text strong>Sidebar</Text>
+        <Text type="secondary">Fixed 220px track</Text>
       </Card>
       <Card style={panelStyle}>
-        <Typography.Text strong>Main content</Typography.Text>
-        <Typography.Text type="secondary">Fluid `minmax(0, 1fr)` track</Typography.Text>
+        <Text strong>Main content</Text>
+        <Text type="secondary">Fluid `minmax(0, 1fr)` track</Text>
       </Card>
       <Card style={panelStyle}>
-        <Typography.Text strong>Inspector</Typography.Text>
-        <Typography.Text type="secondary">Fixed 180px track</Typography.Text>
+        <Text strong>Inspector</Text>
+        <Text type="secondary">Fixed 180px track</Text>
       </Card>
     </Grid>
   );

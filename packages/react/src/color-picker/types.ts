@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseProps } from '../_utils/props';
 
-export type ColorFormat = 'hex' | 'rgb' | 'hsb';
+export type ColorFormat = 'hex' | 'rgb' | 'hsb' | 'oklch';
 
 export interface Color {
   h: number; // 0-360
@@ -10,14 +10,21 @@ export interface Color {
   a: number; // 0-1
 }
 
+export interface ColorChangeMeta {
+  color: Color;
+  format: ColorFormat;
+}
+
 export interface ColorPickerProps
   extends BaseProps,
     Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange' | 'defaultValue'> {
   value?: string;
   defaultValue?: string;
-  onChange?: (color: string) => void;
+  onChange?: (color: string, meta: ColorChangeMeta) => void;
+  onChangeComplete?: (color: string, meta: ColorChangeMeta) => void;
   format?: ColorFormat;
   defaultFormat?: ColorFormat;
+  formats?: ColorFormat[];
   onFormatChange?: (format: ColorFormat) => void;
   presets?: string[];
   showAlpha?: boolean;
