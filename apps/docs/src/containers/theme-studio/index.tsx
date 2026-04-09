@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import type { ThemeDocument } from '@tiny-design/react';
+import { validateThemeDocument } from '@tiny-design/tokens/validate-theme';
 import {
   Button,
   ConfigProvider,
@@ -116,10 +117,16 @@ const ThemeStudioPage = (): React.ReactElement => {
   const handleImport = () => {
     try {
       const parsed = JSON.parse(importText) as ThemeDocument;
-      setDraft(buildDraftFromThemeDocument(parsed));
+      const validation = validateThemeDocument(parsed);
+      if (!validation.valid) {
+        setImportError(validation.errors.join('\n'));
+        return;
+      }
+
+      setDraft(buildDraftFromThemeDocument(validation.normalizedDocument as ThemeDocument));
       setImportVisible(false);
       setImportError(null);
-      setStatus('Imported theme document');
+      setStatus(validation.warnings.length > 0 ? 'Imported theme document with validation warnings' : 'Imported theme document');
     } catch {
       setImportError('Invalid theme document JSON');
     }

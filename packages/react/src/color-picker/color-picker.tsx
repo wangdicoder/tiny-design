@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useContext, useCallback } from 'rea
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
-import { useClickOutside } from '../_utils/hooks';
 import Popup from '../popup';
 import { ColorPickerProps, Color, ColorFormat, ColorChangeMeta } from './types';
 import { parseColor, formatColor, hsbToHex } from './utils';
@@ -24,6 +23,7 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
     onChange,
     onChangeComplete,
     onFormatChange,
+    onOpenChange,
     children,
     ...otherProps
   } = props;
@@ -74,11 +74,6 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   useEffect(() => {
     if ('open' in props) setOpen(props.open as boolean);
   }, [props.open]);
-
-  useClickOutside(wrapperRef, () => {
-    if (controlledOpen === undefined) setOpen(false);
-    props.onOpenChange?.(false);
-  });
 
   const emitChange = useCallback(
     (c: Color, nextFormat: ColorFormat = format) => {
@@ -236,13 +231,6 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
     };
   }, [dragging, emitChangeComplete]);
 
-  const toggleOpen = () => {
-    if (disabled) return;
-    const next = !isOpen;
-    if (controlledOpen === undefined) setOpen(next);
-    props.onOpenChange?.(next);
-  };
-
   const handleFormatChange = () => {
     const idx = availableFormats.indexOf(format);
     const currentIdx = idx === -1 ? 0 : idx;
@@ -358,15 +346,20 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   return (
     <div {...otherProps} ref={wrapperRef} className={cls} style={style}>
       <Popup
-        trigger="manual"
+        trigger={trigger}
+        disabled={disabled}
         placement="bottom"
         arrow={false}
         visible={isOpen}
+        onVisibleChange={(nextOpen) => {
+          if (controlledOpen === undefined) {
+            setOpen(nextOpen);
+          }
+          onOpenChange?.(nextOpen);
+        }}
         content={renderPanel()}>
         <div
           className={`${prefixCls}__trigger`}
-          onClick={trigger === 'click' ? toggleOpen : undefined}
-          onMouseEnter={trigger === 'hover' ? toggleOpen : undefined}
         >
           {children || (
             <div className={`${prefixCls}__swatch`}>

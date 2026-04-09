@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import classNames from 'classnames';
 import Popover from '../popover';
 import Button from '../button';
@@ -19,6 +19,8 @@ const PopConfirm = (props: PopConfirmProps): JSX.Element => {
     onConfirm,
     onCancel,
     onVisibleChange,
+    visible,
+    defaultVisible = false,
     className,
     children,
     prefixCls: customisedCls,
@@ -27,15 +29,24 @@ const PopConfirm = (props: PopConfirmProps): JSX.Element => {
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('pop-confirm', configContext.prefixCls, customisedCls);
   const cls = classNames(prefixCls, className);
-  const [visible, setVisible] = useState(false);
+  const isControlled = visible !== undefined;
+  const [uncontrolledVisible, setUncontrolledVisible] = useState(defaultVisible);
+  const popupVisible = isControlled ? visible : uncontrolledVisible;
+
+  const setPopupVisibleState = useCallback((nextVisible: boolean): void => {
+    if (!isControlled) {
+      setUncontrolledVisible(nextVisible);
+    }
+    onVisibleChange?.(nextVisible);
+  }, [isControlled, onVisibleChange]);
 
   const cancelOnClick = (e: React.MouseEvent): void => {
-    setVisible(false);
+    setPopupVisibleState(false);
     onCancel && onCancel(e);
   };
 
   const confirmOnClick = (e: React.MouseEvent): void => {
-    setVisible(false);
+    setPopupVisibleState(false);
     onConfirm && onConfirm(e);
   };
 
@@ -63,11 +74,8 @@ const PopConfirm = (props: PopConfirmProps): JSX.Element => {
       {...otherProps}
       className={cls}
       role="alertdialog"
-      visible={visible}
-      onVisibleChange={(val: boolean): void => {
-        setVisible(val);
-        onVisibleChange && onVisibleChange(val);
-      }}
+      visible={popupVisible}
+      onVisibleChange={setPopupVisibleState}
       content={overlay()}
       placement={placement}>
       {children}

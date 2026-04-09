@@ -1,0 +1,29 @@
+{
+  "dropdown.menu-padding": {
+    "$value": "4px 0",
+    "$type": "string",
+    "description": "Dropdown menu vertical padding."
+  },
+  "dropdown.item-padding": {
+    "$value": "8px 15px",
+    "$type": "string",
+    "description": "Dropdown menu item padding."
+  },
+  "dropdown.item-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Dropdown menu item text color.",
+    "fallback": "--ty-color-text"
+  },
+  "dropdown.item-hover-bg": {
+    "$value": "{color-bg-spotlight}",
+    "$type": "color",
+    "description": "Dropdown menu item hover background color.",
+    "fallback": "--ty-color-bg-spotlight"
+  },
+  "dropdown.group-title-padding": {
+    "$value": "8px 10px",
+    "$type": "string",
+    "description": "Dropdown menu group title padding."
+  }
+}

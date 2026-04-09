@@ -1,0 +1,154 @@
+{
+  "date-picker.input-min-width.sm": {
+    "$value": "90px",
+    "$type": "dimension",
+    "description": "Small date picker input min width."
+  },
+  "date-picker.input-min-width.md": {
+    "$value": "120px",
+    "$type": "dimension",
+    "description": "Medium date picker input min width."
+  },
+  "date-picker.input-min-width.lg": {
+    "$value": "140px",
+    "$type": "dimension",
+    "description": "Large date picker input min width."
+  },
+  "date-picker.header-padding": {
+    "$value": "8px 12px",
+    "$type": "string",
+    "description": "Date picker header padding."
+  },
+  "date-picker.header-border": {
+    "$value": "{color-border-light}",
+    "$type": "color",
+    "description": "Date picker header and footer border color.",
+    "fallback": "--ty-color-border-light"
+  },
+  "date-picker.header-button-size": {
+    "$value": "28px",
+    "$type": "dimension",
+    "description": "Date picker header button size."
+  },
+  "date-picker.header-button-radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Date picker header button radius."
+  },
+  "date-picker.header-button-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Date picker header button color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "date-picker.header-button-color-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Date picker header button hover color.",
+    "fallback": "--ty-color-primary"
+  },
+  "date-picker.header-label-font-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Date picker header label font size."
+  },
+  "date-picker.header-label-font-weight": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Date picker header label font weight."
+  },
+  "date-picker.header-caption-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Date picker header caption gap."
+  },
+  "date-picker.body-padding": {
+    "$value": "8px 12px",
+    "$type": "string",
+    "description": "Date picker body padding."
+  },
+  "date-picker.cell-font-size": {
+    "$value": "13px",
+    "$type": "dimension",
+    "description": "Date picker cell font size."
+  },
+  "date-picker.cell-size": {
+    "$value": "28px",
+    "$type": "dimension",
+    "description": "Date picker cell inner size."
+  },
+  "date-picker.cell-radius": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Date picker cell radius."
+  },
+  "date-picker.cell-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Date picker active cell text color.",
+    "fallback": "--ty-color-text"
+  },
+  "date-picker.cell-color-muted": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Date picker muted cell text color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "date-picker.cell-disabled-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Date picker cell disabled background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "date-picker.cell-today-border": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Date picker today cell border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "date-picker.cell-selected-bg": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Date picker selected cell background color.",
+    "fallback": "--ty-color-primary"
+  },
+  "date-picker.cell-selected-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Date picker selected cell text color."
+  },
+  "date-picker.cell-selected-hover-bg": {
+    "$value": "{color-primary-active}",
+    "$type": "color",
+    "description": "Date picker selected cell hover background color.",
+    "fallback": "--ty-color-primary-active"
+  },
+  "date-picker.range-bg": {
+    "$value": "{color-primary-bg}",
+    "$type": "color",
+    "description": "Date picker range background color.",
+    "fallback": "--ty-color-primary-bg"
+  },
+  "date-picker.footer-padding": {
+    "$value": "8px 12px",
+    "$type": "string",
+    "description": "Date picker footer padding."
+  },
+  "date-picker.today-font-size": {
+    "$value": "13px",
+    "$type": "dimension",
+    "description": "Date picker today button font size."
+  },
+  "date-picker.today-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Date picker today action color.",
+    "fallback": "--ty-color-primary"
+  },
+  "date-picker.today-color-hover": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "Date picker today action hover color.",
+    "fallback": "--ty-color-primary-hover"
+  }
+}

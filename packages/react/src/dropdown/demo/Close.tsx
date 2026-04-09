@@ -29,7 +29,7 @@ export default function CloseDemo() {
     <Dropdown
       overlay={renderOverlay()}
       onVisibleChange={handleVisibleChange}
-      open={visible}
+      visible={visible}
     >
       <a onClick={(e) => e.preventDefault()}>
         Hover me <IconDown size={12} />

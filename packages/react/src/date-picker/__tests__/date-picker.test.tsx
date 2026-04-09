@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import DatePicker from '../index';
 
 describe('<DatePicker />', () => {
@@ -65,6 +65,25 @@ describe('<DatePicker />', () => {
     const input = container.querySelector('.ty-date-picker__input');
     input && fireEvent.click(input);
     expect(fn).toHaveBeenCalledWith(true);
+  });
+
+  it('should close on outside click', async () => {
+    const { container } = render(
+      <div>
+        <DatePicker />
+        <button>Outside</button>
+      </div>
+    );
+
+    const input = container.querySelector('.ty-date-picker__input');
+    input && fireEvent.click(input);
+    expect(document.querySelector('.ty-date-picker__dropdown')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(document.querySelector('.ty-date-picker__dropdown')).not.toBeInTheDocument();
+    });
   });
 
   it('should format month picker', () => {

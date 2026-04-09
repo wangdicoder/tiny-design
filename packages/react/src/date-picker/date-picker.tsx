@@ -115,17 +115,6 @@ const DatePicker = (props: DatePickerProps) => {
     if (controlledOpen !== undefined) setOpen(controlledOpen);
   }, [controlledOpen]);
 
-  useEffect(() => {
-    const listener = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (wrapperRef.current?.contains(target) || dropdownRef.current?.contains(target)) return;
-      if (controlledOpen === undefined) setOpen(false);
-      onOpenChange?.(false);
-    };
-    document.addEventListener('click', listener);
-    return () => document.removeEventListener('click', listener);
-  }, [controlledOpen, onOpenChange]);
-
   const toggleOpen = useCallback((val: boolean) => {
     if (controlledOpen === undefined) setOpen(val);
     onOpenChange?.(val);
@@ -298,6 +287,7 @@ const DatePicker = (props: DatePickerProps) => {
         placement="bottom-start"
         arrow={false}
         visible={isOpen}
+        onVisibleChange={toggleOpen}
         content={renderOverlay()}>
         <div className={`${prefixCls}__input`} onClick={() => !disabled && toggleOpen(!isOpen)}>
           <input

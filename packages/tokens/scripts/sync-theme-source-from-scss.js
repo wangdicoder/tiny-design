@@ -438,8 +438,6 @@ function syncThemeSourceFromScss() {
     const darkValue = darkTheme[legacyKey];
     if (!componentKeys.has(tokenKey)) {
       const semanticMatch = semanticValueIndex.get(`${lightValue}:::${darkValue}`);
-      const primaryCssVar = cssVarForTokenKey(tokenKey);
-      const legacyCssVar = `--ty-${legacyKey}`;
       const definition = {
         $value: semanticMatch ? `{${semanticMatch}}` : lightValue,
         $type: inferTokenType(tokenKey, lightValue),
@@ -448,10 +446,6 @@ function syncThemeSourceFromScss() {
 
       if (semanticMatch) {
         definition.fallback = `--ty-${semanticMatch}`;
-      }
-
-      if (legacyCssVar !== primaryCssVar) {
-        definition.aliases = [legacyCssVar];
       }
 
       if (!generatedComponents[componentName]) {
@@ -494,11 +488,13 @@ function syncThemeSourceFromScss() {
   }
 
   writeJson(path.join(THEMES_DIR, 'light.json'), {
+    $schema: 'https://tiny.design/schema/theme.v1.schema.json',
     meta: {
       id: 'tiny-light',
       name: 'Tiny Light',
-      mode: 'light',
+      schemaVersion: 1,
     },
+    mode: 'light',
     tokens: {
       semantic: {},
       components: {},
@@ -527,11 +523,13 @@ function syncThemeSourceFromScss() {
   }
 
   const darkThemeOut = {
+    $schema: 'https://tiny.design/schema/theme.v1.schema.json',
     meta: {
       id: 'tiny-dark',
       name: 'Tiny Dark',
-      mode: 'dark',
+      schemaVersion: 1,
     },
+    mode: 'dark',
     tokens: {
       semantic: {},
       components: {},

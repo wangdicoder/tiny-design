@@ -1,9 +1,11 @@
 {
+  "$schema": "https://tiny.design/schema/theme.v1.schema.json",
   "meta": {
     "id": "tiny-light",
     "name": "Tiny Light",
-    "mode": "light"
+    "schemaVersion": 1
   },
+  "mode": "light",
   "tokens": {
     "semantic": {},
     "components": {}

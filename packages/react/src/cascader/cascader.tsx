@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef, useContext, useMemo, useCallback } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
-import { resolvePopupContainer } from '../config-provider/container-utils';
-import { getScrollParents } from '../_utils/dom';
 import { getPrefixCls } from '../_utils/general';
 import { ArrowDown } from '../_utils/components';
-import Portal from '../portal';
+import Popup from '../popup';
 import { CascaderProps, CascaderOption, CascaderValue } from './types';
 
 const getOptionsByValue = (
@@ -47,10 +45,8 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
   const prefixCls = getPrefixCls('cascader', configContext.prefixCls, customisedCls);
   const cascaderSize = size || configContext.componentSize || 'md';
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState(false);
-  const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
   const [selectedValue, setSelectedValue] = useState<CascaderValue>(
     'value' in props ? (props.value ?? []) : (defaultValue ?? [])
   );
@@ -69,33 +65,6 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     }
   }, [props.open]);
 
-  const updateDropdownPosition = useCallback(() => {
-    if (!open || !wrapperRef.current || !dropdownRef.current) {
-      return;
-    }
-
-    const rect = wrapperRef.current.getBoundingClientRect();
-    const offsetParent = dropdownRef.current.offsetParent;
-
-    if (offsetParent && offsetParent instanceof HTMLElement) {
-      const offsetParentRect = offsetParent.getBoundingClientRect();
-      setDropdownStyle({
-        position: 'absolute',
-        top: rect.bottom - offsetParentRect.top + offsetParent.scrollTop + 4,
-        left: rect.left - offsetParentRect.left + offsetParent.scrollLeft,
-        zIndex: 1050,
-      });
-      return;
-    }
-
-    setDropdownStyle({
-      position: 'absolute',
-      top: rect.bottom + window.scrollY + 4,
-      left: rect.left + window.scrollX,
-      zIndex: 1050,
-    });
-  }, [open]);
-
   // Build columns from selected value on mount
   useEffect(() => {
     const cols: CascaderOption[][] = [options];
@@ -113,58 +82,20 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     setActiveColumns(cols);
   }, [options, selectedValue]);
 
-  useEffect(() => {
-    if (!open) {
-      return undefined;
+  const setDropdownOpen = useCallback((nextOpen: boolean) => {
+    if (!('open' in props)) {
+      setOpen(nextOpen);
     }
-
-    const popupContainer = resolvePopupContainer(configContext, wrapperRef.current);
-    const scrollTargets = new Set<HTMLElement | Window>([
-      ...getScrollParents(wrapperRef.current),
-      ...getScrollParents(popupContainer),
-    ]);
-
-    updateDropdownPosition();
-    window.addEventListener('resize', updateDropdownPosition);
-    scrollTargets.forEach((target) => {
-      target.addEventListener('scroll', updateDropdownPosition);
-    });
-
-    return () => {
-      window.removeEventListener('resize', updateDropdownPosition);
-      scrollTargets.forEach((target) => {
-        target.removeEventListener('scroll', updateDropdownPosition);
-      });
-    };
-  }, [configContext, open, updateDropdownPosition]);
-
-  // Click outside
-  useEffect(() => {
-    if (!open) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as Node;
-      if (
-        wrapperRef.current && !wrapperRef.current.contains(target) &&
-        dropdownRef.current && !dropdownRef.current.contains(target)
-      ) {
-        closeDropdown();
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [open]);
-
-  const closeDropdown = () => {
-    if (!('open' in props)) setOpen(false);
-    onDropdownVisibleChange?.(false);
-    setHoveredPath([]);
-  };
+    onDropdownVisibleChange?.(nextOpen);
+    if (!nextOpen) {
+      setHoveredPath([]);
+    }
+  }, [onDropdownVisibleChange, props]);
 
   const toggleOpen = () => {
     if (disabled) return;
     const next = !open;
-    if (!('open' in props)) setOpen(next);
-    onDropdownVisibleChange?.(next);
+    setDropdownOpen(next);
   };
 
   const handleOptionSelect = (option: CascaderOption, level: number) => {
@@ -189,7 +120,7 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
       const selectedOptions = getOptionsByValue(options, newPath);
       onChange?.(newPath, selectedOptions);
       if (isLeaf) {
-        closeDropdown();
+        setDropdownOpen(false);
       }
     }
   };
@@ -237,8 +168,7 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
 
   const dropdown = open
     ? (
-      <Portal container={resolvePopupContainer(configContext, wrapperRef.current)}>
-        <div className={`${prefixCls}__dropdown`} ref={dropdownRef} style={dropdownStyle}>
+        <div className={`${prefixCls}__dropdown`}>
           <div className={`${prefixCls}__menus`}>
             {activeColumns.map((columnOptions, level) => (
               <ul key={level} className={`${prefixCls}__menu`} role="listbox">
@@ -275,26 +205,33 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
             ))}
           </div>
         </div>
-      </Portal>
     )
     : null;
 
   return (
     <div {...otherProps} ref={wrapperRef} className={cls} style={style}>
-      <div className={`${prefixCls}__selector`} onClick={toggleOpen}>
-        {displayText ? (
-          <span className={`${prefixCls}__display`}>{displayText}</span>
-        ) : (
-          <span className={`${prefixCls}__placeholder`}>{placeholder}</span>
-        )}
-        {allowClear && selectedValue.length > 0 && (
-          <span className={`${prefixCls}__clear`} onClick={handleClear}>
-            ✕
-          </span>
-        )}
-        <span className={`${prefixCls}__arrow`}><ArrowDown size={10} /></span>
-      </div>
-      {dropdown}
+      <Popup
+        trigger="manual"
+        placement="bottom-start"
+        arrow={false}
+        visible={open}
+        onVisibleChange={setDropdownOpen}
+        content={dropdown}
+      >
+        <div className={`${prefixCls}__selector`} onClick={toggleOpen}>
+          {displayText ? (
+            <span className={`${prefixCls}__display`}>{displayText}</span>
+          ) : (
+            <span className={`${prefixCls}__placeholder`}>{placeholder}</span>
+          )}
+          {allowClear && selectedValue.length > 0 && (
+            <span className={`${prefixCls}__clear`} onClick={handleClear}>
+              ✕
+            </span>
+          )}
+          <span className={`${prefixCls}__arrow`}><ArrowDown size={10} /></span>
+        </div>
+      </Popup>
     </div>
   );
 });

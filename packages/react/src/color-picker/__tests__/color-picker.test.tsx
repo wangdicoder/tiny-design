@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import ColorPicker from '../index';
 import { formatColor, parseColor } from '../utils';
 
@@ -30,6 +30,43 @@ describe('<ColorPicker />', () => {
   it('should render disabled', () => {
     const { container } = render(<ColorPicker disabled />);
     expect(container.firstChild).toHaveClass('ty-color-picker_disabled');
+  });
+
+  it('should close panel on outside click', async () => {
+    const { container } = render(
+      <div>
+        <ColorPicker />
+        <button>Outside</button>
+      </div>
+    );
+
+    const trigger = container.querySelector('.ty-color-picker__trigger');
+    fireEvent.click(trigger!);
+    expect(document.body.querySelector('.ty-color-picker__panel')).toBeTruthy();
+
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(document.body.querySelector('.ty-color-picker__panel')).toBeNull();
+    });
+  });
+
+  it('should call onOpenChange when outside click closes panel', async () => {
+    const onOpenChange = jest.fn();
+    const { container } = render(
+      <div>
+        <ColorPicker onOpenChange={onOpenChange} />
+        <button>Outside</button>
+      </div>
+    );
+
+    const trigger = container.querySelector('.ty-color-picker__trigger');
+    fireEvent.click(trigger!);
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledWith(false);
+    });
   });
 
   it('should render presets', () => {

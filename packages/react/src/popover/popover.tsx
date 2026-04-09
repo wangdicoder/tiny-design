@@ -21,7 +21,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const cls = classNames(className, prefixCls, `${prefixCls}_${theme}`);
 
   const renderContent = (): React.ReactElement => (
-    <div role={role} className={`${prefixCls}__inner`}>
+    <div ref={ref} role={role} className={`${prefixCls}__inner`}>
       {title && <div className={`${prefixCls}__title`}>{title}</div>}
       {content && <div className={`${prefixCls}__content`}>{content}</div>}
     </div>

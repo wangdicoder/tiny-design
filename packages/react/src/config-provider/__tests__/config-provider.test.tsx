@@ -104,6 +104,19 @@ describe('<ConfigProvider />', () => {
     ).toBe('blue');
   });
 
+  it('should resolve preset mode and preset token values from extends', () => {
+    const { container } = render(
+      <ConfigProvider theme={{ extends: 'tiny-dark' }}>
+        <Button>Button</Button>
+      </ConfigProvider>
+    );
+
+    const provider = container.querySelector('.ty-config-provider') as HTMLElement;
+    expect(provider.getAttribute('data-tiny-theme')).toBe('dark');
+    expect(provider.style.getPropertyValue('--ty-color-bg')).toBe('#141414');
+    expect(provider.style.getPropertyValue('--ty-color-primary')).toBe('#9065d0');
+  });
+
   it('should replace old token values when the same provider updates theme config', () => {
     const { rerender } = render(
       <ConfigProvider theme={{ tokens: { semantic: { 'color-primary': 'blue', 'border-radius': '8px' } } }}>

@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { useClickOutside } from '../_utils/hooks';
 import { useCombobox } from '../_utils/useCombobox';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -78,13 +77,6 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
     const cls = classNames(prefixCls, className, {
       [`${prefixCls}_disabled`]: disabled,
       [`${prefixCls}_open`]: combo.isOpen,
-    });
-
-    // Click outside to close
-    useClickOutside(wrapperRef, () => {
-      if (!('open' in props)) {
-        combo.closeDropdown();
-      }
     });
 
     // Controlled value
@@ -169,6 +161,14 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
           placement="bottom"
           arrow={false}
           visible={showDropdown}
+          onVisibleChange={(nextOpen) => {
+            if (nextOpen) {
+              combo.openDropdown();
+              return;
+            }
+
+            combo.closeDropdown();
+          }}
           content={renderOverlay()}>
           <Input
             ref={inputRef}

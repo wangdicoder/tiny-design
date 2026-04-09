@@ -27,8 +27,11 @@ function createStaticModal(config: StaticModalProps): StaticModalInstance {
           {...currentConfig}
           visible={visible}
           onClose={(event) => {
-            currentConfig.onClose?.(event);
-            currentConfig.onCancel?.(event);
+            if (currentConfig.onClose) {
+              currentConfig.onClose(event);
+            } else {
+              currentConfig.onCancel?.(event);
+            }
             visible = false;
             render();
           }}

@@ -1,7 +1,7 @@
 import React, { Fragment, useCallback, useContext, useMemo, useState } from 'react';
 import { ConfigContext, ThemeMode, useConfig } from './config-context';
 import { ConfigProviderComponent, ConfigProviderProps } from './types';
-import { buildCssVars, ThemeConfig } from './token-utils';
+import { buildCssVars, resolveThemeMode, ThemeConfig } from './token-utils';
 import { setStaticConfig } from './static-config';
 import IntlProvider from '../intl-provider';
 
@@ -25,7 +25,7 @@ const ConfigProviderImpl = (props: ConfigProviderProps): React.ReactElement => {
   const [holderElement, setHolderElement] = useState<HTMLDivElement | null>(null);
 
   const themeConfig = isThemeConfig(theme) ? theme : undefined;
-  const mode = themeConfig ? themeConfig.mode : (theme as ThemeMode | undefined);
+  const mode = themeConfig ? resolveThemeMode(themeConfig) : (theme as ThemeMode | undefined);
   const cssVars = useMemo(
     () => (themeConfig ? buildCssVars(themeConfig) : undefined),
     [themeConfig]

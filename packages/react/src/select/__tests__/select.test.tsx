@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import Select from '../index';
 
 const { Option, OptGroup } = Select;
@@ -184,6 +184,24 @@ describe('<Select />', () => {
     expect(container.querySelector('.ty-select')).not.toHaveClass('ty-select_open');
   });
 
+  it('should close on outside click', async () => {
+    const { container } = render(
+      <div>
+        <Select defaultOpen>
+          <Option value="a">Apple</Option>
+        </Select>
+        <button>Outside</button>
+      </div>
+    );
+
+    expect(getOptions().length).toBe(1);
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(container.querySelector('.ty-select')).not.toHaveClass('ty-select_open');
+    });
+  });
+
   // Disabled
   it('should not open dropdown when disabled', () => {
     const { container } = render(
@@ -318,6 +336,25 @@ describe('<Select />', () => {
       </Select>
     );
     expect(container.querySelector('.ty-select__selection-text')).toHaveTextContent('Banana');
+  });
+
+  it('should call onDropdownVisibleChange when outside click closes the popup', async () => {
+    const onDropdownVisibleChange = jest.fn();
+
+    render(
+      <div>
+        <Select defaultOpen onDropdownVisibleChange={onDropdownVisibleChange}>
+          <Option value="a">Apple</Option>
+        </Select>
+        <button>Outside</button>
+      </div>
+    );
+
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(onDropdownVisibleChange).toHaveBeenCalledWith(false);
+    });
   });
 
   // OptGroup

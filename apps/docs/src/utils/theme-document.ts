@@ -1,16 +1,6 @@
 import type { ThemeDocument } from '@tiny-design/react';
-import tokenRegistry from '@tiny-design/tokens/registry';
-import lightTheme from '../../../../packages/tokens/source/themes/light.json';
-import darkTheme from '../../../../packages/tokens/source/themes/dark.json';
-
-type TokenRegistryEntry = {
-  key: string;
-  defaultValue: string | number;
-};
-
-type TokenRegistryDocument = {
-  tokens: TokenRegistryEntry[];
-};
+import presets from '@tiny-design/tokens/presets';
+import { resolveTheme } from '@tiny-design/tokens/resolve-theme';
 
 export type ThemeTokenChange = {
   key: string;
@@ -24,55 +14,20 @@ export type ThemeTokenComparison = ThemeTokenChange & {
 };
 
 const STUDIO_THEME_DOCUMENT_KEY = 'ty-theme-studio-document';
-const BASE_THEME_BY_ID = {
-  'tiny-light': lightTheme,
-  'tiny-dark': darkTheme,
-} as const;
+const BASE_THEME_BY_ID = presets as Record<string, ThemeDocument>;
 
-const REGISTRY_TOKENS = (tokenRegistry as TokenRegistryDocument).tokens;
-const SOURCE_VALUES = REGISTRY_TOKENS.reduce<Record<string, string>>((acc, token) => {
-  acc[token.key] = String(token.defaultValue);
-  return acc;
-}, {});
-
-function componentTokenKeyToCssVar(key: string): string {
+function tokenKeyToCssVar(key: string): string {
   return `--ty-${key.replace(/\./g, '-')}`;
 }
 
 function getBaseTheme(theme: ThemeDocument): ThemeDocument {
   if (theme.extends && theme.extends in BASE_THEME_BY_ID) {
-    return BASE_THEME_BY_ID[theme.extends as keyof typeof BASE_THEME_BY_ID] as ThemeDocument;
+    return BASE_THEME_BY_ID[theme.extends];
   }
 
   return theme.mode === 'dark'
-    ? darkTheme as ThemeDocument
-    : lightTheme as ThemeDocument;
-}
-
-function resolveTokenValue(
-  key: string,
-  rawValues: Record<string, string>,
-  cache: Map<string, string>,
-  stack: Set<string>
-): string {
-  const cached = cache.get(key);
-  if (cached) return cached;
-
-  const raw = rawValues[key];
-  if (raw == null) return '';
-  if (stack.has(key)) return raw;
-
-  const match = /^\{(.+)\}$/.exec(raw);
-  if (!match) {
-    cache.set(key, raw);
-    return raw;
-  }
-
-  stack.add(key);
-  const resolved = resolveTokenValue(match[1], rawValues, cache, stack) || raw;
-  stack.delete(key);
-  cache.set(key, resolved);
-  return resolved;
+    ? BASE_THEME_BY_ID['tiny-dark']
+    : BASE_THEME_BY_ID['tiny-light'];
 }
 
 export function buildThemeDocumentFromSeeds(
@@ -123,36 +78,7 @@ export function mergeThemeDocuments(
 }
 
 export function resolveThemeDocument(theme: ThemeDocument): Record<string, string> {
-  const baseTheme = getBaseTheme(theme);
-  const baseSemantic = baseTheme.tokens?.semantic ?? {};
-  const baseComponents = baseTheme.tokens?.components ?? {};
-  const semantic = theme.tokens?.semantic ?? {};
-  const components = theme.tokens?.components ?? {};
-
-  const rawValues: Record<string, string> = { ...SOURCE_VALUES };
-
-  for (const [key, value] of Object.entries(baseSemantic)) rawValues[key] = String(value);
-  for (const [key, value] of Object.entries(baseComponents)) rawValues[key] = String(value);
-  for (const [key, value] of Object.entries(semantic)) rawValues[key] = String(value);
-  for (const [key, value] of Object.entries(components)) rawValues[key] = String(value);
-
-  const cache = new Map<string, string>();
-  const resolved: Record<string, string> = {};
-
-  for (const token of REGISTRY_TOKENS) {
-    const value = resolveTokenValue(token.key, rawValues, cache, new Set<string>());
-    resolved[token.key.includes('.') ? componentTokenKeyToCssVar(token.key) : `--ty-${token.key}`] = value;
-  }
-
-  for (const [key, value] of Object.entries(semantic)) {
-    if (!(key in SOURCE_VALUES)) resolved[`--ty-${key}`] = String(value);
-  }
-
-  for (const [key, value] of Object.entries(components)) {
-    if (!(key in SOURCE_VALUES)) resolved[componentTokenKeyToCssVar(key)] = String(value);
-  }
-
-  return resolved;
+  return resolveTheme(theme).cssVars;
 }
 
 export function generateThemeDocumentJSON(theme: ThemeDocument): string {
@@ -171,7 +97,7 @@ export function listChangedThemeTokens(theme: ThemeDocument): ThemeTokenChange[]
     key,
     category: 'component' as const,
     value: String(value),
-    cssVar: componentTokenKeyToCssVar(key),
+    cssVar: tokenKeyToCssVar(key),
   }));
 
   return [...semanticEntries, ...componentEntries];
@@ -187,7 +113,7 @@ export function generateThemeCssVariables(theme: ThemeDocument): string {
 }
 
 export function compareThemeAgainstBase(theme: ThemeDocument): ThemeTokenComparison[] {
-  const baseResolved = resolveThemeDocument(getBaseTheme(theme));
+  const baseResolved = resolveTheme(getBaseTheme(theme)).cssVars;
 
   return listChangedThemeTokens(theme).map((change) => ({
     ...change,

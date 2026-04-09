@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import TimePicker from '../index';
 
 beforeAll(() => {
@@ -77,6 +77,25 @@ describe('<TimePicker />', () => {
     const input = container.querySelector('.ty-time-picker__input');
     input && fireEvent.click(input);
     expect(fn).toHaveBeenCalledWith(true);
+  });
+
+  it('should close on outside click', async () => {
+    const { container } = render(
+      <div>
+        <TimePicker />
+        <button>Outside</button>
+      </div>
+    );
+
+    const input = container.querySelector('.ty-time-picker__input');
+    input && fireEvent.click(input);
+    expect(document.querySelector('.ty-time-picker__dropdown')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(document.querySelector('.ty-time-picker__dropdown')).not.toBeInTheDocument();
+    });
   });
 
   it('should clear value on clear button click', () => {

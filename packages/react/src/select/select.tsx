@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useId, useRef, useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
-import { useClickOutside } from '../_utils/hooks';
 import { useCombobox } from '../_utils/useCombobox';
 import { ArrowDown, Close, CloseCircle, LoadingCircle, Check } from '../_utils/components';
 import { SelectContext } from './select-context';
@@ -141,13 +140,6 @@ const Select = (props: SelectProps): React.ReactElement => {
 
   const arrowCls = classNames(`${prefixCls}__arrow`, {
     [`${prefixCls}__arrow_reverse`]: combo.isOpen,
-  });
-
-  useClickOutside(ref, () => {
-    if (!('open' in props)) {
-      combo.closeDropdown();
-    }
-    setSearchValue('');
   });
 
   // Get display label for a value
@@ -461,6 +453,15 @@ const Select = (props: SelectProps): React.ReactElement => {
         placement="bottom"
         arrow={false}
         visible={combo.isOpen}
+        onVisibleChange={(nextOpen) => {
+          if (nextOpen) {
+            combo.openDropdown();
+            return;
+          }
+
+          combo.closeDropdown();
+          setSearchValue('');
+        }}
         content={renderOverlay()}>
         <div className={`${prefixCls}__selector`} onClick={handleSelectorClick}>
           <div className={`${prefixCls}__selection`}>{renderSelectorContent()}</div>

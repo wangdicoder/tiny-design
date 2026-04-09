@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, screen, waitFor } from '@testing-library/react';
 import Modal from '../index';
 import ConfigProvider from '../../config-provider';
 
@@ -102,6 +102,29 @@ describe('<Modal />', () => {
 
     act(() => {
       instance.destroy();
+    });
+  });
+
+  it('should prefer onClose over onCancel for static modal closing', () => {
+    const onClose = jest.fn();
+    const onCancel = jest.fn();
+    let instance!: ReturnType<typeof Modal.open>;
+
+    act(() => {
+      instance = Modal.open({
+        header: 'Static Close Modal',
+        children: 'Close Content',
+        onClose,
+        onCancel,
+      });
+    });
+
+    const closeButtons = screen.getAllByLabelText('Close');
+    fireEvent.click(closeButtons[closeButtons.length - 1]);
+
+    return waitFor(() => {
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onCancel).not.toHaveBeenCalled();
     });
   });
 });

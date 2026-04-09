@@ -1,0 +1,209 @@
+{
+  "tour.arrow-size": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Tour arrow half-size."
+  },
+  "tour.panel-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Tour panel border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "tour.panel-shadow": {
+    "$value": "{shadow-modal}",
+    "$type": "shadow",
+    "description": "Tour panel shadow.",
+    "fallback": "--ty-shadow-modal"
+  },
+  "tour.panel-max-width": {
+    "$value": "360px",
+    "$type": "dimension",
+    "description": "Tour panel max width."
+  },
+  "tour.panel-min-width": {
+    "$value": "260px",
+    "$type": "dimension",
+    "description": "Tour panel min width."
+  },
+  "tour.panel-bg.default": {
+    "$value": "{popup.light-bg}",
+    "$type": "color",
+    "description": "Default tour panel background color.",
+    "fallback": "--ty-popup-light-bg"
+  },
+  "tour.panel-color.default": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Default tour panel text color.",
+    "fallback": "--ty-color-text"
+  },
+  "tour.panel-bg.primary": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Primary tour panel background color.",
+    "fallback": "--ty-color-primary"
+  },
+  "tour.panel-color.primary": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Primary tour panel text color."
+  },
+  "tour.description-color.default": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Default tour description color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "tour.description-color.primary": {
+    "$value": "rgb(255 255 255 / 85%)",
+    "$type": "color",
+    "description": "Primary tour description color."
+  },
+  "tour.indicator-bg.default": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Default tour indicator background color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "tour.indicator-bg.primary": {
+    "$value": "rgb(255 255 255 / 35%)",
+    "$type": "color",
+    "description": "Primary tour indicator background color."
+  },
+  "tour.indicator-bg-active.default": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Default active tour indicator background color.",
+    "fallback": "--ty-color-primary"
+  },
+  "tour.indicator-bg-active.primary": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Primary active tour indicator background color."
+  },
+  "tour.close-color": {
+    "$value": "{color-text-tertiary}",
+    "$type": "color",
+    "description": "Tour close button color.",
+    "fallback": "--ty-color-text-tertiary"
+  },
+  "tour.close-color.primary": {
+    "$value": "rgb(255 255 255 / 65%)",
+    "$type": "color",
+    "description": "Primary tour close button color."
+  },
+  "tour.close-color-hover.primary": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Primary tour close button hover color."
+  },
+  "tour.close-bg-hover": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Default tour close button hover background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "tour.close-bg-hover.primary": {
+    "$value": "rgb(255 255 255 / 15%)",
+    "$type": "color",
+    "description": "Primary tour close button hover background color."
+  },
+  "tour.close-offset": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Tour close button top and right offset."
+  },
+  "tour.close-size": {
+    "$value": "28px",
+    "$type": "dimension",
+    "description": "Tour close button square size."
+  },
+  "tour.close-radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Tour close button border radius."
+  },
+  "tour.close-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Tour close button font size."
+  },
+  "tour.cover-padding": {
+    "$value": "12px 16px 0",
+    "$type": "string",
+    "description": "Tour cover padding."
+  },
+  "tour.title-padding": {
+    "$value": "12px 16px 4px",
+    "$type": "string",
+    "description": "Tour title padding."
+  },
+  "tour.title-font-weight": {
+    "$value": "600",
+    "$type": "font-weight",
+    "description": "Tour title font weight."
+  },
+  "tour.title-font-size": {
+    "$value": "{font-size-lg}",
+    "$type": "dimension",
+    "description": "Tour title font size.",
+    "fallback": "--ty-font-size-lg"
+  },
+  "tour.title-line-height": {
+    "$value": "1.5",
+    "$type": "line-height",
+    "description": "Tour title line height."
+  },
+  "tour.description-padding": {
+    "$value": "0 16px 12px",
+    "$type": "string",
+    "description": "Tour description padding."
+  },
+  "tour.description-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Tour description font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "tour.description-line-height": {
+    "$value": "1.5",
+    "$type": "line-height",
+    "description": "Tour description line height."
+  },
+  "tour.footer-padding": {
+    "$value": "0 16px 12px",
+    "$type": "string",
+    "description": "Tour footer padding."
+  },
+  "tour.indicators-gap": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Tour indicators gap."
+  },
+  "tour.indicator-size": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Tour indicator size."
+  },
+  "tour.indicator-transition-duration": {
+    "$value": "200ms",
+    "$type": "duration",
+    "description": "Tour indicator transition duration."
+  },
+  "tour.actions-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Tour action buttons gap."
+  },
+  "tour.zoom-scale-from": {
+    "$value": "0.9",
+    "$type": "number",
+    "description": "Tour zoom animation start scale."
+  },
+  "tour.zoom-duration": {
+    "$value": "200ms",
+    "$type": "duration",
+    "description": "Tour zoom animation duration."
+  }
+}

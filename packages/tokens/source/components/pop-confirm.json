@@ -1,0 +1,34 @@
+{
+  "pop-confirm.color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "PopConfirm content text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "pop-confirm.overlay-padding": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "PopConfirm overlay padding."
+  },
+  "pop-confirm.messages-padding-bottom": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "PopConfirm message section bottom padding."
+  },
+  "pop-confirm.messages-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "PopConfirm message font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "pop-confirm.buttons-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "PopConfirm action buttons gap."
+  },
+  "pop-confirm.title-margin-left": {
+    "$value": "5px",
+    "$type": "dimension",
+    "description": "PopConfirm title margin left."
+  }
+}

@@ -23,6 +23,11 @@
     "description": "Disabled select trigger background color.",
     "fallback": "--ty-color-bg-disabled"
   },
+  "select.opacity.disabled": {
+    "$value": "0.6",
+    "$type": "number",
+    "description": "Disabled select root opacity."
+  },
   "select.border": {
     "$value": "{color-border}",
     "$type": "color",
@@ -63,6 +68,11 @@
     "$value": "14px",
     "$type": "dimension",
     "description": "Select suffix icon box size."
+  },
+  "select.suffix-offset-inline-end": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Select suffix inline end offset."
   },
   "select.clear-bg": {
     "$value": "{color-bg-container}",
@@ -163,6 +173,11 @@
     "$type": "dimension",
     "description": "Vertical padding for multiple select tag rows."
   },
+  "select.search-min-width": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Select search input min width."
+  },
   "select.tag.height": {
     "$value": "22px",
     "$type": "dimension",
@@ -219,11 +234,21 @@
     "description": "Multiple select tag close icon hover color.",
     "fallback": "--ty-color-text"
   },
+  "select.tag-close-gap": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Gap between select tag content and close icon."
+  },
   "select.empty-color": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Select empty state text color.",
     "fallback": "--ty-color-text-quaternary"
+  },
+  "select.feedback-padding": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Select loading and empty state padding."
   },
   "select.dropdown-bg": {
     "$value": "{color-bg-container}",
@@ -236,6 +261,11 @@
     "$type": "shadow",
     "description": "Select dropdown shadow.",
     "fallback": "--ty-shadow-popup"
+  },
+  "select.dropdown-padding": {
+    "$value": "4px 0",
+    "$type": "string",
+    "description": "Select dropdown list padding."
   },
   "select.dropdown-max-height": {
     "$value": "300px",
@@ -253,11 +283,21 @@
     "description": "Select option font size.",
     "fallback": "--ty-font-size-base"
   },
+  "select.option.line-height": {
+    "$value": "22px",
+    "$type": "dimension",
+    "description": "Select option line height."
+  },
   "select.option.color": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "Select option text color.",
     "fallback": "--ty-color-text"
+  },
+  "select.option.check-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Gap between select option content and check icon."
   },
   "select.option.active-bg": {
     "$value": "{color-fill-secondary}",
@@ -282,5 +322,21 @@
     "$type": "color",
     "description": "Select option disabled text color.",
     "fallback": "--ty-color-text-quaternary"
+  },
+  "select.option.disabled-opacity": {
+    "$value": "0.5",
+    "$type": "number",
+    "description": "Select option disabled opacity."
+  },
+  "select.group-title-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Select option group title color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "select.group-option-padding-inline-start": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Select grouped option extra inline start padding."
   }
 }

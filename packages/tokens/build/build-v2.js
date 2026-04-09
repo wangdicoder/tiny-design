@@ -6,6 +6,11 @@ const SOURCE_DIR = path.join(ROOT, 'source');
 const DIST_DIR = path.join(ROOT, 'dist');
 const DIST_CSS_DIR = path.join(DIST_DIR, 'css');
 const REGISTRY_DTS_PATH = path.join(DIST_DIR, 'registry.d.ts');
+const PRESETS_DTS_PATH = path.join(DIST_DIR, 'presets.d.ts');
+const LEGACY_ALIAS_MAP_JSON_PATH = path.join(DIST_DIR, 'alias-map.json');
+const LEGACY_ALIAS_MAP_DTS_PATH = path.join(DIST_DIR, 'alias-map.d.ts');
+const SCHEMA_DIST_DIR = path.join(DIST_DIR, 'schema');
+const THEME_SCHEMA_PATH = path.join(SOURCE_DIR, 'schema', 'theme.v1.schema.json');
 
 const SEMANTIC_DIR = path.join(SOURCE_DIR, 'semantic');
 const COMPONENT_DIR = path.join(SOURCE_DIR, 'components');
@@ -116,6 +121,15 @@ function loadThemes() {
   });
 }
 
+function buildPresetMap(themes) {
+  return themes.reduce((acc, theme) => {
+    if (theme.meta && theme.meta.id) {
+      acc[theme.meta.id] = theme;
+    }
+    return acc;
+  }, {});
+}
+
 function buildRegistry(tokens) {
   return {
     version: 1,
@@ -224,6 +238,40 @@ export interface TokenRegistryDocument {
 `;
 }
 
+function buildPresetsDts(presets) {
+  const ids = Object.keys(presets);
+  const presetUnion = ids.length > 0 ? ids.map((id) => `'${id}'`).join(' | ') : 'string';
+
+  return `export type PresetThemeId = ${presetUnion};
+
+export interface ThemeDocumentMeta {
+  id?: string;
+  name?: string;
+  author?: string;
+  description?: string;
+  version?: string;
+  schemaVersion?: number;
+  tags?: string[];
+}
+
+export interface ThemeDocumentTokens {
+  semantic?: Record<string, string | number>;
+  components?: Record<string, string | number>;
+}
+
+export interface ThemeDocument {
+  $schema?: string;
+  meta?: ThemeDocumentMeta;
+  mode: 'light' | 'dark' | 'system';
+  extends?: string;
+  tokens?: ThemeDocumentTokens;
+}
+
+declare const presets: Record<PresetThemeId, ThemeDocument>;
+export default presets;
+`;
+}
+
 function buildRuntimeTokens() {
   console.log('Building runtime tokens...\n');
 
@@ -240,8 +288,9 @@ function buildRuntimeTokens() {
   );
 
   const registry = buildRegistry(allTokens);
-  const lightTheme = themes.find((theme) => theme.meta && theme.meta.mode === 'light');
-  const darkTheme = themes.find((theme) => theme.meta && theme.meta.mode === 'dark');
+  const lightTheme = themes.find((theme) => theme.mode === 'light');
+  const darkTheme = themes.find((theme) => theme.mode === 'dark');
+  const presets = buildPresetMap(themes);
   const lightThemeOverrides = {
     ...((lightTheme && lightTheme.tokens && lightTheme.tokens.semantic) || {}),
     ...((lightTheme && lightTheme.tokens && lightTheme.tokens.components) || {}),
@@ -265,16 +314,23 @@ function buildRuntimeTokens() {
   const baseCss = buildBaseThemeCss(allTokens, resolvedValues, lightTheme, darkTheme);
 
   mkdirp(DIST_CSS_DIR);
-  removeIfExists(path.join(DIST_DIR, 'alias-map.json'));
-  removeIfExists(path.join(DIST_DIR, 'alias-map.d.ts'));
+  mkdirp(SCHEMA_DIST_DIR);
+  removeIfExists(LEGACY_ALIAS_MAP_JSON_PATH);
+  removeIfExists(LEGACY_ALIAS_MAP_DTS_PATH);
   writeJson(path.join(DIST_DIR, 'registry.json'), registry);
+  writeJson(path.join(DIST_DIR, 'presets.json'), presets);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'v2-light.css'), lightCss);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'v2-dark.css'), darkCss);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'base.css'), baseCss);
   fs.writeFileSync(REGISTRY_DTS_PATH, buildRegistryDts());
+  fs.writeFileSync(PRESETS_DTS_PATH, buildPresetsDts(presets));
+  fs.copyFileSync(THEME_SCHEMA_PATH, path.join(SCHEMA_DIST_DIR, 'theme.v1.schema.json'));
 
   console.log('  dist/registry.json');
   console.log('  dist/registry.d.ts');
+  console.log('  dist/presets.json');
+  console.log('  dist/presets.d.ts');
+  console.log('  dist/schema/theme.v1.schema.json');
   console.log('  dist/css/v2-light.css');
   console.log('  dist/css/v2-dark.css');
   console.log('  dist/css/base.css');

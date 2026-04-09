@@ -61,6 +61,24 @@ describe('<SpeedDial />', () => {
     expect(container.querySelector('.ty-speed-dial__actions')).not.toHaveClass('ty-speed-dial__actions_open');
   });
 
+  it('should close on outside click with click trigger', () => {
+    const { container, getByText } = render(
+      <div>
+        <SpeedDial trigger="click">
+          <SpeedDial.Action icon="A" />
+        </SpeedDial>
+        <button>Outside</button>
+      </div>
+    );
+    const button = container.querySelector('.ty-speed-dial__button') as HTMLElement;
+    fireEvent.click(button);
+    expect(container.querySelector('.ty-speed-dial__actions')).toHaveClass('ty-speed-dial__actions_open');
+
+    fireEvent.click(getByText('Outside'));
+
+    expect(container.querySelector('.ty-speed-dial__actions')).not.toHaveClass('ty-speed-dial__actions_open');
+  });
+
   it('should render correct direction class', () => {
     const directions = ['up', 'down', 'left', 'right'] as const;
     directions.forEach((direction) => {
@@ -129,6 +147,25 @@ describe('<SpeedDial />', () => {
     const root = container.firstChild as HTMLElement;
     fireEvent.mouseEnter(root);
     expect(onOpen).toHaveBeenCalledTimes(1);
+    fireEvent.mouseLeave(root);
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('should only call onOpen and onClose when the state changes', () => {
+    const onOpen = jest.fn();
+    const onClose = jest.fn();
+    const { container } = render(
+      <SpeedDial onOpen={onOpen} onClose={onClose}>
+        <SpeedDial.Action icon="A" />
+      </SpeedDial>
+    );
+    const root = container.firstChild as HTMLElement;
+
+    fireEvent.mouseEnter(root);
+    fireEvent.mouseEnter(root);
+    expect(onOpen).toHaveBeenCalledTimes(1);
+
+    fireEvent.mouseLeave(root);
     fireEvent.mouseLeave(root);
     expect(onClose).toHaveBeenCalledTimes(1);
   });

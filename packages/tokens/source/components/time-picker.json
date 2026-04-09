@@ -1,0 +1,141 @@
+{
+  "time-picker.input-min-width.sm": {
+    "$value": "70px",
+    "$type": "dimension",
+    "description": "Small time picker input min width."
+  },
+  "time-picker.input-min-width.md": {
+    "$value": "90px",
+    "$type": "dimension",
+    "description": "Medium time picker input min width."
+  },
+  "time-picker.input-min-width.lg": {
+    "$value": "110px",
+    "$type": "dimension",
+    "description": "Large time picker input min width."
+  },
+  "time-picker.column-max-height": {
+    "$value": "224px",
+    "$type": "dimension",
+    "description": "Time picker column max height."
+  },
+  "time-picker.column-border": {
+    "$value": "{color-border-light}",
+    "$type": "color",
+    "description": "Time picker column separator color.",
+    "fallback": "--ty-color-border-light"
+  },
+  "time-picker.scrollbar-thumb": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Time picker scrollbar thumb color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "time-picker.cell-padding": {
+    "$value": "4px 0",
+    "$type": "string",
+    "description": "Time picker cell padding."
+  },
+  "time-picker.cell-min-width": {
+    "$value": "52px",
+    "$type": "dimension",
+    "description": "Time picker cell min width."
+  },
+  "time-picker.cell-radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Time picker cell radius."
+  },
+  "time-picker.cell-margin-inline": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Time picker cell horizontal margin."
+  },
+  "time-picker.cell-line-height": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Time picker cell line height."
+  },
+  "time-picker.cell-bg-selected": {
+    "$value": "{color-primary-bg}",
+    "$type": "color",
+    "description": "Time picker selected cell background color.",
+    "fallback": "--ty-color-primary-bg"
+  },
+  "time-picker.cell-bg-selected-hover": {
+    "$value": "{color-primary-bg-hover}",
+    "$type": "color",
+    "description": "Time picker selected cell hover background color.",
+    "fallback": "--ty-color-primary-bg-hover"
+  },
+  "time-picker.cell-font-weight-selected": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Time picker selected cell font weight."
+  },
+  "time-picker.footer-padding": {
+    "$value": "8px 12px",
+    "$type": "string",
+    "description": "Time picker footer padding."
+  },
+  "time-picker.footer-border": {
+    "$value": "{color-border-light}",
+    "$type": "color",
+    "description": "Time picker footer border color.",
+    "fallback": "--ty-color-border-light"
+  },
+  "time-picker.footer-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Time picker footer font size."
+  },
+  "time-picker.now-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Time picker now action color.",
+    "fallback": "--ty-color-primary"
+  },
+  "time-picker.now-color-hover": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "Time picker now action hover color.",
+    "fallback": "--ty-color-primary-hover"
+  },
+  "time-picker.ok-button-padding": {
+    "$value": "0 8px",
+    "$type": "string",
+    "description": "Time picker ok button padding."
+  },
+  "time-picker.ok-button-height": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Time picker ok button height."
+  },
+  "time-picker.ok-button-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Time picker ok button font size."
+  },
+  "time-picker.ok-button-radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Time picker ok button radius."
+  },
+  "time-picker.ok-button-bg": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Time picker ok button background color.",
+    "fallback": "--ty-color-primary"
+  },
+  "time-picker.ok-button-bg-hover": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "Time picker ok button hover background color.",
+    "fallback": "--ty-color-primary-hover"
+  },
+  "time-picker.ok-button-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Time picker ok button text color."
+  }
+}

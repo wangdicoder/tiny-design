@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import AutoComplete from '../index';
 
 const options = [
@@ -74,6 +74,22 @@ describe('<AutoComplete />', () => {
     const wrapper = container.firstChild as HTMLElement;
     fireEvent.keyDown(wrapper, { key: 'Escape' });
     expect(wrapper).not.toHaveClass('ty-auto-complete_open');
+  });
+
+  it('should close on outside click', async () => {
+    const { container } = render(
+      <div>
+        <AutoComplete options={options} defaultOpen />
+        <button>Outside</button>
+      </div>
+    );
+
+    expect(getOptions().length).toBeGreaterThan(0);
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(container.querySelector('.ty-auto-complete')).not.toHaveClass('ty-auto-complete_open');
+    });
   });
 
   it('should handle disabled state', () => {

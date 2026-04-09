@@ -43,7 +43,7 @@ $dp: #{$prefix}-date-picker;
     line-height: inherit;
     color: var(--ty-picker-input-color);
     cursor: pointer;
-    min-width: var(--ty-picker-input-min-width-date-md);
+    min-width: var(--ty-date-picker-input-min-width-md);
 
     &::placeholder {
       color: var(--ty-input-placeholder, var(--ty-picker-input-color-placeholder, var(--ty-color-text-placeholder)));
@@ -101,7 +101,7 @@ $dp: #{$prefix}-date-picker;
   }
 
   &_sm &__input-field {
-    min-width: var(--ty-picker-input-min-width-date-sm);
+    min-width: var(--ty-date-picker-input-min-width-sm);
   }
 
   &_lg &__input {
@@ -111,7 +111,7 @@ $dp: #{$prefix}-date-picker;
   }
 
   &_lg &__input-field {
-    min-width: var(--ty-picker-input-min-width-date-lg);
+    min-width: var(--ty-date-picker-input-min-width-lg);
   }
 
   // ---- Disabled ----
@@ -141,26 +141,26 @@ $dp: #{$prefix}-date-picker;
   &__header {
     display: flex;
     align-items: center;
-    padding: var(--ty-picker-header-padding);
-    border-bottom: 1px solid var(--ty-picker-header-border);
+    padding: var(--ty-date-picker-header-padding);
+    border-bottom: 1px solid var(--ty-date-picker-header-border);
   }
 
   &__header-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--ty-picker-header-button-size);
-    height: var(--ty-picker-header-button-size);
+    width: var(--ty-date-picker-header-button-size);
+    height: var(--ty-date-picker-header-button-size);
     border: none;
     background: transparent;
-    color: var(--ty-picker-header-button-color);
+    color: var(--ty-date-picker-header-button-color);
     cursor: pointer;
     font-size: 18px;
-    border-radius: var(--ty-picker-header-button-radius);
+    border-radius: var(--ty-date-picker-header-button-radius);
     transition: color 0.2s;
 
     &:hover {
-      color: var(--ty-picker-header-button-color-hover);
+      color: var(--ty-date-picker-header-button-color-hover);
     }
   }
 
@@ -168,25 +168,25 @@ $dp: #{$prefix}-date-picker;
     flex: 1;
     display: flex;
     justify-content: center;
-    gap: var(--ty-picker-header-caption-gap);
+    gap: var(--ty-date-picker-header-caption-gap);
   }
 
   &__header-label {
-    font-weight: var(--ty-picker-header-label-font-weight);
-    font-size: var(--ty-picker-header-label-font-size);
+    font-weight: var(--ty-date-picker-header-label-font-weight);
+    font-size: var(--ty-date-picker-header-label-font-size);
     cursor: pointer;
     padding: 2px 6px;
-    border-radius: var(--ty-picker-header-button-radius);
+    border-radius: var(--ty-date-picker-header-button-radius);
     transition: color 0.2s;
 
     &:hover {
-      color: var(--ty-picker-header-button-color-hover);
+      color: var(--ty-date-picker-header-button-color-hover);
     }
   }
 
   // ---- Body / Table ----
   &__body {
-    padding: var(--ty-picker-body-padding);
+    padding: var(--ty-date-picker-body-padding);
   }
 
   &__table {
@@ -217,16 +217,16 @@ $dp: #{$prefix}-date-picker;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--ty-picker-cell-size);
-    height: var(--ty-picker-cell-size);
-    border-radius: var(--ty-picker-cell-radius);
+    width: var(--ty-date-picker-cell-size);
+    height: var(--ty-date-picker-cell-size);
+    border-radius: var(--ty-date-picker-cell-radius);
     transition: background 0.2s;
-    color: var(--ty-picker-cell-color-muted);
-    font-size: var(--ty-picker-cell-font-size);
+    color: var(--ty-date-picker-cell-color-muted);
+    font-size: var(--ty-date-picker-cell-font-size);
   }
 
   &__cell_in-view &__cell-inner {
-    color: var(--ty-picker-cell-color);
+    color: var(--ty-date-picker-cell-color);
   }
 
   &__cell:hover &__cell-inner {
@@ -234,78 +234,78 @@ $dp: #{$prefix}-date-picker;
   }
 
   &__cell_today &__cell-inner {
-    border: 1px solid var(--ty-picker-cell-today-border);
-    color: var(--ty-picker-cell-today-border);
+    border: 1px solid var(--ty-date-picker-cell-today-border);
+    color: var(--ty-date-picker-cell-today-border);
   }
 
   &__cell_selected &__cell-inner {
-    background: var(--ty-picker-cell-selected-bg);
-    color: var(--ty-picker-cell-selected-color);
+    background: var(--ty-date-picker-cell-selected-bg);
+    color: var(--ty-date-picker-cell-selected-color);
     font-weight: 500;
   }
 
   &__cell_selected:hover &__cell-inner {
-    background: var(--ty-picker-cell-selected-hover-bg);
+    background: var(--ty-date-picker-cell-selected-hover-bg);
   }
 
   &__cell_in-range,
   &__cell_in-preview-range {
-    background: var(--ty-picker-range-bg);
+    background: var(--ty-date-picker-range-bg);
   }
 
   &__cell_range-start,
   &__cell_range-end {
-    background: var(--ty-picker-range-bg);
+    background: var(--ty-date-picker-range-bg);
   }
 
   &__cell_range-start &__cell-inner,
   &__cell_range-end &__cell-inner {
-    background: var(--ty-picker-cell-selected-bg);
-    color: var(--ty-picker-cell-selected-color);
+    background: var(--ty-date-picker-cell-selected-bg);
+    color: var(--ty-date-picker-cell-selected-color);
     font-weight: 500;
   }
 
   &__cell_in-preview-range &__cell-inner,
   &__cell_in-range &__cell-inner {
     background: transparent;
-    color: var(--ty-picker-cell-color);
+    color: var(--ty-date-picker-cell-color);
   }
 
   &__cell_range-start.#{$dp}__cell_in-preview-range &__cell-inner,
   &__cell_range-end.#{$dp}__cell_in-preview-range &__cell-inner,
   &__cell_range-start.#{$dp}__cell_in-range &__cell-inner,
   &__cell_range-end.#{$dp}__cell_in-range &__cell-inner {
-    background: var(--ty-picker-cell-selected-bg);
-    color: var(--ty-picker-cell-selected-color);
+    background: var(--ty-date-picker-cell-selected-bg);
+    color: var(--ty-date-picker-cell-selected-color);
   }
 
   &__cell_disabled &__cell-inner {
-    color: var(--ty-picker-cell-color-muted);
-    background: var(--ty-picker-cell-disabled-bg);
+    color: var(--ty-date-picker-cell-color-muted);
+    background: var(--ty-date-picker-cell-disabled-bg);
   }
 
   &__cell_disabled:hover &__cell-inner {
-    background: var(--ty-picker-cell-disabled-bg);
+    background: var(--ty-date-picker-cell-disabled-bg);
   }
 
   &__cell_dim &__cell-inner {
-    color: var(--ty-picker-cell-color-muted);
+    color: var(--ty-date-picker-cell-color-muted);
   }
 
   // ---- Footer ----
   &__footer {
-    padding: var(--ty-picker-footer-padding);
-    border-top: 1px solid var(--ty-picker-header-border);
+    padding: var(--ty-date-picker-footer-padding);
+    border-top: 1px solid var(--ty-date-picker-header-border);
     text-align: center;
   }
 
   &__today-btn {
-    color: var(--ty-picker-today-color);
+    color: var(--ty-date-picker-today-color);
     cursor: pointer;
-    font-size: var(--ty-picker-today-font-size);
+    font-size: var(--ty-date-picker-today-font-size);
 
     &:hover {
-      opacity: 0.8;
+      color: var(--ty-date-picker-today-color-hover);
     }
   }
 }

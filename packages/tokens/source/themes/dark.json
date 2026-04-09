@@ -1,9 +1,11 @@
 {
+  "$schema": "https://tiny.design/schema/theme.v1.schema.json",
   "meta": {
     "id": "tiny-dark",
     "name": "Tiny Dark",
-    "mode": "dark"
+    "schemaVersion": 1
   },
+  "mode": "dark",
   "tokens": {
     "semantic": {
       "chart-1": "#9065d0",

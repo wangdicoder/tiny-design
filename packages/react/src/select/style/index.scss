@@ -10,7 +10,7 @@
 
   &_disabled {
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: var(--ty-select-opacity-disabled);
 
     .#{$prefix}-select__selector {
       background-color: var(--ty-select-bg-disabled, var(--ty-color-bg-disabled));
@@ -98,7 +98,7 @@
 
   &__search {
     flex: 1;
-    min-width: 4px;
+    min-width: var(--ty-select-search-min-width);
     max-width: 100%;
     margin: 0;
     padding: 0;
@@ -117,7 +117,7 @@
 
   &__suffix {
     position: absolute;
-    right: 8px;
+    right: var(--ty-select-suffix-offset-inline-end);
     top: 50%;
     transform: translateY(-50%);
     display: inline-flex;
@@ -188,7 +188,7 @@
   &__tag-close {
     display: inline-flex;
     align-items: center;
-    margin-left: 4px;
+    margin-left: var(--ty-select-tag-close-gap);
     cursor: pointer;
     color: var(--ty-select-tag-close-color, var(--ty-color-text-quaternary));
     transition: color 0.2s;
@@ -201,7 +201,7 @@
   &__dropdown {
     width: 100%;
     margin: 0;
-    padding: 4px 0;
+    padding: var(--ty-select-dropdown-padding);
     list-style-type: none;
     background-color: var(--ty-select-dropdown-bg, var(--ty-color-bg-container));
     box-sizing: border-box;
@@ -217,7 +217,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px;
+    padding: var(--ty-select-feedback-padding);
 
     svg {
       animation: ty-select-spin 1s linear infinite;
@@ -225,7 +225,7 @@
   }
 
   &__empty {
-    padding: 16px;
+    padding: var(--ty-select-feedback-padding);
     text-align: center;
     color: var(--ty-select-empty-color, var(--ty-color-text-quaternary));
     font-size: var(--ty-select-font-size-sm, var(--ty-font-size-sm));
@@ -238,7 +238,7 @@
   justify-content: space-between;
   padding: var(--ty-select-option-padding, 7px 12px);
   font-size: var(--ty-select-option-font-size, var(--ty-font-size-base));
-  line-height: 22px;
+  line-height: var(--ty-select-option-line-height);
   cursor: pointer;
   color: var(--ty-select-option-color, var(--ty-color-text));
   transition: background-color 0.2s;
@@ -252,7 +252,7 @@
 
   &__check {
     flex-shrink: 0;
-    margin-left: 8px;
+    margin-left: var(--ty-select-option-check-gap);
     color: var(--ty-select-border-focus, var(--ty-input-border-focus, var(--ty-color-primary)));
   }
 
@@ -269,7 +269,7 @@
     cursor: not-allowed;
     background-color: var(--ty-select-option-disabled-bg, var(--ty-color-bg-container));
     color: var(--ty-select-option-disabled-color, var(--ty-color-text-quaternary));
-    opacity: 0.5;
+    opacity: var(--ty-select-option-disabled-opacity);
   }
 }
 
@@ -277,7 +277,7 @@
   &__title {
     font-size: var(--ty-select-font-size-sm, var(--ty-font-size-sm));
     cursor: default;
-    color: var(--ty-color-text-secondary);
+    color: var(--ty-select-group-title-color);
     padding: var(--ty-select-option-padding, 7px 12px);
   }
 
@@ -287,7 +287,7 @@
     padding: 0;
 
     > .#{$prefix}-select-option {
-      padding-left: 24px;
+      padding-left: var(--ty-select-group-option-padding-inline-start);
     }
   }
 }

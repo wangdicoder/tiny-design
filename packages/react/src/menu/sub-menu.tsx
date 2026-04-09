@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
 import { MenuContext } from './menu-context';
 import { SubMenuContext } from './sub-menu-context';
@@ -51,6 +51,12 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
   };
 
   const timerRef = useRef<number | undefined>(undefined);
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(timerRef.current);
+    };
+  }, []);
+
   const handleMouse = (e: React.MouseEvent, toggle: boolean): void => {
     e.preventDefault();
     const timer = timerRef.current;
@@ -82,7 +88,9 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
     const titleNode = titleRef.current;
     if (titleNode && !nonRootSubMenu) {
       const { marginLeft, marginRight } = window.getComputedStyle(titleNode);
-      minWidth = titleNode.offsetWidth + parseFloat(marginLeft) + parseFloat(marginRight);
+      const horizontalMargin =
+        (Number.parseFloat(marginLeft) || 0) + (Number.parseFloat(marginRight) || 0);
+      minWidth = titleNode.offsetWidth + horizontalMargin;
     }
     return (
       <ul className={subMenuCls} style={{ minWidth }}>
@@ -141,6 +149,7 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
             className={overlayClassName}
             trigger="manual"
             visible={menuOpen}
+            onVisibleChange={setMenuOpen}
             biZoom={rightPopupMenu}
             placement={rightPopupMenu ? 'right-start' : 'bottom-start'}
             content={renderChildrenList()}>

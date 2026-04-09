@@ -1,4 +1,5 @@
 import type { ThemeDocument } from '@tiny-design/react';
+import { validateThemeDocument } from '@tiny-design/tokens/validate-theme';
 import { toRgba, tintColor, softenSurface } from './color-utils';
 import { getPresetById, getPresetDraft } from './runtime-presets';
 import type {
@@ -19,6 +20,11 @@ export function inferPresetIdFromThemeDocument(theme: ThemeDocument): string {
   }
 
   return 'default';
+}
+
+function normalizeImportedThemeDocument(theme: ThemeDocument): ThemeDocument {
+  const validation = validateThemeDocument(theme);
+  return validation.normalizedDocument as ThemeDocument;
 }
 
 export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocument {
@@ -354,112 +360,113 @@ function readComponentFirst(theme: ThemeDocument, componentKey: string, semantic
 }
 
 export function buildDraftFromThemeDocument(theme: ThemeDocument): ThemeEditorDraft {
-  const presetId = inferPresetIdFromThemeDocument(theme);
-  const mode = theme.mode === 'dark' ? 'dark' : 'light';
+  const normalizedTheme = normalizeImportedThemeDocument(theme);
+  const presetId = inferPresetIdFromThemeDocument(normalizedTheme);
+  const mode = normalizedTheme.mode === 'dark' ? 'dark' : 'light';
   const baseDraft = getPresetDraft(presetId, mode);
   const baseFields = { ...baseDraft.fields };
 
   return {
     ...baseDraft,
     meta: {
-      name: theme.meta?.name ?? baseDraft.meta.name,
-      author: theme.meta?.author ?? baseDraft.meta.author,
+      name: normalizedTheme.meta?.name ?? baseDraft.meta.name,
+      author: normalizedTheme.meta?.author ?? baseDraft.meta.author,
     },
     mode,
     presetId,
     fields: {
       ...baseFields,
-      primary: readToken(theme, 'color-primary') ?? baseFields.primary,
-      primaryForeground: readToken(theme, 'editor-primary-foreground', 'button.text.primary') ?? baseFields.primaryForeground,
-      secondary: readToken(theme, 'editor-secondary') ?? readToken(theme, 'color-fill', 'button.bg.default') ?? baseFields.secondary,
-      secondaryForeground: readToken(theme, 'editor-secondary-foreground', 'button.text.default') ?? baseFields.secondaryForeground,
-      accent: readToken(theme, 'editor-accent') ?? readToken(theme, 'color-primary-bg') ?? baseFields.accent,
-      accentForeground: readToken(theme, 'editor-accent-foreground') ?? baseFields.accentForeground,
-      success: readToken(theme, 'editor-success') ?? readToken(theme, 'color-success') ?? baseFields.success,
-      successForeground: readToken(theme, 'editor-success-foreground') ?? baseFields.successForeground,
-      info: readToken(theme, 'editor-info') ?? readToken(theme, 'color-info') ?? baseFields.info,
-      infoForeground: readToken(theme, 'editor-info-foreground') ?? baseFields.infoForeground,
-      warning: readToken(theme, 'editor-warning') ?? readToken(theme, 'color-warning') ?? baseFields.warning,
-      warningForeground: readToken(theme, 'editor-warning-foreground') ?? baseFields.warningForeground,
-      danger: readToken(theme, 'editor-danger') ?? readToken(theme, 'color-danger') ?? baseFields.danger,
-      dangerForeground: readToken(theme, 'editor-danger-foreground') ?? baseFields.dangerForeground,
-      base: readToken(theme, 'editor-base') ?? readToken(theme, 'color-bg') ?? baseFields.base,
-      baseForeground: readToken(theme, 'editor-base-foreground') ?? readToken(theme, 'color-text') ?? baseFields.baseForeground,
-      card: readToken(theme, 'editor-card') ?? readToken(theme, 'color-bg-container', 'card.bg') ?? baseFields.card,
-      cardForeground: readToken(theme, 'editor-card-foreground', 'card.header-color') ?? baseFields.cardForeground,
-      popover: readToken(theme, 'editor-popover') ?? readToken(theme, 'color-bg-elevated') ?? baseFields.popover,
-      popoverForeground: readToken(theme, 'editor-popover-foreground') ?? baseFields.popoverForeground,
-      muted: readToken(theme, 'editor-muted') ?? readToken(theme, 'color-bg-spotlight') ?? baseFields.muted,
-      mutedForeground: readToken(theme, 'editor-muted-foreground') ?? readToken(theme, 'color-text-secondary') ?? baseFields.mutedForeground,
-      border: readToken(theme, 'editor-border') ?? readToken(theme, 'color-border') ?? baseFields.border,
-      input: readToken(theme, 'editor-input') ?? readToken(theme, 'color-border', 'input.border') ?? baseFields.input,
-      ring: readToken(theme, 'editor-ring', 'input.border.focus') ?? baseFields.ring,
-      chart1: readToken(theme, 'chart-1') ?? baseFields.chart1,
-      chart2: readToken(theme, 'chart-2') ?? baseFields.chart2,
-      chart3: readToken(theme, 'chart-3') ?? baseFields.chart3,
-      chart4: readToken(theme, 'chart-4') ?? baseFields.chart4,
-      chart5: readToken(theme, 'chart-5') ?? baseFields.chart5,
-      sidebar: readToken(theme, 'editor-sidebar', 'layout.sidebar-bg') ?? baseFields.sidebar,
-      sidebarForeground: readToken(theme, 'editor-sidebar-foreground', 'layout.sidebar-color') ?? baseFields.sidebarForeground,
-      sidebarPrimary: readToken(theme, 'editor-sidebar-primary') ?? baseFields.sidebarPrimary,
-      sidebarPrimaryForeground: readToken(theme, 'editor-sidebar-primary-foreground') ?? baseFields.sidebarPrimaryForeground,
-      sidebarAccent: readToken(theme, 'editor-sidebar-accent') ?? baseFields.sidebarAccent,
-      sidebarAccentForeground: readToken(theme, 'editor-sidebar-accent-foreground') ?? baseFields.sidebarAccentForeground,
-      sidebarBorder: readToken(theme, 'editor-sidebar-border') ?? baseFields.sidebarBorder,
-      sidebarRing: readToken(theme, 'editor-sidebar-ring') ?? baseFields.sidebarRing,
-      fontSans: readToken(theme, 'font-family') ?? baseFields.fontSans,
-      fontMono: readToken(theme, 'font-family-monospace') ?? baseFields.fontMono,
-      fontSizeBase: readToken(theme, 'font-size-base') ?? baseFields.fontSizeBase,
-      lineHeightBase: readToken(theme, 'line-height-base') ?? baseFields.lineHeightBase,
-      h1Size: readToken(theme, 'h1-font-size') ?? baseFields.h1Size,
-      h2Size: readToken(theme, 'h2-font-size') ?? baseFields.h2Size,
-      letterSpacing: readToken(theme, 'letter-spacing') ?? baseFields.letterSpacing,
-      radius: readToken(theme, 'border-radius') ?? baseFields.radius,
-      shadowCard: readToken(theme, 'shadow-card', 'card.shadow') ?? baseFields.shadowCard,
-      shadowFocus: readToken(theme, 'shadow-focus', 'input.shadow.focus') ?? toRgba(baseFields.primary, 0.22),
-      buttonRadius: readToken(theme, 'border-radius', 'button.radius') ?? baseFields.buttonRadius,
-      inputRadius: readToken(theme, 'border-radius', 'input.radius') ?? baseFields.inputRadius,
-      cardRadius: readToken(theme, 'border-radius', 'card.radius') ?? baseFields.cardRadius,
+      primary: readToken(normalizedTheme, 'color-primary') ?? baseFields.primary,
+      primaryForeground: readToken(normalizedTheme, 'editor-primary-foreground', 'button.text.primary') ?? baseFields.primaryForeground,
+      secondary: readToken(normalizedTheme, 'editor-secondary') ?? readToken(normalizedTheme, 'color-fill', 'button.bg.default') ?? baseFields.secondary,
+      secondaryForeground: readToken(normalizedTheme, 'editor-secondary-foreground', 'button.text.default') ?? baseFields.secondaryForeground,
+      accent: readToken(normalizedTheme, 'editor-accent') ?? readToken(normalizedTheme, 'color-primary-bg') ?? baseFields.accent,
+      accentForeground: readToken(normalizedTheme, 'editor-accent-foreground') ?? baseFields.accentForeground,
+      success: readToken(normalizedTheme, 'editor-success') ?? readToken(normalizedTheme, 'color-success') ?? baseFields.success,
+      successForeground: readToken(normalizedTheme, 'editor-success-foreground') ?? baseFields.successForeground,
+      info: readToken(normalizedTheme, 'editor-info') ?? readToken(normalizedTheme, 'color-info') ?? baseFields.info,
+      infoForeground: readToken(normalizedTheme, 'editor-info-foreground') ?? baseFields.infoForeground,
+      warning: readToken(normalizedTheme, 'editor-warning') ?? readToken(normalizedTheme, 'color-warning') ?? baseFields.warning,
+      warningForeground: readToken(normalizedTheme, 'editor-warning-foreground') ?? baseFields.warningForeground,
+      danger: readToken(normalizedTheme, 'editor-danger') ?? readToken(normalizedTheme, 'color-danger') ?? baseFields.danger,
+      dangerForeground: readToken(normalizedTheme, 'editor-danger-foreground') ?? baseFields.dangerForeground,
+      base: readToken(normalizedTheme, 'editor-base') ?? readToken(normalizedTheme, 'color-bg') ?? baseFields.base,
+      baseForeground: readToken(normalizedTheme, 'editor-base-foreground') ?? readToken(normalizedTheme, 'color-text') ?? baseFields.baseForeground,
+      card: readToken(normalizedTheme, 'editor-card') ?? readToken(normalizedTheme, 'color-bg-container', 'card.bg') ?? baseFields.card,
+      cardForeground: readToken(normalizedTheme, 'editor-card-foreground', 'card.header-color') ?? baseFields.cardForeground,
+      popover: readToken(normalizedTheme, 'editor-popover') ?? readToken(normalizedTheme, 'color-bg-elevated') ?? baseFields.popover,
+      popoverForeground: readToken(normalizedTheme, 'editor-popover-foreground') ?? baseFields.popoverForeground,
+      muted: readToken(normalizedTheme, 'editor-muted') ?? readToken(normalizedTheme, 'color-bg-spotlight') ?? baseFields.muted,
+      mutedForeground: readToken(normalizedTheme, 'editor-muted-foreground') ?? readToken(normalizedTheme, 'color-text-secondary') ?? baseFields.mutedForeground,
+      border: readToken(normalizedTheme, 'editor-border') ?? readToken(normalizedTheme, 'color-border') ?? baseFields.border,
+      input: readToken(normalizedTheme, 'editor-input') ?? readToken(normalizedTheme, 'color-border', 'input.border') ?? baseFields.input,
+      ring: readToken(normalizedTheme, 'editor-ring', 'input.border.focus') ?? baseFields.ring,
+      chart1: readToken(normalizedTheme, 'chart-1') ?? baseFields.chart1,
+      chart2: readToken(normalizedTheme, 'chart-2') ?? baseFields.chart2,
+      chart3: readToken(normalizedTheme, 'chart-3') ?? baseFields.chart3,
+      chart4: readToken(normalizedTheme, 'chart-4') ?? baseFields.chart4,
+      chart5: readToken(normalizedTheme, 'chart-5') ?? baseFields.chart5,
+      sidebar: readToken(normalizedTheme, 'editor-sidebar', 'layout.sidebar-bg') ?? baseFields.sidebar,
+      sidebarForeground: readToken(normalizedTheme, 'editor-sidebar-foreground', 'layout.sidebar-color') ?? baseFields.sidebarForeground,
+      sidebarPrimary: readToken(normalizedTheme, 'editor-sidebar-primary') ?? baseFields.sidebarPrimary,
+      sidebarPrimaryForeground: readToken(normalizedTheme, 'editor-sidebar-primary-foreground') ?? baseFields.sidebarPrimaryForeground,
+      sidebarAccent: readToken(normalizedTheme, 'editor-sidebar-accent') ?? baseFields.sidebarAccent,
+      sidebarAccentForeground: readToken(normalizedTheme, 'editor-sidebar-accent-foreground') ?? baseFields.sidebarAccentForeground,
+      sidebarBorder: readToken(normalizedTheme, 'editor-sidebar-border') ?? baseFields.sidebarBorder,
+      sidebarRing: readToken(normalizedTheme, 'editor-sidebar-ring') ?? baseFields.sidebarRing,
+      fontSans: readToken(normalizedTheme, 'font-family') ?? baseFields.fontSans,
+      fontMono: readToken(normalizedTheme, 'font-family-monospace') ?? baseFields.fontMono,
+      fontSizeBase: readToken(normalizedTheme, 'font-size-base') ?? baseFields.fontSizeBase,
+      lineHeightBase: readToken(normalizedTheme, 'line-height-base') ?? baseFields.lineHeightBase,
+      h1Size: readToken(normalizedTheme, 'h1-font-size') ?? baseFields.h1Size,
+      h2Size: readToken(normalizedTheme, 'h2-font-size') ?? baseFields.h2Size,
+      letterSpacing: readToken(normalizedTheme, 'letter-spacing') ?? baseFields.letterSpacing,
+      radius: readToken(normalizedTheme, 'border-radius') ?? baseFields.radius,
+      shadowCard: readToken(normalizedTheme, 'shadow-card', 'card.shadow') ?? baseFields.shadowCard,
+      shadowFocus: readToken(normalizedTheme, 'shadow-focus', 'input.shadow.focus') ?? toRgba(baseFields.primary, 0.22),
+      buttonRadius: readToken(normalizedTheme, 'border-radius', 'button.radius') ?? baseFields.buttonRadius,
+      inputRadius: readToken(normalizedTheme, 'border-radius', 'input.radius') ?? baseFields.inputRadius,
+      cardRadius: readToken(normalizedTheme, 'border-radius', 'card.radius') ?? baseFields.cardRadius,
       fieldPaddingSm:
-        readComponentFirst(theme, 'input.padding-inline-sm', 'control.padding-inline.sm')
+        readComponentFirst(normalizedTheme, 'input.padding-inline-sm', 'control.padding-inline.sm')
         ?? baseFields.fieldPaddingSm,
       fieldPaddingMd:
-        readComponentFirst(theme, 'input.padding-inline-md', 'control.padding-inline.md')
-        ?? readToken(theme, 'spacing-4')
+        readComponentFirst(normalizedTheme, 'input.padding-inline-md', 'control.padding-inline.md')
+        ?? readToken(normalizedTheme, 'spacing-4')
         ?? baseFields.fieldPaddingMd,
       fieldPaddingLg:
-        readComponentFirst(theme, 'input.padding-inline-lg', 'control.padding-inline.lg')
+        readComponentFirst(normalizedTheme, 'input.padding-inline-lg', 'control.padding-inline.lg')
         ?? baseFields.fieldPaddingLg,
       buttonPaddingSm:
-        readComponentFirst(theme, 'button.padding-inline-sm', 'control.padding-inline.sm')
+        readComponentFirst(normalizedTheme, 'button.padding-inline-sm', 'control.padding-inline.sm')
         ?? baseFields.buttonPaddingSm,
       buttonPaddingMd:
-        readComponentFirst(theme, 'button.padding-inline-md', 'control.padding-inline.md')
+        readComponentFirst(normalizedTheme, 'button.padding-inline-md', 'control.padding-inline.md')
         ?? baseFields.buttonPaddingMd,
       buttonPaddingLg:
-        readComponentFirst(theme, 'button.padding-inline-lg', 'control.padding-inline.lg')
+        readComponentFirst(normalizedTheme, 'button.padding-inline-lg', 'control.padding-inline.lg')
         ?? baseFields.buttonPaddingLg,
       fieldHeightSm:
-        readComponentFirst(theme, 'input.height.sm', 'control.height.sm')
+        readComponentFirst(normalizedTheme, 'input.height.sm', 'control.height.sm')
         ?? baseFields.fieldHeightSm,
       fieldHeightMd:
-        readComponentFirst(theme, 'input.height.md', 'control.height.md')
-        ?? readToken(theme, 'height-md')
+        readComponentFirst(normalizedTheme, 'input.height.md', 'control.height.md')
+        ?? readToken(normalizedTheme, 'height-md')
         ?? baseFields.fieldHeightMd,
       fieldHeightLg:
-        readComponentFirst(theme, 'input.height.lg', 'control.height.lg')
+        readComponentFirst(normalizedTheme, 'input.height.lg', 'control.height.lg')
         ?? baseFields.fieldHeightLg,
       buttonHeightSm:
-        readComponentFirst(theme, 'button.height.sm', 'control.height.sm')
+        readComponentFirst(normalizedTheme, 'button.height.sm', 'control.height.sm')
         ?? baseFields.buttonHeightSm,
       buttonHeightMd:
-        readComponentFirst(theme, 'button.height.md', 'control.height.md')
-        ?? readToken(theme, 'height-md')
+        readComponentFirst(normalizedTheme, 'button.height.md', 'control.height.md')
+        ?? readToken(normalizedTheme, 'height-md')
         ?? baseFields.buttonHeightMd,
       buttonHeightLg:
-        readComponentFirst(theme, 'button.height.lg', 'control.height.lg')
+        readComponentFirst(normalizedTheme, 'button.height.lg', 'control.height.lg')
         ?? baseFields.buttonHeightLg,
-      cardPadding: readToken(theme, 'spacing-5', 'card.body-padding') ?? baseFields.cardPadding,
+      cardPadding: readToken(normalizedTheme, 'spacing-5', 'card.body-padding') ?? baseFields.cardPadding,
     },
   };
 }

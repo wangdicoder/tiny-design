@@ -17,6 +17,21 @@
     "./css/*": "./css/*",
     "./scss/*": "./scss/*",
     "./registry": "./dist/registry.json",
+    "./presets": {
+      "types": "./runtime/presets.d.ts",
+      "import": "./runtime/presets.mjs",
+      "require": "./runtime/presets.cjs"
+    },
+    "./resolve-theme": {
+      "types": "./runtime/resolve-theme.d.ts",
+      "import": "./runtime/resolve-theme.mjs",
+      "require": "./runtime/resolve-theme.cjs"
+    },
+    "./validate-theme": {
+      "types": "./runtime/validate-theme.d.ts",
+      "import": "./runtime/validate-theme.mjs",
+      "require": "./runtime/validate-theme.cjs"
+    },
     "./dist/*": "./dist/*"
   },
   "sideEffects": [
@@ -25,6 +40,7 @@
   "files": [
     "css",
     "dist",
+    "runtime",
     "scss"
   ],
   "scripts": {

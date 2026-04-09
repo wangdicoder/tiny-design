@@ -7,6 +7,19 @@ import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { Placement, PopupProps } from './types';
 
+function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null): void {
+  if (!ref) {
+    return;
+  }
+
+  if (typeof ref === 'function') {
+    ref(value);
+    return;
+  }
+
+  (ref as React.MutableRefObject<T | null>).current = value;
+}
+
 const Popup = (props: PopupProps): JSX.Element => {
   const {
     disabled = false,
@@ -37,37 +50,64 @@ const Popup = (props: PopupProps): JSX.Element => {
     `${prefixCls}_${placement}`,
     `${prefixCls}_${theme}`
   );
-  const [popupVisible, setPopupVisible] = useState('visible' in props ? visible : defaultVisible);
+  const isControlled = 'visible' in props;
+  const [uncontrolledVisible, setUncontrolledVisible] = useState(defaultVisible);
+  const popupVisible = isControlled ? !!visible : uncontrolledVisible;
   const targetRef = useRef<HTMLElement | null>(null);
   const popupRef = useRef<HTMLDivElement | null>(null);
   const delayDisplayPopupTimer = useRef<number | undefined>(undefined);
   const delayHidePopupTimer = useRef<number | undefined>(undefined);
   const popperRef = useRef<Instance | undefined>(undefined);
+  const isDocumentClickListening = useRef(false);
   const elementProps = {
-    ref: (ref: HTMLElement | null) => (targetRef.current = ref),
+    ref: (ref: HTMLElement | null) => {
+      targetRef.current = ref;
+      assignRef((children as React.ReactElement & { ref?: React.Ref<HTMLElement> }).ref, ref);
+    },
   };
 
+  const clearTimers = useCallback((): void => {
+    window.clearTimeout(delayDisplayPopupTimer.current);
+    window.clearTimeout(delayHidePopupTimer.current);
+  }, []);
+
+  const setPopupVisibleState = useCallback(
+    (nextVisible: boolean): void => {
+      if (!isControlled) {
+        setUncontrolledVisible(nextVisible);
+      }
+      onVisibleChange && onVisibleChange(nextVisible);
+    },
+    [isControlled, onVisibleChange]
+  );
+
   const displayPopup = useCallback(() => {
-    setPopupVisible(true);
-    onVisibleChange && onVisibleChange(true);
-  }, [onVisibleChange]);
+    if (popupVisible) {
+      return;
+    }
+
+    setPopupVisibleState(true);
+  }, [popupVisible, setPopupVisibleState]);
 
   const hidePopup = useCallback(() => {
-    setPopupVisible(false);
-    onVisibleChange && onVisibleChange(false);
-  }, [onVisibleChange]);
+    if (!popupVisible) return;
+
+    setPopupVisibleState(false);
+  }, [popupVisible, setPopupVisibleState]);
 
   const delayDisplayPopup = useCallback((): void => {
+    clearTimers();
     delayDisplayPopupTimer.current = window.setTimeout(() => {
       displayPopup();
     }, mouseEnterDelay);
-  }, [mouseEnterDelay, displayPopup]);
+  }, [clearTimers, mouseEnterDelay, displayPopup]);
 
   const delayHidePopup = useCallback((): void => {
+    clearTimers();
     delayHidePopupTimer.current = window.setTimeout(() => {
       hidePopup();
     }, mouseLeaveDelay);
-  }, [mouseLeaveDelay, hidePopup]);
+  }, [clearTimers, mouseLeaveDelay, hidePopup]);
 
   const handlePopupOnMouseEnter = (): void => {
     if (trigger === 'hover') {
@@ -107,23 +147,51 @@ const Popup = (props: PopupProps): JSX.Element => {
 
       hidePopup();
     },
-    [targetRef, hidePopup]
+    [hidePopup]
   );
+
+  const removeDocumentClickListener = useCallback((): void => {
+    if (!isDocumentClickListening.current) {
+      return;
+    }
+
+    document.removeEventListener('click', documentOnClick, true);
+    isDocumentClickListening.current = false;
+  }, [documentOnClick]);
+
+  useEffect(() => {
+    removeDocumentClickListener();
+    if ((trigger === 'click' || trigger === 'contextmenu' || trigger === 'manual') && popupVisible) {
+      document.addEventListener('click', documentOnClick, true);
+      isDocumentClickListening.current = true;
+    }
+
+    return () => {
+      removeDocumentClickListener();
+    };
+  }, [documentOnClick, popupVisible, removeDocumentClickListener, trigger]);
 
   const handleTargetOnMouseClick = useCallback(
     (e: MouseEvent): void => {
-      e.preventDefault();
+      if (trigger === 'contextmenu') {
+        e.preventDefault();
+      }
+
       if (popupVisible) {
         hidePopup();
       } else {
         displayPopup();
-        document.addEventListener('click', documentOnClick, true);
       }
     },
-    [popupVisible, hidePopup, displayPopup, documentOnClick]
+    [displayPopup, hidePopup, popupVisible, trigger]
   );
 
   const transitionOnEnter = (): void => {
+    if (!targetRef.current || !popupRef.current) {
+      return;
+    }
+
+    popperRef.current?.destroy();
     const instance = createPopper(
       targetRef.current as HTMLElement,
       popupRef.current as HTMLElement,
@@ -171,6 +239,7 @@ const Popup = (props: PopupProps): JSX.Element => {
         );
       }
       popperInstance.destroy();
+      popperRef.current = undefined;
     }
   };
 
@@ -215,8 +284,6 @@ const Popup = (props: PopupProps): JSX.Element => {
       }
     } else if (trigger === 'contextmenu') {
       target.addEventListener('contextmenu', handleTargetOnMouseClick);
-    } else if (trigger === 'manual') {
-      setPopupVisible(props.visible);
     }
 
     return (): void => {
@@ -232,9 +299,7 @@ const Popup = (props: PopupProps): JSX.Element => {
       target.removeEventListener('contextmenu', handleTargetOnMouseClick);
     };
   }, [
-    props.visible,
     disabled,
-    targetRef,
     trigger,
     handleTargetOnMouseClick,
     handleTargetOnMouseEnter,
@@ -244,10 +309,19 @@ const Popup = (props: PopupProps): JSX.Element => {
   ]);
 
   useEffect(() => {
-    if ('visible' in props) {
-      props.visible ? displayPopup() : hidePopup();
+    if (!popupVisible) {
+      clearTimers();
     }
-  }, [props, displayPopup, hidePopup]);
+  }, [clearTimers, popupVisible]);
+
+  useEffect(() => {
+    return () => {
+      clearTimers();
+      removeDocumentClickListener();
+      popperRef.current?.destroy();
+      popperRef.current = undefined;
+    };
+  }, [clearTimers, removeDocumentClickListener]);
 
   const renderContent = () => (
     <Transition
