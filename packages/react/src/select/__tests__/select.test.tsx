@@ -1,4 +1,4 @@
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor, act } from '@testing-library/react';
 import Select from '../index';
 
 const { Option, OptGroup } = Select;
@@ -7,6 +7,14 @@ const { Option, OptGroup } = Select;
 const getOptions = () => document.querySelectorAll('.ty-select-option');
 
 describe('<Select />', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   it('should match the snapshot', () => {
     const { asFragment } = render(
       <Select>
@@ -155,6 +163,31 @@ describe('<Select />', () => {
     const searchInput = container.querySelector('.ty-select__search') as HTMLInputElement;
     fireEvent.change(searchInput, { target: { value: 'test' } });
     expect(onSearch).toHaveBeenCalledWith('test');
+  });
+
+  it('should focus the search input after opening', () => {
+    const { container } = render(
+      <Select showSearch>
+        <Option value="a">Apple</Option>
+        <Option value="b">Banana</Option>
+      </Select>
+    );
+
+    const selector = container.querySelector('.ty-select__selector') as HTMLElement;
+    fireEvent.click(selector);
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    const searchInput = container.querySelector('.ty-select__search') as HTMLInputElement;
+    expect(searchInput).toHaveFocus();
+
+    fireEvent.change(searchInput, { target: { value: 'ban' } });
+
+    const options = getOptions();
+    expect(options.length).toBe(1);
+    expect(options[0]).toHaveTextContent('Banana');
   });
 
   // Keyboard
@@ -384,6 +417,55 @@ describe('<Select />', () => {
     const options = getOptions();
     fireEvent.click(options[0]);
     expect(onSelect).toHaveBeenCalledWith('a');
+  });
+
+  // scrollToSelected
+  it('should set scrollTop when dropdown opens with a selected value', () => {
+    const options = Array.from({ length: 50 }, (_, i) => ({
+      value: `opt-${i}`,
+      label: `Option ${i}`,
+    }));
+
+    const { container } = render(<Select options={options} defaultValue="opt-40" />);
+    const selector = container.querySelector('.ty-select__selector') as HTMLElement;
+
+    // Mock offsetTop on selected option before opening
+    const origDescriptor = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetTop');
+    Object.defineProperty(HTMLElement.prototype, 'offsetTop', {
+      configurable: true,
+      get() {
+        if (this.getAttribute?.('aria-selected') === 'true') return 400;
+        return 0;
+      },
+    });
+
+    fireEvent.click(selector);
+    jest.runAllTimers();
+
+    const dropdown = document.querySelector('.ty-select__dropdown') as HTMLElement;
+    expect(dropdown.scrollTop).toBe(400);
+
+    if (origDescriptor) {
+      Object.defineProperty(HTMLElement.prototype, 'offsetTop', origDescriptor);
+    }
+  });
+
+  it('should not scroll when scrollToSelected is false', () => {
+    const options = Array.from({ length: 50 }, (_, i) => ({
+      value: `opt-${i}`,
+      label: `Option ${i}`,
+    }));
+
+    const { container } = render(
+      <Select options={options} defaultValue="opt-40" scrollToSelected={false} />
+    );
+    const selector = container.querySelector('.ty-select__selector') as HTMLElement;
+    fireEvent.click(selector);
+
+    jest.runAllTimers();
+
+    const dropdown = document.querySelector('.ty-select__dropdown') as HTMLElement;
+    expect(dropdown.scrollTop).toBe(0);
   });
 
   // Custom filter function

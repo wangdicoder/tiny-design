@@ -33,6 +33,7 @@ const Select = (props: SelectProps): React.ReactElement => {
     placeholder,
     className,
     children,
+    scrollToSelected = true,
     dropdownStyle,
     ...otherProps
   } = props;
@@ -47,6 +48,18 @@ const Select = (props: SelectProps): React.ReactElement => {
 
   const ref = useRef<HTMLDivElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const dropdownRef = useCallback(
+    (node: HTMLUListElement | null) => {
+      if (!node || !scrollToSelected) return;
+      requestAnimationFrame(() => {
+        const selectedEl = node.querySelector('[aria-selected="true"]') as HTMLElement | null;
+        if (selectedEl) {
+          node.scrollTop = selectedEl.offsetTop - node.offsetTop;
+        }
+      });
+    },
+    [scrollToSelected]
+  );
   const listboxId = useId();
 
   const configContext = useContext(ConfigContext);
@@ -198,7 +211,6 @@ const Select = (props: SelectProps): React.ReactElement => {
       combo.closeDropdown();
     } else {
       combo.openDropdown();
-      setTimeout(() => searchInputRef.current?.focus(), 0);
     }
   };
 
@@ -243,6 +255,16 @@ const Select = (props: SelectProps): React.ReactElement => {
     combo.setFocusedIndex(-1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
+
+  useEffect(() => {
+    if (!combo.isOpen || !showSearch || disabled) return;
+
+    const frameId = requestAnimationFrame(() => {
+      searchInputRef.current?.focus();
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [combo.isOpen, showSearch, disabled]);
 
   const hasValue = hasSomeValue;
 
@@ -352,6 +374,7 @@ const Select = (props: SelectProps): React.ReactElement => {
     return (
       <SelectContext.Provider value={contextValue}>
         <ul
+          ref={dropdownRef}
           className={`${prefixCls}__dropdown`}
           style={{ minWidth: selectorWidth || undefined, ...dropdownStyle }}
           role="listbox"

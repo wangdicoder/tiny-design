@@ -12,6 +12,8 @@ import CustomDemo from './demo/Custom';
 import CustomSource from './demo/Custom.tsx?raw';
 import RenderDemo from './demo/Render';
 import RenderSource from './demo/Render.tsx?raw';
+import ScrollToSelectedDemo from './demo/ScrollToSelected';
+import ScrollToSelectedSource from './demo/ScrollToSelected.tsx?raw';
 
 # Select 选择器
 
@@ -60,6 +62,15 @@ Select 组件的基本用法。
 多选模式会将已选项目展示为标签。设置 `mode="multiple"`，可配合 `showSearch` 进行过滤。
 
 <DemoBlock component={MultipleDemo} source={MultipleSource} />
+
+    </Demo>
+    <Demo>
+
+### 滚动到选中项
+
+打开下拉菜单时自动滚动到已选中的选项。默认开启，设置 `scrollToSelected={false}` 可关闭。
+
+<DemoBlock component={ScrollToSelectedDemo} source={ScrollToSelectedSource} />
 
     </Demo>
   </Column>
@@ -130,6 +141,7 @@ Select 组件的基本用法。
 | defaultOpen             | 下拉菜单的初始展开状态                   | boolean                                                       | false       |
 | open                    | 下拉菜单的受控展开状态                   | boolean                                                       | -           |
 | onDropdownVisibleChange | 下拉菜单展开状态变化时的回调             | (open: boolean) => void                                       | -           |
+| scrollToSelected        | 下拉菜单打开时是否滚动到已选中的选项     | boolean                                                       | true        |
 | dropdownStyle           | 下拉菜单的样式                           | CSSProperties                                                 | -           |
 | style                   | 容器的样式对象                           | CSSProperties                                                 | -           |
 | className               | 容器的类名                               | string                                                        | -           |
