@@ -31,7 +31,7 @@ export type Rule = {
   transform?: (value: any) => any;
 
   // customize validation rule.
-  validator?: (value: any) => boolean | Promise<boolean>;
+  validator?: (value: any) => boolean;
 
   // failed if only has whitespace
   whitespace?: boolean;

@@ -72,6 +72,59 @@ describe('<Table />', () => {
     expect(onChange).toHaveBeenCalled();
   });
 
+  it('should sync controlled selectedRowKeys when parent clears selection', () => {
+    const ControlledTable = () => {
+      const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(['1']);
+      return (
+        <>
+          <Table
+            columns={columns}
+            dataSource={dataSource}
+            pagination={false}
+            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
+          />
+          <button onClick={() => setSelectedRowKeys([])}>clear</button>
+        </>
+      );
+    };
+
+    const { container, getByText } = render(<ControlledTable />);
+    expect(container.querySelectorAll('input[type="checkbox"]')[1]).toBeChecked();
+
+    fireEvent.click(getByText('clear'));
+
+    expect(container.querySelectorAll('input[type="checkbox"]')[1]).not.toBeChecked();
+  });
+
+  it('should sync controlled pagination current from parent updates', () => {
+    const ControlledPaginationTable = () => {
+      const [current, setCurrent] = React.useState(1);
+      return (
+        <>
+          <Table
+            columns={columns}
+            dataSource={[
+              ...dataSource,
+              { key: '4', name: 'David', age: 22 },
+              { key: '5', name: 'Eve', age: 28 },
+            ]}
+            pagination={{ current, pageSize: 2 }}
+          />
+          <button onClick={() => setCurrent(2)}>page-2</button>
+        </>
+      );
+    };
+
+    const { getByText, queryByText } = render(<ControlledPaginationTable />);
+    expect(getByText('Alice')).toBeInTheDocument();
+    expect(queryByText('Charlie')).not.toBeInTheDocument();
+
+    fireEvent.click(getByText('page-2'));
+
+    expect(getByText('Charlie')).toBeInTheDocument();
+    expect(queryByText('Alice')).not.toBeInTheDocument();
+  });
+
   it('should show loading state', () => {
     const { getByText } = render(<Table columns={columns} dataSource={dataSource} loading />);
     expect(getByText('Loading...')).toBeInTheDocument();

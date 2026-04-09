@@ -4,6 +4,7 @@
     "noEmit": false,
     "outDir": "./dist",
     "noUnusedLocals": false,
+    "isolatedModules": true,
     "moduleResolution": "node",
     "types": [
       "node",

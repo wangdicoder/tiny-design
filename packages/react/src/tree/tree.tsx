@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -6,12 +6,14 @@ import { TreeProps } from './types';
 import { TreeInstance } from './tree-instance';
 import TreeNode from './tree-node';
 
+const EMPTY_KEYS: string[] = [];
+
 const Tree = React.forwardRef<HTMLUListElement, TreeProps>(
   (props: TreeProps, ref): JSX.Element => {
     const {
       data = [],
-      defaultCheckedKeys = [],
-      defaultExpandedKeys = [],
+      defaultCheckedKeys = EMPTY_KEYS,
+      defaultExpandedKeys = EMPTY_KEYS,
       defaultExpandAll = false,
       indent = 20,
       blockNode = true,
@@ -29,6 +31,16 @@ const Tree = React.forwardRef<HTMLUListElement, TreeProps>(
       new TreeInstance(data, defaultCheckedKeys, defaultExpandedKeys, defaultExpandAll)
     );
     const [treeNodes, setTreeNodes] = useState(treeInstance.current.nodes);
+
+    useEffect(() => {
+      treeInstance.current = new TreeInstance(
+        data,
+        defaultCheckedKeys,
+        defaultExpandedKeys,
+        defaultExpandAll
+      );
+      setTreeNodes([...treeInstance.current.nodes]);
+    }, [data, defaultCheckedKeys, defaultExpandedKeys, defaultExpandAll]);
 
     const onCheckboxChange = (key: string, e: React.ChangeEvent<HTMLInputElement>) => {
       const tree = treeInstance.current;

@@ -207,5 +207,5 @@ Form field component for data bidirectional binding, validation and layout.
 | len               | length of string, number, array                           | number                                        |
 | pattern           | regex pattern                                             | RegExp                                        |
 | transform         | transform value to the rule before validation             | (value) => any                                |
-| validator         | customize validation rule                                 | (value) => boolean &#124; `Promise<boolean>`  |
+| validator         | customize validation rule                                 | (value) => boolean                            |
 | whitespace        | failed if only has whitespace                             | boolean                                       |

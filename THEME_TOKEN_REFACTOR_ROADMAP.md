@@ -27,11 +27,100 @@ Completed:
 - browser-safe ESM runtime for docs and Theme Studio
 - `ConfigProvider` integrated with token resolution
 - `Popup / Overlay / Portal` bottom-layer cleanup and tests
+- temporary alias and migration logic removed again for the breaking-major path
+- first-layer popup consumers stabilized:
+  - `Dropdown`
+  - `Popover`
+  - `Tooltip`
+  - `Modal static`
+  - `Menu.SubMenu`
+  - `PopConfirm`
+  - `SpeedDial`
+- picker and selection core partially stabilized:
+  - `DatePicker`
+  - `TimePicker`
+  - `Select`
+  - `AutoComplete`
+  - `Cascader`
+- `ColorPicker`
+- `Upload`
+- `Modal`
+- `Drawer`
+- `Table`
+- `Tree`
+- `Transfer`
+- `Tour`
+- `Form`
+- token ownership expanded for:
+  - `picker`
+  - `date-picker`
+  - `time-picker`
+  - `calendar`
+  - `dropdown`
+  - `overlay`
+  - `pop-confirm`
+  - `tour`
+  - `select`
+  - `auto-complete`
+  - `cascader`
+  - `color-picker`
+  - `speed-dial`
 
 In progress:
 
-- removing alias and migration logic that was temporarily added during the transition
-- tightening execution checklists for the next component phases
+- broader a11y and docs/demo sweep
+- checklist-driven progress tracking
+- token coverage expansion for the remaining component gaps
+
+Recently stabilized:
+
+- `Upload`
+  - controlled `fileList` behavior corrected
+  - callbacks now receive the latest file list snapshots
+  - shared remove icon usage aligned
+- `Modal`
+  - `onClose` and `onCancel` semantics separated
+  - `keyboard` support added and tested
+  - shared close icon usage aligned
+- `Drawer`
+  - `keyboard` prop now works
+  - shared close icon usage aligned
+- `Table`
+  - controlled `selectedRowKeys` clearing fixed
+  - controlled `pagination.current` sync fixed
+- `Tree`
+  - node tree now refreshes when `data` changes
+- `Transfer`
+  - controlled mode no longer clears panel selection on unrelated rerenders
+- `Tour`
+  - keyboard-disabled regression covered
+  - shared close icon usage aligned
+  - focus is now captured on open and restored on close
+  - title and description now participate in dialog semantics
+- `Form`
+  - contract tightened to synchronous validation only
+  - submit-level behavior now has direct regression coverage
+- `Select`
+  - combobox/listbox aria relationships improved
+- `Cascader`
+  - selector keyboard open/close behavior added
+  - combobox semantics improved
+- `AutoComplete`
+  - `onOpenChange` support aligned with controlled `open`
+  - combobox/listbox aria relationships improved
+- `DatePicker`
+  - combobox/dialog semantics added
+  - keyboard open behavior added
+- `TimePicker`
+  - combobox/dialog semantics added
+  - keyboard open behavior added
+- `ColorPicker`
+  - trigger now exposes button/dialog semantics
+  - keyboard open behavior added
+- `Modal / Drawer`
+  - body/header aria relationships added
+- `PopConfirm`
+  - alertdialog title relationship added
 
 ## Target Architecture
 

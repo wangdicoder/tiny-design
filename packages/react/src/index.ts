@@ -109,6 +109,7 @@ export type * from './checkbox';
 export type * from './col';
 export type * from './config-provider';
 export type * from './copy-to-clipboard';
+export type * from './color-picker';
 export type * from './countdown';
 export type * from './date-picker';
 export type * from './descriptions';

@@ -69,6 +69,21 @@ describe('<AutoComplete />', () => {
     expect(onChange).toHaveBeenCalledWith('Banana');
   });
 
+  it('should expose combobox aria relationships when navigating options', () => {
+    const { container } = render(<AutoComplete options={options} />);
+    const input = container.querySelector('input') as HTMLInputElement;
+    const wrapper = container.firstChild as HTMLElement;
+
+    fireEvent.keyDown(wrapper, { key: 'ArrowDown' });
+
+    const listboxId = input.getAttribute('aria-controls');
+    expect(input).toHaveAttribute('role', 'combobox');
+    expect(input).toHaveAttribute('aria-expanded', 'true');
+    expect(listboxId).toBeTruthy();
+    expect(input).toHaveAttribute('aria-activedescendant', `${listboxId}-option-0`);
+    expect(document.getElementById(`${listboxId}-option-0`)).toHaveTextContent('Apple');
+  });
+
   it('should close on Escape', () => {
     const { container } = render(<AutoComplete options={options} defaultOpen />);
     const wrapper = container.firstChild as HTMLElement;
@@ -124,6 +139,39 @@ describe('<AutoComplete />', () => {
     expect(container.querySelector('.ty-auto-complete_open')).not.toBeInTheDocument();
     rerender(<AutoComplete options={options} open={true} />);
     expect(container.firstChild).toHaveClass('ty-auto-complete_open');
+  });
+
+  it('should call onOpenChange when focus opens and outside click closes the popup', async () => {
+    const onOpenChange = jest.fn();
+    const { container } = render(
+      <div>
+        <AutoComplete options={options} onOpenChange={onOpenChange} />
+        <button>Outside</button>
+      </div>
+    );
+
+    const input = container.querySelector('input') as HTMLInputElement;
+    fireEvent.focus(input);
+    expect(onOpenChange).toHaveBeenCalledWith(true);
+
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledWith(false);
+    });
+  });
+
+  it('should respect controlled open when Escape is pressed', () => {
+    const onOpenChange = jest.fn();
+    const { container } = render(
+      <AutoComplete options={options} open={true} onOpenChange={onOpenChange} />
+    );
+
+    const wrapper = container.firstChild as HTMLElement;
+    fireEvent.keyDown(wrapper, { key: 'Escape' });
+
+    expect(container.firstChild).toHaveClass('ty-auto-complete_open');
+    expect(onOpenChange).toHaveBeenCalledWith(false);
   });
 
   it('should call onSearch callback', () => {

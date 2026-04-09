@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback, useContext, useMemo } from 'react';
+import { useEffect, useState, useRef, useCallback, useContext, useMemo, useId } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -87,6 +87,7 @@ const TimePicker = (props: TimePickerProps): React.ReactElement => {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const popupId = useId();
 
   const isOpen = controlledOpen ?? open;
 
@@ -182,7 +183,12 @@ const TimePicker = (props: TimePickerProps): React.ReactElement => {
   });
 
   const renderOverlay = () => (
-    <div className={`${prefixCls}__dropdown`} ref={dropdownRef}>
+    <div
+      id={popupId}
+      role="dialog"
+      aria-modal="false"
+      className={`${prefixCls}__dropdown`}
+      ref={dropdownRef}>
       <div className={`${prefixCls}__panel`}>
         <TimePanel
           prefixCls={prefixCls}
@@ -219,7 +225,11 @@ const TimePicker = (props: TimePickerProps): React.ReactElement => {
       <div className={`${prefixCls}__footer`}>
         {renderExtraFooter && <div className={`${prefixCls}__extra-footer`}>{renderExtraFooter()}</div>}
         <div className={`${prefixCls}__footer-actions`}>
-          {showNow && <a className={`${prefixCls}__now-btn`} onClick={handleNow}>{locale.TimePicker.now}</a>}
+          {showNow && (
+            <button type="button" className={`${prefixCls}__now-btn`} onClick={handleNow}>
+              {locale.TimePicker.now}
+            </button>
+          )}
           <button type="button" className={`${prefixCls}__ok-btn`} onClick={handleOk}>{locale.TimePicker.okText}</button>
         </div>
       </div>
@@ -244,9 +254,16 @@ const TimePicker = (props: TimePickerProps): React.ReactElement => {
             disabled={disabled}
             placeholder={placeholder}
             value={displayValue}
+            role="combobox"
             aria-expanded={isOpen}
             aria-haspopup="dialog"
+            aria-controls={isOpen ? popupId : undefined}
             onKeyDown={(e) => {
+              if ((e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') && !isOpen) {
+                e.preventDefault();
+                toggleOpen(true);
+                return;
+              }
               if (e.key === 'Escape' && isOpen) toggleOpen(false);
             }}
           />

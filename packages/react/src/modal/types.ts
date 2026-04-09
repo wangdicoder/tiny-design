@@ -7,6 +7,7 @@ export type ModalAnimation = 'slide' | 'scale';
 
 export interface ModalProps extends BaseProps {
   visible?: boolean;
+  keyboard?: boolean;
   header?: ReactNode;
   footer?: ReactNode;
   width?: number | string;

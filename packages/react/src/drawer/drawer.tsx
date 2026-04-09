@@ -4,11 +4,13 @@ import Transition from '../transition';
 import Overlay from '../overlay';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
+import { Close } from '../_utils/components';
 import { DrawerProps } from './types';
 
 const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const {
     visible,
+    keyboard = true,
     placement = 'right',
     size = 256,
     closable = true,
@@ -35,6 +37,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const nodeRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const titleId = useId();
+  const bodyId = useId();
 
   // Focus trap + Escape key
   useEffect(() => {
@@ -42,7 +45,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
     previousFocusRef.current = document.activeElement as HTMLElement;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (keyboard && e.key === 'Escape') {
         onClose?.(e as unknown as React.MouseEvent);
         return;
       }
@@ -67,7 +70,11 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
         const focusable = nodeRef.current.querySelectorAll<HTMLElement>(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
-        if (focusable.length > 0) focusable[0].focus();
+        if (focusable.length > 0) {
+          focusable[0].focus();
+        } else {
+          nodeRef.current.focus();
+        }
       }
     });
 
@@ -75,7 +82,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
       document.removeEventListener('keydown', handleKeyDown);
       previousFocusRef.current?.focus();
     };
-  }, [visible, onClose]);
+  }, [keyboard, visible, onClose]);
 
   return (
     <Overlay
@@ -102,16 +109,18 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
             ref={nodeRef}
             className={`${prefixCls}__content`}
             role="dialog"
+            tabIndex={-1}
             aria-modal="true"
             aria-labelledby={header ? titleId : undefined}
+            aria-describedby={children ? bodyId : undefined}
             onClick={(e) => e.stopPropagation()}>
             {closable && (
               <button type="button" className={`${prefixCls}__close-btn`} onClick={onClose} aria-label="Close">
-                ✕
+                <Close size={16} />
               </button>
             )}
             {header && <div className={`${prefixCls}__header`} id={titleId}>{header}</div>}
-            <div className={`${prefixCls}__body`}>{children}</div>
+            <div className={`${prefixCls}__body`} id={bodyId}>{children}</div>
             {footer && <div className={`${prefixCls}__footer`}>{footer}</div>}
           </div>
         </Transition>

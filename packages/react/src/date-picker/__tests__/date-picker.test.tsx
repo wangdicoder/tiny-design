@@ -86,6 +86,18 @@ describe('<DatePicker />', () => {
     });
   });
 
+  it('should expose combobox dialog semantics and open with keyboard', () => {
+    const { container } = render(<DatePicker />);
+    const input = container.querySelector('input') as HTMLInputElement;
+
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+
+    expect(input).toHaveAttribute('role', 'combobox');
+    expect(input).toHaveAttribute('aria-expanded', 'true');
+    expect(input).toHaveAttribute('aria-controls');
+    expect(document.getElementById(input.getAttribute('aria-controls') || '')).toHaveAttribute('role', 'dialog');
+  });
+
   it('should format month picker', () => {
     const { container } = render(<DatePicker picker="month" defaultValue={new Date(2024, 5, 1)} />);
     expect(container.querySelector('input')?.value).toBe('2024-06');

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Form, Input, InputPassword, Button, Radio } from '@tiny-design/react';
+import type { FormLayout } from '../types';
 
 export default function LayoutDemo() {
-  const [type, setType] = React.useState('horizontal');
+  const [type, setType] = React.useState<FormLayout>('horizontal');
 
   return (
     <>
-      <Radio.Group value={type} onChange={(val) => setType(val)}>
+      <Radio.Group value={type} onChange={(val) => setType(val as FormLayout)}>
         <Radio value="horizontal">Horizontal</Radio>
         <Radio value="vertical">Vertical</Radio>
         <Radio value="inline">Inline</Radio>

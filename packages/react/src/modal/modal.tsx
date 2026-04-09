@@ -6,6 +6,7 @@ import Button from '../button/button';
 import Flex from '../flex/flex';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
+import { Close } from '../_utils/components';
 import { useLocale } from '../_utils/use-locale';
 import { ModalProps } from './types';
 
@@ -13,6 +14,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const locale = useLocale();
   const {
     visible = false,
+    keyboard = true,
     width = 520,
     centered = false,
     closable = true,
@@ -42,7 +44,6 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     footerStyle,
     prefixCls: customisedCls,
   } = props;
-  const onCancel = onCloseProp ?? onCancelProp;
   const [modalVisible, setModalVisible] = useState(visible);
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('modal', configContext.prefixCls, customisedCls);
@@ -50,6 +51,23 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const nodeRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const titleId = useId();
+  const bodyId = useId();
+
+  const handleCancel = (e: React.MouseEvent): void => {
+    if (onCancelProp) {
+      onCancelProp(e);
+      return;
+    }
+    onCloseProp?.(e);
+  };
+
+  const handleClose = (e: React.MouseEvent): void => {
+    if (onCloseProp) {
+      onCloseProp(e);
+      return;
+    }
+    onCancelProp?.(e);
+  };
 
   // Focus trap + Escape key
   useEffect(() => {
@@ -57,8 +75,8 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     previousFocusRef.current = document.activeElement as HTMLElement;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onCancel?.(e as unknown as React.MouseEvent);
+      if (keyboard && e.key === 'Escape') {
+        handleClose(e as unknown as React.MouseEvent);
         return;
       }
       if (e.key === 'Tab' && nodeRef.current) {
@@ -83,7 +101,11 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         const focusable = nodeRef.current.querySelectorAll<HTMLElement>(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
-        if (focusable.length > 0) focusable[0].focus();
+        if (focusable.length > 0) {
+          focusable[0].focus();
+        } else {
+          nodeRef.current.focus();
+        }
       }
     });
 
@@ -91,17 +113,17 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       document.removeEventListener('keydown', handleKeyDown);
       previousFocusRef.current?.focus();
     };
-  }, [visible, onCancel]);
+  }, [handleClose, keyboard, visible]);
 
   const renderFooter = (): React.ReactNode => {
     if (React.isValidElement(footer)) {
-      return footer;
+          return footer;
     } else if (footer === null) {
       return null;
     } else {
       return (
         <Flex gap="sm" justify='end' className={`${prefixCls}__footer`} style={footerStyle}>
-          <Button onClick={onCancel} className={`${prefixCls}__footer-btn`} {...cancelButtonProps}>
+          <Button onClick={handleCancel} className={`${prefixCls}__footer-btn`} {...cancelButtonProps}>
             {cancelText}
           </Button>
           <Button
@@ -127,7 +149,9 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       isShow={visible}
       onExited={afterClose}
       clickCallback={(e: React.MouseEvent): void => {
-        maskClosable && onCancel ? onCancel(e) : undefined;
+        if (maskClosable) {
+          handleClose(e);
+        }
       }}
       style={maskStyle}>
       <div ref={ref} className={cls} style={{ top }}>
@@ -143,12 +167,14 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
               ref={nodeRef}
               className={`${prefixCls}__content`}
               role="dialog"
+              tabIndex={-1}
               aria-modal="true"
               aria-labelledby={header ? titleId : undefined}
+              aria-describedby={children ? bodyId : undefined}
               onClick={(e): void => e.stopPropagation()}>
               {closable && (
-                <button type="button" className={`${prefixCls}__close-btn`} onClick={onCancel} aria-label="Close">
-                  ✕
+                <button type="button" className={`${prefixCls}__close-btn`} onClick={handleClose} aria-label="Close">
+                  <Close size={16} />
                 </button>
               )}
               {header && (
@@ -156,7 +182,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                   <div className={`${prefixCls}__title`} id={titleId}>{header}</div>
                 </div>
               )}
-              <div className={`${prefixCls}__body`} style={bodyStyle}>
+              <div className={`${prefixCls}__body`} id={bodyId} style={bodyStyle}>
                 {children}
               </div>
               {renderFooter()}

@@ -206,5 +206,5 @@ const { Item, useForm, FormInstance } = Form;
 | len               | 字符串、数字、数组的长度                           | number                                        |
 | pattern           | 正则表达式                                        | RegExp                                        |
 | transform         | 校验前对值进行转换                                | (value) => any                                |
-| validator         | 自定义校验规则                                    | (value) => boolean &#124; `Promise<boolean>`  |
+| validator         | 自定义校验规则                                    | (value) => boolean                            |
 | whitespace        | 仅包含空格时是否校验失败                           | boolean                                       |

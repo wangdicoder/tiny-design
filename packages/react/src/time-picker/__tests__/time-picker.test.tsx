@@ -98,6 +98,18 @@ describe('<TimePicker />', () => {
     });
   });
 
+  it('should expose combobox dialog semantics and open with keyboard', () => {
+    const { container } = render(<TimePicker />);
+    const input = container.querySelector('input') as HTMLInputElement;
+
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+
+    expect(input).toHaveAttribute('role', 'combobox');
+    expect(input).toHaveAttribute('aria-expanded', 'true');
+    expect(input).toHaveAttribute('aria-controls');
+    expect(document.getElementById(input.getAttribute('aria-controls') || '')).toHaveAttribute('role', 'dialog');
+  });
+
   it('should clear value on clear button click', () => {
     const fn = jest.fn();
     const { container } = render(

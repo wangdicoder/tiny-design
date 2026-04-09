@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useContext, useCallback, useId } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -45,6 +45,7 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   const alphaRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const colorRef = useRef<Color>(color);
+  const popupId = useId();
 
   const isOpen = ('open' in props ? (props.open as boolean) : undefined) ?? open;
   const controlledOpen = 'open' in props ? (props.open as boolean) : undefined;
@@ -255,7 +256,7 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   const hueColor = hsbToHex({ h: color.h, s: 100, b: 100, a: 1 });
 
   const renderPanel = () => (
-    <div className={`${prefixCls}__panel`}>
+    <div id={popupId} role="dialog" aria-modal="false" className={`${prefixCls}__panel`}>
       <div
         ref={spectrumRef}
         className={`${prefixCls}__spectrum`}
@@ -360,6 +361,33 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
         content={renderPanel()}>
         <div
           className={`${prefixCls}__trigger`}
+          role="button"
+          tabIndex={disabled ? -1 : 0}
+          aria-haspopup="dialog"
+          aria-expanded={isOpen}
+          aria-controls={isOpen ? popupId : undefined}
+          onKeyDown={(e) => {
+            if (disabled) {
+              return;
+            }
+
+            if ((e.key === 'Enter' || e.key === ' ') && !isOpen) {
+              e.preventDefault();
+              if (controlledOpen === undefined) {
+                setOpen(true);
+              }
+              onOpenChange?.(true);
+              return;
+            }
+
+            if (e.key === 'Escape' && isOpen) {
+              e.preventDefault();
+              if (controlledOpen === undefined) {
+                setOpen(false);
+              }
+              onOpenChange?.(false);
+            }
+          }}
         >
           {children || (
             <div className={`${prefixCls}__swatch`}>

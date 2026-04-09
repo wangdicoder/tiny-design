@@ -69,10 +69,16 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
   );
 
   useEffect(() => {
-    if (rowSelection?.selectedRowKeys) {
+    if (rowSelection?.selectedRowKeys !== undefined) {
       setSelectedKeys(rowSelection.selectedRowKeys);
     }
   }, [rowSelection?.selectedRowKeys]);
+
+  useEffect(() => {
+    if (pagination && typeof pagination === 'object' && pagination.current !== undefined) {
+      setCurrentPage(pagination.current);
+    }
+  }, [pagination]);
 
   // Initialize default sort
   useEffect(() => {

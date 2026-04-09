@@ -27,6 +27,18 @@ describe('<ColorPicker />', () => {
     expect(document.body.querySelector('.ty-color-picker__panel')).toBeTruthy();
   });
 
+  it('should expose button dialog semantics and open with keyboard', () => {
+    const { container } = render(<ColorPicker />);
+    const trigger = container.querySelector('.ty-color-picker__trigger') as HTMLElement;
+
+    fireEvent.keyDown(trigger, { key: 'Enter' });
+
+    expect(trigger).toHaveAttribute('role', 'button');
+    expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    expect(trigger).toHaveAttribute('aria-controls');
+    expect(document.getElementById(trigger.getAttribute('aria-controls') || '')).toHaveAttribute('role', 'dialog');
+  });
+
   it('should render disabled', () => {
     const { container } = render(<ColorPicker disabled />);
     expect(container.firstChild).toHaveClass('ty-color-picker_disabled');

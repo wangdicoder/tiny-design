@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Button } from '@tiny-design/react';
 
 export default function PositionDemo() {
@@ -19,7 +19,7 @@ export default function PositionDemo() {
         top={20}
         header="20px to Top"
         visible={visible1}
-        onOk={() => {}}
+        onConfirm={() => setVisible1(false)}
         onCancel={() => setVisible1(false)}>
         <div>Some contents...</div>
         <div>Some contents...</div>
@@ -29,7 +29,7 @@ export default function PositionDemo() {
         centered
         header="Vertically centered modal dialog"
         visible={visible2}
-        onOk={() => {}}
+        onConfirm={() => setVisible2(false)}
         onCancel={() => setVisible2(false)}>
         <div>Some contents...</div>
         <div>Some contents...</div>

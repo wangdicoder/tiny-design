@@ -1,6 +1,6 @@
 import React from 'react';
-import { ColorPicker } from '@tiny-design/react';
-import type { ColorFormat } from '@tiny-design/react';
+import ColorPicker from '../index';
+import type { ColorFormat } from '../types';
 
 export default function FormatDemo() {
   const [color, setColor] = React.useState('#1890ff');

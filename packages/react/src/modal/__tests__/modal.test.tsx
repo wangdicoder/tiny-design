@@ -34,6 +34,80 @@ describe('<Modal />', () => {
     expect(getByText('Cancel')).toBeInTheDocument();
   });
 
+  it('should call onCancel from the cancel button without calling onClose', () => {
+    const onCancel = jest.fn();
+    const onClose = jest.fn();
+    render(
+      <Modal visible onCancel={onCancel} onClose={onClose}>
+        Content
+      </Modal>
+    );
+
+    fireEvent.click(screen.getByText('Cancel'));
+
+    expect(onCancel).toHaveBeenCalledTimes(1);
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it('should call onClose from the close button without calling onCancel', () => {
+    const onCancel = jest.fn();
+    const onClose = jest.fn();
+    render(
+      <Modal visible onCancel={onCancel} onClose={onClose}>
+        Content
+      </Modal>
+    );
+
+    fireEvent.click(screen.getByLabelText('Close'));
+
+    expect(onClose).toHaveBeenCalledTimes(1);
+    expect(onCancel).not.toHaveBeenCalled();
+  });
+
+  it('should close on escape by default', () => {
+    const onClose = jest.fn();
+    render(<Modal visible onClose={onClose}>Content</Modal>);
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not close on escape when keyboard is disabled', () => {
+    const onClose = jest.fn();
+    render(
+      <Modal visible keyboard={false} onClose={onClose}>
+        Content
+      </Modal>
+    );
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it('should focus the dialog container when there are no focusable children', async () => {
+    const { baseElement } = render(<Modal visible footer={null} closable={false}>Content</Modal>);
+
+    await waitFor(() => {
+      expect(baseElement.querySelector('.ty-modal__content')).toHaveFocus();
+    });
+  });
+
+  it('should expose aria relationships for header and body content', () => {
+    render(
+      <Modal visible header="Settings">
+        Modal content
+      </Modal>
+    );
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveAttribute('aria-labelledby');
+    expect(dialog).toHaveAttribute('aria-describedby');
+    expect(document.getElementById(dialog.getAttribute('aria-labelledby') || '')).toHaveTextContent('Settings');
+    expect(document.getElementById(dialog.getAttribute('aria-describedby') || '')).toHaveTextContent('Modal content');
+  });
+
   it('should render custom button text', () => {
     const { getByText } = render(<Modal visible confirmText="Yes" cancelText="No">Content</Modal>);
     expect(getByText('Yes')).toBeInTheDocument();

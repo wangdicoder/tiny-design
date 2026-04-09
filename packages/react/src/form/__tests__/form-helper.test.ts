@@ -62,17 +62,6 @@ describe('FormHelper validate', () => {
     expect(validate('ab', { min: 5 })).toBe('The length of value is less than the min');
   });
 
-  it('should skip async validators and log a warning', () => {
-    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => { /* noop */ });
-    const asyncValidator = () => Promise.resolve(true);
-    const res = validate('value', { validator: asyncValidator });
-    expect(res).toBe(undefined);
-    expect(warnSpy).toHaveBeenCalledWith(
-      expect.stringContaining('Async validators are not supported')
-    );
-    warnSpy.mockRestore();
-  });
-
   it('should fail sync validator returning false', () => {
     expect(validate('bad', { validator: () => false })).toBe(
       'The value is validated unsuccessfully'

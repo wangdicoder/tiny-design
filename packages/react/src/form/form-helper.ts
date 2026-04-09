@@ -1,5 +1,4 @@
 import React from 'react';
-import warning from '../_utils/warning';
 import { Rule } from './types';
 
 export function getPropName(valueProp: string | ((type: any) => string), type: any) {
@@ -56,9 +55,7 @@ export function validate(value: any, rule: Rule): string | undefined {
   }
   if (validator) {
     const res = validator(val);
-    if (res instanceof Promise) {
-      warning(true, 'Async validators are not supported in synchronous validate(). Use a synchronous validator instead.');
-    } else if (!res) {
+    if (!res) {
       return message || 'The value is validated unsuccessfully';
     }
   }

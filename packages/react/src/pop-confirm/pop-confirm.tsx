@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useId, useState } from 'react';
 import classNames from 'classnames';
 import Popover from '../popover';
 import Button from '../button';
@@ -32,6 +32,7 @@ const PopConfirm = (props: PopConfirmProps): JSX.Element => {
   const isControlled = visible !== undefined;
   const [uncontrolledVisible, setUncontrolledVisible] = useState(defaultVisible);
   const popupVisible = isControlled ? visible : uncontrolledVisible;
+  const titleId = useId();
 
   const setPopupVisibleState = useCallback((nextVisible: boolean): void => {
     if (!isControlled) {
@@ -55,7 +56,7 @@ const PopConfirm = (props: PopConfirmProps): JSX.Element => {
       <div className={`${prefixCls}__overlay`}>
         <div className={`${prefixCls}__messages`}>
           {icon ? icon : <WarningCircle size={14} />}
-          <span className={`${prefixCls}__title`}>{title}</span>
+          <span id={titleId} className={`${prefixCls}__title`}>{title}</span>
         </div>
         <div className={`${prefixCls}__buttons`}>
           <Button size="sm" onClick={cancelOnClick}>
@@ -74,6 +75,7 @@ const PopConfirm = (props: PopConfirmProps): JSX.Element => {
       {...otherProps}
       className={cls}
       role="alertdialog"
+      aria-labelledby={titleId}
       visible={popupVisible}
       onVisibleChange={setPopupVisibleState}
       content={overlay()}

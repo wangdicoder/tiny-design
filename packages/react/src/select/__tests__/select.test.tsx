@@ -190,6 +190,29 @@ describe('<Select />', () => {
     expect(options[0]).toHaveTextContent('Banana');
   });
 
+  it('should start searching when typing immediately after opening', () => {
+    const { container } = render(
+      <Select showSearch>
+        <Option value="a">Apple</Option>
+        <Option value="b">Banana</Option>
+        <Option value="c">Cherry</Option>
+      </Select>
+    );
+
+    const selector = container.querySelector('.ty-select__selector') as HTMLElement;
+    const selectEl = container.firstChild as HTMLElement;
+
+    fireEvent.click(selector);
+    fireEvent.keyDown(selectEl, { key: 'b' });
+
+    const searchInput = container.querySelector('.ty-select__search') as HTMLInputElement;
+    expect(searchInput.value).toBe('b');
+
+    const options = getOptions();
+    expect(options.length).toBe(1);
+    expect(options[0]).toHaveTextContent('Banana');
+  });
+
   // Keyboard
   it('should navigate with arrow keys and select with Enter', () => {
     const onChange = jest.fn();
@@ -204,6 +227,27 @@ describe('<Select />', () => {
     fireEvent.keyDown(selectEl, { key: 'ArrowDown' });
     fireEvent.keyDown(selectEl, { key: 'Enter' });
     expect(onChange).toHaveBeenCalledWith('b', expect.objectContaining({ value: 'b' }));
+  });
+
+  it('should expose combobox aria relationships when navigating options', () => {
+    const { container } = render(
+      <Select
+        options={[
+          { value: 'a', label: 'Apple' },
+          { value: 'b', label: 'Banana' },
+        ]}
+      />
+    );
+
+    const selectEl = container.firstChild as HTMLElement;
+    fireEvent.keyDown(selectEl, { key: 'ArrowDown' });
+
+    const listboxId = selectEl.getAttribute('aria-controls');
+    expect(listboxId).toBeTruthy();
+    expect(selectEl).toHaveAttribute('aria-haspopup', 'listbox');
+    expect(selectEl).toHaveAttribute('aria-expanded', 'true');
+    expect(selectEl).toHaveAttribute('aria-activedescendant', `${listboxId}-option-0`);
+    expect(document.getElementById(`${listboxId}-option-0`)).toHaveTextContent('Apple');
   });
 
   it('should close on Escape', () => {
@@ -440,7 +484,9 @@ describe('<Select />', () => {
     });
 
     fireEvent.click(selector);
-    jest.runAllTimers();
+    act(() => {
+      jest.runAllTimers();
+    });
 
     const dropdown = document.querySelector('.ty-select__dropdown') as HTMLElement;
     expect(dropdown.scrollTop).toBe(400);
@@ -462,7 +508,9 @@ describe('<Select />', () => {
     const selector = container.querySelector('.ty-select__selector') as HTMLElement;
     fireEvent.click(selector);
 
-    jest.runAllTimers();
+    act(() => {
+      jest.runAllTimers();
+    });
 
     const dropdown = document.querySelector('.ty-select__dropdown') as HTMLElement;
     expect(dropdown.scrollTop).toBe(0);

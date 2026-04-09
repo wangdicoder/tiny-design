@@ -107,6 +107,7 @@ Three sizes: `sm`, `md` (default) and `lg`.
 | filterOption              | Filter function or false to disable              | boolean &#124; (inputValue, option) => boolean                | true    |
 | onChange                   | Callback when input value changes                | (value: string) => void                                       | -       |
 | onSelect                  | Callback when an option is selected              | (value: string, option) => void                               | -       |
+| onOpenChange              | Callback when dropdown open state changes        | (open: boolean) => void                                       | -       |
 | onSearch                  | Callback when searching                          | (value: string) => void                                       | -       |
 | onFocus                   | Callback when input is focused                   | (e: FocusEvent) => void                                       | -       |
 | onBlur                    | Callback when input loses focus                  | (e: FocusEvent) => void                                       | -       |

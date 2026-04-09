@@ -6,7 +6,11 @@ exports[`<ColorPicker /> should match the snapshot 1`] = `
     class="ty-color-picker"
   >
     <div
+      aria-expanded="false"
+      aria-haspopup="dialog"
       class="ty-color-picker__trigger"
+      role="button"
+      tabindex="0"
     >
       <div
         class="ty-color-picker__swatch"

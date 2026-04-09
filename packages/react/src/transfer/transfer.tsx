@@ -28,6 +28,7 @@ const Transfer = React.forwardRef<HTMLDivElement, TransferProps>(
     const configContext = useContext(ConfigContext);
     const prefixCls = getPrefixCls('transfer', configContext.prefixCls, customisedCls);
     const cls = classNames(prefixCls, className);
+    const controlledValueSignature = (props.value ?? []).join('|');
 
     const getDataKeys = useCallback((): [TransferItem[], TransferItem[]] => {
       const rightKeys: string[] = 'value' in props ? (value as string[]) : defaultValue;
@@ -80,7 +81,7 @@ const Transfer = React.forwardRef<HTMLDivElement, TransferProps>(
 
     useEffect(() => {
       if ('value' in props) {
-        const rightKeys = props.value as string[];
+        const rightKeys = props.value ?? [];
         const rightData: TransferItem[] = dataSource.filter((item) => rightKeys.includes(item.key));
         const leftData: TransferItem[] = dataSource.filter((item) => !rightKeys.includes(item.key));
         setSourceData(leftData);
@@ -88,7 +89,7 @@ const Transfer = React.forwardRef<HTMLDivElement, TransferProps>(
         setLeftCheckedKeys([]);
         setRightCheckedKeys([]);
       }
-    }, [props, dataSource]);
+    }, [controlledValueSignature, dataSource]);
 
     return (
       <div {...otherProps} className={cls} ref={ref}>

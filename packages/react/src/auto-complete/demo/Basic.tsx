@@ -1,10 +1,11 @@
 import React from 'react';
 import { AutoComplete } from '@tiny-design/react';
+import type { AutoCompleteOption } from '@tiny-design/react';
 
 export default function BasicDemo() {
-  const [options, setOptions] = React.useState([]);
+  const [options, setOptions] = React.useState<AutoCompleteOption[]>([]);
 
-  const handleSearch = (value) => {
+  const handleSearch = (value: string) => {
     if (!value) {
       setOptions([]);
     } else {

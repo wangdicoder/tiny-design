@@ -1,8 +1,9 @@
 import React from 'react';
-import { ColorPicker } from '@tiny-design/react';
-import type { ColorChangeMeta } from '@tiny-design/react';
+import ColorPicker from '../index';
+import type { ColorChangeMeta, ColorFormat } from '../types';
 
 export default function OklchDemo() {
+  const format: ColorFormat = 'oklch';
   const [color, setColor] = React.useState('oklch(0.667 0.178 258.4)');
   const [meta, setMeta] = React.useState<ColorChangeMeta | null>(null);
 
@@ -11,9 +12,9 @@ export default function OklchDemo() {
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
         <ColorPicker
           value={color}
-          format="oklch"
+          format={format}
           formats={['hex', 'rgb', 'oklch']}
-          onChange={(next, nextMeta) => {
+          onChange={(next: string, nextMeta: ColorChangeMeta) => {
             setColor(next);
             setMeta(nextMeta);
           }}

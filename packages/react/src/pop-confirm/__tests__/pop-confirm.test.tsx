@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import PopConfirm from '../index';
 
 describe('<PopConfirm />', () => {
@@ -44,5 +44,17 @@ describe('<PopConfirm />', () => {
 
     expect(onConfirm).toHaveBeenCalledTimes(1);
     expect(onVisibleChange).toHaveBeenCalledWith(false);
+  });
+
+  it('should expose alertdialog semantics linked to the title', () => {
+    render(
+      <PopConfirm title="Sure?" visible={true}>
+        <button>Delete</button>
+      </PopConfirm>
+    );
+
+    const dialog = screen.getByRole('alertdialog');
+    expect(dialog).toHaveAttribute('aria-labelledby');
+    expect(document.getElementById(dialog.getAttribute('aria-labelledby') || '')).toHaveTextContent('Sure?');
   });
 });

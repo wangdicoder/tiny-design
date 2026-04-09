@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect, useContext } from 'react';
+import { useState, useRef, useCallback, useEffect, useContext, useId } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -93,6 +93,7 @@ const DatePicker = (props: DatePickerProps) => {
   const [hoverDate, setHoverDate] = useState<Date | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const popupId = useId();
 
   const isOpen = controlledOpen ?? open;
 
@@ -259,7 +260,12 @@ const DatePicker = (props: DatePickerProps) => {
   };
 
   const renderOverlay = () => (
-    <div className={`${prefixCls}__dropdown`} ref={dropdownRef}>
+    <div
+      id={popupId}
+      role="dialog"
+      aria-modal="false"
+      className={`${prefixCls}__dropdown`}
+      ref={dropdownRef}>
       <PickerHeader
         date={panelDate}
         mode={mode}
@@ -273,7 +279,9 @@ const DatePicker = (props: DatePickerProps) => {
         <div className={`${prefixCls}__footer`}>
           {renderExtraFooter?.(mode)}
           {showToday && mode === 'date' && picker === 'date' && (
-            <a className={`${prefixCls}__today-btn`} onClick={handleToday}>{locale.DatePicker.today}</a>
+            <button type="button" className={`${prefixCls}__today-btn`} onClick={handleToday}>
+              {locale.DatePicker.today}
+            </button>
           )}
         </div>
       ) : null}
@@ -296,9 +304,16 @@ const DatePicker = (props: DatePickerProps) => {
             disabled={disabled}
             placeholder={defaultPlaceholder}
             value={displayValue}
+            role="combobox"
             aria-expanded={isOpen}
             aria-haspopup="dialog"
+            aria-controls={isOpen ? popupId : undefined}
             onKeyDown={(e) => {
+              if ((e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') && !isOpen) {
+                e.preventDefault();
+                toggleOpen(true);
+                return;
+              }
               if (e.key === 'Escape' && isOpen) toggleOpen(false);
             }}
           />

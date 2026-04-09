@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import Tour from '../index';
 import { TourStepProps } from '../types';
 import ConfigProvider from '../../config-provider';
@@ -26,6 +26,16 @@ describe('<Tour />', () => {
     const { getByText } = render(<Tour open steps={steps} />);
     expect(getByText('Step 1')).toBeInTheDocument();
     expect(getByText('Description 1')).toBeInTheDocument();
+  });
+
+  it('should expose aria relationships for step title and description', () => {
+    render(<Tour open steps={steps} />);
+
+    const dialog = document.querySelector('.ty-tour') as HTMLElement;
+    expect(dialog).toHaveAttribute('aria-labelledby');
+    expect(dialog).toHaveAttribute('aria-describedby');
+    expect(document.getElementById(dialog.getAttribute('aria-labelledby') || '')).toHaveTextContent('Step 1');
+    expect(document.getElementById(dialog.getAttribute('aria-describedby') || '')).toHaveTextContent('Description 1');
   });
 
   it('should navigate to next step', () => {
@@ -93,6 +103,35 @@ describe('<Tour />', () => {
     render(<Tour open steps={steps} onClose={onClose} />);
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(onClose).toHaveBeenCalled();
+  });
+
+  it('should ignore keyboard events when keyboard is disabled', () => {
+    const onClose = jest.fn();
+    render(<Tour open steps={steps} keyboard={false} onClose={onClose} />);
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it('should focus the panel when opened and restore focus on close', async () => {
+    const trigger = document.createElement('button');
+    trigger.textContent = 'trigger';
+    document.body.appendChild(trigger);
+    trigger.focus();
+
+    const { rerender } = render(<Tour open steps={[{ title: 'Centered' }]} />);
+
+    await waitFor(() => {
+      const closeBtn = document.querySelector('.ty-tour__close-btn') as HTMLElement | null;
+      expect(closeBtn).toHaveFocus();
+    });
+
+    rerender(<Tour open={false} steps={[{ title: 'Centered' }]} />);
+
+    await waitFor(() => {
+      expect(trigger).toHaveFocus();
+    });
+
+    document.body.removeChild(trigger);
   });
 
   it('should center panel when no target', () => {

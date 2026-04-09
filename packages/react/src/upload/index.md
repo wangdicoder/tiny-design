@@ -75,13 +75,13 @@ You can drag files to a specific area, to upload. Alternatively, you can also up
 | fileList          | uploaded files                                    | object[]                      | -         |
 | defaultFileList   | default uploaded files                            | object[]                      | -         |
 | limit             | maximum number of uploads allowed	                | number                        | -         |
-| beforeUpload      | hook function before uploading with the file to be uploaded as its parameter. If false or a Promise is returned, uploading will be aborted    | (file: File) => void  | -   |
+| beforeUpload      | hook before uploading. Return `false` to stop, return a `File` to replace the upload file, or return a Promise that resolves to either        | (file: File) => boolean &#124; File &#124; Promise&lt;boolean &#124; File&gt; | -   |
 | onProgress        | hook function when some progress occurs           | (percent: number) => void     | -         |
 | onSuccess         | hook function when uploaded successfully          | (file, fileList) => void      | -         |
 | onError           | hook function when some errors occurs             | (file, fileList) => void      | -         |
 | onChange          | hook function when file status change             | (file, fileList) => void      | -         |
 | onRemove          | hook function when files are removed              | (file) => void                | -         |
 | onExceed          | hook function when limit is exceeded              | (files, fileList) => void     | -         |
-| httpRequest       | override default xhr behavior                     | Function                      | ajax      |
+| httpRequest       | override default xhr behavior                     | (option: UploadRequestOption) => XMLHttpRequest &#124; void | ajax      |
 | style	            | style object of container	object                  | CSSProperties                 | -         |
 | className	        | className of container                            | string                        | -         |

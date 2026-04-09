@@ -55,6 +55,19 @@ describe('<Cascader />', () => {
     expect(document.body.querySelector('.ty-cascader__dropdown')).toBeTruthy();
   });
 
+  it('should open on ArrowDown and close on Escape from the selector', async () => {
+    const { container } = render(<Cascader options={options} />);
+    const selector = container.querySelector('.ty-cascader__selector') as HTMLElement;
+
+    fireEvent.keyDown(selector, { key: 'ArrowDown' });
+    expect(document.body.querySelector('.ty-cascader__dropdown')).toBeTruthy();
+
+    fireEvent.keyDown(selector, { key: 'Escape' });
+    await waitFor(() => {
+      expect(container.querySelector('.ty-cascader')).not.toHaveClass('ty-cascader_open');
+    });
+  });
+
   it('should render first level options', () => {
     const { container, getByText } = render(<Cascader options={options} />);
     const selector = container.querySelector('.ty-cascader__selector');

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import Tree from '../index';
 
 describe('<Tree />', () => {
@@ -29,5 +29,30 @@ describe('<Tree />', () => {
     const { getByText } = render(<Tree data={treeData} />);
     expect(getByText('Node 1')).toBeInTheDocument();
     expect(getByText('Node 2')).toBeInTheDocument();
+  });
+
+  it('should update rendered nodes when data changes', () => {
+    const DynamicTree = () => {
+      const [data, setData] = React.useState(treeData);
+      return (
+        <>
+          <Tree data={data} />
+          <button
+            onClick={() =>
+              setData([
+                ...treeData,
+                { key: '3', title: 'Node 3' },
+              ])
+            }
+          >
+            add-node
+          </button>
+        </>
+      );
+    };
+
+    const { getByText } = render(<DynamicTree />);
+    fireEvent.click(getByText('add-node'));
+    expect(getByText('Node 3')).toBeInTheDocument();
   });
 });

@@ -1,4 +1,4 @@
-import { CheckCircle, CloseCircle, LoadingCircle, PaperClip } from '../_utils/components';
+import { CheckCircle, Close, CloseCircle, LoadingCircle, PaperClip } from '../_utils/components';
 import Progress from '../progress';
 import { UploadFile } from './types';
 
@@ -31,11 +31,13 @@ const UploadList = (props: UploadListProps): JSX.Element => {
                   />
                 )}
               </span>
-              <span
+              <button
+                type="button"
                 className={`${prefixCls}__upload-list-item-delete`}
-                onClick={(): void => onRemove && onRemove(file)}>
-                ✕
-              </span>
+                onClick={(): void => onRemove && onRemove(file)}
+                aria-label={`Remove ${name}`}>
+                <Close size={12} />
+              </button>
             </div>
             {status === 'uploading' && (
               <Progress.Bar

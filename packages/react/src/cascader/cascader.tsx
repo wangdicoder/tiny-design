@@ -98,6 +98,25 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     setDropdownOpen(next);
   };
 
+  const handleSelectorKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (disabled) return;
+
+    if (e.key === 'Escape') {
+      if (open) {
+        e.preventDefault();
+        setDropdownOpen(false);
+      }
+      return;
+    }
+
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (!open) {
+        setDropdownOpen(true);
+      }
+    }
+  };
+
   const getPathAtLevel = useCallback((level: number): CascaderValue => {
     if (hoveredPath.length > level) {
       return hoveredPath;
@@ -231,7 +250,14 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
         onVisibleChange={setDropdownOpen}
         content={dropdown}
       >
-        <div className={`${prefixCls}__selector`} onClick={toggleOpen}>
+        <div
+          className={`${prefixCls}__selector`}
+          onClick={toggleOpen}
+          onKeyDown={handleSelectorKeyDown}
+          role="combobox"
+          aria-expanded={open}
+          aria-haspopup="listbox"
+          tabIndex={disabled ? -1 : 0}>
           {displayText ? (
             <span className={`${prefixCls}__display`}>{displayText}</span>
           ) : (

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Select } from '@tiny-design/react';
+import type { SelectValue } from '../types';
 
 export default function MultipleDemo() {
-  const [value, setValue] = React.useState(['apple', 'cherry']);
+  const [value, setValue] = React.useState<SelectValue>(['apple', 'cherry']);
 
   return (
     <div style={{ width: 360 }}>
@@ -11,7 +12,7 @@ export default function MultipleDemo() {
         showSearch
         placeholder="Select fruits"
         value={value}
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         allowClear
       >
         <Select.Option value="apple">Apple</Select.Option>

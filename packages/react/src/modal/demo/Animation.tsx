@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Button, Flex } from '@tiny-design/react';
 
 export default function AnimationDemo() {
@@ -16,7 +16,7 @@ export default function AnimationDemo() {
       <Modal
         header="Default Slide up and down"
         visible={visible1}
-        onOk={() => {}}
+        onConfirm={() => setVisible1(false)}
         onCancel={() => setVisible1(false)}>
         <div>Some contents...</div>
         <div>Some contents...</div>
@@ -26,7 +26,7 @@ export default function AnimationDemo() {
         animation="scale"
         header="I'm a scale animation modal"
         visible={visible2}
-        onOk={() => {}}
+        onConfirm={() => setVisible2(false)}
         onCancel={() => setVisible2(false)}>
         <div>Some contents...</div>
         <div>Some contents...</div>
