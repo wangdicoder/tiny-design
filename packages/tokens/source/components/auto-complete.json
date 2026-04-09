@@ -1,0 +1,90 @@
+{
+  "auto-complete.opacity.disabled": {
+    "$value": "0.6",
+    "$type": "number",
+    "description": "Disabled auto-complete root opacity."
+  },
+  "auto-complete.dropdown-padding": {
+    "$value": "4px 0",
+    "$type": "string",
+    "description": "AutoComplete dropdown padding."
+  },
+  "auto-complete.dropdown-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "AutoComplete dropdown background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "auto-complete.dropdown-shadow": {
+    "$value": "{shadow-popup}",
+    "$type": "shadow",
+    "description": "AutoComplete dropdown shadow.",
+    "fallback": "--ty-shadow-popup"
+  },
+  "auto-complete.dropdown-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "AutoComplete dropdown border radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "auto-complete.dropdown-font-size": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "AutoComplete dropdown font size.",
+    "fallback": "--ty-font-size-base"
+  },
+  "auto-complete.dropdown-max-height": {
+    "$value": "300px",
+    "$type": "dimension",
+    "description": "AutoComplete dropdown max height."
+  },
+  "auto-complete.empty-padding": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "AutoComplete empty state padding."
+  },
+  "auto-complete.empty-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "AutoComplete empty state text color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "auto-complete.empty-font-size": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "AutoComplete empty state font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "auto-complete.option-padding": {
+    "$value": "7px 12px",
+    "$type": "string",
+    "description": "AutoComplete option padding."
+  },
+  "auto-complete.option-font-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "AutoComplete option font size."
+  },
+  "auto-complete.option-line-height": {
+    "$value": "22px",
+    "$type": "dimension",
+    "description": "AutoComplete option line height."
+  },
+  "auto-complete.option-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "AutoComplete option text color.",
+    "fallback": "--ty-color-text"
+  },
+  "auto-complete.option-active-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "AutoComplete active option background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "auto-complete.option-disabled-opacity": {
+    "$value": "0.5",
+    "$type": "number",
+    "description": "AutoComplete disabled option opacity."
+  }
+}

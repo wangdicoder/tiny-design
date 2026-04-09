@@ -1,9 +1,5 @@
 @use "@tiny-design/tokens/scss/variables" as *;
 
-$speed-dial-fab-size: 56px;
-$speed-dial-action-size: 40px;
-$speed-dial-actions-gap: 16px;
-
 .#{$prefix}-speed-dial {
   position: relative;
   display: inline-flex;
@@ -13,16 +9,16 @@ $speed-dial-actions-gap: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: $speed-dial-fab-size;
-    height: $speed-dial-fab-size;
+    width: var(--ty-speed-dial-fab-size);
+    height: var(--ty-speed-dial-fab-size);
     border-radius: 50%;
     border: none;
     background-color: var(--ty-speed-dial-bg);
     color: var(--ty-speed-dial-color);
-    font-size: 24px;
+    font-size: var(--ty-speed-dial-fab-font-size);
     cursor: pointer;
     box-shadow: var(--ty-shadow);
-    transition: background-color 0.2s ease;
+    transition: background-color var(--ty-speed-dial-button-transition-duration) ease;
     outline: none;
 
     &:hover:not(.#{$prefix}-speed-dial__button_disabled) {
@@ -30,7 +26,7 @@ $speed-dial-actions-gap: 16px;
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px var(--ty-input-shadow-focus, var(--ty-shadow-focus)), var(--ty-shadow);
+      box-shadow: var(--ty-speed-dial-focus-ring), var(--ty-shadow);
     }
 
     &_open {
@@ -40,7 +36,7 @@ $speed-dial-actions-gap: 16px;
     }
 
     &_disabled {
-      opacity: 0.5;
+      opacity: var(--ty-speed-dial-disabled-opacity);
       cursor: not-allowed;
     }
   }
@@ -50,7 +46,7 @@ $speed-dial-actions-gap: 16px;
     display: inline-block;
     width: 1em;
     height: 1em;
-    transition: transform 0.3s ease;
+    transition: transform var(--ty-speed-dial-icon-transition-duration) ease;
 
     &::before,
     &::after {
@@ -82,13 +78,13 @@ $speed-dial-actions-gap: 16px;
     z-index: 1;
     opacity: 0;
     visibility: hidden;
-    transform: scale(0.5);
-    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    transform: scale(var(--ty-speed-dial-actions-scale-closed));
+    transition: opacity var(--ty-speed-dial-actions-transition-duration) ease, visibility var(--ty-speed-dial-actions-transition-duration) ease, transform var(--ty-speed-dial-actions-transition-duration) ease;
 
     &_open {
       opacity: 1;
       visibility: visible;
-      transform: scale(1);
+      transform: scale(var(--ty-speed-dial-actions-scale-open));
     }
   }
 
@@ -99,7 +95,7 @@ $speed-dial-actions-gap: 16px;
     left: 50%;
     transform-origin: bottom center;
     translate: -50% 0;
-    padding-bottom: $speed-dial-actions-gap;
+    padding-bottom: var(--ty-speed-dial-actions-gap);
   }
 
   &_up &__actions_open {
@@ -112,7 +108,7 @@ $speed-dial-actions-gap: 16px;
     left: 50%;
     transform-origin: top center;
     translate: -50% 0;
-    padding-top: $speed-dial-actions-gap;
+    padding-top: var(--ty-speed-dial-actions-gap);
   }
 
   &_down &__actions_open {
@@ -125,7 +121,7 @@ $speed-dial-actions-gap: 16px;
     top: 50%;
     transform-origin: center right;
     translate: 0 -50%;
-    padding-right: $speed-dial-actions-gap;
+    padding-right: var(--ty-speed-dial-actions-gap);
   }
 
   &_left &__actions_open {
@@ -138,7 +134,7 @@ $speed-dial-actions-gap: 16px;
     top: 50%;
     transform-origin: center left;
     translate: 0 -50%;
-    padding-left: $speed-dial-actions-gap;
+    padding-left: var(--ty-speed-dial-actions-gap);
   }
 
   &_right &__actions_open {
@@ -151,12 +147,12 @@ $speed-dial-actions-gap: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin: 4px 0;
+    margin: var(--ty-speed-dial-action-wrapper-gap) 0;
   }
 
   &_left &__action-wrapper,
   &_right &__action-wrapper {
-    margin: 0 4px;
+    margin: 0 var(--ty-speed-dial-action-wrapper-gap);
   }
 
   // Action button
@@ -164,16 +160,16 @@ $speed-dial-actions-gap: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: $speed-dial-action-size;
-    height: $speed-dial-action-size;
+    width: var(--ty-speed-dial-action-size);
+    height: var(--ty-speed-dial-action-size);
     border-radius: 50%;
     border: none;
     background-color: var(--ty-speed-dial-action-bg);
     color: var(--ty-speed-dial-action-color);
-    font-size: 16px;
+    font-size: var(--ty-speed-dial-action-font-size);
     cursor: pointer;
     box-shadow: var(--ty-shadow-sm);
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color var(--ty-speed-dial-button-transition-duration) ease, box-shadow var(--ty-speed-dial-button-transition-duration) ease;
     outline: none;
 
     &:hover:not(.#{$prefix}-speed-dial__action_disabled) {
@@ -182,11 +178,11 @@ $speed-dial-actions-gap: 16px;
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px var(--ty-input-shadow-focus, var(--ty-shadow-focus)), var(--ty-shadow-sm);
+      box-shadow: var(--ty-speed-dial-focus-ring), var(--ty-shadow-sm);
     }
 
     &_disabled {
-      opacity: 0.5;
+      opacity: var(--ty-speed-dial-disabled-opacity);
       cursor: not-allowed;
     }
   }
@@ -197,31 +193,31 @@ $speed-dial-actions-gap: 16px;
     white-space: nowrap;
     background-color: var(--ty-speed-dial-tooltip-bg);
     color: var(--ty-speed-dial-tooltip-color);
-    font-size: var(--ty-font-size-sm);
-    padding: 4px 8px;
-    border-radius: var(--ty-border-radius);
+    font-size: var(--ty-speed-dial-tooltip-font-size);
+    padding: var(--ty-speed-dial-tooltip-padding);
+    border-radius: var(--ty-speed-dial-tooltip-radius);
     pointer-events: none;
 
     &_left {
-      right: calc(100% + 8px);
+      right: calc(100% + var(--ty-speed-dial-tooltip-offset));
       top: 50%;
       translate: 0 -50%;
     }
 
     &_right {
-      left: calc(100% + 8px);
+      left: calc(100% + var(--ty-speed-dial-tooltip-offset));
       top: 50%;
       translate: 0 -50%;
     }
 
     &_top {
-      bottom: calc(100% + 8px);
+      bottom: calc(100% + var(--ty-speed-dial-tooltip-offset));
       left: 50%;
       translate: -50% 0;
     }
 
     &_bottom {
-      top: calc(100% + 8px);
+      top: calc(100% + var(--ty-speed-dial-tooltip-offset));
       left: 50%;
       translate: -50% 0;
     }

@@ -51,7 +51,9 @@ const Dropdown = (props: DropdownProps): JSX.Element => {
       theme: 'light',
       onSelect: (selectedIndex) => {
         originalOnSelect?.(selectedIndex);
-        setPopupVisibleState(false);
+        if (!originalOnSelect) {
+          setPopupVisibleState(false);
+        }
       },
     };
     return React.cloneElement(overlay, overlayProps);

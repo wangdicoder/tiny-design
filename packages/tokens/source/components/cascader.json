@@ -5,6 +5,11 @@
     "description": "Cascader selector background color.",
     "fallback": "--ty-color-bg-container"
   },
+  "cascader.min-width": {
+    "$value": "200px",
+    "$type": "dimension",
+    "description": "Cascader root min width."
+  },
   "cascader.border": {
     "$value": "{color-border}",
     "$type": "color",
@@ -34,6 +39,11 @@
     "$type": "shadow",
     "description": "Cascader selector focus shadow.",
     "fallback": "--ty-shadow-focus"
+  },
+  "cascader.opacity.disabled": {
+    "$value": "0.5",
+    "$type": "number",
+    "description": "Disabled cascader root opacity."
   },
   "cascader.font-size.sm": {
     "$value": "{font-size-sm}",
@@ -110,11 +120,31 @@
     "description": "Cascader clear icon hover color.",
     "fallback": "--ty-color-text-secondary"
   },
+  "cascader.clear-offset-inline-end": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Cascader clear icon inline end offset."
+  },
+  "cascader.clear-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Cascader clear icon font size."
+  },
   "cascader.arrow-color": {
     "$value": "{color-text-tertiary}",
     "$type": "color",
     "description": "Cascader arrow color.",
     "fallback": "--ty-color-text-tertiary"
+  },
+  "cascader.arrow-offset-inline-end": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Cascader arrow inline end offset."
+  },
+  "cascader.arrow-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Cascader arrow font size."
   },
   "cascader.dropdown-bg": {
     "$value": "{color-bg-container}",
@@ -133,17 +163,42 @@
     "$type": "dimension",
     "description": "Cascader dropdown max height."
   },
+  "cascader.menu-padding": {
+    "$value": "4px 0",
+    "$type": "string",
+    "description": "Cascader menu list padding."
+  },
+  "cascader.menu-min-width": {
+    "$value": "120px",
+    "$type": "dimension",
+    "description": "Cascader menu min width."
+  },
   "cascader.hover": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Cascader option hover background color.",
     "fallback": "--ty-color-fill-secondary"
   },
+  "cascader.menu-empty-padding": {
+    "$value": "8px 12px",
+    "$type": "string",
+    "description": "Cascader empty menu item padding."
+  },
   "cascader.menu-empty-color": {
     "$value": "{color-text-secondary}",
     "$type": "color",
     "description": "Cascader empty menu text color.",
     "fallback": "--ty-color-text-secondary"
+  },
+  "cascader.menu-item-padding": {
+    "$value": "5px 12px",
+    "$type": "string",
+    "description": "Cascader menu item padding."
+  },
+  "cascader.menu-item-disabled-opacity": {
+    "$value": "0.5",
+    "$type": "number",
+    "description": "Cascader disabled menu item opacity."
   },
   "cascader.option-color-active": {
     "$value": "{color-primary}",
@@ -161,6 +216,16 @@
     "$type": "color",
     "description": "Cascader submenu arrow color.",
     "fallback": "--ty-color-text-tertiary"
+  },
+  "cascader.menu-item-arrow-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Cascader submenu arrow gap."
+  },
+  "cascader.menu-item-arrow-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Cascader submenu arrow font size."
   },
   "cascader.selected-bg": {
     "$value": "rgba(110, 65, 191, 0.06)",

@@ -5,6 +5,26 @@
     "description": "Speed Dial action bg.",
     "fallback": "--ty-color-bg-container"
   },
+  "speed-dial.fab-size": {
+    "$value": "56px",
+    "$type": "dimension",
+    "description": "Speed Dial floating action button size."
+  },
+  "speed-dial.action-size": {
+    "$value": "40px",
+    "$type": "dimension",
+    "description": "Speed Dial action button size."
+  },
+  "speed-dial.actions-gap": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Speed Dial actions offset gap."
+  },
+  "speed-dial.action-wrapper-gap": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Speed Dial action wrapper gap."
+  },
   "speed-dial.action-bg-hover": {
     "$value": "#f6f9fc",
     "$type": "color",
@@ -31,6 +51,73 @@
     "$value": "#fff",
     "$type": "color",
     "description": "Speed Dial color."
+  },
+  "speed-dial.fab-font-size": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Speed Dial floating action button icon font size."
+  },
+  "speed-dial.action-font-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Speed Dial action button icon font size."
+  },
+  "speed-dial.disabled-opacity": {
+    "$value": "0.5",
+    "$type": "number",
+    "description": "Speed Dial disabled opacity."
+  },
+  "speed-dial.focus-ring": {
+    "$value": "0 0 0 3px var(--ty-shadow-focus)",
+    "$type": "shadow",
+    "description": "Speed Dial focus ring shadow."
+  },
+  "speed-dial.icon-transition-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Speed Dial icon transition duration."
+  },
+  "speed-dial.button-transition-duration": {
+    "$value": "200ms",
+    "$type": "duration",
+    "description": "Speed Dial button transition duration."
+  },
+  "speed-dial.actions-transition-duration": {
+    "$value": "200ms",
+    "$type": "duration",
+    "description": "Speed Dial actions visibility transition duration."
+  },
+  "speed-dial.actions-scale-closed": {
+    "$value": "0.5",
+    "$type": "number",
+    "description": "Speed Dial actions closed scale."
+  },
+  "speed-dial.actions-scale-open": {
+    "$value": "1",
+    "$type": "number",
+    "description": "Speed Dial actions open scale."
+  },
+  "speed-dial.tooltip-font-size": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Speed Dial tooltip font size.",
+    "fallback": "--ty-font-size-sm"
+  },
+  "speed-dial.tooltip-padding": {
+    "$value": "4px 8px",
+    "$type": "string",
+    "description": "Speed Dial tooltip padding."
+  },
+  "speed-dial.tooltip-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Speed Dial tooltip radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "speed-dial.tooltip-offset": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Speed Dial tooltip offset."
   },
   "speed-dial.tooltip-bg": {
     "$value": "#32325d",

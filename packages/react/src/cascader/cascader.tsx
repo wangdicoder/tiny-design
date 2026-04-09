@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext, useMemo, useCallback } 
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
-import { ArrowDown } from '../_utils/components';
+import { ArrowDown, ClearIcon } from '../_utils/components';
 import Popup from '../popup';
 import { CascaderProps, CascaderOption, CascaderValue } from './types';
 
@@ -98,10 +98,21 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     setDropdownOpen(next);
   };
 
+  const getPathAtLevel = useCallback((level: number): CascaderValue => {
+    if (hoveredPath.length > level) {
+      return hoveredPath;
+    }
+    if (selectedValue.length > level) {
+      return selectedValue;
+    }
+    return hoveredPath.length > 0 ? hoveredPath : selectedValue;
+  }, [hoveredPath, selectedValue]);
+
   const handleOptionSelect = (option: CascaderOption, level: number) => {
     if (option.disabled) return;
 
-    const newPath = [...hoveredPath.slice(0, level), option.value];
+    const basePath = getPathAtLevel(level);
+    const newPath = [...basePath.slice(0, level), option.value];
     setHoveredPath(newPath);
 
     // Update columns
@@ -127,7 +138,8 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
 
   const handleOptionHover = (option: CascaderOption, level: number) => {
     if (expandTrigger !== 'hover' || option.disabled) return;
-    const newPath = [...hoveredPath.slice(0, level), option.value];
+    const basePath = getPathAtLevel(level);
+    const newPath = [...basePath.slice(0, level), option.value];
     setHoveredPath(newPath);
 
     const cols = activeColumns.slice(0, level + 1);
@@ -164,6 +176,7 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     [`${prefixCls}_${cascaderSize}`]: cascaderSize,
     [`${prefixCls}_disabled`]: disabled,
     [`${prefixCls}_open`]: open,
+    [`${prefixCls}_has-value`]: allowClear && selectedValue.length > 0 && !disabled,
   });
 
   const dropdown = open
@@ -225,9 +238,14 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
             <span className={`${prefixCls}__placeholder`}>{placeholder}</span>
           )}
           {allowClear && selectedValue.length > 0 && (
-            <span className={`${prefixCls}__clear`} onClick={handleClear}>
-              ✕
-            </span>
+            <button
+              type="button"
+              className={`${prefixCls}__clear`}
+              onClick={handleClear}
+              aria-label="Clear selection"
+            >
+              <ClearIcon size="1em" />
+            </button>
           )}
           <span className={`${prefixCls}__arrow`}><ArrowDown size={10} /></span>
         </div>

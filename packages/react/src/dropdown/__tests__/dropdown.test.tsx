@@ -58,6 +58,39 @@ describe('<Dropdown />', () => {
     });
   });
 
+  it('should keep the menu open when overlay onSelect handles visibility itself', async () => {
+    const ControlledDemo = () => {
+      const [visible, setVisible] = React.useState(false);
+
+      return (
+        <Dropdown
+          trigger="click"
+          visible={visible}
+          onVisibleChange={(nextVisible) => {
+            if (nextVisible) {
+              setVisible(true);
+            }
+          }}
+          overlay={
+            <Menu onSelect={() => {}}>
+              <Menu.Item>Menu Item</Menu.Item>
+            </Menu>
+          }>
+          <button>Trigger</button>
+        </Dropdown>
+      );
+    };
+
+    render(<ControlledDemo />);
+
+    fireEvent.click(screen.getByText('Trigger'));
+    fireEvent.click(screen.getByText('Menu Item'));
+
+    await waitFor(() => {
+      expect(screen.getByRole('menu')).toBeInTheDocument();
+    });
+  });
+
   it('should respect controlled visible prop', () => {
     const { rerender } = render(
       <Dropdown visible={false} trigger="click" overlay={<div>Menu</div>}>

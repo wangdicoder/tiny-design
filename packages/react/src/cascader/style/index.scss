@@ -3,10 +3,10 @@
 .#{$prefix}-cascader {
   position: relative;
   display: inline-block;
-  min-width: 200px;
+  min-width: var(--ty-cascader-min-width);
 
   &_disabled {
-    opacity: 0.5;
+    opacity: var(--ty-cascader-opacity-disabled);
     pointer-events: none;
   }
 
@@ -64,30 +64,45 @@
 
   &__clear {
     position: absolute;
-    right: 24px;
-    font-size: 12px;
+    right: var(--ty-cascader-arrow-offset-inline-end);
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--ty-cascader-clear-size, 14px);
+    height: var(--ty-cascader-clear-size, 14px);
+    font-size: var(--ty-cascader-clear-font-size);
     color: var(--ty-cascader-clear-color);
     cursor: pointer;
     display: none;
-
-    .#{$prefix}-cascader:hover & {
-      display: inline;
-    }
+    border: 0;
+    padding: 0;
+    background: transparent;
+    line-height: 1;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
 
     &:hover {
       color: var(--ty-cascader-clear-color-hover);
     }
   }
 
+  &_has-value:hover &__clear {
+    display: inline-flex;
+  }
+
   &__arrow {
     position: absolute;
-    right: 8px;
-    font-size: 12px;
+    right: var(--ty-cascader-arrow-offset-inline-end);
+    font-size: var(--ty-cascader-arrow-font-size);
     color: var(--ty-cascader-arrow-color);
     transition: transform 0.2s;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &_has-value:hover &__arrow {
+    opacity: 0;
   }
 
   &_open &__arrow {
@@ -108,8 +123,8 @@
   &__menu {
     list-style: none;
     margin: 0;
-    padding: 4px 0;
-    min-width: 120px;
+    padding: var(--ty-cascader-menu-padding);
+    min-width: var(--ty-cascader-menu-min-width);
     max-height: var(--ty-cascader-dropdown-max-height);
     overflow-y: auto;
 
@@ -119,7 +134,7 @@
   }
 
   &__menu-empty {
-    padding: 8px 12px;
+    padding: var(--ty-cascader-menu-empty-padding);
     color: var(--ty-cascader-menu-empty-color);
     text-align: center;
   }
@@ -128,7 +143,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 12px;
+    padding: var(--ty-cascader-menu-item-padding);
     cursor: pointer;
     transition: background 0.15s;
 
@@ -144,7 +159,7 @@
 
     &_disabled {
       cursor: not-allowed;
-      opacity: 0.5;
+      opacity: var(--ty-cascader-menu-item-disabled-opacity);
     }
   }
 
@@ -156,8 +171,8 @@
   }
 
   &__menu-item-arrow {
-    margin-left: 8px;
-    font-size: 12px;
+    margin-left: var(--ty-cascader-menu-item-arrow-gap);
+    font-size: var(--ty-cascader-menu-item-arrow-font-size);
     color: var(--ty-cascader-menu-item-arrow-color);
   }
 }

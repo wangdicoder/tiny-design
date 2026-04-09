@@ -76,6 +76,28 @@ describe('<Cascader />', () => {
     expect(container.firstChild).toHaveClass('ty-cascader_disabled');
   });
 
+  it('should clear the selected value when allowClear is clicked', () => {
+    const onChange = jest.fn();
+    const { container, queryByText } = render(
+      <Cascader
+        options={options}
+        defaultValue={['zhejiang', 'hangzhou', 'xihu']}
+        allowClear
+        onChange={onChange}
+      />
+    );
+
+    const clearButton = container.querySelector('.ty-cascader__clear') as HTMLButtonElement;
+
+    expect(clearButton).toHaveAttribute('aria-label', 'Clear selection');
+    expect(clearButton.querySelector('svg')).toBeTruthy();
+
+    fireEvent.click(clearButton);
+
+    expect(onChange).toHaveBeenCalledWith([], []);
+    expect(queryByText('Zhejiang / Hangzhou / West Lake')).not.toBeInTheDocument();
+  });
+
   it('should close on outside click', async () => {
     const { container } = render(
       <div>
@@ -100,6 +122,85 @@ describe('<Cascader />', () => {
       <Cascader options={options} value={['zhejiang', 'hangzhou', 'xihu']} />
     );
     expect(getByText('Zhejiang / Hangzhou / West Lake')).toBeInTheDocument();
+  });
+
+  it('should update value on parent selection when changeOnSelect is enabled', () => {
+    const onChange = jest.fn();
+    const { container, getByText } = render(
+      <Cascader options={options} changeOnSelect onChange={onChange} />
+    );
+
+    const selector = container.querySelector('.ty-cascader__selector');
+    fireEvent.click(selector!);
+    fireEvent.click(getByText('Zhejiang'));
+
+    expect(onChange).toHaveBeenCalledWith(
+      ['zhejiang'],
+      [expect.objectContaining({ value: 'zhejiang', label: 'Zhejiang' })]
+    );
+    expect(container.querySelector('.ty-cascader__display')).toHaveTextContent('Zhejiang');
+    expect(document.body.querySelector('.ty-cascader__dropdown')).toBeTruthy();
+    expect(getByText('Hangzhou')).toBeInTheDocument();
+  });
+
+  it('should keep the full path after selecting a child in controlled changeOnSelect mode', () => {
+    const ChangeOnSelectControlledDemo = () => {
+      const [value, setValue] = React.useState<(string | number)[]>([]);
+
+      return (
+        <Cascader
+          options={options}
+          value={value}
+          onChange={(nextValue) => setValue(nextValue)}
+          changeOnSelect
+          placeholder="Select any level"
+        />
+      );
+    };
+
+    const { container, getByText } = render(<ChangeOnSelectControlledDemo />);
+
+    const selector = container.querySelector('.ty-cascader__selector');
+    fireEvent.click(selector!);
+    fireEvent.click(getByText('Zhejiang'));
+    fireEvent.click(getByText('Hangzhou'));
+    fireEvent.click(getByText('West Lake'));
+
+    expect(container.querySelector('.ty-cascader__display')).toHaveTextContent(
+      'Zhejiang / Hangzhou / West Lake'
+    );
+  });
+
+  it('should preserve parent path when selecting a child after reopening in controlled changeOnSelect mode', () => {
+    const ChangeOnSelectControlledDemo = () => {
+      const [value, setValue] = React.useState<(string | number)[]>([]);
+
+      return (
+        <div>
+          <Cascader
+            options={options}
+            value={value}
+            onChange={(nextValue) => setValue(nextValue)}
+            changeOnSelect
+            placeholder="Select any level"
+          />
+          <button>Outside</button>
+        </div>
+      );
+    };
+
+    const { container, getByText } = render(<ChangeOnSelectControlledDemo />);
+
+    const selector = container.querySelector('.ty-cascader__selector');
+    fireEvent.click(selector!);
+    fireEvent.click(getByText('Jiangsu'));
+    fireEvent.click(getByText('Outside'));
+    fireEvent.click(selector!);
+    fireEvent.click(getByText('Nanjing'));
+
+    expect(container.querySelector('.ty-cascader__display')).toHaveTextContent(
+      'Jiangsu / Nanjing'
+    );
   });
 
   it('should respect the configured popup container', () => {
