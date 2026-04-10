@@ -48,6 +48,44 @@ describe('<Upload />', () => {
     expect(httpRequest).toHaveBeenCalledTimes(1);
   });
 
+  it('should use a stable default field name when name is not provided', async () => {
+    const httpRequest = jest.fn();
+    const { container } = render(<Upload action="/upload" httpRequest={httpRequest} />);
+
+    const input = container.querySelector('input[type="file"]') as HTMLInputElement;
+    fireEvent.change(input, { target: { files: [createFile()] } });
+
+    await waitFor(() => {
+      expect(httpRequest).toHaveBeenCalledTimes(1);
+    });
+
+    expect(httpRequest).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filename: 'file',
+      })
+    );
+  });
+
+  it('should use the provided upload field name when name is set', async () => {
+    const httpRequest = jest.fn();
+    const { container } = render(
+      <Upload action="/upload" name="attachment" httpRequest={httpRequest} />
+    );
+
+    const input = container.querySelector('input[type="file"]') as HTMLInputElement;
+    fireEvent.change(input, { target: { files: [createFile()] } });
+
+    await waitFor(() => {
+      expect(httpRequest).toHaveBeenCalledTimes(1);
+    });
+
+    expect(httpRequest).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filename: 'attachment',
+      })
+    );
+  });
+
   it('should respect controlled fileList updates from the parent', () => {
     const ControlledUpload = () => {
       const [fileList, setFileList] = React.useState<UploadFile[]>([]);
@@ -127,5 +165,48 @@ describe('<Upload />', () => {
     fireEvent.change(input, { target: { files: [createFile()] } });
 
     expect(httpRequest).not.toHaveBeenCalled();
+  });
+
+  it('should upload the replacement file returned from beforeUpload', async () => {
+    const httpRequest = jest.fn();
+    const replacedFile = new File(['world'], 'processed.txt', { type: 'text/plain' });
+    const { container } = render(
+      <Upload
+        action="/upload"
+        beforeUpload={() => replacedFile}
+        httpRequest={httpRequest}
+      />
+    );
+
+    const input = container.querySelector('input[type="file"]') as HTMLInputElement;
+    fireEvent.change(input, { target: { files: [createFile()] } });
+
+    await waitFor(() => {
+      expect(httpRequest).toHaveBeenCalledTimes(1);
+    });
+
+    expect(httpRequest).toHaveBeenCalledWith(
+      expect.objectContaining({
+        file: replacedFile,
+      })
+    );
+  });
+
+  it('should not upload when async beforeUpload resolves to false', async () => {
+    const httpRequest = jest.fn();
+    const { container } = render(
+      <Upload
+        action="/upload"
+        beforeUpload={() => Promise.resolve(false)}
+        httpRequest={httpRequest}
+      />
+    );
+
+    const input = container.querySelector('input[type="file"]') as HTMLInputElement;
+    fireEvent.change(input, { target: { files: [createFile()] } });
+
+    await waitFor(() => {
+      expect(httpRequest).not.toHaveBeenCalled();
+    });
   });
 });

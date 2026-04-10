@@ -36,8 +36,11 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
     placement === 'top' || placement === 'bottom' ? { height: size } : { width: size };
   const nodeRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
   const titleId = useId();
   const bodyId = useId();
+
+  onCloseRef.current = onClose;
 
   // Focus trap + Escape key
   useEffect(() => {
@@ -46,7 +49,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (keyboard && e.key === 'Escape') {
-        onClose?.(e as unknown as React.MouseEvent);
+        onCloseRef.current?.(e as unknown as React.MouseEvent);
         return;
       }
       if (e.key === 'Tab' && nodeRef.current) {
@@ -82,7 +85,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
       document.removeEventListener('keydown', handleKeyDown);
       previousFocusRef.current?.focus();
     };
-  }, [keyboard, visible, onClose]);
+  }, [keyboard, visible]);
 
   return (
     <Overlay

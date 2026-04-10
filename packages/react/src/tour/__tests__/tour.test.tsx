@@ -134,6 +134,27 @@ describe('<Tour />', () => {
     document.body.removeChild(trigger);
   });
 
+  it('should keep focus inside the panel across rerenders while open', async () => {
+    const trigger = document.createElement('button');
+    trigger.textContent = 'trigger';
+    document.body.appendChild(trigger);
+    trigger.focus();
+
+    const { rerender } = render(<Tour open steps={[{ title: 'Step 1', description: 'Body' }]} zIndex={1001} />);
+
+    await waitFor(() => {
+      const closeBtn = document.querySelector('.ty-tour__close-btn') as HTMLElement | null;
+      expect(closeBtn).toHaveFocus();
+    });
+
+    rerender(<Tour open steps={[{ title: 'Step 1', description: 'Body' }]} zIndex={1002} />);
+
+    expect(document.querySelector('.ty-tour__close-btn')).toHaveFocus();
+    expect(trigger).not.toHaveFocus();
+
+    document.body.removeChild(trigger);
+  });
+
   it('should center panel when no target', () => {
     const { baseElement } = render(<Tour open steps={[{ title: 'Centered' }]} />);
     expect(

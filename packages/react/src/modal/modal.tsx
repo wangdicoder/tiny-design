@@ -50,23 +50,28 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const cls = classNames(prefixCls, className, { [`${prefixCls}_centered`]: centered });
   const nodeRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onCloseProp);
+  const onCancelRef = useRef(onCancelProp);
   const titleId = useId();
   const bodyId = useId();
 
+  onCloseRef.current = onCloseProp;
+  onCancelRef.current = onCancelProp;
+
   const handleCancel = (e: React.MouseEvent): void => {
-    if (onCancelProp) {
-      onCancelProp(e);
+    if (onCancelRef.current) {
+      onCancelRef.current(e);
       return;
     }
-    onCloseProp?.(e);
+    onCloseRef.current?.(e);
   };
 
   const handleClose = (e: React.MouseEvent): void => {
-    if (onCloseProp) {
-      onCloseProp(e);
+    if (onCloseRef.current) {
+      onCloseRef.current(e);
       return;
     }
-    onCancelProp?.(e);
+    onCancelRef.current?.(e);
   };
 
   // Focus trap + Escape key
@@ -113,7 +118,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       document.removeEventListener('keydown', handleKeyDown);
       previousFocusRef.current?.focus();
     };
-  }, [handleClose, keyboard, visible]);
+  }, [keyboard, visible]);
 
   const renderFooter = (): React.ReactNode => {
     if (React.isValidElement(footer)) {

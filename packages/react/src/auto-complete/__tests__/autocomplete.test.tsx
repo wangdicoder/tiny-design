@@ -195,6 +195,22 @@ describe('<AutoComplete />', () => {
     expect(items[0]).toHaveTextContent('Cherry');
   });
 
+  it('should render empty content as a listbox option when no results match', () => {
+    const { container } = render(
+      <AutoComplete options={options} notFoundContent="No data" />
+    );
+    const input = container.querySelector('input')!;
+    fireEvent.change(input, { target: { value: 'zzz' } });
+
+    const listbox = document.querySelector('.ty-auto-complete__dropdown');
+    const emptyItem = document.querySelector('.ty-auto-complete__empty');
+
+    expect(listbox?.querySelector('li.ty-auto-complete__empty')).toBeInTheDocument();
+    expect(emptyItem).toHaveAttribute('role', 'option');
+    expect(emptyItem).toHaveAttribute('aria-disabled', 'true');
+    expect(emptyItem).toHaveTextContent('No data');
+  });
+
   it('should not select disabled option', () => {
     const onSelect = jest.fn();
     const disabledOptions = [

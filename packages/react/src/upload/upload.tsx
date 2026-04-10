@@ -123,7 +123,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
       withCredentials,
       file,
       data,
-      filename: name || file.name,
+      filename: name || 'file',
       method,
       action,
       onProgress: (percent: number) => xhrOnProgress(percent, uploadFile),

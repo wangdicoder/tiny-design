@@ -256,4 +256,17 @@ describe('<Cascader />', () => {
       expect(onDropdownVisibleChange).toHaveBeenCalledWith(false);
     });
   });
+
+  it('should keep the dropdown open in controlled mode when Escape requests closing', () => {
+    const onDropdownVisibleChange = jest.fn();
+    const { container } = render(
+      <Cascader options={options} open onDropdownVisibleChange={onDropdownVisibleChange} />
+    );
+
+    const selector = container.querySelector('.ty-cascader__selector') as HTMLElement;
+    fireEvent.keyDown(selector, { key: 'Escape' });
+
+    expect(container.querySelector('.ty-cascader')).toHaveClass('ty-cascader_open');
+    expect(onDropdownVisibleChange).toHaveBeenCalledWith(false);
+  });
 });

@@ -3,10 +3,46 @@ import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { TreeProps } from './types';
-import { TreeInstance } from './tree-instance';
+import { Node, TreeInstance } from './tree-instance';
 import TreeNode from './tree-node';
 
 const EMPTY_KEYS: string[] = [];
+
+type NodeStateMap = Record<string, { checked: boolean; expanded: boolean }>;
+
+function collectNodeState(nodes: Node[], stateMap: NodeStateMap): void {
+  nodes.forEach((node) => {
+    const stateKey = node.key ?? node.uniqueKey;
+    stateMap[stateKey] = {
+      checked: node.checked,
+      expanded: node.expanded,
+    };
+
+    if (node.children) {
+      collectNodeState(node.children, stateMap);
+    }
+  });
+}
+
+function applyNodeState(nodes: Node[], stateMap: NodeStateMap): void {
+  nodes.forEach((node) => {
+    const stateKey = node.key ?? node.uniqueKey;
+    const previousState = stateMap[stateKey];
+    if (previousState) {
+      node.checked = previousState.checked;
+      node.expanded = previousState.expanded;
+    }
+
+    if (node.children) {
+      applyNodeState(node.children, stateMap);
+      node.indeterminate = node.children.some((child) => child.indeterminate)
+        || (
+          node.children.filter((child) => child.checked).length > 0
+          && node.children.filter((child) => child.checked).length < node.children.length
+        );
+    }
+  });
+}
 
 const Tree = React.forwardRef<HTMLUListElement, TreeProps>(
   (props: TreeProps, ref): JSX.Element => {
@@ -33,13 +69,18 @@ const Tree = React.forwardRef<HTMLUListElement, TreeProps>(
     const [treeNodes, setTreeNodes] = useState(treeInstance.current.nodes);
 
     useEffect(() => {
-      treeInstance.current = new TreeInstance(
+      const previousStateMap: NodeStateMap = {};
+      collectNodeState(treeInstance.current.nodes, previousStateMap);
+
+      const nextTree = new TreeInstance(
         data,
         defaultCheckedKeys,
         defaultExpandedKeys,
         defaultExpandAll
       );
-      setTreeNodes([...treeInstance.current.nodes]);
+      applyNodeState(nextTree.nodes, previousStateMap);
+      treeInstance.current = nextTree;
+      setTreeNodes([...nextTree.nodes]);
     }, [data, defaultCheckedKeys, defaultExpandedKeys, defaultExpandAll]);
 
     const onCheckboxChange = (key: string, e: React.ChangeEvent<HTMLInputElement>) => {

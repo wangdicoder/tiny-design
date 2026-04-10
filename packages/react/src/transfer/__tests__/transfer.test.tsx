@@ -45,4 +45,42 @@ describe('<Transfer />', () => {
 
     expect(container.querySelectorAll('.ty-transfer-panel input[type="checkbox"]')[1]).toBeChecked();
   });
+
+  it('should preserve checked items outside the current search filter', () => {
+    const { container } = render(<Transfer dataSource={dataSource} showSearch />);
+    const sourcePanel = container.querySelectorAll('.ty-transfer-panel')[0];
+    const searchInput = sourcePanel.querySelector('input') as HTMLInputElement;
+
+    fireEvent.click(sourcePanel.querySelector('input[name="1"]') as HTMLInputElement);
+    expect(sourcePanel.querySelector('input[name="1"]')).toBeChecked();
+
+    fireEvent.change(searchInput, { target: { value: 'Item 2' } });
+
+    fireEvent.click(sourcePanel.querySelector('input[name="2"]') as HTMLInputElement);
+
+    fireEvent.change(searchInput, { target: { value: '' } });
+
+    expect(sourcePanel.querySelector('input[name="1"]')).toBeChecked();
+    expect(sourcePanel.querySelector('input[name="2"]')).toBeChecked();
+  });
+
+  it('should keep hidden checked items when select-all is used under a search filter', () => {
+    const { container } = render(<Transfer dataSource={dataSource} showSearch />);
+    const sourcePanel = container.querySelectorAll('.ty-transfer-panel')[0];
+    const searchInput = sourcePanel.querySelector('input') as HTMLInputElement;
+
+    fireEvent.click(sourcePanel.querySelector('input[name="1"]') as HTMLInputElement);
+    expect(sourcePanel.querySelector('input[name="1"]')).toBeChecked();
+
+    fireEvent.change(searchInput, { target: { value: 'Item 2' } });
+
+    fireEvent.click(
+      sourcePanel.querySelector('.ty-transfer-panel__footer input[type="checkbox"]') as HTMLInputElement
+    );
+
+    fireEvent.change(searchInput, { target: { value: '' } });
+
+    expect(sourcePanel.querySelector('input[name="1"]')).toBeChecked();
+    expect(sourcePanel.querySelector('input[name="2"]')).toBeChecked();
+  });
 });

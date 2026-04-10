@@ -108,6 +108,36 @@ describe('<Modal />', () => {
     expect(document.getElementById(dialog.getAttribute('aria-describedby') || '')).toHaveTextContent('Modal content');
   });
 
+  it('should keep focus inside the modal across rerenders while visible', async () => {
+    const { rerender } = render(
+      <div>
+        <button>Trigger</button>
+        <Modal visible footer={null} closable={false} style={{ width: 320 }}>
+          Content
+        </Modal>
+      </div>
+    );
+
+    const trigger = screen.getByText('Trigger');
+    trigger.focus();
+
+    await waitFor(() => {
+      expect(screen.getByRole('dialog')).toHaveFocus();
+    });
+
+    rerender(
+      <div>
+        <button>Trigger</button>
+        <Modal visible footer={null} closable={false} style={{ width: 360 }}>
+          Content
+        </Modal>
+      </div>
+    );
+
+    expect(screen.getByRole('dialog')).toHaveFocus();
+    expect(trigger).not.toHaveFocus();
+  });
+
   it('should render custom button text', () => {
     const { getByText } = render(<Modal visible confirmText="Yes" cancelText="No">Content</Modal>);
     expect(getByText('Yes')).toBeInTheDocument();

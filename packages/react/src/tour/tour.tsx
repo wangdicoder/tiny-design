@@ -60,6 +60,13 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<Instance | null>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
+  const onChangeRef = useRef(onChange);
+  const onFinishRef = useRef(onFinish);
+
+  onCloseRef.current = onClose;
+  onChangeRef.current = onChange;
+  onFinishRef.current = onFinish;
 
   const currentStep = steps[current];
   const stepPlacement = currentStep?.placement ?? globalPlacement;
@@ -225,27 +232,27 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         currentStep?.onClose?.();
-        onClose?.();
+        onCloseRef.current?.();
       } else if (e.key === 'ArrowLeft' && current > 0) {
         const next = current - 1;
         if (currentProp === undefined) setInternalCurrent(next);
-        onChange?.(next);
+        onChangeRef.current?.(next);
       } else if (e.key === 'ArrowRight' && current < steps.length - 1) {
         const next = current + 1;
         if (currentProp === undefined) setInternalCurrent(next);
-        onChange?.(next);
+        onChangeRef.current?.(next);
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open, keyboard, current, steps.length, currentProp, currentStep, onChange, onClose]);
+  }, [open, keyboard, current, steps.length, currentProp, currentStep]);
 
   const handlePrev = () => {
     if (current > 0) {
       const next = current - 1;
       if (currentProp === undefined) setInternalCurrent(next);
-      onChange?.(next);
+      onChangeRef.current?.(next);
     }
   };
 
@@ -253,16 +260,16 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
     if (current < steps.length - 1) {
       const next = current + 1;
       if (currentProp === undefined) setInternalCurrent(next);
-      onChange?.(next);
+      onChangeRef.current?.(next);
     } else {
-      onFinish?.();
-      onClose?.();
+      onFinishRef.current?.();
+      onCloseRef.current?.();
     }
   };
 
   const handleClose = () => {
     currentStep?.onClose?.();
-    onClose?.();
+    onCloseRef.current?.();
   };
 
   if (!open || !currentStep) return null;

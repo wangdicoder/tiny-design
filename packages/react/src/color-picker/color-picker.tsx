@@ -44,6 +44,7 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   const hueRef = useRef<HTMLDivElement>(null);
   const alphaRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
   const colorRef = useRef<Color>(color);
   const popupId = useId();
 
@@ -75,6 +76,26 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   useEffect(() => {
     if ('open' in props) setOpen(props.open as boolean);
   }, [props.open]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      previousFocusRef.current?.focus();
+      return;
+    }
+
+    previousFocusRef.current = document.activeElement as HTMLElement;
+    const frameId = requestAnimationFrame(() => {
+      const panel = document.getElementById(popupId);
+      const focusable = panel?.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      focusable?.focus();
+    });
+
+    return () => {
+      cancelAnimationFrame(frameId);
+    };
+  }, [isOpen, popupId]);
 
   const emitChange = useCallback(
     (c: Color, nextFormat: ColorFormat = format) => {

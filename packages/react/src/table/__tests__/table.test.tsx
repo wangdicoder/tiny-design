@@ -125,6 +125,120 @@ describe('<Table />', () => {
     expect(queryByText('Alice')).not.toBeInTheDocument();
   });
 
+  it('should preserve uncontrolled current page when pagination object rerenders without current', () => {
+    const RerenderingTable = () => {
+      const [version, setVersion] = React.useState(1);
+      return (
+        <>
+          <Table
+            columns={columns}
+            dataSource={[
+              ...dataSource,
+              { key: '4', name: 'David', age: 22 },
+              { key: '5', name: 'Eve', age: 28 },
+            ]}
+            pagination={{ pageSize: 2, showQuickJumper: version > 1 }}
+          />
+          <button onClick={() => setVersion((current) => current + 1)}>rerender</button>
+        </>
+      );
+    };
+
+    const { getByText, queryByText } = render(<RerenderingTable />);
+    fireEvent.click(getByText('2'));
+
+    expect(getByText('Charlie')).toBeInTheDocument();
+    expect(queryByText('Alice')).not.toBeInTheDocument();
+
+    fireEvent.click(getByText('rerender'));
+
+    expect(getByText('Charlie')).toBeInTheDocument();
+    expect(queryByText('Alice')).not.toBeInTheDocument();
+  });
+
+  it('should preserve active sort when columns rerender without changing the chosen sort', () => {
+    const SortingTable = () => {
+      const [wide, setWide] = React.useState(false);
+      return (
+        <>
+          <Table
+            columns={[
+              { title: 'Name', dataIndex: 'name', key: 'name', width: wide ? 180 : 160 },
+              { title: 'Age', dataIndex: 'age', key: 'age', sorter: (a: any, b: any) => a.age - b.age },
+            ]}
+            dataSource={dataSource}
+            pagination={false}
+          />
+          <button onClick={() => setWide((current) => !current)}>rerender</button>
+        </>
+      );
+    };
+
+    const { container, getByText } = render(<SortingTable />);
+    const ageHeader = container.querySelector('.ty-table__cell_sortable');
+    fireEvent.click(ageHeader!);
+
+    let rows = container.querySelectorAll('.ty-table__tbody .ty-table__row');
+    expect(rows[0]).toHaveTextContent(/Bob/);
+
+    fireEvent.click(getByText('rerender'));
+
+    rows = container.querySelectorAll('.ty-table__tbody .ty-table__row');
+    expect(rows[0]).toHaveTextContent(/Bob/);
+  });
+
+  it('should prune uncontrolled selected keys when the data source removes those rows', () => {
+    const DynamicSelectionTable = () => {
+      const [rows, setRows] = React.useState(dataSource);
+      return (
+        <>
+          <Table
+            columns={columns}
+            dataSource={rows}
+            pagination={false}
+            rowSelection={{}}
+          />
+          <button onClick={() => setRows(dataSource.slice(1))}>shrink</button>
+        </>
+      );
+    };
+
+    const { container, getByText } = render(<DynamicSelectionTable />);
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    fireEvent.click(checkboxes[1]);
+    expect(checkboxes[1]).toBeChecked();
+
+    fireEvent.click(getByText('shrink'));
+
+    const nextCheckboxes = container.querySelectorAll('input[type="checkbox"]');
+    expect(nextCheckboxes[1]).not.toBeChecked();
+  });
+
+  it('should clamp uncontrolled current page when the data source shrinks', () => {
+    const DynamicPaginationTable = () => {
+      const [rows, setRows] = React.useState([
+        ...dataSource,
+        { key: '4', name: 'David', age: 22 },
+        { key: '5', name: 'Eve', age: 28 },
+      ]);
+      return (
+        <>
+          <Table columns={columns} dataSource={rows} pagination={{ pageSize: 2 }} />
+          <button onClick={() => setRows(dataSource.slice(0, 2))}>shrink</button>
+        </>
+      );
+    };
+
+    const { getByText, queryByText } = render(<DynamicPaginationTable />);
+    fireEvent.click(getByText('3'));
+    expect(getByText('Eve')).toBeInTheDocument();
+
+    fireEvent.click(getByText('shrink'));
+
+    expect(getByText('Alice')).toBeInTheDocument();
+    expect(queryByText('Eve')).not.toBeInTheDocument();
+  });
+
   it('should show loading state', () => {
     const { getByText } = render(<Table columns={columns} dataSource={dataSource} loading />);
     expect(getByText('Loading...')).toBeInTheDocument();

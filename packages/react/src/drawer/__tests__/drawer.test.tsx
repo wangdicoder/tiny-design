@@ -71,4 +71,34 @@ describe('<Drawer />', () => {
     expect(document.getElementById(dialog.getAttribute('aria-labelledby') || '')).toHaveTextContent('Filters');
     expect(document.getElementById(dialog.getAttribute('aria-describedby') || '')).toHaveTextContent('Drawer content');
   });
+
+  it('should keep focus inside the drawer across rerenders while visible', async () => {
+    const { rerender } = render(
+      <div>
+        <button>Trigger</button>
+        <Drawer visible closable={false} size={280}>
+          Content
+        </Drawer>
+      </div>
+    );
+
+    const trigger = screen.getByText('Trigger');
+    trigger.focus();
+
+    await waitFor(() => {
+      expect(screen.getByRole('dialog')).toHaveFocus();
+    });
+
+    rerender(
+      <div>
+        <button>Trigger</button>
+        <Drawer visible closable={false} size={320}>
+          Content
+        </Drawer>
+      </div>
+    );
+
+    expect(screen.getByRole('dialog')).toHaveFocus();
+    expect(trigger).not.toHaveFocus();
+  });
 });

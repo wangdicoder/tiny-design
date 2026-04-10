@@ -113,7 +113,11 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
     const renderDropdown = () => {
       if (combo.filteredItems.length === 0) {
         if (notFoundContent) {
-          return <div className={`${prefixCls}__empty`}>{notFoundContent}</div>;
+          return (
+            <li className={`${prefixCls}__empty`} role="option" aria-disabled="true">
+              {notFoundContent}
+            </li>
+          );
         }
         return null;
       }

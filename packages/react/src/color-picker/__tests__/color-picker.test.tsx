@@ -81,6 +81,27 @@ describe('<ColorPicker />', () => {
     });
   });
 
+  it('should move focus into the panel when opened and restore it on close', async () => {
+    const trigger = document.createElement('button');
+    trigger.textContent = 'outside-trigger';
+    document.body.appendChild(trigger);
+    trigger.focus();
+
+    const { container, rerender } = render(<ColorPicker open />);
+
+    await waitFor(() => {
+      expect(document.body.querySelector('.ty-color-picker__format-btn')).toHaveFocus();
+    });
+
+    rerender(<ColorPicker open={false} />);
+
+    await waitFor(() => {
+      expect(trigger).toHaveFocus();
+    });
+
+    document.body.removeChild(trigger);
+  });
+
   it('should render presets', () => {
     render(<ColorPicker open presets={['#ff0000', '#00ff00', '#0000ff']} />);
     const presets = document.body.querySelectorAll('.ty-color-picker__preset');
