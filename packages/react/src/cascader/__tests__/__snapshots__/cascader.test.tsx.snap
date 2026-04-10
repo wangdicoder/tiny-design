@@ -6,7 +6,11 @@ exports[`<Cascader /> should match the snapshot 1`] = `
     class="ty-cascader ty-cascader_md"
   >
     <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
       class="ty-cascader__selector"
+      role="combobox"
+      tabindex="0"
     >
       <span
         class="ty-cascader__placeholder"

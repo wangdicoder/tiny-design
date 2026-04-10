@@ -34,15 +34,16 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     const handleOpen = useCallback(() => {
-      if (disabled) return;
+      if (disabled || isOpen) return;
       if (!isControlled) setInternalOpen(true);
       onOpen?.();
-    }, [disabled, isControlled, onOpen]);
+    }, [disabled, isControlled, isOpen, onOpen]);
 
     const handleClose = useCallback(() => {
+      if (!isOpen) return;
       if (!isControlled) setInternalOpen(false);
       onClose?.();
-    }, [isControlled, onClose]);
+    }, [isControlled, isOpen, onClose]);
 
     const handleToggle = useCallback(() => {
       if (isOpen) {

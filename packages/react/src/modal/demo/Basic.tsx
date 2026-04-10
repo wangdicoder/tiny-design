@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Button } from '@tiny-design/react';
 
 export default function BasicDemo() {
@@ -10,7 +10,7 @@ export default function BasicDemo() {
       <Modal
         header="Basic Modal"
         visible={visible}
-        onOk={() => {}}
+        onConfirm={() => setVisible(false)}
         onCancel={() => setVisible(false)}>
         <div>Some contents...</div>
         <div>Some contents...</div>

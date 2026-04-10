@@ -39,7 +39,7 @@
     background: transparent;
     cursor: pointer;
     border-radius: var(--ty-calendar-nav-button-radius);
-    font-size: 18px;
+    font-size: var(--ty-calendar-nav-button-font-size);
     color: var(--ty-calendar-nav-button-color);
     transition: color 0.2s;
 
@@ -56,7 +56,7 @@
   &__title {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--ty-calendar-title-gap);
     font-weight: var(--ty-calendar-title-font-weight);
     font-size: var(--ty-calendar-title-font-size);
   }
@@ -67,8 +67,8 @@
     cursor: pointer;
     font-weight: var(--ty-calendar-title-font-weight);
     font-size: inherit;
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: var(--ty-calendar-title-button-padding);
+    border-radius: var(--ty-calendar-title-button-radius);
     color: var(--ty-calendar-title-color);
     transition: color 0.2s;
 
@@ -92,7 +92,7 @@
   }
 
   &__cell-header {
-    padding: 8px 0;
+    padding: var(--ty-calendar-cell-header-padding);
     text-align: center;
     font-weight: 500;
     font-size: var(--ty-calendar-cell-header-font-size);
@@ -102,17 +102,17 @@
   // ── Week number ─────────────────────────────────────────────────────────
 
   &__week-number-header {
-    width: 32px;
+    width: var(--ty-calendar-week-number-width);
     color: var(--ty-calendar-week-number-color);
     font-weight: 400;
-    font-size: 12px;
+    font-size: var(--ty-calendar-week-number-font-size);
   }
 
   &__week-number {
     text-align: center;
-    font-size: 12px;
+    font-size: var(--ty-calendar-week-number-font-size);
     color: var(--ty-calendar-week-number-color);
-    padding: 4px 0;
+    padding: var(--ty-calendar-week-number-padding);
     user-select: none;
   }
 
@@ -212,9 +212,9 @@
   // ── Cell inner ──────────────────────────────────────────────────────────
 
   &__cell-inner {
-    padding: 4px;
+    padding: var(--ty-calendar-cell-inner-padding);
     border-radius: var(--ty-calendar-radius);
-    min-height: 24px;
+    min-height: var(--ty-calendar-cell-inner-min-height);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -222,22 +222,22 @@
   }
 
   &_fullscreen &__cell-inner {
-    min-height: 60px;
-    padding: 4px 8px;
+    min-height: var(--ty-calendar-cell-inner-min-height-fullscreen);
+    padding: var(--ty-calendar-cell-inner-padding-fullscreen);
     align-items: stretch;
   }
 
   &__cell-date {
     display: inline-block;
-    line-height: 24px;
-    min-width: 24px;
+    line-height: var(--ty-calendar-cell-date-line-height);
+    min-width: var(--ty-calendar-cell-date-min-width);
     text-align: center;
     font-size: var(--ty-calendar-cell-date-font-size);
   }
 
   &__cell-content {
-    font-size: 12px;
-    margin-top: 2px;
+    font-size: var(--ty-calendar-cell-content-font-size);
+    margin-top: var(--ty-calendar-cell-content-margin-top);
   }
 
   // ── Dot indicator ───────────────────────────────────────────────────────
@@ -278,8 +278,7 @@
       color: var(--ty-calendar-panel-cell-color-selected);
 
       &:hover {
-        background: var(--ty-calendar-panel-cell-bg-selected);
-        opacity: 0.9;
+        background: var(--ty-calendar-panel-cell-bg-selected-hover);
       }
     }
   }
@@ -291,8 +290,8 @@
   }
 
   &__month-content {
-    font-size: 12px;
-    margin-top: 4px;
+    font-size: var(--ty-calendar-month-content-font-size);
+    margin-top: var(--ty-calendar-month-content-margin-top);
   }
 
   // ── Decade panel ────────────────────────────────────────────────────────
@@ -321,8 +320,7 @@
       color: var(--ty-calendar-panel-cell-color-selected);
 
       &:hover {
-        background: var(--ty-calendar-panel-cell-bg-selected);
-        opacity: 0.9;
+        background: var(--ty-calendar-panel-cell-bg-selected-hover);
       }
     }
 
@@ -345,7 +343,7 @@
     font-size: var(--ty-calendar-today-link-font-size);
 
     &:hover {
-      opacity: 0.8;
+      color: var(--ty-calendar-today-link-color-hover);
     }
   }
 }

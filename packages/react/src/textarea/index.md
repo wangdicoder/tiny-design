@@ -2,6 +2,8 @@ import BasicDemo from './demo/Basic';
 import BasicSource from './demo/Basic.tsx?raw';
 import CountDemo from './demo/Count';
 import CountSource from './demo/Count.tsx?raw';
+import ResizeDemo from './demo/Resize';
+import ResizeSource from './demo/Resize.tsx?raw';
 
 # Textarea
 
@@ -30,6 +32,15 @@ A simple textarea.
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
     </Demo>
+    <Demo>
+
+### Resize
+
+Use `resizable` to control whether the textarea can be resized vertically. Use `resizeHandle` to replace the default resize handle.
+
+<DemoBlock component={ResizeDemo} source={ResizeSource} />
+
+    </Demo>
   </Column>
   <Column>
     <Demo>
@@ -55,5 +66,7 @@ Use `limit` to limit the word amount. Also you can use `counter` to customise li
 | limit        | limit the number of character    | number                                       | false   |
 | counter      | customise the count node         | function: (count: number) => React.ReactNode |         |
 | disabled     | disabled the component           | boolean                                      |         |
+| resizable    | whether the textarea is resizable | boolean                                    | true    |
+| resizeHandle | custom resize handle element     | React.ReactNode                              |         |
 | style	       | style object of container object |                                              |         |
 | className    | className of container           | string                                       |         |

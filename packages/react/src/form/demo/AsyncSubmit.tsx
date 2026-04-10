@@ -1,12 +1,13 @@
 import React from 'react';
 import { Form, Input, InputNumber, Button, Flex, Alert } from '@tiny-design/react';
+import type { FormValues } from '../form-instance';
 
 export default function AsyncSubmitDemo() {
   const [form] = Form.useForm({ username: '', age: 0 });
   const [loading, setLoading] = React.useState(false);
-  const [result, setResult] = React.useState(null);
+  const [result, setResult] = React.useState<FormValues | null>(null);
 
-  const handleFinish = async (values) => {
+  const handleFinish = async (values: FormValues) => {
     setLoading(true);
     setResult(null);
     // Simulate API call

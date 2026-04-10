@@ -9,8 +9,11 @@ exports[`<AutoComplete /> should match the snapshot 1`] = `
       class="ty-input ty-input_md"
     >
       <input
+        aria-expanded="false"
+        aria-haspopup="listbox"
         class="ty-input__input"
-        style="padding-left: 7px; padding-right: 7px;"
+        role="combobox"
+        style="--ty-input-padding-inline-start-extra: 0px; --ty-input-padding-inline-end-extra: 0px;"
         value=""
       />
     </div>

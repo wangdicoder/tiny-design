@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, Typography } from '@tiny-design/react';
+import { Card, Grid, Text } from '@tiny-design/react';
 
 const Item = ({
   title,
@@ -18,8 +18,8 @@ const Item = ({
       flexDirection: 'column',
       justifyContent: 'space-between',
     }}>
-    <Typography.Text strong>{title}</Typography.Text>
-    <Typography.Text type="secondary">{desc}</Typography.Text>
+    <Text strong>{title}</Text>
+    <Text type="secondary">{desc}</Text>
   </Card>
 );
 

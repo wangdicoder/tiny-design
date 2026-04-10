@@ -12,7 +12,9 @@ $tp: #{$prefix}-time-picker;
     display: inline-flex;
     align-items: center;
     width: 100%;
-    padding: var(--ty-picker-input-padding-md);
+    height: var(--ty-control-height-md, var(--ty-height-md));
+    box-sizing: border-box;
+    padding: var(--ty-picker-input-padding-md, 0 var(--ty-control-padding-inline-md, 12px));
     border: 1px solid var(--ty-picker-input-border);
     border-radius: var(--ty-picker-input-radius);
     background: var(--ty-picker-input-bg);
@@ -35,17 +37,21 @@ $tp: #{$prefix}-time-picker;
 
   &__input-field {
     flex: 1;
+    margin: 0;
+    padding: 0;
     border: none;
     outline: none;
     background: transparent;
     font-size: inherit;
     font-family: inherit;
+    line-height: inherit;
     color: var(--ty-picker-input-color);
     cursor: pointer;
-    min-width: var(--ty-picker-input-min-width-time-md);
+    min-width: var(--ty-time-picker-input-min-width-md);
 
     &::placeholder {
-      color: var(--ty-picker-input-color-placeholder);
+      color: var(--ty-input-placeholder, var(--ty-picker-input-color-placeholder, var(--ty-color-text-placeholder)));
+      opacity: 1;
     }
 
     &:disabled {
@@ -94,21 +100,23 @@ $tp: #{$prefix}-time-picker;
 
   // ---- Sizes ----
   &_sm &__input {
-    padding: var(--ty-picker-input-padding-sm);
-    font-size: 12px;
+    height: var(--ty-control-height-sm, var(--ty-height-sm));
+    padding: var(--ty-picker-input-padding-sm, 0 var(--ty-control-padding-inline-sm, 8px));
+    font-size: var(--ty-control-font-size-sm, var(--ty-font-size-sm));
   }
 
   &_sm &__input-field {
-    min-width: var(--ty-picker-input-min-width-time-sm);
+    min-width: var(--ty-time-picker-input-min-width-sm);
   }
 
   &_lg &__input {
-    padding: var(--ty-picker-input-padding-lg);
-    font-size: 16px;
+    height: var(--ty-control-height-lg, var(--ty-height-lg));
+    padding: var(--ty-picker-input-padding-lg, 0 var(--ty-control-padding-inline-lg, 16px));
+    font-size: var(--ty-control-font-size-lg, var(--ty-font-size-lg));
   }
 
   &_lg &__input-field {
-    min-width: var(--ty-picker-input-min-width-time-lg);
+    min-width: var(--ty-time-picker-input-min-width-lg);
   }
 
   // ---- Disabled ----
@@ -145,9 +153,9 @@ $tp: #{$prefix}-time-picker;
 
   &__column {
     flex: 1;
-    max-height: var(--ty-picker-time-column-max-height);
+    max-height: var(--ty-time-picker-column-max-height);
     overflow-y: auto;
-    border-left: 1px solid var(--ty-picker-time-column-border);
+    border-left: 1px solid var(--ty-time-picker-column-border);
     scrollbar-width: thin;
 
     &:first-child {
@@ -159,14 +167,14 @@ $tp: #{$prefix}-time-picker;
     }
 
     &::-webkit-scrollbar-thumb {
-      background: var(--ty-picker-time-scrollbar-thumb);
+      background: var(--ty-time-picker-scrollbar-thumb);
       border-radius: 2px;
     }
   }
 
   &__column-list {
     list-style: none;
-    padding: var(--ty-picker-time-cell-padding);
+    padding: var(--ty-time-picker-cell-padding);
     margin: 0;
   }
 
@@ -174,11 +182,11 @@ $tp: #{$prefix}-time-picker;
   &__cell {
     padding: 4px 0;
     text-align: center;
-    min-width: var(--ty-picker-time-cell-min-width);
+    min-width: var(--ty-time-picker-cell-min-width);
     cursor: pointer;
-    border-radius: var(--ty-picker-time-cell-radius);
-    margin: 0 var(--ty-picker-time-cell-margin-inline);
-    line-height: var(--ty-picker-time-cell-line-height);
+    border-radius: var(--ty-time-picker-cell-radius);
+    margin: 0 var(--ty-time-picker-cell-margin-inline);
+    line-height: var(--ty-time-picker-cell-line-height);
     transition: background 0.2s;
     user-select: none;
 
@@ -187,20 +195,20 @@ $tp: #{$prefix}-time-picker;
     }
 
     &_selected {
-      background: var(--ty-picker-time-cell-bg-selected);
-      font-weight: 500;
+      background: var(--ty-time-picker-cell-bg-selected);
+      font-weight: var(--ty-time-picker-cell-font-weight-selected);
 
       &:hover {
-        background: var(--ty-picker-time-cell-bg-selected-hover);
+        background: var(--ty-time-picker-cell-bg-selected-hover);
       }
     }
 
     &_pending {
-      background: var(--ty-picker-time-cell-bg-selected);
+      background: var(--ty-time-picker-cell-bg-selected);
       color: var(--ty-picker-input-color-muted);
 
       &:hover {
-        background: var(--ty-picker-time-cell-bg-selected-hover);
+        background: var(--ty-time-picker-cell-bg-selected-hover);
       }
     }
 
@@ -216,9 +224,9 @@ $tp: #{$prefix}-time-picker;
 
   // ---- Footer ----
   &__footer {
-    padding: var(--ty-picker-footer-padding);
-    border-top: 1px solid var(--ty-picker-header-border);
-    font-size: var(--ty-picker-footer-font-size);
+    padding: var(--ty-time-picker-footer-padding);
+    border-top: 1px solid var(--ty-time-picker-footer-border);
+    font-size: var(--ty-time-picker-footer-font-size);
   }
 
   &__extra-footer {
@@ -233,21 +241,21 @@ $tp: #{$prefix}-time-picker;
   }
 
   &__now-btn {
-    color: var(--ty-picker-today-color);
+    color: var(--ty-time-picker-now-color);
     cursor: pointer;
-    &:hover { color: var(--ty-picker-today-color-hover); }
+    &:hover { color: var(--ty-time-picker-now-color-hover); }
   }
 
   &__ok-btn {
-    padding: var(--ty-picker-ok-button-padding);
-    height: var(--ty-picker-ok-button-height);
-    font-size: var(--ty-picker-ok-button-font-size);
+    padding: var(--ty-time-picker-ok-button-padding);
+    height: var(--ty-time-picker-ok-button-height);
+    font-size: var(--ty-time-picker-ok-button-font-size);
     border: none;
-    border-radius: var(--ty-picker-ok-button-radius);
-    background: var(--ty-picker-ok-button-bg);
-    color: var(--ty-picker-ok-button-color);
+    border-radius: var(--ty-time-picker-ok-button-radius);
+    background: var(--ty-time-picker-ok-button-bg);
+    color: var(--ty-time-picker-ok-button-color);
     cursor: pointer;
     margin-left: auto;
-    &:hover { background: var(--ty-picker-ok-button-bg-hover); }
+    &:hover { background: var(--ty-time-picker-ok-button-bg-hover); }
   }
 }

@@ -1,13 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import type { ThemeDocument } from '@tiny-design/react';
+import { validateThemeDocument } from '@tiny-design/tokens/validate-theme';
 import {
   Button,
   ConfigProvider,
   Modal,
+  Paragraph,
   Segmented,
   Select,
+  Text,
   Textarea,
-  Typography,
   useTheme,
 } from '@tiny-design/react';
 import {
@@ -115,10 +117,16 @@ const ThemeStudioPage = (): React.ReactElement => {
   const handleImport = () => {
     try {
       const parsed = JSON.parse(importText) as ThemeDocument;
-      setDraft(buildDraftFromThemeDocument(parsed));
+      const validation = validateThemeDocument(parsed);
+      if (!validation.valid) {
+        setImportError(validation.errors.join('\n'));
+        return;
+      }
+
+      setDraft(buildDraftFromThemeDocument(validation.normalizedDocument as ThemeDocument));
       setImportVisible(false);
       setImportError(null);
-      setStatus('Imported theme document');
+      setStatus(validation.warnings.length > 0 ? 'Imported theme document with validation warnings' : 'Imported theme document');
     } catch {
       setImportError('Invalid theme document JSON');
     }
@@ -137,7 +145,7 @@ const ThemeStudioPage = (): React.ReactElement => {
       >
         <div className="theme-studio__topbar">
           <div className="theme-studio__topbar-copy">
-            <Typography.Text className="theme-studio__eyebrow">Theme Editor</Typography.Text>
+            <Text className="theme-studio__eyebrow">Theme Editor</Text>
             <div className="theme-studio__topbar-meta">
               <span>{activePreset.name}</span>
               <span>{THEME_EDITOR_PRESETS.length} presets</span>
@@ -194,9 +202,7 @@ const ThemeStudioPage = (): React.ReactElement => {
               </div>
             </div>
 
-            <div className={`theme-studio__preview theme-studio__preview_${draft.mode}`}>
-              {renderPreview(draft.activeTemplate, draft.fields, draft.activeSection)}
-            </div>
+            {renderPreview(draft.activeTemplate, draft.fields, draft.activeSection)}
           </main>
         </div>
 
@@ -215,10 +221,10 @@ const ThemeStudioPage = (): React.ReactElement => {
           }}
         >
           <div className="theme-studio__modal-copy">
-            <Typography.Paragraph>
+            <Paragraph>
               Paste a Tiny theme document JSON export to replace the current global theme.
-            </Typography.Paragraph>
-            <Typography.Text type="secondary">Preset selection and all editor controls will sync to the imported values.</Typography.Text>
+            </Paragraph>
+            <Text type="secondary">Preset selection and all editor controls will sync to the imported values.</Text>
           </div>
           <Textarea
             rows={16}
@@ -226,7 +232,7 @@ const ThemeStudioPage = (): React.ReactElement => {
             value={importText}
             onChange={(next) => setImportText(next)}
           />
-          {importError ? <Typography.Paragraph className="theme-studio__error">{importError}</Typography.Paragraph> : null}
+          {importError ? <Paragraph className="theme-studio__error">{importError}</Paragraph> : null}
         </Modal>
 
         <Modal
@@ -247,8 +253,8 @@ const ThemeStudioPage = (): React.ReactElement => {
         >
           <div className="theme-studio__code-head">
             <div>
-              <Typography.Text strong>Output</Typography.Text>
-              <Typography.Text type="secondary">{activePreset.name} · {status}</Typography.Text>
+              <Text strong>Output</Text>
+              <Text type="secondary">{activePreset.name} · {status}</Text>
             </div>
             <Segmented
               options={CODE_VIEW_OPTIONS}

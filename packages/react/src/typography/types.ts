@@ -1,6 +1,33 @@
 import React from 'react';
 import { BaseProps } from '../_utils/props';
 
+export type TextType = 'default' | 'secondary' | 'success' | 'warning' | 'danger' | 'info';
+export type TypographyTextTag =
+  | 'span'
+  | 'label'
+  | 'small'
+  | 'strong'
+  | 'em'
+  | 'i'
+  | 'b'
+  | 'mark'
+  | 'kbd'
+  | 'time';
+export type TypographyParagraphTag = 'p' | 'div' | 'blockquote';
+
+export interface TypographyEllipsisConfig {
+  rows?: number;
+  tooltip?: boolean | React.ReactNode;
+}
+
+export interface TypographyCopyableConfig {
+  text?: string;
+  onCopy?: (copied: boolean, text: string) => void;
+  icon?: React.ReactNode;
+  copiedIcon?: React.ReactNode;
+  resetDuration?: number;
+}
+
 export interface TypographyProps
   extends BaseProps,
     React.PropsWithRef<JSX.IntrinsicElements['div']> {
@@ -8,6 +35,8 @@ export interface TypographyProps
 }
 
 export interface ParagraphProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['p']> {
+  as?: TypographyParagraphTag;
+  ellipsis?: boolean | TypographyEllipsisConfig;
   children?: React.ReactNode;
 }
 
@@ -19,6 +48,10 @@ export interface HeadingProps
 }
 
 export interface TextProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['span']> {
+  as?: TypographyTextTag;
+  type?: TextType;
+  copyable?: boolean | TypographyCopyableConfig;
+  ellipsis?: boolean | TypographyEllipsisConfig;
   code?: boolean;
   del?: boolean;
   underline?: boolean;

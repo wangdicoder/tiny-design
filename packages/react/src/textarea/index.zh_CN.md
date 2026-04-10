@@ -2,6 +2,8 @@ import BasicDemo from './demo/Basic';
 import BasicSource from './demo/Basic.tsx?raw';
 import CountDemo from './demo/Count';
 import CountSource from './demo/Count.tsx?raw';
+import ResizeDemo from './demo/Resize';
+import ResizeSource from './demo/Resize.tsx?raw';
 
 # Textarea 文本域
 
@@ -30,6 +32,15 @@ import { Textarea } from 'tiny-design';
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
     </Demo>
+    <Demo>
+
+### 缩放
+
+使用 `resizable` 控制文本域是否仅支持垂直方向缩放。使用 `resizeHandle` 可替换默认缩放手柄。
+
+<DemoBlock component={ResizeDemo} source={ResizeSource} />
+
+    </Demo>
   </Column>
   <Column>
     <Demo>
@@ -55,5 +66,7 @@ import { Textarea } from 'tiny-design';
 | limit        | 字符数量限制             | number                                       | false   |
 | counter      | 自定义计数节点           | function: (count: number) => React.ReactNode |         |
 | disabled     | 是否禁用组件             | boolean                                      |         |
+| resizable    | 是否可缩放               | boolean                                      | true    |
+| resizeHandle | 自定义缩放手柄           | React.ReactNode                              |         |
 | style	       | 容器的样式对象           |                                              |         |
 | className    | 容器的类名               | string                                       |         |

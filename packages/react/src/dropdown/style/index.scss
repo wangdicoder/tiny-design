@@ -3,20 +3,20 @@
 .#{$prefix}-dropdown {
 
   .#{$prefix}-menu, .#{$prefix}-menu-sub__list {
-    padding: 4px 0;
+    padding: var(--ty-dropdown-menu-padding);
 
     .#{$prefix}-menu-item_active {
       background-color: transparent;
-      color: var(--ty-color-text);
+      color: var(--ty-dropdown-item-color);
     }
 
     .#{$prefix}-menu-item {
-      padding: 8px 15px;
+      padding: var(--ty-dropdown-item-padding);
       margin: 0;
 
       &:hover:not(.#{$prefix}-menu-item_disabled) {
-        background-color: var(--ty-color-bg-spotlight);
-        color: var(--ty-color-text);
+        background-color: var(--ty-dropdown-item-hover-bg);
+        color: var(--ty-dropdown-item-color);
       }
     }
   }
@@ -27,7 +27,7 @@
 
   .#{$prefix}-menu-item-group {
     &__title {
-      padding: 8px 10px;
+      padding: var(--ty-dropdown-group-title-padding);
 
       &:first-child {
         margin-top: 0;

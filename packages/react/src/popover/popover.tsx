@@ -9,6 +9,9 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const {
     theme = 'light',
     role = 'tooltip',
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-describedby': ariaDescribedBy,
     prefixCls: customisedCls,
     title,
     content,
@@ -21,7 +24,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const cls = classNames(className, prefixCls, `${prefixCls}_${theme}`);
 
   const renderContent = (): React.ReactElement => (
-    <div role={role} className={`${prefixCls}__inner`}>
+    <div
+      ref={ref}
+      role={role}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      aria-describedby={ariaDescribedBy}
+      className={`${prefixCls}__inner`}>
       {title && <div className={`${prefixCls}__title`}>{title}</div>}
       {content && <div className={`${prefixCls}__content`}>{content}</div>}
     </div>

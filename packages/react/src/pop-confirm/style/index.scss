@@ -1,15 +1,15 @@
 @use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-pop-confirm {
-  color: var(--ty-color-text-secondary);
+  color: var(--ty-pop-confirm-color);
 
   &__overlay {
-    padding: 4px;
+    padding: var(--ty-pop-confirm-overlay-padding);
   }
 
   &__messages {
-    padding: 0 0 12px;
-    font-size: var(--ty-font-size-base);
+    padding: 0 0 var(--ty-pop-confirm-messages-padding-bottom);
+    font-size: var(--ty-pop-confirm-messages-font-size);
     display: flex;
     align-items: center;
   }
@@ -18,12 +18,12 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 8px;
+    gap: var(--ty-pop-confirm-buttons-gap);
     text-align: right;
   }
 
   &__title {
-    margin-left: 5px;
+    margin-left: var(--ty-pop-confirm-title-margin-left);
   }
 
 }

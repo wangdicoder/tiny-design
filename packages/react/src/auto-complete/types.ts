@@ -22,6 +22,7 @@ export interface AutoCompleteProps extends BaseProps {
   filterOption?: boolean | ((inputValue: string, option: AutoCompleteOption) => boolean);
   onChange?: (value: string) => void;
   onSelect?: (value: string, option: AutoCompleteOption) => void;
+  onOpenChange?: (open: boolean) => void;
   onSearch?: (value: string) => void;
   onFocus?: FocusEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;

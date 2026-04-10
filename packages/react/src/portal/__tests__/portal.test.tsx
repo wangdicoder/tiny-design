@@ -9,4 +9,18 @@ describe('<Portal />', () => {
     );
     expect(baseElement.querySelector('[data-testid="portal-content"]')).toBeTruthy();
   });
+
+  it('should render children into custom container', () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    render(
+      <Portal container={container}>
+        <div data-testid="portal-custom">Portal Custom</div>
+      </Portal>
+    );
+
+    expect(container.querySelector('[data-testid="portal-custom"]')).toBeTruthy();
+    document.body.removeChild(container);
+  });
 });

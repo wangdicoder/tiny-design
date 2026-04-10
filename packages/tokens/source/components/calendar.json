@@ -36,6 +36,11 @@
     "$type": "dimension",
     "description": "Calendar nav button radius."
   },
+  "calendar.nav-button-font-size": {
+    "$value": "18px",
+    "$type": "dimension",
+    "description": "Calendar nav button font size."
+  },
   "calendar.nav-button-color": {
     "$value": "{color-text-tertiary}",
     "$type": "color",
@@ -57,6 +62,21 @@
     "$value": "500",
     "$type": "font-weight",
     "description": "Calendar title font weight."
+  },
+  "calendar.title-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Calendar title item gap."
+  },
+  "calendar.title-button-padding": {
+    "$value": "2px 6px",
+    "$type": "string",
+    "description": "Calendar title action padding."
+  },
+  "calendar.title-button-radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Calendar title action radius."
   },
   "calendar.title-color": {
     "$value": "{color-text}",
@@ -81,6 +101,11 @@
     "description": "Calendar weekday header font size.",
     "fallback": "--ty-font-size-sm"
   },
+  "calendar.cell-header-padding": {
+    "$value": "8px 0",
+    "$type": "string",
+    "description": "Calendar weekday header padding."
+  },
   "calendar.cell-header-color": {
     "$value": "{color-text-secondary}",
     "$type": "color",
@@ -92,6 +117,21 @@
     "$type": "color",
     "description": "Calendar week number color.",
     "fallback": "--ty-color-text-quaternary"
+  },
+  "calendar.week-number-width": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Calendar week number column width."
+  },
+  "calendar.week-number-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Calendar week number font size."
+  },
+  "calendar.week-number-padding": {
+    "$value": "4px 0",
+    "$type": "string",
+    "description": "Calendar week number cell padding."
   },
   "calendar.cell-color": {
     "$value": "{color-text}",
@@ -146,6 +186,46 @@
     "description": "Calendar date cell font size.",
     "fallback": "--ty-font-size-sm"
   },
+  "calendar.cell-date-line-height": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Calendar date cell line height."
+  },
+  "calendar.cell-date-min-width": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Calendar date cell min width."
+  },
+  "calendar.cell-inner-padding": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Calendar cell inner padding."
+  },
+  "calendar.cell-inner-min-height": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Calendar cell inner min height."
+  },
+  "calendar.cell-inner-padding-fullscreen": {
+    "$value": "4px 8px",
+    "$type": "string",
+    "description": "Calendar fullscreen cell inner padding."
+  },
+  "calendar.cell-inner-min-height-fullscreen": {
+    "$value": "60px",
+    "$type": "dimension",
+    "description": "Calendar fullscreen cell inner min height."
+  },
+  "calendar.cell-content-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Calendar cell content font size."
+  },
+  "calendar.cell-content-margin-top": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Calendar cell content margin top."
+  },
   "calendar.cell-dot-size": {
     "$value": "6px",
     "$type": "dimension",
@@ -189,6 +269,22 @@
     "description": "Calendar selected month and decade cell background color.",
     "fallback": "--ty-color-primary"
   },
+  "calendar.panel-cell-bg-selected-hover": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "Calendar selected month and decade cell hover background color.",
+    "fallback": "--ty-color-primary-hover"
+  },
+  "calendar.month-content-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Calendar month cell secondary content font size."
+  },
+  "calendar.month-content-margin-top": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Calendar month cell secondary content margin top."
+  },
   "calendar.decade-font-size": {
     "$value": "{font-size-base}",
     "$type": "dimension",
@@ -211,6 +307,12 @@
     "$type": "color",
     "description": "Calendar today link color.",
     "fallback": "--ty-color-primary"
+  },
+  "calendar.today-link-color-hover": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "Calendar today link hover color.",
+    "fallback": "--ty-color-primary-hover"
   },
   "calendar.today-link-font-size": {
     "$value": "13px",

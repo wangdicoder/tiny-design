@@ -62,7 +62,7 @@ Components that accept sizes use: `'sm' | 'md' | 'lg'`
 - **Button** — Trigger operations. Props: `btnType` (`'default'|'primary'|'outline'|'ghost'|'link'|'info'|'danger'|'warning'|'success'`), `loading`, `disabled`, `block`, `size`, `round`, `icon`. Also: `Button.Group`.
 - **Image** — Display images with preview support.
 - **Link** — Styled anchor element.
-- **Typography** — Headings, body text, lists. Subcomponents: `Typography.Title`, `Typography.Text`, `Typography.Paragraph`.
+- **Typography** — Headings, body text, lists. Prefer `Heading`, `Text`, `Paragraph`; compatibility entrypoints: `Typography.Heading`, `Typography.Text`, `Typography.Paragraph`.
 
 ### Layout
 - **AspectRatio** — Maintain width-to-height proportional relationship.

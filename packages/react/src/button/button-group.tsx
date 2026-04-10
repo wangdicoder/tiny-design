@@ -25,6 +25,7 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
       {
         [`${prefixCls}_round`]: round,
         [`${prefixCls}_${btnType}`]: btnType,
+        [`${prefixCls}_${btnSize}`]: btnSize,
       },
       className
     );

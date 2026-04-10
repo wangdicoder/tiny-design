@@ -1,7 +1,5 @@
 import React from 'react';
-import { Typography } from '@tiny-design/react';
-
-const { Heading, Paragraph, Text } = Typography;
+import { Heading, Paragraph, Text, Typography } from '@tiny-design/react';
 
 export default function BasicDemo() {
   return (

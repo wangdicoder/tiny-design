@@ -14,6 +14,7 @@ exports[`<TimePicker /> should match the snapshot 1`] = `
         class="ty-time-picker__input-field"
         placeholder="Select time"
         readonly=""
+        role="combobox"
         value="10:30:00"
       />
       <span

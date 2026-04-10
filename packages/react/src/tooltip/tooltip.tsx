@@ -19,7 +19,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
   const cls = classNames(prefixCls, className);
 
   const renderContent = (): React.ReactElement => (
-    <div role="tooltip" className={`${prefixCls}__inner`}>
+    <div ref={ref} role="tooltip" className={`${prefixCls}__inner`}>
       {title}
     </div>
   );

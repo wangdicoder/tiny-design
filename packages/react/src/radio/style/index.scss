@@ -23,6 +23,7 @@
   &__inner {
     box-sizing: border-box;
     display: flex;
+    flex-shrink: 0;
     width: var(--ty-radio-size, 16px);
     height: var(--ty-radio-size, 16px);
     border-radius: 100%;

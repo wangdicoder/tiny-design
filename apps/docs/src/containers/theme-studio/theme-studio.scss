@@ -76,10 +76,7 @@
 }
 
 .theme-studio__import-textarea {
-  min-height: min(56vh, 620px);
-  max-height: min(56vh, 620px);
-  overflow: auto;
-  resize: vertical;
+  min-height: 50vh;
 }
 
 .theme-studio__topbar-actions {
@@ -232,6 +229,18 @@
 
 .theme-studio__group-fields {
   gap: 8px;
+}
+
+.theme-studio__subgroup-title {
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--editor-muted-foreground);
 }
 
 .theme-studio__field {
@@ -416,6 +425,7 @@
 }
 
 .theme-studio__advanced-collapse {
+  margin-bottom: 12px;
   border: 1px solid var(--ty-color-border-secondary, var(--ty-color-border));
   border-radius: 12px;
   background: linear-gradient(
@@ -598,6 +608,144 @@
   gap: var(--theme-studio-block-gap);
 }
 
+.theme-studio__cards-scene {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.theme-studio__cards-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.theme-studio__cards-top-grid,
+.theme-studio__cards-top-pair,
+.theme-studio__cards-bottom-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.theme-studio__cards-bottom-pair {
+  margin-top: auto;
+}
+
+.theme-studio__cards-panel.ty-card,
+.theme-studio__cards-inline-card.ty-card {
+  border-radius: calc(var(--editor-card-radius) + 2px);
+}
+
+.theme-studio__cards-panel.ty-card > .ty-card__body,
+.theme-studio__cards-inline-card.ty-card > .ty-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+}
+
+.theme-studio__cards-panel .ty-typography-heading {
+  margin: 0;
+}
+
+.theme-studio__cards-panel .ty-input {
+  width: 100%;
+}
+
+.theme-studio__cards-panel > .ty-card__body > .ty-btn,
+.theme-studio__cards-panel .theme-studio__form-stack > .ty-btn {
+  width: 100%;
+}
+
+.theme-studio__cards-panel_revenue.ty-card > .ty-card__body {
+  gap: 6px;
+  min-height: 132px;
+}
+
+.theme-studio__cards-panel_goal.ty-card > .ty-card__body {
+  gap: 10px;
+  min-height: 172px;
+}
+
+.theme-studio__cards-panel-head,
+.theme-studio__cards-copy-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.theme-studio__cards-panel-head .ty-typography-text-secondary,
+.theme-studio__cards-copy-block .ty-typography-text-secondary,
+.theme-studio__cards-inline-card .ty-typography-text-secondary {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.theme-studio__cards-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.theme-studio__cards-plan-option {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--editor-border);
+  background: color-mix(in srgb, var(--editor-card), var(--editor-base) 8%);
+}
+
+.theme-studio__cards-plan-option strong,
+.theme-studio__cards-plan-option small {
+  display: block;
+}
+
+.theme-studio__cards-plan-option small {
+  margin-top: 2px;
+  color: var(--editor-muted-foreground);
+}
+
+.theme-studio__cards-actions-end,
+.theme-studio__cards-auth-actions,
+.theme-studio__cards-share-row,
+.theme-studio__cards-goal-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.theme-studio__cards-actions-end {
+  justify-content: flex-end;
+}
+
+.theme-studio__cards-auth-actions .ty-btn {
+  flex: 1 1 0;
+}
+
+.theme-studio__cards-divider-label {
+  font-size: 10px;
+  color: var(--editor-muted-foreground);
+}
+
+.theme-studio__cards-panel_calendar.ty-card > .ty-card__body {
+  min-height: 172px;
+  padding: 10px;
+}
+
+.theme-studio__cards-panel_calendar .ty-calendar {
+  width: 100%;
+}
+
+.theme-studio__cards-panel_calendar .ty-calendar_card {
+  border: 0;
+}
+
 .theme-studio__preview-grid_cards > * {
   min-height: 188px;
 }
@@ -644,20 +792,149 @@
 .theme-studio__goal-display {
   display: flex;
   flex-direction: column;
-  margin: 14px 0;
+  margin: 0;
+  align-items: center;
 }
 
 .theme-studio__goal-display span {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 700;
+  line-height: 1;
 }
 
 .theme-studio__goal-display small {
+  font-size: 10px;
+  letter-spacing: 0.08em;
   color: var(--editor-muted-foreground);
+}
+
+.theme-studio__cards-goal-header {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 28px;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-studio__cards-goal-circle.ty-btn {
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.theme-studio__cards-goal-circle.ty-btn .ty-btn__content {
+  justify-content: center;
 }
 
 .theme-studio__goal-footer {
   margin-top: 10px;
+}
+
+.theme-studio__cards-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.theme-studio__cards-table-head,
+.theme-studio__cards-table-row {
+  display: grid;
+  grid-template-columns: 18px 88px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.theme-studio__cards-table-head {
+  padding: 0 0 8px 0;
+  font-size: 11px;
+  color: var(--editor-muted-foreground);
+}
+
+.theme-studio__cards-table-row {
+  padding: 9px 0;
+  border-top: 1px solid var(--editor-border);
+}
+
+.theme-studio__cards-table-row .ty-checkbox {
+  justify-self: start;
+}
+
+.theme-studio__cards-table-status,
+.theme-studio__cards-table-email {
+  min-width: 0;
+}
+
+.theme-studio__cards-table-email {
+  overflow: hidden;
+  color: var(--editor-muted-foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-studio__cards-people-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.theme-studio__cards-people-list .theme-studio__member-row {
+  padding-block: 10px;
+  border-top: 1px solid var(--editor-border);
+}
+
+.theme-studio__cards-people-list .theme-studio__member-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.theme-studio__cards-chat-head {
+  margin-bottom: 2px;
+}
+
+.theme-studio__member-row_compact {
+  padding: 0;
+}
+
+.theme-studio__cards-panel .theme-studio__member-row {
+  gap: 10px;
+  padding: 8px 0;
+  align-items: center;
+}
+
+.theme-studio__cards-panel .theme-studio__member-copy .ty-typography-text-secondary {
+  font-size: 10px;
+}
+
+.theme-studio__cards-panel .ty-avatar {
+  flex: 0 0 auto;
+}
+
+.theme-studio__cards-member-select,
+.theme-studio__cards-inline-action,
+.theme-studio__cards-report-select,
+.theme-studio__cards-share-row .ty-btn {
+  width: auto !important;
+  flex: 0 0 auto;
+}
+
+.theme-studio__cards-member-select {
+  min-width: 86px;
+}
+
+.theme-studio__cards-report-select {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.theme-studio__cards-inline-action.ty-btn {
+  min-width: 78px;
+}
+
+.theme-studio__cards-panel .ty-radio {
+  align-items: flex-start;
+}
+
+.theme-studio__cards-panel .ty-radio__label {
+  width: 100%;
 }
 
 .theme-studio__member-row {
@@ -1231,6 +1508,11 @@
   .theme-studio__dashboard-shell,
   .theme-studio__mail-shell,
   .theme-studio__pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-studio__cards-scene,
+  .theme-studio__cards-top-grid {
     grid-template-columns: 1fr;
   }
 }

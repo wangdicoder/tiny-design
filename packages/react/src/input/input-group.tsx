@@ -16,12 +16,16 @@ const InputGroup = (props: InputGroupProps): React.ReactElement => {
   } = props;
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('input-group', configContext.prefixCls, customisedCls);
-  const cls = classNames(prefixCls, className);
   const inputSize = props.size || configContext.componentSize || size;
+  const cls = classNames(prefixCls, `${prefixCls}_${inputSize}`, className);
 
   return (
     <div {...otherProps} className={cls}>
-      {React.Children.map(children, (child: React.ReactElement) => {
+      {React.Children.map(children, (child) => {
+        if (!React.isValidElement(child)) {
+          return child;
+        }
+
         const childProps: Partial<InputProps> = {
           disabled,
           size: inputSize as SizeType,

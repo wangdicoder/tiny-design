@@ -6,6 +6,10 @@
   box-sizing: border-box;
   width: 100%;
 
+  --ty-input-number-height-current: var(--ty-input-number-height-md, var(--ty-control-height-md, var(--ty-height-md)));
+  --ty-input-number-font-size-current: var(--ty-input-number-font-size-md, var(--ty-control-font-size-md, var(--ty-font-size-base)));
+  --ty-input-number-padding-inline-current: var(--ty-input-padding-inline-md, var(--ty-control-padding-inline-md, 12px));
+
   &:hover {
     .#{$prefix}-input-number__controls {
       opacity: 1;
@@ -15,8 +19,11 @@
   &__input {
     @include input-default;
 
-    padding-left: var(--ty-input-number-input-padding-inline-start);
-    padding-right: var(--ty-input-number-input-padding-inline-end);
+    height: var(--ty-input-number-height-current);
+    font-size: var(--ty-input-number-font-size-current);
+    line-height: var(--ty-line-height-base);
+    padding-left: var(--ty-input-number-input-padding-inline-start, var(--ty-input-number-padding-inline-current));
+    padding-right: var(--ty-input-number-input-padding-inline-end, calc(var(--ty-input-number-padding-inline-current) + 20px));
 
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
@@ -82,33 +89,21 @@
   }
 
   &_sm {
-    .#{$prefix}-input-number {
-      &__input {
-        font-size: var(--ty-input-number-font-size-sm);
-        height: var(--ty-input-number-height-sm);
-        line-height: var(--ty-input-number-height-sm);
-      }
-    }
+    --ty-input-number-height-current: var(--ty-input-number-height-sm, var(--ty-control-height-sm, var(--ty-height-sm)));
+    --ty-input-number-font-size-current: var(--ty-input-number-font-size-sm, var(--ty-control-font-size-sm, var(--ty-font-size-sm)));
+    --ty-input-number-padding-inline-current: var(--ty-input-padding-inline-sm, var(--ty-control-padding-inline-sm, 8px));
   }
 
   &_md {
-    .#{$prefix}-input-number {
-      &__input {
-        font-size: var(--ty-input-number-font-size-md);
-        height: var(--ty-input-number-height-md);
-        line-height: var(--ty-input-number-height-md);
-      }
-    }
+    --ty-input-number-height-current: var(--ty-input-number-height-md, var(--ty-control-height-md, var(--ty-height-md)));
+    --ty-input-number-font-size-current: var(--ty-input-number-font-size-md, var(--ty-control-font-size-md, var(--ty-font-size-base)));
+    --ty-input-number-padding-inline-current: var(--ty-input-padding-inline-md, var(--ty-control-padding-inline-md, 12px));
   }
 
   &_lg {
-    .#{$prefix}-input-number {
-      &__input {
-        font-size: var(--ty-input-number-font-size-lg);
-        height: var(--ty-input-number-height-lg);
-        line-height: var(--ty-input-number-height-lg);
-      }
-    }
+    --ty-input-number-height-current: var(--ty-input-number-height-lg, var(--ty-control-height-lg, var(--ty-height-lg)));
+    --ty-input-number-font-size-current: var(--ty-input-number-font-size-lg, var(--ty-control-font-size-lg, var(--ty-font-size-lg)));
+    --ty-input-number-padding-inline-current: var(--ty-input-padding-inline-lg, var(--ty-control-padding-inline-lg, 16px));
   }
 
   &_disabled {

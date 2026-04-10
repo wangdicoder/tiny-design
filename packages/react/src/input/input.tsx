@@ -5,8 +5,6 @@ import { getPrefixCls } from '../_utils/general';
 import { CloseCircle } from '../_utils/components';
 import { InputProps } from './types';
 
-const DEFAULT_MARGIN = 16; // 8px * 2
-
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (props: InputProps, ref): JSX.Element => {
     const {
@@ -36,7 +34,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const [value, setValue] = useState<string>(
       'value' in props ? (props.value as string) : defaultValue
     );
-    const [inputPadding, setInputPadding] = useState({ paddingLeft: '7px', paddingRight: '7px' });
+    const [inputPaddingExtra, setInputPaddingExtra] = useState({
+      start: '0px',
+      end: '0px',
+    });
 
     const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       const val = e.currentTarget.value;
@@ -57,10 +58,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     const renderClearButton = (): ReactNode => {
+      const clearIconSize = inputSize === 'sm' ? 14 : inputSize === 'lg' ? 18 : 16;
       if (clearable && value && value.length > 0) {
         return (
           <span className={`${prefixCls}__clear-btn`} onClick={clearBtnOnClick}>
-            <CloseCircle size={16} color="#BFBFBF" />
+            <CloseCircle size={clearIconSize} color="#BFBFBF" />
           </span>
         );
       }
@@ -71,24 +73,26 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       const prefixNode = prefixRef.current;
       const suffixNode = suffixRef.current;
 
-      const prefixWidth = prefixNode && prefixNode.offsetWidth;
-      const suffixWidth = suffixNode && suffixNode.offsetWidth;
-      const padding = { ...inputPadding };
+      const getAffixExtra = (node: HTMLDivElement | null) => {
+        if (!node) return '0px';
+        const styles = window.getComputedStyle(node);
+        const marginStart = Number.parseFloat(styles.marginLeft) || 0;
+        const marginEnd = Number.parseFloat(styles.marginRight) || 0;
+        return `${node.offsetWidth + marginStart + marginEnd}px`;
+      };
 
-      if (prefixWidth) {
-        padding.paddingLeft = prefixWidth + DEFAULT_MARGIN + 'px';
-      }
-      if (suffixWidth) {
-        padding.paddingRight = suffixWidth + DEFAULT_MARGIN + 'px';
-      }
+      const nextPaddingExtra = {
+        start: getAffixExtra(prefixNode),
+        end: getAffixExtra(suffixNode),
+      };
 
       if (
-        padding.paddingLeft !== inputPadding.paddingLeft ||
-        padding.paddingRight !== inputPadding.paddingRight
+        nextPaddingExtra.start !== inputPaddingExtra.start ||
+        nextPaddingExtra.end !== inputPaddingExtra.end
       ) {
-        setInputPadding(padding);
+        setInputPaddingExtra(nextPaddingExtra);
       }
-    }, [inputPadding]);
+    }, [clearable, inputPaddingExtra.end, inputPaddingExtra.start, inputSize, prefix, suffix, value]);
 
     useEffect(() => {
       'value' in props && typeof props.value !== 'undefined' && setValue(props.value);
@@ -107,7 +111,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           value={value}
           disabled={disabled}
           className={`${prefixCls}__input`}
-          style={{ paddingLeft: inputPadding.paddingLeft, paddingRight: inputPadding.paddingRight }}
+          style={
+            {
+              '--ty-input-padding-inline-start-extra': inputPaddingExtra.start,
+              '--ty-input-padding-inline-end-extra': inputPaddingExtra.end,
+            } as React.CSSProperties
+          }
           onChange={inputOnChange}
           onKeyDown={inputOnKeydown}
         />

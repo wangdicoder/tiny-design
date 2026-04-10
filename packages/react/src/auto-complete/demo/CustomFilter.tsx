@@ -1,5 +1,5 @@
-import React from 'react';
 import { AutoComplete } from '@tiny-design/react';
+import type { AutoCompleteOption } from '@tiny-design/react';
 
 export default function CustomFilterDemo() {
   const options = [
@@ -9,7 +9,7 @@ export default function CustomFilterDemo() {
     { value: 'Svelte' },
   ];
 
-  const filterOption = (inputValue, option) => {
+  const filterOption = (inputValue: string, option: AutoCompleteOption) => {
     return option.value.toLowerCase().startsWith(inputValue.toLowerCase());
   };
 

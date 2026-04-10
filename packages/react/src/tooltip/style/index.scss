@@ -10,8 +10,8 @@
 
   .#{$prefix}-popup {
     &__arrow, &__arrow::before {
-      width: $tooltip-arrow-size;
-      height: $tooltip-arrow-size;
+      width: var(--ty-tooltip-arrow-size);
+      height: var(--ty-tooltip-arrow-size);
     }
   }
 

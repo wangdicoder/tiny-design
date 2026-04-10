@@ -14,5 +14,6 @@ DefaultTypo.Heading = Heading;
 DefaultTypo.Paragraph = Paragraph;
 DefaultTypo.Text = Text;
 
+export { Heading, Paragraph, Text };
 export default DefaultTypo;
 export type * from './types';

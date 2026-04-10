@@ -14,6 +14,8 @@ import ModalDemo from './demo/Modal';
 import ModalSource from './demo/Modal.tsx?raw';
 import AsyncSubmitDemo from './demo/AsyncSubmit';
 import AsyncSubmitSource from './demo/AsyncSubmit.tsx?raw';
+import SizeAlignmentDemo from './demo/SizeAlignment';
+import SizeAlignmentSource from './demo/SizeAlignment.tsx?raw';
 import OtherControlsDemo from './demo/OtherControls';
 import OtherControlsSource from './demo/OtherControls.tsx?raw';
 import StepFormDemo from './demo/StepForm';
@@ -117,11 +119,22 @@ const { Item, useForm, FormInstance } = Form;
   </Column>
 </Layout>
 
+<Demo>
+### 尺寸对齐
+
+对比输入类控件在 `sm`、`md`、`lg` 三种尺寸下的高度是否一致。
+
+<DemoBlock component={SizeAlignmentDemo} source={SizeAlignmentSource} />
+
+</Demo>
+
+<Demo>
 ### 其他表单控件
 
 一个多功能的示例。
 
 <DemoBlock component={OtherControlsDemo} source={OtherControlsSource} />
+</Demo>
 
 <Demo>
 ### 分步表单
@@ -193,5 +206,5 @@ const { Item, useForm, FormInstance } = Form;
 | len               | 字符串、数字、数组的长度                           | number                                        |
 | pattern           | 正则表达式                                        | RegExp                                        |
 | transform         | 校验前对值进行转换                                | (value) => any                                |
-| validator         | 自定义校验规则                                    | (value) => boolean &#124; `Promise<boolean>`  |
+| validator         | 自定义校验规则                                    | (value) => boolean                            |
 | whitespace        | 仅包含空格时是否校验失败                           | boolean                                       |

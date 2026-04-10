@@ -31,7 +31,7 @@ export default function ChangeOnSelectDemo() {
     },
   ];
 
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<(string | number)[]>([]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -42,13 +42,7 @@ export default function ChangeOnSelectDemo() {
         changeOnSelect
         placeholder="Select any level"
       />
-      <span>Selected: {value.length > 0 ? value.join(' / ') : 'none'}</span>
-      <Cascader
-        options={options}
-        defaultValue={['zhejiang', 'hangzhou', 'xihu']}
-        displayRender={(labels) => labels.join(' > ')}
-        placeholder="Custom separator"
-      />
+      <span>Selected value: {value.length > 0 ? value.join(' / ') : 'none'}</span>
     </div>
   );
 }

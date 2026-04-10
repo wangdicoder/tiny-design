@@ -16,6 +16,13 @@ exports[`<Flip /> should match the snapshot 1`] = `
           Front
         </div>
       </div>
+      <div
+        class="ty-flip__item-back ty-flip__item-back_hor"
+      >
+        <div>
+          Back
+        </div>
+      </div>
     </div>
   </div>
 </DocumentFragment>

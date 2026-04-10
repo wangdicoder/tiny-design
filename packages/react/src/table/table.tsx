@@ -69,13 +69,34 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
   );
 
   useEffect(() => {
-    if (rowSelection?.selectedRowKeys) {
+    if (rowSelection?.selectedRowKeys !== undefined) {
       setSelectedKeys(rowSelection.selectedRowKeys);
     }
   }, [rowSelection?.selectedRowKeys]);
 
+  useEffect(() => {
+    if (rowSelection?.selectedRowKeys !== undefined) {
+      return;
+    }
+
+    const dataKeys = new Set(
+      dataSource.map((record, index) => getRowKey(record, rowKey, index))
+    );
+
+    setSelectedKeys((currentKeys) => currentKeys.filter((key) => dataKeys.has(key)));
+  }, [dataSource, rowKey, rowSelection?.selectedRowKeys]);
+
+  useEffect(() => {
+    if (pagination && typeof pagination === 'object' && pagination.current !== undefined) {
+      setCurrentPage(pagination.current);
+    }
+  }, [pagination && typeof pagination === 'object' ? pagination.current : undefined]);
+
   // Initialize default sort
   useEffect(() => {
+    if (sortField || sortOrder) {
+      return;
+    }
     for (const col of columns) {
       if (col.defaultSortOrder) {
         setSortField(col.dataIndex);
@@ -83,7 +104,7 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
         break;
       }
     }
-  }, [columns]);
+  }, [columns, sortField, sortOrder]);
 
   const sortedData = useMemo(() => {
     if (!sortField || !sortOrder) return [...dataSource];
@@ -125,6 +146,15 @@ const Table = React.forwardRef<HTMLDivElement, TableProps>((props, ref) => {
   const paginationConfig = pagination && typeof pagination === 'object' ? pagination : undefined;
   const totalItems = paginationConfig?.total ?? dataSource.length;
   const activePage = paginationConfig?.current ?? currentPage;
+
+  useEffect(() => {
+    if (pagination === false || paginationConfig?.current !== undefined) {
+      return;
+    }
+
+    const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+    setCurrentPage((page) => Math.min(page, totalPages));
+  }, [pageSize, pagination, paginationConfig?.current, totalItems]);
 
   const handleSort = (col: ColumnType) => {
     if (!col.sorter) return;

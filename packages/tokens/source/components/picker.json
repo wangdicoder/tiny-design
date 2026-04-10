@@ -1,10 +1,4 @@
 {
-  "picker.cell-disabled-bg": {
-    "$value": "{color-fill-secondary}",
-    "$type": "color",
-    "description": "Picker cell disabled bg.",
-    "fallback": "--ty-color-fill-secondary"
-  },
   "picker.input-font-size": {
     "$value": "{font-size-base}",
     "$type": "dimension",
@@ -79,36 +73,6 @@
     "description": "Picker muted input text color.",
     "fallback": "--ty-color-text-tertiary"
   },
-  "picker.input-min-width.date.sm": {
-    "$value": "90px",
-    "$type": "dimension",
-    "description": "Small date picker input min width."
-  },
-  "picker.input-min-width.date.md": {
-    "$value": "120px",
-    "$type": "dimension",
-    "description": "Medium date picker input min width."
-  },
-  "picker.input-min-width.date.lg": {
-    "$value": "140px",
-    "$type": "dimension",
-    "description": "Large date picker input min width."
-  },
-  "picker.input-min-width.time.sm": {
-    "$value": "70px",
-    "$type": "dimension",
-    "description": "Small time picker input min width."
-  },
-  "picker.input-min-width.time.md": {
-    "$value": "90px",
-    "$type": "dimension",
-    "description": "Medium time picker input min width."
-  },
-  "picker.input-min-width.time.lg": {
-    "$value": "110px",
-    "$type": "dimension",
-    "description": "Large time picker input min width."
-  },
   "picker.suffix-size": {
     "$value": "14px",
     "$type": "dimension",
@@ -130,12 +94,6 @@
     "$type": "color",
     "description": "Picker cell hover bg.",
     "fallback": "--ty-color-fill-secondary"
-  },
-  "picker.cell-selected-hover-bg": {
-    "$value": "{color-primary-active}",
-    "$type": "color",
-    "description": "Picker cell selected hover bg.",
-    "fallback": "--ty-color-primary-active"
   },
   "picker.clear-bg": {
     "$value": "{color-bg-container}",
@@ -172,236 +130,16 @@
     "description": "Picker dropdown shadow.",
     "fallback": "--ty-shadow-popup"
   },
-  "picker.header-padding": {
-    "$value": "8px 12px",
-    "$type": "string",
-    "description": "Picker header padding."
-  },
-  "picker.header-border": {
-    "$value": "{color-border-light}",
-    "$type": "color",
-    "description": "Picker header and footer border color.",
-    "fallback": "--ty-color-border-light"
-  },
-  "picker.header-button-size": {
-    "$value": "28px",
-    "$type": "dimension",
-    "description": "Picker header button size."
-  },
-  "picker.header-button-radius": {
-    "$value": "4px",
-    "$type": "dimension",
-    "description": "Picker header button radius."
-  },
-  "picker.header-button-color": {
-    "$value": "{color-text-tertiary}",
-    "$type": "color",
-    "description": "Picker header button color.",
-    "fallback": "--ty-color-text-tertiary"
-  },
-  "picker.header-button-color-hover": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Picker header button hover color.",
-    "fallback": "--ty-color-primary"
-  },
-  "picker.header-label-font-size": {
-    "$value": "16px",
-    "$type": "dimension",
-    "description": "Picker header label font size."
-  },
-  "picker.header-label-font-weight": {
-    "$value": "500",
-    "$type": "font-weight",
-    "description": "Picker header label font weight."
-  },
-  "picker.header-caption-gap": {
-    "$value": "8px",
-    "$type": "dimension",
-    "description": "Picker header caption gap."
-  },
-  "picker.body-padding": {
-    "$value": "8px 12px",
-    "$type": "string",
-    "description": "Date picker body padding."
-  },
-  "picker.footer-padding": {
-    "$value": "8px 12px",
-    "$type": "string",
-    "description": "Picker footer padding."
-  },
-  "picker.footer-font-size": {
-    "$value": "12px",
-    "$type": "dimension",
-    "description": "Time picker footer font size."
-  },
-  "picker.today-font-size": {
-    "$value": "13px",
-    "$type": "dimension",
-    "description": "Picker today button font size."
-  },
-  "picker.today-color": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Picker today and now action color.",
-    "fallback": "--ty-color-primary"
-  },
-  "picker.today-color-hover": {
-    "$value": "{color-primary-hover}",
-    "$type": "color",
-    "description": "Picker today and now action hover color.",
-    "fallback": "--ty-color-primary-hover"
-  },
   "picker.input-bg": {
     "$value": "{color-bg-container}",
     "$type": "color",
     "description": "Picker input bg.",
     "fallback": "--ty-color-bg-container"
   },
-  "picker.cell-font-size": {
-    "$value": "13px",
-    "$type": "dimension",
-    "description": "Picker date cell font size."
-  },
-  "picker.cell-size": {
-    "$value": "28px",
-    "$type": "dimension",
-    "description": "Picker date cell inner size."
-  },
-  "picker.cell-radius": {
-    "$value": "6px",
-    "$type": "dimension",
-    "description": "Picker date cell radius."
-  },
-  "picker.cell-color": {
-    "$value": "{color-text}",
-    "$type": "color",
-    "description": "Picker active cell text color.",
-    "fallback": "--ty-color-text"
-  },
   "picker.cell-color-muted": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Picker muted cell text color.",
     "fallback": "--ty-color-text-quaternary"
-  },
-  "picker.cell-today-border": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Picker today cell border color.",
-    "fallback": "--ty-color-primary"
-  },
-  "picker.cell-selected-bg": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Picker selected cell background color.",
-    "fallback": "--ty-color-primary"
-  },
-  "picker.cell-selected-color": {
-    "$value": "#fff",
-    "$type": "color",
-    "description": "Picker selected cell text color."
-  },
-  "picker.range-bg": {
-    "$value": "{color-primary-bg}",
-    "$type": "color",
-    "description": "Picker range background color.",
-    "fallback": "--ty-color-primary-bg"
-  },
-  "picker.time-column-max-height": {
-    "$value": "224px",
-    "$type": "dimension",
-    "description": "Time picker column max height."
-  },
-  "picker.time-column-border": {
-    "$value": "{color-border-light}",
-    "$type": "color",
-    "description": "Time picker column separator color.",
-    "fallback": "--ty-color-border-light"
-  },
-  "picker.time-scrollbar-thumb": {
-    "$value": "{color-text-quaternary}",
-    "$type": "color",
-    "description": "Time picker scrollbar thumb color.",
-    "fallback": "--ty-color-text-quaternary"
-  },
-  "picker.time-cell-padding": {
-    "$value": "4px 0",
-    "$type": "string",
-    "description": "Time picker cell padding."
-  },
-  "picker.time-cell-min-width": {
-    "$value": "52px",
-    "$type": "dimension",
-    "description": "Time picker cell min width."
-  },
-  "picker.time-cell-radius": {
-    "$value": "4px",
-    "$type": "dimension",
-    "description": "Time picker cell radius."
-  },
-  "picker.time-cell-margin-inline": {
-    "$value": "4px",
-    "$type": "dimension",
-    "description": "Time picker cell horizontal margin."
-  },
-  "picker.time-cell-line-height": {
-    "$value": "20px",
-    "$type": "dimension",
-    "description": "Time picker cell line height."
-  },
-  "picker.time-cell-bg-selected": {
-    "$value": "{color-primary-bg}",
-    "$type": "color",
-    "description": "Time picker selected cell background color.",
-    "fallback": "--ty-color-primary-bg"
-  },
-  "picker.time-cell-bg-selected-hover": {
-    "$value": "{color-primary-bg-hover}",
-    "$type": "color",
-    "description": "Time picker selected cell hover background color.",
-    "fallback": "--ty-color-primary-bg-hover"
-  },
-  "picker.time-cell-font-weight-selected": {
-    "$value": "500",
-    "$type": "font-weight",
-    "description": "Time picker selected cell font weight."
-  },
-  "picker.ok-button-padding": {
-    "$value": "0 8px",
-    "$type": "string",
-    "description": "Time picker ok button padding."
-  },
-  "picker.ok-button-height": {
-    "$value": "24px",
-    "$type": "dimension",
-    "description": "Time picker ok button height."
-  },
-  "picker.ok-button-font-size": {
-    "$value": "12px",
-    "$type": "dimension",
-    "description": "Time picker ok button font size."
-  },
-  "picker.ok-button-radius": {
-    "$value": "4px",
-    "$type": "dimension",
-    "description": "Time picker ok button radius."
-  },
-  "picker.ok-button-bg": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Time picker ok button background color.",
-    "fallback": "--ty-color-primary"
-  },
-  "picker.ok-button-bg-hover": {
-    "$value": "{color-primary-hover}",
-    "$type": "color",
-    "description": "Time picker ok button hover background color.",
-    "fallback": "--ty-color-primary-hover"
-  },
-  "picker.ok-button-color": {
-    "$value": "#fff",
-    "$type": "color",
-    "description": "Time picker ok button text color."
   }
 }

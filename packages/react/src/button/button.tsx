@@ -32,6 +32,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props: ButtonPr
       [`${prefixCls}_round`]: round,
       [`${prefixCls}_disabled`]: disabled,
       [`${prefixCls}_loading`]: loading,
+      [`${prefixCls}_icon-only`]: !children && (loading || !!icon),
     },
     className
   );

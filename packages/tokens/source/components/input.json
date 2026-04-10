@@ -1,6 +1,6 @@
 {
   "input.radius": {
-    "$value": "{border-radius}",
+    "$value": "{control.radius}",
     "$type": "dimension",
     "description": "Input border radius.",
     "fallback": "--ty-border-radius"
@@ -81,55 +81,75 @@
     "fallback": "--ty-color-text-quaternary"
   },
   "input.font-size-sm": {
-    "$value": "{font-size-sm}",
+    "$value": "{control.font-size.sm}",
     "$type": "dimension",
     "description": "Small input font size.",
     "fallback": "--ty-font-size-sm"
   },
   "input.font-size-md": {
-    "$value": "{font-size-base}",
+    "$value": "{control.font-size.md}",
     "$type": "dimension",
     "description": "Medium input font size.",
     "fallback": "--ty-font-size-base"
   },
   "input.font-size-lg": {
-    "$value": "{font-size-lg}",
+    "$value": "{control.font-size.lg}",
     "$type": "dimension",
     "description": "Large input font size.",
     "fallback": "--ty-font-size-lg"
   },
   "input.height.sm": {
-    "$value": "{height-sm}",
+    "$value": "{control.height.sm}",
     "$type": "dimension",
     "description": "Small input height.",
     "fallback": "--ty-height-sm"
   },
   "input.height.md": {
-    "$value": "{height-md}",
+    "$value": "{control.height.md}",
     "$type": "dimension",
     "description": "Medium input height.",
     "fallback": "--ty-height-md"
   },
   "input.height.lg": {
-    "$value": "{height-lg}",
+    "$value": "{control.height.lg}",
     "$type": "dimension",
     "description": "Large input height.",
     "fallback": "--ty-height-lg"
   },
   "input.padding-inline-sm": {
-    "$value": "{spacing-3}",
+    "$value": "{control.padding-inline.sm}",
     "$type": "dimension",
     "description": "Small input inline padding."
   },
   "input.padding-inline-md": {
-    "$value": "{spacing-4}",
+    "$value": "{control.padding-inline.md}",
     "$type": "dimension",
     "description": "Medium input inline padding."
   },
   "input.padding-inline-lg": {
-    "$value": "{spacing-5}",
+    "$value": "{control.padding-inline.lg}",
     "$type": "dimension",
     "description": "Large input inline padding."
+  },
+  "input.affix-gap": {
+    "$value": "{spacing-3}",
+    "$type": "dimension",
+    "description": "Additional spacing reserved around input affixes."
+  },
+  "input.clear-size-sm": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Small clear button square size."
+  },
+  "input.clear-size-md": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Medium clear button square size."
+  },
+  "input.clear-size-lg": {
+    "$value": "18px",
+    "$type": "dimension",
+    "description": "Large clear button square size."
   },
   "input.text.disabled": {
     "$value": "{color-text-quaternary}",

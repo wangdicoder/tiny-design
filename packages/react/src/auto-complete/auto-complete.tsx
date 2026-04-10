@@ -1,6 +1,5 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useId, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { useClickOutside } from '../_utils/hooks';
 import { useCombobox } from '../_utils/useCombobox';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -23,6 +22,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       filterOption = true,
       onChange,
       onSelect,
+      onOpenChange,
       onSearch,
       onFocus,
       onBlur,
@@ -41,6 +41,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
 
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
+    const listboxId = useId();
 
     const handleOptionSelect = useCallback(
       (opt: AutoCompleteOption) => {
@@ -62,6 +63,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       defaultOpen,
       disabled,
       defaultActiveFirstOption,
+      onOpenChange,
       onSelect: handleOptionSelect,
     });
 
@@ -78,13 +80,6 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
     const cls = classNames(prefixCls, className, {
       [`${prefixCls}_disabled`]: disabled,
       [`${prefixCls}_open`]: combo.isOpen,
-    });
-
-    // Click outside to close
-    useClickOutside(wrapperRef, () => {
-      if (!('open' in props)) {
-        combo.closeDropdown();
-      }
     });
 
     // Controlled value
@@ -118,7 +113,11 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
     const renderDropdown = () => {
       if (combo.filteredItems.length === 0) {
         if (notFoundContent) {
-          return <div className={`${prefixCls}__empty`}>{notFoundContent}</div>;
+          return (
+            <li className={`${prefixCls}__empty`} role="option" aria-disabled="true">
+              {notFoundContent}
+            </li>
+          );
         }
         return null;
       }
@@ -131,6 +130,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
         return (
           <li
             key={opt.value}
+            id={`${listboxId}-option-${index}`}
             role="option"
             className={optCls}
             aria-selected={index === combo.focusedIndex}
@@ -152,6 +152,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
         <ul
           className={`${prefixCls}__dropdown`}
           style={{ minWidth: selectorWidth || undefined }}
+          id={listboxId}
           role="listbox">
           {dropdownContent}
         </ul>
@@ -169,6 +170,14 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
           placement="bottom"
           arrow={false}
           visible={showDropdown}
+          onVisibleChange={(nextOpen) => {
+            if (nextOpen) {
+              combo.openDropdown();
+              return;
+            }
+
+            combo.closeDropdown();
+          }}
           content={renderOverlay()}>
           <Input
             ref={inputRef}
@@ -176,6 +185,15 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
             placeholder={placeholder}
             disabled={disabled}
             value={inputValue}
+            role="combobox"
+            aria-expanded={showDropdown}
+            aria-haspopup="listbox"
+            aria-controls={showDropdown ? listboxId : undefined}
+            aria-activedescendant={
+              showDropdown && combo.focusedIndex >= 0
+                ? `${listboxId}-option-${combo.focusedIndex}`
+                : undefined
+            }
             clearable={allowClear}
             onChange={handleInputChange}
             onFocus={handleFocus}

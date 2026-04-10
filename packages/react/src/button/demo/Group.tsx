@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography } from '@tiny-design/react';
+import { Button, Heading } from '@tiny-design/react';
 
 const { Group } = Button;
 
@@ -7,7 +7,7 @@ export default function GroupDemo() {
   return (
     <>
       <div>
-        <Typography.Heading level={6}>Basic</Typography.Heading>
+        <Heading level={6}>Basic</Heading>
         <Group>
           <Button>Go Left</Button>
           <Button>Go Right</Button>
@@ -21,7 +21,7 @@ export default function GroupDemo() {
       </div>
       <br />
       <div>
-        <Typography.Heading level={6}>Group props</Typography.Heading>
+        <Heading level={6}>Group props</Heading>
         <Group size="lg">
           <Button>Go Left</Button>
           <Button>Go Right</Button>

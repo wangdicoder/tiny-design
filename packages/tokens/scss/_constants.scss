@@ -13,9 +13,9 @@ $badge-size: var(--ty-badge-size) !default;
 $badge-dot-size: var(--ty-badge-dot-size) !default;
 
 // Button
-$btn-padding-sm: var(--ty-button-padding-inline-sm) !default;
-$btn-padding-md: var(--ty-button-padding-inline-md) !default;
-$btn-padding-lg: var(--ty-button-padding-inline-lg) !default;
+$btn-padding-sm: var(--ty-button-padding-inline-sm, var(--ty-control-padding-inline-sm)) !default;
+$btn-padding-md: var(--ty-button-padding-inline-md, var(--ty-control-padding-inline-md)) !default;
+$btn-padding-lg: var(--ty-button-padding-inline-lg, var(--ty-control-padding-inline-lg)) !default;
 $btn-loading-opacity: var(--ty-button-loading-opacity) !default;
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
@@ -33,9 +33,9 @@ $description-md-padding-hr: var(--ty-descriptions-md-padding-hr) !default;
 $description-lg-padding-hr: var(--ty-descriptions-lg-padding-hr) !default;
 
 // Input
-$input-sm-padding: var(--ty-input-padding-inline-sm) !default;
-$input-md-padding: var(--ty-input-padding-inline-md) !default;
-$input-lg-padding: var(--ty-input-padding-inline-lg) !default;
+$input-sm-padding: var(--ty-input-padding-inline-sm, var(--ty-control-padding-inline-sm)) !default;
+$input-md-padding: var(--ty-input-padding-inline-md, var(--ty-control-padding-inline-md)) !default;
+$input-lg-padding: var(--ty-input-padding-inline-lg, var(--ty-control-padding-inline-lg)) !default;
 
 // Menu
 $menu-item-padding-vertical: var(--ty-menu-item-padding-vertical) !default;

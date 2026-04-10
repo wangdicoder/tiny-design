@@ -33,16 +33,14 @@ $btn-prefix: #{$prefix}-btn;
     pointer-events: none;
     line-height: var(--ty-button-line-height, var(--ty-line-height-base));
     vertical-align: middle;
-
-    & + span {
-      margin-left: .3em;
-    }
+    font-size: var(--ty-button-icon-size-current, 1em);
   }
 
   &__children {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 0;
   }
 
   // Types
@@ -148,7 +146,9 @@ $btn-prefix: #{$prefix}-btn;
     @include btn-size(
       var(--ty-button-padding-inline-sm, $btn-padding-sm),
       var(--ty-button-font-size-sm, var(--ty-font-size-sm)),
-      var(--ty-button-height-sm, var(--ty-height-sm))
+      var(--ty-button-height-sm, var(--ty-height-sm)),
+      var(--ty-button-gap-sm, 4px),
+      var(--ty-button-icon-size-sm, 14px)
     );
   }
 
@@ -156,7 +156,9 @@ $btn-prefix: #{$prefix}-btn;
     @include btn-size(
       var(--ty-button-padding-inline-md, $btn-padding-md),
       var(--ty-button-font-size-md, var(--ty-font-size-base)),
-      var(--ty-button-height-md, var(--ty-height-md))
+      var(--ty-button-height-md, var(--ty-height-md)),
+      var(--ty-button-gap-md, 6px),
+      var(--ty-button-icon-size-md, 16px)
     );
   }
 
@@ -164,8 +166,16 @@ $btn-prefix: #{$prefix}-btn;
     @include btn-size(
       var(--ty-button-padding-inline-lg, $btn-padding-lg),
       var(--ty-button-font-size-lg, var(--ty-font-size-lg)),
-      var(--ty-button-height-lg, var(--ty-height-lg))
+      var(--ty-button-height-lg, var(--ty-height-lg)),
+      var(--ty-button-gap-lg, 8px),
+      var(--ty-button-icon-size-lg, 18px)
     );
+  }
+
+  &_icon-only {
+    width: var(--ty-button-height-current);
+    min-width: var(--ty-button-height-current);
+    padding-inline: 0;
   }
 
   &_block {
@@ -215,21 +225,21 @@ $btn-prefix: #{$prefix}-btn;
     float: left;
 
     & + .#{$btn-prefix} {
-      margin-left: -1px;
+      margin-left: calc(-1 * var(--ty-control-group-border-width, 1px));
     }
 
     &:hover {
-      z-index: 1;
+      z-index: var(--ty-control-group-focus-z-index, 1);
     }
 
     &:first-child {
-      border-top-left-radius: var(--ty-button-radius, var(--ty-border-radius));
-      border-bottom-left-radius: var(--ty-button-radius, var(--ty-border-radius));
+      border-top-left-radius: var(--ty-control-group-radius, var(--ty-button-radius, var(--ty-border-radius)));
+      border-bottom-left-radius: var(--ty-control-group-radius, var(--ty-button-radius, var(--ty-border-radius)));
     }
 
     &:last-child {
-      border-top-right-radius: var(--ty-button-radius, var(--ty-border-radius));
-      border-bottom-right-radius: var(--ty-button-radius, var(--ty-border-radius));
+      border-top-right-radius: var(--ty-control-group-radius, var(--ty-button-radius, var(--ty-border-radius)));
+      border-bottom-right-radius: var(--ty-control-group-radius, var(--ty-button-radius, var(--ty-border-radius)));
     }
   }
 
@@ -254,7 +264,7 @@ $btn-prefix: #{$prefix}-btn;
   &_danger {
     .#{$btn-prefix} {
       &:not(:first-child) {
-        border-left-color: var(--ty-button-group-divider-color, var(--ty-color-border-secondary));
+        border-left-color: var(--ty-button-group-divider-color, var(--ty-control-group-divider-color, var(--ty-color-border-secondary)));
       }
     }
   }

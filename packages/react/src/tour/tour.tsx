@@ -49,6 +49,8 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
   const cls = classNames(prefixCls, className);
   const gap = { ...DEFAULT_GAP, ...gapProp };
   const maskId = useId();
+  const titleId = useId();
+  const descriptionId = useId();
 
   const [internalCurrent, setInternalCurrent] = useState(0);
   const current = currentProp ?? internalCurrent;
@@ -57,6 +59,14 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
 
   const panelRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<Instance | null>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
+  const onChangeRef = useRef(onChange);
+  const onFinishRef = useRef(onFinish);
+
+  onCloseRef.current = onClose;
+  onChangeRef.current = onChange;
+  onFinishRef.current = onFinish;
 
   const currentStep = steps[current];
   const stepPlacement = currentStep?.placement ?? globalPlacement;
@@ -191,6 +201,30 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
     return acquireScrollLock(resolveTargetContainer(configContext));
   }, [configContext, open]);
 
+  useEffect(() => {
+    if (!open || !panelVisible) return undefined;
+
+    previousFocusRef.current = document.activeElement as HTMLElement;
+
+    const frameId = requestAnimationFrame(() => {
+      const panel = panelRef.current;
+      if (!panel) return;
+      const focusable = panel.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable) {
+        focusable.focus();
+      } else {
+        panel.focus();
+      }
+    });
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      previousFocusRef.current?.focus();
+    };
+  }, [open, panelVisible, current]);
+
   // Keyboard navigation
   useEffect(() => {
     if (!open || !keyboard) return undefined;
@@ -198,27 +232,27 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         currentStep?.onClose?.();
-        onClose?.();
+        onCloseRef.current?.();
       } else if (e.key === 'ArrowLeft' && current > 0) {
         const next = current - 1;
         if (currentProp === undefined) setInternalCurrent(next);
-        onChange?.(next);
+        onChangeRef.current?.(next);
       } else if (e.key === 'ArrowRight' && current < steps.length - 1) {
         const next = current + 1;
         if (currentProp === undefined) setInternalCurrent(next);
-        onChange?.(next);
+        onChangeRef.current?.(next);
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open, keyboard, current, steps.length, currentProp, currentStep, onChange, onClose]);
+  }, [open, keyboard, current, steps.length, currentProp, currentStep]);
 
   const handlePrev = () => {
     if (current > 0) {
       const next = current - 1;
       if (currentProp === undefined) setInternalCurrent(next);
-      onChange?.(next);
+      onChangeRef.current?.(next);
     }
   };
 
@@ -226,26 +260,34 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
     if (current < steps.length - 1) {
       const next = current + 1;
       if (currentProp === undefined) setInternalCurrent(next);
-      onChange?.(next);
+      onChangeRef.current?.(next);
     } else {
-      onFinish?.();
-      onClose?.();
+      onFinishRef.current?.();
+      onCloseRef.current?.();
     }
   };
 
   const handleClose = () => {
     currentStep?.onClose?.();
-    onClose?.();
+    onCloseRef.current?.();
   };
 
   if (!open || !currentStep) return null;
 
   const hasTarget = !!resolveTarget(currentStep.target);
-  const ariaLabel = typeof currentStep.title === 'string' ? currentStep.title : 'Tour';
+  const ariaLabel = currentStep.title ? undefined : 'Tour';
 
   return (
     <Portal>
-      <div ref={ref} className={cls} style={{ ...style, zIndex }} role="dialog" aria-modal="true" aria-label={ariaLabel}>
+      <div
+        ref={ref}
+        className={cls}
+        style={{ ...style, zIndex }}
+        role="dialog"
+        aria-modal="true"
+        aria-label={ariaLabel}
+        aria-labelledby={currentStep.title ? titleId : undefined}
+        aria-describedby={currentStep.description ? descriptionId : undefined}>
         {stepMask && (
           <TourMask
             maskId={maskId}
@@ -269,6 +311,7 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
               [`${prefixCls}__panel-wrapper`]: true,
               [`${prefixCls}__panel-wrapper_centered`]: !hasTarget,
             })}
+            tabIndex={-1}
             style={{ zIndex: zIndex + 1 }}
             onClick={(e) => e.stopPropagation()}>
             {stepArrow && hasTarget && (
@@ -280,6 +323,8 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>((props, ref) => {
               total={steps.length}
               type={type}
               prefixCls={prefixCls}
+              titleId={titleId}
+              descriptionId={descriptionId}
               prevButtonText={locale.Tour.prevText}
               nextButtonText={locale.Tour.nextText}
               finishButtonText={locale.Tour.finishText}

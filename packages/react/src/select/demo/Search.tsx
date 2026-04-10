@@ -1,8 +1,9 @@
 import React from 'react';
 import { Select } from '@tiny-design/react';
+import type { SelectValue } from '../types';
 
 export default function SearchDemo() {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState<SelectValue>('');
 
   return (
     <div style={{ width: 240 }}>
@@ -10,7 +11,7 @@ export default function SearchDemo() {
         showSearch
         placeholder="Search and select"
         value={value}
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
       >
         <Select.Option value="apple">Apple</Select.Option>
         <Select.Option value="banana">Banana</Select.Option>

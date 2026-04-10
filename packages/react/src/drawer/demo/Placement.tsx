@@ -1,13 +1,14 @@
 import React from 'react';
 import { Drawer, Button, Radio } from '@tiny-design/react';
+import type { DrawerPlacement } from '../types';
 
 export default function PlacementDemo() {
   const [visible, setVisible] = React.useState(false);
-  const [placement, setPlacement] = React.useState('left');
+  const [placement, setPlacement] = React.useState<DrawerPlacement>('left');
 
   return (
     <>
-      <Radio.Group value={placement} onChange={(val) => setPlacement(val)}>
+      <Radio.Group value={placement} onChange={(val) => setPlacement(val as DrawerPlacement)}>
         <Radio value="top">Top</Radio>
         <Radio value="bottom">Bottom</Radio>
         <Radio value="left">Left</Radio>

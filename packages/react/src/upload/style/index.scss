@@ -59,8 +59,17 @@
 
   &__upload-list-item-delete {
     display: none;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: var(--ty-upload-list-item-delete-color, var(--ty-color-text-tertiary));
     padding-right: var(--ty-upload-list-item-delete-padding-end, 3px);
     cursor: pointer;
+
+    &:hover {
+      color: var(--ty-upload-list-item-delete-color-hover, var(--ty-color-text));
+    }
   }
 
   &__upload-list-item-status,

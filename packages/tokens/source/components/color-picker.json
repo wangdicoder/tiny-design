@@ -1,0 +1,226 @@
+{
+  "color-picker.opacity.disabled": {
+    "$value": "0.5",
+    "$type": "number",
+    "description": "Disabled color picker root opacity."
+  },
+  "color-picker.swatch-size": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Color picker swatch size."
+  },
+  "color-picker.swatch-padding": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Color picker swatch padding."
+  },
+  "color-picker.swatch-radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Color picker swatch radius.",
+    "fallback": "--ty-border-radius"
+  },
+  "color-picker.border": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Color picker border color.",
+    "fallback": "--ty-color-border"
+  },
+  "color-picker.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Color picker panel background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "color-picker.panel-padding": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Color picker panel padding."
+  },
+  "color-picker.panel-radius": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Color picker panel radius."
+  },
+  "color-picker.panel-shadow": {
+    "$value": "{shadow-popup}",
+    "$type": "shadow",
+    "description": "Color picker panel shadow.",
+    "fallback": "--ty-shadow-popup"
+  },
+  "color-picker.panel-width": {
+    "$value": "240px",
+    "$type": "dimension",
+    "description": "Color picker panel width."
+  },
+  "color-picker.spectrum-height": {
+    "$value": "150px",
+    "$type": "dimension",
+    "description": "Color picker spectrum height."
+  },
+  "color-picker.spectrum-radius": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Color picker spectrum radius."
+  },
+  "color-picker.spectrum-white": {
+    "$value": "linear-gradient(to right, #fff, transparent)",
+    "$type": "string",
+    "description": "Color picker white overlay gradient."
+  },
+  "color-picker.spectrum-black": {
+    "$value": "linear-gradient(to bottom, transparent, #000)",
+    "$type": "string",
+    "description": "Color picker black overlay gradient."
+  },
+  "color-picker.spectrum-handle-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Color picker spectrum handle size."
+  },
+  "color-picker.handle-border-width": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Color picker handle border width."
+  },
+  "color-picker.handle-border-color": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "Color picker handle border color."
+  },
+  "color-picker.handle-shadow": {
+    "$value": "0 0 2px rgb(0 0 0 / 30%)",
+    "$type": "shadow",
+    "description": "Color picker handle shadow."
+  },
+  "color-picker.controls-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Color picker controls gap."
+  },
+  "color-picker.controls-margin-top": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Color picker controls margin top."
+  },
+  "color-picker.preview-size": {
+    "$value": "28px",
+    "$type": "dimension",
+    "description": "Color picker preview size."
+  },
+  "color-picker.preview-radius": {
+    "$value": "50%",
+    "$type": "string",
+    "description": "Color picker preview radius."
+  },
+  "color-picker.slider-height": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Color picker slider height."
+  },
+  "color-picker.slider-radius": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Color picker slider radius."
+  },
+  "color-picker.alpha-grid-size": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Color picker alpha grid size."
+  },
+  "color-picker.slider-handle-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Color picker slider handle size."
+  },
+  "color-picker.input-row-gap": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Color picker input row gap."
+  },
+  "color-picker.input-row-margin-top": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Color picker input row margin top."
+  },
+  "color-picker.button-padding": {
+    "$value": "2px 6px",
+    "$type": "string",
+    "description": "Color picker format button padding."
+  },
+  "color-picker.button-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Color picker format button font size."
+  },
+  "color-picker.button-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Color picker format button text color.",
+    "fallback": "--ty-color-text"
+  },
+  "color-picker.button-border-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Color picker format button hover border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "color-picker.input-padding": {
+    "$value": "2px 6px",
+    "$type": "string",
+    "description": "Color picker hex input padding."
+  },
+  "color-picker.input-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Color picker hex input font size."
+  },
+  "color-picker.input-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Color picker hex input text color.",
+    "fallback": "--ty-color-text"
+  },
+  "color-picker.input-font-family": {
+    "$value": "{font-family-monospace}",
+    "$type": "font-family",
+    "description": "Color picker hex input font family.",
+    "fallback": "--ty-font-family-monospace"
+  },
+  "color-picker.input-border-focus": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Color picker hex input focus border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "color-picker.presets-gap": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Color picker presets gap."
+  },
+  "color-picker.presets-margin-top": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Color picker presets margin top."
+  },
+  "color-picker.presets-padding-top": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Color picker presets padding top."
+  },
+  "color-picker.preset-size": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Color picker preset size."
+  },
+  "color-picker.preset-hover-scale": {
+    "$value": "1.2",
+    "$type": "number",
+    "description": "Color picker preset hover scale."
+  },
+  "color-picker.preset-transition-duration": {
+    "$value": "150ms",
+    "$type": "duration",
+    "description": "Color picker preset transform transition duration."
+  }
+}

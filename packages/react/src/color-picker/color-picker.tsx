@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useContext, useCallback, useId } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
-import { useClickOutside } from '../_utils/hooks';
 import Popup from '../popup';
-import { ColorPickerProps, Color, ColorFormat } from './types';
+import { ColorPickerProps, Color, ColorFormat, ColorChangeMeta } from './types';
 import { parseColor, formatColor, hsbToHex } from './utils';
+
+const DEFAULT_FORMATS: ColorFormat[] = ['hex', 'rgb', 'hsb', 'oklch'];
 
 const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _ref) => {
   const {
@@ -15,11 +16,14 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
     disabled = false,
     trigger = 'click',
     defaultFormat = 'hex',
+    formats = DEFAULT_FORMATS,
     prefixCls: customisedCls,
     className,
     style,
     onChange,
+    onChangeComplete,
     onFormatChange,
+    onOpenChange,
     children,
     ...otherProps
   } = props;
@@ -40,9 +44,24 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   const hueRef = useRef<HTMLDivElement>(null);
   const alphaRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  const colorRef = useRef<Color>(color);
+  const popupId = useId();
 
   const isOpen = ('open' in props ? (props.open as boolean) : undefined) ?? open;
   const controlledOpen = 'open' in props ? (props.open as boolean) : undefined;
+  const availableFormats = formats.length > 0 ? formats : DEFAULT_FORMATS;
+  const getMeta = useCallback(
+    (nextColor: Color, nextFormat: ColorFormat = format): ColorChangeMeta => ({
+      color: nextColor,
+      format: nextFormat,
+    }),
+    [format]
+  );
+
+  useEffect(() => {
+    colorRef.current = color;
+  }, [color]);
 
   useEffect(() => {
     if ('value' in props && props.value) {
@@ -58,15 +77,41 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
     if ('open' in props) setOpen(props.open as boolean);
   }, [props.open]);
 
-  useClickOutside(wrapperRef, () => {
-    if (controlledOpen === undefined) setOpen(false);
-    props.onOpenChange?.(false);
-  });
+  useEffect(() => {
+    if (!isOpen) {
+      previousFocusRef.current?.focus();
+      return;
+    }
 
-  const emitChange = useCallback((c: Color) => {
-    const formatted = formatColor(c, format);
-    onChange?.(formatted);
-  }, [format, onChange]);
+    previousFocusRef.current = document.activeElement as HTMLElement;
+    const frameId = requestAnimationFrame(() => {
+      const panel = document.getElementById(popupId);
+      const focusable = panel?.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      focusable?.focus();
+    });
+
+    return () => {
+      cancelAnimationFrame(frameId);
+    };
+  }, [isOpen, popupId]);
+
+  const emitChange = useCallback(
+    (c: Color, nextFormat: ColorFormat = format) => {
+      const formatted = formatColor(c, nextFormat);
+      onChange?.(formatted, getMeta(c, nextFormat));
+    },
+    [format, getMeta, onChange]
+  );
+
+  const emitChangeComplete = useCallback(
+    (c: Color, nextFormat: ColorFormat = format) => {
+      const formatted = formatColor(c, nextFormat);
+      onChangeComplete?.(formatted, getMeta(c, nextFormat));
+    },
+    [format, getMeta, onChangeComplete]
+  );
 
   const updateColor = (updates: Partial<Color>) => {
     const newColor = { ...color, ...updates };
@@ -131,7 +176,10 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
     if (disabled) return;
     updateHueFromEvent(e.nativeEvent);
     const handleMove = (ev: MouseEvent | TouchEvent) => updateHueFromEvent(ev);
-    const handleUp = () => removeDragListeners(handleMove, handleUp);
+    const handleUp = () => {
+      removeDragListeners(handleMove, handleUp);
+      emitChangeComplete(colorRef.current);
+    };
     addDragListeners(handleMove, handleUp);
   };
 
@@ -139,7 +187,10 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
     if (disabled) return;
     updateHueFromEvent(e.nativeEvent);
     const handleMove = (ev: MouseEvent | TouchEvent) => updateHueFromEvent(ev);
-    const handleUp = () => removeDragListeners(handleMove, handleUp);
+    const handleUp = () => {
+      removeDragListeners(handleMove, handleUp);
+      emitChangeComplete(colorRef.current);
+    };
     addDragListeners(handleMove, handleUp);
   };
 
@@ -156,7 +207,10 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
     if (disabled) return;
     updateAlphaFromEvent(e.nativeEvent);
     const handleMove = (ev: MouseEvent | TouchEvent) => updateAlphaFromEvent(ev);
-    const handleUp = () => removeDragListeners(handleMove, handleUp);
+    const handleUp = () => {
+      removeDragListeners(handleMove, handleUp);
+      emitChangeComplete(colorRef.current);
+    };
     addDragListeners(handleMove, handleUp);
   };
 
@@ -164,7 +218,10 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
     if (disabled) return;
     updateAlphaFromEvent(e.nativeEvent);
     const handleMove = (ev: MouseEvent | TouchEvent) => updateAlphaFromEvent(ev);
-    const handleUp = () => removeDragListeners(handleMove, handleUp);
+    const handleUp = () => {
+      removeDragListeners(handleMove, handleUp);
+      emitChangeComplete(colorRef.current);
+    };
     addDragListeners(handleMove, handleUp);
   };
 
@@ -180,7 +237,10 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   useEffect(() => {
     if (!dragging) return;
     const handleMove = (e: MouseEvent | TouchEvent) => updateSpectrumFromEvent(e);
-    const handleUp = () => setDragging(false);
+    const handleUp = () => {
+      setDragging(false);
+      emitChangeComplete(colorRef.current);
+    };
     document.addEventListener('mousemove', handleMove);
     document.addEventListener('mouseup', handleUp);
     document.addEventListener('touchmove', handleMove);
@@ -191,27 +251,22 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
       document.removeEventListener('touchmove', handleMove);
       document.removeEventListener('touchend', handleUp);
     };
-  }, [dragging, color.h, color.a]);
-
-  const toggleOpen = () => {
-    if (disabled) return;
-    const next = !isOpen;
-    if (controlledOpen === undefined) setOpen(next);
-    props.onOpenChange?.(next);
-  };
+  }, [dragging, emitChangeComplete]);
 
   const handleFormatChange = () => {
-    const formats: ColorFormat[] = ['hex', 'rgb', 'hsb'];
-    const idx = formats.indexOf(format);
-    const next = formats[(idx + 1) % formats.length];
+    const idx = availableFormats.indexOf(format);
+    const currentIdx = idx === -1 ? 0 : idx;
+    const next = availableFormats[(currentIdx + 1) % availableFormats.length];
     if (!('format' in props)) setFormat(next);
     onFormatChange?.(next);
+    emitChange(color, next);
   };
 
   const handlePresetClick = (preset: string) => {
     const c = parseColor(preset);
     if (!('value' in props)) setColor(c);
     emitChange(c);
+    emitChangeComplete(c);
   };
 
   const cls = classNames(prefixCls, className, {
@@ -222,7 +277,7 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   const hueColor = hsbToHex({ h: color.h, s: 100, b: 100, a: 1 });
 
   const renderPanel = () => (
-    <div className={`${prefixCls}__panel`}>
+    <div id={popupId} role="dialog" aria-modal="false" className={`${prefixCls}__panel`}>
       <div
         ref={spectrumRef}
         className={`${prefixCls}__spectrum`}
@@ -289,7 +344,7 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
           onChange={(e) => {
             const c = parseColor(e.target.value);
             if (!('value' in props)) setColor(c);
-            onChange?.(e.target.value);
+            emitChange(c);
           }}
         />
       </div>
@@ -313,15 +368,47 @@ const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>((props, _
   return (
     <div {...otherProps} ref={wrapperRef} className={cls} style={style}>
       <Popup
-        trigger="manual"
+        trigger={trigger}
+        disabled={disabled}
         placement="bottom"
         arrow={false}
         visible={isOpen}
+        onVisibleChange={(nextOpen) => {
+          if (controlledOpen === undefined) {
+            setOpen(nextOpen);
+          }
+          onOpenChange?.(nextOpen);
+        }}
         content={renderPanel()}>
         <div
           className={`${prefixCls}__trigger`}
-          onClick={trigger === 'click' ? toggleOpen : undefined}
-          onMouseEnter={trigger === 'hover' ? toggleOpen : undefined}
+          role="button"
+          tabIndex={disabled ? -1 : 0}
+          aria-haspopup="dialog"
+          aria-expanded={isOpen}
+          aria-controls={isOpen ? popupId : undefined}
+          onKeyDown={(e) => {
+            if (disabled) {
+              return;
+            }
+
+            if ((e.key === 'Enter' || e.key === ' ') && !isOpen) {
+              e.preventDefault();
+              if (controlledOpen === undefined) {
+                setOpen(true);
+              }
+              onOpenChange?.(true);
+              return;
+            }
+
+            if (e.key === 'Escape' && isOpen) {
+              e.preventDefault();
+              if (controlledOpen === undefined) {
+                setOpen(false);
+              }
+              onOpenChange?.(false);
+            }
+          }}
         >
           {children || (
             <div className={`${prefixCls}__swatch`}>

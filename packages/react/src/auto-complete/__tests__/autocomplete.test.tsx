@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import AutoComplete from '../index';
 
 const options = [
@@ -69,11 +69,42 @@ describe('<AutoComplete />', () => {
     expect(onChange).toHaveBeenCalledWith('Banana');
   });
 
+  it('should expose combobox aria relationships when navigating options', () => {
+    const { container } = render(<AutoComplete options={options} />);
+    const input = container.querySelector('input') as HTMLInputElement;
+    const wrapper = container.firstChild as HTMLElement;
+
+    fireEvent.keyDown(wrapper, { key: 'ArrowDown' });
+
+    const listboxId = input.getAttribute('aria-controls');
+    expect(input).toHaveAttribute('role', 'combobox');
+    expect(input).toHaveAttribute('aria-expanded', 'true');
+    expect(listboxId).toBeTruthy();
+    expect(input).toHaveAttribute('aria-activedescendant', `${listboxId}-option-0`);
+    expect(document.getElementById(`${listboxId}-option-0`)).toHaveTextContent('Apple');
+  });
+
   it('should close on Escape', () => {
     const { container } = render(<AutoComplete options={options} defaultOpen />);
     const wrapper = container.firstChild as HTMLElement;
     fireEvent.keyDown(wrapper, { key: 'Escape' });
     expect(wrapper).not.toHaveClass('ty-auto-complete_open');
+  });
+
+  it('should close on outside click', async () => {
+    const { container } = render(
+      <div>
+        <AutoComplete options={options} defaultOpen />
+        <button>Outside</button>
+      </div>
+    );
+
+    expect(getOptions().length).toBeGreaterThan(0);
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(container.querySelector('.ty-auto-complete')).not.toHaveClass('ty-auto-complete_open');
+    });
   });
 
   it('should handle disabled state', () => {
@@ -110,6 +141,39 @@ describe('<AutoComplete />', () => {
     expect(container.firstChild).toHaveClass('ty-auto-complete_open');
   });
 
+  it('should call onOpenChange when focus opens and outside click closes the popup', async () => {
+    const onOpenChange = jest.fn();
+    const { container } = render(
+      <div>
+        <AutoComplete options={options} onOpenChange={onOpenChange} />
+        <button>Outside</button>
+      </div>
+    );
+
+    const input = container.querySelector('input') as HTMLInputElement;
+    fireEvent.focus(input);
+    expect(onOpenChange).toHaveBeenCalledWith(true);
+
+    fireEvent.click(screen.getByText('Outside'));
+
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledWith(false);
+    });
+  });
+
+  it('should respect controlled open when Escape is pressed', () => {
+    const onOpenChange = jest.fn();
+    const { container } = render(
+      <AutoComplete options={options} open={true} onOpenChange={onOpenChange} />
+    );
+
+    const wrapper = container.firstChild as HTMLElement;
+    fireEvent.keyDown(wrapper, { key: 'Escape' });
+
+    expect(container.firstChild).toHaveClass('ty-auto-complete_open');
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+  });
+
   it('should call onSearch callback', () => {
     const onSearch = jest.fn();
     const { container } = render(<AutoComplete options={options} onSearch={onSearch} />);
@@ -129,6 +193,22 @@ describe('<AutoComplete />', () => {
     const items = getOptions();
     expect(items.length).toBe(1);
     expect(items[0]).toHaveTextContent('Cherry');
+  });
+
+  it('should render empty content as a listbox option when no results match', () => {
+    const { container } = render(
+      <AutoComplete options={options} notFoundContent="No data" />
+    );
+    const input = container.querySelector('input')!;
+    fireEvent.change(input, { target: { value: 'zzz' } });
+
+    const listbox = document.querySelector('.ty-auto-complete__dropdown');
+    const emptyItem = document.querySelector('.ty-auto-complete__empty');
+
+    expect(listbox?.querySelector('li.ty-auto-complete__empty')).toBeInTheDocument();
+    expect(emptyItem).toHaveAttribute('role', 'option');
+    expect(emptyItem).toHaveAttribute('aria-disabled', 'true');
+    expect(emptyItem).toHaveTextContent('No data');
   });
 
   it('should not select disabled option', () => {

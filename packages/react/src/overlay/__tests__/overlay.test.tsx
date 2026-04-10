@@ -37,4 +37,18 @@ describe('<Overlay />', () => {
     expect(container.style.overflow).toBe('');
     document.body.removeChild(container);
   });
+
+  it('should render into configured popup container', () => {
+    const popupContainer = document.createElement('div');
+    document.body.appendChild(popupContainer);
+
+    render(
+      <ConfigProvider getPopupContainer={() => popupContainer}>
+        <Overlay isShow>Popup Container Content</Overlay>
+      </ConfigProvider>
+    );
+
+    expect(popupContainer.textContent).toContain('Popup Container Content');
+    document.body.removeChild(popupContainer);
+  });
 });

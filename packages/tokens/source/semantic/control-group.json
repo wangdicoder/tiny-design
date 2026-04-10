@@ -1,0 +1,22 @@
+{
+  "control-group.radius": {
+    "$value": "{control.radius}",
+    "$type": "dimension",
+    "description": "Radius applied to the outer corners of grouped controls."
+  },
+  "control-group.border-width": {
+    "$value": "1px",
+    "$type": "dimension",
+    "description": "Shared border width used when attaching grouped controls."
+  },
+  "control-group.divider-color": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "Divider color between grouped controls."
+  },
+  "control-group.focus-z-index": {
+    "$value": "1",
+    "$type": "number",
+    "description": "Stacking level for hovered or focused grouped controls."
+  }
+}

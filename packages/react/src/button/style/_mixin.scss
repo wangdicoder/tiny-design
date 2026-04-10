@@ -46,8 +46,13 @@
   }
 }
 
-@mixin btn-size($padding, $font-size, $height) {
-  padding: $padding;
-  font-size: $font-size;
+@mixin btn-size($padding-inline, $font-size, $height, $gap, $icon-size) {
+  --ty-button-height-current: #{$height};
+  --ty-button-gap-current: #{$gap};
+  --ty-button-icon-size-current: #{$icon-size};
+
   height: $height;
+  padding: 0 $padding-inline;
+  font-size: $font-size;
+  gap: $gap;
 }

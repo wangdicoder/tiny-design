@@ -1,17 +1,6 @@
-type AjaxOption = {
-  action: string;
-  file: File;
-  filename: string;
-  method: string;
-  onProgress: (percent: number) => void;
-  onSuccess: (e: ProgressEvent) => void;
-  onError: (e: ProgressEvent) => void;
-  headers?: { [key: string]: string };
-  withCredentials?: boolean;
-  data?: { [key: string]: string };
-};
+import { UploadRequestOption } from './types';
 
-export default function ajax(option: AjaxOption): XMLHttpRequest {
+export default function ajax(option: UploadRequestOption): XMLHttpRequest {
   const { action, file, filename, method, onProgress, onSuccess, onError, headers, withCredentials, data } = option;
   const xhr = new XMLHttpRequest();
   xhr.open(method, action, true);

@@ -3,7 +3,7 @@
 exports[`<ButtonGroup /> should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ty-btn-group ty-btn-group_default"
+    class="ty-btn-group ty-btn-group_default ty-btn-group_md"
   >
     <button
       class="ty-btn ty-btn_md ty-btn_default"

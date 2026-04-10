@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, screen, waitFor } from '@testing-library/react';
 import Modal from '../index';
 import ConfigProvider from '../../config-provider';
 
@@ -32,6 +32,110 @@ describe('<Modal />', () => {
     const { getByText } = render(<Modal visible>Content</Modal>);
     expect(getByText('OK')).toBeInTheDocument();
     expect(getByText('Cancel')).toBeInTheDocument();
+  });
+
+  it('should call onCancel from the cancel button without calling onClose', () => {
+    const onCancel = jest.fn();
+    const onClose = jest.fn();
+    render(
+      <Modal visible onCancel={onCancel} onClose={onClose}>
+        Content
+      </Modal>
+    );
+
+    fireEvent.click(screen.getByText('Cancel'));
+
+    expect(onCancel).toHaveBeenCalledTimes(1);
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it('should call onClose from the close button without calling onCancel', () => {
+    const onCancel = jest.fn();
+    const onClose = jest.fn();
+    render(
+      <Modal visible onCancel={onCancel} onClose={onClose}>
+        Content
+      </Modal>
+    );
+
+    fireEvent.click(screen.getByLabelText('Close'));
+
+    expect(onClose).toHaveBeenCalledTimes(1);
+    expect(onCancel).not.toHaveBeenCalled();
+  });
+
+  it('should close on escape by default', () => {
+    const onClose = jest.fn();
+    render(<Modal visible onClose={onClose}>Content</Modal>);
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not close on escape when keyboard is disabled', () => {
+    const onClose = jest.fn();
+    render(
+      <Modal visible keyboard={false} onClose={onClose}>
+        Content
+      </Modal>
+    );
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it('should focus the dialog container when there are no focusable children', async () => {
+    const { baseElement } = render(<Modal visible footer={null} closable={false}>Content</Modal>);
+
+    await waitFor(() => {
+      expect(baseElement.querySelector('.ty-modal__content')).toHaveFocus();
+    });
+  });
+
+  it('should expose aria relationships for header and body content', () => {
+    render(
+      <Modal visible header="Settings">
+        Modal content
+      </Modal>
+    );
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveAttribute('aria-labelledby');
+    expect(dialog).toHaveAttribute('aria-describedby');
+    expect(document.getElementById(dialog.getAttribute('aria-labelledby') || '')).toHaveTextContent('Settings');
+    expect(document.getElementById(dialog.getAttribute('aria-describedby') || '')).toHaveTextContent('Modal content');
+  });
+
+  it('should keep focus inside the modal across rerenders while visible', async () => {
+    const { rerender } = render(
+      <div>
+        <button>Trigger</button>
+        <Modal visible footer={null} closable={false} style={{ width: 320 }}>
+          Content
+        </Modal>
+      </div>
+    );
+
+    const trigger = screen.getByText('Trigger');
+    trigger.focus();
+
+    await waitFor(() => {
+      expect(screen.getByRole('dialog')).toHaveFocus();
+    });
+
+    rerender(
+      <div>
+        <button>Trigger</button>
+        <Modal visible footer={null} closable={false} style={{ width: 360 }}>
+          Content
+        </Modal>
+      </div>
+    );
+
+    expect(screen.getByRole('dialog')).toHaveFocus();
+    expect(trigger).not.toHaveFocus();
   });
 
   it('should render custom button text', () => {
@@ -102,6 +206,29 @@ describe('<Modal />', () => {
 
     act(() => {
       instance.destroy();
+    });
+  });
+
+  it('should prefer onClose over onCancel for static modal closing', () => {
+    const onClose = jest.fn();
+    const onCancel = jest.fn();
+    let instance!: ReturnType<typeof Modal.open>;
+
+    act(() => {
+      instance = Modal.open({
+        header: 'Static Close Modal',
+        children: 'Close Content',
+        onClose,
+        onCancel,
+      });
+    });
+
+    const closeButtons = screen.getAllByLabelText('Close');
+    fireEvent.click(closeButtons[closeButtons.length - 1]);
+
+    return waitFor(() => {
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onCancel).not.toHaveBeenCalled();
     });
   });
 });

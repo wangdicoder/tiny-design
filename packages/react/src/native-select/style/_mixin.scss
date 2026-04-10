@@ -1,4 +1,6 @@
-@mixin native-size($padding, $font-size){
+@mixin native-size($height, $padding, $font-size){
+  height: $height;
   padding: $padding;
   font-size: $font-size;
+  line-height: calc(#{$height} - 2px);
 }

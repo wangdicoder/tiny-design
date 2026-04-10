@@ -107,6 +107,7 @@ import { AutoComplete } from 'tiny-design';
 | filterOption              | 自定义过滤函数或 false 禁用过滤          | boolean &#124; (inputValue, option) => boolean                | true    |
 | onChange                   | 输入值变化时的回调                       | (value: string) => void                                       | -       |
 | onSelect                  | 选中选项时的回调                         | (value: string, option) => void                               | -       |
+| onOpenChange              | 下拉展开状态变化时的回调                 | (open: boolean) => void                                       | -       |
 | onSearch                  | 搜索时的回调                             | (value: string) => void                                       | -       |
 | onFocus                   | 获得焦点时的回调                         | (e: FocusEvent) => void                                       | -       |
 | onBlur                    | 失去焦点时的回调                         | (e: FocusEvent) => void                                       | -       |

@@ -1,0 +1,24 @@
+{
+  "overlay.bg.default": {
+    "$value": "{color-overlay-bg}",
+    "$type": "color",
+    "description": "Overlay default background color.",
+    "fallback": "--ty-color-overlay-bg"
+  },
+  "overlay.bg.inverted": {
+    "$value": "{color-overlay-inverted}",
+    "$type": "color",
+    "description": "Overlay inverted background color.",
+    "fallback": "--ty-color-overlay-inverted"
+  },
+  "overlay.blur.radius": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Overlay blurred mask radius."
+  },
+  "overlay.fade-duration": {
+    "$value": "300ms",
+    "$type": "duration",
+    "description": "Overlay fade transition duration."
+  }
+}

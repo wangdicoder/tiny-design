@@ -64,7 +64,7 @@ import { Upload } from 'tiny-design';
 | action            | 上传请求的 URL                                    | string                        | -         |
 | accept            | 接受的[文件类型](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)        | string    | -     |
 | method            | HTTP 请求方法                                     | string                        | `POST`    |
-| name              | 上传文件的字段名                                  | string                        | -         |
+| name              | 上传文件的表单字段名                              | string                        | `file`    |
 | disabled          | 按钮的禁用状态                                    | boolean                       | false     |
 | data              | 请求的附加参数                                    | object                        | -         |
 | headers           | 请求头                                            | object                        | -         |
@@ -75,13 +75,13 @@ import { Upload } from 'tiny-design';
 | fileList          | 已上传的文件列表                                  | object[]                      | -         |
 | defaultFileList   | 默认已上传的文件列表                              | object[]                      | -         |
 | limit             | 允许上传的最大数量                                | number                        | -         |
-| beforeUpload      | 上传前的钩子函数，参数为待上传文件。返回 false 或 Promise 时将中止上传    | (file: File) => void  | -   |
-| onProgress        | 上传进度回调钩子                                  | (percent: number) => void     | -         |
-| onSuccess         | 上传成功时的钩子                                  | (file, fileList) => void      | -         |
-| onError           | 上传出错时的钩子                                  | (file, fileList) => void      | -         |
+| beforeUpload      | 上传前的钩子函数。返回 `false` 可中止上传，返回 `File` 可替换上传文件，也可返回 Promise 并解析为这两种结果之一 | (file: File) => boolean &#124; File &#124; Promise&lt;boolean &#124; File&gt; | -   |
+| onProgress        | 上传进度回调钩子                                  | (percent: number, file, fileList) => void | - |
+| onSuccess         | 上传成功时的钩子                                  | (event, file, fileList) => void | -      |
+| onError           | 上传出错时的钩子                                  | (event, file, fileList) => void | -      |
 | onChange          | 文件状态变化时的钩子                              | (file, fileList) => void      | -         |
 | onRemove          | 文件被移除时的钩子                                | (file) => void                | -         |
 | onExceed          | 超出数量限制时的钩子                              | (files, fileList) => void     | -         |
-| httpRequest       | 覆盖默认的 xhr 行为                               | Function                      | ajax      |
+| httpRequest       | 覆盖默认的 xhr 行为                               | (option: UploadRequestOption) => XMLHttpRequest &#124; void | ajax      |
 | style	            | 容器的样式对象                                    | CSSProperties                 | -         |
 | className	        | 容器的类名                                        | string                        | -         |

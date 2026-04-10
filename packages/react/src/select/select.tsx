@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useId, useRef, useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
-import { useClickOutside } from '../_utils/hooks';
 import { useCombobox } from '../_utils/useCombobox';
 import { ArrowDown, Close, CloseCircle, LoadingCircle, Check } from '../_utils/components';
 import { SelectContext } from './select-context';
@@ -156,13 +155,6 @@ const Select = (props: SelectProps): React.ReactElement => {
     [`${prefixCls}__arrow_reverse`]: combo.isOpen,
   });
 
-  useClickOutside(ref, () => {
-    if (!('open' in props)) {
-      combo.closeDropdown();
-    }
-    setSearchValue('');
-  });
-
   // Get display label for a value
   const getLabelForValue = useCallback(
     (val: string): React.ReactNode => {
@@ -219,13 +211,30 @@ const Select = (props: SelectProps): React.ReactElement => {
       combo.closeDropdown();
     } else {
       combo.openDropdown();
-      setTimeout(() => searchInputRef.current?.focus(), 0);
     }
   };
 
   // Keyboard — wrap hook's handler with Select-specific keys
   const handleKeyDown = (e: React.KeyboardEvent): void => {
     if (disabled) return;
+
+    const isSearchPrintableKey =
+      showSearch &&
+      e.key.length === 1 &&
+      !e.ctrlKey &&
+      !e.metaKey &&
+      !e.altKey;
+
+    if (isSearchPrintableKey && e.target !== searchInputRef.current) {
+      e.preventDefault();
+      if (!combo.isOpen) {
+        combo.openDropdown();
+      }
+      const nextSearchValue = `${searchValue}${e.key}`;
+      setSearchValue(nextSearchValue);
+      onSearch?.(nextSearchValue);
+      return;
+    }
 
     if (e.key === 'Backspace' && isMultiple && !searchValue) {
       const arr = Array.isArray(selectVal) ? selectVal : [];
@@ -234,6 +243,22 @@ const Select = (props: SelectProps): React.ReactElement => {
         if (!('value' in props)) setSelectVal(newVal);
         onChange?.(newVal, flatOptions.filter((o) => newVal.includes(o.value)));
         onSelect?.(newVal);
+      }
+      return;
+    }
+
+    if (
+      showSearch &&
+      e.key === 'Backspace' &&
+      e.target !== searchInputRef.current &&
+      searchValue
+    ) {
+      e.preventDefault();
+      const nextSearchValue = searchValue.slice(0, -1);
+      setSearchValue(nextSearchValue);
+      onSearch?.(nextSearchValue);
+      if (!combo.isOpen) {
+        combo.openDropdown();
       }
       return;
     }
@@ -264,6 +289,16 @@ const Select = (props: SelectProps): React.ReactElement => {
     combo.setFocusedIndex(-1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
+
+  useEffect(() => {
+    if (!combo.isOpen || !showSearch || disabled) return;
+
+    const frameId = requestAnimationFrame(() => {
+      searchInputRef.current?.focus();
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [combo.isOpen, showSearch, disabled]);
 
   const hasValue = hasSomeValue;
 
@@ -307,9 +342,12 @@ const Select = (props: SelectProps): React.ReactElement => {
   const renderDropdownContent = (): React.ReactNode => {
     if (loading) {
       return (
-        <div className={`${prefixCls}__loading`}>
+        <li
+          className={`${prefixCls}__loading`}
+          role="option"
+          aria-disabled="true">
           <LoadingCircle size={20} />
-        </div>
+        </li>
       );
     }
 
@@ -336,6 +374,7 @@ const Select = (props: SelectProps): React.ReactElement => {
           return (
             <li
               key={opt.value}
+              id={`${listboxId}-option-${index}`}
               role="option"
               className={optCls}
               aria-selected={isSelected}
@@ -359,9 +398,12 @@ const Select = (props: SelectProps): React.ReactElement => {
     const contentArray = React.Children.toArray(content);
     if (!contentArray || contentArray.length === 0) {
       return (
-        <div className={`${prefixCls}__empty`}>
+        <li
+          className={`${prefixCls}__empty`}
+          role="option"
+          aria-disabled="true">
           {notFoundContent ?? 'No data'}
-        </div>
+        </li>
       );
     }
 
@@ -467,7 +509,13 @@ const Select = (props: SelectProps): React.ReactElement => {
       role="combobox"
       aria-expanded={combo.isOpen}
       aria-haspopup="listbox"
+      aria-controls={combo.isOpen ? listboxId : undefined}
       aria-owns={combo.isOpen ? listboxId : undefined}
+      aria-activedescendant={
+        combo.isOpen && combo.focusedIndex >= 0
+          ? `${listboxId}-option-${combo.focusedIndex}`
+          : undefined
+      }
       onKeyDown={handleKeyDown}
       tabIndex={disabled ? undefined : 0}>
       <Popup
@@ -475,6 +523,15 @@ const Select = (props: SelectProps): React.ReactElement => {
         placement="bottom"
         arrow={false}
         visible={combo.isOpen}
+        onVisibleChange={(nextOpen) => {
+          if (nextOpen) {
+            combo.openDropdown();
+            return;
+          }
+
+          combo.closeDropdown();
+          setSearchValue('');
+        }}
         content={renderOverlay()}>
         <div className={`${prefixCls}__selector`} onClick={handleSelectorClick}>
           <div className={`${prefixCls}__selection`}>{renderSelectorContent()}</div>

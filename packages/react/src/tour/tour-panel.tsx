@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../button/button';
+import { Close } from '../_utils/components';
 import { TourStepProps } from './types';
 
 export interface TourPanelProps {
@@ -8,6 +9,8 @@ export interface TourPanelProps {
   total: number;
   type: 'default' | 'primary';
   prefixCls: string;
+  titleId: string;
+  descriptionId: string;
   prevButtonText: string;
   nextButtonText: string;
   finishButtonText: string;
@@ -24,6 +27,8 @@ const TourPanel = React.forwardRef<HTMLDivElement, TourPanelProps>((props, ref) 
     total,
     type,
     prefixCls,
+    titleId,
+    descriptionId,
     prevButtonText,
     nextButtonText,
     finishButtonText,
@@ -68,11 +73,15 @@ const TourPanel = React.forwardRef<HTMLDivElement, TourPanelProps>((props, ref) 
         className={`${prefixCls}__close-btn`}
         onClick={onClose}
         aria-label="Close">
-        ✕
+        <Close size={12} />
       </button>
       {step.cover && <div className={`${prefixCls}__cover`}>{step.cover}</div>}
-      {step.title && <div className={`${prefixCls}__title`}>{step.title}</div>}
-      {step.description && <div className={`${prefixCls}__description`}>{step.description}</div>}
+      {step.title && <div id={titleId} className={`${prefixCls}__title`}>{step.title}</div>}
+      {step.description && (
+        <div id={descriptionId} className={`${prefixCls}__description`}>
+          {step.description}
+        </div>
+      )}
       <div className={`${prefixCls}__footer`}>
         {renderIndicators()}
         <div className={`${prefixCls}__actions`}>

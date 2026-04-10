@@ -5,7 +5,7 @@
     "description": "Checkbox control size."
   },
   "checkbox.radius": {
-    "$value": "2px",
+    "$value": "{border-radius}",
     "$type": "dimension",
     "description": "Checkbox control border radius."
   },

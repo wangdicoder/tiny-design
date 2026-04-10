@@ -2,8 +2,48 @@
 
 exports[`<Textarea /> should match the snapshot 1`] = `
 <DocumentFragment>
-  <textarea
-    class="ty-textarea"
-  />
+  <div
+    class="ty-textarea-container ty-textarea-container_with-footer ty-textarea-container_with-custom-resize"
+  >
+    <textarea
+      class="ty-textarea"
+    />
+    <span
+      class="ty-textarea-container__footer"
+    >
+      <span
+        aria-orientation="vertical"
+        class="ty-textarea-container__resize-handle"
+        role="separator"
+      >
+        <svg
+          fill="none"
+          height="14"
+          viewBox="0 0 14 14"
+          width="14"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 10.5L10.5 5"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="1.25"
+          />
+          <path
+            d="M7.5 11L11 7.5"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="1.25"
+          />
+          <path
+            d="M10 11L11 10"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="1.25"
+          />
+        </svg>
+      </span>
+    </span>
+  </div>
 </DocumentFragment>
 `;

@@ -61,21 +61,34 @@ const TransferPanel = React.forwardRef<HTMLDivElement, TransferPanelProps>(
 
     const filteredData = getFilteredData();
     const checkableData = filteredData.filter((item) => !item.disabled);
-    const isAllChecked = checkableData.length > 0 && checkedKeys.length === checkableData.length;
-    const isIndeterminate = checkedKeys.length > 0 && checkedKeys.length < checkableData.length;
+    const filteredKeySet = new Set(filteredData.map((item) => item.key));
+    const filteredCheckedKeys = checkedKeys.filter((key) => filteredKeySet.has(key));
+    const hiddenCheckedKeys = checkedKeys.filter((key) => !filteredKeySet.has(key));
+    const disabledFilteredCheckedKeys = filteredData
+      .filter((item) => item.disabled && checkedKeys.includes(item.key))
+      .map((item) => item.key);
+    const selectableFilteredCheckedKeys = filteredCheckedKeys.filter(
+      (key) => !disabledFilteredCheckedKeys.includes(key)
+    );
+    const isAllChecked =
+      checkableData.length > 0 && selectableFilteredCheckedKeys.length === checkableData.length;
+    const isIndeterminate =
+      selectableFilteredCheckedKeys.length > 0 && selectableFilteredCheckedKeys.length < checkableData.length;
 
     /**
      * Footer checkbox onChange event
      */
     const handleAllCheckedChange = (e: ChangeEvent<HTMLInputElement>) => {
       const isChecked = e.currentTarget.checked;
-      const checkedKeys = isChecked ? checkableData.map((item) => item.key) : [];
-      onChange(checkedKeys);
+      const nextCheckedKeys = isChecked
+        ? [...hiddenCheckedKeys, ...disabledFilteredCheckedKeys, ...checkableData.map((item) => item.key)]
+        : [...hiddenCheckedKeys, ...disabledFilteredCheckedKeys];
+      onChange(nextCheckedKeys);
     };
 
     const checkedSummary = (): string => {
       if (isIndeterminate || isAllChecked) {
-        return `${checkedKeys.length} / ${filteredData.length} checked`;
+        return `${filteredCheckedKeys.length} / ${filteredData.length} checked`;
       }
       return `${filteredData.length} items`;
     };
@@ -101,8 +114,8 @@ const TransferPanel = React.forwardRef<HTMLDivElement, TransferPanelProps>(
           <div className={`${prefixCls}__list-container`}>
             {filteredData.length > 0 ? (
               <CheckboxGroup
-                value={checkedKeys}
-                onChange={(values) => onChange(values)}
+                value={filteredCheckedKeys}
+                onChange={(values) => onChange([...hiddenCheckedKeys, ...disabledFilteredCheckedKeys, ...values])}
                 className={`${prefixCls}__list`}>
                 {filteredData.map((item) => {
                   const { key, label, disabled } = item;

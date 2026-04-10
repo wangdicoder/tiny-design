@@ -1,7 +1,4 @@
-@use 'sass:math';
 @use '@tiny-design/tokens/scss/variables' as *;
-
-$arrow-size: 8px;
 
 .#{$prefix}-tour {
   position: fixed;
@@ -28,8 +25,8 @@ $arrow-size: 8px;
   // Arrow
   &__arrow,
   &__arrow::before {
-    width: $arrow-size * 2;
-    height: $arrow-size * 2;
+    width: calc(var(--ty-tour-arrow-size) * 2);
+    height: calc(var(--ty-tour-arrow-size) * 2);
     box-sizing: border-box;
     position: absolute;
   }
@@ -55,54 +52,54 @@ $arrow-size: 8px;
   // Panel
   &__panel {
     position: relative;
-    border-radius: var(--ty-border-radius);
-    box-shadow: var(--ty-shadow-modal);
-    max-width: 360px;
-    min-width: 260px;
+    border-radius: var(--ty-tour-panel-radius);
+    box-shadow: var(--ty-tour-panel-shadow);
+    max-width: var(--ty-tour-panel-max-width);
+    min-width: var(--ty-tour-panel-min-width);
 
     &_default {
-      background-color: var(--ty-popup-light-bg);
-      color: var(--ty-color-text);
+      background-color: var(--ty-tour-panel-bg-default);
+      color: var(--ty-tour-panel-color-default);
 
       .#{$prefix}-tour {
         &__arrow::before {
-          background: var(--ty-popup-light-bg);
+          background: var(--ty-tour-panel-bg-default);
           box-shadow: 2px 2px 5px var(--ty-popup-arrow-shadow);
         }
 
         &__description {
-          color: var(--ty-color-text-secondary);
+          color: var(--ty-tour-description-color-default);
         }
       }
     }
 
     &_primary {
-      background-color: var(--ty-color-primary);
-      color: #fff;
+      background-color: var(--ty-tour-panel-bg-primary);
+      color: var(--ty-tour-panel-color-primary);
 
       .#{$prefix}-tour {
         &__arrow::before {
-          background: var(--ty-color-primary);
+          background: var(--ty-tour-panel-bg-primary);
         }
 
         &__description {
-          color: rgb(255 255 255 / 85%);
+          color: var(--ty-tour-description-color-primary);
         }
 
         &__indicator {
-          background-color: rgb(255 255 255 / 35%);
+          background-color: var(--ty-tour-indicator-bg-primary);
 
           &_active {
-            background-color: #fff;
+            background-color: var(--ty-tour-indicator-bg-active-primary);
           }
         }
 
         &__close-btn {
-          color: rgb(255 255 255 / 65%);
+          color: var(--ty-tour-close-color-primary);
 
           &:hover {
-            color: #fff;
-            background-color: rgb(255 255 255 / 15%);
+            color: var(--ty-tour-close-color-hover-primary);
+            background-color: var(--ty-tour-close-bg-hover-primary);
           }
         }
       }
@@ -112,13 +109,13 @@ $arrow-size: 8px;
     &_zoom {
       &-enter {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(var(--ty-tour-zoom-scale-from));
       }
 
       &-enter-active {
         opacity: 1;
         transform: scale(1);
-        transition: opacity 200ms ease-out, transform 200ms ease-out;
+        transition: opacity var(--ty-tour-zoom-duration) ease-out, transform var(--ty-tour-zoom-duration) ease-out;
       }
 
       &-enter-done {
@@ -133,8 +130,8 @@ $arrow-size: 8px;
 
       &-exit-active {
         opacity: 0;
-        transform: scale(0.9);
-        transition: opacity 200ms ease-in, transform 200ms ease-in;
+        transform: scale(var(--ty-tour-zoom-scale-from));
+        transition: opacity var(--ty-tour-zoom-duration) ease-in, transform var(--ty-tour-zoom-duration) ease-in;
       }
 
       &-exit-done {
@@ -147,49 +144,49 @@ $arrow-size: 8px;
   // Close button
   &__close-btn {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
+    top: var(--ty-tour-close-offset);
+    right: var(--ty-tour-close-offset);
+    width: var(--ty-tour-close-size);
+    height: var(--ty-tour-close-size);
+    line-height: var(--ty-tour-close-size);
     text-align: center;
     cursor: pointer;
     background: none;
     border: none;
-    border-radius: 4px;
+    border-radius: var(--ty-tour-close-radius);
     padding: 0;
-    font-size: 12px;
-    color: var(--ty-color-text-tertiary);
+    font-size: var(--ty-tour-close-font-size);
+    color: var(--ty-tour-close-color);
 
     &:hover {
-      background-color: var(--ty-color-fill-secondary);
+      background-color: var(--ty-tour-close-bg-hover);
     }
   }
 
   // Cover
   &__cover {
-    padding: 12px 16px 0;
+    padding: var(--ty-tour-cover-padding);
     text-align: center;
 
     img {
       max-width: 100%;
-      border-radius: var(--ty-border-radius) var(--ty-border-radius) 0 0;
+      border-radius: var(--ty-tour-panel-radius) var(--ty-tour-panel-radius) 0 0;
     }
   }
 
   // Title
   &__title {
-    padding: 12px 16px 4px;
-    font-weight: 600;
-    font-size: var(--ty-font-size-lg);
-    line-height: 1.5;
+    padding: var(--ty-tour-title-padding);
+    font-weight: var(--ty-tour-title-font-weight);
+    font-size: var(--ty-tour-title-font-size);
+    line-height: var(--ty-tour-title-line-height);
   }
 
   // Description
   &__description {
-    padding: 0 16px 12px;
-    font-size: var(--ty-font-size-base);
-    line-height: 1.5;
+    padding: var(--ty-tour-description-padding);
+    font-size: var(--ty-tour-description-font-size);
+    line-height: var(--ty-tour-description-line-height);
   }
 
   // Footer
@@ -197,37 +194,37 @@ $arrow-size: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 16px 12px;
+    padding: var(--ty-tour-footer-padding);
   }
 
   // Indicators
   &__indicators {
     display: flex;
-    gap: 4px;
+    gap: var(--ty-tour-indicators-gap);
   }
 
   &__indicator {
-    width: 6px;
-    height: 6px;
+    width: var(--ty-tour-indicator-size);
+    height: var(--ty-tour-indicator-size);
     border-radius: 50%;
-    background-color: var(--ty-color-text-quaternary);
-    transition: background-color 200ms;
+    background-color: var(--ty-tour-indicator-bg-default);
+    transition: background-color var(--ty-tour-indicator-transition-duration);
 
     &_active {
-      background-color: var(--ty-color-primary);
+      background-color: var(--ty-tour-indicator-bg-active-default);
     }
   }
 
   // Actions
   &__actions {
     display: flex;
-    gap: 8px;
+    gap: var(--ty-tour-actions-gap);
     margin-left: auto;
   }
 
   // Arrow placement
   [data-popper-placement^='top'] > &__arrow {
-    bottom: -$arrow-size;
+    bottom: calc(var(--ty-tour-arrow-size) * -1);
 
     &::before {
       box-shadow: 3px 3px 7px var(--ty-popup-arrow-shadow);
@@ -235,7 +232,7 @@ $arrow-size: 8px;
   }
 
   [data-popper-placement^='bottom'] > &__arrow {
-    top: -$arrow-size;
+    top: calc(var(--ty-tour-arrow-size) * -1);
 
     &::before {
       box-shadow: -2px -2px 5px var(--ty-popup-arrow-shadow);
@@ -243,7 +240,7 @@ $arrow-size: 8px;
   }
 
   [data-popper-placement^='left'] > &__arrow {
-    right: -$arrow-size;
+    right: calc(var(--ty-tour-arrow-size) * -1);
 
     &::before {
       box-shadow: 3px -3px 7px var(--ty-popup-arrow-shadow);
@@ -251,7 +248,7 @@ $arrow-size: 8px;
   }
 
   [data-popper-placement^='right'] > &__arrow {
-    left: -$arrow-size;
+    left: calc(var(--ty-tour-arrow-size) * -1);
 
     &::before {
       box-shadow: -3px 3px 7px var(--ty-popup-arrow-shadow);

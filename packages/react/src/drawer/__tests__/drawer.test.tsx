@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import Drawer from '../index';
 
 describe('<Drawer />', () => {
@@ -26,5 +26,79 @@ describe('<Drawer />', () => {
   it('should render footer', () => {
     const { getByText } = render(<Drawer visible footer={<div>Footer</div>}>Content</Drawer>);
     expect(getByText('Footer')).toBeInTheDocument();
+  });
+
+  it('should close on escape by default', () => {
+    const onClose = jest.fn();
+    render(<Drawer visible onClose={onClose}>Content</Drawer>);
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not close on escape when keyboard is disabled', () => {
+    const onClose = jest.fn();
+    render(
+      <Drawer visible keyboard={false} onClose={onClose}>
+        Content
+      </Drawer>
+    );
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it('should focus the dialog container when there are no focusable children', async () => {
+    const { baseElement } = render(<Drawer visible closable={false}>Content</Drawer>);
+
+    await waitFor(() => {
+      expect(baseElement.querySelector('.ty-drawer__content')).toHaveFocus();
+    });
+  });
+
+  it('should expose aria relationships for header and body content', () => {
+    render(
+      <Drawer visible header="Filters" onClose={jest.fn()}>
+        Drawer content
+      </Drawer>
+    );
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveAttribute('aria-labelledby');
+    expect(dialog).toHaveAttribute('aria-describedby');
+    expect(document.getElementById(dialog.getAttribute('aria-labelledby') || '')).toHaveTextContent('Filters');
+    expect(document.getElementById(dialog.getAttribute('aria-describedby') || '')).toHaveTextContent('Drawer content');
+  });
+
+  it('should keep focus inside the drawer across rerenders while visible', async () => {
+    const { rerender } = render(
+      <div>
+        <button>Trigger</button>
+        <Drawer visible closable={false} size={280}>
+          Content
+        </Drawer>
+      </div>
+    );
+
+    const trigger = screen.getByText('Trigger');
+    trigger.focus();
+
+    await waitFor(() => {
+      expect(screen.getByRole('dialog')).toHaveFocus();
+    });
+
+    rerender(
+      <div>
+        <button>Trigger</button>
+        <Drawer visible closable={false} size={320}>
+          Content
+        </Drawer>
+      </div>
+    );
+
+    expect(screen.getByRole('dialog')).toHaveFocus();
+    expect(trigger).not.toHaveFocus();
   });
 });

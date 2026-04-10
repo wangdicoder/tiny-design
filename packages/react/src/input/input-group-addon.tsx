@@ -19,8 +19,14 @@ const InputGroupAddon = (props: InputGroupAddonProps): React.ReactElement => {
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('input-group-addon', configContext.prefixCls, customisedCls);
   const inputSize = props.size || configContext.componentSize || size;
+  const childDisplayName = React.isValidElement(children) ? (children.type as any)?.displayName : null;
+  const isControlChild = childDisplayName === 'Input'
+    || childDisplayName === 'Button'
+    || childDisplayName === 'Select'
+    || childDisplayName === 'InputNumber';
   const cls = classNames(prefixCls, className, `${prefixCls}_${inputSize}`, {
     [`${prefixCls}_no-border`]: noBorder,
+    [`${prefixCls}_control`]: isControlChild,
   });
 
   if (React.isValidElement(children)) {
@@ -28,7 +34,7 @@ const InputGroupAddon = (props: InputGroupAddonProps): React.ReactElement => {
       <div className={cls} style={style}>
         {React.Children.map(children, (child: React.ReactElement) => {
           const displayName = (child.type as any)?.displayName;
-          if (displayName === 'Input' || displayName === 'Button' || displayName === 'Select') {
+          if (displayName === 'Input' || displayName === 'Button' || displayName === 'Select' || displayName === 'InputNumber') {
             const childProps: Partial<InputProps> = {
               disabled,
               size: inputSize as SizeType,

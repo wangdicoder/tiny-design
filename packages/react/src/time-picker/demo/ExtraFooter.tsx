@@ -5,7 +5,7 @@ export default function ExtraFooterDemo() {
   const [time, setTime] = React.useState<Date | null>(null);
   return (
     <TimePicker
-      value={time}
+      value={time ?? undefined}
       onChange={setTime}
       placeholder="With footer"
       renderExtraFooter={() => (

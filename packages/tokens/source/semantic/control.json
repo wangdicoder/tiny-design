@@ -1,0 +1,67 @@
+{
+  "control.radius": {
+    "$value": "{border-radius}",
+    "$type": "dimension",
+    "description": "Default interactive control radius."
+  },
+  "control.height.sm": {
+    "$value": "{height-sm}",
+    "$type": "dimension",
+    "description": "Small control height."
+  },
+  "control.height.md": {
+    "$value": "{height-md}",
+    "$type": "dimension",
+    "description": "Medium control height."
+  },
+  "control.height.lg": {
+    "$value": "{height-lg}",
+    "$type": "dimension",
+    "description": "Large control height."
+  },
+  "control.font-size.sm": {
+    "$value": "{font-size-sm}",
+    "$type": "dimension",
+    "description": "Small control font size."
+  },
+  "control.font-size.md": {
+    "$value": "{font-size-base}",
+    "$type": "dimension",
+    "description": "Medium control font size."
+  },
+  "control.font-size.lg": {
+    "$value": "{font-size-lg}",
+    "$type": "dimension",
+    "description": "Large control font size."
+  },
+  "control.padding-inline.sm": {
+    "$value": "{spacing-3}",
+    "$type": "dimension",
+    "description": "Small control horizontal padding."
+  },
+  "control.padding-inline.md": {
+    "$value": "{spacing-4}",
+    "$type": "dimension",
+    "description": "Medium control horizontal padding."
+  },
+  "control.padding-inline.lg": {
+    "$value": "{spacing-5}",
+    "$type": "dimension",
+    "description": "Large control horizontal padding."
+  },
+  "control.gap.sm": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Small control content gap."
+  },
+  "control.gap.md": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Medium control content gap."
+  },
+  "control.gap.lg": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Large control content gap."
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { createPopper, Instance } from '@popperjs/core';
 import Transition, { AnimationName } from '../transition';
@@ -6,6 +6,19 @@ import Portal from '../portal';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { Placement, PopupProps } from './types';
+
+function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null): void {
+  if (!ref) {
+    return;
+  }
+
+  if (typeof ref === 'function') {
+    ref(value);
+    return;
+  }
+
+  (ref as React.MutableRefObject<T | null>).current = value;
+}
 
 const Popup = (props: PopupProps): JSX.Element => {
   const {
@@ -26,6 +39,7 @@ const Popup = (props: PopupProps): JSX.Element => {
     visible,
     onVisibleChange,
     className,
+    style: popupInlineStyle,
     children,
     ...otherProps
   } = props;
@@ -37,51 +51,92 @@ const Popup = (props: PopupProps): JSX.Element => {
     `${prefixCls}_${placement}`,
     `${prefixCls}_${theme}`
   );
-  const [popupVisible, setPopupVisible] = useState('visible' in props ? visible : defaultVisible);
+  const isControlled = 'visible' in props;
+  const [uncontrolledVisible, setUncontrolledVisible] = useState(defaultVisible);
+  const popupVisible = isControlled ? !!visible : uncontrolledVisible;
   const targetRef = useRef<HTMLElement | null>(null);
   const popupRef = useRef<HTMLDivElement | null>(null);
   const delayDisplayPopupTimer = useRef<number | undefined>(undefined);
   const delayHidePopupTimer = useRef<number | undefined>(undefined);
   const popperRef = useRef<Instance | undefined>(undefined);
+  const isDocumentClickListening = useRef(false);
   const elementProps = {
-    ref: (ref: HTMLElement | null) => (targetRef.current = ref),
+    ref: (ref: HTMLElement | null) => {
+      targetRef.current = ref;
+      assignRef((children as React.ReactElement & { ref?: React.Ref<HTMLElement> }).ref, ref);
+    },
   };
 
+  const clearTimers = useCallback((): void => {
+    window.clearTimeout(delayDisplayPopupTimer.current);
+    window.clearTimeout(delayHidePopupTimer.current);
+  }, []);
+
+  const onVisibleChangeRef = useRef(onVisibleChange);
+  onVisibleChangeRef.current = onVisibleChange;
+
+  const setPopupVisibleState = useCallback(
+    (nextVisible: boolean): void => {
+      if (!isControlled) {
+        setUncontrolledVisible(nextVisible);
+      }
+      onVisibleChangeRef.current?.(nextVisible);
+    },
+    [isControlled]
+  );
+
   const displayPopup = useCallback(() => {
-    setPopupVisible(true);
-    onVisibleChange && onVisibleChange(true);
-  }, [onVisibleChange]);
+    if (popupVisible) {
+      return;
+    }
+
+    setPopupVisibleState(true);
+  }, [popupVisible, setPopupVisibleState]);
 
   const hidePopup = useCallback(() => {
-    setPopupVisible(false);
-    onVisibleChange && onVisibleChange(false);
-  }, [onVisibleChange]);
+    if (!popupVisible) return;
+
+    setPopupVisibleState(false);
+  }, [popupVisible, setPopupVisibleState]);
 
   const delayDisplayPopup = useCallback((): void => {
+    clearTimers();
     delayDisplayPopupTimer.current = window.setTimeout(() => {
       displayPopup();
     }, mouseEnterDelay);
-  }, [mouseEnterDelay, displayPopup]);
+  }, [clearTimers, mouseEnterDelay, displayPopup]);
 
   const delayHidePopup = useCallback((): void => {
+    clearTimers();
     delayHidePopupTimer.current = window.setTimeout(() => {
       hidePopup();
     }, mouseLeaveDelay);
-  }, [mouseLeaveDelay, hidePopup]);
+  }, [clearTimers, mouseLeaveDelay, hidePopup]);
 
-  const handlePopupOnMouseEnter = (): void => {
+  const handlePopupOnMouseEnterRef = useRef((): void => {});
+  const handlePopupOnMouseLeaveRef = useRef((): void => {});
+
+  handlePopupOnMouseEnterRef.current = (): void => {
     if (trigger === 'hover') {
       displayPopup();
       window.clearTimeout(delayHidePopupTimer.current);
     }
   };
 
-  const handlePopupOnMouseLeave = (): void => {
+  handlePopupOnMouseLeaveRef.current = (): void => {
     if (trigger === 'hover') {
       delayHidePopup();
       window.clearTimeout(delayDisplayPopupTimer.current);
     }
   };
+
+  const handlePopupOnMouseEnter = useCallback((): void => {
+    handlePopupOnMouseEnterRef.current();
+  }, []);
+
+  const handlePopupOnMouseLeave = useCallback((): void => {
+    handlePopupOnMouseLeaveRef.current();
+  }, []);
 
   const handleTargetOnMouseEnter = useCallback((): void => {
     delayDisplayPopup();
@@ -107,27 +162,80 @@ const Popup = (props: PopupProps): JSX.Element => {
 
       hidePopup();
     },
-    [targetRef, hidePopup]
+    [hidePopup]
   );
+
+  const removeDocumentClickListener = useCallback((): void => {
+    if (!isDocumentClickListening.current) {
+      return;
+    }
+
+    document.removeEventListener('click', documentOnClick, true);
+    isDocumentClickListening.current = false;
+  }, [documentOnClick]);
+
+  useEffect(() => {
+    removeDocumentClickListener();
+    if ((trigger === 'click' || trigger === 'contextmenu' || trigger === 'manual') && popupVisible) {
+      document.addEventListener('click', documentOnClick, true);
+      isDocumentClickListening.current = true;
+    }
+
+    return () => {
+      removeDocumentClickListener();
+    };
+  }, [documentOnClick, popupVisible, removeDocumentClickListener, trigger]);
 
   const handleTargetOnMouseClick = useCallback(
     (e: MouseEvent): void => {
-      e.preventDefault();
+      if (trigger === 'contextmenu') {
+        e.preventDefault();
+      }
+
       if (popupVisible) {
         hidePopup();
       } else {
         displayPopup();
-        document.addEventListener('click', documentOnClick, true);
       }
     },
-    [popupVisible, hidePopup, displayPopup, documentOnClick]
+    [displayPopup, hidePopup, popupVisible, trigger]
   );
 
-  const transitionOnEnter = (): void => {
-    const instance = createPopper(
-      targetRef.current as HTMLElement,
-      popupRef.current as HTMLElement,
-      {
+  const destroyPopper = useCallback((): void => {
+    const popperInstance = popperRef.current;
+    if (!popperInstance) {
+      return;
+    }
+
+    if (trigger === 'hover') {
+      popperInstance.state.elements.popper.removeEventListener(
+        'mouseenter',
+        handlePopupOnMouseEnter
+      );
+      popperInstance.state.elements.popper.removeEventListener(
+        'mouseleave',
+        handlePopupOnMouseLeave
+      );
+    }
+
+    popperInstance.destroy();
+    popperRef.current = undefined;
+  }, [handlePopupOnMouseEnter, handlePopupOnMouseLeave, trigger]);
+
+  const initPopper = useCallback(
+    (popupNode: HTMLDivElement): void => {
+      if (!targetRef.current) {
+        return;
+      }
+
+      destroyPopper();
+
+      // Do NOT set `strategy: 'fixed'` here.
+      // With 'fixed', the popup is positioned in viewport coordinates, so Popper must
+      // recalculate on every scroll frame via JS — causing visible lag.
+      // The default 'absolute' positions in document coordinates, so the browser
+      // handles scroll following natively with zero delay.
+      const instance = createPopper(targetRef.current as HTMLElement, popupNode, {
         placement: placement as Placement,
         modifiers: [
           {
@@ -148,31 +256,34 @@ const Popup = (props: PopupProps): JSX.Element => {
             },
           },
         ],
-      }
-    );
-    if (trigger === 'hover') {
-      instance.state.elements.popper.addEventListener('mouseenter', handlePopupOnMouseEnter);
-      instance.state.elements.popper.addEventListener('mouseleave', handlePopupOnMouseLeave);
-    }
-    popperRef.current = instance;
-  };
+      });
 
-  const transitionOnExited = (): void => {
-    const popperInstance = popperRef.current;
-    if (popperInstance) {
       if (trigger === 'hover') {
-        popperInstance.state.elements.popper.removeEventListener(
-          'mouseenter',
-          handlePopupOnMouseEnter
-        );
-        popperInstance.state.elements.popper.removeEventListener(
-          'mouseleave',
-          handlePopupOnMouseLeave
-        );
+        instance.state.elements.popper.addEventListener('mouseenter', handlePopupOnMouseEnter);
+        instance.state.elements.popper.addEventListener('mouseleave', handlePopupOnMouseLeave);
       }
-      popperInstance.destroy();
+
+      popperRef.current = instance;
+      instance.forceUpdate();
+    },
+    [
+      arrow,
+      destroyPopper,
+      flip,
+      handlePopupOnMouseEnter,
+      handlePopupOnMouseLeave,
+      offset,
+      placement,
+      trigger,
+    ]
+  );
+
+  const setPopupNodeRef = useCallback((node: HTMLDivElement | null) => {
+    popupRef.current = node;
+    if (node && popupVisible) {
+      initPopper(node);
     }
-  };
+  }, [initPopper, popupVisible]);
 
   const getAnimationName = () => {
     const mapping = {
@@ -215,8 +326,6 @@ const Popup = (props: PopupProps): JSX.Element => {
       }
     } else if (trigger === 'contextmenu') {
       target.addEventListener('contextmenu', handleTargetOnMouseClick);
-    } else if (trigger === 'manual') {
-      setPopupVisible(props.visible);
     }
 
     return (): void => {
@@ -232,9 +341,7 @@ const Popup = (props: PopupProps): JSX.Element => {
       target.removeEventListener('contextmenu', handleTargetOnMouseClick);
     };
   }, [
-    props.visible,
     disabled,
-    targetRef,
     trigger,
     handleTargetOnMouseClick,
     handleTargetOnMouseEnter,
@@ -244,20 +351,44 @@ const Popup = (props: PopupProps): JSX.Element => {
   ]);
 
   useEffect(() => {
-    if ('visible' in props) {
-      props.visible ? displayPopup() : hidePopup();
+    if (!popupVisible) {
+      clearTimers();
     }
-  }, [props, displayPopup, hidePopup]);
+  }, [clearTimers, popupVisible]);
+
+  useLayoutEffect(() => {
+    if (!popupVisible || !targetRef.current || !popupRef.current) {
+      destroyPopper();
+      return;
+    }
+
+    initPopper(popupRef.current);
+
+    return destroyPopper;
+  }, [
+    popupVisible,
+    destroyPopper,
+    initPopper,
+  ]);
+
+  useEffect(() => {
+    return () => {
+      clearTimers();
+      removeDocumentClickListener();
+      destroyPopper();
+    };
+  }, [clearTimers, destroyPopper, removeDocumentClickListener]);
 
   const renderContent = () => (
-    <Transition
-      in={popupVisible}
-      nodeRef={popupRef}
-      onEnter={transitionOnEnter}
-      onExited={transitionOnExited}
-      animation={getAnimationName()}>
-      <div {...otherProps} className={cls} ref={popupRef}>
-        {content && arrow && <div data-popper-arrow className={`${prefixCls}__arrow`} />}
+    <Transition in={popupVisible} nodeRef={popupRef} animation={getAnimationName()}>
+      <div
+        {...otherProps}
+        className={cls}
+        ref={setPopupNodeRef}
+        style={popupInlineStyle}>
+        {content && arrow && (
+          <div data-popper-arrow className={`${prefixCls}__arrow`} />
+        )}
         {content}
       </div>
     </Transition>

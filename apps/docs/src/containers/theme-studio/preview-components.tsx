@@ -4,9 +4,9 @@ import {
   Avatar,
   Button,
   Card,
-  Calendar,
   Checkbox,
   DatePicker,
+  Divider,
   Flex,
   Grid,
   Input,
@@ -18,8 +18,10 @@ import {
   Table,
   Tag,
   Textarea,
-  Typography,
-  Waterfall,
+  Calendar,
+  Heading,
+  Paragraph,
+  Text,
 } from '@tiny-design/react';
 import {
   ChartContainer,
@@ -27,26 +29,10 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from '@tiny-design/charts';
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 import { swatchTextStyle } from './editor-fields';
 import type { ThemeEditorFields, ThemeEditorSection, ThemePreviewTemplate } from './types';
-
-const exerciseData = [
-  { day: 'Mon', minutes: 34 },
-  { day: 'Tue', minutes: 52 },
-  { day: 'Wed', minutes: 49 },
-  { day: 'Thu', minutes: 63 },
-  { day: 'Fri', minutes: 58 },
-  { day: 'Sat', minutes: 71 },
-  { day: 'Sun', minutes: 66 },
-];
-
-const exerciseChartConfig: ChartConfig = {
-  minutes: {
-    label: 'Minutes',
-    color: 'var(--ty-chart-1)',
-  },
-};
+import { IconGithub, IconGoogle } from '@tiny-design/icons';
 
 const revenueData = [
   { month: 'Jan', revenue: 4200, target: 3800 },
@@ -65,6 +51,82 @@ const revenueChartConfig: ChartConfig = {
   target: {
     label: 'Target',
     color: 'var(--ty-chart-2)',
+  },
+};
+
+const cardsRevenueData = [
+  { month: 'Jan', value: 8.4 },
+  { month: 'Feb', value: 7.2 },
+  { month: 'Mar', value: 7.8 },
+  { month: 'Apr', value: 6.9 },
+  { month: 'May', value: 7.4 },
+  { month: 'Jun', value: 8.1 },
+  { month: 'Jul', value: 12.4 },
+];
+
+const cardsRevenueChartConfig: ChartConfig = {
+  value: {
+    label: 'Revenue',
+    color: 'var(--ty-chart-4)',
+  },
+};
+
+const moveGoalData = [
+  { key: 'm1', dayLabel: 'M', value: 280 },
+  { key: 't1', dayLabel: 'T', value: 340 },
+  { key: 'w1', dayLabel: 'W', value: 220 },
+  { key: 'th1', dayLabel: 'T', value: 310 },
+  { key: 'f1', dayLabel: 'F', value: 360 },
+  { key: 's1', dayLabel: 'S', value: 240 },
+  { key: 'su1', dayLabel: 'S', value: 300 },
+  { key: 'm2', dayLabel: 'M', value: 330 },
+  { key: 't2', dayLabel: 'T', value: 260 },
+  { key: 'w2', dayLabel: 'W', value: 320 },
+  { key: 'th2', dayLabel: 'T', value: 350 },
+  { key: 'f2', dayLabel: 'F', value: 290 },
+];
+
+const moveGoalChartConfig: ChartConfig = {
+  value: {
+    label: 'Calories',
+    color: 'var(--ty-chart-1)',
+  },
+};
+
+const cardsExerciseData = [
+  { month: 'Mar', personal: 18, average: 22 },
+  { month: 'Apr', personal: 14, average: 18 },
+  { month: 'May', personal: 58, average: 26 },
+  { month: 'Jun', personal: 28, average: 24 },
+  { month: 'Jul', personal: 22, average: 20 },
+  { month: 'Aug', personal: 26, average: 23 },
+];
+
+const cardsExerciseChartConfig: ChartConfig = {
+  personal: {
+    label: 'You',
+    color: 'var(--ty-chart-2)',
+  },
+  average: {
+    label: 'Average',
+    color: 'var(--ty-chart-5)',
+  },
+};
+
+const subscriptionsData = [
+  { month: 'Jan', value: 400 },
+  { month: 'Feb', value: 620 },
+  { month: 'Mar', value: 980 },
+  { month: 'Apr', value: 1480 },
+  { month: 'May', value: 1910 },
+  { month: 'Jun', value: 880 },
+  { month: 'Jul', value: 2350 },
+];
+
+const subscriptionsChartConfig: ChartConfig = {
+  value: {
+    label: 'Subscriptions',
+    color: 'var(--editor-card-foreground)',
   },
 };
 
@@ -154,103 +216,124 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
 }
 
 function CardsPreview(): React.ReactElement {
-  const items = [
-    {
-      key: 'metric-revenue',
-      children: (
-        <Card title="Total Revenue" className="theme-studio__card-metric">
+  return (
+    <div className="theme-studio__cards-scene">
+      <div className="theme-studio__cards-column">
+        <div className="theme-studio__cards-top-pair">
+          <Card className="theme-studio__cards-panel theme-studio__cards-panel_revenue">
+            <Card.Content>
+              <div className="theme-studio__cards-panel-head">
+                <div>
+                  <Text strong>Total Revenue</Text>
+                  <Text type="secondary">+20.1% from last month</Text>
+                </div>
+              </div>
+              <Heading level={2}>$15,231.89</Heading>
+              <ChartContainer config={cardsRevenueChartConfig} style={{ height: 72, width: '100%' }}>
+                <LineChart data={cardsRevenueData} margin={{ top: 10, right: 6, left: -22, bottom: 0 }}>
+                  <XAxis dataKey="month" hide />
+                  <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
+                  <ChartTooltip cursor={false} content={<ChartTooltipContent labelKey="month" />} />
+                  <Line
+                    type="monotone"
+                    dataKey="value"
+                    stroke="var(--color-value)"
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                </LineChart>
+              </ChartContainer>
+            </Card.Content>
+          </Card>
+
+          <Card className="theme-studio__cards-panel theme-studio__cards-panel_revenue">
+            <Card.Content>
+              <div className="theme-studio__cards-panel-head">
+                <div>
+                  <Text strong>Subscriptions</Text>
+                  <Text type="secondary">+180.1% from last month</Text>
+                </div>
+              </div>
+              <Heading level={2}>+2,350</Heading>
+              <ChartContainer config={subscriptionsChartConfig} style={{ height: 72, width: '100%' }}>
+                <AreaChart data={subscriptionsData} margin={{ top: 8, right: 4, left: -18, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="subscriptionsFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="10%" stopColor="var(--color-value)" stopOpacity={0.18} />
+                      <stop offset="100%" stopColor="var(--color-value)" stopOpacity={0.02} />
+                    </linearGradient>
+                  </defs>
+                  <XAxis dataKey="month" hide />
+                  <YAxis hide />
+                  <ChartTooltip cursor={false} content={<ChartTooltipContent labelKey="month" />} />
+                  <Area
+                    type="monotone"
+                    dataKey="value"
+                    stroke="var(--color-value)"
+                    fill="url(#subscriptionsFill)"
+                    strokeWidth={2}
+                  />
+                </AreaChart>
+              </ChartContainer>
+            </Card.Content>
+          </Card>
+        </div>
+
+        <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <div className="theme-studio__metric theme-studio__metric_preview">
-              <span>Total Revenue</span>
-              <strong>$15,231.89</strong>
-              <small>+20.1% from last month</small>
+            <div className="theme-studio__cards-copy-block">
+              <Text strong>Upgrade your subscription</Text>
+              <Text type="secondary">
+                You are currently on the free plan. Upgrade to the pro plan to get access to all features.
+              </Text>
             </div>
-          </Card.Content>
-        </Card>
-      ),
-    },
-    {
-      key: 'metric-subscriptions',
-      children: (
-        <Card title="Subscriptions" className="theme-studio__card-metric">
-          <Card.Content>
-            <div className="theme-studio__metric theme-studio__metric_preview">
-              <span>Subscriptions</span>
-              <strong>+2,350</strong>
-              <small>+180.1% from last month</small>
-            </div>
-          </Card.Content>
-        </Card>
-      ),
-    },
-    {
-      key: 'upgrade',
-      children: (
-        <Card title="Upgrade your subscription" className="theme-studio__card-tall theme-studio__preview-card">
-          <Card.Content>
-            <div className="theme-studio__card-kicker-row">
-              <Tag color="warning">Billing</Tag>
-              <Typography.Text type="secondary">Update your seat plan before the next invoice.</Typography.Text>
-            </div>
-            <Typography.Paragraph>
-              You are currently on the free plan. Upgrade to the pro plan to get access to all features.
-            </Typography.Paragraph>
             <div className="theme-studio__form-stack">
-              <Input placeholder="Name" defaultValue="Evil Rabbit" />
-              <Input placeholder="Email" defaultValue="m@example.com" />
+              <Flex gap="sm">
+                <Input placeholder="Name" defaultValue="Evil Rabbit" />
+                <Input placeholder="Email" defaultValue="m@example.com" />
+              </Flex>
               <Input placeholder="Card Number" defaultValue="1234 1234 1234 1234" />
               <Flex gap="sm">
-                <Input placeholder="MM/YY" />
-                <Input placeholder="CVC" />
+                <Input placeholder="MM/YY" defaultValue="06/25" />
+                <Input placeholder="CVC" defaultValue="001" />
               </Flex>
-              <div>
-                <Typography.Text strong>Plan</Typography.Text>
-                <Typography.Paragraph>Select the plan that best fits your needs.</Typography.Paragraph>
-                <Radio.Group defaultValue="starter">
-                  <Flex vertical gap="sm">
-                    <Radio value="starter">Starter Plan</Radio>
-                    <Radio value="pro">Pro Plan</Radio>
-                  </Flex>
-                </Radio.Group>
-              </div>
-              <Textarea rows={2} placeholder="Enter notes" />
+              <Radio.Group defaultValue="starter">
+                <div className="theme-studio__cards-plan-grid">
+                  <div className="theme-studio__cards-plan-option">
+                    <Radio value="starter">
+                      <div>
+                        <strong>Starter Plan</strong>
+                        <small>Perfect for small businesses.</small>
+                      </div>
+                    </Radio>
+                  </div>
+                  <div className="theme-studio__cards-plan-option">
+                    <Radio value="pro">
+                      <div>
+                        <strong>Pro Plan</strong>
+                        <small>More features and storage.</small>
+                      </div>
+                    </Radio>
+                  </div>
+                </div>
+              </Radio.Group>
+              <Textarea rows={3} placeholder="Enter notes" />
               <Checkbox defaultChecked>I agree to the terms and conditions</Checkbox>
               <Checkbox>Allow us to send you emails</Checkbox>
-              <Flex gap="sm">
+              <div className="theme-studio__cards-actions-end">
                 <Button>Cancel</Button>
                 <Button btnType="primary">Upgrade Plan</Button>
-              </Flex>
+              </div>
             </div>
           </Card.Content>
         </Card>
-      ),
-    },
-    {
-      key: 'account',
-      children: (
-        <Card title="Create an account" className="theme-studio__card-tall theme-studio__preview-card">
+
+        <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <Typography.Paragraph>Enter your email below to create your account.</Typography.Paragraph>
-            <div className="theme-studio__mail-compose theme-studio__mail-compose_auth">
-              <Button>GitHub</Button>
-              <Button>Google</Button>
+            <div className="theme-studio__cards-copy-block">
+              <Text strong>Team Members</Text>
+              <Text type="secondary">Invite your team members to collaborate.</Text>
             </div>
-            <Typography.Text type="secondary">OR CONTINUE WITH</Typography.Text>
-            <div className="theme-studio__form-stack">
-              <Input placeholder="m@example.com" />
-              <Input placeholder="Password" type="password" />
-              <Button btnType="primary">Create account</Button>
-            </div>
-          </Card.Content>
-        </Card>
-      ),
-    },
-    {
-      key: 'team',
-      children: (
-        <Card title="Team Members" className="theme-studio__preview-card">
-          <Card.Content>
-            <Typography.Paragraph>Invite your team members to collaborate.</Typography.Paragraph>
             <div className="theme-studio__member-list">
               {[
                 ['Sofia Davis', 'm@example.com', 'Owner'],
@@ -260,143 +343,171 @@ function CardsPreview(): React.ReactElement {
                 <div key={name} className="theme-studio__member-row">
                   <Avatar>{name.charAt(0)}</Avatar>
                   <div className="theme-studio__member-copy">
-                    <Typography.Text strong>{name}</Typography.Text>
-                    <Typography.Text type="secondary">{email}</Typography.Text>
+                    <Text strong>{name}</Text>
+                    <Text type="secondary">{email}</Text>
                   </div>
-                  <Tag>{role}</Tag>
+                  <Select defaultValue={role.toLowerCase()} size="sm" className="theme-studio__cards-member-select">
+                    <Select.Option value="owner">Owner</Select.Option>
+                    <Select.Option value="developer">Developer</Select.Option>
+                    <Select.Option value="billing">Billing</Select.Option>
+                  </Select>
                 </div>
               ))}
             </div>
           </Card.Content>
         </Card>
-      ),
-    },
-    {
-      key: 'cookies',
-      children: (
-        <Card title="Cookie Settings" className="theme-studio__preview-card">
+
+        <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <Typography.Paragraph>Manage your cookie settings here.</Typography.Paragraph>
+            <div className="theme-studio__cards-copy-block">
+              <Text strong>Cookie Settings</Text>
+              <Text type="secondary">Manage your cookie settings here.</Text>
+            </div>
             <div className="theme-studio__settings-list">
               <div className="theme-studio__settings-row">
                 <div>
-                  <Typography.Text strong>Strictly Necessary</Typography.Text>
-                  <Typography.Text type="secondary">These cookies are essential in order to use the website and use its features.</Typography.Text>
+                  <Text strong>Strictly Necessary</Text>
+                  <Text type="secondary">These cookies are essential in order to use the website and use its features.</Text>
                 </div>
-                <Switch />
+                <Switch defaultChecked />
               </div>
               <div className="theme-studio__settings-row">
                 <div>
-                  <Typography.Text strong>Functional Cookies</Typography.Text>
-                  <Typography.Text type="secondary">These cookies allow the website to provide personalized functionality.</Typography.Text>
+                  <Text strong>Functional Cookies</Text>
+                  <Text type="secondary">These cookies allow the website to provide personalized functionality.</Text>
                 </div>
                 <Switch />
               </div>
-              <Button btnType="primary">Save preferences</Button>
+              <Button btnType="primary" size='lg'>Save preferences</Button>
             </div>
           </Card.Content>
         </Card>
-      ),
-    },
-    {
-      key: 'calendar',
-      children: (
-        <Card title="June 2025" className="theme-studio__preview-card">
+
+        <div className="theme-studio__cards-bottom-pair">
+          <Card className="theme-studio__cards-panel theme-studio__cards-panel_calendar">
+            <Card.Content>
+              <Calendar value={new Date(2025, 5, 6)} fullscreen={false} />
+            </Card.Content>
+          </Card>
+
+          <Card className="theme-studio__cards-panel theme-studio__cards-panel_goal">
+            <Card.Content>
+              <div className="theme-studio__cards-copy-block">
+                <Text strong>Move Goal</Text>
+                <Text type="secondary">Set your daily activity goal.</Text>
+              </div>
+              <div className="theme-studio__cards-goal-header">
+                <Button size="sm" className="theme-studio__cards-goal-circle">-</Button>
+                <div className="theme-studio__goal-display">
+                  <span>350</span>
+                  <small>CALORIES/DAY</small>
+                </div>
+                <Button size="sm" className="theme-studio__cards-goal-circle">+</Button>
+              </div>
+              <ChartContainer config={moveGoalChartConfig} style={{ height: 82, width: '100%' }}>
+                <BarChart data={moveGoalData} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
+                  <XAxis dataKey="dayLabel" hide />
+                  <YAxis hide />
+                  <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+                  <Bar dataKey="value" fill="var(--color-value)" radius={[2, 2, 2, 2]} barSize={10} />
+                </BarChart>
+              </ChartContainer>
+              <Button btnType="primary">Set Goal</Button>
+            </Card.Content>
+          </Card>
+        </div>
+      </div>
+
+      <div className="theme-studio__cards-column">
+        <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <Calendar value={new Date(2025, 5, 18)} fullscreen={false} />
+            <div className="theme-studio__cards-copy-block">
+              <Text strong>Create an account</Text>
+              <Text type="secondary">Enter your email below to create your account</Text>
+            </div>
+            <div className="theme-studio__cards-auth-actions">
+              <Button><IconGithub /> GitHub</Button>
+              <Button><IconGoogle /> Google</Button>
+            </div>
+            <Divider className="theme-studio__cards-divider-label">OR CONTINUE WITH</Divider>
+            <div className="theme-studio__form-stack">
+              <Input placeholder="Email" defaultValue="m@example.com" />
+              <Input placeholder="Password" type="password" />
+              <Button btnType="primary">Create account</Button>
+            </div>
           </Card.Content>
         </Card>
-      ),
-    },
-    {
-      key: 'goal',
-      children: (
-        <Card title="Move Goal" className="theme-studio__preview-card">
+
+        <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <Typography.Paragraph>Set your daily activity goal.</Typography.Paragraph>
-            <div className="theme-studio__goal-display">
-              <span>350</span>
-              <small>Calories/day</small>
+            <div className="theme-studio__member-row theme-studio__member-row_compact">
+              <Avatar>S</Avatar>
+              <div className="theme-studio__member-copy">
+                <Text strong>Sofia Davis</Text>
+                <Text type="secondary">m@example.com</Text>
+              </div>
             </div>
-            <Flex gap="sm" justify="space-between">
-              <Button>Decrease</Button>
-              <Button btnType="primary">Increase</Button>
-            </Flex>
-            <div className="theme-studio__goal-footer">
-              <Button btnType="primary" style={{ width: '100%' }}>Set Goal</Button>
+            <div className="theme-studio__chat-thread">
+              <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
+                <Card.Content>Hi, how can I help you today?</Card.Content>
+              </Card>
+              <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
+                <Card.Content>Hey, I&apos;m having trouble with my account.</Card.Content>
+              </Card>
+              <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
+                <Card.Content>What seems to be the problem?</Card.Content>
+              </Card>
+              <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
+                <Card.Content>I can&apos;t log in.</Card.Content>
+              </Card>
             </div>
+            <Input size='lg' placeholder="Type your message..." />
           </Card.Content>
         </Card>
-      ),
-    },
-    {
-      key: 'exercise',
-      children: (
-        <Card title="Exercise Minutes" className="theme-studio__preview-card">
+
+        <Card className="theme-studio__cards-inline-card">
           <Card.Content>
-            <Typography.Paragraph>
-              Your exercise minutes are ahead of where you normally are.
-            </Typography.Paragraph>
-            <ChartContainer config={exerciseChartConfig} style={{ height: 220, width: '100%' }}>
-              <AreaChart data={exerciseData} margin={{ top: 12, right: 8, left: -20, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="minutesFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--color-minutes)" stopOpacity={0.35} />
-                    <stop offset="95%" stopColor="var(--color-minutes)" stopOpacity={0.02} />
-                  </linearGradient>
-                </defs>
+            <Text>Date picker with range</Text>
+            <Text type="secondary">Select a date range.</Text>
+            <DatePicker range defaultValue={[new Date(2022, 0, 20), new Date(2022, 1, 9)]} />
+          </Card.Content>
+        </Card>
+
+        <Card className="theme-studio__cards-panel">
+          <Card.Content>
+            <div className="theme-studio__cards-copy-block">
+              <Text strong>Exercise Minutes</Text>
+              <Text type="secondary">
+                Your exercise minutes are ahead of where you normally are.
+              </Text>
+            </div>
+            <ChartContainer config={cardsExerciseChartConfig} style={{ height: 146, width: '100%' }}>
+              <LineChart data={cardsExerciseData} margin={{ top: 8, right: 4, left: -22, bottom: 0 }}>
                 <CartesianGrid vertical={false} />
-                <XAxis dataKey="day" tickLine={false} axisLine={false} />
+                <XAxis dataKey="month" tickLine={false} axisLine={false} />
                 <YAxis tickLine={false} axisLine={false} />
                 <ChartTooltip content={<ChartTooltipContent />} />
-                <Area
+                <Line
                   type="monotone"
-                  dataKey="minutes"
-                  stroke="var(--color-minutes)"
-                  fill="url(#minutesFill)"
-                  strokeWidth={2}
+                  dataKey="personal"
+                  stroke="var(--color-personal)"
+                  strokeWidth={2.2}
+                  dot={{ r: 2.6, strokeWidth: 0, fill: 'var(--color-personal)' }}
+                  activeDot={{ r: 3.6, strokeWidth: 0, fill: 'var(--color-personal)' }}
                 />
-              </AreaChart>
+                <Line
+                  type="monotone"
+                  dataKey="average"
+                  stroke="var(--color-average)"
+                  strokeWidth={1.6}
+                  dot={{ r: 2.2, strokeWidth: 0, fill: 'var(--color-average)' }}
+                  activeDot={{ r: 3.4, strokeWidth: 0, fill: 'var(--color-average)' }}
+                />
+              </LineChart>
             </ChartContainer>
           </Card.Content>
         </Card>
-      ),
-    },
-    {
-      key: 'controls',
-      children: (
-        <Card title="Selection Controls" className="theme-studio__preview-card">
-          <Card.Content>
-            <div className="theme-studio__form-stack">
-              <DatePicker placeholder="Launch date" defaultValue={new Date(2025, 5, 18)} />
-              <Select defaultValue="pro">
-                <Select.Option value="starter">Starter</Select.Option>
-                <Select.Option value="pro">Pro</Select.Option>
-                <Select.Option value="scale">Scale</Select.Option>
-              </Select>
-              <Radio.Group defaultValue="b">
-                <Flex gap="sm">
-                  <Radio value="a">A</Radio>
-                  <Radio value="b">B</Radio>
-                </Flex>
-              </Radio.Group>
-              <Checkbox defaultChecked>Enable automation</Checkbox>
-              <Switch />
-            </div>
-          </Card.Content>
-        </Card>
-      ),
-    },
-  ];
-
-  return (
-    <div className="theme-studio__preview-stack">
-      <Waterfall
-        className="theme-studio__cards-waterfall"
-        columns={{ xs: 1, md: 1, xl: 2 }}
-        gutter={[18, 18]}
-        items={items}
-      />
+      </div>
     </div>
   );
 }
@@ -422,8 +533,8 @@ function DashboardPreview(): React.ReactElement {
           <div className="theme-studio__sidebar-brand">
             <Avatar>TD</Avatar>
             <div>
-              <Typography.Text strong>Tiny Theme</Typography.Text>
-              <Typography.Text className="theme-studio__sidebar-subtle">Dashboard</Typography.Text>
+              <Text strong>Tiny Theme</Text>
+              <Text className="theme-studio__sidebar-subtle">Dashboard</Text>
             </div>
           </div>
           <div className="theme-studio__sidebar-section-label">Workspace</div>
@@ -437,8 +548,8 @@ function DashboardPreview(): React.ReactElement {
             </Button>
           ))}
           <div className="theme-studio__dashboard-sidebar-footer">
-            <Typography.Text strong>Live Sync</Typography.Text>
-            <Typography.Text className="theme-studio__sidebar-subtle">Theme changes are applied across docs in real time.</Typography.Text>
+            <Text strong>Live Sync</Text>
+            <Text className="theme-studio__sidebar-subtle">Theme changes are applied across docs in real time.</Text>
           </div>
         </Card.Content>
       </Card>
@@ -446,8 +557,8 @@ function DashboardPreview(): React.ReactElement {
       <div className="theme-studio__dashboard-main">
         <div className="theme-studio__dashboard-top">
           <div>
-            <Typography.Text className="theme-studio__eyebrow">Dashboard</Typography.Text>
-            <Typography.Heading level={3}>Revenue snapshot</Typography.Heading>
+            <Text className="theme-studio__eyebrow">Dashboard</Text>
+            <Heading level={3}>Revenue snapshot</Heading>
             <div className="theme-studio__pill-row">
               <Tag color="success">Healthy</Tag>
               <Tag color="info">Synced</Tag>
@@ -475,8 +586,8 @@ function DashboardPreview(): React.ReactElement {
           <Card title="Overview" className="theme-studio__preview-card">
             <Card.Content>
               <div className="theme-studio__card-kicker-row">
-                <Typography.Text strong>$7.6k</Typography.Text>
-                <Typography.Text type="secondary">vs $6.6k target</Typography.Text>
+                <Text strong>$7.6k</Text>
+                <Text type="secondary">vs $6.6k target</Text>
               </div>
               <ChartContainer config={revenueChartConfig} style={{ height: 260, width: '100%' }}>
                 <AreaChart data={revenueData} margin={{ top: 12, right: 8, left: -18, bottom: 0 }}>
@@ -507,7 +618,7 @@ function DashboardPreview(): React.ReactElement {
             <Card.Content>
               <Flex vertical gap="sm">
                 <div>
-                  <Typography.Text strong>Accessibility</Typography.Text>
+                  <Text strong>Accessibility</Text>
                   <Progress.Bar percent={84} />
                 </div>
                 <Alert type="success" title="Contrast is healthy across key actions." />
@@ -527,8 +638,8 @@ function DashboardPreview(): React.ReactElement {
                 ].map(([name, value, meta]) => (
                   <div key={name} className="theme-studio__member-row">
                     <div className="theme-studio__member-copy">
-                      <Typography.Text strong>{name}</Typography.Text>
-                      <Typography.Text type="secondary">{meta}</Typography.Text>
+                      <Text strong>{name}</Text>
+                      <Text type="secondary">{meta}</Text>
                     </div>
                     <Tag>{value}</Tag>
                   </div>
@@ -549,8 +660,8 @@ function MailPreview(): React.ReactElement {
         <Card.Content>
           <div className="theme-studio__mail-sidebar-head">
             <div>
-              <Typography.Text className="theme-studio__eyebrow">Mailbox</Typography.Text>
-              <Typography.Heading level={4}>Studio Mail</Typography.Heading>
+              <Text className="theme-studio__eyebrow">Mailbox</Text>
+              <Heading level={4}>Studio Mail</Heading>
             </div>
             <Button btnType="primary" style={{ width: '100%' }}>Compose</Button>
           </div>
@@ -575,7 +686,7 @@ function MailPreview(): React.ReactElement {
           </div>
 
           <div className="theme-studio__mail-labels">
-            <Typography.Text strong>Labels</Typography.Text>
+            <Text strong>Labels</Text>
             <Flex gap="sm" wrap>
               <Tag color="info">Design</Tag>
               <Tag color="success">Work</Tag>
@@ -628,8 +739,8 @@ function MailPreview(): React.ReactElement {
             <div className="theme-studio__mail-message-meta">
               <Avatar>S</Avatar>
               <div>
-                <Typography.Text strong>Re: New message</Typography.Text>
-                <Typography.Text type="secondary">support@tiny.design</Typography.Text>
+                <Text strong>Re: New message</Text>
+                <Text type="secondary">support@tiny.design</Text>
               </div>
             </div>
             <div className="theme-studio__mail-message-actions">
@@ -673,9 +784,9 @@ function PricingPreview(): React.ReactElement {
     <div className="theme-studio__preview-stack">
       <div className="theme-studio__pricing-hero">
         <div>
-          <Typography.Text className="theme-studio__eyebrow">Pricing</Typography.Text>
-          <Typography.Heading level={2}>Simple pricing for modern teams</Typography.Heading>
-          <Typography.Paragraph>Choose a plan that scales from solo work to multi-product organizations.</Typography.Paragraph>
+          <Text className="theme-studio__eyebrow">Pricing</Text>
+          <Heading level={2}>Simple pricing for modern teams</Heading>
+          <Paragraph>Choose a plan that scales from solo work to multi-product organizations.</Paragraph>
           <div className="theme-studio__pill-row">
             <Tag color="success">No setup fee</Tag>
             <Tag>Cancel anytime</Tag>
@@ -703,16 +814,16 @@ function PricingPreview(): React.ReactElement {
             <Card.Content>
               <div className="theme-studio__pricing-card-head">
                 {plan.featured ? <Tag color="success">Popular</Tag> : null}
-                <Typography.Text strong>{plan.name}</Typography.Text>
+                <Text strong>{plan.name}</Text>
               </div>
               <div className="theme-studio__pricing-price">
-                <Typography.Heading level={2}>{plan.price}</Typography.Heading>
-                <Typography.Text type="secondary">Per workspace / month</Typography.Text>
+                <Heading level={2}>{plan.price}</Heading>
+                <Text type="secondary">Per workspace / month</Text>
               </div>
-              <Typography.Paragraph>{plan.description}</Typography.Paragraph>
+              <Paragraph>{plan.description}</Paragraph>
               <div className="theme-studio__pricing-feature-list">
                 {plan.features.map((feature) => (
-                  <Typography.Text key={feature}>{feature}</Typography.Text>
+                  <Text key={feature}>{feature}</Text>
                 ))}
               </div>
               <div className="theme-studio__pricing-card-footer">
@@ -728,12 +839,12 @@ function PricingPreview(): React.ReactElement {
           <Card.Content>
             <div className="theme-studio__faq-list">
               <div className="theme-studio__faq-item">
-                <Typography.Text strong>Can I cancel anytime?</Typography.Text>
-                <Typography.Text type="secondary">Yes. Plans can be changed or canceled without lock-in.</Typography.Text>
+                <Text strong>Can I cancel anytime?</Text>
+                <Text type="secondary">Yes. Plans can be changed or canceled without lock-in.</Text>
               </div>
               <div className="theme-studio__faq-item">
-                <Typography.Text strong>Do you offer team migration?</Typography.Text>
-                <Typography.Text type="secondary">Pro and Scale include assisted import and onboarding.</Typography.Text>
+                <Text strong>Do you offer team migration?</Text>
+                <Text type="secondary">Pro and Scale include assisted import and onboarding.</Text>
               </div>
             </div>
           </Card.Content>
@@ -742,11 +853,11 @@ function PricingPreview(): React.ReactElement {
           <Card.Content>
             <div className="theme-studio__settings-list">
               <div>
-                <Typography.Text strong>Seats</Typography.Text>
+                <Text strong>Seats</Text>
                 <Progress.Bar percent={68} />
               </div>
               <div>
-                <Typography.Text strong>Storage</Typography.Text>
+                <Text strong>Storage</Text>
                 <Progress.Bar percent={42} />
               </div>
             </div>
@@ -772,7 +883,7 @@ export function renderPreview(
 
   return (
     <div className="theme-studio__preview-stack">
-      {(section === 'colors' || section === 'typography' || section === 'other') ? <LiveResponsePanel fields={fields} /> : null}
+      {(template !== 'cards' && (section === 'colors' || section === 'typography' || section === 'other')) ? <LiveResponsePanel fields={fields} /> : null}
       {content}
     </div>
   );

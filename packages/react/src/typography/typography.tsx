@@ -4,7 +4,7 @@ import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { TypographyProps } from './types';
 
-const Typography = React.forwardRef<HTMLParagraphElement, TypographyProps>(
+const Typography = React.forwardRef<HTMLDivElement, TypographyProps>(
   (props: TypographyProps, ref): JSX.Element => {
     const { className, children, prefixCls: customisedCls, ...otherProps } = props;
     const configContext = useContext(ConfigContext);
