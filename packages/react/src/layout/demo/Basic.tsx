@@ -7,7 +7,7 @@ export default function BasicDemo() {
   };
 
   const headerStyle = {
-    background: 'rgba(110, 65, 191, 0.7)',
+    background: 'color-mix(in srgb, var(--ty-color-primary) 70%, transparent)',
     color: '#fff',
     textAlign: 'center',
     height: '64px',
@@ -15,13 +15,13 @@ export default function BasicDemo() {
   };
 
   const footerStyle = {
-    background: 'rgba(110, 65, 191, 0.7)',
+    background: 'color-mix(in srgb, var(--ty-color-primary) 70%, transparent)',
     color: '#fff',
     textAlign: 'center',
   };
 
   const contentStyle = {
-    background: 'rgba(110, 65, 191, 0.98)',
+    background: 'color-mix(in srgb, var(--ty-color-primary) 98%, transparent)',
     color: '#fff',
     minHeight: '120px',
     lineHeight: '120px',
@@ -29,7 +29,7 @@ export default function BasicDemo() {
   };
 
   const sidebarStyle = {
-    background: 'rgba(110, 65, 191, 0.84)',
+    background: 'color-mix(in srgb, var(--ty-color-primary) 84%, transparent)',
     color: '#fff',
     textAlign: 'center',
     paddingTop: '30px',

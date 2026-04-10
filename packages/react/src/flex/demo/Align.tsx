@@ -12,7 +12,7 @@ export default function AlignDemo() {
     width: '100%',
     height: 120,
     borderRadius: 6,
-    border: '1px solid #6e41bf',
+    border: '1px solid var(--ty-color-primary)',
   };
 
   return (

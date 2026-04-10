@@ -18,7 +18,15 @@ export default function BasicDemo() {
       </Radio.Group>
       <Flex vertical={vertical}>
         {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} style={{ ...baseStyle, backgroundColor: i % 2 ? '#6e41bf' : 'rgba(110, 65, 191, 0.75)' }} />
+          <div
+            key={i}
+            style={{
+              ...baseStyle,
+              backgroundColor: i % 2
+                ? 'var(--ty-color-primary)'
+                : 'color-mix(in srgb, var(--ty-color-primary) 75%, transparent)',
+            }}
+          />
         ))}
       </Flex>
     </Flex>

@@ -15,16 +15,16 @@ export default function ResponsiveDemo() {
     <>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={12} md={8} lg={6}>
-          <div style={style('rgba(110, 65, 191, 0.9)')}>xs=24 sm=12 md=8 lg=6</div>
+          <div style={style('color-mix(in srgb, var(--ty-color-primary) 90%, transparent)')}>xs=24 sm=12 md=8 lg=6</div>
         </Col>
         <Col xs={24} sm={12} md={8} lg={6}>
-          <div style={style('rgba(110, 65, 191, 0.7)')}>xs=24 sm=12 md=8 lg=6</div>
+          <div style={style('color-mix(in srgb, var(--ty-color-primary) 70%, transparent)')}>xs=24 sm=12 md=8 lg=6</div>
         </Col>
         <Col xs={24} sm={12} md={8} lg={6}>
-          <div style={style('rgba(110, 65, 191, 0.9)')}>xs=24 sm=12 md=8 lg=6</div>
+          <div style={style('color-mix(in srgb, var(--ty-color-primary) 90%, transparent)')}>xs=24 sm=12 md=8 lg=6</div>
         </Col>
         <Col xs={24} sm={12} md={8} lg={6}>
-          <div style={style('rgba(110, 65, 191, 0.7)')}>xs=24 sm=12 md=8 lg=6</div>
+          <div style={style('color-mix(in srgb, var(--ty-color-primary) 70%, transparent)')}>xs=24 sm=12 md=8 lg=6</div>
         </Col>
       </Row>
     </>

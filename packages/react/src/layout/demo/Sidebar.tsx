@@ -6,13 +6,13 @@ export default function SidebarDemo() {
   const [collapsed, setCollapsed] = React.useState(false);
 
   const sidebarStyle = {
-    background: 'rgba(110, 65, 191, 0.84)',
+    background: 'color-mix(in srgb, var(--ty-color-primary) 84%, transparent)',
     color: '#fff',
     textAlign: 'center',
   };
 
   const headerStyle = {
-    background: 'rgba(110, 65, 191, 0.7)',
+    background: 'color-mix(in srgb, var(--ty-color-primary) 70%, transparent)',
     color: '#fff',
     height: '64px',
     lineHeight: '64px',
@@ -20,7 +20,7 @@ export default function SidebarDemo() {
   };
 
   const contentStyle = {
-    background: 'rgba(110, 65, 191, 0.98)',
+    background: 'color-mix(in srgb, var(--ty-color-primary) 98%, transparent)',
     color: '#fff',
     minHeight: '200px',
     lineHeight: '200px',

@@ -7,7 +7,7 @@ const panelStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  background: 'linear-gradient(180deg, rgba(110,65,191,0.12), rgba(110,65,191,0.02))',
+  background: 'linear-gradient(180deg, color-mix(in srgb, var(--ty-color-primary) 12%, transparent), color-mix(in srgb, var(--ty-color-primary-bg) 70%, transparent))',
 };
 
 export default function ExplicitColumnsDemo() {
