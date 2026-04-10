@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.1
+
+### Patch Changes
+
+- Fix React component behavior and update demos to follow theme tokens. - [#99](https://github.com/wangdicoder/tiny-design/pull/99) [`c7abb00`](https://github.com/wangdicoder/tiny-design/commit/c7abb00cc45fbfdcf1107457c55374496a81c339)
+
 ## 1.11.0
 
 ### Minor Changes
