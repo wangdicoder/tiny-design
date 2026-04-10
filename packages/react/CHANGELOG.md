@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.2
+
+### Patch Changes
+
+- Migrate component SCSS imports from @tiny-design/tokens to local style/variables and fix Popup positioning sync - [#101](https://github.com/wangdicoder/tiny-design/pull/101) [`ed760d5`](https://github.com/wangdicoder/tiny-design/commit/ed760d51720bd222a3d7e66c0028e82b8e9446ad)
+
 ## 1.11.1
 
 ### Patch Changes
