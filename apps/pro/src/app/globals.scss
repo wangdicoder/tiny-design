@@ -1,6 +1,13 @@
 @use '@tiny-design/tokens/scss/base' as *;
 @use 'style/component' as *;
 
+:root {
+  --font-heading:
+    'Avenir Next', avenir, montserrat, 'Segoe UI', 'Helvetica Neue', arial, sans-serif;
+  --font-body:
+    'Aptos', 'Avenir Next', 'Segoe UI', inter, roboto, 'Helvetica Neue', arial, sans-serif;
+}
+
 *,
 *::before,
 *::after {

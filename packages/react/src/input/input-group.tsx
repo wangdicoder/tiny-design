@@ -21,7 +21,11 @@ const InputGroup = (props: InputGroupProps): React.ReactElement => {
 
   return (
     <div {...otherProps} className={cls}>
-      {React.Children.map(children, (child: React.ReactElement) => {
+      {React.Children.map(children, (child) => {
+        if (!React.isValidElement(child)) {
+          return child;
+        }
+
         const childProps: Partial<InputProps> = {
           disabled,
           size: inputSize as SizeType,

@@ -34,7 +34,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => 
     [`${prefixCls}_disabled`]: disabled,
   });
   const [count, setCount] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const minHeightRef = useRef<number | null>(null);
 
   const textareaOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
