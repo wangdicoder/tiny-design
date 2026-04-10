@@ -1,49 +1,62 @@
 @use "../../style/variables" as *;
-@use './mixin' as *;
 
 .#{$prefix}-input {
-  position: relative;
   box-sizing: border-box;
   width: 100%;
+  display: flex;
+  align-items: center;
   color: var(--ty-input-color, var(--ty-color-text));
+  height: var(--ty-input-height-current, var(--ty-input-height-md, var(--ty-height-md)));
+  padding-inline: var(--ty-input-padding-inline-current, var(--ty-input-padding-inline-md, #{$input-md-padding}));
+  gap: var(--ty-input-affix-gap, var(--ty-spacing-2));
+  border: 1px solid var(--ty-input-border);
+  border-radius: var(--ty-input-radius, var(--ty-border-radius));
+  background-color: var(--ty-input-bg, var(--ty-color-bg-container));
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
 
-  --ty-input-padding-inline-start-extra: 0px;
-  --ty-input-padding-inline-end-extra: 0px;
+  &:hover {
+    border-color: var(--ty-input-border-hover, var(--ty-color-primary));
+  }
+
+  &:focus-within {
+    border-color: var(--ty-input-border-focus, var(--ty-color-primary));
+    box-shadow: var(--ty-input-shadow-focus, var(--ty-shadow-focus));
+  }
 
   &__input {
-    @include input-default;
-
-    height: var(--ty-input-height-current, var(--ty-input-height-md, var(--ty-height-md)));
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: 0;
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
     font-size: var(--ty-input-font-size-current, var(--ty-input-font-size-md, var(--ty-font-size-base)));
-    padding-left: calc(var(--ty-input-padding-inline-current, var(--ty-input-padding-inline-md, #{$input-md-padding})) + var(--ty-input-padding-inline-start-extra, 0px));
-    padding-right: calc(var(--ty-input-padding-inline-current, var(--ty-input-padding-inline-md, #{$input-md-padding})) + var(--ty-input-padding-inline-end-extra, 0px));
     line-height: var(--ty-input-line-height, var(--ty-line-height-base));
+
+    &::placeholder {
+      color: var(--ty-input-placeholder, var(--ty-color-text-placeholder));
+    }
   }
 
   &__prefix,
   &__suffix {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-    margin: var(--ty-input-affix-margin);
-  }
-
-  &__prefix {
-    left: 0;
-  }
-
-  &__suffix {
-    right: 0;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: inherit;
   }
 
   &__clear-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--ty-input-clear-color, var(--ty-color-text-quaternary));
     width: var(--ty-input-clear-size-current, var(--ty-input-clear-size, 1em));
     height: var(--ty-input-clear-size-current, var(--ty-input-clear-size, 1em));
-    position: relative;
-    top: 2px;
     cursor: pointer;
     flex-shrink: 0;
   }
@@ -70,8 +83,24 @@
   }
 
   &_disabled {
+    cursor: not-allowed;
+    background-color: var(--ty-input-bg-disabled, var(--ty-color-bg-disabled));
+    color: var(--ty-input-text-disabled, var(--ty-color-text-quaternary));
+
+    &:hover {
+      border-color: var(--ty-input-border);
+    }
+
+    &:focus-within {
+      box-shadow: none;
+    }
+
     .#{$prefix}-input__input {
-      @include input-default-disabled;
+      cursor: not-allowed;
+    }
+
+    .#{$prefix}-input__clear-btn {
+      cursor: not-allowed;
     }
   }
 }
@@ -125,23 +154,17 @@
     flex: 1;
 
     &:first-child {
-      .#{$prefix}-input__input {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
 
     &:last-child {
-      .#{$prefix}-input__input {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
 
     &:not(:first-child, :last-child) {
-      .#{$prefix}-input__input {
-        border-radius: 0;
-      }
+      border-radius: 0;
     }
   }
 
@@ -155,7 +178,7 @@
 
   & > :not(:first-child) {
     .#{$prefix}-btn,
-    .#{$prefix}-input__input,
+    .#{$prefix}-input,
     .#{$prefix}-input-number__input {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -164,7 +187,7 @@
 
   & > :not(:last-child) {
     .#{$prefix}-btn,
-    .#{$prefix}-input__input,
+    .#{$prefix}-input,
     .#{$prefix}-input-number__input {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -173,7 +196,7 @@
 
   & > :first-child {
     .#{$prefix}-btn,
-    .#{$prefix}-input__input,
+    .#{$prefix}-input,
     .#{$prefix}-input-number__input {
       border-top-left-radius: var(--ty-control-group-radius, var(--ty-control-radius, var(--ty-border-radius)));
       border-bottom-left-radius: var(--ty-control-group-radius, var(--ty-control-radius, var(--ty-border-radius)));
@@ -182,7 +205,7 @@
 
   & > :last-child {
     .#{$prefix}-btn,
-    .#{$prefix}-input__input,
+    .#{$prefix}-input,
     .#{$prefix}-input-number__input {
       border-top-right-radius: var(--ty-control-group-radius, var(--ty-control-radius, var(--ty-border-radius)));
       border-bottom-right-radius: var(--ty-control-group-radius, var(--ty-control-radius, var(--ty-border-radius)));

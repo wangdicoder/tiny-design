@@ -7,7 +7,6 @@ exports[`<Input /> should match the snapshot 1`] = `
   >
     <input
       class="ty-input__input"
-      style="--ty-input-padding-inline-start-extra: 0px; --ty-input-padding-inline-end-extra: 0px;"
       value=""
     />
   </div>
