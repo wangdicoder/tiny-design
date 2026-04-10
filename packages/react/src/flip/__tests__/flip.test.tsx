@@ -6,6 +6,7 @@ describe('<Flip />', () => {
     const { asFragment } = render(
       <Flip width={200} height={200}>
         <Flip.Item><div>Front</div></Flip.Item>
+        <Flip.Item><div>Back</div></Flip.Item>
       </Flip>
     );
     expect(asFragment()).toMatchSnapshot();
@@ -15,6 +16,7 @@ describe('<Flip />', () => {
     const { container } = render(
       <Flip width={200} height={200}>
         <Flip.Item><div>Front</div></Flip.Item>
+        <Flip.Item><div>Back</div></Flip.Item>
       </Flip>
     );
     expect(container.firstChild).toHaveClass('ty-flip');
@@ -24,8 +26,10 @@ describe('<Flip />', () => {
     const { getByText } = render(
       <Flip width={200} height={200}>
         <Flip.Item><div>Front Side</div></Flip.Item>
+        <Flip.Item><div>Back Side</div></Flip.Item>
       </Flip>
     );
     expect(getByText('Front Side')).toBeInTheDocument();
+    expect(getByText('Back Side')).toBeInTheDocument();
   });
 });

@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import Carousel from '../index';
 import { CarouselRef } from '../types';
 import { createRef } from 'react';
@@ -134,7 +134,9 @@ describe('<Carousel />', () => {
         <div>3</div>
       </Carousel>
     );
-    ref.current!.goTo(2, true);
+    act(() => {
+      ref.current!.goTo(2, true);
+    });
     expect(before).toHaveBeenCalledWith(0, 2);
   });
 
