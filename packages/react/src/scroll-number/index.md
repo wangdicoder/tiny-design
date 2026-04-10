@@ -58,7 +58,7 @@ Display with title, prefix, suffix, and precision like a Statistic component.
 
 ### Custom Style
 
-Customize font size, color, and separator via `valueStyle` and `groupSeparator`.
+Customize font size, color, className, and separator via `valueStyle`, `valueClassName`, and `groupSeparator`.
 
 <DemoBlock component={CustomStyleDemo} source={CustomStyleSource} />
 
@@ -77,4 +77,5 @@ Customize font size, color, and separator via `valueStyle` and `groupSeparator`.
 | groupSeparator | Thousands separator character | `string` | `','` |
 | prefix | Content before the number | `ReactNode` | - |
 | suffix | Content after the number | `ReactNode` | - |
+| valueClassName | Custom class name for the value container | `string` | - |
 | valueStyle | Custom style for the value container | `CSSProperties` | - |

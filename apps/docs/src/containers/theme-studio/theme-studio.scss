@@ -123,7 +123,6 @@
 .theme-studio__sidebar {
   gap: 12px;
   position: sticky;
-  top: 88px;
 }
 
 .theme-studio__sidebar,
@@ -395,7 +394,6 @@
 }
 
 .theme-studio__response-panel {
-  display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 6px;
   padding: 7px;
@@ -464,7 +462,6 @@
 }
 
 .theme-studio__chart-strip {
-  display: flex;
   gap: 6px;
   min-height: 34px;
   align-items: center;
@@ -508,8 +505,6 @@
 }
 
 .theme-studio__type-inline {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   gap: 2px;
 }
@@ -526,7 +521,6 @@
 }
 
 .theme-studio__surface-inline {
-  display: flex;
   gap: 8px;
 }
 
@@ -590,23 +584,18 @@
 }
 
 .theme-studio__cards-scene {
-  display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   gap: 14px;
   align-items: start;
 }
 
 .theme-studio__cards-column {
-  display: flex;
-  flex-direction: column;
   gap: 14px;
   min-width: 0;
 }
 
-.theme-studio__cards-top-grid,
 .theme-studio__cards-top-pair,
 .theme-studio__cards-bottom-pair {
-  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   align-items: stretch;
@@ -654,8 +643,6 @@
 
 .theme-studio__cards-panel-head,
 .theme-studio__cards-copy-block {
-  display: flex;
-  flex-direction: column;
   gap: 4px;
 }
 
@@ -693,10 +680,7 @@
 }
 
 .theme-studio__cards-actions-end,
-.theme-studio__cards-auth-actions,
-.theme-studio__cards-share-row,
-.theme-studio__cards-goal-actions {
-  display: flex;
+.theme-studio__cards-auth-actions {
   gap: 10px;
   align-items: center;
 }
@@ -727,35 +711,8 @@
   border: 0;
 }
 
-.theme-studio__preview-grid_cards > * {
-  min-height: 188px;
-}
-
-.theme-studio__cards-waterfall {
-  width: 100%;
-  min-height: 1200px;
-}
-
-.theme-studio__cards-waterfall .ty-waterfall__item {
-  min-width: 0;
-}
-
 .theme-studio__preview-card {
   overflow: hidden;
-}
-
-.theme-studio__card-metric {
-  min-height: 132px !important;
-}
-
-.theme-studio__card-tall {
-  min-height: 332px !important;
-}
-
-.theme-studio__metric_preview {
-  padding: 0;
-  border: 0;
-  background: transparent;
 }
 
 .theme-studio__card-kicker-row {
@@ -771,8 +728,6 @@
 }
 
 .theme-studio__goal-display {
-  display: flex;
-  flex-direction: column;
   margin: 0;
   align-items: center;
 }
@@ -790,9 +745,6 @@
 }
 
 .theme-studio__cards-goal-header {
-  display: grid;
-  grid-template-columns: 28px minmax(0, 1fr) 28px;
-  align-items: center;
   gap: 8px;
 }
 
@@ -806,69 +758,6 @@
 
 .theme-studio__cards-goal-circle.ty-btn .ty-btn__content {
   justify-content: center;
-}
-
-.theme-studio__goal-footer {
-  margin-top: 10px;
-}
-
-.theme-studio__cards-table {
-  display: flex;
-  flex-direction: column;
-}
-
-.theme-studio__cards-table-head,
-.theme-studio__cards-table-row {
-  display: grid;
-  grid-template-columns: 18px 88px minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-}
-
-.theme-studio__cards-table-head {
-  padding: 0 0 8px 0;
-  font-size: 11px;
-  color: var(--editor-muted-foreground);
-}
-
-.theme-studio__cards-table-row {
-  padding: 9px 0;
-  border-top: 1px solid var(--editor-border);
-}
-
-.theme-studio__cards-table-row .ty-checkbox {
-  justify-self: start;
-}
-
-.theme-studio__cards-table-status,
-.theme-studio__cards-table-email {
-  min-width: 0;
-}
-
-.theme-studio__cards-table-email {
-  overflow: hidden;
-  color: var(--editor-muted-foreground);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.theme-studio__cards-people-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.theme-studio__cards-people-list .theme-studio__member-row {
-  padding-block: 10px;
-  border-top: 1px solid var(--editor-border);
-}
-
-.theme-studio__cards-people-list .theme-studio__member-row:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.theme-studio__cards-chat-head {
-  margin-bottom: 2px;
 }
 
 .theme-studio__member-row_compact {
@@ -889,25 +778,13 @@
   flex: 0 0 auto;
 }
 
-.theme-studio__cards-member-select,
-.theme-studio__cards-inline-action,
-.theme-studio__cards-report-select,
-.theme-studio__cards-share-row .ty-btn {
+.theme-studio__cards-member-select {
   width: auto !important;
   flex: 0 0 auto;
 }
 
 .theme-studio__cards-member-select {
   min-width: 86px;
-}
-
-.theme-studio__cards-report-select {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.theme-studio__cards-inline-action.ty-btn {
-  min-width: 78px;
 }
 
 .theme-studio__cards-panel .ty-radio {
@@ -972,8 +849,7 @@
 .theme-studio__dashboard-sidebar.ty-card,
 .theme-studio__mail-sidebar.ty-card,
 .theme-studio__mail-panel.ty-card,
-.theme-studio__mail-detail.ty-card,
-.theme-studio__mail-compose-card.ty-card {
+.theme-studio__mail-detail.ty-card {
   border-radius: var(--theme-studio-panel-radius);
 }
 
@@ -1039,18 +915,17 @@
 }
 
 .theme-studio__dashboard-main,
-.theme-studio__mail-list {
+.theme-studio__mail-panel,
+.theme-studio__mail-detail,
+.theme-studio__mail-sidebar {
   min-width: 0;
 }
 
 .theme-studio__dashboard-main {
-  display: flex;
-  flex-direction: column;
   gap: var(--theme-studio-block-gap);
 }
 
 .theme-studio__dashboard-top {
-  display: flex;
   justify-content: space-between;
   gap: 14px;
   align-items: center;
@@ -1064,8 +939,6 @@
 .theme-studio__mail-folder-list,
 .theme-studio__mail-thread-list,
 .theme-studio__pricing-feature-list {
-  display: flex;
-  flex-direction: column;
   gap: 10px;
 }
 
@@ -1090,13 +963,6 @@
 .theme-studio__mail-sidebar .theme-studio__eyebrow,
 .theme-studio__mail-sidebar .theme-studio__sidebar-subtle {
   color: color-mix(in srgb, var(--editor-sidebar-foreground), transparent 28%);
-}
-
-.theme-studio__mail-sidebar-head,
-.theme-studio__mail-panel,
-.theme-studio__mail-detail {
-  display: flex;
-  flex-direction: column;
 }
 
 .theme-studio__mail-sidebar-head {
@@ -1148,8 +1014,6 @@
 }
 
 .theme-studio__mail-message-meta {
-  display: flex;
-  align-items: center;
   gap: 12px;
   min-width: 0;
 }
@@ -1195,8 +1059,6 @@
 }
 
 .theme-studio__mail-labels {
-  display: flex;
-  flex-direction: column;
   gap: 10px;
   padding-top: 8px;
   border-top: 1px solid color-mix(in srgb, var(--editor-sidebar-border), transparent 25%);
@@ -1247,7 +1109,6 @@
 }
 
 .theme-studio__mail-message-head {
-  display: flex;
   justify-content: space-between;
   gap: 12px;
   align-items: flex-start;
@@ -1303,27 +1164,6 @@
   color: var(--editor-primary-foreground);
 }
 
-.theme-studio__mail-compose-card {
-  margin-top: auto;
-  padding-top: 18px;
-  border-top: 1px solid var(--editor-border);
-}
-
-.theme-studio__mail-compose-card.ty-card {
-  padding-top: 0;
-  border-top: 0;
-  background: color-mix(in srgb, var(--editor-card), var(--editor-base) 10%);
-}
-
-.theme-studio__mail-compose-card.ty-card > .ty-card__body {
-  padding: 14px;
-}
-
-.theme-studio__mail-compose-card .ty-textarea,
-.theme-studio__mail-compose-card .ty-textarea__inner {
-  margin-bottom: 12px;
-}
-
 .theme-studio__pricing-grid,
 .theme-studio__palette-grid,
 .theme-studio__summary-grid {
@@ -1340,7 +1180,6 @@
 }
 
 .theme-studio__pricing-hero {
-  display: flex;
   justify-content: space-between;
   gap: 18px;
   align-items: flex-start;
@@ -1382,15 +1221,11 @@
 }
 
 .theme-studio__pricing-card-head {
-  display: flex;
-  align-items: center;
   gap: 8px;
   min-height: 24px;
 }
 
 .theme-studio__pricing-price {
-  display: flex;
-  flex-direction: column;
   gap: 6px;
 }
 
@@ -1399,8 +1234,6 @@
 }
 
 .theme-studio__pricing-feature-list {
-  display: flex;
-  flex-direction: column;
   gap: 10px;
   margin: 0;
 }
@@ -1415,14 +1248,10 @@
 }
 
 .theme-studio__faq-list {
-  display: flex;
-  flex-direction: column;
   gap: 14px;
 }
 
 .theme-studio__faq-item {
-  display: flex;
-  flex-direction: column;
   gap: 6px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--editor-border);
@@ -1465,11 +1294,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.theme-studio__chart-dot_large {
-  width: 24px;
-  height: 24px;
 }
 
 .theme-studio__code-head {
@@ -1538,7 +1362,8 @@
   }
 
   .theme-studio__cards-scene,
-  .theme-studio__cards-top-grid {
+  .theme-studio__cards-top-pair,
+  .theme-studio__cards-bottom-pair {
     grid-template-columns: 1fr;
   }
 }
@@ -1551,7 +1376,6 @@
   .theme-studio__topbar-primary,
   .theme-studio__topbar-actions {
     align-items: flex-start;
-    flex-direction: column;
   }
 
   .theme-studio__group-toolbar,

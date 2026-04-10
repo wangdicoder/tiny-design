@@ -45,6 +45,11 @@ describe('<ScrollNumber />', () => {
     expect(container.querySelector('.ty-scroll-number__suffix')!.textContent).toBe('USD');
   });
 
+  it('should apply valueClassName to the value container', () => {
+    const { container } = render(<ScrollNumber value={100} valueClassName="custom-value" />);
+    expect(container.querySelector('.ty-scroll-number__content')).toHaveClass('custom-value');
+  });
+
   it('should handle precision', () => {
     const { container } = render(<ScrollNumber value={3.1} precision={2} />);
     const digits = container.querySelectorAll('.ty-scroll-number__digit');

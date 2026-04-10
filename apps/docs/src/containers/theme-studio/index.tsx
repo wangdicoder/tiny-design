@@ -146,6 +146,7 @@ const ThemeStudioPage = (): React.ReactElement => {
         <div className="theme-studio__topbar">
           <div className="theme-studio__topbar-primary">
             <Select
+              allowClear
               className="theme-studio__select"
               value={draft.presetId}
               showSearch
