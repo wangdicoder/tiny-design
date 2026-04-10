@@ -46,14 +46,6 @@ jobs:
       - name: Copy 404.html for SPA routing
         run: cp apps/docs/build/index.html apps/docs/build/404.html
 
-      - name: Build pro site
-        run: pnpm --filter @tiny-design/pro build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /tiny-design/pro
-
-      - name: Merge pro into docs output
-        run: cp -r apps/pro/out/ apps/docs/build/pro/
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
