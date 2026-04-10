@@ -1,4 +1,11 @@
-import React, { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 import { createPopper, Instance } from '@popperjs/core';
 import Transition, { AnimationName } from '../transition';
@@ -6,6 +13,65 @@ import Portal from '../portal';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { Placement, PopupProps } from './types';
+
+type PopperElementName = 'popper' | 'arrow';
+
+interface PopperRenderState {
+  styles: Record<PopperElementName, React.CSSProperties>;
+  attributes: Record<PopperElementName, Record<string, string | boolean>>;
+}
+
+const initialPopperRenderState: PopperRenderState = {
+  styles: {
+    popper: {
+      position: 'absolute',
+      left: '0',
+      top: '0',
+    },
+    arrow: {
+      position: 'absolute',
+    },
+  },
+  attributes: {
+    popper: {},
+    arrow: {},
+  },
+};
+
+function toReactStyle(style: Partial<CSSStyleDeclaration> | undefined): React.CSSProperties {
+  return { ...(style as React.CSSProperties | undefined) };
+}
+
+function toReactAttributes(
+  attributes: Record<string, string | boolean> | undefined
+): Record<string, string | boolean> {
+  return { ...(attributes ?? {}) };
+}
+
+function shallowEqualRecord(
+  first: Record<string, unknown>,
+  second: Record<string, unknown>
+): boolean {
+  const firstKeys = Object.keys(first);
+  const secondKeys = Object.keys(second);
+  if (firstKeys.length !== secondKeys.length) return false;
+  return firstKeys.every((key) => first[key] === second[key]);
+}
+
+function isSamePopperRenderState(first: PopperRenderState, second: PopperRenderState): boolean {
+  return (
+    shallowEqualRecord(
+      first.styles.popper as Record<string, unknown>,
+      second.styles.popper as Record<string, unknown>
+    ) &&
+    shallowEqualRecord(
+      first.styles.arrow as Record<string, unknown>,
+      second.styles.arrow as Record<string, unknown>
+    ) &&
+    shallowEqualRecord(first.attributes.popper, second.attributes.popper) &&
+    shallowEqualRecord(first.attributes.arrow, second.attributes.arrow)
+  );
+}
 
 function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null): void {
   if (!ref) {
@@ -53,6 +119,8 @@ const Popup = (props: PopupProps): JSX.Element => {
   );
   const isControlled = 'visible' in props;
   const [uncontrolledVisible, setUncontrolledVisible] = useState(defaultVisible);
+  const [popperRenderState, setPopperRenderState] =
+    useState<PopperRenderState>(initialPopperRenderState);
   const popupVisible = isControlled ? !!visible : uncontrolledVisible;
   const targetRef = useRef<HTMLElement | null>(null);
   const popupRef = useRef<HTMLDivElement | null>(null);
@@ -60,6 +128,8 @@ const Popup = (props: PopupProps): JSX.Element => {
   const delayHidePopupTimer = useRef<number | undefined>(undefined);
   const popperRef = useRef<Instance | undefined>(undefined);
   const isDocumentClickListening = useRef(false);
+  const popperRenderStateRef = useRef(popperRenderState);
+  popperRenderStateRef.current = popperRenderState;
   const elementProps = {
     ref: (ref: HTMLElement | null) => {
       targetRef.current = ref;
@@ -176,7 +246,10 @@ const Popup = (props: PopupProps): JSX.Element => {
 
   useEffect(() => {
     removeDocumentClickListener();
-    if ((trigger === 'click' || trigger === 'contextmenu' || trigger === 'manual') && popupVisible) {
+    if (
+      (trigger === 'click' || trigger === 'contextmenu' || trigger === 'manual') &&
+      popupVisible
+    ) {
       document.addEventListener('click', documentOnClick, true);
       isDocumentClickListening.current = true;
     }
@@ -222,6 +295,15 @@ const Popup = (props: PopupProps): JSX.Element => {
     popperRef.current = undefined;
   }, [handlePopupOnMouseEnter, handlePopupOnMouseLeave, trigger]);
 
+  const updatePopperRenderState = useCallback((nextState: PopperRenderState): void => {
+    if (isSamePopperRenderState(popperRenderStateRef.current, nextState)) {
+      return;
+    }
+
+    popperRenderStateRef.current = nextState;
+    setPopperRenderState(nextState);
+  }, []);
+
   const initPopper = useCallback(
     (popupNode: HTMLDivElement): void => {
       if (!targetRef.current) {
@@ -255,6 +337,27 @@ const Popup = (props: PopupProps): JSX.Element => {
               adaptive: false,
             },
           },
+          {
+            name: 'applyStyles',
+            enabled: false,
+          },
+          {
+            name: 'reactApplyStyles',
+            enabled: true,
+            phase: 'afterWrite',
+            fn: ({ state }) => {
+              updatePopperRenderState({
+                styles: {
+                  popper: toReactStyle(state.styles.popper),
+                  arrow: toReactStyle(state.styles.arrow),
+                },
+                attributes: {
+                  popper: toReactAttributes(state.attributes.popper),
+                  arrow: toReactAttributes(state.attributes.arrow),
+                },
+              });
+            },
+          },
         ],
       });
 
@@ -275,15 +378,22 @@ const Popup = (props: PopupProps): JSX.Element => {
       offset,
       placement,
       trigger,
+      updatePopperRenderState,
     ]
   );
 
-  const setPopupNodeRef = useCallback((node: HTMLDivElement | null) => {
-    popupRef.current = node;
-    if (node && popupVisible) {
-      initPopper(node);
-    }
-  }, [initPopper, popupVisible]);
+  const setPopupNodeRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      popupRef.current = node;
+      if (!node) {
+        return;
+      }
+      if (popupVisible) {
+        initPopper(node);
+      }
+    },
+    [initPopper, popupVisible]
+  );
 
   const getAnimationName = () => {
     const mapping = {
@@ -357,19 +467,17 @@ const Popup = (props: PopupProps): JSX.Element => {
   }, [clearTimers, popupVisible]);
 
   useLayoutEffect(() => {
-    if (!popupVisible || !targetRef.current || !popupRef.current) {
+    if (!popupVisible) {
+      return;
+    }
+
+    if (!targetRef.current || !popupRef.current) {
       destroyPopper();
       return;
     }
 
     initPopper(popupRef.current);
-
-    return destroyPopper;
-  }, [
-    popupVisible,
-    destroyPopper,
-    initPopper,
-  ]);
+  }, [popupVisible, destroyPopper, initPopper]);
 
   useEffect(() => {
     return () => {
@@ -379,20 +487,32 @@ const Popup = (props: PopupProps): JSX.Element => {
     };
   }, [clearTimers, destroyPopper, removeDocumentClickListener]);
 
-  const renderContent = () => (
-    <Transition in={popupVisible} nodeRef={popupRef} animation={getAnimationName()}>
-      <div
-        {...otherProps}
-        className={cls}
-        ref={setPopupNodeRef}
-        style={popupInlineStyle}>
-        {content && arrow && (
-          <div data-popper-arrow className={`${prefixCls}__arrow`} />
-        )}
-        {content}
-      </div>
-    </Transition>
-  );
+  const renderContent = () => {
+    return (
+      <Transition
+        in={popupVisible}
+        nodeRef={popupRef}
+        animation={getAnimationName()}
+        onExited={destroyPopper}>
+        <div
+          {...otherProps}
+          {...popperRenderState.attributes.popper}
+          className={cls}
+          ref={setPopupNodeRef}
+          style={{ ...popperRenderState.styles.popper, ...popupInlineStyle }}>
+          {content && arrow && (
+            <div
+              data-popper-arrow
+              {...popperRenderState.attributes.arrow}
+              className={`${prefixCls}__arrow`}
+              style={popperRenderState.styles.arrow}
+            />
+          )}
+          {content}
+        </div>
+      </Transition>
+    );
+  };
 
   return (
     <>

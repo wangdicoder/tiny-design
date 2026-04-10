@@ -48,6 +48,7 @@ const Select = (props: SelectProps): React.ReactElement => {
 
   const ref = useRef<HTMLDivElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const wasOpenRef = useRef(false);
   const dropdownRef = useCallback(
     (node: HTMLUListElement | null) => {
       if (!node || !scrollToSelected) return;
@@ -166,6 +167,15 @@ const Select = (props: SelectProps): React.ReactElement => {
       return label;
     },
     [flatOptions, labelRender]
+  );
+
+  const getSearchTextForValue = useCallback(
+    (val: string): string => {
+      const opt = flatOptions.find((o) => o.value === val);
+      const label = opt?.label ?? val;
+      return typeof label === 'string' || typeof label === 'number' ? String(label) : val;
+    },
+    [flatOptions]
   );
 
   // Remove tag
@@ -294,11 +304,35 @@ const Select = (props: SelectProps): React.ReactElement => {
     if (!combo.isOpen || !showSearch || disabled) return;
 
     const frameId = requestAnimationFrame(() => {
-      searchInputRef.current?.focus();
+      const input = searchInputRef.current;
+      input?.focus();
+      if (!isMultiple && hasSomeValue && input?.value) {
+        input.select();
+      }
     });
 
     return () => cancelAnimationFrame(frameId);
-  }, [combo.isOpen, showSearch, disabled]);
+  }, [combo.isOpen, disabled, hasSomeValue, isMultiple, showSearch]);
+
+  useEffect(() => {
+    const wasOpen = wasOpenRef.current;
+    wasOpenRef.current = combo.isOpen;
+    if (
+      wasOpen ||
+      !combo.isOpen ||
+      isMultiple ||
+      !showSearch ||
+      !hasSomeValue ||
+      searchValue
+    ) {
+      return;
+    }
+
+    const currentValue = Array.isArray(selectVal) ? selectVal[0] : selectVal;
+    if (currentValue) {
+      setSearchValue(getSearchTextForValue(currentValue));
+    }
+  }, [combo.isOpen, getSearchTextForValue, hasSomeValue, isMultiple, searchValue, selectVal, showSearch]);
 
   const hasValue = hasSomeValue;
 
@@ -476,7 +510,7 @@ const Select = (props: SelectProps): React.ReactElement => {
     }
 
     // Single mode
-    if (showSearch && combo.isOpen) {
+    if (showSearch && (combo.isOpen || searchValue)) {
       return (
         <input
           ref={searchInputRef}
@@ -530,7 +564,6 @@ const Select = (props: SelectProps): React.ReactElement => {
           }
 
           combo.closeDropdown();
-          setSearchValue('');
         }}
         content={renderOverlay()}>
         <div className={`${prefixCls}__selector`} onClick={handleSelectorClick}>

@@ -373,6 +373,45 @@ describe('<Select />', () => {
     expect(document.querySelector('.ty-select__empty')).toHaveTextContent('Nothing found');
   });
 
+  it('should preserve search text after closing without selecting', () => {
+    const { container } = render(
+      <Select showSearch notFoundContent="Nothing found">
+        <Option value="a">Apple</Option>
+      </Select>
+    );
+    const selector = container.querySelector('.ty-select__selector') as HTMLElement;
+    const selectEl = container.querySelector('.ty-select') as HTMLElement;
+
+    fireEvent.click(selector);
+    const searchInput = container.querySelector('.ty-select__search') as HTMLInputElement;
+    fireEvent.change(searchInput, { target: { value: 'xyz' } });
+    expect(document.querySelector('.ty-select__empty')).toHaveTextContent('Nothing found');
+
+    fireEvent.click(document.body);
+    expect(selectEl).not.toHaveClass('ty-select_open');
+    expect(container.querySelector('.ty-select__search')).toHaveValue('xyz');
+
+    fireEvent.click(selector);
+    expect(document.querySelector('.ty-select__empty')).toHaveTextContent('Nothing found');
+  });
+
+  it('should show the selected option label when reopening searchable single select', () => {
+    const { container } = render(
+      <Select showSearch>
+        <Option value="a">Apple</Option>
+        <Option value="b">Banana</Option>
+      </Select>
+    );
+    const selector = container.querySelector('.ty-select__selector') as HTMLElement;
+
+    fireEvent.click(selector);
+    fireEvent.click(getOptions()[1]);
+    expect(container.querySelector('.ty-select__selection-text')).toHaveTextContent('Banana');
+
+    fireEvent.click(selector);
+    expect(container.querySelector('.ty-select__search')).toHaveValue('Banana');
+  });
+
   // Sizes
   it('should apply size classes', () => {
     const { container: smContainer } = render(

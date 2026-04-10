@@ -1,7 +1,15 @@
 @use '@tiny-design/tokens/scss/variables' as *;
 
 .#{$prefix}-split-button {
-  &__dropdown-btn{
+  display: inline-flex;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  .#{$prefix}-btn {
+    float: none;
+  }
+
+  &__dropdown-btn {
     padding: 0 8px;
     min-width: auto;
   }
