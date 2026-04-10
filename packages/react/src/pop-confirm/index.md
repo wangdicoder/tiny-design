@@ -70,7 +70,7 @@ Set `icon` props to customize the icon.
 
 ## Props
 
-Inherits all [Popover](#/components/popover) props, plus:
+Inherits all [Popover](../components/popover) props, plus:
 
 | Property    | Description                  | Type                     | Default   |
 | ----------- | ---------------------------- | ------------------------ | --------- |
