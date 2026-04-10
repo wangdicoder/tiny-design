@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.11.0
+
+### Minor Changes
+
+- Add `scrollToSelected` prop to Select component that automatically scrolls the dropdown to the first selected option when opened - [#96](https://github.com/wangdicoder/tiny-design/pull/96) [`4fdb8a0`](https://github.com/wangdicoder/tiny-design/commit/4fdb8a006537b648282e15d4f5126ed044974361)
+
+### Patch Changes
+
+- Fix popup positioning and interaction regressions across overlay-based React components, and align related input, table, tree, tour, and upload behaviors - [#98](https://github.com/wangdicoder/tiny-design/pull/98) [`12b5f5d`](https://github.com/wangdicoder/tiny-design/commit/12b5f5d5decfdebcffde3a721006dee478b31938)
+
 ## 1.10.0
 
 ### Minor Changes
