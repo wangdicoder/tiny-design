@@ -70,7 +70,7 @@ import { PopConfirm } from 'tiny-design';
 
 ## Props
 
-继承所有 [Popover](#/components/popover) 属性，以及：
+继承所有 [Popover](../components/popover) 属性，以及：
 
 | 属性        | 说明                     | 类型                     | 默认值    |
 | ----------- | ------------------------ | ------------------------ | --------- |

@@ -12,7 +12,7 @@ const shellCardStyle: React.CSSProperties = {
 const metricStyle: React.CSSProperties = {
   ...shellCardStyle,
   minHeight: 144,
-  background: 'linear-gradient(180deg, rgba(110,65,191,0.1), rgba(110,65,191,0.02))',
+  background: 'linear-gradient(180deg, color-mix(in srgb, var(--ty-color-primary) 10%, transparent), color-mix(in srgb, var(--ty-color-primary-bg) 70%, transparent))',
 };
 
 const sectionLabelStyle: React.CSSProperties = {
@@ -108,12 +108,12 @@ export default function DashboardShellDemo() {
             <Text type="secondary">Last 7 days</Text>
           </div>
           <Grid columns={6} gap={8} align="end" style={{ minHeight: 84 }}>
-            <div style={{ height: 42, borderRadius: 8, background: 'rgba(110,65,191,0.18)' }} />
-            <div style={{ height: 68, borderRadius: 8, background: 'rgba(110,65,191,0.24)' }} />
-            <div style={{ height: 54, borderRadius: 8, background: 'rgba(110,65,191,0.2)' }} />
-            <div style={{ height: 88, borderRadius: 8, background: 'rgba(110,65,191,0.28)' }} />
-            <div style={{ height: 60, borderRadius: 8, background: 'rgba(110,65,191,0.22)' }} />
-            <div style={{ height: 76, borderRadius: 8, background: 'rgba(110,65,191,0.26)' }} />
+            <div style={{ height: 42, borderRadius: 8, background: 'color-mix(in srgb, var(--ty-color-primary) 18%, transparent)' }} />
+            <div style={{ height: 68, borderRadius: 8, background: 'color-mix(in srgb, var(--ty-color-primary) 24%, transparent)' }} />
+            <div style={{ height: 54, borderRadius: 8, background: 'color-mix(in srgb, var(--ty-color-primary) 20%, transparent)' }} />
+            <div style={{ height: 88, borderRadius: 8, background: 'color-mix(in srgb, var(--ty-color-primary) 28%, transparent)' }} />
+            <div style={{ height: 60, borderRadius: 8, background: 'color-mix(in srgb, var(--ty-color-primary) 22%, transparent)' }} />
+            <div style={{ height: 76, borderRadius: 8, background: 'color-mix(in srgb, var(--ty-color-primary) 26%, transparent)' }} />
           </Grid>
           <Text type="secondary">Wide content region spanning two columns on desktop.</Text>
         </Card>

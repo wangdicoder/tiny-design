@@ -1,5 +1,5 @@
 import React from 'react';
-import { PopConfirm, Message } from '@tiny-design/react';
+import { PopConfirm, Message, Button } from '@tiny-design/react';
 
 export default function BasicDemo() {
   return (
@@ -7,9 +7,9 @@ export default function BasicDemo() {
       title="Are you sure to delete this?"
       onConfirm={() => Message.info('You clicked Yes')}
     >
-      <a href="#" style={{ color: '#6E41BF' }}>
+      <Button btnType="link">
         Delete
-      </a>
+      </Button>
     </PopConfirm>
   );
 }

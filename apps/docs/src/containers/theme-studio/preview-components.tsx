@@ -130,6 +130,9 @@ const subscriptionsChartConfig: ChartConfig = {
   },
 };
 
+const currYear = new Date().getFullYear()
+const currMonth = new Date().getMonth()
+
 function MetricsStrip({
   items = [
     ['Total Revenue', '$15,231.89', '+20.1% from last month'],
@@ -386,7 +389,7 @@ function CardsPreview(): React.ReactElement {
         <div className="theme-studio__cards-bottom-pair">
           <Card className="theme-studio__cards-panel theme-studio__cards-panel_calendar">
             <Card.Content>
-              <Calendar value={new Date(2025, 5, 6)} fullscreen={false} />
+              <Calendar selectionMode="range" defaultRangeValue={[new Date(currYear, currMonth, 5), new Date(currYear, currMonth, 15)]} fullscreen={false} />
             </Card.Content>
           </Card>
 

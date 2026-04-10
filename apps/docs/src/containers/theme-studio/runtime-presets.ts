@@ -18,7 +18,14 @@ function buildPresetDescription(source: TweakcnRuntimePresetSource): string {
     : 'Imported from tweakcn runtime preset.';
 }
 
-function mapRuntimeStylesToFields(styles: RuntimeStyles): Partial<ThemeEditorFields> {
+function readRuntimeStyle(styles: RuntimeStyles, key: string, fallbackStyles?: RuntimeStyles): string | undefined {
+  return styles[key] ?? fallbackStyles?.[key];
+}
+
+function mapRuntimeStylesToFields(
+  styles: RuntimeStyles,
+  typographyFallbackStyles?: RuntimeStyles,
+): Partial<ThemeEditorFields> {
   const radius = styles.radius ?? DEFAULT_FIELDS.radius;
   const ring = styles.ring ?? styles.primary ?? DEFAULT_FIELDS.ring;
   const statusPalette = deriveStatusPalette(styles);
@@ -62,9 +69,9 @@ function mapRuntimeStylesToFields(styles: RuntimeStyles): Partial<ThemeEditorFie
     sidebarAccentForeground: styles['sidebar-accent-foreground'] ?? DEFAULT_FIELDS.sidebarAccentForeground,
     sidebarBorder: styles['sidebar-border'] ?? DEFAULT_FIELDS.sidebarBorder,
     sidebarRing: styles['sidebar-ring'] ?? DEFAULT_FIELDS.sidebarRing,
-    fontSans: styles['font-sans'] ?? DEFAULT_FIELDS.fontSans,
-    fontMono: styles['font-mono'] ?? DEFAULT_FIELDS.fontMono,
-    letterSpacing: styles['letter-spacing'] ?? DEFAULT_FIELDS.letterSpacing,
+    fontSans: readRuntimeStyle(styles, 'font-sans', typographyFallbackStyles) ?? DEFAULT_FIELDS.fontSans,
+    fontMono: readRuntimeStyle(styles, 'font-mono', typographyFallbackStyles) ?? DEFAULT_FIELDS.fontMono,
+    letterSpacing: readRuntimeStyle(styles, 'letter-spacing', typographyFallbackStyles) ?? DEFAULT_FIELDS.letterSpacing,
     radius,
     shadowCard: buildShadow(styles),
     shadowFocus: `0 0 0 3px ${toRgba(ring, 0.24)}`,
@@ -78,7 +85,7 @@ function buildPresetFromRuntimeSource(source: TweakcnRuntimePresetSource): Theme
   const lightStyles = source.styles.light;
   const darkStyles = source.styles.dark;
   const lightFields = mapRuntimeStylesToFields(lightStyles);
-  const darkFields = mapRuntimeStylesToFields(darkStyles);
+  const darkFields = mapRuntimeStylesToFields(darkStyles, lightStyles);
 
   return {
     id: source.id,

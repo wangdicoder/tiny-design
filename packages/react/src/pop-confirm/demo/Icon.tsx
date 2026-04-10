@@ -1,5 +1,5 @@
 import React from 'react';
-import { PopConfirm, Message } from '@tiny-design/react';
+import { PopConfirm, Message, Button } from '@tiny-design/react';
 import { IconQuestionFill } from '@tiny-design/icons';
 
 export default function IconDemo() {
@@ -9,9 +9,9 @@ export default function IconDemo() {
       icon={<IconQuestionFill color="#f00" />}
       onConfirm={() => Message.info('You clicked Yes')}
     >
-      <a href="#" style={{ color: '#6E41BF' }}>
+      <Button btnType="link">
         Delete
-      </a>
+      </Button>
     </PopConfirm>
   );
 }

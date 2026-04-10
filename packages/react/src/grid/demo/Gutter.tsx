@@ -9,11 +9,11 @@ export default function GutterDemo() {
   };
 
   const lighterBox = {
-    backgroundColor: '#6E41BFD6',
+    backgroundColor: 'color-mix(in srgb, var(--ty-color-primary) 84%, transparent)',
   };
 
   const darkerBox = {
-    backgroundColor: '#6E41BFFA',
+    backgroundColor: 'color-mix(in srgb, var(--ty-color-primary) 98%, transparent)',
   };
 
   const [gutter, setGutter] = React.useState(8);
