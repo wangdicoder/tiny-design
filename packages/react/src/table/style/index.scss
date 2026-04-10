@@ -1,4 +1,4 @@
-@use '@tiny-design/tokens/scss/variables' as *;
+@use "../../style/variables" as *;
 
 .#{$prefix}-table {
   color: var(--ty-table-color, var(--ty-color-text));

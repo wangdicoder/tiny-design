@@ -104,24 +104,14 @@ Every visual token is a `--ty-*` CSS custom property. Override any of them:
 }
 ```
 
-### SCSS variables
-
-For compile-time control, override `!default` SCSS variables before importing:
-
-```scss
-$primary-color: #3b82f6;
-$border-radius: 8px;
-@use "@tiny-design/react/es/style/index" as *;
-```
-
-See the [Theming Guide](https://wangdicoder.github.io/tiny-design/theme/customise-theme) for the full list of tokens and variables.
+See the [Theming Guide](https://wangdicoder.github.io/tiny-design/theme/customise-theme) for the full token list and Theme Studio workflow.
 
 ## Packages
 
 | Package | Description |
 | ------- | ----------- |
 | [@tiny-design/react](./packages/react) | Core component library |
-| [@tiny-design/tokens](./packages/tokens) | Design tokens and foundational styles |
+| [@tiny-design/tokens](./packages/tokens) | V2 design tokens and theme runtime |
 | [@tiny-design/icons](./packages/icons) | SVG icon components |
 | [@tiny-design/cli](./packages/cli) | CLI for the Tiny Design component library |
 | [@tiny-design/mcp](./packages/mcp) | MCP server for AI assistants to access the component library |

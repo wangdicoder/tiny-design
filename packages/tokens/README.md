@@ -1,6 +1,6 @@
 # @tiny-design/tokens
 
-Design tokens, themes, and foundational styles for Tiny Design.
+Design tokens and v2 theme runtime for Tiny Design.
 
 ## Install
 
@@ -14,7 +14,7 @@ pnpm add @tiny-design/tokens
 
 ### CSS (recommended)
 
-Import the compiled CSS to get all tokens, normalization, and animations:
+Import the compiled CSS to get all v2 token CSS variables:
 
 ```js
 import '@tiny-design/tokens';
@@ -22,26 +22,16 @@ import '@tiny-design/tokens';
 import '@tiny-design/tokens/css/base.css';
 ```
 
-### SCSS
-
-Import individual SCSS modules for custom builds:
-
-```scss
-@use '@tiny-design/tokens/scss/variables';  // $prefix, breakpoints, structural constants
-@use '@tiny-design/tokens/scss/animation';
-@use '@tiny-design/tokens/scss/mixins';
-```
-
 ## What's Included
 
 | Module | Description |
 | --- | --- |
-| `_variables.scss` | `$prefix`, responsive breakpoints, and `@forward` of structural constants |
-| `_constants.scss` | Compile-time structural constants — padding, sizing, transitions |
-| `_theme.scss` | Theme generation (light/dark via `data-tiny-theme` attribute) |
-| `_normalise.scss` | HTML normalization (based on Normalize.css) |
-| `_animation.scss` | Keyframe animations (`ty-rotate`, `ty-rotate-reverse`, `ty-processing`) |
-| `_mixins.scss` | Helper mixins (e.g. `loader()`) |
+| `css/base.css` | Package CSS entry copied from the base theme CSS |
+| `dist/css/base.css` | v2 light/dark/system theme CSS variables |
+| `dist/css/light.css` | Light theme CSS variables |
+| `dist/css/dark.css` | Dark theme CSS variables |
+| `dist/registry.json` | Token registry for tooling |
+| `runtime/*` | Theme presets, resolver, and validator runtime modules |
 
 ## Theming
 
@@ -61,17 +51,6 @@ Light and dark themes are supported via the `data-tiny-theme` attribute on the d
 ```
 
 Three modes are available: `light`, `dark`, and `system` (follows `prefers-color-scheme`).
-
-## Breakpoints
-
-| Name | Width |
-| --- | --- |
-| `xs` | 480px |
-| `sm` | 600px |
-| `md` | 840px |
-| `lg` | 960px |
-| `xl` | 1280px |
-| `xxl` | 1440px |
 
 ## License
 

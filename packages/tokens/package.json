@@ -1,7 +1,7 @@
 {
   "name": "@tiny-design/tokens",
   "version": "1.11.1",
-  "description": "Design tokens, themes, and foundational styles for Tiny UI",
+  "description": "Design tokens and v2 theme runtime for Tiny UI",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,7 +15,6 @@
   "exports": {
     ".": "./css/base.css",
     "./css/*": "./css/*",
-    "./scss/*": "./scss/*",
     "./registry": "./dist/registry.json",
     "./presets": {
       "types": "./runtime/presets.d.ts",
@@ -40,19 +39,15 @@
   "files": [
     "css",
     "dist",
-    "runtime",
-    "scss"
+    "runtime"
   ],
   "scripts": {
     "build": "node scripts/build.js",
     "build:base-css": "node -e \"require('./scripts/build').buildBaseCss()\"",
-    "build:runtime": "node build/build-v2.js",
+    "build:runtime": "node scripts/build-runtime.js",
     "clean": "rimraf css dist"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.4",
-    "postcss": "^8.4.0",
-    "rimraf": "^3.0.2",
-    "sass": "^1.49.9"
+    "rimraf": "^3.0.2"
   }
 }

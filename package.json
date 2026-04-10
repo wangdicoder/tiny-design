@@ -17,6 +17,8 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "test": "turbo run test",
+    "test:visual": "playwright test -c apps/docs/playwright.config.ts",
+    "test:visual:update": "playwright test -c apps/docs/playwright.config.ts --update-snapshots",
     "lint": "turbo run lint",
     "lint:style": "turbo run lint:style",
     "prepare": "husky",
@@ -29,6 +31,7 @@
     "@changesets/cli": "^2.30.0",
     "@changesets/get-github-info": "^0.8.0",
     "@eslint/js": "^9.0.0",
+    "@playwright/test": "^1.59.1",
     "eslint": "^9.0.0",
     "eslint-plugin-jest": "^28.0.0",
     "eslint-plugin-jest-dom": "^5.0.0",
@@ -45,7 +48,7 @@
     "typescript-eslint": "^8.0.0"
   },
   "lint-staged": {
-    "packages/{react/src,tokens/scss}/**/*.scss": [
+    "packages/react/src/**/*.scss": [
       "stylelint --fix"
     ]
   },

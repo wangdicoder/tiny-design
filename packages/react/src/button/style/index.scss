@@ -1,5 +1,5 @@
-@use '@tiny-design/tokens/scss/variables' as *;
-@use '@tiny-design/tokens/scss/mixins' as *;
+@use "../../style/variables" as *;
+@use "../../style/mixins" as *;
 @use './mixin' as *;
 
 $btn-prefix: #{$prefix}-btn;

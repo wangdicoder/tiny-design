@@ -1,4 +1,4 @@
-@use '@tiny-design/tokens/scss/variables' as *;
+@use "../../style/variables" as *;
 @use '../../input/style/mixin' as *;
 
 .#{$prefix}-input-otp {

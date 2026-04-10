@@ -1,4 +1,4 @@
-@use '@tiny-design/tokens/scss/variables' as *;
+@use "../../style/variables" as *;
 @use './mixin' as *;
 
 .#{$prefix}-input {

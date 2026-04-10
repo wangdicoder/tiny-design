@@ -8,7 +8,7 @@ Tiny Design is a React component UI library (80+ components) published as `@tiny
 
 ```
 packages/react/    → @tiny-design/react (main component library)
-packages/tokens/   → @tiny-design/tokens (design tokens, SCSS variables)
+packages/tokens/   → @tiny-design/tokens (v2 design tokens and theme runtime)
 packages/icons/    → @tiny-design/icons (SVG icon components)
 apps/docs/         → documentation site (Vite + MDX)
 ```

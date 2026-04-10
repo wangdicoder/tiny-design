@@ -1,5 +1,5 @@
 {
-  "$schema": "https://tiny.design/schema/theme.v1.schema.json",
+  "$schema": "https://tiny.design/schema/theme.schema.json",
   "meta": {
     "id": "tiny-light",
     "name": "Tiny Light",
