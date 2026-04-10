@@ -1,4 +1,4 @@
-@use "@tiny-design/tokens/scss/mixins" as *;
+@use "../../style/mixins" as *;
 
 @mixin switch-bg($size) {
   width: $size;

@@ -658,7 +658,7 @@ function DashboardPreview(): React.ReactElement {
 
 function MailPreview(): React.ReactElement {
   return (
-    <Grid className="theme-studio__mail-shell" columns="260px minmax(280px, 360px) minmax(0, 1fr)" gap="sm">
+    <div className="theme-studio__mail-shell">
       <Card className="theme-studio__mail-sidebar">
         <Card.Content>
           <div className="theme-studio__mail-sidebar-head">
@@ -778,7 +778,7 @@ function MailPreview(): React.ReactElement {
           </Card>
         </Card.Content>
       </Card>
-    </Grid>
+    </div>
   );
 }
 

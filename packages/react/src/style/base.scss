@@ -1,1 +1,3 @@
-@use '@tiny-design/tokens/scss/base' as *;
+@use '@tiny-design/tokens/dist/css/base.css';
+@use './normalise' as *;
+@use './animation' as *;

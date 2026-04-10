@@ -1,12 +1,10 @@
 # 自定义主题
 
-Tiny UI 现在使用 v2 token 系统，推荐的主题自定义方式收敛为一套主模型：
+Tiny UI 使用由 token 驱动的运行时主题模型：
 
 1. **CSS 自定义属性**，用于直接做运行时覆盖。
 2. **ThemeDocument**，用于可移植的主题 JSON。
 3. **ConfigProvider `theme.tokens`**，用于 React 作用域主题。
-
-SCSS 常量仍然保留，但它只用于编译期的结构性覆盖。
 
 ## 主题编辑器
 
@@ -20,7 +18,7 @@ SCSS 常量仍然保留，但它只用于编译期的结构性覆盖。
 
 更改通过 CSS 自定义属性即时生效 — 无需重新构建。
 
-主题编辑器导出的也是同一套 v2 token 模型，因此结果既可以作为 CSS 变量使用，也可以保存为 `ThemeDocument`，或者传给 `ConfigProvider`。
+主题编辑器导出的也是同一套运行时 token 模型，因此结果既可以作为 CSS 变量使用，也可以保存为 `ThemeDocument`，或者传给 `ConfigProvider`。
 
 ## 暗色模式
 
@@ -102,13 +100,13 @@ html[data-tiny-theme='dark'] {
 | `--ty-color-text` | `rgba(0,0,0,0.85)` | 主文本色 |
 | `--ty-color-text-secondary` | `rgba(0,0,0,0.65)` | 次要文本色 |
 | `--ty-color-border` | `#d9d9d9` | 默认边框色 |
-| `--ty-border-radius` | `2px` | 全局圆角 |
-| `--ty-font-size-base` | `1rem` | 基础字号 |
+| `--ty-border-radius` | `6px` | 全局圆角 |
+| `--ty-font-size-base` | `14px` | 基础字号 |
 | `--ty-height-sm` | `24px` | 小尺寸控件高度 |
-| `--ty-height-md` | `32px` | 中尺寸控件高度 |
-| `--ty-height-lg` | `42px` | 大尺寸控件高度 |
+| `--ty-height-md` | `35px` | 中尺寸控件高度 |
+| `--ty-height-lg` | `44px` | 大尺寸控件高度 |
 
-每个组件也有自己的令牌，用于细粒度控制。例如，Button 使用 `--ty-button-bg-default`、`--ty-button-text-default`、`--ty-button-radius`。完整的受支持令牌列表来自 v2 registry 和组件 source：
+每个组件也有自己的令牌，用于细粒度控制。例如，Button 使用 `--ty-button-bg-default`、`--ty-button-text-default`、`--ty-button-radius`。完整的受支持令牌列表来自 token registry 和组件 source：
 - [Token registry](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/dist/registry.json)
 - [组件 token 源文件](https://github.com/wangdicoder/tiny-design/tree/master/packages/tokens/source/components)
 
@@ -178,65 +176,21 @@ import { ConfigProvider } from '@tiny-design/react';
 - 需要嵌套主题覆盖
 - 需要让弹层 / portal 内容继承同一个 token 作用域
 
-`ConfigProvider` 已经不再使用旧的 `theme.token` 或 `theme.components` API。现在只使用 `theme.tokens.semantic` 和 `theme.tokens.components`。
+`theme.tokens.semantic` 和 `theme.tokens.components` 是受支持的 React 主题结构。
 
-## SCSS 常量
+## Sass 源码样式
 
-如果你引入的是 Tiny UI 的 SCSS 源文件而非预编译的 CSS，可以覆盖编译时结构常量，如内边距、过渡动画和箭头尺寸。这些是不需要在运行时变化的值。
+Tiny UI 仍然发布 Sass 源文件，方便需要直接编译库样式的构建工具使用；但 Sass 变量不再是主题 API。请把 `@tiny-design/react/es/style/*.scss` 和组件 `style/*.scss` 当作实现源码，而不是受支持的主题定制契约。
 
-每个常量都使用了 `!default` 标志，因此你的覆盖值会优先生效。
+颜色、排版、圆角、阴影、间距、尺寸和组件状态等视觉定制都应该通过 token 完成。如果某个值还没有对应 token，优先把它补进 token registry，而不是新增公开 Sass 变量。
 
-### 1. 安装 Sass
-
-```bash
-$ npm install sass --save-dev
-```
-
-### 2. 创建覆盖文件
-
-创建一个文件，例如 `theme-overrides.scss`。你的覆盖值**必须写在** Tiny UI 引入语句之前：
-
-```scss
-// 覆盖结构常量
-$btn-padding-md: 0 20px;
-$card-body-padding: 20px;
-$tooltip-arrow-size: 6px;
-
-// 引入 Tiny UI 样式（通过 !default 应用你的覆盖值）
-@use "@tiny-design/react/es/style/index" as *;
-```
-
-### 3. 在入口文件中引入
-
-```js
-import './theme-overrides.scss';
-```
-
-完整的 SCSS 常量列表请参考 [_constants.scss](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/_constants.scss)。
-
-以下是一些常用的可覆盖常量：
-
-```scss
-// 按钮
-$btn-padding-sm: 0 10px !default;
-$btn-padding-md: 0 15px !default;
-$btn-padding-lg: 0 28px !default;
-
-// 卡片
-$card-header-padding: 13px 16px !default;
-$card-body-padding: 16px !default;
-
-// 通知
-$notification-width: 380px !default;
-```
-
-> **注意：** 颜色、排版、圆角、阴影等所有视觉令牌，都应该通过 v2 token 定制，而不是通过 SCSS 变量。SCSS 常量只适用于内边距、尺寸等编译期结构值。
+完整 token 列表由 `packages/tokens/dist/registry.json` 生成。
 
 ## 推荐用法
 
 - 想最快做运行时覆盖，用 CSS 变量
 - 需要可移植的 JSON 主题格式，用 `ThemeDocument`
 - 需要 React 局部主题，用 `ConfigProvider`
-- 只有在值必须在构建期决定时，才使用 SCSS 常量
+- 不要把 Sass 变量当作公开主题配置；缺失的定制点应该补成 token
 
-如果现有的令牌或常量列表无法满足你的需求，请提交 issue 反馈。
+如果现有的令牌列表无法满足你的需求，请提交 issue 反馈。

@@ -87,7 +87,7 @@ The package root barrel must also re-export those public component types from `p
 - TypeScript strict mode is enabled
 - Components use `React.forwardRef` for ref forwarding
 - CSS class names follow the `ty-component-name` convention
-- SCSS variables are in `packages/react/src/style/_variables.scss`
+- Shared Sass helpers for React component styles live in `packages/react/src/style/`
 
 ## Running Tests
 

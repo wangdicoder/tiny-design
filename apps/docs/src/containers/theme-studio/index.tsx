@@ -117,7 +117,7 @@ const ThemeStudioPage = (): React.ReactElement => {
   const handleImport = () => {
     try {
       const parsed = JSON.parse(importText) as ThemeDocument;
-      const validation = validateThemeDocument(parsed);
+      const validation = validateThemeDocument(parsed, { strict: true });
       if (!validation.valid) {
         setImportError(validation.errors.join('\n'));
         return;
@@ -144,15 +144,7 @@ const ThemeStudioPage = (): React.ReactElement => {
         style={buildPreviewVars(draft.fields)}
       >
         <div className="theme-studio__topbar">
-          <div className="theme-studio__topbar-copy">
-            <Text className="theme-studio__eyebrow">Theme Editor</Text>
-            <div className="theme-studio__topbar-meta">
-              <span>{activePreset.name}</span>
-              <span>{THEME_EDITOR_PRESETS.length} presets</span>
-            </div>
-          </div>
-
-          <div className="theme-studio__topbar-actions">
+          <div className="theme-studio__topbar-primary">
             <Select
               className="theme-studio__select"
               value={draft.presetId}
@@ -168,6 +160,9 @@ const ThemeStudioPage = (): React.ReactElement => {
                 <Select.Option key={preset.id} value={preset.id}>{preset.name}</Select.Option>
               ))}
             </Select>
+          </div>
+
+          <div className="theme-studio__topbar-actions">
             <div className="theme-studio__topbar-utility">
               <Button size="sm" btnType="ghost" onClick={resetToPreset}>Reset</Button>
               <Button size="sm" btnType="ghost" onClick={() => { setImportText(themeJson); setImportVisible(true); }}>Import</Button>

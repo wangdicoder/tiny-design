@@ -6,7 +6,7 @@ The token registry is the canonical machine-readable index of all supported v2 t
 - Theme Studio
 - theme validation
 - docs generation
-- migration tooling
+- developer tooling
 
 The registry is metadata, not a theme document. It describes what tokens exist, how they map to CSS variables, and what fallback behavior they expect.
 
@@ -73,7 +73,7 @@ The build step should generate:
 - `defaultValue`
   Unresolved default value from the source token document.
 - `fallback`
-  Recommended authored-SCSS fallback target. This field is guidance metadata for component authors and docs tooling; it does not mean the build step will emit an automatic fallback chain in generated CSS.
+  Recommended component style fallback target. This field is guidance metadata for component authors and docs tooling; it does not mean the build step will emit an automatic fallback chain in generated CSS.
 - `status`
   One of: `active`, `deprecated`, `internal`
 ## Naming Rules
@@ -83,9 +83,9 @@ The build step should generate:
 - New entries must use the primary v2 names directly. Short prefixes like `btn`, `picker`, or `kbd` are not allowed.
 
 ## Fallback Rules
-- Primitive tokens should not appear in authored component SCSS.
+- Primitive tokens should not appear in authored component source styles.
 - Semantic tokens usually have no registry fallback.
-- Component tokens should include the semantic fallback they are expected to use in authored SCSS.
+- Component tokens should include the semantic fallback they are expected to use in authored component source styles.
 
 Examples:
 - `button.bg.primary` -> fallback `--ty-color-primary`
@@ -96,7 +96,7 @@ Examples:
 - `active`
   Visible in Theme Studio and allowed in theme documents.
 - `deprecated`
-  Still resolved, but hidden by default in editing UIs and marked for migration.
+  Still resolved, but hidden by default in editing UIs and marked as not preferred for new themes.
 - `internal`
   Not allowed in user-authored themes.
 

@@ -3,11 +3,12 @@ import { fileURLToPath } from 'node:url';
 import { extractTokens } from '@tiny-design/extract';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const VARIABLES_PATH = path.resolve(__dirname, '../../tokens/scss/_variables.scss');
+const TOKEN_REGISTRY_PATH = path.resolve(__dirname, '../../tokens/dist/registry.json');
+const VARIABLES_PATH = path.resolve(__dirname, '../../react/src/style/_variables.scss');
 
 describe('extractTokens', () => {
   it('extracts tokens grouped by category', () => {
-    const result = extractTokens({ variablesPath: VARIABLES_PATH });
+    const result = extractTokens({ registryPath: TOKEN_REGISTRY_PATH, variablesPath: VARIABLES_PATH });
 
     // Should have known categories
     expect(Object.keys(result)).toEqual(
@@ -16,7 +17,7 @@ describe('extractTokens', () => {
   });
 
   it('extracts color tokens', () => {
-    const result = extractTokens({ variablesPath: VARIABLES_PATH });
+    const result = extractTokens({ registryPath: TOKEN_REGISTRY_PATH, variablesPath: VARIABLES_PATH });
 
     expect(result.colors['color-primary']).toEqual({
       variable: '--ty-color-primary',
@@ -30,16 +31,16 @@ describe('extractTokens', () => {
   });
 
   it('extracts typography tokens', () => {
-    const result = extractTokens({ variablesPath: VARIABLES_PATH });
+    const result = extractTokens({ registryPath: TOKEN_REGISTRY_PATH, variablesPath: VARIABLES_PATH });
 
     expect(result.typography['font-size-base']).toEqual({
       variable: '--ty-font-size-base',
-      value: '1rem',
+      value: '14px',
     });
   });
 
   it('extracts breakpoint tokens', () => {
-    const result = extractTokens({ variablesPath: VARIABLES_PATH });
+    const result = extractTokens({ registryPath: TOKEN_REGISTRY_PATH, variablesPath: VARIABLES_PATH });
 
     expect(result.breakpoints['size-xs']).toEqual({
       variable: '$size-xs',
@@ -48,7 +49,7 @@ describe('extractTokens', () => {
   });
 
   it('extracts shadow tokens', () => {
-    const result = extractTokens({ variablesPath: VARIABLES_PATH });
+    const result = extractTokens({ registryPath: TOKEN_REGISTRY_PATH, variablesPath: VARIABLES_PATH });
 
     expect(result.shadows).toBeDefined();
     expect(result.shadows['shadow-sm']).toBeDefined();

@@ -133,4 +133,27 @@ describe('<Popup />', () => {
     expect(closingPopup.style.left).toBe('37px');
     expect(closingPopup.style.top).toBe('575px');
   });
+
+  it('should update popper position when visible content changes', () => {
+    const totalForceUpdateCalls = () =>
+      (createPopper as jest.Mock).mock.results.reduce((total: number, result) => {
+        return total + (result.value?.forceUpdate?.mock.calls.length ?? 0);
+      }, 0);
+
+    const { rerender } = render(
+      <Popup visible={true} trigger="manual" content={<div>Long popup content</div>}>
+        <button>Trigger</button>
+      </Popup>
+    );
+
+    const initialUpdateCount = totalForceUpdateCalls();
+
+    rerender(
+      <Popup visible={true} trigger="manual" content={<div>Short</div>}>
+        <button>Trigger</button>
+      </Popup>
+    );
+
+    expect(totalForceUpdateCalls()).toBe(initialUpdateCount + 1);
+  });
 });

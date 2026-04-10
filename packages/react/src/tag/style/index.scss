@@ -1,4 +1,4 @@
-@use '@tiny-design/tokens/scss/variables' as *;
+@use "../../style/variables" as *;
 
 $tag-preset-colors: 'magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue',
   'geekblue', 'purple';

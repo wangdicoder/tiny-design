@@ -10,7 +10,6 @@
   "dependencies": {
     "@tiny-design/icons": "workspace:*",
     "@tiny-design/react": "workspace:*",
-    "@tiny-design/tokens": "workspace:*",
     "classnames": "^2.5.0",
     "next": "^15.3.4",
     "prism-react-renderer": "^2.3.0",

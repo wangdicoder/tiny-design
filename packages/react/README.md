@@ -15,7 +15,6 @@ pnpm add @tiny-design/react
 ## Quick Start
 
 ```tsx
-import '@tiny-design/tokens';
 import { Button, ConfigProvider } from '@tiny-design/react';
 
 function App() {

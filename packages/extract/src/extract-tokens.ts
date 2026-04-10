@@ -1,5 +1,4 @@
 import * as fs from 'node:fs';
-import * as path from 'node:path';
 import type { TokenData, ExtractTokensOptions } from './types.js';
 
 // Map variable name prefixes to categories
@@ -33,6 +32,27 @@ export function extractTokens(options: ExtractTokensOptions): TokenData {
     shadows: {},
   };
 
+  if (options.registryPath) {
+    const registry = JSON.parse(fs.readFileSync(options.registryPath, 'utf-8')) as {
+      tokens?: Array<{ key: string; cssVar: string; type: string; defaultValue: string | number }>;
+    };
+
+    for (const token of registry.tokens ?? []) {
+      const category = categorize(token.key);
+
+      if (category) {
+        result[category][token.key] = {
+          variable: token.cssVar,
+          value: String(token.defaultValue),
+        };
+      }
+    }
+  }
+
+  if (!options.variablesPath) {
+    return result;
+  }
+
   const variablesContent = fs.readFileSync(options.variablesPath, 'utf-8');
 
   // Parse SCSS variable declarations: $name: value !default;
@@ -45,35 +65,10 @@ export function extractTokens(options: ExtractTokensOptions): TokenData {
     const category = categorize(name);
 
     if (category) {
-      result[category][name] = {
+      result[category][name] ??= {
         variable: `$${name}`,
         value,
       };
-    }
-  }
-
-  // Also parse theme map files in the themes/ directory next to _variables.scss
-  const themesDir = path.join(path.dirname(options.variablesPath), 'themes');
-  const lightThemePath = path.join(themesDir, '_light.scss');
-
-  if (fs.existsSync(lightThemePath)) {
-    const themeContent = fs.readFileSync(lightThemePath, 'utf-8');
-
-    // Match map entries: key: value,
-    // Handles multi-value entries like shadows by matching up to the trailing comma
-    const mapEntryRegex = /^\s+([a-z0-9-]+):\s*(.+?),?\s*$/gm;
-
-    while ((match = mapEntryRegex.exec(themeContent)) !== null) {
-      const name = match[1];
-      const value = match[2].replace(/,\s*$/, '');
-      const category = categorize(name);
-
-      if (category && !result[category][name]) {
-        result[category][name] = {
-          variable: `--ty-${name}`,
-          value,
-        };
-      }
     }
   }
 

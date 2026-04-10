@@ -54,8 +54,10 @@ export interface ExtractComponentsOptions {
 }
 
 export interface ExtractTokensOptions {
-  /** Path to the tokens SCSS variables file */
-  variablesPath: string;
+  /** Path to the v2 token registry JSON file */
+  registryPath?: string;
+  /** Optional path to React SCSS compile-time variables for breakpoints */
+  variablesPath?: string;
 }
 
 export interface ExtractIconsOptions {

@@ -7,6 +7,8 @@ es
 lib
 coverage
 apps/docs/build
+apps/docs/test-results
+apps/docs/playwright-report
 
 # Turbo
 .turbo

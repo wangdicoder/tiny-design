@@ -47,12 +47,20 @@ export function loadInitialDraft(): ThemeEditorDraft {
   const pendingTheme = loadPendingThemeDocument();
   if (pendingTheme) {
     clearPendingThemeDocument();
-    return buildDraftFromThemeDocument(pendingTheme);
+    try {
+      return buildDraftFromThemeDocument(pendingTheme);
+    } catch {
+      // Ignore invalid cached documents and continue with the next source.
+    }
   }
 
   const storedTheme = loadStoredThemeDocument();
   if (storedTheme) {
-    return buildDraftFromThemeDocument(storedTheme);
+    try {
+      return buildDraftFromThemeDocument(storedTheme);
+    } catch {
+      // Ignore invalid cached documents and fall back to the editor draft/default.
+    }
   }
 
   try {
@@ -78,7 +86,6 @@ export function buildPreviewVars(fields: ThemeEditorFields): React.CSSProperties
     '--ty-font-family-monospace': fields.fontMono,
     '--ty-font-size-base': fields.fontSizeBase,
     '--ty-line-height-base': fields.lineHeightBase,
-    '--ty-letter-spacing': fields.letterSpacing,
     '--ty-h1-font-size': fields.h1Size,
     '--ty-h2-font-size': fields.h2Size,
     '--editor-primary': fields.primary,

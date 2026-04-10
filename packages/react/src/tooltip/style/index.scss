@@ -1,4 +1,4 @@
-@use '@tiny-design/tokens/scss/variables' as *;
+@use "../../style/variables" as *;
 
 .#{$prefix}-tooltip {
   font-size: var(--ty-tooltip-font-size);

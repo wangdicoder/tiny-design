@@ -55,7 +55,7 @@ Add to your MCP client config:
 | `list_components` | List all 80+ components. Filter by category: Foundation, Layout, Navigation, Data Display, Form, Feedback, Miscellany. |
 | `get_component_props` | Get the full props interface for a component — types, required flags, descriptions. |
 | `get_component_example` | Get usage examples (demo code) for a component. |
-| `get_design_tokens` | Get design tokens (SCSS variables) — colors, typography, spacing, breakpoints, shadows. |
+| `get_design_tokens` | Get v2 design tokens from the token registry — colors, typography, spacing, breakpoints, shadows. |
 | `list_icons` | List all 240+ icon names. Filter by search term. |
 | `get_icon` | Get details and usage example for a specific icon. |
 

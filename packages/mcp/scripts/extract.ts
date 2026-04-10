@@ -8,7 +8,8 @@ const __dirname = path.dirname(__filename);
 
 const DATA_DIR = path.resolve(__dirname, '../src/data');
 const REACT_SRC = path.resolve(__dirname, '../../react/src');
-const VARIABLES_PATH = path.resolve(__dirname, '../../tokens/scss/_variables.scss');
+const TOKEN_REGISTRY_PATH = path.resolve(__dirname, '../../tokens/dist/registry.json');
+const VARIABLES_PATH = path.resolve(__dirname, '../../react/src/style/_variables.scss');
 const ICONS_INDEX = path.resolve(__dirname, '../../icons/src/index.ts');
 
 function ensureDir(dir: string) {
@@ -30,7 +31,7 @@ console.log('  extracting components...');
 writeJson('components.json', extractComponents({ reactSrcPath: REACT_SRC }));
 
 console.log('  extracting tokens...');
-writeJson('tokens.json', extractTokens({ variablesPath: VARIABLES_PATH }));
+writeJson('tokens.json', extractTokens({ registryPath: TOKEN_REGISTRY_PATH, variablesPath: VARIABLES_PATH }));
 
 console.log('  extracting icons...');
 writeJson('icons.json', extractIcons({ iconsIndexPath: ICONS_INDEX }));

@@ -56,7 +56,7 @@ server.tool(
 
 server.tool(
   'get_design_tokens',
-  'Get Tiny Design design tokens (SCSS variables). Categories: colors, typography, spacing, breakpoints, shadows.',
+  'Get Tiny Design v2 design tokens from the token registry. Categories: colors, typography, spacing, breakpoints, shadows.',
   { category: z.string().optional().describe('Token category to filter by') },
   async ({ category }) => ({
     content: [{ type: 'text' as const, text: JSON.stringify(getDesignTokens(category), null, 2) }],

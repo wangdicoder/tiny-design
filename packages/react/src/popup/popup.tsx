@@ -479,6 +479,14 @@ const Popup = (props: PopupProps): JSX.Element => {
     initPopper(popupRef.current);
   }, [popupVisible, destroyPopper, initPopper]);
 
+  useLayoutEffect(() => {
+    if (!popupVisible) {
+      return;
+    }
+
+    popperRef.current?.forceUpdate();
+  });
+
   useEffect(() => {
     return () => {
       clearTimers();

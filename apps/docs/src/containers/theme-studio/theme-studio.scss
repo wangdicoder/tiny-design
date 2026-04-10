@@ -11,7 +11,7 @@
 .theme-studio__topbar {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 8px;
+  gap: 12px;
   padding: 8px;
   border: 1px solid var(--ty-color-border-secondary, var(--ty-color-border));
   border-radius: 12px;
@@ -21,13 +21,11 @@
   box-shadow: 0 6px 16px rgba(17, 24, 39, 0.03);
 }
 
-.theme-studio__topbar-copy {
+.theme-studio__topbar-primary {
   min-width: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
-  flex-direction: row;
 }
 
 .theme-studio__topbar-actions,
@@ -91,8 +89,8 @@
   min-width: auto;
 }
 
-.theme-studio__topbar-actions .theme-studio__select {
-  width: 220px;
+.theme-studio__topbar-primary .theme-studio__select {
+  width: min(360px, 100%);
 }
 
 .theme-studio__eyebrow {
@@ -101,23 +99,6 @@
   text-transform: uppercase;
   color: var(--ty-color-text-secondary, var(--ty-color-text));
   white-space: nowrap;
-}
-
-.theme-studio__topbar-meta {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.theme-studio__topbar-meta span {
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--editor-primary), transparent 94%);
-  border: 1px solid color-mix(in srgb, var(--editor-primary), transparent 88%);
-  font-size: 10px;
-  line-height: 1;
-  text-transform: capitalize;
 }
 
 .theme-studio__topbar-utility {
@@ -977,8 +958,9 @@
 }
 
 .theme-studio__mail-shell {
-  grid-template-columns: 220px 320px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: minmax(190px, 0.72fr) minmax(260px, 1fr) minmax(380px, 1.55fr);
+  gap: 14px;
+  align-items: stretch;
 }
 
 .theme-studio__dashboard-sidebar {
@@ -1091,9 +1073,11 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
+  min-width: 0;
   background: color-mix(in srgb, var(--editor-sidebar), var(--editor-base) 8%);
   color: var(--editor-sidebar-foreground);
   border: 1px solid var(--editor-sidebar-border);
+  overflow: hidden;
 }
 
 .theme-studio__mail-sidebar .theme-studio__eyebrow,
@@ -1120,9 +1104,15 @@
   padding-bottom: 2px;
 }
 
+.theme-studio__mail-sidebar-head .ty-typography-heading {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
 .theme-studio__mail-panel,
 .theme-studio__mail-detail {
   min-width: 0;
+  overflow: hidden;
 }
 
 .theme-studio__mail-panel.ty-card > .ty-card__body,
@@ -1149,12 +1139,30 @@
 
 .theme-studio__mail-panel-head {
   margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.theme-studio__mail-panel-head .ty-input {
+  flex: 1 1 180px;
+  min-width: 0;
 }
 
 .theme-studio__mail-message-meta {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
+}
+
+.theme-studio__mail-message-meta > div {
+  min-width: 0;
+}
+
+.theme-studio__mail-message-meta .ty-typography-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .theme-studio__mail-nav-item {
@@ -1164,6 +1172,14 @@
   gap: 12px;
   color: inherit;
   text-align: left;
+  overflow: hidden;
+}
+
+.theme-studio__mail-nav-item span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .theme-studio__mail-nav-item small {
@@ -1208,6 +1224,7 @@
   margin-left: auto;
   font-size: 12px;
   color: var(--editor-muted-foreground);
+  white-space: nowrap;
 }
 
 .theme-studio__mail-item-subject {
@@ -1235,6 +1252,12 @@
   gap: 12px;
   align-items: flex-start;
   margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.theme-studio__mail-message-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .theme-studio__mail-thread-list {
@@ -1251,6 +1274,7 @@
   gap: 8px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--editor-border);
+  flex-wrap: wrap;
 }
 
 .theme-studio__chat-bubble {
@@ -1264,6 +1288,7 @@
 
 .theme-studio__chat-thread {
   gap: 10px;
+  padding: 2px 0 4px;
 }
 
 .theme-studio__chat-bubble_in {
@@ -1287,6 +1312,7 @@
 .theme-studio__mail-compose-card.ty-card {
   padding-top: 0;
   border-top: 0;
+  background: color-mix(in srgb, var(--editor-card), var(--editor-base) 10%);
 }
 
 .theme-studio__mail-compose-card.ty-card > .ty-card__body {
@@ -1522,7 +1548,7 @@
     grid-template-columns: 1fr;
   }
 
-  .theme-studio__topbar-copy,
+  .theme-studio__topbar-primary,
   .theme-studio__topbar-actions {
     align-items: flex-start;
     flex-direction: column;

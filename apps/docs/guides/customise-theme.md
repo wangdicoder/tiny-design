@@ -1,12 +1,10 @@
 # Customise Theme
 
-Tiny UI now uses a v2 token system with one primary runtime model:
+Tiny UI uses a token-driven runtime theme model:
 
 1. **CSS custom properties** for direct runtime overrides.
 2. **ThemeDocument** for portable theme JSON.
 3. **ConfigProvider `theme.tokens`** for React-scoped theming.
-
-SCSS constants still exist, but they are only for compile-time structural overrides.
 
 ## Theme Editor
 
@@ -20,7 +18,7 @@ The built-in [Theme Editor](/theme/theme-studio) lets you visually customise des
 
 Changes are applied instantly via CSS custom properties — no rebuild required.
 
-The editor exports the same v2 token model used by the runtime, so the result can be applied as CSS variables, stored as a `ThemeDocument`, or passed into `ConfigProvider`.
+The editor exports the same token model used by the runtime, so the result can be applied as CSS variables, stored as a `ThemeDocument`, or passed into `ConfigProvider`.
 
 ## Dark mode
 
@@ -102,13 +100,13 @@ html[data-tiny-theme='dark'] {
 | `--ty-color-text` | `rgba(0,0,0,0.85)` | Primary text colour |
 | `--ty-color-text-secondary` | `rgba(0,0,0,0.65)` | Secondary text colour |
 | `--ty-color-border` | `#d9d9d9` | Default border colour |
-| `--ty-border-radius` | `2px` | Global border radius |
-| `--ty-font-size-base` | `1rem` | Base font size |
+| `--ty-border-radius` | `6px` | Global border radius |
+| `--ty-font-size-base` | `14px` | Base font size |
 | `--ty-height-sm` | `24px` | Small control height |
-| `--ty-height-md` | `32px` | Medium control height |
-| `--ty-height-lg` | `42px` | Large control height |
+| `--ty-height-md` | `35px` | Medium control height |
+| `--ty-height-lg` | `44px` | Large control height |
 
-Every component also has its own tokens for fine-grained control. For example, Button uses `--ty-button-bg-default`, `--ty-button-text-default`, and `--ty-button-radius`. The full list of supported tokens is generated from the v2 registry and component sources:
+Every component also has its own tokens for fine-grained control. For example, Button uses `--ty-button-bg-default`, `--ty-button-text-default`, and `--ty-button-radius`. The full list of supported tokens is generated from the token registry and component sources:
 - [Token registry](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/dist/registry.json)
 - [Component token sources](https://github.com/wangdicoder/tiny-design/tree/master/packages/tokens/source/components)
 
@@ -178,65 +176,21 @@ Use this when you want:
 - nested theme overrides
 - popup / portal content to inherit the same token scope
 
-`ConfigProvider` no longer uses the old `theme.token` or `theme.components` API. Use `theme.tokens.semantic` and `theme.tokens.components` only.
+Use `theme.tokens.semantic` and `theme.tokens.components` as the supported React theme shape.
 
-## SCSS constants
+## Sass source styles
 
-If you import Tiny UI's SCSS source instead of the pre-built CSS, you can override compile-time structural constants such as padding, transitions, and arrow sizes. These are values that don't need to change at runtime.
+Tiny UI still ships Sass source files for bundlers that compile library styles directly, but Sass variables are not a theme API. Treat `@tiny-design/react/es/style/*.scss` and component `style/*.scss` files as implementation source, not as supported customisation contracts.
 
-Every constant uses the `!default` flag, so your overrides take precedence.
+Use tokens for visual changes such as colour, typography, radii, shadows, spacing, sizing, and component states. If a value is not exposed as a token yet, prefer adding it to the token registry instead of adding a new public Sass variable.
 
-### 1. Install Sass
-
-```bash
-$ npm install sass --save-dev
-```
-
-### 2. Create your overrides file
-
-Create a file, e.g. `theme-overrides.scss`. Your overrides **must come before** the Tiny UI import:
-
-```scss
-// Override structural constants
-$btn-padding-md: 0 20px;
-$card-body-padding: 20px;
-$tooltip-arrow-size: 6px;
-
-// Import Tiny UI styles (applies your overrides via !default)
-@use "@tiny-design/react/es/style/index" as *;
-```
-
-### 3. Import in your entry file
-
-```js
-import './theme-overrides.scss';
-```
-
-The full list of SCSS constants can be found in [_constants.scss](https://github.com/wangdicoder/tiny-design/blob/master/packages/tokens/scss/_constants.scss).
-
-Some commonly overridden constants:
-
-```scss
-// Button
-$btn-padding-sm: 0 10px !default;
-$btn-padding-md: 0 15px !default;
-$btn-padding-lg: 0 28px !default;
-
-// Card
-$card-header-padding: 13px 16px !default;
-$card-body-padding: 16px !default;
-
-// Notification
-$notification-width: 380px !default;
-```
-
-> **Note:** Colours, typography, radii, shadows, and all other visual tokens should be customised through v2 tokens, not SCSS variables. SCSS constants are only for compile-time structural values like padding and sizing.
+The full token list is generated from `packages/tokens/dist/registry.json`.
 
 ## Recommended approach
 
 - Use CSS variables when you want the simplest runtime override.
 - Use `ThemeDocument` when you need a portable JSON theme format.
 - Use `ConfigProvider` when you need scoped theming in React.
-- Use SCSS constants only when a value must be decided at build time.
+- Avoid treating Sass variables as public theme configuration; add missing customisation points as tokens.
 
-Please report an issue if the existing list of tokens or constants is not enough for you.
+Please report an issue if the existing list of tokens is not enough for you.

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://tiny.design/schema/theme.v1.schema.json",
-  "title": "Tiny Design Theme Document v1",
+  "$id": "https://tiny.design/schema/theme.schema.json",
+  "title": "Tiny Design Theme Document",
   "description": "Versioned theme document for Tiny Design token overrides.",
   "type": "object",
   "additionalProperties": false,
@@ -108,7 +108,7 @@
   },
   "examples": [
     {
-      "$schema": "https://tiny.design/schema/theme.v1.schema.json",
+      "$schema": "https://tiny.design/schema/theme.schema.json",
       "meta": {
         "id": "ocean-glass",
         "name": "Ocean Glass",

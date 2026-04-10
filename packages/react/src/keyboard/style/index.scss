@@ -1,4 +1,4 @@
-@use '@tiny-design/tokens/scss/variables' as *;
+@use "../../style/variables" as *;
 
 .#{$prefix}-kbd {
   font-family: var(--ty-keyboard-font-family);
