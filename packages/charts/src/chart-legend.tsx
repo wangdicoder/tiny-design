@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import type { LegendPayload, LegendProps as RechartsLegendProps } from 'recharts';
 import { Legend as RechartsLegend } from 'recharts';
 import { useChart } from './chart-context';
+import { getPayloadValue } from './utils';
 
 const PREFIX = 'ty-chart-legend';
 
@@ -64,11 +65,10 @@ export const ChartLegendContent = React.forwardRef<
         {...props}
       >
         {payload.map((entry) => {
-          const key = nameKey
-            ? (entry.dataKey || entry.value)
-            : entry.dataKey || entry.value;
-          const itemConfig = key ? config[key] : undefined;
-          const displayName = itemConfig?.label || entry.value || key;
+          const payloadNameKey = typeof nameKey === 'string' ? getPayloadValue(entry.payload, nameKey) : undefined;
+          const key = payloadNameKey || entry.dataKey || entry.value;
+          const itemConfig = typeof key === 'string' ? config[key] : undefined;
+          const displayName = itemConfig?.label || payloadNameKey || entry.value || key;
           const color =
             entry.color || (itemConfig?.color ? `var(--color-${key})` : undefined);
 

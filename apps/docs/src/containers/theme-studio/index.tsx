@@ -146,15 +146,8 @@ const ThemeStudioPage = (): React.ReactElement => {
         <div className="theme-studio__topbar">
           <div className="theme-studio__topbar-primary">
             <Select
-              allowClear
               className="theme-studio__select"
               value={draft.presetId}
-              showSearch
-              filterOption={(inputValue, option) => {
-                const query = inputValue.toLowerCase();
-                const label = typeof option.label === 'string' ? option.label : '';
-                return label.toLowerCase().includes(query) || option.value.toLowerCase().includes(query);
-              }}
               onChange={(value) => handlePresetChange(value)}
             >
               {THEME_EDITOR_PRESETS.map((preset) => (

@@ -8,6 +8,7 @@ import type {
 } from 'recharts';
 import { Tooltip as RechartsTooltip } from 'recharts';
 import { useChart } from './chart-context';
+import { getPayloadValue } from './utils';
 
 const PREFIX = 'ty-chart-tooltip';
 
@@ -87,6 +88,7 @@ export const ChartTooltipContent = React.forwardRef<
     ref
   ) => {
     const { config } = useChart();
+    const firstPayloadItem = payload?.[0];
 
     if (!active || !payload?.length) {
       return null;
@@ -95,7 +97,12 @@ export const ChartTooltipContent = React.forwardRef<
     const tooltipLabel = (() => {
       if (hideLabel) return null;
 
-      const labelConfig = labelKey ? config[labelKey] : undefined;
+      const resolvedLabelKey =
+        typeof labelKey === 'string'
+          ? getPayloadValue(firstPayloadItem?.payload, labelKey) ?? labelKey
+          : undefined;
+      const labelConfig =
+        typeof resolvedLabelKey === 'string' ? config[resolvedLabelKey] : undefined;
       const displayLabel = labelConfig?.label || label;
 
       if (labelFormatter && label) {
@@ -120,11 +127,10 @@ export const ChartTooltipContent = React.forwardRef<
         {tooltipLabel}
         <div className={`${PREFIX}__items`}>
           {payload.map((item, index) => {
-            const key = nameKey
-              ? (item.payload?.[nameKey] as string) || item.name
-              : item.dataKey || item.name;
-            const itemConfig = key ? config[key] : undefined;
-            const displayName = itemConfig?.label || item.name || key;
+            const payloadNameKey = typeof nameKey === 'string' ? getPayloadValue(item.payload, nameKey) : undefined;
+            const key = payloadNameKey || item.dataKey || item.name;
+            const itemConfig = typeof key === 'string' ? config[key] : undefined;
+            const displayName = itemConfig?.label || payloadNameKey || item.name || key;
             const color =
               item.color ||
               item.fill ||

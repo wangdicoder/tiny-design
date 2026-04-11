@@ -10,4 +10,9 @@ export type { ChartLegendContentProps } from './chart-legend';
 export { ChartStyle } from './chart-style';
 export { useChart } from './chart-context';
 
-export type { ChartConfig } from './types';
+export type {
+  ChartConfig,
+  ChartConfigItem,
+  ChartIconProps,
+  ChartThemeName,
+} from './types';
