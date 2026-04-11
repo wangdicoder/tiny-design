@@ -2,11 +2,11 @@ import React from 'react';
 import { Layout } from '@tiny-design/react';
 
 export default function BasicDemo() {
-  const layoutStyle = {
+  const layoutStyle: React.CSSProperties = {
     marginBottom: '50px',
   };
 
-  const headerStyle = {
+  const headerStyle: React.CSSProperties = {
     background: 'color-mix(in srgb, var(--ty-color-primary) 70%, transparent)',
     color: '#fff',
     textAlign: 'center',
@@ -14,13 +14,13 @@ export default function BasicDemo() {
     lineHeight: '64px',
   };
 
-  const footerStyle = {
+  const footerStyle: React.CSSProperties = {
     background: 'color-mix(in srgb, var(--ty-color-primary) 70%, transparent)',
     color: '#fff',
     textAlign: 'center',
   };
 
-  const contentStyle = {
+  const contentStyle: React.CSSProperties = {
     background: 'color-mix(in srgb, var(--ty-color-primary) 98%, transparent)',
     color: '#fff',
     minHeight: '120px',
@@ -28,7 +28,7 @@ export default function BasicDemo() {
     textAlign: 'center',
   };
 
-  const sidebarStyle = {
+  const sidebarStyle: React.CSSProperties = {
     background: 'color-mix(in srgb, var(--ty-color-primary) 84%, transparent)',
     color: '#fff',
     textAlign: 'center',

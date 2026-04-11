@@ -11,7 +11,7 @@ export default function DisabledDemo() {
     <>
       <Group
         value={value}
-        onChange={(val) => setValue(val)}
+        onChange={(val) => setValue(String(val))}
         disabled={disabled}
       >
         <Radio value="a">A</Radio>

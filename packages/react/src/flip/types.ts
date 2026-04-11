@@ -11,7 +11,7 @@ export interface FlipProps extends BaseProps, React.PropsWithoutRef<JSX.Intrinsi
 
   /** flip from left to right or reverse */
   reverse?: boolean;
-  children: React.ReactElement<FlipItemProps>;
+  children: React.ReactElement<FlipItemProps> | React.ReactElement<FlipItemProps>[];
 }
 
 export interface FlipItemProps

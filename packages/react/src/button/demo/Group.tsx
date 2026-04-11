@@ -33,7 +33,7 @@ export default function GroupDemo() {
           <Button>Normal Button</Button>
         </Group>
         <br />
-        <Group btnType="green" disabled>
+        <Group btnType="outline" disabled>
           <Button>Left</Button>
           <Button>Middle</Button>
           <Button>Right</Button>

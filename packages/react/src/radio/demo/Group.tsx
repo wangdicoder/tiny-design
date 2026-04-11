@@ -12,7 +12,7 @@ export default function GroupDemo() {
       <Group
         name="abc"
         value={value}
-        onChange={(val) => setValue(val)}
+        onChange={(val) => setValue(String(val))}
       >
         <Radio value="a">A</Radio>
         <Radio value="b">B</Radio>

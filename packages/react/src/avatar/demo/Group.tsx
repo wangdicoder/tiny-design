@@ -6,7 +6,7 @@ export default function GroupDemo() {
 
   return (
     <div>
-      <Group>
+      <Group gap={8}>
         <Avatar size={42} src="../avatar/avatar2.png" />
         <Avatar size={42} src="../avatar/avatar3.png" />
         <Avatar size={42} src="../avatar/avatar4.png" />
@@ -14,7 +14,7 @@ export default function GroupDemo() {
       </Group>
       <br />
       <br />
-      <Group>
+      <Group gap={8}>
         <Avatar size={42} src="../avatar/avatar2.png" />
         <Avatar size={42} src="../avatar/avatar3.png" />
         <Avatar size={42} src="../avatar/avatar4.png" />

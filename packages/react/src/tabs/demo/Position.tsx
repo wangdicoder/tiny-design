@@ -1,8 +1,10 @@
 import React from 'react';
 import { Tabs, Button, Space } from '@tiny-design/react';
+import type { TabPosition } from '@tiny-design/react';
 
 export default function PositionDemo() {
-  const [position, setPosition] = React.useState('top');
+  const [position, setPosition] = React.useState<TabPosition>('top');
+  const positions: TabPosition[] = ['top', 'bottom', 'left', 'right'];
   const items = [
     { key: '1', label: 'Tab 1', children: 'Content of Tab 1' },
     { key: '2', label: 'Tab 2', children: 'Content of Tab 2' },
@@ -11,7 +13,7 @@ export default function PositionDemo() {
   return (
     <div>
       <Space style={{ marginBottom: 16 }}>
-        {['top', 'bottom', 'left', 'right'].map(pos => (
+        {positions.map((pos) => (
           <Button
             key={pos}
             btnType={position === pos ? 'primary' : 'default'}

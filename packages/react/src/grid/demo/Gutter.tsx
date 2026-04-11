@@ -1,8 +1,9 @@
 import React from 'react';
 import { Row, Col, Slider } from '@tiny-design/react';
+import type { SliderValue } from '@tiny-design/react';
 
 export default function GutterDemo() {
-  const box = {
+  const box: React.CSSProperties = {
     padding: '20px 0',
     color: '#fff',
     textAlign: 'center',
@@ -35,7 +36,11 @@ export default function GutterDemo() {
           40: '40',
           48: '48',
         }}
-        onChange={(val) => setGutter(val)}
+        onChange={(val: SliderValue) => {
+          if (typeof val === 'number') {
+            setGutter(val);
+          }
+        }}
         style={{ width: 300 }}
       />
       <Row gutter={gutter} gutterSide>

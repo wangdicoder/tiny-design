@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from '@tiny-design/react';
 
 export default function ResponsiveDemo() {
-  const style = (bg: string) => ({
+  const style = (bg: string): React.CSSProperties => ({
     background: bg,
     color: '#fff',
     padding: '12px 0',

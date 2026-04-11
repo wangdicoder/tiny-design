@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from '@tiny-design/react';
 
 export default function OrderDemo() {
-  const box = {
+  const box: React.CSSProperties = {
     padding: '20px 0',
     color: '#fff',
     textAlign: 'center',

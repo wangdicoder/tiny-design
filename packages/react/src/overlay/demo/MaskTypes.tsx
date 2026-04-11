@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button, Overlay, Flex } from '@tiny-design/react';
+import type { OverlayMaskType } from '@tiny-design/react';
 
 export default function MaskTypesDemo() {
   const [visible, setVisible] = React.useState(false);
-  const [type, setType] = React.useState('default');
+  const [type, setType] = React.useState<OverlayMaskType>('default');
 
-  const open = (t) => {
+  const open = (t: OverlayMaskType) => {
     setType(t);
     setVisible(true);
   };

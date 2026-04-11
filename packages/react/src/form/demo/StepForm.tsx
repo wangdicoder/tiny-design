@@ -97,7 +97,7 @@ export default function StepFormDemo() {
                 { required: true, message: 'Age is required' },
               ]}
             >
-              <InputNumber min={1} max={120} placeholder="Enter age" />
+              <InputNumber min={1} max={120} />
             </Form.Item>
             <Form.Item
               label="Phone"

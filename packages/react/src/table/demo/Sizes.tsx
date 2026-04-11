@@ -1,8 +1,11 @@
 import React from 'react';
 import { Table, Segmented } from '@tiny-design/react';
+import type { SegmentedValue } from '@tiny-design/react';
+
+type DemoSize = 'sm' | 'md' | 'lg';
 
 export default function SizesDemo() {
-  const [size, setSize] = React.useState<string>('md');
+  const [size, setSize] = React.useState<DemoSize>('md');
 
   const columns = [
     { title: 'Name', dataIndex: 'name' },
@@ -21,7 +24,7 @@ export default function SizesDemo() {
       <Segmented
         options={['sm', 'md', 'lg']}
         value={size}
-        onChange={(val: any) => setSize(val)}
+        onChange={(val: SegmentedValue) => setSize(String(val) as DemoSize)}
         style={{ marginBottom: 16 }}
       />
       <Table

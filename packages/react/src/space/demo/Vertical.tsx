@@ -7,7 +7,7 @@ export default function VerticalDemo() {
       Space
       <Button btnType="primary">Button</Button>
       <Button>Another Button</Button>
-      <PopConfirm title="Are you sure delete this task?" okText="Yes" cancelText="No">
+      <PopConfirm title="Are you sure delete this task?" confirmText="Yes" cancelText="No">
         <Button>Confirm</Button>
       </PopConfirm>
     </Space>

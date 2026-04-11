@@ -5,13 +5,13 @@ import { IconDown } from '@tiny-design/icons';
 export default function CloseDemo() {
   const [visible, setVisible] = React.useState(false);
 
-  const handleMenuClick = (key) => {
+  const handleMenuClick = (key: string) => {
     if (key === '2') {
       setVisible(false);
     }
   };
 
-  const handleVisibleChange = (vis) => {
+  const handleVisibleChange = (vis: boolean) => {
     if (vis) {
       setVisible(vis);
     }
