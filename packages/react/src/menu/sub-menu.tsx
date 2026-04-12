@@ -58,8 +58,7 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
   const titleCls = classNames(menuItemCls, `${prefixCls}__title`, {
     [`${menuItemCls}_disabled`]: disabled,
     [`${menuItemCls}_danger`]: danger,
-    [`${menuItemCls}_selected`]: isSelected,
-    [`${menuItemCls}_active`]: isSelected,
+    [`${menuItemCls}_child-selected`]: isSelected,
     [`${prefixCls}__title_open`]: menuOpen,
   });
   const titleRef = useRef<HTMLDivElement | null>(null);

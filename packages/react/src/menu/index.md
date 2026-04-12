@@ -60,7 +60,7 @@ Inline navigation menu.
 
 ### Variants And Selection Styles
 
-Use `variant`, `selectionStyle`, `size`, and `density` to adapt the same menu structure to different products.
+Use `variant`, `selectionStyle`, and `size` to adapt the same menu structure to different products.
 
 <DemoBlock component={VariantsDemo} source={VariantsSource} />
 
@@ -92,13 +92,12 @@ When you provide custom `index` values, they are used as-is. If omitted, numeric
 | openKeys        | controlled opened submenu keys                 | string[]                                                                   | -            |
 | defaultOpenKeys | default opened submenu keys                    | string[]                                                                   | -            |
 | multiple        | whether multiple menu items can be selected    | boolean                                                                    | false        |
-| theme           | local surface tone of the menu, useful for contrast sections inside a different global theme | enum: `light` &#124; `dark`                             | `light`      |
+| theme           | local surface tone of the menu, useful for contrast sections inside a different global theme. When omitted, the menu follows the global theme | enum: `light` &#124; `dark`                             | follows global theme |
 | mode            | type of menu                                   | enum: `horizontal` &#124; `vertical` &#124; `inline`                       | `horizontal` |
 | appearance      | menu scene, use `dropdown` for popup/dropdown menus | enum: `navigation` &#124; `dropdown`                                   | `navigation` |
 | variant         | built-in visual variant                        | enum: `outline` &#124; `fill` &#124; `ghost`                               | `outline`    |
 | selectionStyle  | selected-state presentation                    | enum: `border` &#124; `background` &#124; `indicator` &#124; `mixed`      | `mixed`      |
 | size            | menu item size                                 | enum: `sm` &#124; `md` &#124; `lg`                                         | `md`         |
-| density         | menu item density                              | enum: `compact` &#124; `comfortable`                                       | `comfortable`|
 | inlineIndent    | indent pixels of inline menu items per level   | number                                                                     | -            |
 | onSelect        | called when a menu item is selected            | `(selectedIndex: string, info: MenuSelectInfo) => void`                    | -            |
 | onOpenChange    | called when submenu open keys change           | (openKeys: string[]) => void                                               | -            |

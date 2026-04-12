@@ -1,0 +1,7 @@
+@use "../../style/variables" as *;
+
+.#{$prefix}-menu-divider {
+  height: 1px;
+  background-color: var(--_menu-divider-color);
+  margin: var(--_menu-divider-margin);
+}

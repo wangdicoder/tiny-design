@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  MenuDensity,
   MenuMode,
   MenuAppearance,
   MenuSelectInfo,
@@ -19,7 +18,6 @@ type Props = {
   variant: MenuVariant;
   selectionStyle: MenuSelectionStyle;
   size: MenuSize;
-  density: MenuDensity;
   multiple: boolean;
   inlineIndent: number;
   isSelected: (key?: string) => boolean;
@@ -42,7 +40,6 @@ export const MenuContext = React.createContext<Props>({
   variant: 'outline',
   selectionStyle: 'mixed',
   size: 'md',
-  density: 'comfortable',
   multiple: false,
   isSelected: () => false,
   isSubMenuSelected: () => false,

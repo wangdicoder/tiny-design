@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { MenuContext } from './menu-context';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
+import { useTheme } from '../_utils/use-theme';
 import { MenuItemProps, MenuProps, MenuSelectInfo } from './types';
 
 const getInitialSelectedKeys = (props: MenuProps): string[] => {
@@ -17,16 +18,6 @@ const getInitialSelectedKeys = (props: MenuProps): string[] => {
   return ['0'];
 };
 
-const getGlobalThemeMode = (): 'light' | 'dark' => {
-  if (typeof document === 'undefined') {
-    return 'light';
-  }
-
-  return document.documentElement.getAttribute('data-tiny-theme') === 'dark'
-    ? 'dark'
-    : 'light';
-};
-
 const Menu = (props: MenuProps): JSX.Element => {
   const {
     defaultIndex = '0',
@@ -36,7 +27,6 @@ const Menu = (props: MenuProps): JSX.Element => {
     variant = 'outline',
     selectionStyle = 'mixed',
     size = 'md',
-    density = 'comfortable',
     inlineIndent = 20,
     selectedKeys,
     defaultSelectedKeys,
@@ -53,9 +43,14 @@ const Menu = (props: MenuProps): JSX.Element => {
     ...otherProps
   } = props;
   const configContext = useContext(ConfigContext);
+  const { resolvedTheme: globalResolvedTheme } = useTheme();
   const resolvedTheme =
     theme ??
-    (configContext.theme === 'dark' ? 'dark' : configContext.theme === 'light' ? 'light' : getGlobalThemeMode());
+    (configContext.theme === 'dark'
+      ? 'dark'
+      : configContext.theme === 'light'
+        ? 'light'
+        : globalResolvedTheme);
   const prefixCls = getPrefixCls('menu', configContext.prefixCls, customisedCls);
   const cls = classNames(
     prefixCls,
@@ -66,8 +61,7 @@ const Menu = (props: MenuProps): JSX.Element => {
     `${prefixCls}_${mode}`,
     `${prefixCls}_variant-${variant}`,
     `${prefixCls}_selection-${selectionStyle}`,
-    `${prefixCls}_size-${size}`,
-    `${prefixCls}_density-${density}`
+    `${prefixCls}_size-${size}`
   );
 
   const isControlledSelected = selectedKeys !== undefined;
@@ -160,7 +154,6 @@ const Menu = (props: MenuProps): JSX.Element => {
     variant,
     selectionStyle,
     size,
-    density,
     multiple,
     inlineIndent,
     selectedKeys: mergedSelectedKeys,
@@ -180,7 +173,6 @@ const Menu = (props: MenuProps): JSX.Element => {
     variant,
     selectionStyle,
     size,
-    density,
     multiple,
     inlineIndent,
     mergedSelectedKeys,

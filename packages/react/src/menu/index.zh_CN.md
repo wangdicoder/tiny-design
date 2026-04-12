@@ -60,7 +60,7 @@ const { Item, SubMenu, ItemGroup, Divider } = Menu;
 
 ### 变体与选中样式
 
-通过 `variant`、`selectionStyle`、`size` 和 `density`，可以在不改结构的前提下适配不同产品风格。
+通过 `variant`、`selectionStyle` 和 `size`，可以在不改结构的前提下适配不同产品风格。
 
 <DemoBlock component={VariantsDemo} source={VariantsSource} />
 
@@ -92,13 +92,12 @@ const { Item, SubMenu, ItemGroup, Divider } = Menu;
 | openKeys        | 受控的展开子菜单 key 列表             | string[]                                                                   | -            |
 | defaultOpenKeys | 默认展开的子菜单 key 列表             | string[]                                                                   | -            |
 | multiple        | 是否允许多选                           | boolean                                                                    | false        |
-| theme           | 菜单的局部表面基调，适合在与全局主题不同的区域做反差表现 | enum: `light` &#124; `dark`                         | `light`      |
+| theme           | 菜单的局部表面基调，适合在与全局主题不同的区域做反差表现。不传时跟随全局主题 | enum: `light` &#124; `dark`                         | 跟随全局主题 |
 | mode            | 菜单类型                                   | enum: `horizontal` &#124; `vertical` &#124; `inline`                       | `horizontal` |
 | appearance      | 菜单场景，弹出/下拉菜单请使用 `dropdown` | enum: `navigation` &#124; `dropdown`                                      | `navigation` |
 | variant         | 内建视觉变体                               | enum: `outline` &#124; `fill` &#124; `ghost`                               | `outline`    |
 | selectionStyle  | 选中态呈现方式                              | enum: `border` &#124; `background` &#124; `indicator` &#124; `mixed`      | `mixed`      |
 | size            | 菜单项尺寸                                  | enum: `sm` &#124; `md` &#124; `lg`                                         | `md`         |
-| density         | 菜单项密度                                  | enum: `compact` &#124; `comfortable`                                       | `comfortable`|
 | inlineIndent    | 内联菜单项每层的缩进像素   | number                                                                     | -            |
 | onSelect        | 选中菜单项时的回调            | `(selectedIndex: string, info: MenuSelectInfo) => void`                   | -            |
 | onOpenChange    | 子菜单展开状态变化时的回调      | (openKeys: string[]) => void                                               | -            |

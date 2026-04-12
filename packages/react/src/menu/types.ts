@@ -6,7 +6,6 @@ export type Theme = 'light' | 'dark';
 export type MenuVariant = 'outline' | 'fill' | 'ghost';
 export type MenuSelectionStyle = 'border' | 'background' | 'indicator' | 'mixed';
 export type MenuSize = 'sm' | 'md' | 'lg';
-export type MenuDensity = 'compact' | 'comfortable';
 export type MenuAppearance = 'navigation' | 'dropdown' | 'overlay';
 
 export interface MenuSelectInfo {
@@ -41,9 +40,6 @@ export interface MenuProps
 
   /** item size */
   size?: MenuSize;
-
-  /** item density */
-  density?: MenuDensity;
 
   /** indent (in pixels) of inline menu items on each level */
   inlineIndent?: number;

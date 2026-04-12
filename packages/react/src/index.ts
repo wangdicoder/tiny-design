@@ -132,6 +132,7 @@ export type * from './list';
 export type * from './loader';
 export type * from './loading-bar';
 export type * from './marquee';
+export type * from './menu';
 export type * from './message';
 export type * from './modal';
 export type * from './native-select';
