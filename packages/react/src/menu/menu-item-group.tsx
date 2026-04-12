@@ -23,7 +23,7 @@ const MenuItemGroup = (props: MenuItemGroupProps): JSX.Element => {
   const cls = classNames(prefixCls, className);
 
   return (
-    <li {...otherProps} key={title} className={cls} style={style}>
+    <li {...otherProps} key={index} className={cls} style={style}>
       <div
         className={`${prefixCls}__title`}
         style={{
@@ -36,7 +36,7 @@ const MenuItemGroup = (props: MenuItemGroupProps): JSX.Element => {
           const childElement = child as React.FunctionComponentElement<MenuItemProps>;
           if (childElement.type.displayName === 'MenuItem') {
             const childProps: Partial<MenuItemProps> = {
-              index: `${index}-${idx}`,
+              index: childElement.props.index ?? `${index}-${idx}`,
             };
             return React.cloneElement(childElement, childProps);
           } else {

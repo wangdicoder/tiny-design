@@ -1,8 +1,8 @@
 @use "../../style/variables" as *;
 
 .#{$prefix}-dropdown {
-
-  .#{$prefix}-menu, .#{$prefix}-menu-sub__list {
+  .#{$prefix}-menu,
+  .#{$prefix}-menu-sub__list {
     padding: var(--ty-dropdown-menu-padding);
 
     .#{$prefix}-menu-item_active {
@@ -21,7 +21,7 @@
     }
   }
 
-  .#{$prefix}-menu:before{
+  .#{$prefix}-menu:before {
     content: none;
   }
 

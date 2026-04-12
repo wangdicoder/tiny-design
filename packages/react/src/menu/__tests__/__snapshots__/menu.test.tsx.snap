@@ -4,22 +4,39 @@ exports[`<Menu /> should match the snapshot 1`] = `
 <DocumentFragment>
   <ul
     aria-orientation="horizontal"
-    class="ty-menu ty-menu_root ty-menu_light ty-menu_horizontal"
+    class="ty-menu ty-menu_root ty-menu_light ty-menu_appearance-navigation ty-menu_horizontal ty-menu_variant-outline ty-menu_selection-mixed ty-menu_size-md ty-menu_density-comfortable"
     role="menu"
   >
     <li
-      class="ty-menu-item ty-menu-item_active"
+      aria-selected="true"
+      class="ty-menu-item ty-menu-item_selected ty-menu-item_active"
       role="menuitem"
       tabindex="0"
     >
-      Item 1
+      <span
+        class="ty-menu-item__main"
+      >
+        <span
+          class="ty-menu-item__label"
+        >
+          Item 1
+        </span>
+      </span>
     </li>
     <li
       class="ty-menu-item"
       role="menuitem"
       tabindex="0"
     >
-      Item 2
+      <span
+        class="ty-menu-item__main"
+      >
+        <span
+          class="ty-menu-item__label"
+        >
+          Item 2
+        </span>
+      </span>
     </li>
   </ul>
 </DocumentFragment>

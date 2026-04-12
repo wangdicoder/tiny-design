@@ -1,32 +1,38 @@
 import React from 'react';
-import { Menu } from '@tiny-design/react';
+import { Menu, Tag } from '@tiny-design/react';
 
 export default function VerticalDemo() {
   return (
-    <Menu mode="vertical" style={{ maxWidth: 256 }}>
-      <Menu.Item>Navigation One</Menu.Item>
-      <Menu.Item>Navigation Two</Menu.Item>
-      <Menu.Item disabled>Navigation Three</Menu.Item>
-      <Menu.SubMenu title="Simple SubMenu">
-        <Menu.Item>Menu Item 1</Menu.Item>
-        <Menu.Item disabled>Menu Item 2</Menu.Item>
-        <Menu.Item>Menu Item 3</Menu.Item>
-        <Menu.Item>Menu Item 4</Menu.Item>
-        <Menu.SubMenu title="Second Simple SubMenu">
-          <Menu.Item>Menu Item 5</Menu.Item>
-          <Menu.Item>Menu Item 6</Menu.Item>
-          <Menu.Item>Menu Item 7</Menu.Item>
+    <Menu
+      mode="vertical"
+      style={{ maxWidth: 280 }}
+      defaultSelectedKeys={['workspace-overview']}
+      variant="fill"
+      selectionStyle="background">
+      <Menu.Item index="workspace-overview">Overview</Menu.Item>
+      <Menu.Item index="workspace-orders" extra={<Tag variant="soft" color="warning">5</Tag>}>
+        Orders
+      </Menu.Item>
+      <Menu.Item index="workspace-traffic">Traffic</Menu.Item>
+      <Menu.SubMenu index="workspace-customers" title="Customers">
+        <Menu.Item index="workspace-customers-list">Customer List</Menu.Item>
+        <Menu.Item index="workspace-customers-segments">Segments</Menu.Item>
+        <Menu.Item index="workspace-customers-feedback">Feedback</Menu.Item>
+        <Menu.SubMenu index="workspace-customers-lifecycle" title="Lifecycle">
+          <Menu.Item index="workspace-customers-lifecycle-new">New Users</Menu.Item>
+          <Menu.Item index="workspace-customers-lifecycle-retention">Retention</Menu.Item>
+          <Menu.Item index="workspace-customers-lifecycle-churn">Churn</Menu.Item>
         </Menu.SubMenu>
       </Menu.SubMenu>
-      <Menu.SubMenu title="Submenu with ItemGroup">
-        <Menu.ItemGroup title="Group 1">
-          <Menu.Item>Item group 1 item 1</Menu.Item>
-          <Menu.Item>Item group 1 item 2</Menu.Item>
+      <Menu.SubMenu index="workspace-settings" title="Workspace Settings">
+        <Menu.ItemGroup title="Workspace">
+          <Menu.Item index="workspace-settings-general">General</Menu.Item>
+          <Menu.Item index="workspace-settings-brand">Brand</Menu.Item>
         </Menu.ItemGroup>
-        <Menu.ItemGroup title="Group 2">
-          <Menu.Item>Item group 2 item 1</Menu.Item>
-          <Menu.Item disabled>Item group 2 item 2</Menu.Item>
-          <Menu.Item>Item group 2 item 3</Menu.Item>
+        <Menu.ItemGroup title="Admin">
+          <Menu.Item index="workspace-settings-members">Members</Menu.Item>
+          <Menu.Item index="workspace-settings-security" disabled>Security</Menu.Item>
+          <Menu.Item index="workspace-settings-api">API Keys</Menu.Item>
         </Menu.ItemGroup>
       </Menu.SubMenu>
     </Menu>

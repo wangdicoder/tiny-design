@@ -47,10 +47,10 @@ const Dropdown = (props: DropdownProps): JSX.Element => {
 
     const overlayProps: Partial<MenuProps> = {
       overlayClassName: cls,
+      appearance: 'dropdown',
       mode: 'vertical',
-      theme: 'light',
-      onSelect: (selectedIndex) => {
-        originalOnSelect?.(selectedIndex);
+      onSelect: (selectedIndex, info) => {
+        originalOnSelect?.(selectedIndex, info);
         if (!originalOnSelect) {
           setPopupVisibleState(false);
         }

@@ -72,6 +72,24 @@ function resolveTokenValue(rawValue, tokenMap, stack = []) {
   return resolveTokenValue(refToken.$value, tokenMap, [...stack, refKey]);
 }
 
+function toCssValue(rawValue, tokenMap) {
+  if (typeof rawValue !== 'string') {
+    return String(rawValue);
+  }
+
+  const match = rawValue.match(/^\{([^}]+)\}$/);
+  if (!match) {
+    return rawValue;
+  }
+
+  const refKey = match[1];
+  if (!tokenMap.has(refKey)) {
+    throw new Error(`Unresolved token reference: ${refKey}`);
+  }
+
+  return `var(${tokenKeyToCssVar(refKey)})`;
+}
+
 function loadTokenFiles(dir, category) {
   return listJsonFiles(dir).flatMap((filePath) => {
     const fileData = readJson(filePath);
@@ -144,11 +162,11 @@ function buildRegistry(tokens) {
   };
 }
 
-function buildCss(tokens, resolvedValues) {
+function buildCss(tokens, cssValues) {
   const rootLines = [':root {'];
 
   for (const token of tokens) {
-    rootLines.push(`  ${tokenKeyToCssVar(token.key)}: ${resolvedValues.get(token.key)};`);
+    rootLines.push(`  ${tokenKeyToCssVar(token.key)}: ${cssValues.get(token.key)};`);
   }
 
   rootLines.push('}');
@@ -157,12 +175,12 @@ function buildCss(tokens, resolvedValues) {
   return rootLines.join('\n');
 }
 
-function buildThemeCss(tokens, resolvedValues, overrides, selector) {
+function buildThemeCss(tokens, cssValues, tokenMap, overrides, selector) {
   const lines = [`${selector} {`];
 
   for (const token of tokens) {
     const overrideValue = overrides[token.key];
-    const value = overrideValue !== undefined ? String(overrideValue) : resolvedValues.get(token.key);
+    const value = overrideValue !== undefined ? toCssValue(overrideValue, tokenMap) : cssValues.get(token.key);
     lines.push(`  ${tokenKeyToCssVar(token.key)}: ${value};`);
   }
 
@@ -172,7 +190,7 @@ function buildThemeCss(tokens, resolvedValues, overrides, selector) {
   return lines.join('\n');
 }
 
-function buildBaseThemeCss(tokens, resolvedValues, lightTheme, darkTheme) {
+function buildBaseThemeCss(tokens, cssValues, tokenMap, lightTheme, darkTheme) {
   const lightOverrides = {
     ...((lightTheme && lightTheme.tokens && lightTheme.tokens.semantic) || {}),
     ...((lightTheme && lightTheme.tokens && lightTheme.tokens.components) || {}),
@@ -183,10 +201,10 @@ function buildBaseThemeCss(tokens, resolvedValues, lightTheme, darkTheme) {
   };
 
   const parts = [];
-  parts.push(buildThemeCss(tokens, resolvedValues, lightOverrides, ':root'));
-  parts.push(buildThemeCss(tokens, resolvedValues, darkOverrides, "[data-tiny-theme='dark']"));
+  parts.push(buildThemeCss(tokens, cssValues, tokenMap, lightOverrides, ':root'));
+  parts.push(buildThemeCss(tokens, cssValues, tokenMap, darkOverrides, "[data-tiny-theme='dark']"));
   parts.push('@media (prefers-color-scheme: dark) {');
-  parts.push(buildThemeCss(tokens, resolvedValues, darkOverrides, "  [data-tiny-theme='system']").trimEnd());
+  parts.push(buildThemeCss(tokens, cssValues, tokenMap, darkOverrides, "  [data-tiny-theme='system']").trimEnd());
   parts.push('}');
   parts.push('');
 
@@ -278,6 +296,9 @@ function buildRuntimeTokens() {
   const resolvedValues = new Map(
     allTokens.map((token) => [token.key, resolveTokenValue(token.$value, tokenMap)])
   );
+  const cssValues = new Map(
+    allTokens.map((token) => [token.key, toCssValue(token.$value, tokenMap)])
+  );
 
   const registry = buildRegistry(allTokens);
   const lightTheme = themes.find((theme) => theme.mode === 'light');
@@ -293,17 +314,19 @@ function buildRuntimeTokens() {
   };
   const lightCss = buildThemeCss(
     allTokens,
-    resolvedValues,
+    cssValues,
+    tokenMap,
     lightThemeOverrides,
     ':root'
   );
   const darkCss = buildThemeCss(
     allTokens,
-    resolvedValues,
+    cssValues,
+    tokenMap,
     darkThemeOverrides,
     "[data-tiny-theme='dark']"
   );
-  const baseCss = buildBaseThemeCss(allTokens, resolvedValues, lightTheme, darkTheme);
+  const baseCss = buildBaseThemeCss(allTokens, cssValues, tokenMap, lightTheme, darkTheme);
 
   mkdirp(DIST_CSS_DIR);
   mkdirp(SCHEMA_DIST_DIR);

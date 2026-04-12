@@ -2,6 +2,7 @@ import React from 'react';
 
 type Props = {
   level?: number;
+  ancestorKeys?: string[];
   onMenuItemClick?: () => void;
 };
 

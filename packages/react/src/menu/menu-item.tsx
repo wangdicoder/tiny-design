@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import classNames from 'classnames';
 import { MenuContext } from './menu-context';
 import { SubMenuContext } from './sub-menu-context';
@@ -9,6 +9,9 @@ import { MenuItemProps } from './types';
 const MenuItem = (props: MenuItemProps): JSX.Element => {
   const {
     disabled = false,
+    danger = false,
+    icon,
+    extra,
     index,
     className,
     style,
@@ -20,13 +23,22 @@ const MenuItem = (props: MenuItemProps): JSX.Element => {
   const menuContext = useContext(MenuContext);
   const subMenuContext = useContext(SubMenuContext);
   const { inlineIndent, mode } = menuContext;
-  const { level = 1, onMenuItemClick } = subMenuContext;
+  const { level = 1, ancestorKeys = [], onMenuItemClick } = subMenuContext;
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('menu-item', configContext.prefixCls, customisedCls);
+  const isSelected = menuContext.isSelected(index);
   const cls = classNames(prefixCls, className, {
     [`${prefixCls}_disabled`]: disabled,
-    [`${prefixCls}_active`]: menuContext.index === index,
+    [`${prefixCls}_selected`]: isSelected,
+    [`${prefixCls}_active`]: isSelected,
+    [`${prefixCls}_danger`]: danger,
   });
+
+  useEffect(() => {
+    if (!index) return;
+    menuContext.registerKey?.(index, ancestorKeys);
+    return () => menuContext.unregisterKey?.(index);
+  }, [index, ancestorKeys]);
 
   const onItemClick = (e: React.MouseEvent): void => {
     if (disabled) {
@@ -35,8 +47,8 @@ const MenuItem = (props: MenuItemProps): JSX.Element => {
 
     onClick && onClick(e);
     onMenuItemClick && onMenuItemClick();
-    if (menuContext.onSelect && typeof index === 'string') {
-      menuContext.onSelect(index);
+    if (menuContext.handleSelect && typeof index === 'string') {
+      menuContext.handleSelect(index);
     }
   };
 
@@ -47,6 +59,7 @@ const MenuItem = (props: MenuItemProps): JSX.Element => {
       role="menuitem"
       tabIndex={disabled ? -1 : 0}
       aria-disabled={disabled || undefined}
+      aria-selected={isSelected || undefined}
       className={cls}
       style={{ paddingLeft: mode === 'inline' ? level * inlineIndent : undefined, ...style }}
       onClick={onItemClick}
@@ -56,7 +69,11 @@ const MenuItem = (props: MenuItemProps): JSX.Element => {
           onItemClick(e as unknown as React.MouseEvent);
         }
       }}>
-      {children}
+      <span className={`${prefixCls}__main`}>
+        {icon ? <span className={`${prefixCls}__icon`}>{icon}</span> : null}
+        <span className={`${prefixCls}__label`}>{children}</span>
+      </span>
+      {extra ? <span className={`${prefixCls}__extra`}>{extra}</span> : null}
     </li>
   );
 };

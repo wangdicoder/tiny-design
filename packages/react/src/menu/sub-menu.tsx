@@ -14,6 +14,9 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
     index,
     title,
     disabled,
+    danger,
+    icon,
+    extra,
     className,
     overlayClassName,
     children,
@@ -22,17 +25,30 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
   } = props;
   const menuContext = useContext(MenuContext);
   const { mode, inlineIndent } = menuContext;
-  const { level = 1, onMenuItemClick: _onMenuItemClick } = useContext(SubMenuContext);
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const { level = 1, ancestorKeys = [], onMenuItemClick: _onMenuItemClick } = useContext(SubMenuContext);
+  const [popupOpen, setPopupOpen] = useState<boolean>(false);
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('menu-sub', configContext.prefixCls, customisedCls);
-  const cls = classNames(prefixCls, className);
+  const isSelected = menuContext.isSubMenuSelected(index);
+  const isInlineOpen = menuContext.isOpen(index);
+  const menuOpen = mode === 'inline' ? isInlineOpen : popupOpen && menuContext.isOpen(index);
+  const cls = classNames(prefixCls, className, {
+    [`${prefixCls}_open`]: menuOpen,
+    [`${prefixCls}_selected`]: isSelected,
+    [`${prefixCls}_disabled`]: disabled,
+    [`${prefixCls}_danger`]: danger,
+  });
+  const popupCls = classNames(overlayClassName, {
+    [`${prefixCls}__popup_theme-${menuContext.theme}`]: mode !== 'inline',
+  });
   const subMenuCls = classNames(`${prefixCls}__list`, {
     [`${prefixCls}__list_open`]: menuOpen,
     [`${prefixCls}__list_popup`]: mode !== 'inline',
+    [`${prefixCls}__list_scene-${menuContext.appearance}`]: mode !== 'inline',
+    [`${prefixCls}__list_theme-${menuContext.theme}`]: mode !== 'inline',
   });
-  const nonRootSubMenu = index?.includes('-');
-  const rightPopupMenu = mode === 'vertical' || (mode === 'horizontal' && nonRootSubMenu);
+  const isNested = level > 1;
+  const rightPopupMenu = mode === 'vertical' || (mode === 'horizontal' && isNested);
   const arrowCls = rightPopupMenu
     ? `${prefixCls}__arrow ${prefixCls}__arrow_right`
     : classNames(`${prefixCls}__arrow`, {
@@ -41,42 +57,61 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
   const menuItemCls = `${configContext.prefixCls ? configContext.prefixCls : 'ty'}-menu-item`;
   const titleCls = classNames(menuItemCls, `${prefixCls}__title`, {
     [`${menuItemCls}_disabled`]: disabled,
-    [`${menuItemCls}_active`]: index ? menuContext.index.startsWith(index) : false,
+    [`${menuItemCls}_danger`]: danger,
+    [`${menuItemCls}_selected`]: isSelected,
+    [`${menuItemCls}_active`]: isSelected,
+    [`${prefixCls}__title_open`]: menuOpen,
   });
   const titleRef = useRef<HTMLDivElement | null>(null);
-
-  const handleOnClick = (e: React.MouseEvent): void => {
-    e.preventDefault();
-    !disabled && mode === 'inline' && setMenuOpen(!menuOpen);
-  };
-
   const timerRef = useRef<number | undefined>(undefined);
+  const childAncestorKeys = index ? [...ancestorKeys, index] : ancestorKeys;
+  const shouldUsePortal = menuContext.appearance === 'navigation';
+
+  useEffect(() => {
+    if (!index) return;
+    menuContext.registerKey?.(index, ancestorKeys);
+    return () => menuContext.unregisterKey?.(index);
+  }, [index, ancestorKeys]);
+
   useEffect(() => {
     return () => {
       window.clearTimeout(timerRef.current);
     };
   }, []);
 
-  const handleMouse = (e: React.MouseEvent, toggle: boolean): void => {
-    e.preventDefault();
-    const timer = timerRef.current;
-    timer && window.clearTimeout(timer);
+  const setOpenWithDelay = (open: boolean, delay = 200): void => {
+    window.clearTimeout(timerRef.current);
     timerRef.current = window.setTimeout(() => {
-      setMenuOpen(toggle);
-    }, 200);
+      setPopupOpen(open);
+      index && menuContext.setOpen?.(index, open);
+    }, delay);
   };
 
   const handleOnMouseEnter = (e: React.MouseEvent): void => {
-    !disabled && mode !== 'inline' && handleMouse(e, true);
+    if (!disabled && mode !== 'inline') {
+      e.preventDefault();
+      setOpenWithDelay(true);
+    }
   };
 
   const handleOnMouseLeave = (e: React.MouseEvent): void => {
-    mode !== 'inline' && handleMouse(e, false);
+    if (mode !== 'inline') {
+      e.preventDefault();
+      setOpenWithDelay(false);
+    }
+  };
+
+  const handleOnClick = (e: React.MouseEvent): void => {
+    e.preventDefault();
+    if (!disabled && mode === 'inline' && index) {
+      menuContext.setOpen?.(index, !menuOpen);
+    }
   };
 
   const onMenuItemClick = () => {
     if (mode !== 'inline') {
-      setMenuOpen(false);
+      setPopupOpen(false);
+      index && menuContext.setOpen?.(index, false);
       // If this is a sub-subMenu, invoke the onMenuItemClick method to notify
       // its parent to close the menu popup
       _onMenuItemClick && _onMenuItemClick();
@@ -86,7 +121,7 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
   const renderChildrenList = () => {
     let minWidth = undefined;
     const titleNode = titleRef.current;
-    if (titleNode && !nonRootSubMenu) {
+    if (titleNode && !isNested) {
       const { marginLeft, marginRight } = window.getComputedStyle(titleNode);
       const horizontalMargin =
         (Number.parseFloat(marginLeft) || 0) + (Number.parseFloat(marginRight) || 0);
@@ -98,7 +133,7 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
           const childElement = child as React.FunctionComponentElement<MenuItemProps>;
           const { displayName } = childElement.type;
           const childProps = {
-            index: `${index}-${idx}`,
+            index: childElement.props.index ?? `${index}-${idx}`,
           };
           if (
             displayName === 'MenuItem' ||
@@ -118,15 +153,22 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
 
   if (mode === 'inline') {
     return (
-      <SubMenuContext.Provider value={{ level: level + 1 }}>
+      <SubMenuContext.Provider value={{ level: level + 1, ancestorKeys: childAncestorKeys }}>
         <li {...otherProps} role="menuitem" key={index} className={cls}>
           <div
             className={titleCls}
             style={{ paddingLeft: inlineIndent * level }}
+            aria-expanded={menuOpen}
             onClick={handleOnClick}>
-            <span>{title}</span>
-            <span className={arrowCls}>
-              <ArrowDown size={10} />
+            <span className={`${menuItemCls}__main`}>
+              {icon ? <span className={`${menuItemCls}__icon`}>{icon}</span> : null}
+              <span className={`${menuItemCls}__label`}>{title}</span>
+            </span>
+            <span className={`${menuItemCls}__extra`}>
+              {extra ? <span className={`${prefixCls}__extra`}>{extra}</span> : null}
+              <span className={arrowCls}>
+                <ArrowDown size={10} />
+              </span>
             </span>
           </div>
           <CollapseTransition isShow={menuOpen}>{renderChildrenList()}</CollapseTransition>
@@ -135,7 +177,7 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
     );
   } else {
     return (
-      <SubMenuContext.Provider value={{ onMenuItemClick }}>
+      <SubMenuContext.Provider value={{ level: level + 1, ancestorKeys: childAncestorKeys, onMenuItemClick }}>
         <li
           {...otherProps}
           role="menuitem"
@@ -146,17 +188,29 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
           <Popup
             flip={false}
             arrow={false}
-            className={overlayClassName}
+            theme={menuContext.theme}
+            className={popupCls}
             trigger="manual"
+            offset={rightPopupMenu ? 0 : 4}
             visible={menuOpen}
-            onVisibleChange={setMenuOpen}
+            onVisibleChange={(visible) => {
+              setPopupOpen(visible);
+              index && menuContext.setOpen?.(index, visible);
+            }}
             biZoom={rightPopupMenu}
+            usePortal={shouldUsePortal}
             placement={rightPopupMenu ? 'right-start' : 'bottom-start'}
             content={renderChildrenList()}>
-            <div ref={titleRef} className={titleCls} onClick={handleOnClick}>
-              <span>{title}</span>
-              <span className={arrowCls}>
-                <ArrowDown size={10} />
+            <div ref={titleRef} className={titleCls} aria-expanded={menuOpen} onClick={handleOnClick}>
+              <span className={`${menuItemCls}__main`}>
+                {icon ? <span className={`${menuItemCls}__icon`}>{icon}</span> : null}
+                <span className={`${menuItemCls}__label`}>{title}</span>
+              </span>
+              <span className={`${menuItemCls}__extra`}>
+                {extra ? <span className={`${prefixCls}__extra`}>{extra}</span> : null}
+                <span className={arrowCls}>
+                  <ArrowDown size={10} />
+                </span>
               </span>
             </div>
           </Popup>

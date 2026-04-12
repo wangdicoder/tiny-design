@@ -10,7 +10,7 @@ const MenuDivider = (props: BaseProps): JSX.Element => {
   const prefixCls = getPrefixCls('menu-divider', configContext.prefixCls, customisedCls);
   const cls = classNames(prefixCls, className);
 
-  return <li className={cls} />;
+  return <li role="separator" className={cls} />;
 };
 
 MenuDivider.displayName = 'MenuDivider';
