@@ -124,11 +124,16 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
   const renderChildrenList = () => {
     let minWidth = undefined;
     const titleNode = titleRef.current;
-    if (titleNode && !isNested) {
-      const { marginLeft, marginRight } = window.getComputedStyle(titleNode);
+    if (titleNode) {
+      const computedStyle = window.getComputedStyle(titleNode);
+      const { marginLeft, marginRight } = computedStyle;
       const horizontalMargin =
         (Number.parseFloat(marginLeft) || 0) + (Number.parseFloat(marginRight) || 0);
-      minWidth = titleNode.offsetWidth + horizontalMargin;
+      const triggerWidth = titleNode.offsetWidth + horizontalMargin;
+      const popupMinWidth = Number.parseFloat(
+        computedStyle.getPropertyValue('--_menu-sub-list-popup-min-width')
+      );
+      minWidth = Math.max(triggerWidth, popupMinWidth || 0);
     }
     return (
       <ul className={subMenuCls} style={{ minWidth }}>

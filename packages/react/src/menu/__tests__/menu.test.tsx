@@ -297,6 +297,39 @@ describe('<Menu />', () => {
     ).toBeTruthy();
   });
 
+  it('should size nested popup submenu to its trigger width', () => {
+    render(
+      <Menu mode="vertical">
+        <Menu.SubMenu index="customers" title="Customers">
+          <Menu.SubMenu index="lifecycle" title="Lifecycle">
+            <Menu.Item index="new-users">New Users</Menu.Item>
+          </Menu.SubMenu>
+        </Menu.SubMenu>
+      </Menu>
+    );
+
+    const customersSubMenu = screen.getByText('Customers').closest('.ty-menu-sub') as HTMLElement;
+    fireEvent.mouseEnter(customersSubMenu);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    const lifecycleTitle = screen.getByText('Lifecycle').closest('.ty-menu-sub__title') as HTMLElement;
+    Object.defineProperty(lifecycleTitle, 'offsetWidth', {
+      configurable: true,
+      value: 240,
+    });
+
+    fireEvent.mouseEnter(lifecycleTitle.closest('.ty-menu-sub') as HTMLElement);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    expect(screen.getByText('New Users').closest('.ty-menu-sub__list_popup')).toHaveStyle({
+      minWidth: '240px',
+    });
+  });
+
   it('should follow global theme when theme prop is not provided and respect explicit theme override', () => {
     const { container, rerender } = render(
       <ConfigProvider theme="dark">

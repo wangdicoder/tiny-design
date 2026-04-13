@@ -3,7 +3,7 @@ import { Menu, Tag } from '@tiny-design/react';
 
 export default function HorizontalDemo() {
   return (
-    <Menu defaultSelectedKeys={['projects']} variant="outline" selectionStyle="mixed">
+    <Menu defaultSelectedKeys={['projects']}>
       <Menu.Item index="overview">Overview</Menu.Item>
       <Menu.Item index="projects" extra={<Tag variant="soft" color="info">12</Tag>}>
         Projects
