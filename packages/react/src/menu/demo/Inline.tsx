@@ -7,9 +7,7 @@ export default function InlineDemo() {
       mode="inline"
       style={{ maxWidth: 280 }}
       defaultSelectedKeys={['studio-theme-tokens']}
-      defaultOpenKeys={['studio-theme']}
-      variant="outline"
-      selectionStyle="mixed">
+      defaultOpenKeys={['studio-theme']}>
       <Menu.Item index="studio-overview">Overview</Menu.Item>
       <Menu.Item index="studio-library">Library</Menu.Item>
       <Menu.Item index="studio-updates" extra={<Tag variant="soft" color="info">Beta</Tag>}>

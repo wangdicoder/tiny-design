@@ -5,41 +5,34 @@
   line-height: var(--ty-divider-line-height);
   box-sizing: border-box;
   padding: 0;
+  border: 0;
   list-style: none;
+
+  --ty-divider-border-style: solid;
 
   &_vertical {
     margin: var(--ty-divider-vertical-margin);
     display: inline-block;
     height: var(--ty-divider-vertical-height);
-    width: 1px;
+    width: 0;
     vertical-align: middle;
-    position: relative;
-    top: var(--ty-divider-vertical-offset);
-    background: var(--ty-divider-color);
-
-    &-dashed {
-      background: none;
-      border-left: 1px dashed var(--ty-divider-color);
-    }
+    border-left: 1px var(--ty-divider-border-style) var(--ty-divider-color);
   }
 
   &_horizontal {
     display: block;
-    height: 1px;
+    height: 0;
     width: 100%;
     margin: var(--ty-divider-horizontal-margin);
-    background: var(--ty-divider-color);
-
-    &-dashed:not(.#{$prefix}-divider_text) {
-      background: none;
-      border-top: 1px dashed var(--ty-divider-color);
-    }
+    border-top: 1px var(--ty-divider-border-style) var(--ty-divider-color);
   }
 
   &_text {
-    display: table;
+    display: flex;
+    align-items: center;
+    width: 100%;
     white-space: nowrap;
-    text-align: center;
+    border-top: 0;
     background: transparent;
     font-weight: 500;
     color: var(--ty-divider-text-color);
@@ -47,34 +40,38 @@
     &::before,
     &::after {
       content: '';
-      display: table-cell;
-      position: relative;
-      top: 50%;
-      width: 50%;
-      border-top: 1px solid var(--ty-divider-color);
-      transform: translateY(50%);
+      flex: 1 1 auto;
+      height: 0;
+      border-top: 1px var(--ty-divider-border-style) var(--ty-divider-color);
     }
   }
 
-  &_left::before,
-  &_right::after {
-    width: 5%;
+  &_start::before,
+  &_end::after {
+    flex: 0 0 5%;
   }
 
-  &_left::after,
-  &_right::before {
-    width: 95%;
+  &_start::after,
+  &_end::before {
+    flex: 1 1 auto;
   }
 
   &_inner-text {
-    display: inline-block;
-    padding: var(--ty-divider-inner-text-padding);
+    display: inline-flex;
+    align-items: center;
+    padding: 0 var(--ty-divider-title-gap, 10px);
+    line-height: 1;
+  }
+
+  &_plain {
+    font-weight: 400;
   }
 
   &_dashed {
-    &::before,
-    &::after {
-      border-top-style: dashed;
-    }
+    --ty-divider-border-style: dashed;
+  }
+
+  &_dotted {
+    --ty-divider-border-style: dotted;
   }
 }

@@ -3,7 +3,8 @@
 exports[`<Divider /> should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ty-divider ty-divider_horizontal ty-divider_center"
+    aria-orientation="horizontal"
+    class="ty-divider ty-divider_horizontal ty-divider_solid"
     role="separator"
   />
 </DocumentFragment>

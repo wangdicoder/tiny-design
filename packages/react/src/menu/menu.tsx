@@ -76,7 +76,7 @@ const Menu = (props: MenuProps): JSX.Element => {
     theme,
     appearance = 'navigation',
     variant = 'outline',
-    selectionStyle = 'mixed',
+    selectionStyle = 'background',
     size = 'md',
     inlineIndent = 20,
     selectedKeys,

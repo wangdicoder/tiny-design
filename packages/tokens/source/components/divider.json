@@ -1,11 +1,11 @@
 {
   "divider.color": {
-    "$value": "#e4e4e4",
+    "$value": "#d2d6dc",
     "$type": "color",
     "description": "Divider color."
   },
   "divider.font-size": {
-    "$value": "16px",
+    "$value": "14px",
     "$type": "dimension",
     "description": "Divider text font size."
   },
@@ -24,11 +24,6 @@
     "$type": "dimension",
     "description": "Vertical divider height."
   },
-  "divider.vertical-offset": {
-    "$value": "-0.1em",
-    "$type": "dimension",
-    "description": "Vertical divider visual offset."
-  },
   "divider.horizontal-margin": {
     "$value": "16px 0",
     "$type": "string",
@@ -39,9 +34,9 @@
     "$type": "color",
     "description": "Divider text color."
   },
-  "divider.inner-text-padding": {
-    "$value": "0 10px",
-    "$type": "string",
-    "description": "Divider inner text padding."
+  "divider.title-gap": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Divider title horizontal gap."
   }
 }

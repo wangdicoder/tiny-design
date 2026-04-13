@@ -1,13 +1,17 @@
 import React from 'react';
 import { BaseProps, DirectionType } from '../_utils/props';
 
-export type DivideAlign = 'left' | 'right' | 'center';
+export type DividerOrientation = DirectionType;
+export type DividerTitlePlacement = 'start' | 'center' | 'end';
+export type DividerVariant = 'solid' | 'dashed' | 'dotted';
 
 export interface DividerProps
   extends BaseProps,
     React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
-  type?: DirectionType;
-  dashed?: boolean;
-  align?: DivideAlign;
+  orientation?: DividerOrientation;
+  variant?: DividerVariant;
+  titlePlacement?: DividerTitlePlacement;
+  plain?: boolean;
+  titleGap?: string | number;
   children?: React.ReactNode;
 }

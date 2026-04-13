@@ -113,7 +113,7 @@ When you provide custom `index` values, they are used as-is. If omitted, numeric
 | mode            | type of menu                                   | enum: `horizontal` &#124; `vertical` &#124; `inline`                       | `horizontal` |
 | appearance      | menu scene, use `dropdown` for popup/dropdown menus | enum: `navigation` &#124; `dropdown`                                   | `navigation` |
 | variant         | built-in visual variant                        | enum: `outline` &#124; `fill` &#124; `ghost`                               | `outline`    |
-| selectionStyle  | selected-state presentation                    | enum: `border` &#124; `background` &#124; `indicator` &#124; `mixed`      | `mixed`      |
+| selectionStyle  | selected-state presentation                    | enum: `border` &#124; `background` &#124; `indicator` &#124; `mixed`      | `background`      |
 | size            | menu item size                                 | enum: `sm` &#124; `md` &#124; `lg`                                         | `md`         |
 | inlineIndent    | indent pixels of inline menu items per level   | number                                                                     | -            |
 | onSelect        | called when a menu item is selected            | `(selectedIndex: string, info: MenuSelectInfo) => void`                    | -            |

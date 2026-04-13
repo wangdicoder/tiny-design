@@ -4,7 +4,7 @@ import { Form, Input, InputPassword, Button, Divider } from '@tiny-design/react'
 export default function ValidateTriggerDemo() {
   return (
     <>
-      <Divider align="left">onChange</Divider>
+      <Divider titlePlacement="start">onChange</Divider>
       <Form initialValues={{ username: '', password: '' }} style={{ maxWidth: 500 }}>
         <Form.Item
           label="Username"
@@ -25,7 +25,7 @@ export default function ValidateTriggerDemo() {
         </Form.Item>
       </Form>
 
-      <Divider align="left">onBlur</Divider>
+      <Divider titlePlacement="start">onBlur</Divider>
       <Form validateTrigger="onBlur" initialValues={{ username: '', password: '' }} style={{ maxWidth: 500 }}>
         <Form.Item
           label="Username"
@@ -46,7 +46,7 @@ export default function ValidateTriggerDemo() {
         </Form.Item>
       </Form>
 
-      <Divider align="left">onSubmit</Divider>
+      <Divider titlePlacement="start">onSubmit</Divider>
       <Form validateTrigger="onSubmit" initialValues={{ username: '', password: '' }} style={{ maxWidth: 500 }}>
         <Form.Item
           label="Username"

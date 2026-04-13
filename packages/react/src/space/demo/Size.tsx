@@ -8,7 +8,7 @@ export default function SizeDemo() {
 
   return (
     <>
-      <Divider align="left">Use Preset</Divider>
+      <Divider titlePlacement="start">Use Preset</Divider>
       <Radio.Group value={size} onChange={(val) => setSize(val as SpaceSize)}>
         <Radio value="sm">Small</Radio>
         <Radio value="md">Medium</Radio>
@@ -25,7 +25,7 @@ export default function SizeDemo() {
 
       <br />
       <br />
-      <Divider align="left">Use Number</Divider>
+      <Divider titlePlacement="start">Use Number</Divider>
       <Slider
         value={numSize}
         onChange={(val: SliderValue) => {
