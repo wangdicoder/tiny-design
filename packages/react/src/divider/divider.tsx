@@ -6,24 +6,50 @@ import { DividerProps } from './types';
 
 const Divider = React.memo(React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
   const {
-    type = 'horizontal',
-    dashed = false,
-    align = 'center',
+    orientation = 'horizontal',
+    variant = 'solid',
+    titlePlacement = 'center',
+    plain = false,
+    titleGap,
     prefixCls: customisedCls,
     className,
     children,
+    style,
     ...otherProps
   } = props;
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('divider', configContext.prefixCls, customisedCls);
-  const cls = classNames(prefixCls, className, `${prefixCls}_${type}`, `${prefixCls}_${align}`, {
-    [`${prefixCls}_${type}-dashed`]: dashed,
-    [`${prefixCls}_text`]: children,
-  });
+  const hasChildren = children !== null && children !== undefined;
+  const hasInnerText = orientation === 'horizontal' && hasChildren;
+  const cls = classNames(
+    prefixCls,
+    className,
+    `${prefixCls}_${orientation}`,
+    `${prefixCls}_${variant}`,
+    hasInnerText && `${prefixCls}_${titlePlacement}`,
+    {
+      [`${prefixCls}_text`]: hasInnerText,
+      [`${prefixCls}_plain`]: plain,
+    },
+  );
+  const mergedStyle = hasInnerText && titleGap !== undefined
+    ? {
+        ...style,
+        ['--ty-divider-title-gap' as string]:
+          typeof titleGap === 'number' ? `${titleGap}px` : titleGap,
+      }
+    : style;
 
   return (
-    <div {...otherProps} ref={ref} role="separator" className={cls}>
-      {children && <span className={`${prefixCls}_inner-text`}>{children}</span>}
+    <div
+      {...otherProps}
+      ref={ref}
+      role="separator"
+      aria-orientation={orientation}
+      className={cls}
+      style={mergedStyle}
+    >
+      {hasInnerText && <span className={`${prefixCls}_inner-text`}>{children}</span>}
     </div>
   );
 }));

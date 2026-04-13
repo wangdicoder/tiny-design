@@ -43,7 +43,7 @@ export default function AlignmentDemo() {
 
   return (
     <>
-      <Divider align="left">Align Top</Divider>
+      <Divider titlePlacement="start">Align Top</Divider>
       <Row style={row} justify="center" align="top">
         <Col span={4}><div style={{...box, ...darkerBox, ...box100}}>col-4</div></Col>
         <Col span={4}><div style={{...box, ...lighterBox, ...box50}}>col-4</div></Col>
@@ -51,7 +51,7 @@ export default function AlignmentDemo() {
         <Col span={4}><div style={{...box, ...lighterBox, ...box80}}>col-4</div></Col>
       </Row>
 
-      <Divider align="left">Align Center</Divider>
+      <Divider titlePlacement="start">Align Center</Divider>
       <Row style={row} justify="space-around" align="center">
         <Col span={4}><div style={{...box, ...darkerBox, ...box100}}>col-4</div></Col>
         <Col span={4}><div style={{...box, ...lighterBox, ...box50}}>col-4</div></Col>
@@ -59,7 +59,7 @@ export default function AlignmentDemo() {
         <Col span={4}><div style={{...box, ...lighterBox, ...box80}}>col-4</div></Col>
       </Row>
 
-      <Divider align="left">Align Bottom</Divider>
+      <Divider titlePlacement="start">Align Bottom</Divider>
       <Row style={row} justify="space-between" align="bottom">
         <Col span={4}><div style={{...box, ...darkerBox, ...box100}}>col-4</div></Col>
         <Col span={4}><div style={{...box, ...lighterBox, ...box50}}>col-4</div></Col>

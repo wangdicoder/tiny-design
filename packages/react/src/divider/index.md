@@ -1,7 +1,11 @@
 import AlignTitleDemo from './demo/AlignTitle';
 import AlignTitleSource from './demo/AlignTitle.tsx?raw';
+import ContentSectionDemo from './demo/ContentSection';
+import ContentSectionSource from './demo/ContentSection.tsx?raw';
 import HorizontalDemo from './demo/Horizontal';
 import HorizontalSource from './demo/Horizontal.tsx?raw';
+import PlainAndGapDemo from './demo/PlainAndGap';
+import PlainAndGapSource from './demo/PlainAndGap.tsx?raw';
 import VerticalDemo from './demo/Vertical';
 import VerticalSource from './demo/Vertical.tsx?raw';
 
@@ -28,7 +32,7 @@ import { Divider } from 'tiny-design';
 
 ### Horizontal
 
-Divider default type is `horizontal`. Support inner text inside Divider.
+Divider defaults to horizontal. Horizontal dividers support inner text, line variants, and plain text styling.
 
 <DemoBlock component={HorizontalDemo} source={HorizontalSource} />
 
@@ -37,9 +41,18 @@ Divider default type is `horizontal`. Support inner text inside Divider.
 
 ### Vertical
 
-Use `type="vertical"` make it vertical.
+Use `orientation="vertical"` to render a vertical divider.
 
 <DemoBlock component={VerticalDemo} source={VerticalSource} />
+
+    </Demo>
+    <Demo>
+
+### Plain And Gap
+
+Use `plain` to reduce emphasis and `titleGap` to control title spacing.
+
+<DemoBlock component={PlainAndGapDemo} source={PlainAndGapSource} />
 
     </Demo>
   </Column>
@@ -48,9 +61,18 @@ Use `type="vertical"` make it vertical.
 
 ### Align Title
 
-Set orientation of divider to left or right, default is `center`.
+Set the title placement to `start`, `center`, or `end`. This only applies to horizontal dividers with inner text.
 
 <DemoBlock component={AlignTitleDemo} source={AlignTitleSource} />
+
+    </Demo>
+    <Demo>
+
+### In Content
+
+Use dividers as lightweight section labels inside cards, settings panels, or summaries.
+
+<DemoBlock component={ContentSectionDemo} source={ContentSectionSource} />
 
     </Demo>
   </Column>
@@ -58,10 +80,12 @@ Set orientation of divider to left or right, default is `center`.
 
 ## Props
 
-| Property  | Description                      | Type                                           | Default      |
-| --------- | -------------------------------- | ---------------------------------------------- | ------------ |
-| type      | direction type of divider        | enum: `horizontal` &#124; `vertical`           | `horizontal` |
-| dashed    | whether line is dashed           | boolean                                        | false        |
-| align     | position of title inside divider | enum: `left` &#124; `right` &#124; `center`    | `center`     |
-| style	    | style object of container	object | CSSProperties                                  | -            |
-| className	| className of container           | string                                         | -            |
+| Property       | Description                                            | Type                                         | Default        |
+| -------------- | ------------------------------------------------------ | -------------------------------------------- | -------------- |
+| orientation    | orientation of divider                                 | enum: `horizontal` &#124; `vertical`         | `horizontal`   |
+| variant        | line style variant                                     | enum: `solid` &#124; `dashed` &#124; `dotted` | `solid`        |
+| titlePlacement | position of title inside horizontal divider with text  | enum: `start` &#124; `center` &#124; `end`   | `center`       |
+| plain          | whether divider text uses plain emphasis               | boolean                                      | false          |
+| titleGap       | horizontal gap between divider title and line          | string &#124; number                         | token value    |
+| style          | style object of container                              | CSSProperties                                | -              |
+| className      | className of container                                 | string                                       | -              |

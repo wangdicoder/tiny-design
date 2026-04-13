@@ -3,12 +3,12 @@ import { Divider } from '@tiny-design/react';
 
 export default function VerticalDemo() {
   return (
-    <>
-      Text
-      <Divider type="vertical" />
-      <a href="#">Link</a>
-      <Divider type="vertical" />
-      <a href="#">Link</a>
-    </>
+    <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+      <span>Draft</span>
+      <Divider orientation="vertical" />
+      <a href="#">Preview</a>
+      <Divider orientation="vertical" />
+      <a href="#">Publish</a>
+    </div>
   );
 }
