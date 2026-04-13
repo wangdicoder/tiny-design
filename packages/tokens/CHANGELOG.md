@@ -1,5 +1,7 @@
 # @tiny-design/tokens
 
+## 1.11.3
+
 ## 1.11.2
 
 ### Patch Changes
