@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.3
+
+### Patch Changes
+
+- Normalize Dropdown overlay menus to hover-only feedback and align grouped popup item styling with the rest of the dropdown menu. - [#103](https://github.com/wangdicoder/tiny-design/pull/103) [`3928009`](https://github.com/wangdicoder/tiny-design/commit/3928009290bdaf506d5a0a6ce435d2a7ef328626)
+
 ## 1.11.2
 
 ### Patch Changes
