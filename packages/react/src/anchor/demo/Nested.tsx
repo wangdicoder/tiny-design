@@ -2,7 +2,7 @@ import React from 'react';
 import { Anchor } from '@tiny-design/react';
 
 export default function NestedDemo() {
-  const containerRef = React.useRef(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   return (
     <div style={{ display: 'flex', gap: 16 }}>
@@ -33,7 +33,7 @@ export default function NestedDemo() {
         </div>
       </div>
       <div style={{ width: 160 }}>
-        <Anchor type="line" getContainer={() => containerRef.current}>
+        <Anchor type="line" getContainer={() => containerRef.current ?? window}>
           <Anchor.Link href="#intro" title="Introduction" />
           <Anchor.Link href="#guide" title="Guide">
             <Anchor.Link href="#guide-install" title="Installation" />

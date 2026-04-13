@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "baseUrl": ".",
+    "paths": {
+      "@tiny-design/react": [
+        "./src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "src/**/demo/**/*.ts",
+    "src/**/demo/**/*.tsx"
+  ],
+  "exclude": []
+}

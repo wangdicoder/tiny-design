@@ -1,4 +1,14 @@
-const isProduction: boolean = process.env.NODE_ENV === 'production';
+const runtimeProcess = (
+  globalThis as typeof globalThis & {
+    process?: {
+      env?: {
+        NODE_ENV?: string;
+      };
+    };
+  }
+).process;
+
+const isProduction: boolean = runtimeProcess?.env?.NODE_ENV === 'production';
 
 export default function warning(condition: boolean, message: string, serious = false): void {
   if (!isProduction && condition) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Space, Radio } from '@tiny-design/react';
+import type { SpaceAlign } from '@tiny-design/react';
 
 export default function AlignDemo() {
   const wrapperStyle = {
@@ -14,11 +15,11 @@ export default function AlignDemo() {
     background: 'rgba(150, 150, 150, 0.2)',
   };
 
-  const [align, setAlign] = useState('center');
+  const [align, setAlign] = useState<SpaceAlign>('center');
 
   return (
     <>
-      <Radio.Group value={align} onChange={(val: any) => setAlign(val)}>
+      <Radio.Group value={align} onChange={(val) => setAlign(val as SpaceAlign)}>
         <Radio value="start">Start</Radio>
         <Radio value="center">Center</Radio>
         <Radio value="end">End</Radio>

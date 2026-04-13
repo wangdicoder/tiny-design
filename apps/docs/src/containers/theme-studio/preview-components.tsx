@@ -133,28 +133,6 @@ const subscriptionsChartConfig: ChartConfig = {
 const currYear = new Date().getFullYear()
 const currMonth = new Date().getMonth()
 
-function MetricsStrip({
-  items = [
-    ['Total Revenue', '$15,231.89', '+20.1% from last month'],
-    ['Subscriptions', '+2,350', '+180.1% from last month'],
-    ['Active Goal', '350', 'Calories per day'],
-  ],
-}: {
-  items?: Array<[string, string, string]>;
-}): React.ReactElement {
-  return (
-    <Grid className="theme-studio__metrics" minColumnWidth={180} gap="sm">
-      {items.map(([label, value, meta]) => (
-        <div key={label} className="theme-studio__metric">
-          <span>{label}</span>
-          <strong>{value}</strong>
-          <small>{meta}</small>
-        </div>
-      ))}
-    </Grid>
-  );
-}
-
 function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.ReactElement {
   const colorPairs = [
     ['Primary', fields.primary, fields.primaryForeground],
@@ -167,8 +145,8 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
   ];
 
   return (
-    <div className="theme-studio__response-panel">
-      <div className="theme-studio__response-section">
+    <Flex vertical className="theme-studio__response-panel">
+      <Flex vertical className="theme-studio__response-section">
         <span className="theme-studio__response-label">Live Colors</span>
         <Grid className="theme-studio__response-swatches" columns={2} gap={6}>
           {colorPairs.map(([label, background, foreground]) => (
@@ -177,60 +155,60 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
             </div>
           ))}
         </Grid>
-      </div>
+      </Flex>
 
-      <div className="theme-studio__response-section">
+      <Flex vertical className="theme-studio__response-section">
         <span className="theme-studio__response-label">Charts</span>
-        <div className="theme-studio__chart-strip">
+        <Flex className="theme-studio__chart-strip">
           {[fields.chart1, fields.chart2, fields.chart3, fields.chart4, fields.chart5].map((color, index) => (
             <span key={`${color}-${index}`} className="theme-studio__chart-dot" style={{ backgroundColor: color }} />
           ))}
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
-      <div className="theme-studio__response-section">
+      <Flex vertical className="theme-studio__response-section">
         <span className="theme-studio__response-label">Typography</span>
-        <div className="theme-studio__type-inline">
+        <Flex align="center" className="theme-studio__type-inline">
           <strong>Ag</strong>
           <span>{fields.fontSans.split(',')[0].replaceAll('"', '')}</span>
           <code>{fields.fontSizeBase} / {fields.lineHeightBase}</code>
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
-      <div className="theme-studio__response-section">
+      <Flex vertical className="theme-studio__response-section">
         <span className="theme-studio__response-label">Surface</span>
-        <div className="theme-studio__surface-inline">
+        <Flex className="theme-studio__surface-inline">
           <div className="theme-studio__surface-proxy">Card</div>
           <div className="theme-studio__focus-proxy">Focus</div>
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
-      <div className="theme-studio__response-section">
+      <Flex vertical className="theme-studio__response-section">
         <span className="theme-studio__response-label">Sidebar</span>
-        <div className="theme-studio__sidebar-preview">
-          <div className="theme-studio__sidebar-preview-shell">
+        <Flex vertical className="theme-studio__sidebar-preview">
+          <Flex vertical className="theme-studio__sidebar-preview-shell">
             <div className="theme-studio__sidebar-preview-item theme-studio__sidebar-preview-item_primary">Primary</div>
             <div className="theme-studio__sidebar-preview-item theme-studio__sidebar-preview-item_accent">Accent</div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Flex>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }
 
 function CardsPreview(): React.ReactElement {
   return (
-    <div className="theme-studio__cards-scene">
-      <div className="theme-studio__cards-column">
-        <div className="theme-studio__cards-top-pair">
+    <Grid className="theme-studio__cards-scene">
+      <Flex vertical className="theme-studio__cards-column">
+        <Grid className="theme-studio__cards-top-pair">
           <Card className="theme-studio__cards-panel theme-studio__cards-panel_revenue">
             <Card.Content>
-              <div className="theme-studio__cards-panel-head">
-                <div>
+              <Flex className="theme-studio__cards-panel-head">
+                <Flex vertical gap="sm">
                   <Text strong>Total Revenue</Text>
                   <Text type="secondary">+20.1% from last month</Text>
-                </div>
-              </div>
+                </Flex>
+              </Flex>
               <Heading level={2}>$15,231.89</Heading>
               <ChartContainer config={cardsRevenueChartConfig} style={{ height: 72, width: '100%' }}>
                 <LineChart data={cardsRevenueData} margin={{ top: 10, right: 6, left: -22, bottom: 0 }}>
@@ -251,12 +229,12 @@ function CardsPreview(): React.ReactElement {
 
           <Card className="theme-studio__cards-panel theme-studio__cards-panel_revenue">
             <Card.Content>
-              <div className="theme-studio__cards-panel-head">
-                <div>
+              <Flex className="theme-studio__cards-panel-head">
+                <Flex vertical gap="sm">
                   <Text strong>Subscriptions</Text>
                   <Text type="secondary">+180.1% from last month</Text>
-                </div>
-              </div>
+                </Flex>
+              </Flex>
               <Heading level={2}>+2,350</Heading>
               <ChartContainer config={subscriptionsChartConfig} style={{ height: 72, width: '100%' }}>
                 <AreaChart data={subscriptionsData} margin={{ top: 8, right: 4, left: -18, bottom: 0 }}>
@@ -280,16 +258,16 @@ function CardsPreview(): React.ReactElement {
               </ChartContainer>
             </Card.Content>
           </Card>
-        </div>
+        </Grid>
 
         <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <div className="theme-studio__cards-copy-block">
+            <Flex vertical gap="sm">
               <Text strong>Upgrade your subscription</Text>
               <Text type="secondary">
                 You are currently on the free plan. Upgrade to the pro plan to get access to all features.
               </Text>
-            </div>
+            </Flex>
             <div className="theme-studio__form-stack">
               <Flex gap="sm">
                 <Input placeholder="Name" defaultValue="Evil Rabbit" />
@@ -301,7 +279,7 @@ function CardsPreview(): React.ReactElement {
                 <Input placeholder="CVC" defaultValue="001" />
               </Flex>
               <Radio.Group defaultValue="starter">
-                <div className="theme-studio__cards-plan-grid">
+                <Grid className="theme-studio__cards-plan-grid">
                   <div className="theme-studio__cards-plan-option">
                     <Radio value="starter">
                       <div>
@@ -318,26 +296,26 @@ function CardsPreview(): React.ReactElement {
                       </div>
                     </Radio>
                   </div>
-                </div>
+                </Grid>
               </Radio.Group>
               <Textarea rows={3} placeholder="Enter notes" />
               <Checkbox defaultChecked>I agree to the terms and conditions</Checkbox>
               <Checkbox>Allow us to send you emails</Checkbox>
-              <div className="theme-studio__cards-actions-end">
+              <Flex className="theme-studio__cards-actions-end">
                 <Button>Cancel</Button>
                 <Button btnType="primary">Upgrade Plan</Button>
-              </div>
+              </Flex>
             </div>
           </Card.Content>
         </Card>
 
         <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <div className="theme-studio__cards-copy-block">
+            <Flex vertical className="theme-studio__cards-copy-block">
               <Text strong>Team Members</Text>
               <Text type="secondary">Invite your team members to collaborate.</Text>
-            </div>
-            <div className="theme-studio__member-list">
+            </Flex>
+            <Flex vertical className="theme-studio__member-list">
               {[
                 ['Sofia Davis', 'm@example.com', 'Owner'],
                 ['Jackson Lee', 'p@example.com', 'Developer'],
@@ -356,37 +334,37 @@ function CardsPreview(): React.ReactElement {
                   </Select>
                 </div>
               ))}
-            </div>
+            </Flex>
           </Card.Content>
         </Card>
 
         <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <div className="theme-studio__cards-copy-block">
-              <Text strong>Cookie Settings</Text>
-              <Text type="secondary">Manage your cookie settings here.</Text>
-            </div>
-            <div className="theme-studio__settings-list">
-              <div className="theme-studio__settings-row">
-                <div>
+            <Flex vertical gap="lg">
+              <Flex vertical>
+                <Text strong>Cookie Settings</Text>
+                <Text type="secondary">Manage your cookie settings here.</Text>
+              </Flex>
+              <Flex justify="space-between">
+                <Flex vertical>
                   <Text strong>Strictly Necessary</Text>
                   <Text type="secondary">These cookies are essential in order to use the website and use its features.</Text>
-                </div>
+                </Flex>
                 <Switch defaultChecked />
-              </div>
-              <div className="theme-studio__settings-row">
-                <div>
+              </Flex>
+              <Flex justify="space-between">
+                <Flex vertical>
                   <Text strong>Functional Cookies</Text>
                   <Text type="secondary">These cookies allow the website to provide personalized functionality.</Text>
-                </div>
+                </Flex>
                 <Switch />
-              </div>
+              </Flex>
               <Button btnType="primary" size='lg'>Save preferences</Button>
-            </div>
+            </Flex>
           </Card.Content>
         </Card>
 
-        <div className="theme-studio__cards-bottom-pair">
+        <Grid className="theme-studio__cards-bottom-pair">
           <Card className="theme-studio__cards-panel theme-studio__cards-panel_calendar">
             <Card.Content>
               <Calendar selectionMode="range" defaultRangeValue={[new Date(currYear, currMonth, 5), new Date(currYear, currMonth, 15)]} fullscreen={false} />
@@ -395,18 +373,18 @@ function CardsPreview(): React.ReactElement {
 
           <Card className="theme-studio__cards-panel theme-studio__cards-panel_goal">
             <Card.Content>
-              <div className="theme-studio__cards-copy-block">
+              <Flex vertical className="theme-studio__cards-copy-block">
                 <Text strong>Move Goal</Text>
                 <Text type="secondary">Set your daily activity goal.</Text>
-              </div>
-              <div className="theme-studio__cards-goal-header">
+              </Flex>
+              <Flex align="center" justify="space-between" className="theme-studio__cards-goal-header">
                 <Button size="sm" className="theme-studio__cards-goal-circle">-</Button>
-                <div className="theme-studio__goal-display">
+                <Flex vertical align="center" className="theme-studio__goal-display">
                   <span>350</span>
                   <small>CALORIES/DAY</small>
-                </div>
+                </Flex>
                 <Button size="sm" className="theme-studio__cards-goal-circle">+</Button>
-              </div>
+              </Flex>
               <ChartContainer config={moveGoalChartConfig} style={{ height: 82, width: '100%' }}>
                 <BarChart data={moveGoalData} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
                   <XAxis dataKey="dayLabel" hide />
@@ -418,20 +396,20 @@ function CardsPreview(): React.ReactElement {
               <Button btnType="primary">Set Goal</Button>
             </Card.Content>
           </Card>
-        </div>
-      </div>
+        </Grid>
+      </Flex>
 
-      <div className="theme-studio__cards-column">
+      <Flex vertical className="theme-studio__cards-column">
         <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <div className="theme-studio__cards-copy-block">
+            <Flex vertical className="theme-studio__cards-copy-block">
               <Text strong>Create an account</Text>
               <Text type="secondary">Enter your email below to create your account</Text>
-            </div>
-            <div className="theme-studio__cards-auth-actions">
+            </Flex>
+            <Flex className="theme-studio__cards-auth-actions">
               <Button><IconGithub /> GitHub</Button>
               <Button><IconGoogle /> Google</Button>
-            </div>
+            </Flex>
             <Divider className="theme-studio__cards-divider-label">OR CONTINUE WITH</Divider>
             <div className="theme-studio__form-stack">
               <Input placeholder="Email" defaultValue="m@example.com" />
@@ -443,14 +421,14 @@ function CardsPreview(): React.ReactElement {
 
         <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <div className="theme-studio__member-row theme-studio__member-row_compact">
+            <Flex align="center" className="theme-studio__member-row theme-studio__member-row_compact">
               <Avatar>S</Avatar>
               <div className="theme-studio__member-copy">
                 <Text strong>Sofia Davis</Text>
                 <Text type="secondary">m@example.com</Text>
               </div>
-            </div>
-            <div className="theme-studio__chat-thread">
+            </Flex>
+            <Flex vertical className="theme-studio__chat-thread">
               <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
                 <Card.Content>Hi, how can I help you today?</Card.Content>
               </Card>
@@ -463,7 +441,7 @@ function CardsPreview(): React.ReactElement {
               <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
                 <Card.Content>I can&apos;t log in.</Card.Content>
               </Card>
-            </div>
+            </Flex>
             <Input size='lg' placeholder="Type your message..." />
           </Card.Content>
         </Card>
@@ -478,12 +456,12 @@ function CardsPreview(): React.ReactElement {
 
         <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <div className="theme-studio__cards-copy-block">
+            <Flex vertical className="theme-studio__cards-copy-block">
               <Text strong>Exercise Minutes</Text>
               <Text type="secondary">
                 Your exercise minutes are ahead of where you normally are.
               </Text>
-            </div>
+            </Flex>
             <ChartContainer config={cardsExerciseChartConfig} style={{ height: 146, width: '100%' }}>
               <LineChart data={cardsExerciseData} margin={{ top: 8, right: 4, left: -22, bottom: 0 }}>
                 <CartesianGrid vertical={false} />
@@ -510,8 +488,8 @@ function CardsPreview(): React.ReactElement {
             </ChartContainer>
           </Card.Content>
         </Card>
-      </div>
-    </div>
+      </Flex>
+    </Grid>
   );
 }
 
@@ -533,13 +511,13 @@ function DashboardPreview(): React.ReactElement {
     <Grid className="theme-studio__dashboard-shell" columns="240px minmax(0, 1fr)" gap="sm">
       <Card className="theme-studio__dashboard-sidebar">
         <Card.Content>
-          <div className="theme-studio__sidebar-brand">
+          <Flex align="center" className="theme-studio__sidebar-brand">
             <Avatar>TD</Avatar>
             <div>
               <Text strong>Tiny Theme</Text>
               <Text className="theme-studio__sidebar-subtle">Dashboard</Text>
             </div>
-          </div>
+          </Flex>
           <div className="theme-studio__sidebar-section-label">Workspace</div>
           {['Overview', 'Themes', 'Revenue', 'Activity', 'Settings'].map((item, index) => (
             <Button
@@ -557,33 +535,25 @@ function DashboardPreview(): React.ReactElement {
         </Card.Content>
       </Card>
 
-      <div className="theme-studio__dashboard-main">
-        <div className="theme-studio__dashboard-top">
-          <div>
+      <Flex vertical className="theme-studio__dashboard-main">
+        <Flex justify="space-between" align="flex-start" className="theme-studio__dashboard-top">
+          <Flex vertical>
             <Text className="theme-studio__eyebrow">Dashboard</Text>
             <Heading level={3}>Revenue snapshot</Heading>
-            <div className="theme-studio__pill-row">
+            <Flex className="theme-studio__pill-row">
               <Tag color="success">Healthy</Tag>
               <Tag color="info">Synced</Tag>
-            </div>
-          </div>
-          <div className="theme-studio__dashboard-actions">
+            </Flex>
+          </Flex>
+          <Flex className="theme-studio__dashboard-actions">
             <Select defaultValue="30d">
               <Select.Option value="7d">Last 7 days</Select.Option>
               <Select.Option value="30d">Last 30 days</Select.Option>
               <Select.Option value="90d">Last 90 days</Select.Option>
             </Select>
             <Button btnType="primary">Export</Button>
-          </div>
-        </div>
-
-        <MetricsStrip
-          items={[
-            ['Revenue', '$45,231.89', '+20.1% from last month'],
-            ['Subscriptions', '+2,350', '+180.1% from last month'],
-            ['Sales', '+12,234', '+19% from last month'],
-          ]}
-        />
+          </Flex>
+        </Flex>
 
         <Grid className="theme-studio__preview-grid" minColumnWidth={260} gap="sm">
           <Card title="Overview" className="theme-studio__preview-card">
@@ -620,10 +590,10 @@ function DashboardPreview(): React.ReactElement {
           <Card title="Theme Health" className="theme-studio__preview-card">
             <Card.Content>
               <Flex vertical gap="sm">
-                <div>
+                <Flex vertical>
                   <Text strong>Accessibility</Text>
                   <Progress.Bar percent={84} />
-                </div>
+                </Flex>
                 <Alert type="success" title="Contrast is healthy across key actions." />
                 <Alert type="info" title="One focus treatment was customized." />
               </Flex>
@@ -632,7 +602,7 @@ function DashboardPreview(): React.ReactElement {
 
           <Card title="Traffic Sources" className="theme-studio__preview-card">
             <Card.Content>
-              <div className="theme-studio__member-list">
+              <Flex vertical className="theme-studio__member-list">
                 {[
                   ['Direct', '42%', 'Stable'],
                   ['Referral', '26%', '+4.2%'],
@@ -647,29 +617,29 @@ function DashboardPreview(): React.ReactElement {
                     <Tag>{value}</Tag>
                   </div>
                 ))}
-              </div>
+              </Flex>
             </Card.Content>
           </Card>
         </Grid>
-      </div>
+      </Flex>
     </Grid>
   );
 }
 
 function MailPreview(): React.ReactElement {
   return (
-    <div className="theme-studio__mail-shell">
+    <Grid className="theme-studio__mail-shell">
       <Card className="theme-studio__mail-sidebar">
         <Card.Content>
-          <div className="theme-studio__mail-sidebar-head">
-            <div>
+          <Flex vertical className="theme-studio__mail-sidebar-head">
+            <Flex vertical>
               <Text className="theme-studio__eyebrow">Mailbox</Text>
               <Heading level={4}>Studio Mail</Heading>
-            </div>
+            </Flex>
             <Button btnType="primary" style={{ width: '100%' }}>Compose</Button>
-          </div>
+          </Flex>
 
-          <div className="theme-studio__mail-folder-list">
+          <Flex vertical className="theme-studio__mail-folder-list">
             {[
               ['Inbox', '128'],
               ['Drafts', '9'],
@@ -686,32 +656,32 @@ function MailPreview(): React.ReactElement {
                 <small>{count}</small>
               </Button>
             ))}
-          </div>
+          </Flex>
 
-          <div className="theme-studio__mail-labels">
+          <Flex vertical className="theme-studio__mail-labels">
             <Text strong>Labels</Text>
             <Flex gap="sm" wrap>
               <Tag color="info">Design</Tag>
               <Tag color="success">Work</Tag>
               <Tag color="warning">Personal</Tag>
             </Flex>
-          </div>
+          </Flex>
         </Card.Content>
       </Card>
 
       <Card className="theme-studio__mail-panel">
         <Card.Content>
-          <div className="theme-studio__mail-panel-head">
+          <Flex className="theme-studio__mail-panel-head">
             <Input placeholder="Search mail" />
             <Button>Filter</Button>
-          </div>
-          <div className="theme-studio__mail-toolbar">
+          </Flex>
+          <Flex className="theme-studio__mail-toolbar">
             <Tag color="info">All mail</Tag>
             <Tag>Unread</Tag>
             <Tag>Assigned</Tag>
-          </div>
+          </Flex>
 
-          <div className="theme-studio__mail-thread-list">
+          <Flex vertical className="theme-studio__mail-thread-list">
             {[
               ['Sofia Davis', 'New message', 'Hi, how can I help you today?', '12m', true],
               ['Jackson Lee', 'Billing issue', 'I cannot update my card.', '1h', false],
@@ -732,27 +702,27 @@ function MailPreview(): React.ReactElement {
                 </Card.Content>
               </Card>
             ))}
-          </div>
+          </Flex>
         </Card.Content>
       </Card>
 
       <Card className="theme-studio__mail-detail">
         <Card.Content>
-          <div className="theme-studio__mail-message-head">
-            <div className="theme-studio__mail-message-meta">
+          <Flex className="theme-studio__mail-message-head">
+            <Flex align="center" className="theme-studio__mail-message-meta">
               <Avatar>S</Avatar>
               <div>
                 <Text strong>Re: New message</Text>
                 <Text type="secondary">support@tiny.design</Text>
               </div>
-            </div>
-            <div className="theme-studio__mail-message-actions">
+            </Flex>
+            <Flex className="theme-studio__mail-message-actions">
               <Tag color="info">Unread</Tag>
               <Button btnType="outline">Archive</Button>
-            </div>
-          </div>
+            </Flex>
+          </Flex>
 
-          <div className="theme-studio__chat-thread">
+          <Flex vertical className="theme-studio__chat-thread">
             <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
               <Card.Content>Hi, how can I help you today?</Card.Content>
             </Card>
@@ -765,36 +735,32 @@ function MailPreview(): React.ReactElement {
             <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
               <Card.Content>I can&apos;t log in after resetting my password.</Card.Content>
             </Card>
-          </div>
+          </Flex>
 
-          <Card className="theme-studio__mail-compose-card">
-            <Card.Content>
-              <Textarea rows={5} placeholder="Reply Sofia Davis..." />
-              <div className="theme-studio__mail-compose">
-                <Button>Save Draft</Button>
-                <Button btnType="primary">Send</Button>
-              </div>
-            </Card.Content>
-          </Card>
+          <Textarea rows={5} resizable={false} placeholder="Reply Sofia Davis..." />
+          <Flex className="theme-studio__mail-compose">
+            <Button>Save Draft</Button>
+            <Button btnType="primary">Send</Button>
+          </Flex>
         </Card.Content>
       </Card>
-    </div>
+    </Grid>
   );
 }
 
 function PricingPreview(): React.ReactElement {
   return (
-    <div className="theme-studio__preview-stack">
-      <div className="theme-studio__pricing-hero">
-        <div>
+    <Flex vertical className="theme-studio__preview-stack">
+      <Flex justify="space-between" align="flex-start" className="theme-studio__pricing-hero">
+        <Flex vertical>
           <Text className="theme-studio__eyebrow">Pricing</Text>
           <Heading level={2}>Simple pricing for modern teams</Heading>
           <Paragraph>Choose a plan that scales from solo work to multi-product organizations.</Paragraph>
-          <div className="theme-studio__pill-row">
+          <Flex className="theme-studio__pill-row">
             <Tag color="success">No setup fee</Tag>
             <Tag>Cancel anytime</Tag>
-          </div>
-        </div>
+          </Flex>
+        </Flex>
         <Segmented
           options={[
             { label: 'Monthly', value: 'monthly' },
@@ -802,7 +768,7 @@ function PricingPreview(): React.ReactElement {
           ]}
           value="monthly"
         />
-      </div>
+      </Flex>
 
       <Grid className="theme-studio__pricing-grid" minColumnWidth={240} gap="sm">
         {[
@@ -815,23 +781,23 @@ function PricingPreview(): React.ReactElement {
             className={`theme-studio__pricing-card${plan.featured ? ' theme-studio__pricing-card_featured' : ''}`}
           >
             <Card.Content>
-              <div className="theme-studio__pricing-card-head">
+              <Flex align="center" className="theme-studio__pricing-card-head">
                 {plan.featured ? <Tag color="success">Popular</Tag> : null}
                 <Text strong>{plan.name}</Text>
-              </div>
-              <div className="theme-studio__pricing-price">
+              </Flex>
+              <Flex vertical className="theme-studio__pricing-price">
                 <Heading level={2}>{plan.price}</Heading>
                 <Text type="secondary">Per workspace / month</Text>
-              </div>
+              </Flex>
               <Paragraph>{plan.description}</Paragraph>
-              <div className="theme-studio__pricing-feature-list">
+              <Flex vertical className="theme-studio__pricing-feature-list">
                 {plan.features.map((feature) => (
                   <Text key={feature}>{feature}</Text>
                 ))}
-              </div>
-              <div className="theme-studio__pricing-card-footer">
+              </Flex>
+              <Flex className="theme-studio__pricing-card-footer">
                 <Button btnType={plan.featured ? 'primary' : 'default'}>{plan.featured ? 'Upgrade plan' : 'Choose plan'}</Button>
-              </div>
+              </Flex>
             </Card.Content>
           </Card>
         ))}
@@ -840,34 +806,34 @@ function PricingPreview(): React.ReactElement {
       <Grid className="theme-studio__preview-grid" minColumnWidth={280} gap="sm">
         <Card title="Frequently Asked Questions" className="theme-studio__preview-card">
           <Card.Content>
-            <div className="theme-studio__faq-list">
-              <div className="theme-studio__faq-item">
+            <Flex vertical className="theme-studio__faq-list">
+              <Flex vertical className="theme-studio__faq-item">
                 <Text strong>Can I cancel anytime?</Text>
                 <Text type="secondary">Yes. Plans can be changed or canceled without lock-in.</Text>
-              </div>
-              <div className="theme-studio__faq-item">
+              </Flex>
+              <Flex vertical className="theme-studio__faq-item">
                 <Text strong>Do you offer team migration?</Text>
                 <Text type="secondary">Pro and Scale include assisted import and onboarding.</Text>
-              </div>
-            </div>
+              </Flex>
+            </Flex>
           </Card.Content>
         </Card>
         <Card title="Usage Snapshot" className="theme-studio__preview-card">
           <Card.Content>
-            <div className="theme-studio__settings-list">
-              <div>
+            <Flex vertical className="theme-studio__settings-list">
+              <Flex vertical>
                 <Text strong>Seats</Text>
                 <Progress.Bar percent={68} />
-              </div>
-              <div>
+              </Flex>
+              <Flex vertical>
                 <Text strong>Storage</Text>
                 <Progress.Bar percent={42} />
-              </div>
-            </div>
+              </Flex>
+            </Flex>
           </Card.Content>
         </Card>
       </Grid>
-    </div>
+    </Flex>
   );
 }
 
@@ -885,9 +851,9 @@ export function renderPreview(
         : <CardsPreview />;
 
   return (
-    <div className="theme-studio__preview-stack">
+    <Flex vertical className="theme-studio__preview-stack">
       {(template !== 'cards' && (section === 'colors' || section === 'typography' || section === 'other')) ? <LiveResponsePanel fields={fields} /> : null}
       {content}
-    </div>
+    </Flex>
   );
 }

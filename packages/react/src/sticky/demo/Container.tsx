@@ -18,7 +18,7 @@ export default function ContainerDemo() {
   return (
     <div style={containerStyle} ref={containerRef}>
       <div style={bgStyle}>
-        <Sticky container={() => containerRef.current}>
+        <Sticky container={() => containerRef.current ?? window}>
           <Button btnType="primary">Fixed at the top of container</Button>
         </Sticky>
       </div>

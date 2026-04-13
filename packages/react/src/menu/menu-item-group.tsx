@@ -17,26 +17,41 @@ const MenuItemGroup = (props: MenuItemGroupProps): JSX.Element => {
     ...otherProps
   } = props;
   const configContext = useContext(ConfigContext);
-  const { inlineIndent } = useContext(MenuContext);
+  const { inlineIndent, mode } = useContext(MenuContext);
   const { level = 1 } = useContext(SubMenuContext);
   const prefixCls = getPrefixCls('menu-item-group', configContext.prefixCls, customisedCls);
-  const cls = classNames(prefixCls, className);
+  const cls = classNames(prefixCls, className, {
+    [`${prefixCls}_popup`]: mode !== 'inline',
+  });
 
   return (
-    <li {...otherProps} key={title} className={cls} style={style}>
+    <li {...otherProps} key={index} className={cls} style={style}>
       <div
         className={`${prefixCls}__title`}
-        style={{
-          paddingLeft: inlineIndent * level - inlineIndent / 2,
-        }}>
+        style={mode === 'inline'
+          ? {
+              paddingLeft: inlineIndent * level - inlineIndent / 2,
+            }
+          : undefined}>
         {title}
       </div>
       <ul className={`${prefixCls}__list`}>
         {React.Children.map(children, (child, idx) => {
           const childElement = child as React.FunctionComponentElement<MenuItemProps>;
           if (childElement.type.displayName === 'MenuItem') {
+            const popupGroupedStyle = mode !== 'inline'
+              ? {
+                  paddingLeft: 44,
+                  paddingInlineStart: 44,
+                  ...childElement.props.style,
+                }
+              : childElement.props.style;
             const childProps: Partial<MenuItemProps> = {
-              index: `${index}-${idx}`,
+              index: childElement.props.index ?? `${index}-${idx}`,
+              className: classNames(childElement.props.className, {
+                'ty-menu-item_grouped-popup': mode !== 'inline',
+              }),
+              style: popupGroupedStyle,
             };
             return React.cloneElement(childElement, childProps);
           } else {

@@ -10,7 +10,7 @@ export default function CustomDemo() {
     { value: 'svelte', label: 'Svelte' },
   ]);
 
-  const handleSearch = (val) => {
+  const handleSearch = (val: string) => {
     if (val) {
       setLoading(true);
       setTimeout(() => {

@@ -1,0 +1,94 @@
+@use "../../style/variables" as *;
+@use "mixin" as *;
+
+/* stylelint-disable custom-property-pattern */
+
+.#{$prefix}-menu {
+  &_horizontal {
+    align-items: stretch;
+    gap: 4px;
+
+    > .#{$prefix}-menu-item,
+    > .#{$prefix}-menu-sub {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    > .#{$prefix}-menu-item,
+    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title {
+      width: auto;
+      min-height: var(--_menu-item-min-height);
+      padding: var(--_menu-item-padding-block) var(--_menu-item-padding-inline);
+      margin: 0;
+    }
+
+    > .#{$prefix}-menu-item .#{$prefix}-menu-item__main,
+    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title .#{$prefix}-menu-item__main {
+      flex: 0 0 auto;
+    }
+
+    > .#{$prefix}-menu-item::after,
+    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title::after {
+      inset: auto 10px 0;
+      width: auto;
+      height: 2px;
+      border-radius: 999px;
+    }
+  }
+
+  &_inline,
+  &_vertical {
+    flex-direction: column;
+    gap: 4px;
+
+    > .#{$prefix}-menu-item,
+    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title {
+      @include vertical-item-sizing;
+    }
+
+    > .#{$prefix}-menu-item::after,
+    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title::after {
+      @include vertical-indicator;
+    }
+  }
+}
+
+.#{$prefix}-menu_inline,
+.#{$prefix}-menu_vertical {
+  > .#{$prefix}-menu-sub {
+    width: 100%;
+  }
+}
+
+.#{$prefix}-menu_horizontal {
+  > .#{$prefix}-menu-sub {
+    display: flex;
+    align-items: stretch;
+  }
+}
+
+.#{$prefix}-menu-sub__list:not(.#{$prefix}-menu-sub__list_popup) {
+  > .#{$prefix}-menu-item,
+  > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title {
+    @include vertical-item-sizing;
+  }
+
+  > .#{$prefix}-menu-item,
+  > .#{$prefix}-menu-sub,
+  > .#{$prefix}-menu-item-group {
+    margin-top: 4px;
+  }
+
+  > .#{$prefix}-menu-item::after,
+  > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title::after {
+    @include vertical-indicator;
+  }
+
+  > .#{$prefix}-menu-item-group .#{$prefix}-menu-item-group__list > .#{$prefix}-menu-item {
+    @include vertical-item-sizing;
+  }
+
+  .#{$prefix}-menu-item-group__list > .#{$prefix}-menu-item::after {
+    @include vertical-indicator;
+  }
+}

@@ -10,10 +10,20 @@ import RadarChartDemo from './demo/RadarChart';
 import RadarChartSource from './demo/RadarChart.tsx?raw';
 import TooltipDemo from './demo/Tooltip';
 import TooltipSource from './demo/Tooltip.tsx?raw';
+import MappedTooltipLegendDemo from './demo/MappedTooltipLegend';
+import MappedTooltipLegendSource from './demo/MappedTooltipLegend.tsx?raw';
+import ThemeColorsDemo from './demo/ThemeColors';
+import ThemeColorsSource from './demo/ThemeColors.tsx?raw';
+import FallbackSizeDemo from './demo/FallbackSize';
+import FallbackSizeSource from './demo/FallbackSize.tsx?raw';
+import EmptyStateDemo from './demo/EmptyState';
+import EmptyStateSource from './demo/EmptyState.tsx?raw';
+import IconsAndFormatterDemo from './demo/IconsAndFormatter';
+import IconsAndFormatterSource from './demo/IconsAndFormatter.tsx?raw';
 
 # Chart
 
-Beautiful, theme-aware charts built on [Recharts](https://recharts.org/). Colors automatically adapt to light and dark themes via `--ty-chart-*` design tokens.
+Theme-aware chart primitives built on [Recharts](https://recharts.org/). This package does not replace Recharts. It standardises sizing, color tokens, tooltip/legend UI, and theme-aware chart config for Tiny Design.
 
 ## Installation
 
@@ -28,9 +38,22 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@tiny-design/
 import { Bar, BarChart } from 'recharts';
 ```
 
-`ChartContainer` handles responsive sizing for you, so pass the chart element directly.
+`ChartContainer` measures its own size and injects `width` / `height` into the chart element, so pass the chart element directly.
 
-## Examples
+Import styles once at the app entry if your bundler does not automatically include package CSS side effects:
+
+```tsx
+import '@tiny-design/charts/style';
+```
+
+## At A Glance
+
+- `@tiny-design/charts` is a presentation layer on top of Recharts, not a replacement for it.
+- It standardises sizing, chart color variables, tooltip/legend UI, and theme-aware chart config.
+- It does not abstract chart semantics such as axes, series composition, domains, or data transforms.
+- Use it when you want Tiny Design visual consistency without giving up direct Recharts control.
+
+## Basic Charts
 
 <Layout>
   <Column>
@@ -93,6 +116,69 @@ Tooltip with `indicator="line"` style and a custom `labelFormatter`.
   </Column>
 </Layout>
 
+## Config And Presentation
+
+<Layout>
+  <Column>
+    <Demo>
+
+### Payload Mapping
+
+Shows `labelKey` resolving the tooltip title from the underlying payload while series labels still come from `ChartConfig`.
+
+<DemoBlock component={MappedTooltipLegendDemo} source={MappedTooltipLegendSource} />
+
+    </Demo>
+    <Demo>
+
+### Theme Colors
+
+Uses `theme.light` and `theme.dark` to provide explicit chart colors outside the default token palette.
+
+<DemoBlock component={ThemeColorsDemo} source={ThemeColorsSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Fallback Size
+
+Uses `fallbackSize` so the chart has deterministic initial dimensions before runtime measurement completes.
+
+<DemoBlock component={FallbackSizeDemo} source={FallbackSizeSource} />
+
+    </Demo>
+  </Column>
+</Layout>
+
+## Business Patterns
+
+<Layout>
+  <Column>
+    <Demo>
+
+### Icons And Formatter
+
+Adds custom config icons and a value formatter for tooltip content while keeping legend and tooltip labels aligned.
+
+<DemoBlock component={IconsAndFormatterDemo} source={IconsAndFormatterSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Empty State
+
+Recommended business pattern: guard empty data before rendering `ChartContainer` and show a proper placeholder instead.
+
+<DemoBlock component={EmptyStateDemo} source={EmptyStateSource} />
+
+    </Demo>
+  </Column>
+</Layout>
+
 ## Chart Config
 
 The chart config maps data keys to labels, icons, and color tokens. Colors can be CSS variables, hex, hsl, or oklch.
@@ -108,6 +194,27 @@ const chartConfig: ChartConfig = {
   mobile: {
     label: 'Mobile',
     color: '#60a5fa',             // Or any CSS color
+  },
+};
+```
+
+Use data keys that are safe for CSS custom properties: letters, numbers, `_`, and `-`.
+
+If you need light and dark colors that do not map directly to Tiny tokens, use `theme`. You can provide both `light` and `dark`, or only one — the missing side falls back to `color`:
+
+```tsx
+const chartConfig: ChartConfig = {
+  revenue: {
+    label: 'Revenue',
+    theme: {
+      light: '#0f172a',
+      dark: '#e2e8f0',
+    },
+  },
+  cost: {
+    label: 'Cost',
+    color: '#6366f1',        // fallback when a theme side is missing
+    theme: { dark: '#a5b4fc' },
   },
 };
 ```
@@ -149,7 +256,8 @@ const chartData = [
 | config    | Chart configuration object                     | `ChartConfig`         | -       |
 | children  | Recharts chart element                         | `React.ReactElement`  | -       |
 | className | className of container                         | `string`              | -       |
-| style     | style object (must include height or min-height) | `CSSProperties`     | -       |
+| style     | style object. Set `height` or `minHeight` for predictable layout. | `CSSProperties` | - |
+| fallbackSize | optional initial width and height used before runtime measurement. Useful for SSR or deterministic tests. | `{ width: number; height: number }` | - |
 
 Do not nest another `ResponsiveContainer` inside `ChartContainer`.
 
@@ -160,8 +268,8 @@ Do not nest another `ResponsiveContainer` inside `ChartContainer`.
 | indicator     | indicator style                     | enum: `dot` &#124; `line` &#124; `dashed`     | `dot`   |
 | hideLabel     | hide the tooltip label              | `boolean`                                     | `false` |
 | hideIndicator | hide the color indicator            | `boolean`                                     | `false` |
-| labelKey      | config key for tooltip label        | `string`                                      | -       |
-| nameKey       | data key for tooltip item names     | `string`                                      | -       |
+| labelKey      | field read from the first payload item to resolve the tooltip label via `ChartConfig` | `string` | - |
+| nameKey       | field read from each payload item to resolve series labels via `ChartConfig` | `string` | - |
 | labelFormatter | custom label renderer              | `(label, payload) => ReactNode`               | -       |
 | formatter     | custom value renderer               | `(value, name, item, index, payload) => ReactNode` | -  |
 
@@ -169,6 +277,26 @@ Do not nest another `ResponsiveContainer` inside `ChartContainer`.
 
 | Property      | Description                         | Type                                          | Default   |
 | ------------- | ----------------------------------- | --------------------------------------------- | --------- |
-| nameKey       | data key for legend item names      | `string`                                      | -         |
+| nameKey       | field read from each legend payload item to resolve labels via `ChartConfig` | `string` | - |
 | hideIcon      | hide the color icon                 | `boolean`                                     | `false`   |
 | verticalAlign | legend position                     | enum: `top` &#124; `bottom`                   | `bottom`  |
+
+## Best Practices
+
+- Handle loading and empty states before rendering `ChartContainer`.
+- Keep `ChartConfig` keys stable and CSS-variable-safe: letters, numbers, `_`, and `-`.
+- Use `fallbackSize` when first paint needs deterministic dimensions, especially in SSR or docs examples.
+- Use `nameKey` and `labelKey` only when the original Recharts payload exposes the fields you need.
+- Keep chart-specific logic in Recharts and use this package for presentation concerns.
+
+## Anti-Patterns
+
+- Do not nest `ResponsiveContainer` inside `ChartContainer`.
+- Do not treat this package as a new chart DSL or expect it to hide Recharts concepts.
+- Do not store unstable or user-generated strings directly as chart config keys without normalising them first.
+
+## Constraints
+
+- `ChartContainer` only manages sizing and token injection. All chart semantics still come from Recharts.
+- Chart config keys must stay stable across renders because they are used as CSS variable names.
+- `labelKey` and `nameKey` only work when the original Recharts payload exposes those fields on `payload`.

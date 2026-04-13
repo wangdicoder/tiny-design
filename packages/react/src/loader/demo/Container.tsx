@@ -2,7 +2,7 @@ import React from 'react';
 import { Loader } from '@tiny-design/react';
 
 export default function ContainerDemo() {
-  const style = {
+  const style: React.CSSProperties = {
     textAlign: 'center',
     background: 'rgba(0, 0, 0, 0.05)',
     borderRadius: '4px',

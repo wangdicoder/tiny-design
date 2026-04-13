@@ -1,0 +1,35 @@
+@use "../../style/variables" as *;
+
+/* stylelint-disable custom-property-pattern */
+
+.#{$prefix}-menu_selection-indicator,
+.#{$prefix}-menu_selection-mixed {
+  --_menu-item-indicator-opacity-selected: 1;
+}
+
+.#{$prefix}-menu_selection-indicator {
+  --_menu-item-bg-selected: transparent;
+  --_menu-item-bg-selected-hover: transparent;
+  --_menu-item-border-selected: transparent;
+  --_menu-item-bg-path: transparent;
+  --_menu-item-bg-path-hover: transparent;
+  --_menu-item-border-path: transparent;
+}
+
+.#{$prefix}-menu_selection-border {
+  --_menu-item-bg-selected: transparent;
+  --_menu-item-bg-selected-hover: transparent;
+  --_menu-item-bg-path: transparent;
+  --_menu-item-bg-path-hover: transparent;
+}
+
+.#{$prefix}-menu_selection-background {
+  --_menu-item-border-selected: transparent;
+  --_menu-item-border-path: transparent;
+}
+
+.#{$prefix}-menu_variant-ghost {
+  --_menu-item-bg-path: transparent;
+  --_menu-item-bg-path-hover: transparent;
+  --_menu-item-border-path: transparent;
+}

@@ -5,13 +5,13 @@ export default function SidebarDemo() {
   const { Sidebar, Header, Content } = Layout;
   const [collapsed, setCollapsed] = React.useState(false);
 
-  const sidebarStyle = {
+  const sidebarStyle: React.CSSProperties = {
     background: 'color-mix(in srgb, var(--ty-color-primary) 84%, transparent)',
     color: '#fff',
     textAlign: 'center',
   };
 
-  const headerStyle = {
+  const headerStyle: React.CSSProperties = {
     background: 'color-mix(in srgb, var(--ty-color-primary) 70%, transparent)',
     color: '#fff',
     height: '64px',
@@ -19,7 +19,7 @@ export default function SidebarDemo() {
     textAlign: 'center',
   };
 
-  const contentStyle = {
+  const contentStyle: React.CSSProperties = {
     background: 'color-mix(in srgb, var(--ty-color-primary) 98%, transparent)',
     color: '#fff',
     minHeight: '200px',

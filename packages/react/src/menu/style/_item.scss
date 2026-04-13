@@ -1,0 +1,99 @@
+@use "../../style/variables" as *;
+
+/* stylelint-disable custom-property-pattern */
+
+.#{$prefix}-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--_menu-item-gap);
+  box-sizing: border-box;
+  width: 100%;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--_menu-item-radius);
+  color: var(--_menu-render-text);
+  background: var(--_menu-render-bg);
+  border-color: var(--_menu-render-border);
+  box-shadow: var(--_menu-render-shadow);
+  font-weight: var(--_menu-render-font-weight);
+  line-height: 1.4;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    background: var(--_menu-indicator-color);
+    opacity: var(--_menu-render-indicator-opacity);
+    pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+
+  &:active:not(.#{$prefix}-menu-item_disabled) {
+    background: var(--_menu-item-bg-active);
+  }
+
+  &_selected {
+    overflow: visible;
+  }
+
+  &_path-selected,
+  &_child-selected {
+    overflow: visible;
+  }
+
+  &_open {
+    overflow: visible;
+  }
+
+  &_disabled {
+    color: var(--_menu-text-color-disabled) !important;
+    opacity: var(--ty-menu-disabled-opacity, 0.55);
+    cursor: not-allowed;
+  }
+
+  &_danger {
+    color: var(--_menu-text-color-danger);
+  }
+
+  &__main,
+  &__extra {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  &__main {
+    flex: 1;
+    gap: var(--_menu-item-gap);
+    overflow: hidden;
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: var(--_menu-icon-size);
+    height: var(--_menu-icon-size);
+    font-size: var(--_menu-icon-size);
+  }
+
+  &__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__extra {
+    flex: 0 0 auto;
+    gap: 8px;
+    color: inherit;
+  }
+}

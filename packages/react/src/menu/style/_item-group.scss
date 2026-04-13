@@ -1,0 +1,31 @@
+@use "../../style/variables" as *;
+
+/* stylelint-disable custom-property-pattern */
+
+.#{$prefix}-menu-item-group {
+  box-sizing: border-box;
+
+  &__title {
+    padding: var(--_menu-group-title-padding);
+    color: var(--_menu-group-title-color);
+    font-size: var(--_menu-group-title-font-size);
+    font-weight: var(--_menu-group-title-font-weight);
+    letter-spacing: var(--_menu-group-title-letter-spacing);
+    cursor: default;
+
+    &:first-child {
+      margin-top: var(--_menu-group-title-first-margin-top);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+    white-space: nowrap;
+    margin: 0;
+
+    > .#{$prefix}-menu-item {
+      padding: var(--_menu-group-list-item-padding);
+    }
+  }
+}

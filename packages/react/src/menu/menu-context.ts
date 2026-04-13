@@ -1,15 +1,47 @@
 import React from 'react';
-import { MenuMode } from './types';
+import {
+  MenuMode,
+  MenuAppearance,
+  MenuSelectInfo,
+  MenuSelectionStyle,
+  MenuSize,
+  MenuVariant,
+  Theme,
+} from './types';
 
 type Props = {
-  index: string;
+  selectedKeys: string[];
+  openKeys: string[];
   mode: MenuMode;
+  theme: Theme;
+  appearance: MenuAppearance;
+  variant: MenuVariant;
+  selectionStyle: MenuSelectionStyle;
+  size: MenuSize;
+  multiple: boolean;
   inlineIndent: number;
-  onSelect?: (selectedIndex: string) => void;
+  isSelected: (key?: string) => boolean;
+  isSubMenuSelected: (key?: string) => boolean;
+  isOpen: (key?: string) => boolean;
+  handleSelect?: (selectedIndex: string) => void;
+  onSelectChange?: (selectedIndex: string, info: MenuSelectInfo) => void;
+  setOpen?: (key: string, open: boolean) => void;
+  registerKey?: (key: string, ancestorKeys: string[]) => void;
+  unregisterKey?: (key: string) => void;
 };
 
 export const MenuContext = React.createContext<Props>({
-  index: '0',
+  selectedKeys: ['0'],
+  openKeys: [],
   inlineIndent: 20,
   mode: 'horizontal',
+  theme: 'light',
+  appearance: 'navigation',
+  variant: 'outline',
+  selectionStyle: 'mixed',
+  size: 'md',
+  multiple: false,
+  isSelected: () => false,
+  isSubMenuSelected: () => false,
+  isOpen: () => false,
 });

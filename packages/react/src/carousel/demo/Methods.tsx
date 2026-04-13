@@ -1,8 +1,9 @@
 import React from 'react';
 import { Carousel, Button, Space } from '@tiny-design/react';
+import type { CarouselRef } from '@tiny-design/react';
 
 export default function MethodsDemo() {
-  const ref = React.useRef();
+  const ref = React.useRef<CarouselRef | null>(null);
   const style = {
     height: 160,
     display: 'flex',
@@ -15,9 +16,9 @@ export default function MethodsDemo() {
   return (
     <div>
       <Space style={{ marginBottom: 16 }}>
-        <Button onClick={() => ref.current.prev()}>Prev</Button>
-        <Button onClick={() => ref.current.next()}>Next</Button>
-        <Button onClick={() => ref.current.goTo(2)}>Go to Slide 3</Button>
+        <Button onClick={() => ref.current?.prev()}>Prev</Button>
+        <Button onClick={() => ref.current?.next()}>Next</Button>
+        <Button onClick={() => ref.current?.goTo(2)}>Go to Slide 3</Button>
       </Space>
       <Carousel ref={ref} dots>
         <div style={{ ...style, background: '#364d79' }}>Slide 1</div>

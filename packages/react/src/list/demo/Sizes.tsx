@@ -1,8 +1,11 @@
 import React from 'react';
 import { List, Segmented } from '@tiny-design/react';
+import type { SegmentedValue } from '@tiny-design/react';
+
+type DemoSize = 'sm' | 'md' | 'lg';
 
 export default function SizesDemo() {
-  const [size, setSize] = React.useState('md');
+  const [size, setSize] = React.useState<DemoSize>('md');
 
   const data = [
     { title: 'Build pipeline passed', desc: 'main — commit a3f28e1' },
@@ -19,7 +22,7 @@ export default function SizesDemo() {
           { label: 'Large', value: 'lg' },
         ]}
         value={size}
-        onChange={(val) => setSize(val)}
+        onChange={(val: SegmentedValue) => setSize(String(val) as DemoSize)}
         style={{ marginBottom: 16 }}
       />
       <List

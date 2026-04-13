@@ -7,12 +7,14 @@ import { LightCodeTheme, DarkCodeTheme } from '../../components/demo-block/code-
 import * as TinyDesign from '@tiny-design/react';
 import * as TinyIcons from '@tiny-design/icons';
 import {
-  Button, Flex, Tag, Switch, Badge, Avatar, Progress, Rate, Input, Tabs,
-  Slider, Tooltip, Checkbox, Radio, Keyboard, useTheme,
+  Button, Flex, Tag, Badge, Avatar, Progress, Rate, Input, Tabs,
+  Tooltip, Checkbox, Keyboard, useTheme, Card, Heading, Paragraph,
+  Statistic, Descriptions, Table, Timeline,
 } from '@tiny-design/react';
 import {
-  IconGithub, IconSearch, IconCheckmark,
-  IconColorlens, IconCode, IconPuzzle, IconAccessible,
+  IconGithub, IconSearch, IconCheckmark, IconArrowRight,
+  IconColorlens, IconStructure, IconCheckCircle, IconFire, IconStatistics,
+  IconSettings, IconCalendar, IconComment, IconCreditCard,
 } from '@tiny-design/icons';
 import { Footer } from './footer';
 import { ThemeShowcase } from './theme-showcase';
@@ -23,126 +25,268 @@ import logoSvg from '../../assets/logo/logo.svg';
 
 const { repository } = pkg;
 
-// ─── Component Showcase Section ───
-const ComponentShowcase = (): React.ReactElement => {
-  const [switchVal, setSwitchVal] = useState(true);
-  const [sliderVal, setSliderVal] = useState(40);
+const productRows = [
+  { key: '1', name: 'Acme Inc.', owner: 'Design', status: <Tag color="success">Healthy</Tag> },
+  { key: '2', name: 'Northstar', owner: 'Growth', status: <Tag color="warning">Review</Tag> },
+  { key: '3', name: 'Helio', owner: 'Ops', status: <Tag color="info">Live</Tag> },
+];
+
+const categoryGroups = [
+  { title: 'Foundation', items: 'Button, Icon, Typography, Link' },
+  { title: 'Layout', items: 'Flex, Grid, Split, Space' },
+  { title: 'Navigation', items: 'Tabs, Menu, Breadcrumb, Pagination' },
+  { title: 'Forms', items: 'Input, Select, Date Picker, Checkbox' },
+  { title: 'Data Display', items: 'Card, Table, Timeline, Charts' },
+  { title: 'Feedback', items: 'Modal, Notification, Tooltip, Drawer' },
+];
+
+const activityItems = [
+  { key: '1', color: 'var(--ty-color-success)', title: 'Theme tokens synced', desc: 'Studio Bloom updated across docs and dashboard previews.' },
+  { key: '2', color: 'var(--ty-color-info)', title: 'Checkout flow reviewed', desc: 'Input, validation, and action states passed the latest visual pass.' },
+  { key: '3', color: 'var(--ty-color-primary)', title: 'Release candidate prepared', desc: '86+ components bundled for the next internal release.' },
+];
+
+const ProductPreview = ({ s }: { s: any }): React.ReactElement => {
   const [rateVal, setRateVal] = useState(4);
 
   return (
-    <div className="home__showcase-grid">
-      {/* Card 1: Buttons */}
-      <div className="home__showcase-card home__showcase-card_wide">
-        <span className="home__showcase-label">Buttons</span>
-        <Flex gap="sm" wrap="wrap">
-          <Button btnType="primary">Primary</Button>
-          <Button btnType="outline">Outline</Button>
-          <Button btnType="default">Default</Button>
-          <Button btnType="ghost">Ghost</Button>
-          <Button btnType="success">Success</Button>
-          <Button btnType="danger">Danger</Button>
-        </Flex>
+    <div className="home__product-shell">
+      <div className="home__product-sidebar">
+        <div className="home__product-brand">
+          <img src={logoSvg} alt="logo" width={28} height={28} />
+          <div>
+            <strong>Tiny UI</strong>
+            <span>{s.home.preview.workspace}</span>
+          </div>
+        </div>
+        <div className="home__product-nav">
+          <button className="home__product-nav-item home__product-nav-item_active">
+            <IconStatistics size={16} />
+            <span>{s.home.preview.overview}</span>
+          </button>
+          <button className="home__product-nav-item">
+            <IconStructure size={16} />
+            <span>{s.home.preview.components}</span>
+          </button>
+          <button className="home__product-nav-item">
+            <IconSettings size={16} />
+            <span>{s.home.preview.settings}</span>
+          </button>
+        </div>
+        <Card className="home__product-sidebar-card" variant="filled">
+          <Card.Content>
+            <div className="home__product-sidebar-kicker">{s.home.preview.activeTheme}</div>
+            <div className="home__product-swatches">
+              <span className="home__product-swatch home__product-swatch_primary" />
+              <span className="home__product-swatch home__product-swatch_info" />
+              <span className="home__product-swatch home__product-swatch_success" />
+              <span className="home__product-swatch home__product-swatch_warning" />
+            </div>
+            <Descriptions className="home__product-descriptions" column={1} size="sm">
+              <Descriptions.Item label={s.home.preview.themeLabel}>{s.home.preview.themeValue}</Descriptions.Item>
+              <Descriptions.Item label={s.home.preview.tokensLabel}>{s.home.preview.tokensValue}</Descriptions.Item>
+            </Descriptions>
+            <Paragraph>{s.home.preview.themeHint}</Paragraph>
+            <Button btnType="outline" size="sm">{s.home.preview.editTheme}</Button>
+          </Card.Content>
+        </Card>
       </div>
 
-      {/* Card 2: Tags */}
-      <div className="home__showcase-card">
-        <span className="home__showcase-label">Tags</span>
-        <Flex gap="sm" wrap="wrap">
-          <Tag>Default</Tag>
-          <Tag color="#f50">#f50</Tag>
-          <Tag color="success">Success</Tag>
-          <Tag color="warning">Warning</Tag>
-          <Tag color="danger">Danger</Tag>
-          <Tag color="info">Info</Tag>
-        </Flex>
-      </div>
-
-      {/* Card 3: Toggle & Slider */}
-      <div className="home__showcase-card">
-        <span className="home__showcase-label">Controls</span>
-        <Flex vertical gap="md">
-          <Flex align="center" gap="sm">
-            <Switch checked={switchVal} onChange={setSwitchVal} />
-            <span style={{ fontSize: 13, color: 'var(--ty-color-text-secondary)' }}>
-              {switchVal ? 'Enabled' : 'Disabled'}
-            </span>
+      <div className="home__product-main">
+        <div className="home__product-topbar">
+          <Input
+            placeholder={s.home.preview.search}
+            prefix={<IconSearch size={16} />}
+            className="home__product-search"
+          />
+          <Flex gap="sm" align="center">
+            <Badge count={3}>
+              <Button btnType="ghost" icon={<IconComment size={16} />} />
+            </Badge>
+            <Avatar className="home__avatar home__avatar_primary">DW</Avatar>
           </Flex>
-          <Slider value={sliderVal} onChange={(v) => setSliderVal(v as number)} />
-        </Flex>
-      </div>
+        </div>
 
-      {/* Card 4: Avatars & Badge */}
-      <div className="home__showcase-card">
-        <span className="home__showcase-label">Avatars</span>
-        <Flex align="center" gap="md">
-          <Avatar.Group>
-            <Avatar style={{ background: '#7c3aed' }}>A</Avatar>
-            <Avatar style={{ background: '#2563eb' }}>B</Avatar>
-            <Avatar style={{ background: '#059669' }}>C</Avatar>
-            <Avatar style={{ background: '#d97706' }}>D</Avatar>
-            <Avatar style={{ background: '#dc2626' }}>E</Avatar>
-          </Avatar.Group>
-          <Badge count={5}>
-            <Avatar shape="square" style={{ background: 'var(--ty-color-primary)' }}>U</Avatar>
-          </Badge>
-        </Flex>
-      </div>
+        <div className="home__product-metrics">
+          <Card className="home__product-metric" variant="filled">
+            <Card.Content>
+              <Statistic title={s.home.preview.metrics.velocity} value="24" suffix={s.home.preview.metrics.velocitySuffix} />
+              <Progress.Bar percent={78} />
+            </Card.Content>
+          </Card>
+          <Card className="home__product-metric" variant="filled">
+            <Card.Content>
+              <Statistic title={s.home.preview.metrics.adoption} value={83} suffix="%" />
+              <div className="home__product-pills">
+                <Tag color="success">Stable</Tag>
+                <Tag color="info">Typed</Tag>
+              </div>
+            </Card.Content>
+          </Card>
+          <Card className="home__product-metric" variant="filled">
+            <Card.Content>
+              <Statistic title={s.home.preview.metrics.satisfaction} value="4.8/5" />
+              <Rate value={rateVal} onChange={setRateVal} />
+            </Card.Content>
+          </Card>
+        </div>
 
-      {/* Card 5: Input */}
-      <div className="home__showcase-card">
-        <span className="home__showcase-label">Input</span>
-        <Input placeholder="Search components..." prefix={<IconSearch size={16} />} />
-      </div>
+        <div className="home__product-panels">
+          <Card
+            className="home__product-panel home__product-panel_wide"
+            title={s.home.preview.pipeline}
+            extra={<Tag color="info">{s.home.preview.live}</Tag>}
+            variant="outlined">
+            <Card.Content>
+              <Tabs
+                defaultActiveKey="1"
+                size="sm"
+                items={[
+                  { key: '1', label: s.home.preview.overview },
+                  { key: '2', label: s.home.preview.analytics },
+                  { key: '3', label: s.home.preview.settings },
+                ]}
+              />
+              <Table
+                size="sm"
+                bordered
+                columns={[
+                  { title: s.home.preview.table.project, dataIndex: 'name', key: 'name' },
+                  { title: s.home.preview.table.owner, dataIndex: 'owner', key: 'owner' },
+                  { title: s.home.preview.table.status, dataIndex: 'status', key: 'status' },
+                ]}
+                dataSource={productRows}
+                pagination={false}
+              />
+            </Card.Content>
+          </Card>
 
-      {/* Card 6: Progress & Rate */}
-      <div className="home__showcase-card">
-        <span className="home__showcase-label">Feedback</span>
-        <Flex vertical gap="sm">
-          <Progress.Bar percent={72} />
-          <Rate value={rateVal} onChange={setRateVal} />
-        </Flex>
-      </div>
+          <Card
+            className="home__product-panel"
+            title={s.home.preview.checkout}
+            extra={<IconCreditCard size={18} color="var(--ty-color-primary)" />}
+            variant="outlined">
+            <Card.Content>
+              <Flex vertical gap="sm">
+                <Input placeholder={s.home.preview.form.name} />
+                <Input placeholder={s.home.preview.form.email} />
+                <Checkbox defaultChecked>{s.home.preview.form.updates}</Checkbox>
+                <Button btnType="primary">{s.home.preview.form.submit}</Button>
+              </Flex>
+            </Card.Content>
+          </Card>
+        </div>
 
-      {/* Card 7: Tabs */}
-      <div className="home__showcase-card home__showcase-card_wide">
-        <span className="home__showcase-label">Tabs</span>
-        <Tabs
-          defaultActiveKey="1"
-          size="sm"
-          items={[
-            { key: '1', label: 'Overview' },
-            { key: '2', label: 'Analytics' },
-            { key: '3', label: 'Settings' },
-          ]}
-        />
-      </div>
-
-      {/* Card 8: Checkbox & Radio */}
-      <div className="home__showcase-card">
-        <span className="home__showcase-label">Selection</span>
-        <Flex vertical gap="sm">
-          <Checkbox defaultChecked>Remember me</Checkbox>
-          <Radio.Group defaultValue="a">
-            <Radio value="a">Option A</Radio>
-            <Radio value="b">Option B</Radio>
-          </Radio.Group>
-        </Flex>
-      </div>
-
-      {/* Card 9: Keyboard & Tooltip */}
-      <div className="home__showcase-card">
-        <span className="home__showcase-label">Misc</span>
-        <Flex gap="sm" wrap="wrap" align="center">
-          <Keyboard>⌘</Keyboard>
-          <Keyboard>K</Keyboard>
-          <Tooltip title="Hello from Tiny UI!">
-            <Button size="sm" btnType="outline">Hover me</Button>
-          </Tooltip>
-        </Flex>
+        <Card
+          className="home__product-panel home__product-panel_activity"
+          title={s.home.preview.activity}
+          extra={<Tag color="success">{s.home.preview.activityTag}</Tag>}
+          variant="outlined">
+          <Card.Content>
+            <Timeline>
+              {activityItems.map((item) => (
+                <Timeline.Item key={item.key} dotStyle={{ borderColor: item.color }}>
+                  <div className="home__product-activity-item">
+                    <strong>{item.title}</strong>
+                    <span>{item.desc}</span>
+                  </div>
+                </Timeline.Item>
+              ))}
+            </Timeline>
+          </Card.Content>
+        </Card>
       </div>
     </div>
   );
 };
+
+const ScenarioShowcase = ({ s }: { s: any }): React.ReactElement => (
+  <div className="home__scenario-grid">
+    <Card className="home__scenario-card" hoverable variant="outlined">
+      <Card.Content>
+        <div className="home__scenario-copy">
+          <Tag color="info" variant="soft" className="home__scenario-kicker">{s.home.scenarios.dashboard.kicker}</Tag>
+          <Heading level={3} className="home__scenario-title">{s.home.scenarios.dashboard.title}</Heading>
+          <Paragraph className="home__scenario-desc">{s.home.scenarios.dashboard.desc}</Paragraph>
+        </div>
+        <div className="home__scenario-preview">
+          <Statistic title="MRR" value={128} prefix="$" suffix="K" />
+          <div className="home__scenario-bars">
+            <span style={{ height: '42%' }} />
+            <span style={{ height: '66%' }} />
+            <span style={{ height: '58%' }} />
+            <span style={{ height: '82%' }} />
+            <span style={{ height: '71%' }} />
+          </div>
+        </div>
+      </Card.Content>
+    </Card>
+
+    <Card className="home__scenario-card" hoverable variant="outlined">
+      <Card.Content>
+        <div className="home__scenario-copy">
+          <Tag color="warning" variant="soft" className="home__scenario-kicker">{s.home.scenarios.forms.kicker}</Tag>
+          <Heading level={3} className="home__scenario-title">{s.home.scenarios.forms.title}</Heading>
+          <Paragraph className="home__scenario-desc">{s.home.scenarios.forms.desc}</Paragraph>
+        </div>
+        <div className="home__scenario-preview">
+          <Input placeholder="Workspace name" />
+          <Input placeholder="team@company.com" prefix={<IconCalendar size={16} />} />
+          <Flex gap="sm" wrap="wrap">
+            <Tag color="success">Validated</Tag>
+            <Tag color="info">Typed</Tag>
+            <Tag color="warning">Draft</Tag>
+          </Flex>
+        </div>
+      </Card.Content>
+    </Card>
+
+    <Card className="home__scenario-card" hoverable variant="outlined">
+      <Card.Content>
+        <div className="home__scenario-copy">
+          <Tag color="success" variant="soft" className="home__scenario-kicker">{s.home.scenarios.content.kicker}</Tag>
+          <Heading level={3} className="home__scenario-title">{s.home.scenarios.content.title}</Heading>
+          <Paragraph className="home__scenario-desc">{s.home.scenarios.content.desc}</Paragraph>
+        </div>
+        <div className="home__scenario-preview">
+          <Flex align="center" justify="space-between">
+            <Avatar.Group>
+              <Avatar className="home__avatar home__avatar_primary">A</Avatar>
+              <Avatar className="home__avatar home__avatar_info">B</Avatar>
+              <Avatar className="home__avatar home__avatar_success">C</Avatar>
+            </Avatar.Group>
+            <Tooltip title="Fast keyboard flows">
+              <Button btnType="outline" size="sm">
+                <Keyboard>⌘</Keyboard>
+                <span style={{ marginLeft: 8 }}>K</span>
+              </Button>
+            </Tooltip>
+          </Flex>
+          <Progress.Bar percent={72} />
+        </div>
+      </Card.Content>
+    </Card>
+  </div>
+);
+
+const CategoryCoverage = ({ s }: { s: any }): React.ReactElement => (
+  <div className="home__coverage-grid">
+    {categoryGroups.map((group) => (
+      <Card key={group.title} className="home__coverage-card" variant="filled">
+        <Card.Content>
+          <Heading level={4} className="home__coverage-title">{group.title}</Heading>
+          <Paragraph className="home__coverage-desc">{group.items}</Paragraph>
+        </Card.Content>
+      </Card>
+    ))}
+    <div className="home__coverage-summary">
+      <span>{s.home.coverage.summary}</span>
+      <Button btnType="link" onClick={() => window.location.assign('/components')}>
+        {s.home.coverage.cta} <IconArrowRight size={16} />
+      </Button>
+    </div>
+  </div>
+);
 
 // ─── Live Code Example Section ───
 const INITIAL_CODE = `import { Button, Flex, Tag } from '@tiny-design/react';
@@ -315,11 +459,11 @@ const HomePage = (): React.ReactElement => {
         <div className="home__hero-inner">
           <div className="home__hero-badge">
             <img src={logoSvg} alt="logo" width={20} height={20} />
-            <span>Tiny UI for React</span>
+            <span>{s.home.badge}</span>
           </div>
           <h1 className="home__hero-heading">
-            Build beautiful interfaces
-            <span className="home__hero-heading-accent"> with less effort</span>
+            {s.home.heroTitle}
+            <span className="home__hero-heading-accent">{s.home.heroAccent}</span>
           </h1>
           <p className="home__hero-subtitle">{s.home.subtitle}</p>
           <Flex gap="sm" className="home__hero-actions">
@@ -329,6 +473,13 @@ const HomePage = (): React.ReactElement => {
               size="lg"
               onClick={() => navigate('/guide')}>
               {s.home.getStarted}
+            </Button>
+            <Button
+              className="home__btn-secondary"
+              size="lg"
+              btnType="outline"
+              onClick={() => navigate('/components')}>
+              {s.home.browseComponents}
             </Button>
             <Button
               className="home__btn-secondary"
@@ -347,16 +498,17 @@ const HomePage = (): React.ReactElement => {
             </div>
           ))}
         </div>
+        <ProductPreview s={s} />
       </section>
 
-      {/* ─── Component Showcase ─── */}
+      {/* ─── Scenario Showcase ─── */}
       <section className="home__section">
         <div className="home__section-inner">
           <div className="home__section-header">
             <h2 className="home__section-title">{s.home.showcase.title}</h2>
             <p className="home__section-subtitle">{s.home.showcase.subtitle}</p>
           </div>
-          <ComponentShowcase />
+          <ScenarioShowcase s={s} />
         </div>
       </section>
 
@@ -379,29 +531,40 @@ const HomePage = (): React.ReactElement => {
         <div className="home__section-inner">
           <div className="home__section-header">
             <h2 className="home__section-title">{s.home.designPrinciple}</h2>
+            <p className="home__section-subtitle">{s.home.designPrincipleDesc}</p>
           </div>
           <div className="home__features-row">
             <FeatureCard
-              icon={<IconColorlens size={28} />}
+              icon={<IconFire size={28} />}
               title={s.home.features.themeable}
               desc={s.home.features.themeableDesc}
             />
             <FeatureCard
-              icon={<IconCode size={28} />}
+              icon={<IconColorlens size={28} />}
               title={s.home.features.elegant}
               desc={s.home.features.elegantDesc}
             />
             <FeatureCard
-              icon={<IconPuzzle size={28} />}
+              icon={<IconStructure size={28} />}
               title={s.home.features.composable}
               desc={s.home.features.composableDesc}
             />
             <FeatureCard
-              icon={<IconAccessible size={28} />}
+              icon={<IconCheckCircle size={28} />}
               title={s.home.features.accessible}
               desc={s.home.features.accessibleDesc}
             />
           </div>
+        </div>
+      </section>
+
+      <section className="home__section">
+        <div className="home__section-inner">
+          <div className="home__section-header">
+            <h2 className="home__section-title">{s.home.coverage.title}</h2>
+            <p className="home__section-subtitle">{s.home.coverage.subtitle}</p>
+          </div>
+          <CategoryCoverage s={s} />
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { ChartConfig } from './types';
 
 const THEMES = { light: '', dark: 'html[data-tiny-theme=dark]' } as const;
+const SAFE_COLOR_KEY = /^[A-Za-z0-9_-]+$/;
 
 /**
  * Generates an inline <style> element for chart color tokens that need
@@ -18,7 +19,9 @@ export function ChartStyle({
 }) {
   const colorConfig = useMemo(
     () =>
-      Object.entries(config).filter(([, cfg]) => cfg.theme || cfg.color),
+      Object.entries(config).filter(
+        ([dataKey, cfg]) => SAFE_COLOR_KEY.test(dataKey) && (cfg.theme || cfg.color)
+      ),
     [config]
   );
 

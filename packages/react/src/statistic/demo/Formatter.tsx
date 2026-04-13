@@ -13,9 +13,10 @@ export default function FormatterDemo() {
         }}
       />
       <Statistic
-        title="Score"
-        value={9.8}
-        formatter={(val) => <span style={{ color: '#52c41a' }}>{val} / 10</span>}
+        title="Conversion"
+        value={0.2386}
+        precision={2}
+        formatter={(_, info) => <span style={{ color: '#1677ff' }}>{info.formattedValue}%</span>}
       />
     </Flex>
   );

@@ -128,6 +128,7 @@ const ScrollNumber = React.forwardRef<HTMLDivElement, ScrollNumberProps>((props,
     groupSeparator = ',',
     prefix,
     suffix,
+    valueClassName,
     valueStyle,
     prefixCls: customisedCls,
     className,
@@ -165,7 +166,7 @@ const ScrollNumber = React.forwardRef<HTMLDivElement, ScrollNumberProps>((props,
   return (
     <div {...otherProps} ref={ref} className={cls} style={style}>
       {title && <div className={`${prefixCls}__title`}>{title}</div>}
-      <div className={`${prefixCls}__content`} style={valueStyle}>
+      <div className={classNames(`${prefixCls}__content`, valueClassName)} style={valueStyle}>
         {prefix && <span className={`${prefixCls}__prefix`}>{prefix}</span>}
         <span className={`${prefixCls}__value`} aria-hidden="true">
           {chars.map((char, index) => {

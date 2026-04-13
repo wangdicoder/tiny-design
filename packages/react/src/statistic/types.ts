@@ -1,6 +1,14 @@
 import React from 'react';
 import { BaseProps } from '../_utils/props';
 
+export interface StatisticFormatterInfo {
+  formattedValue: string;
+  groupSeparator: string;
+  decimalSeparator: string;
+  precision?: number;
+  isNumeric: boolean;
+}
+
 export interface StatisticProps
   extends BaseProps,
     Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title' | 'prefix'> {
@@ -10,6 +18,9 @@ export interface StatisticProps
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   groupSeparator?: string;
+  decimalSeparator?: string;
   valueStyle?: React.CSSProperties;
-  formatter?: (value: number | string) => React.ReactNode;
+  valueClassName?: string;
+  empty?: React.ReactNode;
+  formatter?: (value: number | string, info: StatisticFormatterInfo) => React.ReactNode;
 }

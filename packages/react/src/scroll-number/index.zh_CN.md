@@ -58,7 +58,7 @@ import { ScrollNumber } from 'tiny-design';
 
 ### 自定义样式
 
-通过 `valueStyle` 和 `groupSeparator` 自定义字号、颜色和分隔符。
+通过 `valueStyle`、`valueClassName` 和 `groupSeparator` 自定义字号、颜色、类名和分隔符。
 
 <DemoBlock component={CustomStyleDemo} source={CustomStyleSource} />
 
@@ -77,4 +77,5 @@ import { ScrollNumber } from 'tiny-design';
 | groupSeparator | 千位分隔符 | `string` | `','` |
 | prefix | 数值前缀内容 | `ReactNode` | - |
 | suffix | 数值后缀内容 | `ReactNode` | - |
+| valueClassName | 数值容器的自定义类名 | `string` | - |
 | valueStyle | 数值容器的自定义样式 | `CSSProperties` | - |

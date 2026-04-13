@@ -27,6 +27,20 @@ import CloseSource from './demo/Close.tsx?raw';
 import { Dropdown } from 'tiny-design';
 ```
 
+## 推荐模式
+
+`Dropdown` 负责触发、弹层定位和显隐控制，`Menu` 负责菜单结构。
+
+当 `overlay` 传入 `Menu` 时，Dropdown 会将其规范为下拉菜单场景：
+
+- `mode` 会被规范为 `vertical`
+- `appearance` 会被规范为 `dropdown`
+- 不展示选中态视觉，菜单项仅保留 hover 反馈
+
+这样可以保证下拉菜单的视觉稳定，不会把导航型 `Menu` 的变体直接带进 popup。如果你的目标是页面导航，请直接使用 `Menu appearance="navigation"`，而不是用 `Dropdown` 包裹。
+
+`Dropdown` 复用了 `Menu` 的结构和子菜单行为，但保留了自己独立的弹层样式。调整 dropdown 专属主题变量时，不会再影响 `Menu` 的导航态或 popup 默认样式。
+
 ## 代码示例
 
 <Layout>
@@ -67,6 +81,7 @@ import { Dropdown } from 'tiny-design';
 <DemoBlock component={ArrowDemo} source={ArrowSource} />
 
     </Demo>
+
   </Column>
   <Column>
     <Demo>
@@ -96,17 +111,18 @@ import { Dropdown } from 'tiny-design';
 <DemoBlock component={CloseDemo} source={CloseSource} />
 
     </Demo>
+
   </Column>
 </Layout>
 
 ## Props
 
-| 属性          | 说明                           | 类型                          | 默认值   |
-| ----------------- | ------------------------------------- | ----------------------------- | --------- |
-| disabled          | 是否禁用下拉菜单 | boolean                       | false     |
-| trigger           | 触发方式                          | enum: `click` &#124; `hover`  | `hover`   |
-| placement         | 弹出菜单的位置               | enum: `top-start` &#124; `top` &#124; `end` &#124; `bottom-start` &#124; `bottom` &#124; `bottom-end` | `bottom-start`    |
-| overlay           | 下拉菜单                         | [Menu](../components/menu)      | -         |
-| visible           | 下拉菜单是否可见  | boolean                       | -         |
-| arrow             | 是否显示下拉箭头            | boolean                       | false     |
-| onVisibleChange   | 可见状态变化时的回调        | (visible: boolean) => void    | -         |
+| 属性            | 说明                                                                                | 类型                                                                                                  | 默认值         |
+| --------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------- |
+| disabled        | 是否禁用下拉菜单                                                                    | boolean                                                                                               | false          |
+| trigger         | 触发方式                                                                            | enum: `click` &#124; `hover`                                                                          | `hover`        |
+| placement       | 弹出菜单的位置                                                                      | enum: `top-start` &#124; `top` &#124; `end` &#124; `bottom-start` &#124; `bottom` &#124; `bottom-end` | `bottom-start` |
+| overlay         | 弹层内容。推荐传入 [Menu](../components/menu)；传入后会自动规范为 dropdown 菜单场景 | [Menu](../components/menu) \| ReactNode                                                               | -              |
+| visible         | 下拉菜单是否可见                                                                    | boolean                                                                                               | -              |
+| arrow           | 是否显示下拉箭头                                                                    | boolean                                                                                               | false          |
+| onVisibleChange | 可见状态变化时的回调                                                                | (visible: boolean) => void                                                                            | -              |

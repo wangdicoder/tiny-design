@@ -1,12 +1,14 @@
 import React from 'react';
 import { Descriptions, Radio } from '@tiny-design/react';
 
+type DemoSize = 'sm' | 'md' | 'lg';
+
 export default function SizeDemo() {
-  const [size, setSize] = React.useState('md');
+  const [size, setSize] = React.useState<DemoSize>('md');
 
   return (
     <div>
-      <Radio.Group onChange={(val) => setSize(val)} value={size}>
+      <Radio.Group onChange={(val) => setSize(val as DemoSize)} value={size}>
         <Radio value="sm">Small</Radio>
         <Radio value="md">Medium</Radio>
         <Radio value="lg">Large</Radio>

@@ -7,11 +7,11 @@ import StyleSource from './demo/Style.tsx?raw';
 
 # Statistic 统计数值
 
-展示统计数值，支持格式化数值、前后缀和自定义格式。
+展示关键统计数值，支持数值格式化、前后缀和自定义渲染。
 
 ## 使用场景
 
-用于仪表盘和数据密集页面，突出展示关键绩效指标（KPI）。
+用于仪表盘和数据密集页面，突出展示 KPI、财务数字和进度指标。
 
 ## 使用方式
 
@@ -27,7 +27,7 @@ import { Statistic } from 'tiny-design';
 
 ### 基本用法
 
-展示带标题和格式化数值的统计组件。
+展示带标题、数值格式化和前后缀的统计组件。
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
@@ -36,7 +36,7 @@ import { Statistic } from 'tiny-design';
 
 ### 自定义格式化
 
-使用 `formatter` 来自定义数值显示。
+使用 `formatter` 自定义数值显示，同时复用内置格式化结果。
 
 <DemoBlock component={FormatterDemo} source={FormatterSource} />
 
@@ -47,7 +47,7 @@ import { Statistic } from 'tiny-design';
 
 ### 数值样式
 
-通过 `valueStyle` 和 `groupSeparator` 自定义数值外观。
+通过分隔符、空态占位和样式来自定义数值外观。
 
 <DemoBlock component={StyleDemo} source={StyleSource} />
 
@@ -65,5 +65,10 @@ import { Statistic } from 'tiny-design';
 | prefix         | 数值前缀                 | ReactNode                                 |         |
 | suffix         | 数值后缀                 | ReactNode                                 |         |
 | groupSeparator | 千分位分隔符             | string                                    | ,       |
+| decimalSeparator | 小数分隔符             | string                                    | .       |
 | valueStyle     | 数值样式                 | CSSProperties                             |         |
-| formatter      | 自定义格式化函数         | (value: number \| string) => ReactNode    |         |
+| valueClassName | 数值容器自定义类名       | string                                    |         |
+| empty          | 空值或非法数值占位内容   | ReactNode                                 | --      |
+| formatter      | 自定义格式化函数         | (value: number \| string, info: StatisticFormatterInfo) => ReactNode |         |
+
+`formatter` 的第二个参数会提供 `formattedValue`、`groupSeparator`、`decimalSeparator`、`precision` 和 `isNumeric`，方便在自定义渲染时复用组件内置格式化逻辑。

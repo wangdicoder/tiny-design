@@ -1,32 +1,33 @@
 import React from 'react';
-import { Menu } from '@tiny-design/react';
+import { Menu, Tag } from '@tiny-design/react';
 
 export default function HorizontalDemo() {
   return (
-    <Menu>
-      <Menu.Item>Navigation One</Menu.Item>
-      <Menu.Item>Navigation Two</Menu.Item>
-      <Menu.Item disabled>Navigation Three</Menu.Item>
-      <Menu.SubMenu title="Simple SubMenu">
-        <Menu.Item>Menu Item 1</Menu.Item>
-        <Menu.Item disabled>Menu Item 2</Menu.Item>
-        <Menu.Item>Menu Item 3</Menu.Item>
-        <Menu.Item>Menu Item 4</Menu.Item>
-        <Menu.SubMenu title="Second Simple SubMenu">
-          <Menu.Item>Menu Item 5</Menu.Item>
-          <Menu.Item>Menu Item 6</Menu.Item>
-          <Menu.Item>Menu Item 7</Menu.Item>
+    <Menu defaultSelectedKeys={['projects']} variant="outline" selectionStyle="mixed">
+      <Menu.Item index="overview">Overview</Menu.Item>
+      <Menu.Item index="projects" extra={<Tag variant="soft" color="info">12</Tag>}>
+        Projects
+      </Menu.Item>
+      <Menu.Item index="insights">Insights</Menu.Item>
+      <Menu.SubMenu index="resources" title="Resources" extra={<Tag variant="outlined">New</Tag>}>
+        <Menu.Item index="resources-docs">Docs</Menu.Item>
+        <Menu.Item index="resources-guides">Guides</Menu.Item>
+        <Menu.Item index="resources-api">API Reference</Menu.Item>
+        <Menu.SubMenu index="resources-community" title="Community">
+          <Menu.Item index="resources-community-showcase">Showcase</Menu.Item>
+          <Menu.Item index="resources-community-discord">Discord</Menu.Item>
+          <Menu.Item index="resources-community-roadmap">Roadmap</Menu.Item>
         </Menu.SubMenu>
       </Menu.SubMenu>
-      <Menu.SubMenu title="Submenu with ItemGroup">
+      <Menu.SubMenu index="settings" title="Settings">
         <Menu.ItemGroup title="Group 1">
-          <Menu.Item>Item group 1 item 1</Menu.Item>
-          <Menu.Item>Item group 1 item 2</Menu.Item>
+          <Menu.Item index="settings-profile">Profile</Menu.Item>
+          <Menu.Item index="settings-billing">Billing</Menu.Item>
         </Menu.ItemGroup>
         <Menu.ItemGroup title="Group 2">
-          <Menu.Item>Item group 2 item 1</Menu.Item>
-          <Menu.Item disabled>Item group 2 item 2</Menu.Item>
-          <Menu.Item>Item group 2 item 3</Menu.Item>
+          <Menu.Item index="settings-notifications">Notifications</Menu.Item>
+          <Menu.Item index="settings-security" disabled>Security</Menu.Item>
+          <Menu.Item index="settings-team">Team</Menu.Item>
         </Menu.ItemGroup>
       </Menu.SubMenu>
     </Menu>

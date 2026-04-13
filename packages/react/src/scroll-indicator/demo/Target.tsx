@@ -6,7 +6,7 @@ export default function TargetDemo() {
 
   return (
     <>
-      <ScrollIndicator fixed={false} target={() => targetRef && targetRef.current}/>
+      <ScrollIndicator fixed={false} target={() => targetRef.current ?? window} />
       <div ref={targetRef} style={{overflowY: 'scroll', height: 200}}>
         <p><b>Scroll up to detect the change of the indicator.</b></p>
 

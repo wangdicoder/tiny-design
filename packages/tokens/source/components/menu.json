@@ -1,41 +1,84 @@
 {
   "menu.dark-bg": {
-    "$value": "#001529",
+    "$value": "#1f1f1f",
     "$type": "color",
     "description": "Menu dark bg."
   },
   "menu.dark-border": {
-    "$value": "#001529",
+    "$value": "#303030",
     "$type": "color",
     "description": "Menu dark border."
   },
   "menu.dark-color": {
-    "$value": "rgba(255, 255, 255, 0.65)",
+    "$value": "rgba(255, 255, 255, 0.72)",
     "$type": "color",
     "description": "Menu dark color."
+  },
+  "menu.dark-color-hover": {
+    "$value": "rgba(255, 255, 255, 0.85)",
+    "$type": "color",
+    "description": "Menu dark hover color."
+  },
+  "menu.dark-color-selected": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "Menu dark selected color.",
+    "fallback": "--ty-color-primary-hover"
+  },
+  "menu.dark-color-disabled": {
+    "$value": "rgba(255, 255, 255, 0.25)",
+    "$type": "color",
+    "description": "Menu dark disabled color."
   },
   "menu.divider-color": {
     "$value": "rgba(0, 0, 0, 0.1)",
     "$type": "color",
     "description": "Menu divider color."
   },
-  "menu.item-color-active": {
-    "$value": "{color-primary}",
+  "menu.border": {
+    "$value": "{color-border}",
     "$type": "color",
-    "description": "Menu active item color.",
-    "fallback": "--ty-color-primary"
+    "description": "Menu border color.",
+    "fallback": "--ty-color-border"
   },
-  "menu.item-color-hover": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Menu item hover color.",
-    "fallback": "--ty-color-primary"
-  },
-  "menu.item-color-disabled": {
+  "menu.color": {
     "$value": "{color-text-secondary}",
     "$type": "color",
-    "description": "Menu disabled item color.",
+    "description": "Menu text color.",
     "fallback": "--ty-color-text-secondary"
+  },
+  "menu.item-color-danger": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "Menu danger item color.",
+    "fallback": "--ty-color-danger"
+  },
+  "menu.popup-bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Popup submenu background color.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "menu.popup-border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "Popup submenu border color.",
+    "fallback": "--ty-color-border"
+  },
+  "menu.popup-shadow": {
+    "$value": "{shadow-popup}",
+    "$type": "shadow",
+    "description": "Popup submenu shadow."
+  },
+  "menu.dark-popup-bg": {
+    "$value": "#1f1f1f",
+    "$type": "color",
+    "description": "Popup submenu background color in dark menu."
+  },
+  "menu.dark-popup-border": {
+    "$value": "#303030",
+    "$type": "color",
+    "description": "Popup submenu border color in dark menu."
   },
   "menu.group-title-color": {
     "$value": "{color-text-tertiary}",
@@ -43,35 +86,82 @@
     "description": "Menu group title color.",
     "fallback": "--ty-color-text-tertiary"
   },
-  "menu.item-padding-vertical": {
-    "$value": "15px 20px",
-    "$type": "string",
-    "description": "Menu item padding vertical."
-  },
-  "menu.horizontal-item-height": {
-    "$value": "48px",
+  "menu.item-radius": {
+    "$value": "{border-radius}",
     "$type": "dimension",
-    "description": "Horizontal menu item height."
+    "description": "Menu item border radius.",
+    "fallback": "--ty-border-radius"
   },
-  "menu.horizontal-item-padding": {
-    "$value": "0 15px",
-    "$type": "string",
-    "description": "Horizontal menu item padding."
-  },
-  "menu.horizontal-item-margin": {
-    "$value": "0 5px",
-    "$type": "string",
-    "description": "Horizontal menu item margin."
-  },
-  "menu.horizontal-active-border-width": {
-    "$value": "2px",
+  "menu.item-gap": {
+    "$value": "10px",
     "$type": "dimension",
-    "description": "Horizontal menu active indicator width."
+    "description": "Menu item gap."
   },
-  "menu.inline-item-margin": {
-    "$value": "5px 0",
-    "$type": "string",
-    "description": "Inline and vertical menu item margin."
+  "menu.item-padding-inline": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Menu item horizontal padding."
+  },
+  "menu.item-padding-block": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Menu item vertical padding."
+  },
+  "menu.item-min-height": {
+    "$value": "40px",
+    "$type": "dimension",
+    "description": "Menu item minimum height."
+  },
+  "menu.icon-size": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Menu icon size."
+  },
+  "menu.indicator-width": {
+    "$value": "3px",
+    "$type": "dimension",
+    "description": "Menu indicator width."
+  },
+  "menu.indicator-radius": {
+    "$value": "999px",
+    "$type": "dimension",
+    "description": "Menu indicator radius."
+  },
+  "menu.indicator-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Menu indicator color.",
+    "fallback": "--ty-color-primary"
+  },
+  "menu.item-bg-hover": {
+    "$value": "color-mix(in srgb, var(--ty-color-primary) 6%, transparent)",
+    "$type": "color",
+    "description": "Menu item hover background."
+  },
+  "menu.item-bg-active": {
+    "$value": "color-mix(in srgb, var(--ty-color-primary) 10%, transparent)",
+    "$type": "color",
+    "description": "Menu item active background."
+  },
+  "menu.item-bg-selected": {
+    "$value": "color-mix(in srgb, var(--ty-color-primary) 8%, transparent)",
+    "$type": "color",
+    "description": "Menu item selected background."
+  },
+  "menu.item-border-hover": {
+    "$value": "color-mix(in srgb, var(--ty-color-primary) 20%, transparent)",
+    "$type": "color",
+    "description": "Menu item hover border."
+  },
+  "menu.item-border-selected": {
+    "$value": "color-mix(in srgb, var(--ty-color-primary) 48%, transparent)",
+    "$type": "color",
+    "description": "Menu item selected border."
+  },
+  "menu.item-font-weight": {
+    "$value": "500",
+    "$type": "number",
+    "description": "Menu selected item font weight."
   },
   "menu.sub-list-popup-min-width": {
     "$value": "160px",
@@ -84,14 +174,46 @@
     "description": "Menu sub arrow inline start margin."
   },
   "menu.group-title-padding": {
-    "$value": "10px 16px",
+    "$value": "8px 10px",
     "$type": "string",
     "description": "Menu group title padding."
+  },
+  "menu.overlay-item-color": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "Popup submenu item text color.",
+    "fallback": "--ty-color-text"
+  },
+  "menu.overlay-item-hover-bg": {
+    "$value": "{color-bg-spotlight}",
+    "$type": "color",
+    "description": "Popup submenu item hover background color.",
+    "fallback": "--ty-color-bg-spotlight"
+  },
+  "menu.dark-overlay-item-color": {
+    "$value": "rgba(255, 255, 255, 0.85)",
+    "$type": "color",
+    "description": "Popup submenu item text color in dark menu."
+  },
+  "menu.dark-overlay-item-hover-bg": {
+    "$value": "#2a2a2a",
+    "$type": "color",
+    "description": "Popup submenu item hover background color in dark menu."
   },
   "menu.group-title-font-size": {
     "$value": "14px",
     "$type": "dimension",
     "description": "Menu group title font size."
+  },
+  "menu.group-title-font-weight": {
+    "$value": "600",
+    "$type": "number",
+    "description": "Menu group title font weight."
+  },
+  "menu.group-title-letter-spacing": {
+    "$value": "0.01em",
+    "$type": "string",
+    "description": "Menu group title letter spacing."
   },
   "menu.group-title-first-margin-top": {
     "$value": "4px",
@@ -108,32 +230,114 @@
     "$type": "string",
     "description": "Menu divider margin."
   },
-  "menu.active-bg": {
-    "$value": "{color-primary-bg}",
-    "$type": "color",
-    "description": "Menu active item background color.",
-    "fallback": "--ty-color-primary-bg"
+  "menu.popup-padding-block": {
+    "$value": "{dropdown.menu-padding}",
+    "$type": "string",
+    "description": "Popup submenu vertical padding."
   },
-  "menu.active-border-width.inline": {
-    "$value": "3px",
+  "menu.popup-item-padding": {
+    "$value": "{dropdown.item-padding}",
+    "$type": "string",
+    "description": "Popup submenu item padding."
+  },
+  "menu.popup-item-gap": {
+    "$value": "0",
     "$type": "dimension",
-    "description": "Inline menu active border width."
+    "description": "Popup submenu item gap."
+  },
+  "menu.item-height-sm": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Small menu item height."
+  },
+  "menu.item-height-md": {
+    "$value": "40px",
+    "$type": "dimension",
+    "description": "Medium menu item height."
+  },
+  "menu.item-height-lg": {
+    "$value": "48px",
+    "$type": "dimension",
+    "description": "Large menu item height."
+  },
+  "menu.item-padding-inline-sm": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Small menu item horizontal padding."
+  },
+  "menu.item-padding-inline-md": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Medium menu item horizontal padding."
+  },
+  "menu.item-padding-inline-lg": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Large menu item horizontal padding."
+  },
+  "menu.item-gap-sm": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Small menu item gap."
+  },
+  "menu.item-gap-md": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Medium menu item gap."
+  },
+  "menu.item-gap-lg": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Large menu item gap."
+  },
+  "menu.item-padding-block-compact": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Compact menu item vertical padding."
+  },
+  "menu.item-padding-block-comfortable": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Comfortable menu item vertical padding."
+  },
+  "menu.disabled-opacity": {
+    "$value": "0.55",
+    "$type": "number",
+    "description": "Menu disabled item opacity."
   },
   "menu.light-bg": {
-    "$value": "{color-bg-container}",
+    "$value": "#ffffff",
     "$type": "color",
-    "description": "Menu light bg.",
-    "fallback": "--ty-color-bg-container"
+    "description": "Menu light bg."
   },
   "menu.light-border": {
-    "$value": "{color-fill-tertiary}",
+    "$value": "#f0f0f0",
     "$type": "color",
-    "description": "Menu light border.",
-    "fallback": "--ty-color-fill-tertiary"
+    "description": "Menu light border."
   },
   "menu.light-color": {
     "$value": "#32325d",
     "$type": "color",
     "description": "Menu light color."
+  },
+  "menu.light-popup-bg": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "description": "Popup submenu background color in light menu."
+  },
+  "menu.light-popup-border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "Popup submenu border color in light menu."
+  },
+  "menu.light-overlay-item-color": {
+    "$value": "#32325d",
+    "$type": "color",
+    "description": "Popup submenu item text color in light menu."
+  },
+  "menu.light-overlay-item-hover-bg": {
+    "$value": "#f5f5ff",
+    "$type": "color",
+    "description": "Popup submenu item hover background color in light menu."
   }
 }

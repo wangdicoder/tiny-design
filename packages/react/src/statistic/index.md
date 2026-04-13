@@ -7,11 +7,11 @@ import StyleSource from './demo/Style.tsx?raw';
 
 # Statistic
 
-Display a statistic number with title, supporting formatted values, prefix/suffix, and custom formatting.
+Display key figures with clear formatting, prefix/suffix content, and customizable rendering.
 
 ## Scenario
 
-Used in dashboards and data-heavy pages to highlight key performance indicators (KPIs).
+Used in dashboards and data-heavy pages to highlight key performance indicators (KPIs), financial numbers, and progress metrics.
 
 ## Usage
 
@@ -27,7 +27,7 @@ import { Statistic } from 'tiny-design';
 
 ### Basic
 
-Display a statistic with title and formatted value.
+Display a statistic with title, numeric formatting, and prefix/suffix content.
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
@@ -36,7 +36,7 @@ Display a statistic with title and formatted value.
 
 ### Custom Formatter
 
-Use `formatter` to fully customize the value display.
+Use `formatter` to customize rendering while still receiving the formatted value.
 
 <DemoBlock component={FormatterDemo} source={FormatterSource} />
 
@@ -47,7 +47,7 @@ Use `formatter` to fully customize the value display.
 
 ### Value Style
 
-Customize value appearance with `valueStyle` and `groupSeparator`.
+Customize separators, empty state, and value appearance.
 
 <DemoBlock component={StyleDemo} source={StyleSource} />
 
@@ -65,5 +65,10 @@ Customize value appearance with `valueStyle` and `groupSeparator`.
 | prefix         | prefix node of value                             | ReactNode                                 |         |
 | suffix         | suffix node of value                             | ReactNode                                 |         |
 | groupSeparator | thousands separator                              | string                                    | ,       |
+| decimalSeparator | decimal separator                              | string                                    | .       |
 | valueStyle     | custom style for value                           | CSSProperties                             |         |
-| formatter      | custom value formatter                           | (value: number \| string) => ReactNode    |         |
+| valueClassName | custom class name for value container            | string                                    |         |
+| empty          | placeholder content for empty or invalid values  | ReactNode                                 | --      |
+| formatter      | custom value formatter                           | (value: number \| string, info: StatisticFormatterInfo) => ReactNode |         |
+
+`formatter` receives a second argument with `formattedValue`, `groupSeparator`, `decimalSeparator`, `precision`, and `isNumeric`, so custom rendering can reuse the component's built-in formatting rules.

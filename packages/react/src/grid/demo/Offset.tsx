@@ -2,11 +2,11 @@ import React from 'react';
 import { Row, Col } from '@tiny-design/react';
 
 export default function OffsetDemo() {
-  const row = {
+  const row: React.CSSProperties = {
     margin: '16px 0',
   };
 
-  const box = {
+  const box: React.CSSProperties = {
     padding: '20px 0',
     color: '#fff',
     textAlign: 'center',

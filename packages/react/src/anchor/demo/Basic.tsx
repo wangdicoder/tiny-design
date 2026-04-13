@@ -2,7 +2,7 @@ import React from 'react';
 import { Anchor } from '@tiny-design/react';
 
 export default function BasicDemo() {
-  const containerRef = React.useRef(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   return (
     <div style={{ display: 'flex', gap: 16 }}>
@@ -30,7 +30,7 @@ export default function BasicDemo() {
         </div>
       </div>
       <div style={{ width: 140 }}>
-        <Anchor getContainer={() => containerRef.current}>
+        <Anchor getContainer={() => containerRef.current ?? window}>
           <Anchor.Link href="#section-1" title="Section 1" />
           <Anchor.Link href="#section-2" title="Section 2" />
           <Anchor.Link href="#section-3" title="Section 3" />

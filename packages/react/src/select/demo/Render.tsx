@@ -2,14 +2,21 @@ import React from 'react';
 import { Select } from '@tiny-design/react';
 
 export default function RenderDemo() {
-  const options = [
+  type ColorValue = 'red' | 'green' | 'blue' | 'purple';
+
+  const options: { value: ColorValue; label: string }[] = [
     { value: 'red', label: 'Red' },
     { value: 'green', label: 'Green' },
     { value: 'blue', label: 'Blue' },
     { value: 'purple', label: 'Purple' },
   ];
 
-  const colors = { red: '#f5222d', green: '#52c41a', blue: '#1890ff', purple: '#722ed1' };
+  const colors: Record<ColorValue, string> = {
+    red: '#f5222d',
+    green: '#52c41a',
+    blue: '#1890ff',
+    purple: '#722ed1',
+  };
 
   return (
     <Select
@@ -23,7 +30,7 @@ export default function RenderDemo() {
               width: 12,
               height: 12,
               borderRadius: '50%',
-              backgroundColor: colors[option.value],
+              backgroundColor: colors[option.value as keyof typeof colors],
               display: 'inline-block',
             }}
           />
@@ -31,7 +38,7 @@ export default function RenderDemo() {
         </div>
       )}
       labelRender={({ label, value }) => (
-        <span style={{ color: colors[value] }}>{label}</span>
+        <span style={{ color: colors[value as keyof typeof colors] }}>{label}</span>
       )}
     />
   );

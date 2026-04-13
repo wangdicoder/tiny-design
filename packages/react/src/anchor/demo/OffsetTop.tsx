@@ -2,7 +2,7 @@ import React from 'react';
 import { Anchor } from '@tiny-design/react';
 
 export default function OffsetTopDemo() {
-  const containerRef = React.useRef(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   return (
     <div style={{ display: 'flex', gap: 16 }}>
@@ -27,7 +27,7 @@ export default function OffsetTopDemo() {
         </div>
       </div>
       <div style={{ width: 140 }}>
-        <Anchor affix offsetTop={100} getContainer={() => containerRef.current}>
+        <Anchor affix offsetTop={100} getContainer={() => containerRef.current ?? window}>
           <Anchor.Link href="#offset-1" title="Section 1" />
           <Anchor.Link href="#offset-2" title="Section 2" />
           <Anchor.Link href="#offset-3" title="Section 3" />

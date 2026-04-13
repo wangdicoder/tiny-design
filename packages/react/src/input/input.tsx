@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, ReactNode, useContext } from 'react';
+import React, { useEffect, useState, ReactNode, useContext } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -29,15 +29,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const cls = classNames(prefixCls, className, `${prefixCls}_${inputSize}`, {
       [`${prefixCls}_disabled`]: disabled,
     });
-    const prefixRef = useRef<HTMLDivElement | null>(null);
-    const suffixRef = useRef<HTMLDivElement | null>(null);
     const [value, setValue] = useState<string>(
       'value' in props ? (props.value as string) : defaultValue
     );
-    const [inputPaddingExtra, setInputPaddingExtra] = useState({
-      start: '0px',
-      end: '0px',
-    });
 
     const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       const val = e.currentTarget.value;
@@ -70,38 +64,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     useEffect(() => {
-      const prefixNode = prefixRef.current;
-      const suffixNode = suffixRef.current;
-
-      const getAffixExtra = (node: HTMLDivElement | null) => {
-        if (!node) return '0px';
-        const styles = window.getComputedStyle(node);
-        const marginStart = Number.parseFloat(styles.marginLeft) || 0;
-        const marginEnd = Number.parseFloat(styles.marginRight) || 0;
-        return `${node.offsetWidth + marginStart + marginEnd}px`;
-      };
-
-      const nextPaddingExtra = {
-        start: getAffixExtra(prefixNode),
-        end: getAffixExtra(suffixNode),
-      };
-
-      if (
-        nextPaddingExtra.start !== inputPaddingExtra.start ||
-        nextPaddingExtra.end !== inputPaddingExtra.end
-      ) {
-        setInputPaddingExtra(nextPaddingExtra);
-      }
-    }, [clearable, inputPaddingExtra.end, inputPaddingExtra.start, inputSize, prefix, suffix, value]);
-
-    useEffect(() => {
       'value' in props && typeof props.value !== 'undefined' && setValue(props.value);
     }, [props.value]);
 
     return (
       <div className={cls} style={style}>
         {prefix && (
-          <div ref={prefixRef} className={`${prefixCls}__prefix`}>
+          <div className={`${prefixCls}__prefix`}>
             {prefix}
           </div>
         )}
@@ -111,17 +80,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           value={value}
           disabled={disabled}
           className={`${prefixCls}__input`}
-          style={
-            {
-              '--ty-input-padding-inline-start-extra': inputPaddingExtra.start,
-              '--ty-input-padding-inline-end-extra': inputPaddingExtra.end,
-            } as React.CSSProperties
-          }
           onChange={inputOnChange}
           onKeyDown={inputOnKeydown}
         />
         {(suffix || clearable) && (
-          <div ref={suffixRef} className={`${prefixCls}__suffix`}>
+          <div className={`${prefixCls}__suffix`}>
             {renderClearButton()}
             {suffix}
           </div>

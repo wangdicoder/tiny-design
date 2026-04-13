@@ -18,6 +18,8 @@ export interface ScrollNumberProps
   prefix?: React.ReactNode;
   /** Suffix node rendered after the number */
   suffix?: React.ReactNode;
+  /** Custom class name applied to the value container */
+  valueClassName?: string;
   /** Custom style applied to the value container */
   valueStyle?: React.CSSProperties;
 }

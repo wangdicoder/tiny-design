@@ -2,13 +2,13 @@ import React from 'react';
 import { Row, Col, Divider } from '@tiny-design/react';
 
 export default function AlignmentDemo() {
-  const row = {
+  const row: React.CSSProperties = {
     padding: '10px 0',
     margin: '16px 0',
     background: 'rgba(128, 128, 128, 0.08)',
   };
 
-  const box = {
+  const box: React.CSSProperties = {
     color: '#fff',
     textAlign: 'center',
   };

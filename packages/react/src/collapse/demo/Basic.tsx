@@ -4,7 +4,7 @@ import { Collapse } from '@tiny-design/react';
 export default function BasicDemo() {
   const { Panel } = Collapse;
 
-  const callback = (key) => {
+  const callback = (key: string | string[]) => {
     console.log(key);
   };
 

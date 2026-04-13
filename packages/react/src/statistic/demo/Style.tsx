@@ -11,15 +11,18 @@ export default function StyleDemo() {
         valueStyle={{ color: '#52c41a' }}
       />
       <Statistic
-        title="Loss"
-        value={93120}
-        prefix="$"
-        valueStyle={{ color: '#f5222d' }}
+        title="EU Revenue"
+        value={1128930.5}
+        prefix="EUR"
+        groupSeparator="."
+        decimalSeparator=","
+        precision={2}
+        valueStyle={{ color: '#f59e0b' }}
       />
       <Statistic
-        title="No Separator"
-        value={9999999}
-        groupSeparator=""
+        title="Data Pending"
+        empty="Pending"
+        valueClassName="statistic-demo__pending"
       />
     </Flex>
   );
