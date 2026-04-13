@@ -1,0 +1,54 @@
+@use "../../style/variables" as *;
+
+/* stylelint-disable custom-property-pattern */
+
+.#{$prefix}-menu-item,
+.#{$prefix}-menu-sub__title {
+  &:hover:not(.#{$prefix}-menu-item_disabled) {
+    --_menu-render-text: var(--_menu-item-text-hover);
+    --_menu-render-bg: var(--_menu-item-bg-hover);
+    --_menu-render-border: var(--_menu-item-border-hover);
+    --_menu-render-shadow: var(--_menu-item-shadow-hover);
+  }
+
+  &.#{$prefix}-menu-item_open:not(.#{$prefix}-menu-item_selected):not(.#{$prefix}-menu-item_path-selected) {
+    --_menu-render-text: var(--_menu-item-text-open);
+    --_menu-render-bg: var(--_menu-item-bg-open);
+    --_menu-render-border: var(--_menu-item-border-open);
+    --_menu-render-shadow: var(--_menu-item-shadow-open);
+  }
+
+  &.#{$prefix}-menu-item_path-selected:not(.#{$prefix}-menu-item_selected),
+  &.#{$prefix}-menu-item_child-selected:not(.#{$prefix}-menu-item_selected) {
+    --_menu-render-text: var(--_menu-item-text-path);
+    --_menu-render-bg: var(--_menu-item-bg-path);
+    --_menu-render-border: var(--_menu-item-border-path);
+    --_menu-render-font-weight: var(--_menu-item-font-weight-path);
+    --_menu-render-shadow: var(--_menu-item-shadow-path);
+    --_menu-render-indicator-opacity: var(--_menu-item-indicator-opacity-path);
+  }
+
+  &.#{$prefix}-menu-item_selected {
+    --_menu-render-text: var(--_menu-item-text-selected);
+    --_menu-render-bg: var(--_menu-item-bg-selected);
+    --_menu-render-border: var(--_menu-item-border-selected);
+    --_menu-render-font-weight: var(--_menu-item-font-weight-selected);
+    --_menu-render-shadow: var(--_menu-item-shadow-selected);
+    --_menu-render-indicator-opacity: var(--_menu-item-indicator-opacity-selected);
+  }
+
+  &.#{$prefix}-menu-item_selected:hover:not(.#{$prefix}-menu-item_disabled) {
+    --_menu-render-text: var(--_menu-item-text-selected);
+    --_menu-render-bg: var(--_menu-item-bg-selected-hover);
+    --_menu-render-border: var(--_menu-item-border-selected);
+    --_menu-render-shadow: var(--_menu-item-shadow-selected);
+  }
+
+  &.#{$prefix}-menu-item_path-selected:hover:not(.#{$prefix}-menu-item_selected):not(.#{$prefix}-menu-item_disabled),
+  &.#{$prefix}-menu-item_child-selected:hover:not(.#{$prefix}-menu-item_selected):not(.#{$prefix}-menu-item_disabled) {
+    --_menu-render-text: var(--_menu-item-text-path);
+    --_menu-render-bg: var(--_menu-item-bg-path-hover);
+    --_menu-render-border: var(--_menu-item-border-path);
+    --_menu-render-shadow: var(--_menu-item-shadow-path);
+  }
+}

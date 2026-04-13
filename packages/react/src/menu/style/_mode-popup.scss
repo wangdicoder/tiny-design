@@ -1,18 +1,15 @@
 @use "../../style/variables" as *;
+@use "mixin" as *;
 
-// ============================================================================
-// Popup context styles
-//
-// This file MUST be imported AFTER _tokens, _item, _sub-menu, and _selection
-// so that rules here naturally win via source order for same-specificity cases.
-//
-// Strategy: Instead of using !important to override base `.ty-menu-item`
-// styles, we override CSS custom properties at the popup container level.
-// The base rules already consume these variables, so the items automatically
-// adopt the popup appearance without specificity hacks.
-// ============================================================================
+/* stylelint-disable custom-property-pattern */
 
-// Shared mixin: group title styles in popup context
+/*
+ * Popup context styles
+ *
+ * This file MUST be imported after `tokens`, `item`, `sub-menu`, `state`,
+ * and `selection` so that popup context variables win via source order.
+ */
+
 @mixin popup-group-title {
   padding: var(--_menu-group-title-padding);
   color: var(--_menu-overlay-group-title-color);
@@ -22,28 +19,9 @@
   letter-spacing: normal;
 }
 
-// ----------------------------------------------------------------------------
-// 1. Appearance-based popup (dropdown / overlay menus)
-//    These are menus where the root .ty-menu itself is a popup.
-// ----------------------------------------------------------------------------
 .#{$prefix}-menu_appearance-dropdown,
 .#{$prefix}-menu_appearance-overlay {
-  // Override CSS variables so child items automatically use popup styling
-  --_menu-item-min-height: auto;
-  --_menu-item-radius: 0;
-  --_menu-text-color: var(--_menu-overlay-item-color);
-  --_menu-text-color-hover: var(--_menu-overlay-item-color);
-  --_menu-text-color-selected: var(--_menu-overlay-item-color);
-  --_menu-item-bg-hover: var(--_menu-overlay-item-hover-bg);
-  --_menu-item-bg-active: var(--_menu-overlay-item-hover-bg);
-  --_menu-item-bg-selected: transparent;
-  --_menu-item-border-hover: transparent;
-  --_menu-item-border-selected: transparent;
-  --_menu-item-shadow-hover: none;
-  --_menu-item-shadow-selected: none;
-  --_menu-selection-surface: transparent;
-  --_menu-selection-border: transparent;
-  --_menu-item-font-weight: 400;
+  @include popup-variable-overrides;
 
   flex-direction: column;
   gap: 0;
@@ -53,7 +31,6 @@
   background: var(--_menu-popup-bg);
   box-shadow: var(--_menu-popup-shadow);
 
-  // Override mode-level layout that could conflict
   &.#{$prefix}-menu_horizontal,
   &.#{$prefix}-menu_vertical,
   &.#{$prefix}-menu_inline {
@@ -63,30 +40,13 @@
     border-bottom: 1px solid transparent;
   }
 
-  // Structural overrides for items (padding, border-width, line-height)
-  // These properties aren't fully variable-driven, so we use scoped rules.
-  // Specificity: (0,2,0) — same as mode rules; wins via source order (loaded last).
   .#{$prefix}-menu-item,
   .#{$prefix}-menu-sub__title {
-    padding: var(--_menu-popup-item-padding);
-    border-width: 0;
-    line-height: 1.5;
-    margin: 0;
-
-    &::after {
-      opacity: 0;
-    }
+    @include popup-item-reset;
   }
 
   .#{$prefix}-menu-item-group__list > .#{$prefix}-menu-item {
-    padding: var(--_menu-popup-item-padding);
-    border-width: 0;
-    line-height: 1.5;
-    margin: 0;
-
-    &::after {
-      opacity: 0;
-    }
+    @include popup-item-reset;
   }
 
   .#{$prefix}-menu-item-group__title {
@@ -98,26 +58,9 @@
   }
 }
 
-// ----------------------------------------------------------------------------
-// 2. Popup sub-lists (navigation mode sub-menus that pop out)
-// ----------------------------------------------------------------------------
 .#{$prefix}-menu-sub__list_popup {
-  // Override CSS variables at the popup sub-list level
-  --_menu-item-min-height: auto;
-  --_menu-item-radius: 0;
-  --_menu-text-color: var(--_menu-overlay-item-color);
-  --_menu-text-color-hover: var(--_menu-overlay-item-color);
-  --_menu-text-color-selected: var(--_menu-overlay-item-color);
-  --_menu-item-bg-hover: var(--_menu-overlay-item-hover-bg);
-  --_menu-item-bg-active: var(--_menu-overlay-item-hover-bg);
-  --_menu-item-bg-selected: transparent;
-  --_menu-item-border-hover: transparent;
-  --_menu-item-border-selected: transparent;
-  --_menu-item-shadow-hover: none;
-  --_menu-item-shadow-selected: none;
-  --_menu-selection-surface: transparent;
-  --_menu-selection-border: transparent;
-  --_menu-item-font-weight: 400;
+  @include popup-variable-overrides;
+
   --_menu-popup-group-item-indent: var(--ty-menu-popup-group-item-indent, 30px);
 
   min-width: var(--_menu-sub-list-popup-min-width);
@@ -131,7 +74,6 @@
   font-weight: 400;
   line-height: 1.5;
 
-  // Reset margin/padding/border on items
   > .#{$prefix}-menu-item,
   > .#{$prefix}-menu-sub,
   > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title,
@@ -142,13 +84,7 @@
 
   > .#{$prefix}-menu-item,
   > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title {
-    padding: var(--_menu-popup-item-padding);
-    border-width: 0;
-    line-height: 1.5;
-
-    &::after {
-      opacity: 0;
-    }
+    @include popup-item-reset;
   }
 
   > .#{$prefix}-menu-sub,
@@ -162,10 +98,8 @@
     padding-inline: 15px;
   }
 
-  .#{$prefix}-menu-item-group__list {
-    > .#{$prefix}-menu-item {
-      margin-top: 0;
-    }
+  .#{$prefix}-menu-item-group__list > .#{$prefix}-menu-item {
+    margin-top: 0;
   }
 
   > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title {
@@ -173,18 +107,14 @@
   }
 
   .#{$prefix}-menu-sub__title_open {
-    background: transparent;
-    border-color: transparent;
-    box-shadow: none;
-    font-weight: 400;
+    --_menu-item-text-open: var(--_menu-item-text);
+    --_menu-item-bg-open: transparent;
+    --_menu-item-border-open: transparent;
+    --_menu-item-shadow-open: none;
 
     &::after {
       opacity: 0;
     }
-  }
-
-  .#{$prefix}-menu-item-group__title {
-    @include popup-group-title;
   }
 
   .#{$prefix}-menu-item,
@@ -199,13 +129,13 @@
     margin-top: 2px;
   }
 
-  // ---- Scene-specific overrides (navigation / dropdown / overlay) ----
   &.#{$prefix}-menu-sub__list_scene-navigation,
   &.#{$prefix}-menu-sub__list_scene-dropdown,
   &.#{$prefix}-menu-sub__list_scene-overlay {
     --_menu-popup-padding-block: var(--ty-menu-popup-padding-block, 4px);
     --_menu-popup-item-padding: var(--ty-menu-popup-item-padding, 8px 15px);
     --_menu-overlay-item-color: var(--ty-menu-overlay-item-color, var(--ty-popup-color-light, var(--ty-color-text)));
+    --ty-menu-overlay-item-selected-color: var(--ty-menu-color-selected, var(--ty-color-primary));
     --_menu-overlay-item-hover-bg: var(--ty-menu-overlay-item-hover-bg, var(--ty-color-bg-spotlight));
     --_menu-group-title-padding: var(--ty-menu-group-title-padding, 8px 10px);
     --_menu-popup-shadow: var(--ty-menu-popup-shadow, var(--ty-shadow-popup));
@@ -214,12 +144,15 @@
     color: var(--_menu-overlay-item-color);
   }
 
-  // ---- Dark theme popup ----
   &.#{$prefix}-menu-sub__list_theme-dark {
     --_menu-popup-bg: var(--ty-menu-dark-popup-bg, var(--ty-color-bg-container));
     --_menu-popup-border: var(--ty-menu-dark-popup-border, transparent);
     --_menu-popup-shadow: var(--ty-menu-popup-shadow, 0 16px 40px rgb(0 0 0 / 28%));
     --_menu-overlay-item-color: var(--ty-menu-dark-overlay-item-color, var(--ty-color-text));
+    --ty-menu-overlay-item-selected-color: var(
+      --ty-menu-dark-color-selected,
+      var(--ty-color-primary-hover, var(--ty-color-primary))
+    );
     --_menu-overlay-item-hover-bg: var(--ty-menu-dark-overlay-item-hover-bg, var(--ty-color-bg-spotlight));
     --_menu-overlay-group-title-color: var(--ty-menu-dark-group-title-color, var(--_menu-group-title-color));
 
@@ -230,9 +163,6 @@
   }
 }
 
-// ----------------------------------------------------------------------------
-// 3. Popup item-group (grouped items in popup context)
-// ----------------------------------------------------------------------------
 .#{$prefix}-menu-item-group_popup {
   .#{$prefix}-menu-item-group__title {
     padding: 10px 15px 8px;
@@ -261,17 +191,17 @@
     opacity: 0;
   }
 
-  &:hover:not(.#{$prefix}-menu-item_disabled) {
+  &:hover:not(.#{$prefix}-menu-item_disabled):not(.#{$prefix}-menu-item_selected) {
     color: var(--_menu-overlay-item-color);
     background: var(--_menu-overlay-item-hover-bg);
     border-color: transparent;
   }
 
   &.#{$prefix}-menu-item_selected {
-    background: transparent;
-    border-color: transparent;
-    box-shadow: none;
-    color: var(--_menu-overlay-item-color);
-    font-weight: 400;
+    --_menu-render-text: var(--_menu-item-text-selected);
+    --_menu-render-bg: var(--_menu-item-bg-selected);
+    --_menu-render-border: var(--_menu-item-border-selected);
+    --_menu-render-font-weight: var(--_menu-item-font-weight-selected);
+    --_menu-render-shadow: var(--_menu-item-shadow-selected);
   }
 }

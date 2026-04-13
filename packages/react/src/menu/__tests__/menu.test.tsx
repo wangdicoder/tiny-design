@@ -78,6 +78,49 @@ describe('<Menu />', () => {
     expect(screen.getByText('Child')).toBeInTheDocument();
   });
 
+  it('should mark inline parent submenu on first render when a descendant is selected', async () => {
+    render(
+      <Menu
+        mode="inline"
+        defaultOpenKeys={['parent']}
+        defaultSelectedKeys={['child']}>
+        <Menu.SubMenu index="parent" title="Parent">
+          <Menu.Item index="child">Child</Menu.Item>
+        </Menu.SubMenu>
+      </Menu>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('Parent').closest('.ty-menu-sub__title')).toHaveClass(
+        'ty-menu-item_child-selected'
+      );
+      expect(screen.getByText('Parent').closest('.ty-menu-sub__title')).toHaveClass(
+        'ty-menu-item_path-selected'
+      );
+    });
+  });
+
+  it('should mark popup parent submenu on first render when a descendant is selected', async () => {
+    render(
+      <Menu
+        mode="vertical"
+        defaultSelectedKeys={['child']}>
+        <Menu.SubMenu index="parent" title="Parent">
+          <Menu.Item index="child">Child</Menu.Item>
+        </Menu.SubMenu>
+      </Menu>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('Parent').closest('.ty-menu-sub__title')).toHaveClass(
+        'ty-menu-item_child-selected'
+      );
+      expect(screen.getByText('Parent').closest('.ty-menu-sub__title')).toHaveClass(
+        'ty-menu-item_path-selected'
+      );
+    });
+  });
+
   it('should open submenu popup on hover in vertical mode', () => {
     render(
       <Menu mode="vertical">
@@ -150,6 +193,87 @@ describe('<Menu />', () => {
       expect(screen.queryByText('Customer List')).not.toBeInTheDocument();
     });
     expect(screen.getByText('General')).toBeInTheDocument();
+  });
+
+  it('should keep popup submenu item selected after reopening', async () => {
+    render(
+      <Menu mode="vertical">
+        <Menu.SubMenu index="customers" title="Customers">
+          <Menu.Item index="customers-list">Customer List</Menu.Item>
+          <Menu.Item index="customers-segments">Segments</Menu.Item>
+        </Menu.SubMenu>
+      </Menu>
+    );
+
+    const customersSubMenu = screen.getByText('Customers').closest('.ty-menu-sub') as HTMLElement;
+
+    fireEvent.mouseEnter(customersSubMenu);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    fireEvent.click(screen.getByText('Segments'));
+
+    fireEvent.mouseLeave(customersSubMenu);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    await waitFor(() => {
+      expect(screen.queryByText('Segments')).not.toBeInTheDocument();
+    });
+
+    fireEvent.mouseEnter(customersSubMenu);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    expect(screen.getByText('Segments').closest('li')).toHaveClass('ty-menu-item_selected');
+  });
+
+  it('should mark popup parent submenu when a nested descendant is selected', async () => {
+    render(
+      <Menu mode="horizontal">
+        <Menu.SubMenu index="resources" title="Resources">
+          <Menu.SubMenu index="community" title="Community">
+            <Menu.Item index="showcase">Showcase</Menu.Item>
+            <Menu.Item index="discord">Discord</Menu.Item>
+          </Menu.SubMenu>
+        </Menu.SubMenu>
+      </Menu>
+    );
+
+    const resourcesSubMenu = screen.getByText('Resources').closest('.ty-menu-sub') as HTMLElement;
+
+    fireEvent.mouseEnter(resourcesSubMenu);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    const communitySubMenu = screen.getByText('Community').closest('.ty-menu-sub') as HTMLElement;
+    fireEvent.mouseEnter(communitySubMenu);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    fireEvent.click(screen.getByText('Showcase'));
+
+    fireEvent.mouseEnter(resourcesSubMenu);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    fireEvent.mouseEnter(screen.getByText('Community').closest('.ty-menu-sub') as HTMLElement);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    expect(screen.getByText('Community').closest('.ty-menu-sub__title')).toHaveClass(
+      'ty-menu-item_child-selected'
+    );
+    expect(screen.getByText('Community').closest('.ty-menu-sub__title')).toHaveClass(
+      'ty-menu-item_path-selected'
+    );
   });
 
   it('should open nested horizontal submenu as a right-side popup', () => {

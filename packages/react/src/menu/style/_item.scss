@@ -1,5 +1,7 @@
 @use "../../style/variables" as *;
 
+/* stylelint-disable custom-property-pattern */
+
 .#{$prefix}-menu-item {
   position: relative;
   display: flex;
@@ -13,7 +15,11 @@
   overflow: hidden;
   border: 1px solid transparent;
   border-radius: var(--_menu-item-radius);
-  color: inherit;
+  color: var(--_menu-render-text);
+  background: var(--_menu-render-bg);
+  border-color: var(--_menu-render-border);
+  box-shadow: var(--_menu-render-shadow);
+  font-weight: var(--_menu-render-font-weight);
   line-height: 1.4;
   transition:
     background-color 180ms ease,
@@ -25,16 +31,9 @@
     content: '';
     position: absolute;
     background: var(--_menu-indicator-color);
-    opacity: 0;
+    opacity: var(--_menu-render-indicator-opacity);
     pointer-events: none;
     transition: opacity 180ms ease;
-  }
-
-  &:hover:not(.#{$prefix}-menu-item_disabled) {
-    color: var(--_menu-text-color-hover);
-    background: var(--_menu-item-bg-hover);
-    border-color: var(--_menu-item-border-hover);
-    box-shadow: var(--_menu-item-shadow-hover);
   }
 
   &:active:not(.#{$prefix}-menu-item_disabled) {
@@ -42,17 +41,16 @@
   }
 
   &_selected {
-    color: var(--_menu-text-color-selected);
-    font-weight: var(--_menu-item-font-weight);
-    box-shadow: var(--_menu-item-shadow-selected);
-
-    &:hover:not(.#{$prefix}-menu-item_disabled) {
-      color: var(--_menu-text-color-selected);
-    }
+    overflow: visible;
   }
 
+  &_path-selected,
   &_child-selected {
-    color: var(--_menu-text-color-selected);
+    overflow: visible;
+  }
+
+  &_open {
+    overflow: visible;
   }
 
   &_disabled {

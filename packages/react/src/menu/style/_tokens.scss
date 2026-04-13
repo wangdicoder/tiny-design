@@ -1,12 +1,10 @@
 @use "../../style/variables" as *;
+@use "mixin" as *;
 
 /* stylelint-disable custom-property-pattern */
 
 .#{$prefix}-menu {
   --_menu-border-color: var(--ty-menu-border, var(--ty-color-border));
-  --_menu-text-color: var(--ty-menu-color, var(--ty-color-text-secondary));
-  --_menu-text-color-hover: var(--ty-menu-color-hover, var(--ty-color-text));
-  --_menu-text-color-selected: var(--ty-menu-color-selected, var(--ty-color-primary));
   --_menu-text-color-disabled: var(--ty-menu-color-disabled, var(--ty-color-text-quaternary));
   --_menu-text-color-danger: var(--ty-menu-color-danger, var(--ty-color-danger));
   --_menu-bg: var(--ty-menu-bg, transparent);
@@ -22,13 +20,7 @@
   --_menu-indicator-width: var(--ty-menu-indicator-width, 3px);
   --_menu-indicator-radius: var(--ty-menu-indicator-radius, 999px);
   --_menu-indicator-color: var(--ty-menu-indicator-color, var(--ty-color-primary));
-  --_menu-item-bg-hover: var(--ty-menu-item-bg-hover, color-mix(in srgb, var(--ty-color-primary) 6%, transparent));
   --_menu-item-bg-active: var(--ty-menu-item-bg-active, color-mix(in srgb, var(--ty-color-primary) 10%, transparent));
-  --_menu-item-bg-selected: var(--ty-menu-item-bg-selected, color-mix(in srgb, var(--ty-color-primary) 10%, transparent));
-  --_menu-item-border-hover: var(--ty-menu-item-border-hover, color-mix(in srgb, var(--ty-color-primary) 20%, transparent));
-  --_menu-item-border-selected: var(--ty-menu-item-border-selected, color-mix(in srgb, var(--ty-color-primary) 55%, transparent));
-  --_menu-item-shadow-hover: none;
-  --_menu-item-shadow-selected: none;
   --_menu-item-font-weight: var(--ty-menu-item-font-weight, 500);
   --_menu-sub-arrow-margin-start: var(--ty-menu-sub-arrow-margin-start, 8px);
   --_menu-group-title-padding: var(--ty-menu-group-title-padding, 8px 10px);
@@ -45,18 +37,48 @@
   --_menu-popup-item-padding: var(--ty-menu-popup-item-padding, 8px 15px);
   --_menu-popup-item-gap: var(--ty-menu-popup-item-gap, 0);
   --_menu-popup-group-item-indent: var(--ty-menu-popup-group-item-indent, 30px);
-  --_menu-selection-surface: var(--_menu-item-bg-selected);
-  --_menu-selection-border: var(--_menu-item-border-selected);
   --_menu-overlay-item-color: var(--ty-menu-overlay-item-color, var(--ty-color-text));
   --_menu-overlay-item-hover-bg: var(--ty-menu-overlay-item-hover-bg, var(--ty-color-bg-spotlight));
   --_menu-overlay-group-title-color: var(--ty-menu-overlay-group-title-color, var(--_menu-group-title-color));
+  --_menu-item-text: var(--ty-menu-color, var(--ty-color-text-secondary));
+  --_menu-item-bg: transparent;
+  --_menu-item-border: transparent;
+  --_menu-item-font-weight-base: 400;
+  --_menu-item-text-hover: var(--ty-menu-color-hover, var(--ty-color-text));
+  --_menu-item-bg-hover: var(--ty-menu-item-bg-hover, color-mix(in srgb, var(--ty-color-primary) 6%, transparent));
+  --_menu-item-border-hover: var(--ty-menu-item-border-hover, color-mix(in srgb, var(--ty-color-primary) 20%, transparent));
+  --_menu-item-shadow-hover: none;
+  --_menu-item-text-selected: var(--ty-menu-color-selected, var(--ty-color-primary));
+  --_menu-item-bg-selected: var(--ty-menu-item-bg-selected, color-mix(in srgb, var(--ty-color-primary) 10%, transparent));
+  --_menu-item-bg-selected-hover: color-mix(in srgb, var(--_menu-item-bg-selected) 88%, black 12%);
+  --_menu-item-border-selected: var(--ty-menu-item-border-selected, color-mix(in srgb, var(--ty-color-primary) 55%, transparent));
+  --_menu-item-shadow-selected: none;
+  --_menu-item-font-weight-selected: var(--ty-menu-item-font-weight, 500);
+  --_menu-item-text-path: var(--_menu-item-text-selected);
+  --_menu-item-bg-path: transparent;
+  --_menu-item-bg-path-hover: var(--_menu-item-bg-path);
+  --_menu-item-border-path: transparent;
+  --_menu-item-shadow-path: none;
+  --_menu-item-font-weight-path: var(--_menu-item-font-weight-selected);
+  --_menu-item-text-open: var(--_menu-item-text);
+  --_menu-item-bg-open: transparent;
+  --_menu-item-border-open: transparent;
+  --_menu-item-shadow-open: none;
+  --_menu-item-indicator-opacity-selected: 0;
+  --_menu-item-indicator-opacity-path: 0;
+  --_menu-render-text: var(--_menu-item-text);
+  --_menu-render-bg: var(--_menu-item-bg);
+  --_menu-render-border: var(--_menu-item-border);
+  --_menu-render-shadow: none;
+  --_menu-render-font-weight: var(--_menu-item-font-weight-base);
+  --_menu-render-indicator-opacity: 0;
 
   // ---- Theme overrides ----
 
   &_light {
-    --_menu-text-color: var(--ty-menu-light-color, var(--ty-color-text-secondary));
-    --_menu-text-color-hover: var(--ty-menu-light-color-hover, var(--ty-menu-light-color, var(--ty-color-text)));
-    --_menu-text-color-selected: var(--ty-menu-light-color-selected, var(--ty-color-primary));
+    --_menu-item-text: var(--ty-menu-light-color, var(--ty-color-text-secondary));
+    --_menu-item-text-hover: var(--ty-menu-light-color-hover, var(--ty-menu-light-color, var(--ty-color-text)));
+    --_menu-item-text-selected: var(--ty-menu-light-color-selected, var(--ty-color-primary));
     --_menu-bg: var(--ty-menu-light-bg, transparent);
     --_menu-border-color: var(--ty-menu-light-border, var(--ty-color-border));
     --_menu-popup-bg: var(--ty-menu-light-popup-bg, var(--ty-menu-popup-bg, #fff));
@@ -66,13 +88,13 @@
   }
 
   &_dark {
-    --_menu-text-color: var(--ty-menu-dark-color, var(--ty-color-text-secondary));
-    --_menu-text-color-hover: var(--ty-menu-dark-color-hover, var(--ty-color-text));
-    --_menu-text-color-selected: var(--ty-menu-dark-color-selected, var(--ty-color-primary-hover, var(--ty-color-primary)));
-    --_menu-text-color-disabled: var(--ty-menu-dark-color-disabled, var(--ty-color-text-quaternary));
+    --_menu-item-text: var(--ty-menu-dark-color, rgba(255 255 255 / 72%));
+    --_menu-item-text-hover: var(--ty-menu-dark-color-hover, rgba(255 255 255 / 92%));
+    --_menu-item-text-selected: var(--ty-menu-dark-color-selected, var(--ty-color-primary-hover, var(--ty-color-primary)));
+    --_menu-text-color-disabled: var(--ty-menu-dark-color-disabled, rgba(255 255 255 / 25%));
     --_menu-bg: var(--ty-menu-dark-bg, transparent);
-    --_menu-border-color: var(--ty-menu-dark-border, var(--ty-color-border));
-    --_menu-popup-bg: var(--ty-menu-dark-popup-bg, var(--ty-menu-popup-bg, var(--ty-color-bg-container)));
+    --_menu-border-color: var(--ty-menu-dark-border, rgba(255 255 255 / 12%));
+    --_menu-popup-bg: var(--ty-menu-dark-popup-bg, var(--ty-menu-popup-bg, #1f1f1f));
     --_menu-popup-border: var(--ty-menu-dark-popup-border, var(--ty-menu-popup-border, transparent));
     --_menu-popup-shadow: var(--ty-menu-popup-shadow, 0 16px 40px rgb(0 0 0 / 28%));
     --_menu-item-bg-hover: var(--ty-menu-dark-item-bg-hover, color-mix(in srgb, var(--ty-color-primary) 10%, transparent));
@@ -80,9 +102,9 @@
     --_menu-item-bg-selected: var(--ty-menu-dark-item-bg-selected, color-mix(in srgb, var(--ty-color-primary) 14%, transparent));
     --_menu-item-border-hover: var(--ty-menu-dark-item-border-hover, color-mix(in srgb, var(--ty-color-primary) 28%, transparent));
     --_menu-item-border-selected: var(--ty-menu-dark-item-border-selected, color-mix(in srgb, var(--ty-color-primary) 56%, transparent));
-    --_menu-overlay-item-color: var(--ty-menu-dark-overlay-item-color, var(--ty-color-text));
-    --_menu-overlay-item-hover-bg: var(--ty-menu-dark-overlay-item-hover-bg, var(--ty-color-bg-spotlight));
-    --_menu-overlay-group-title-color: var(--ty-menu-dark-group-title-color, var(--_menu-group-title-color));
+    --_menu-overlay-item-color: var(--ty-menu-dark-overlay-item-color, rgba(255 255 255 / 85%));
+    --_menu-overlay-item-hover-bg: var(--ty-menu-dark-overlay-item-hover-bg, rgba(255 255 255 / 8%));
+    --_menu-overlay-group-title-color: var(--ty-menu-dark-group-title-color, rgba(255 255 255 / 45%));
   }
 
   // ---- Size overrides ----
@@ -114,32 +136,37 @@
   // ---- Variant token overrides ----
 
   &_variant-outline {
-    --_menu-text-color-hover: var(--ty-menu-color-hover, var(--ty-color-text));
     --_menu-item-bg-hover: var(--ty-menu-item-bg-hover, color-mix(in srgb, var(--ty-color-primary) 4%, transparent));
     --_menu-item-bg-selected: var(--ty-menu-item-bg-selected, color-mix(in srgb, var(--ty-color-primary) 7%, transparent));
     --_menu-item-border-hover: var(--ty-menu-item-border-hover, color-mix(in srgb, var(--ty-color-primary) 34%, transparent));
     --_menu-item-border-selected: var(--ty-menu-item-border-selected, color-mix(in srgb, var(--ty-color-primary) 52%, transparent));
+    --_menu-item-bg-path: color-mix(in srgb, var(--ty-color-primary) 5%, transparent);
+    --_menu-item-bg-path-hover: var(--_menu-item-bg-path);
+    --_menu-item-border-path: color-mix(in srgb, var(--ty-color-primary) 34%, transparent);
   }
 
   &_variant-fill {
-    --_menu-text-color-hover: var(--ty-menu-color-hover, var(--ty-color-text));
     --_menu-item-bg-hover: var(--ty-menu-item-bg-hover, color-mix(in srgb, var(--ty-color-primary) 12%, transparent));
     --_menu-item-bg-active: var(--ty-menu-item-bg-active, color-mix(in srgb, var(--ty-color-primary) 18%, transparent));
     --_menu-item-bg-selected: var(--ty-menu-item-bg-selected, color-mix(in srgb, var(--ty-color-primary) 18%, transparent));
     --_menu-item-border-hover: transparent;
     --_menu-item-border-selected: transparent;
+    --_menu-item-bg-path: color-mix(in srgb, var(--ty-color-primary) 12%, transparent);
+    --_menu-item-bg-path-hover: var(--_menu-item-bg-path);
+    --_menu-item-border-path: transparent;
   }
 
   &_variant-ghost {
-    --_menu-text-color-hover: var(--ty-menu-color-selected, var(--ty-color-primary));
+    --_menu-item-text-hover: var(--ty-menu-color-selected, var(--ty-color-primary));
     --_menu-item-bg-hover: transparent;
     --_menu-item-bg-active: var(--ty-menu-item-bg-active, color-mix(in srgb, var(--ty-color-primary) 6%, transparent));
     --_menu-item-border-hover: transparent;
     --_menu-item-bg-selected: transparent;
     --_menu-item-border-selected: transparent;
+    --_menu-item-bg-path: transparent;
+    --_menu-item-bg-path-hover: transparent;
+    --_menu-item-border-path: transparent;
   }
-
-  // ---- Base layout ----
 
   display: flex;
   flex-wrap: nowrap;
@@ -150,74 +177,6 @@
   white-space: nowrap;
   border: 0;
   background: var(--_menu-bg);
-  color: var(--_menu-text-color);
+  color: var(--_menu-item-text);
   font-size: var(--ty-font-size-base);
-
-  // ---- Mode layout ----
-
-  &_horizontal {
-    align-items: stretch;
-    gap: 4px;
-
-    > .#{$prefix}-menu-item,
-    > .#{$prefix}-menu-sub {
-      flex: 0 0 auto;
-      width: auto;
-    }
-
-    > .#{$prefix}-menu-item,
-    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title {
-      width: auto;
-      min-height: var(--_menu-item-min-height);
-      padding: var(--_menu-item-padding-block) var(--_menu-item-padding-inline);
-      margin: 0;
-    }
-
-    > .#{$prefix}-menu-item .#{$prefix}-menu-item__main,
-    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title .#{$prefix}-menu-item__main {
-      flex: 0 0 auto;
-    }
-
-    > .#{$prefix}-menu-item::after,
-    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title::after {
-      inset: auto 10px -7px;
-      width: auto;
-      height: 2px;
-      border-radius: 999px;
-    }
-  }
-
-  &_inline,
-  &_vertical {
-    flex-direction: column;
-    gap: 4px;
-
-    > .#{$prefix}-menu-item,
-    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title {
-      min-height: var(--_menu-item-min-height);
-      padding: var(--_menu-item-padding-block) var(--_menu-item-padding-inline);
-      margin: 0;
-    }
-
-    > .#{$prefix}-menu-item::after,
-    > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title::after {
-      inset: 8px auto 8px 2px;
-      width: var(--_menu-indicator-width);
-      border-radius: var(--_menu-indicator-radius);
-    }
-  }
-}
-
-.#{$prefix}-menu_inline,
-.#{$prefix}-menu_vertical {
-  > .#{$prefix}-menu-sub {
-    width: 100%;
-  }
-}
-
-.#{$prefix}-menu_horizontal {
-  > .#{$prefix}-menu-sub {
-    display: flex;
-    align-items: stretch;
-  }
 }

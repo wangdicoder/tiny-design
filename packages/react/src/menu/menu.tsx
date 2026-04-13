@@ -4,7 +4,7 @@ import { MenuContext } from './menu-context';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { useTheme } from '../_utils/use-theme';
-import { MenuItemProps, MenuProps, MenuSelectInfo } from './types';
+import { MenuItemGroupProps, MenuItemProps, MenuProps, MenuSelectInfo, SubMenuProps } from './types';
 
 const getInitialSelectedKeys = (props: MenuProps): string[] => {
   if (props.defaultSelectedKeys?.length) {
@@ -16,6 +16,57 @@ const getInitialSelectedKeys = (props: MenuProps): string[] => {
   }
 
   return ['0'];
+};
+
+const collectParentMap = (
+  children: React.ReactNode,
+  ancestors: string[] = [],
+  parentIndex?: string
+): Map<string, string[]> => {
+  const parentMap = new Map<string, string[]>();
+
+  React.Children.forEach(children, (child, idx) => {
+    if (!React.isValidElement(child)) {
+      return;
+    }
+
+    const childElement = child as React.FunctionComponentElement<
+      MenuItemProps | MenuItemGroupProps | SubMenuProps
+    >;
+    const displayName = childElement.type.displayName;
+
+    if (
+      displayName !== 'MenuItem' &&
+      displayName !== 'SubMenu' &&
+      displayName !== 'MenuItemGroup' &&
+      displayName !== 'MenuDivider'
+    ) {
+      return;
+    }
+
+    const fallbackIndex = parentIndex === undefined ? `${idx}` : `${parentIndex}-${idx}`;
+    const resolvedIndex = childElement.props.index ?? fallbackIndex;
+
+    if (displayName === 'MenuItem' || displayName === 'SubMenu') {
+      parentMap.set(resolvedIndex, ancestors);
+    }
+
+    if (displayName === 'SubMenu') {
+      const subMenuMap = collectParentMap(childElement.props.children, [...ancestors, resolvedIndex], resolvedIndex);
+      subMenuMap.forEach((value, key) => {
+        parentMap.set(key, value);
+      });
+    }
+
+    if (displayName === 'MenuItemGroup') {
+      const groupMap = collectParentMap(childElement.props.children, ancestors, resolvedIndex);
+      groupMap.forEach((value, key) => {
+        parentMap.set(key, value);
+      });
+    }
+  });
+
+  return parentMap;
 };
 
 const Menu = (props: MenuProps): JSX.Element => {
@@ -73,9 +124,14 @@ const Menu = (props: MenuProps): JSX.Element => {
 
   const mergedSelectedKeys = isControlledSelected ? selectedKeys ?? [] : uncontrolledSelectedKeys;
   const mergedOpenKeys = isControlledOpen ? openKeys ?? [] : uncontrolledOpenKeys;
+  const derivedParentMap = useMemo(() => collectParentMap(children), [children]);
 
   // Track parent-child relationships via component tree registration
   const parentMapRef = useRef(new Map<string, string[]>());
+  const getAncestors = useCallback(
+    (key: string): string[] => parentMapRef.current.get(key) ?? derivedParentMap.get(key) ?? [],
+    [derivedParentMap]
+  );
 
   const registerKey = useCallback((key: string, ancestorKeys: string[]) => {
     parentMapRef.current.set(key, ancestorKeys);
@@ -112,7 +168,7 @@ const Menu = (props: MenuProps): JSX.Element => {
         : mergedOpenKeys.filter((itemKey) => itemKey !== key && !itemKey.startsWith(`${key}-`));
     } else if (open) {
       // Use registered ancestor keys to determine the branch path
-      const ancestors = parentMapRef.current.get(key) ?? [];
+      const ancestors = getAncestors(key);
       const branchPath = [...ancestors, key];
       nextOpenKeys = mergedOpenKeys.filter((itemKey) =>
         branchPath.includes(itemKey)
@@ -126,7 +182,7 @@ const Menu = (props: MenuProps): JSX.Element => {
       // Close key and its descendants
       nextOpenKeys = mergedOpenKeys.filter((itemKey) => {
         if (itemKey === key) return false;
-        const itemAncestors = parentMapRef.current.get(itemKey) ?? [];
+        const itemAncestors = getAncestors(itemKey);
         return !itemAncestors.includes(key);
       });
     }
@@ -136,16 +192,16 @@ const Menu = (props: MenuProps): JSX.Element => {
     }
 
     onOpenChange?.(nextOpenKeys);
-  }, [mode, mergedOpenKeys, isControlledOpen, onOpenChange]);
+  }, [mode, mergedOpenKeys, isControlledOpen, onOpenChange, getAncestors]);
 
   const isSubMenuSelected = useCallback((subMenuKey?: string): boolean => {
     if (!subMenuKey) return false;
     return mergedSelectedKeys.some((selectedKey) => {
       if (selectedKey === subMenuKey) return true;
-      const ancestors = parentMapRef.current.get(selectedKey) ?? [];
+      const ancestors = getAncestors(selectedKey);
       return ancestors.includes(subMenuKey);
     });
-  }, [mergedSelectedKeys]);
+  }, [mergedSelectedKeys, getAncestors]);
 
   const contextValue = useMemo(() => ({
     mode,

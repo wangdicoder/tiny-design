@@ -1,10 +1,6 @@
 import React from 'react';
 import { Flex, Menu, Radio, Tag } from '@tiny-design/react';
-import type { MenuSize } from '@tiny-design/react';
-
-const menuStyle: React.CSSProperties = {
-  maxWidth: 280,
-};
+import type { MenuMode, MenuSize, MenuSelectionStyle, MenuVariant } from '@tiny-design/react';
 
 const shellStyle: React.CSSProperties = {
   padding: 20,
@@ -19,13 +15,12 @@ const controlLabelStyle: React.CSSProperties = {
 };
 
 const themeOptions = ['follow', 'light', 'dark'] as const;
+const modeOptions = ['horizontal', 'vertical', 'inline'] as const;
 const variantOptions = ['outline', 'fill', 'ghost'] as const;
 const selectionStyleOptions = ['mixed', 'border', 'background', 'indicator'] as const;
 const sizeOptions = ['sm', 'md', 'lg'] as const;
 
 type ThemeOption = (typeof themeOptions)[number];
-type VariantOption = (typeof variantOptions)[number];
-type SelectionStyleOption = (typeof selectionStyleOptions)[number];
 
 function ControlRow<T extends string>({
   label,
@@ -39,7 +34,7 @@ function ControlRow<T extends string>({
   onChange: (value: T) => void;
 }) {
   return (
-    <Flex align="center" wrap gap="sm">
+    <Flex align="center" wrap="wrap" gap="sm">
       <span style={controlLabelStyle}>{label}</span>
       <Radio.Group value={value} onChange={(next) => onChange(next as T)}>
         {options.map((option) => (
@@ -54,14 +49,19 @@ function ControlRow<T extends string>({
 
 export default function VariantsDemo() {
   const [theme, setTheme] = React.useState<ThemeOption>('follow');
-  const [variant, setVariant] = React.useState<VariantOption>('outline');
-  const [selectionStyle, setSelectionStyle] = React.useState<SelectionStyleOption>('mixed');
-  const [size, setSize] = React.useState<MenuSize>('md')
+  const [mode, setMode] = React.useState<MenuMode>('vertical');
+  const [variant, setVariant] = React.useState<MenuVariant>('outline');
+  const [selectionStyle, setSelectionStyle] = React.useState<MenuSelectionStyle>('mixed');
+  const [size, setSize] = React.useState<MenuSize>('md');
+
+  const menuStyle: React.CSSProperties =
+    mode === 'horizontal' ? {} : { maxWidth: 280 };
 
   return (
     <Flex vertical gap="lg">
       <Flex vertical gap="sm">
         <ControlRow label="theme" value={theme} options={themeOptions} onChange={setTheme} />
+        <ControlRow label="mode" value={mode} options={modeOptions} onChange={setMode} />
         <ControlRow label="variant" value={variant} options={variantOptions} onChange={setVariant} />
         <ControlRow
           label="selectionStyle"
@@ -69,31 +69,45 @@ export default function VariantsDemo() {
           options={selectionStyleOptions}
           onChange={setSelectionStyle}
         />
-        <ControlRow label='size' value={size} options={sizeOptions} onChange={setSize} />
+        <ControlRow label="size" value={size} options={sizeOptions} onChange={setSize} />
       </Flex>
 
       <div style={shellStyle}>
         <Menu
-          mode="vertical"
+          mode={mode}
           style={menuStyle}
           theme={theme === 'follow' ? undefined : theme}
           variant={variant}
           selectionStyle={selectionStyle}
-          defaultSelectedKeys={['library-components']}
-          defaultOpenKeys={['library-patterns']}
+          defaultSelectedKeys={['studio-theme-tokens']}
+          defaultOpenKeys={['studio-theme']}
           size={size}>
-          <Menu.Item index="library-overview">Overview</Menu.Item>
-          <Menu.Item index="library-components" extra={<Tag variant="soft" color="info">72</Tag>}>
-            Components
+          <Menu.Item index="studio-overview">Overview</Menu.Item>
+          <Menu.Item index="studio-library">Library</Menu.Item>
+          <Menu.Item index="studio-updates" extra={<Tag variant="soft" color="info">Beta</Tag>}>
+            Updates
           </Menu.Item>
-          <Menu.SubMenu index="library-patterns" title="Patterns">
-            <Menu.Item index="patterns-dashboard">Dashboard Shell</Menu.Item>
-            <Menu.Item index="patterns-forms">Step Form</Menu.Item>
-            <Menu.Item index="patterns-settings">Settings</Menu.Item>
+          <Menu.SubMenu index="studio-theme" title="Theme Studio">
+            <Menu.Item index="studio-theme-palette">Palette</Menu.Item>
+            <Menu.Item index="studio-theme-tokens">Tokens</Menu.Item>
+            <Menu.Item index="studio-theme-components">Components</Menu.Item>
+            <Menu.SubMenu index="studio-theme-publish" title="Publish">
+              <Menu.Item index="studio-theme-publish-preview">Preview</Menu.Item>
+              <Menu.Item index="studio-theme-publish-share">Share</Menu.Item>
+              <Menu.Item index="studio-theme-publish-export">Export</Menu.Item>
+            </Menu.SubMenu>
           </Menu.SubMenu>
-          <Menu.Item index="library-release" extra={<Tag variant="soft" color="warning">New</Tag>}>
-            Release Notes
-          </Menu.Item>
+          <Menu.SubMenu index="studio-account" title="Account">
+            <Menu.ItemGroup title="Workspace">
+              <Menu.Item index="studio-account-team">Team</Menu.Item>
+              <Menu.Item index="studio-account-domains">Domains</Menu.Item>
+            </Menu.ItemGroup>
+            <Menu.ItemGroup title="Billing">
+              <Menu.Item index="studio-account-billing">Billing</Menu.Item>
+              <Menu.Item index="studio-account-invoices" disabled>Invoices</Menu.Item>
+              <Menu.Item index="studio-account-usage">Usage</Menu.Item>
+            </Menu.ItemGroup>
+          </Menu.SubMenu>
         </Menu>
       </div>
     </Flex>

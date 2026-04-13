@@ -1,12 +1,16 @@
-// Menu component styles
-//
-// Import order matters: _popup must come last so its rules win via source order
-// for same-specificity cases against mode/variant/selection rules.
+/*
+ * Menu component styles
+ *
+ * Import order matters: `_popup` must come last so its rules win via source
+ * order for same-specificity cases against mode/variant/selection rules.
+ */
 
 @use "tokens";
 @use "item";
 @use "sub-menu";
+@use "mode-inline";
+@use "state";
 @use "selection";
 @use "item-group";
 @use "divider";
-@use "popup"; // Must be last — overrides base styles for popup contexts
+@use "mode-popup"; // Must be last — popup context overrides base menu variables

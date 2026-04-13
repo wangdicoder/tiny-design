@@ -1,0 +1,88 @@
+@use "../../style/variables" as *;
+
+/* stylelint-disable custom-property-pattern */
+
+// Generates the 5-part selector chain that targets all selected items
+// across root level, sub-menu titles, non-popup sub-lists, and item groups.
+// $suffix: appended to each selector (e.g., "::after" for indicator rules)
+@mixin selected-items($suffix: '') {
+  > .#{$prefix}-menu-item_selected#{$suffix},
+  > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title.#{$prefix}-menu-item_selected#{$suffix},
+  .#{$prefix}-menu-sub__list:not(.#{$prefix}-menu-sub__list_popup) > .#{$prefix}-menu-item_selected#{$suffix},
+  .#{$prefix}-menu-sub__list:not(.#{$prefix}-menu-sub__list_popup) > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title.#{$prefix}-menu-item_selected#{$suffix},
+  .#{$prefix}-menu-item-group__list > .#{$prefix}-menu-item_selected#{$suffix} {
+    @content;
+  }
+}
+
+// Indicator-specific: targets only truly selected items.
+// Parent sub-menu titles with `_child-selected` should keep their lighter
+// "open/contains selection" treatment instead of rendering the active indicator.
+@mixin selected-indicator-items {
+  > .#{$prefix}-menu-item_selected::after,
+  > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title.#{$prefix}-menu-item_selected::after,
+  .#{$prefix}-menu-sub__list:not(.#{$prefix}-menu-sub__list_popup) > .#{$prefix}-menu-item_selected::after,
+  .#{$prefix}-menu-sub__list:not(.#{$prefix}-menu-sub__list_popup) > .#{$prefix}-menu-sub > .#{$prefix}-menu-sub__title.#{$prefix}-menu-item_selected::after,
+  .#{$prefix}-menu-item-group__list > .#{$prefix}-menu-item_selected::after {
+    @content;
+  }
+}
+
+// Standard item sizing for vertical/inline mode items
+@mixin vertical-item-sizing {
+  min-height: var(--_menu-item-min-height);
+  padding: var(--_menu-item-padding-block) var(--_menu-item-padding-inline);
+  margin: 0;
+}
+
+// Left-side indicator bar for vertical/inline mode
+@mixin vertical-indicator {
+  inset: 8px auto 8px 2px;
+  width: var(--_menu-indicator-width);
+  border-radius: var(--_menu-indicator-radius);
+}
+
+// Shared CSS variable overrides for popup appearance context
+@mixin popup-variable-overrides {
+  --_menu-item-min-height: auto;
+  --_menu-item-radius: 0;
+  --_menu-item-text: var(--_menu-overlay-item-color);
+  --_menu-item-text-hover: var(--_menu-overlay-item-color);
+  --_menu-item-text-selected: var(--ty-menu-overlay-item-selected-color, var(--ty-color-primary));
+  --_menu-item-bg-hover: var(--_menu-overlay-item-hover-bg);
+  --_menu-item-bg-active: var(--_menu-overlay-item-hover-bg);
+  --_menu-item-bg-selected: var(
+    --ty-menu-overlay-item-selected-bg,
+    color-mix(in srgb, var(--ty-color-primary) 10%, var(--_menu-overlay-item-hover-bg))
+  );
+  --_menu-item-bg-selected-hover: color-mix(in srgb, var(--_menu-item-bg-selected) 82%, black 18%);
+  --_menu-item-text-path: var(--_menu-item-text-selected);
+  --_menu-item-bg-path: transparent;
+  --_menu-item-bg-path-hover: transparent;
+  --_menu-item-border-path: transparent;
+  --_menu-item-shadow-path: none;
+  --_menu-item-font-weight-path: var(--ty-menu-overlay-item-font-weight-selected, 500);
+  --_menu-item-text-open: var(--_menu-item-text);
+  --_menu-item-bg-open: transparent;
+  --_menu-item-border-open: transparent;
+  --_menu-item-shadow-open: none;
+  --_menu-item-border-hover: transparent;
+  --_menu-item-border-selected: transparent;
+  --_menu-item-shadow-hover: none;
+  --_menu-item-shadow-selected: none;
+  --_menu-item-font-weight-selected: var(--ty-menu-overlay-item-font-weight-selected, 500);
+  --_menu-item-indicator-opacity-selected: 0;
+  --_menu-item-indicator-opacity-path: 0;
+}
+
+// Popup item reset (padding, border, line-height, indicator hidden)
+@mixin popup-item-reset {
+  padding: var(--_menu-popup-item-padding);
+  border-width: 0;
+  line-height: 1.5;
+  margin: 0;
+
+  &::after {
+    opacity: 0;
+  }
+}

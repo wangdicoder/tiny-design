@@ -75,6 +75,23 @@ const { Item, SubMenu, ItemGroup, Divider } = Menu;
 
 </Demo>
 
+## 视觉语义
+
+`Menu` 会把视觉状态拆开处理，这样在保留组合灵活度的同时，层级关系仍然清楚：
+
+- `selected`：当前叶子菜单项，强调最强
+- `path-selected`：包含当前选中项的父级菜单，强调弱于 `selected`
+- `open`：只表达展开结构，不代替选中语义
+- `hover`：只表达交互反馈，不应抹掉 `selected` 或 `path-selected`
+
+`selectionStyle` 用来控制选中态的呈现方式：
+
+- `background`：选中项以背景块表达，父级路径态保持更轻
+- `border`：选中项以边框强调，不依赖填充背景
+- `indicator`：只依赖指示条和文字层级表达选中
+- `mixed`：组合 indicator 和当前 variant 的表面强调
+
+popup 菜单和 inline 菜单遵循同一套语义，但 popup 中的路径态会更克制，确保真正的叶子选中项仍然最显眼。
 
 ## 关于 `index` 键值
 

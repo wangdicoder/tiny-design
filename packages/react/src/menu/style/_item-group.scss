@@ -1,5 +1,7 @@
 @use "../../style/variables" as *;
 
+/* stylelint-disable custom-property-pattern */
+
 .#{$prefix}-menu-item-group {
   box-sizing: border-box;
 

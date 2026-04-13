@@ -7,8 +7,8 @@ export default function VerticalDemo() {
       mode="vertical"
       style={{ maxWidth: 280 }}
       defaultSelectedKeys={['workspace-overview']}
-      variant="fill"
-      selectionStyle="background">
+      variant="outline"
+      selectionStyle="mixed">
       <Menu.Item index="workspace-overview">Overview</Menu.Item>
       <Menu.Item index="workspace-orders" extra={<Tag variant="soft" color="warning">5</Tag>}>
         Orders

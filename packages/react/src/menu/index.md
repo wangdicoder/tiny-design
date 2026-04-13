@@ -75,6 +75,23 @@ Use `theme` when the menu needs local contrast against the page, such as a dark 
 
 </Demo>
 
+## Visual semantics
+
+`Menu` treats visual states as separate layers so variants can stay flexible without collapsing into one another:
+
+- `selected`: the current leaf item, always the strongest emphasis
+- `path-selected`: a parent item that contains the current selection, lighter than `selected`
+- `open`: structural expansion only, never a substitute for selection
+- `hover`: interaction feedback that should not erase `selected` or `path-selected`
+
+`selectionStyle` controls how the selected state is expressed:
+
+- `background`: selected items use surface fill, path items stay lighter
+- `border`: selected items use outline emphasis without fill
+- `indicator`: selected items rely on the indicator bar and text hierarchy only
+- `mixed`: combines indicator with the active variant surface
+
+Popup menus and inline menus share the same semantics, but popup path states intentionally stay lighter so the leaf item remains dominant.
 
 ## Notes on `index` keys
 

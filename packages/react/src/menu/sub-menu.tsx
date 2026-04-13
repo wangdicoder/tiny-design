@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
 import { MenuContext } from './menu-context';
 import { SubMenuContext } from './sub-menu-context';
@@ -26,6 +26,8 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
   const menuContext = useContext(MenuContext);
   const { mode, inlineIndent } = menuContext;
   const { level = 1, ancestorKeys = [], onMenuItemClick: _onMenuItemClick } = useContext(SubMenuContext);
+  const ancestorPath = ancestorKeys.join('__ty_menu_ancestor__');
+  const { registerKey, unregisterKey } = menuContext;
   const [popupOpen, setPopupOpen] = useState<boolean>(false);
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('menu-sub', configContext.prefixCls, customisedCls);
@@ -58,7 +60,9 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
   const titleCls = classNames(menuItemCls, `${prefixCls}__title`, {
     [`${menuItemCls}_disabled`]: disabled,
     [`${menuItemCls}_danger`]: danger,
+    [`${menuItemCls}_path-selected`]: isSelected,
     [`${menuItemCls}_child-selected`]: isSelected,
+    [`${menuItemCls}_open`]: menuOpen,
     [`${prefixCls}__title_open`]: menuOpen,
   });
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -66,11 +70,11 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
   const childAncestorKeys = index ? [...ancestorKeys, index] : ancestorKeys;
   const shouldUsePortal = menuContext.appearance === 'navigation';
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!index) return;
-    menuContext.registerKey?.(index, ancestorKeys);
-    return () => menuContext.unregisterKey?.(index);
-  }, [index, ancestorKeys]);
+    registerKey?.(index, ancestorKeys);
+    return () => unregisterKey?.(index);
+  }, [ancestorPath, index, registerKey, unregisterKey]);
 
   useEffect(() => {
     return () => {

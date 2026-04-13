@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useLayoutEffect } from 'react';
 import classNames from 'classnames';
 import { MenuContext } from './menu-context';
 import { SubMenuContext } from './sub-menu-context';
@@ -24,6 +24,8 @@ const MenuItem = (props: MenuItemProps): JSX.Element => {
   const subMenuContext = useContext(SubMenuContext);
   const { inlineIndent, mode } = menuContext;
   const { level = 1, ancestorKeys = [], onMenuItemClick } = subMenuContext;
+  const ancestorPath = ancestorKeys.join('__ty_menu_ancestor__');
+  const { registerKey, unregisterKey } = menuContext;
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('menu-item', configContext.prefixCls, customisedCls);
   const isSelected = menuContext.isSelected(index);
@@ -34,11 +36,11 @@ const MenuItem = (props: MenuItemProps): JSX.Element => {
     [`${prefixCls}_danger`]: danger,
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!index) return;
-    menuContext.registerKey?.(index, ancestorKeys);
-    return () => menuContext.unregisterKey?.(index);
-  }, [index, ancestorKeys]);
+    registerKey?.(index, ancestorKeys);
+    return () => unregisterKey?.(index);
+  }, [ancestorPath, index, registerKey, unregisterKey]);
 
   const onItemClick = (e: React.MouseEvent): void => {
     if (disabled) {
