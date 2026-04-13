@@ -26,12 +26,15 @@ const Dropdown = (props: DropdownProps): JSX.Element => {
   const [uncontrolledVisible, setUncontrolledVisible] = useState(false);
   const popupVisible = isControlled ? Boolean(props.visible) : uncontrolledVisible;
 
-  const setPopupVisibleState = useCallback((nextVisible: boolean): void => {
-    if (!isControlled) {
-      setUncontrolledVisible(nextVisible);
-    }
-    onVisibleChange?.(nextVisible);
-  }, [isControlled, onVisibleChange]);
+  const setPopupVisibleState = useCallback(
+    (nextVisible: boolean): void => {
+      if (!isControlled) {
+        setUncontrolledVisible(nextVisible);
+      }
+      onVisibleChange?.(nextVisible);
+    },
+    [isControlled, onVisibleChange]
+  );
 
   const renderOverlay = (): React.ReactNode => {
     if (!overlay) {
@@ -39,7 +42,8 @@ const Dropdown = (props: DropdownProps): JSX.Element => {
     }
 
     const originalOnSelect = overlay.props.onSelect;
-    const isMenuOverlay = (overlay.type as React.ElementType & { displayName?: string }).displayName === 'Menu';
+    const isMenuOverlay =
+      (overlay.type as React.ElementType & { displayName?: string }).displayName === 'Menu';
 
     if (!isMenuOverlay) {
       return overlay;
@@ -49,6 +53,7 @@ const Dropdown = (props: DropdownProps): JSX.Element => {
       overlayClassName: cls,
       appearance: 'dropdown',
       mode: 'vertical',
+      selectedKeys: [],
       onSelect: (selectedIndex, info) => {
         originalOnSelect?.(selectedIndex, info);
         if (!originalOnSelect) {

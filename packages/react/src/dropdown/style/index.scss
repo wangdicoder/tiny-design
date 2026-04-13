@@ -1,8 +1,16 @@
-@use "../../style/variables" as *;
+@use '../../style/variables' as *;
+
+/* stylelint-disable custom-property-pattern */
 
 .#{$prefix}-dropdown {
   .#{$prefix}-menu,
   .#{$prefix}-menu-sub__list {
+    --_menu-overlay-item-color: var(--ty-dropdown-item-color);
+    --_menu-item-text-hover: var(--ty-dropdown-item-color);
+    --_menu-item-text-open: var(--ty-dropdown-item-color);
+    --_menu-overlay-item-hover-bg: var(--ty-dropdown-item-hover-bg);
+    --_menu-popup-item-padding: var(--ty-dropdown-item-padding);
+
     padding: var(--ty-dropdown-menu-padding);
 
     .#{$prefix}-menu-item_active {
@@ -10,14 +18,10 @@
       color: var(--ty-dropdown-item-color);
     }
 
-    .#{$prefix}-menu-item {
-      padding: var(--ty-dropdown-item-padding);
+    .#{$prefix}-menu-item,
+    .#{$prefix}-menu-sub__title {
+      padding: var(--_menu-popup-item-padding);
       margin: 0;
-
-      &:hover:not(.#{$prefix}-menu-item_disabled) {
-        background-color: var(--ty-dropdown-item-hover-bg);
-        color: var(--ty-dropdown-item-color);
-      }
     }
   }
 

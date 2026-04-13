@@ -35,6 +35,7 @@ When `overlay` is a `Menu`, Dropdown will normalize it to a dropdown-menu scene:
 
 - `mode` is normalized to `vertical`
 - `appearance` is normalized to `dropdown`
+- selected-state visuals are suppressed; dropdown items keep hover feedback only
 
 This keeps dropdown menus visually stable and avoids leaking navigation-style `Menu` variants into popup menus. If you need page navigation, use `Menu appearance="navigation"` directly instead of wrapping it in `Dropdown`.
 
@@ -80,6 +81,7 @@ Show arrow.
 <DemoBlock component={ArrowDemo} source={ArrowSource} />
 
     </Demo>
+
   </Column>
   <Column>
     <Demo>
@@ -109,17 +111,18 @@ Close menu on click.
 <DemoBlock component={CloseDemo} source={CloseSource} />
 
     </Demo>
+
   </Column>
 </Layout>
 
 ## Props
 
-| Property          | Description                           | Type                          | Default   |
-| ----------------- | ------------------------------------- | ----------------------------- | --------- |
-| disabled          | whether the dropdown menu is disabled | boolean                       | false     |
-| trigger           | trigger mode                          | enum: `click` &#124; `hover`  | `hover`   |
-| placement         | placement of popup menu               | enum: `top-start` &#124; `top` &#124; `end` &#124; `bottom-start` &#124; `bottom` &#124; `bottom-end` | `bottom-start`    |
-| overlay           | popup content. `Menu` is the recommended overlay; when used, it is normalized to dropdown menu appearance | [Menu](../components/menu) \| ReactNode | -         |
-| visible           | whether the dropdown menu is visible  | boolean                       | -         |
-| arrow             | display the dropdown arrow            | boolean                       | false     |
-| onVisibleChange   | allow to get millisecond value        | (visible: boolean) => void    | -         |
+| Property        | Description                                                                                               | Type                                                                                                  | Default        |
+| --------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------- |
+| disabled        | whether the dropdown menu is disabled                                                                     | boolean                                                                                               | false          |
+| trigger         | trigger mode                                                                                              | enum: `click` &#124; `hover`                                                                          | `hover`        |
+| placement       | placement of popup menu                                                                                   | enum: `top-start` &#124; `top` &#124; `end` &#124; `bottom-start` &#124; `bottom` &#124; `bottom-end` | `bottom-start` |
+| overlay         | popup content. `Menu` is the recommended overlay; when used, it is normalized to dropdown menu appearance | [Menu](../components/menu) \| ReactNode                                                               | -              |
+| visible         | whether the dropdown menu is visible                                                                      | boolean                                                                                               | -              |
+| arrow           | display the dropdown arrow                                                                                | boolean                                                                                               | false          |
+| onVisibleChange | allow to get millisecond value                                                                            | (visible: boolean) => void                                                                            | -              |
