@@ -9,7 +9,7 @@ export default function SuccessDemo() {
       subtitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
       extra={
         <Flex gap="sm" justify="center">
-          <Button btnType="primary" key="console">
+          <Button variant="solid" color="primary" key="console">
             Go Console
           </Button>
           <Button key="buy">Buy Again</Button>

@@ -59,7 +59,7 @@ Components that accept sizes use: `'sm' | 'md' | 'lg'`
 ## Components
 
 ### Foundation
-- **Button** — Trigger operations. Props: `btnType` (`'default'|'primary'|'outline'|'ghost'|'link'|'info'|'danger'|'warning'|'success'`), `loading`, `disabled`, `block`, `size`, `round`, `icon`. Also: `Button.Group`.
+- **Button** — Trigger operations. Props: `variant` (`'solid'|'outline'|'ghost'|'link'`), `color` (`'default'|'primary'|'info'|'danger'|'warning'|'success'`), `loading`, `disabled`, `block`, `size`, `round`, `icon`. Also: `Button.Group`.
 - **Image** — Display images with preview support.
 - **Link** — Styled anchor element.
 - **Typography** — Headings, body text, lists. Prefer `Heading`, `Text`, `Paragraph`; compatibility entrypoints: `Typography.Heading`, `Typography.Text`, `Typography.Paragraph`.
@@ -192,7 +192,7 @@ import { SearchIcon, CloseIcon } from '@tiny-design/icons';
     <Input />
   </Form.Item>
   <Form.Item>
-    <Button btnType="primary" htmlType="submit">Submit</Button>
+    <Button variant="solid" color="primary" htmlType="submit">Submit</Button>
   </Form.Item>
 </Form>
 ```

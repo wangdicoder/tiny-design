@@ -98,9 +98,8 @@ exports[`<Transfer /> should match the snapshot 1`] = `
       class="ty-transfer__buttons"
     >
       <button
-        class="ty-btn ty-btn_sm ty-btn_primary ty-btn_disabled"
+        class="ty-btn ty-btn_sm ty-btn_variant-solid ty-btn_color-primary ty-btn_disabled"
         disabled=""
-        role="button"
       >
         <span
           class="ty-btn__children"
@@ -119,9 +118,8 @@ exports[`<Transfer /> should match the snapshot 1`] = `
         </span>
       </button>
       <button
-        class="ty-btn ty-btn_sm ty-btn_primary ty-btn_disabled"
+        class="ty-btn ty-btn_sm ty-btn_variant-solid ty-btn_color-primary ty-btn_disabled"
         disabled=""
-        role="button"
       >
         <span
           class="ty-btn__children"

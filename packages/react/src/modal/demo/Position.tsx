@@ -7,12 +7,12 @@ export default function PositionDemo() {
 
   return (
     <>
-      <Button btnType="primary" onClick={() => setVisible1(true)}>
+      <Button variant="solid" color="primary" onClick={() => setVisible1(true)}>
         Display a modal dialog at 20px to the top
       </Button>
       <br />
       <br />
-      <Button btnType="primary" onClick={() => setVisible2(true)}>
+      <Button variant="solid" color="primary" onClick={() => setVisible2(true)}>
         Vertically centered modal dialog
       </Button>
       <Modal

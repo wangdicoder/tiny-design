@@ -36,7 +36,7 @@ export default function PlacementDemo() {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center', padding: '40px 0' }}>
-        <Button ref={ref} btnType="primary" onClick={() => setOpen(true)}>
+        <Button ref={ref} variant="solid" color="primary" onClick={() => setOpen(true)}>
           Start Tour
         </Button>
       </div>

@@ -6,15 +6,17 @@ export default function ExtraDemo() {
     Message.loading('Deleting...', 3000, null, {
       extra: (
         <span
-          style={{color: '#1890ff', cursor: 'pointer'}}
+          style={{ color: '#1890ff', cursor: 'pointer' }}
           onClick={() => Message.success('Undo successful')}>
           Undo
         </span>
-      )
+      ),
     });
   };
 
   return (
-    <Button btnType="danger" onClick={onClick}>Delete</Button>
+    <Button variant="solid" color="danger" onClick={onClick}>
+      Delete
+    </Button>
   );
 }

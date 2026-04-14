@@ -5,10 +5,7 @@ export default function ControlledDemo() {
   const [visible, setVisible] = useState(false);
 
   const content = (
-    <Button
-      btnType="ghost"
-      onClick={() => setVisible(false)}
-    >
+    <Button variant="ghost" color="primary" onClick={() => setVisible(false)}>
       Close
     </Button>
   );
@@ -18,9 +15,8 @@ export default function ControlledDemo() {
       visible={visible}
       onVisibleChange={(v) => setVisible(v)}
       title="Popover Title"
-      content={content}
-    >
-      <Button btnType="primary">
+      content={content}>
+      <Button variant="solid" color="primary">
         Click Me
       </Button>
     </Popover>

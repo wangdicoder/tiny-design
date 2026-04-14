@@ -11,7 +11,7 @@ export default function UseInputDemo() {
         placeholder="Input something and then click button"
       />
       <CopyToClipboard text={text} onClick={() => Message.success('Copy successfully')}>
-        <Button btnType="primary" style={{ marginTop: 5 }}>
+        <Button variant="solid" color="primary" style={{ marginTop: 5 }}>
           Copy
         </Button>
       </CopyToClipboard>

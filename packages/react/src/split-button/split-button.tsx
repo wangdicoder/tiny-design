@@ -11,7 +11,8 @@ import Dropdown from '../dropdown';
 const SplitButton = (props: SplitButtonProps): React.ReactElement => {
   const {
     size = 'md',
-    btnType = 'default',
+    variant = 'solid',
+    color = 'default',
     disabled = false,
     loading = false,
     dropdownPlacement = 'bottom-end',
@@ -28,14 +29,21 @@ const SplitButton = (props: SplitButtonProps): React.ReactElement => {
   const cls = classNames(prefixCls, className);
 
   return (
-    <ButtonGroup {...otherProps} className={cls} btnType={btnType} disabled={disabled} size={size}>
+    <ButtonGroup
+      {...otherProps}
+      className={cls}
+      variant={variant}
+      color={color}
+      disabled={disabled}
+      size={size}>
       <Button onClick={onClick} loading={loading}>
         {children}
       </Button>
       <Dropdown overlay={overlay} trigger={dropdownTrigger} placement={dropdownPlacement}>
         <Button
           className={`${prefixCls}__dropdown-btn`}
-          btnType={btnType}
+          variant={variant}
+          color={color}
           disabled={disabled}
           size={size}>
           <ArrowDown size={10} />

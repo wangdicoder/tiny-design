@@ -17,7 +17,9 @@ export default function NestedThemeDemo() {
       }}>
       <Card title="Outer Provider" style={{ marginBottom: 16 }}>
         <Space>
-          <Button btnType="primary">Outer Primary</Button>
+          <Button variant="solid" color="primary">
+            Outer Primary
+          </Button>
           <Button>Outer Default</Button>
         </Space>
       </Card>
@@ -35,7 +37,9 @@ export default function NestedThemeDemo() {
         }}>
         <Card title="Inner Provider">
           <Space>
-            <Button btnType="primary">Inner Primary</Button>
+            <Button variant="solid" color="primary">
+              Inner Primary
+            </Button>
             <Button>Inner Default</Button>
           </Space>
         </Card>

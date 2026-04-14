@@ -30,7 +30,9 @@ export default function AlignDemo() {
       <div style={wrapperStyle}>
         <Space align={align}>
           center
-          <Button btnType="primary">Primary</Button>
+          <Button variant="solid" color="primary">
+            Primary
+          </Button>
           <span style={boxStyle}>Block</span>
         </Space>
       </div>

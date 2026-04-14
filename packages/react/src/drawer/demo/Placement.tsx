@@ -17,7 +17,7 @@ export default function PlacementDemo() {
       <br />
       <br />
 
-      <Button btnType="primary" onClick={() => setVisible(true)}>
+      <Button variant="solid" color="primary" onClick={() => setVisible(true)}>
         Open
       </Button>
 
@@ -25,8 +25,7 @@ export default function PlacementDemo() {
         header="Basic Drawer"
         placement={placement}
         onClose={() => setVisible(false)}
-        visible={visible}
-      >
+        visible={visible}>
         <div>Some contents...</div>
         <div>Some contents...</div>
         <div>Some contents...</div>

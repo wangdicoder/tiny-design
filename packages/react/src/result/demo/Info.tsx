@@ -7,9 +7,9 @@ export default function InfoDemo() {
       status="info"
       title="Your operation has been executed."
       extra={[
-        <Button btnType="primary" key="console">
+        <Button variant="solid" color="primary" key="console">
           Go Console
-        </Button>
+        </Button>,
       ]}
     />
   );

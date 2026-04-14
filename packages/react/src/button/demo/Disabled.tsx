@@ -10,39 +10,73 @@ export default function DisabledDemo() {
     <>
       <Flex gap="sm">
         <Button style={style}>Default</Button>
-        <Button disabled style={style}>Default (disabled)</Button>
+        <Button disabled style={style}>
+          Default (disabled)
+        </Button>
       </Flex>
       <Flex gap="sm">
-        <Button btnType="primary" style={style}>Primary</Button>
-        <Button disabled btnType="primary" style={style}>Primary (disabled)</Button>
+        <Button variant="solid" color="primary" style={style}>
+          Primary
+        </Button>
+        <Button disabled variant="solid" color="primary" style={style}>
+          Primary (disabled)
+        </Button>
       </Flex>
       <Flex gap="sm">
-        <Button btnType="outline" style={style}>Outline</Button>
-        <Button disabled btnType="outline" style={style}>Outline (disabled)</Button>
+        <Button variant="outline" color="primary" style={style}>
+          Outline
+        </Button>
+        <Button disabled variant="outline" color="primary" style={style}>
+          Outline (disabled)
+        </Button>
       </Flex>
       <Flex gap="sm">
-        <Button btnType="ghost" style={style}>Ghost</Button>
-        <Button disabled btnType="ghost" style={style}>Ghost (disabled)</Button>
+        <Button variant="ghost" color="primary" style={style}>
+          Ghost
+        </Button>
+        <Button disabled variant="ghost" color="primary" style={style}>
+          Ghost (disabled)
+        </Button>
       </Flex>
       <Flex gap="sm">
-        <Button btnType="success" style={style}>Success</Button>
-        <Button disabled btnType="success" style={style}>Success (disabled)</Button>
+        <Button variant="solid" color="success" style={style}>
+          Success
+        </Button>
+        <Button disabled variant="solid" color="success" style={style}>
+          Success (disabled)
+        </Button>
       </Flex>
       <Flex gap="sm">
-        <Button btnType="info" style={style}>Info</Button>
-        <Button disabled btnType="info" style={style}>Info (disabled)</Button>
+        <Button variant="solid" color="info" style={style}>
+          Info
+        </Button>
+        <Button disabled variant="solid" color="info" style={style}>
+          Info (disabled)
+        </Button>
       </Flex>
       <Flex gap="sm">
-        <Button btnType="warning" style={style}>Warning</Button>
-        <Button disabled btnType="warning" style={style}>Warning (disabled)</Button>
+        <Button variant="solid" color="warning" style={style}>
+          Warning
+        </Button>
+        <Button disabled variant="solid" color="warning" style={style}>
+          Warning (disabled)
+        </Button>
       </Flex>
       <Flex gap="sm">
-        <Button btnType="danger" style={style}>Danger</Button>
-        <Button disabled btnType="danger" style={style}>Danger (disabled)</Button>
+        <Button variant="solid" color="danger" style={style}>
+          Danger
+        </Button>
+        <Button disabled variant="solid" color="danger" style={style}>
+          Danger (disabled)
+        </Button>
       </Flex>
       <Flex gap="sm">
-        <Button btnType="link" style={style}>Link</Button>
-        <Button disabled btnType="link" style={style}>Link (disabled)</Button>
+        <Button variant="link" color="primary" style={style}>
+          Link
+        </Button>
+        <Button disabled variant="link" color="primary" style={style}>
+          Link (disabled)
+        </Button>
       </Flex>
     </>
   );

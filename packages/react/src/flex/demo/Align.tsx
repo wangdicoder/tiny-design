@@ -3,7 +3,14 @@ import { Flex, Segmented, Button } from '@tiny-design/react';
 import type { SegmentedValue } from '@tiny-design/react';
 
 export default function AlignDemo() {
-  const justifyOptions = ['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly'];
+  const justifyOptions = [
+    'flex-start',
+    'center',
+    'flex-end',
+    'space-between',
+    'space-around',
+    'space-evenly',
+  ];
   const alignOptions = ['flex-start', 'center', 'flex-end'];
 
   const [justify, setJustify] = React.useState('flex-start');
@@ -31,10 +38,18 @@ export default function AlignDemo() {
         onChange={(val: SegmentedValue) => setAlign(String(val))}
       />
       <Flex style={boxStyle} justify={justify} align={align}>
-        <Button btnType="primary">Primary</Button>
-        <Button btnType="primary">Primary</Button>
-        <Button btnType="primary">Primary</Button>
-        <Button btnType="primary">Primary</Button>
+        <Button variant="solid" color="primary">
+          Primary
+        </Button>
+        <Button variant="solid" color="primary">
+          Primary
+        </Button>
+        <Button variant="solid" color="primary">
+          Primary
+        </Button>
+        <Button variant="solid" color="primary">
+          Primary
+        </Button>
       </Flex>
     </Flex>
   );

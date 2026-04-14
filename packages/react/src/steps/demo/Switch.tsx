@@ -22,7 +22,7 @@ export default function SwitchDemo() {
       </Steps>
       <br />
       <br />
-      <Button btnType="primary" onClick={handleNext}>
+      <Button variant="solid" color="primary" onClick={handleNext}>
         Next
       </Button>
     </>

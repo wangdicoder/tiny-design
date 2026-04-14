@@ -13,7 +13,7 @@ export default function GroupDemo() {
           <Button>Go Right</Button>
         </Group>
         <br />
-        <Group btnType="primary">
+        <Group variant="solid" color="primary">
           <Button>Normal Button</Button>
           <Button>Middle</Button>
           <Button>Normal Button</Button>
@@ -27,16 +27,24 @@ export default function GroupDemo() {
           <Button>Go Right</Button>
         </Group>
         <br />
-        <Group btnType="primary" round>
+        <Group variant="solid" color="primary" round>
           <Button disabled>Normal Button</Button>
           <Button>Middle</Button>
           <Button>Normal Button</Button>
         </Group>
         <br />
-        <Group btnType="outline" disabled>
+        <Group variant="outline" color="primary" disabled>
           <Button>Left</Button>
           <Button>Middle</Button>
           <Button>Right</Button>
+        </Group>
+        <br />
+        <Group variant="solid" color="primary" inheritMode="fill">
+          <Button>Inherited</Button>
+          <Button variant="solid" color="danger">
+            Override Child
+          </Button>
+          <Button disabled={false}>Enabled Child</Button>
         </Group>
       </div>
     </>

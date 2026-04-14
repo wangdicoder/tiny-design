@@ -24,7 +24,7 @@ export default function NoMaskDemo() {
     <>
       <div style={{ display: 'flex', gap: 16 }}>
         <Button ref={ref1}>Upload</Button>
-        <Button ref={ref2} btnType="primary" onClick={() => setOpen(true)}>
+        <Button ref={ref2} variant="solid" color="primary" onClick={() => setOpen(true)}>
           Start Tour
         </Button>
       </div>

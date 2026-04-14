@@ -10,8 +10,7 @@ export default function ComplexLayoutDemo() {
             wrapperCol={24}
             style={{ display: 'inline-block', width: 'calc(50% - 5px)' }}
             name="firstName"
-            rules={[{ required: true, message: 'Please input your first name' }]}
-          >
+            rules={[{ required: true, message: 'Please input your first name' }]}>
             <Input placeholder="First Name" />
           </Form.Item>
           <span style={{ display: 'inline-block', width: '10px' }} />
@@ -19,8 +18,7 @@ export default function ComplexLayoutDemo() {
             wrapperCol={24}
             style={{ display: 'inline-block', width: 'calc(50% - 5px)' }}
             name="lastName"
-            rules={[{ required: true, message: 'Please input your last name' }]}
-          >
+            rules={[{ required: true, message: 'Please input your last name' }]}>
             <Input placeholder="Last Name" />
           </Form.Item>
         </>
@@ -28,12 +26,13 @@ export default function ComplexLayoutDemo() {
       <Form.Item
         label="Email"
         name="email"
-        rules={[{ required: true, message: 'Please input your email' }]}
-      >
+        rules={[{ required: true, message: 'Please input your email' }]}>
         <Input />
       </Form.Item>
       <Form.Item>
-        <Button btnType="primary" type="submit">Submit</Button>
+        <Button variant="solid" color="primary" type="submit">
+          Submit
+        </Button>
       </Form.Item>
     </Form>
   );

@@ -7,6 +7,8 @@ export default function BasicDemo() {
   };
 
   return (
-    <Button btnType="primary" onClick={onClick}>Normal message</Button>
+    <Button variant="solid" color="primary" onClick={onClick}>
+      Normal message
+    </Button>
   );
 }

@@ -19,7 +19,9 @@ export default function ContainerDemo() {
     <div style={containerStyle} ref={containerRef}>
       <div style={bgStyle}>
         <Sticky container={() => containerRef.current ?? window}>
-          <Button btnType="primary">Fixed at the top of container</Button>
+          <Button variant="solid" color="primary">
+            Fixed at the top of container
+          </Button>
         </Sticky>
       </div>
     </div>

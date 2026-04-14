@@ -6,9 +6,19 @@ export default function BasicDemo() {
 
   return (
     <>
-      <Button btnType="primary" onClick={() => setIsShow(true)}>Show Overlay</Button>
+      <Button variant="solid" color="primary" onClick={() => setIsShow(true)}>
+        Show Overlay
+      </Button>
       <Overlay isShow={isShow} clickCallback={() => setIsShow(false)}>
-        <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff', fontSize: 20 }}>
+        <div
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: '#fff',
+            fontSize: 20,
+          }}>
           Click the overlay to close
         </div>
       </Overlay>

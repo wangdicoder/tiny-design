@@ -125,105 +125,1108 @@
     "$type": "dimension",
     "description": "Large button icon size."
   },
-  "button.bg.default": {
-    "$value": "{color-bg-container}",
-    "$type": "color",
-    "description": "Default button background.",
-    "fallback": "--ty-color-bg-container"
-  },
-  "button.bg.default-hover": {
-    "$value": "{color-bg-container}",
-    "$type": "color",
-    "description": "Default button hover background.",
-    "fallback": "--ty-color-bg-container"
-  },
-  "button.bg.default-active": {
-    "$value": "{color-fill}",
-    "$type": "color",
-    "description": "Default button active background.",
-    "fallback": "--ty-color-fill"
-  },
-  "button.border.default": {
-    "$value": "{color-border-btn-default}",
-    "$type": "color",
-    "description": "Default button border color.",
-    "fallback": "--ty-color-border-btn-default"
-  },
-  "button.border.default-hover": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Default button hover border color.",
-    "fallback": "--ty-color-primary"
-  },
-  "button.border.default-active": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Default button active border color.",
-    "fallback": "--ty-color-primary"
-  },
-  "button.text.default": {
-    "$value": "{color-text}",
-    "$type": "color",
-    "description": "Default button text color.",
-    "fallback": "--ty-color-text"
-  },
-  "button.text.default-hover": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Default button hover text color.",
-    "fallback": "--ty-color-primary"
-  },
-  "button.text.default-active": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Default button active text color.",
-    "fallback": "--ty-color-primary"
-  },
-  "button.bg.primary": {
-    "$value": "{color-primary}",
-    "$type": "color",
-    "description": "Primary button background.",
-    "fallback": "--ty-color-primary"
-  },
-  "button.bg.primary-hover": {
-    "$value": "{color-primary-hover}",
-    "$type": "color",
-    "description": "Primary button hover background.",
-    "fallback": "--ty-color-primary-hover"
-  },
-  "button.bg.primary-active": {
-    "$value": "{color-primary-active}",
-    "$type": "color",
-    "description": "Primary button active background.",
-    "fallback": "--ty-color-primary-active"
-  },
-  "button.text.primary": {
-    "$value": "#fff",
-    "$type": "color",
-    "description": "Primary button text color."
-  },
-  "button.text.link-disabled": {
+  "button.disabled.text": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
-    "description": "Disabled link button text color.",
+    "description": "Disabled button text color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "button.bg.disabled": {
+  "button.disabled.bg": {
     "$value": "{color-bg-disabled}",
     "$type": "color",
     "description": "Disabled button background.",
     "fallback": "--ty-color-bg-disabled"
   },
-  "button.border.disabled": {
+  "button.disabled.border": {
     "$value": "{color-border}",
     "$type": "color",
     "description": "Disabled button border color.",
     "fallback": "--ty-color-border"
   },
-  "button.text.disabled": {
+  "button.text-link-disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
-    "description": "Disabled button text color.",
+    "description": "Disabled link button text color.",
     "fallback": "--ty-color-text-quaternary"
+  },
+  "button.solid.default.text": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "solid default button text color."
+  },
+  "button.solid.default.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "solid default button background color."
+  },
+  "button.solid.default.border": {
+    "$value": "{color-border-btn-default}",
+    "$type": "color",
+    "description": "solid default button border color."
+  },
+  "button.solid.default.text-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "solid default button hover text color."
+  },
+  "button.solid.default.bg-hover": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "solid default button hover background color."
+  },
+  "button.solid.default.border-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "solid default button hover border color."
+  },
+  "button.solid.default.text-active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "solid default button active text color."
+  },
+  "button.solid.default.bg-active": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "solid default button active background color."
+  },
+  "button.solid.default.border-active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "solid default button active border color."
+  },
+  "button.outline.default.text": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "outline default button text color."
+  },
+  "button.outline.default.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "outline default button background color."
+  },
+  "button.outline.default.border": {
+    "$value": "{color-border-btn-default}",
+    "$type": "color",
+    "description": "outline default button border color."
+  },
+  "button.outline.default.text-hover": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "outline default button hover text color."
+  },
+  "button.outline.default.bg-hover": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "outline default button hover background color."
+  },
+  "button.outline.default.border-hover": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "outline default button hover border color."
+  },
+  "button.outline.default.text-active": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "outline default button active text color."
+  },
+  "button.outline.default.bg-active": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "outline default button active background color."
+  },
+  "button.outline.default.border-active": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "outline default button active border color."
+  },
+  "button.ghost.default.text": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "ghost default button text color."
+  },
+  "button.ghost.default.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost default button background color."
+  },
+  "button.ghost.default.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost default button border color."
+  },
+  "button.ghost.default.text-hover": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "ghost default button hover text color."
+  },
+  "button.ghost.default.bg-hover": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "ghost default button hover background color."
+  },
+  "button.ghost.default.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost default button hover border color."
+  },
+  "button.ghost.default.text-active": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "ghost default button active text color."
+  },
+  "button.ghost.default.bg-active": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "ghost default button active background color."
+  },
+  "button.ghost.default.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost default button active border color."
+  },
+  "button.link.default.text": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "link default button text color."
+  },
+  "button.link.default.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link default button background color."
+  },
+  "button.link.default.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link default button border color."
+  },
+  "button.link.default.text-hover": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "link default button hover text color."
+  },
+  "button.link.default.bg-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link default button hover background color."
+  },
+  "button.link.default.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link default button hover border color."
+  },
+  "button.link.default.text-active": {
+    "$value": "{color-text}",
+    "$type": "color",
+    "description": "link default button active text color."
+  },
+  "button.link.default.bg-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link default button active background color."
+  },
+  "button.link.default.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link default button active border color."
+  },
+  "button.solid.primary.text": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid primary button text color."
+  },
+  "button.solid.primary.bg": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "solid primary button background color."
+  },
+  "button.solid.primary.border": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "solid primary button border color."
+  },
+  "button.solid.primary.text-hover": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid primary button hover text color."
+  },
+  "button.solid.primary.bg-hover": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "solid primary button hover background color."
+  },
+  "button.solid.primary.border-hover": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "solid primary button hover border color."
+  },
+  "button.solid.primary.text-active": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid primary button active text color."
+  },
+  "button.solid.primary.bg-active": {
+    "$value": "{color-primary-active}",
+    "$type": "color",
+    "description": "solid primary button active background color."
+  },
+  "button.solid.primary.border-active": {
+    "$value": "{color-primary-active}",
+    "$type": "color",
+    "description": "solid primary button active border color."
+  },
+  "button.outline.primary.text": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "outline primary button text color."
+  },
+  "button.outline.primary.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "outline primary button background color."
+  },
+  "button.outline.primary.border": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "outline primary button border color."
+  },
+  "button.outline.primary.text-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "outline primary button hover text color."
+  },
+  "button.outline.primary.bg-hover": {
+    "$value": "{color-primary-bg}",
+    "$type": "color",
+    "description": "outline primary button hover background color."
+  },
+  "button.outline.primary.border-hover": {
+    "$value": "{color-primary-hover}",
+    "$type": "color",
+    "description": "outline primary button hover border color."
+  },
+  "button.outline.primary.text-active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "outline primary button active text color."
+  },
+  "button.outline.primary.bg-active": {
+    "$value": "{color-primary-bg-hover}",
+    "$type": "color",
+    "description": "outline primary button active background color."
+  },
+  "button.outline.primary.border-active": {
+    "$value": "{color-primary-active}",
+    "$type": "color",
+    "description": "outline primary button active border color."
+  },
+  "button.ghost.primary.text": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "ghost primary button text color."
+  },
+  "button.ghost.primary.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost primary button background color."
+  },
+  "button.ghost.primary.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost primary button border color."
+  },
+  "button.ghost.primary.text-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "ghost primary button hover text color."
+  },
+  "button.ghost.primary.bg-hover": {
+    "$value": "{color-primary-bg}",
+    "$type": "color",
+    "description": "ghost primary button hover background color."
+  },
+  "button.ghost.primary.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost primary button hover border color."
+  },
+  "button.ghost.primary.text-active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "ghost primary button active text color."
+  },
+  "button.ghost.primary.bg-active": {
+    "$value": "{color-primary-bg-hover}",
+    "$type": "color",
+    "description": "ghost primary button active background color."
+  },
+  "button.ghost.primary.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost primary button active border color."
+  },
+  "button.link.primary.text": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "link primary button text color."
+  },
+  "button.link.primary.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link primary button background color."
+  },
+  "button.link.primary.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link primary button border color."
+  },
+  "button.link.primary.text-hover": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "link primary button hover text color."
+  },
+  "button.link.primary.bg-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link primary button hover background color."
+  },
+  "button.link.primary.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link primary button hover border color."
+  },
+  "button.link.primary.text-active": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "link primary button active text color."
+  },
+  "button.link.primary.bg-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link primary button active background color."
+  },
+  "button.link.primary.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link primary button active border color."
+  },
+  "button.solid.info.text": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid info button text color."
+  },
+  "button.solid.info.bg": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "solid info button background color."
+  },
+  "button.solid.info.border": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "solid info button border color."
+  },
+  "button.solid.info.text-hover": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid info button hover text color."
+  },
+  "button.solid.info.bg-hover": {
+    "$value": "{color-info-hover}",
+    "$type": "color",
+    "description": "solid info button hover background color."
+  },
+  "button.solid.info.border-hover": {
+    "$value": "{color-info-hover}",
+    "$type": "color",
+    "description": "solid info button hover border color."
+  },
+  "button.solid.info.text-active": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid info button active text color."
+  },
+  "button.solid.info.bg-active": {
+    "$value": "{color-info-active}",
+    "$type": "color",
+    "description": "solid info button active background color."
+  },
+  "button.solid.info.border-active": {
+    "$value": "{color-info-active}",
+    "$type": "color",
+    "description": "solid info button active border color."
+  },
+  "button.outline.info.text": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "outline info button text color."
+  },
+  "button.outline.info.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "outline info button background color."
+  },
+  "button.outline.info.border": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "outline info button border color."
+  },
+  "button.outline.info.text-hover": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "outline info button hover text color."
+  },
+  "button.outline.info.bg-hover": {
+    "$value": "rgba(64, 169, 255, 0.12)",
+    "$type": "color",
+    "description": "outline info button hover background color."
+  },
+  "button.outline.info.border-hover": {
+    "$value": "{color-info-hover}",
+    "$type": "color",
+    "description": "outline info button hover border color."
+  },
+  "button.outline.info.text-active": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "outline info button active text color."
+  },
+  "button.outline.info.bg-active": {
+    "$value": "rgba(64, 169, 255, 0.18)",
+    "$type": "color",
+    "description": "outline info button active background color."
+  },
+  "button.outline.info.border-active": {
+    "$value": "{color-info-active}",
+    "$type": "color",
+    "description": "outline info button active border color."
+  },
+  "button.ghost.info.text": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "ghost info button text color."
+  },
+  "button.ghost.info.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost info button background color."
+  },
+  "button.ghost.info.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost info button border color."
+  },
+  "button.ghost.info.text-hover": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "ghost info button hover text color."
+  },
+  "button.ghost.info.bg-hover": {
+    "$value": "rgba(64, 169, 255, 0.12)",
+    "$type": "color",
+    "description": "ghost info button hover background color."
+  },
+  "button.ghost.info.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost info button hover border color."
+  },
+  "button.ghost.info.text-active": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "ghost info button active text color."
+  },
+  "button.ghost.info.bg-active": {
+    "$value": "rgba(64, 169, 255, 0.18)",
+    "$type": "color",
+    "description": "ghost info button active background color."
+  },
+  "button.ghost.info.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost info button active border color."
+  },
+  "button.link.info.text": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "link info button text color."
+  },
+  "button.link.info.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link info button background color."
+  },
+  "button.link.info.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link info button border color."
+  },
+  "button.link.info.text-hover": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "link info button hover text color."
+  },
+  "button.link.info.bg-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link info button hover background color."
+  },
+  "button.link.info.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link info button hover border color."
+  },
+  "button.link.info.text-active": {
+    "$value": "{color-info}",
+    "$type": "color",
+    "description": "link info button active text color."
+  },
+  "button.link.info.bg-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link info button active background color."
+  },
+  "button.link.info.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link info button active border color."
+  },
+  "button.solid.success.text": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid success button text color."
+  },
+  "button.solid.success.bg": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "solid success button background color."
+  },
+  "button.solid.success.border": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "solid success button border color."
+  },
+  "button.solid.success.text-hover": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid success button hover text color."
+  },
+  "button.solid.success.bg-hover": {
+    "$value": "{color-success-hover}",
+    "$type": "color",
+    "description": "solid success button hover background color."
+  },
+  "button.solid.success.border-hover": {
+    "$value": "{color-success-hover}",
+    "$type": "color",
+    "description": "solid success button hover border color."
+  },
+  "button.solid.success.text-active": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid success button active text color."
+  },
+  "button.solid.success.bg-active": {
+    "$value": "{color-success-active}",
+    "$type": "color",
+    "description": "solid success button active background color."
+  },
+  "button.solid.success.border-active": {
+    "$value": "{color-success-active}",
+    "$type": "color",
+    "description": "solid success button active border color."
+  },
+  "button.outline.success.text": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "outline success button text color."
+  },
+  "button.outline.success.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "outline success button background color."
+  },
+  "button.outline.success.border": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "outline success button border color."
+  },
+  "button.outline.success.text-hover": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "outline success button hover text color."
+  },
+  "button.outline.success.bg-hover": {
+    "$value": "rgba(82, 196, 26, 0.12)",
+    "$type": "color",
+    "description": "outline success button hover background color."
+  },
+  "button.outline.success.border-hover": {
+    "$value": "{color-success-hover}",
+    "$type": "color",
+    "description": "outline success button hover border color."
+  },
+  "button.outline.success.text-active": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "outline success button active text color."
+  },
+  "button.outline.success.bg-active": {
+    "$value": "rgba(82, 196, 26, 0.18)",
+    "$type": "color",
+    "description": "outline success button active background color."
+  },
+  "button.outline.success.border-active": {
+    "$value": "{color-success-active}",
+    "$type": "color",
+    "description": "outline success button active border color."
+  },
+  "button.ghost.success.text": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "ghost success button text color."
+  },
+  "button.ghost.success.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost success button background color."
+  },
+  "button.ghost.success.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost success button border color."
+  },
+  "button.ghost.success.text-hover": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "ghost success button hover text color."
+  },
+  "button.ghost.success.bg-hover": {
+    "$value": "rgba(82, 196, 26, 0.12)",
+    "$type": "color",
+    "description": "ghost success button hover background color."
+  },
+  "button.ghost.success.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost success button hover border color."
+  },
+  "button.ghost.success.text-active": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "ghost success button active text color."
+  },
+  "button.ghost.success.bg-active": {
+    "$value": "rgba(82, 196, 26, 0.18)",
+    "$type": "color",
+    "description": "ghost success button active background color."
+  },
+  "button.ghost.success.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost success button active border color."
+  },
+  "button.link.success.text": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "link success button text color."
+  },
+  "button.link.success.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link success button background color."
+  },
+  "button.link.success.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link success button border color."
+  },
+  "button.link.success.text-hover": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "link success button hover text color."
+  },
+  "button.link.success.bg-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link success button hover background color."
+  },
+  "button.link.success.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link success button hover border color."
+  },
+  "button.link.success.text-active": {
+    "$value": "{color-success}",
+    "$type": "color",
+    "description": "link success button active text color."
+  },
+  "button.link.success.bg-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link success button active background color."
+  },
+  "button.link.success.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link success button active border color."
+  },
+  "button.solid.warning.text": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid warning button text color."
+  },
+  "button.solid.warning.bg": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "solid warning button background color."
+  },
+  "button.solid.warning.border": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "solid warning button border color."
+  },
+  "button.solid.warning.text-hover": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid warning button hover text color."
+  },
+  "button.solid.warning.bg-hover": {
+    "$value": "{color-warning-hover}",
+    "$type": "color",
+    "description": "solid warning button hover background color."
+  },
+  "button.solid.warning.border-hover": {
+    "$value": "{color-warning-hover}",
+    "$type": "color",
+    "description": "solid warning button hover border color."
+  },
+  "button.solid.warning.text-active": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid warning button active text color."
+  },
+  "button.solid.warning.bg-active": {
+    "$value": "{color-warning-active}",
+    "$type": "color",
+    "description": "solid warning button active background color."
+  },
+  "button.solid.warning.border-active": {
+    "$value": "{color-warning-active}",
+    "$type": "color",
+    "description": "solid warning button active border color."
+  },
+  "button.outline.warning.text": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "outline warning button text color."
+  },
+  "button.outline.warning.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "outline warning button background color."
+  },
+  "button.outline.warning.border": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "outline warning button border color."
+  },
+  "button.outline.warning.text-hover": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "outline warning button hover text color."
+  },
+  "button.outline.warning.bg-hover": {
+    "$value": "rgba(250, 173, 20, 0.12)",
+    "$type": "color",
+    "description": "outline warning button hover background color."
+  },
+  "button.outline.warning.border-hover": {
+    "$value": "{color-warning-hover}",
+    "$type": "color",
+    "description": "outline warning button hover border color."
+  },
+  "button.outline.warning.text-active": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "outline warning button active text color."
+  },
+  "button.outline.warning.bg-active": {
+    "$value": "rgba(250, 173, 20, 0.18)",
+    "$type": "color",
+    "description": "outline warning button active background color."
+  },
+  "button.outline.warning.border-active": {
+    "$value": "{color-warning-active}",
+    "$type": "color",
+    "description": "outline warning button active border color."
+  },
+  "button.ghost.warning.text": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "ghost warning button text color."
+  },
+  "button.ghost.warning.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost warning button background color."
+  },
+  "button.ghost.warning.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost warning button border color."
+  },
+  "button.ghost.warning.text-hover": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "ghost warning button hover text color."
+  },
+  "button.ghost.warning.bg-hover": {
+    "$value": "rgba(250, 173, 20, 0.12)",
+    "$type": "color",
+    "description": "ghost warning button hover background color."
+  },
+  "button.ghost.warning.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost warning button hover border color."
+  },
+  "button.ghost.warning.text-active": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "ghost warning button active text color."
+  },
+  "button.ghost.warning.bg-active": {
+    "$value": "rgba(250, 173, 20, 0.18)",
+    "$type": "color",
+    "description": "ghost warning button active background color."
+  },
+  "button.ghost.warning.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost warning button active border color."
+  },
+  "button.link.warning.text": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "link warning button text color."
+  },
+  "button.link.warning.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link warning button background color."
+  },
+  "button.link.warning.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link warning button border color."
+  },
+  "button.link.warning.text-hover": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "link warning button hover text color."
+  },
+  "button.link.warning.bg-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link warning button hover background color."
+  },
+  "button.link.warning.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link warning button hover border color."
+  },
+  "button.link.warning.text-active": {
+    "$value": "{color-warning}",
+    "$type": "color",
+    "description": "link warning button active text color."
+  },
+  "button.link.warning.bg-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link warning button active background color."
+  },
+  "button.link.warning.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link warning button active border color."
+  },
+  "button.solid.danger.text": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid danger button text color."
+  },
+  "button.solid.danger.bg": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "solid danger button background color."
+  },
+  "button.solid.danger.border": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "solid danger button border color."
+  },
+  "button.solid.danger.text-hover": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid danger button hover text color."
+  },
+  "button.solid.danger.bg-hover": {
+    "$value": "{color-danger-hover}",
+    "$type": "color",
+    "description": "solid danger button hover background color."
+  },
+  "button.solid.danger.border-hover": {
+    "$value": "{color-danger-hover}",
+    "$type": "color",
+    "description": "solid danger button hover border color."
+  },
+  "button.solid.danger.text-active": {
+    "$value": "#fff",
+    "$type": "color",
+    "description": "solid danger button active text color."
+  },
+  "button.solid.danger.bg-active": {
+    "$value": "{color-danger-active}",
+    "$type": "color",
+    "description": "solid danger button active background color."
+  },
+  "button.solid.danger.border-active": {
+    "$value": "{color-danger-active}",
+    "$type": "color",
+    "description": "solid danger button active border color."
+  },
+  "button.outline.danger.text": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "outline danger button text color."
+  },
+  "button.outline.danger.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "outline danger button background color."
+  },
+  "button.outline.danger.border": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "outline danger button border color."
+  },
+  "button.outline.danger.text-hover": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "outline danger button hover text color."
+  },
+  "button.outline.danger.bg-hover": {
+    "$value": "rgba(255, 77, 79, 0.12)",
+    "$type": "color",
+    "description": "outline danger button hover background color."
+  },
+  "button.outline.danger.border-hover": {
+    "$value": "{color-danger-hover}",
+    "$type": "color",
+    "description": "outline danger button hover border color."
+  },
+  "button.outline.danger.text-active": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "outline danger button active text color."
+  },
+  "button.outline.danger.bg-active": {
+    "$value": "rgba(255, 77, 79, 0.18)",
+    "$type": "color",
+    "description": "outline danger button active background color."
+  },
+  "button.outline.danger.border-active": {
+    "$value": "{color-danger-active}",
+    "$type": "color",
+    "description": "outline danger button active border color."
+  },
+  "button.ghost.danger.text": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "ghost danger button text color."
+  },
+  "button.ghost.danger.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost danger button background color."
+  },
+  "button.ghost.danger.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost danger button border color."
+  },
+  "button.ghost.danger.text-hover": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "ghost danger button hover text color."
+  },
+  "button.ghost.danger.bg-hover": {
+    "$value": "rgba(255, 77, 79, 0.12)",
+    "$type": "color",
+    "description": "ghost danger button hover background color."
+  },
+  "button.ghost.danger.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost danger button hover border color."
+  },
+  "button.ghost.danger.text-active": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "ghost danger button active text color."
+  },
+  "button.ghost.danger.bg-active": {
+    "$value": "rgba(255, 77, 79, 0.18)",
+    "$type": "color",
+    "description": "ghost danger button active background color."
+  },
+  "button.ghost.danger.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "ghost danger button active border color."
+  },
+  "button.link.danger.text": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "link danger button text color."
+  },
+  "button.link.danger.bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link danger button background color."
+  },
+  "button.link.danger.border": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link danger button border color."
+  },
+  "button.link.danger.text-hover": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "link danger button hover text color."
+  },
+  "button.link.danger.bg-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link danger button hover background color."
+  },
+  "button.link.danger.border-hover": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link danger button hover border color."
+  },
+  "button.link.danger.text-active": {
+    "$value": "{color-danger}",
+    "$type": "color",
+    "description": "link danger button active text color."
+  },
+  "button.link.danger.bg-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link danger button active background color."
+  },
+  "button.link.danger.border-active": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "link danger button active border color."
   }
 }

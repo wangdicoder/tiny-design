@@ -5,7 +5,9 @@ export default function BasicDemo() {
   return (
     <Space>
       Space
-      <Button btnType="primary">Button</Button>
+      <Button variant="solid" color="primary">
+        Button
+      </Button>
       <Button>Another Button</Button>
       <PopConfirm title="Are you sure delete this task?" confirmText="Yes" cancelText="No">
         <Button>Confirm</Button>

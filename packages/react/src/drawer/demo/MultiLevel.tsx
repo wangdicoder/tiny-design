@@ -7,7 +7,7 @@ export default function MultiLevelDemo() {
 
   return (
     <>
-      <Button btnType="primary" onClick={() => setVisible(true)}>
+      <Button variant="solid" color="primary" onClick={() => setVisible(true)}>
         Open drawer
       </Button>
       <Drawer
@@ -15,9 +15,8 @@ export default function MultiLevelDemo() {
         size={520}
         closable={false}
         onClose={() => setVisible(false)}
-        visible={visible}
-      >
-        <Button btnType="primary" onClick={() => setChildVisible(true)}>
+        visible={visible}>
+        <Button variant="solid" color="primary" onClick={() => setChildVisible(true)}>
           Two-level drawer
         </Button>
         <Drawer
@@ -25,8 +24,7 @@ export default function MultiLevelDemo() {
           size={320}
           closable={false}
           onClose={() => setChildVisible(false)}
-          visible={childVisible}
-        >
+          visible={childVisible}>
           This is two-level drawer
         </Drawer>
         <div
@@ -40,10 +38,9 @@ export default function MultiLevelDemo() {
             left: 0,
             background: '#fff',
             borderRadius: '0 0 4px 4px',
-          }}
-        >
+          }}>
           <Button onClick={() => setVisible(false)}>Cancel</Button>
-          <Button onClick={() => setVisible(false)} btnType="primary">
+          <Button onClick={() => setVisible(false)} variant="solid" color="primary">
             Submit
           </Button>
         </div>

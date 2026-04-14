@@ -106,7 +106,8 @@ const Transfer = React.forwardRef<HTMLDivElement, TransferProps>(
         />
         <div className={`${prefixCls}__buttons`}>
           <Button
-            btnType="primary"
+            variant="solid"
+            color="primary"
             size="sm"
             onClick={addToRight}
             disabled={leftCheckedKeys.length === 0}>
@@ -114,7 +115,8 @@ const Transfer = React.forwardRef<HTMLDivElement, TransferProps>(
             {buttonTexts && buttonTexts[0] !== undefined && <span>{buttonTexts[0]}</span>}
           </Button>
           <Button
-            btnType="primary"
+            variant="solid"
+            color="primary"
             size="sm"
             onClick={addToLeft}
             disabled={rightCheckedKeys.length === 0}>

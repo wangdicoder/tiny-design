@@ -8,11 +8,21 @@ export default function TypeDemo() {
 
   return (
     <Flex gap="sm">
-      <Button btnType="info" onClick={() => onClick('info')}>Info</Button>
-      <Button btnType="success" onClick={() => onClick('success')}>Success</Button>
-      <Button btnType="warning" onClick={() => onClick('warning')}>Warning</Button>
-      <Button btnType="danger" onClick={() => onClick('error')}>Error</Button>
-      <Button btnType="info" onClick={() => onClick('loading')}>Loading</Button>
+      <Button variant="solid" color="info" onClick={() => onClick('info')}>
+        Info
+      </Button>
+      <Button variant="solid" color="success" onClick={() => onClick('success')}>
+        Success
+      </Button>
+      <Button variant="solid" color="warning" onClick={() => onClick('warning')}>
+        Warning
+      </Button>
+      <Button variant="solid" color="danger" onClick={() => onClick('error')}>
+        Error
+      </Button>
+      <Button variant="solid" color="info" onClick={() => onClick('loading')}>
+        Loading
+      </Button>
     </Flex>
   );
 }

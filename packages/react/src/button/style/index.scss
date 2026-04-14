@@ -1,12 +1,26 @@
-@use "../../style/variables" as *;
-@use "../../style/mixins" as *;
+@use '../../style/variables' as *;
+@use '../../style/mixins' as *;
 @use './mixin' as *;
 
 $btn-prefix: #{$prefix}-btn;
 
 .#{$btn-prefix} {
+  @include button-vars(
+    solid,
+    default,
+    var(--ty-color-text),
+    var(--ty-color-bg-container),
+    var(--ty-color-border-btn-default),
+    var(--ty-color-bg-container),
+    var(--ty-color-primary),
+    var(--ty-color-primary),
+    var(--ty-color-fill),
+    var(--ty-color-primary),
+    var(--ty-color-primary)
+  );
+
   box-sizing: border-box;
-  border: 1px solid var(--ty-button-border-default, var(--ty-color-border-btn-default));
+  border: 1px solid var(--ty-button-current-border);
   outline: none;
   letter-spacing: 0;
   text-align: center;
@@ -23,17 +37,35 @@ $btn-prefix: #{$prefix}-btn;
   transition: $btn-transition;
   line-height: var(--ty-button-line-height, var(--ty-line-height-base));
 
+  @include button-style(
+    var(--ty-button-current-text),
+    var(--ty-button-current-bg),
+    var(--ty-button-current-border),
+    var(--ty-button-current-bg-hover),
+    var(--ty-button-current-border-hover),
+    var(--ty-button-current-text-hover),
+    var(--ty-button-current-bg-active),
+    var(--ty-button-current-border-active),
+    var(--ty-button-current-text-active)
+  );
+
   &__loader {
     @include loader;
   }
 
-  &__icon-container, &__loader {
-    display: inline-block;
+  &__icon-container,
+  &__loader {
+    display: inline-flex;
     flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
     pointer-events: none;
-    line-height: var(--ty-button-line-height, var(--ty-line-height-base));
-    vertical-align: middle;
+    line-height: 1;
     font-size: var(--ty-button-icon-size-current, 1em);
+  }
+
+  &__icon-container > svg {
+    display: block;
   }
 
   &__children {
@@ -43,67 +75,396 @@ $btn-prefix: #{$prefix}-btn;
     min-width: 0;
   }
 
-  // Types
-  &_default {
-    @include button-style(
-      var(--ty-button-text-default, var(--ty-color-text)),
-      var(--ty-button-bg-default, var(--ty-color-bg-container)),
-      var(--ty-button-border-default, var(--ty-color-border-btn-default)),
-      var(--ty-button-bg-default-hover, var(--ty-color-bg-container)),
-      var(--ty-button-border-default-hover, var(--ty-color-primary)),
-      var(--ty-button-text-default-hover, var(--ty-color-primary)),
-      var(--ty-button-bg-default-active, var(--ty-color-fill)),
-      var(--ty-button-border-default-active, var(--ty-color-primary)),
-      var(--ty-button-text-default-active, var(--ty-color-primary))
-    );
-  }
+  &_variant-solid {
+    &.#{$btn-prefix}_color-default {
+      @include button-vars(
+        solid,
+        default,
+        var(--ty-color-text),
+        var(--ty-color-bg-container),
+        var(--ty-color-border-btn-default),
+        var(--ty-color-bg-container),
+        var(--ty-color-primary),
+        var(--ty-color-primary),
+        var(--ty-color-fill),
+        var(--ty-color-primary),
+        var(--ty-color-primary)
+      );
+    }
 
-  &_primary {
-    @include button-style(
-      var(--ty-button-text-primary, #fff),
-      var(--ty-button-bg-primary, var(--ty-color-primary)),
-      var(--ty-color-primary),
-      var(--ty-button-bg-primary-hover, var(--ty-color-primary-hover)),
-      var(--ty-color-primary-hover),
-      var(--ty-button-text-primary, #fff),
-      var(--ty-button-bg-primary-active, var(--ty-color-primary-active)),
-      var(--ty-color-primary-active),
-      var(--ty-button-text-primary, #fff)
-    );
-  }
+    &.#{$btn-prefix}_color-primary {
+      @include button-vars(
+        solid,
+        primary,
+        #fff,
+        var(--ty-color-primary),
+        var(--ty-color-primary),
+        var(--ty-color-primary-hover),
+        var(--ty-color-primary-hover),
+        #fff,
+        var(--ty-color-primary-active),
+        var(--ty-color-primary-active),
+        #fff
+      );
+    }
 
-  &_outline {
-    @include button-style(
-      var(--ty-color-primary),
-      var(--ty-button-bg-default, var(--ty-color-bg-container)),
-      var(--ty-color-primary),
-      var(--ty-color-primary-bg, var(--ty-button-bg-default, var(--ty-color-bg-container))),
-      var(--ty-color-primary-hover),
-      var(--ty-color-primary),
-      var(--ty-color-primary-bg-hover, var(--ty-color-fill))
-    );
-  }
+    &.#{$btn-prefix}_color-info {
+      @include button-vars(
+        solid,
+        info,
+        #fff,
+        var(--ty-color-info),
+        var(--ty-color-info),
+        var(--ty-color-info-hover),
+        var(--ty-color-info-hover),
+        #fff,
+        var(--ty-color-info-active),
+        var(--ty-color-info-active),
+        #fff
+      );
+    }
 
-  &_ghost {
-    @include button-style(
-      var(--ty-color-primary),
-      transparent,
-      transparent,
-      var(--ty-color-primary-bg, transparent),
-      transparent,
-      var(--ty-color-primary),
-      var(--ty-color-primary-bg-hover, var(--ty-color-fill)),
-      transparent,
-      var(--ty-color-primary)
-    );
+    &.#{$btn-prefix}_color-success {
+      @include button-vars(
+        solid,
+        success,
+        #fff,
+        var(--ty-color-success),
+        var(--ty-color-success),
+        var(--ty-color-success-hover),
+        var(--ty-color-success-hover),
+        #fff,
+        var(--ty-color-success-active),
+        var(--ty-color-success-active),
+        #fff
+      );
+    }
 
-    &:disabled {
-      border: 0;
+    &.#{$btn-prefix}_color-warning {
+      @include button-vars(
+        solid,
+        warning,
+        #fff,
+        var(--ty-color-warning),
+        var(--ty-color-warning),
+        var(--ty-color-warning-hover),
+        var(--ty-color-warning-hover),
+        #fff,
+        var(--ty-color-warning-active),
+        var(--ty-color-warning-active),
+        #fff
+      );
+    }
+
+    &.#{$btn-prefix}_color-danger {
+      @include button-vars(
+        solid,
+        danger,
+        #fff,
+        var(--ty-color-danger),
+        var(--ty-color-danger),
+        var(--ty-color-danger-hover),
+        var(--ty-color-danger-hover),
+        #fff,
+        var(--ty-color-danger-active),
+        var(--ty-color-danger-active),
+        #fff
+      );
     }
   }
 
-  &_link {
-    @include button-style(var(--ty-color-primary), transparent, transparent);
+  &_variant-outline {
+    &.#{$btn-prefix}_color-default {
+      @include button-vars(
+        outline,
+        default,
+        var(--ty-color-text),
+        var(--ty-color-bg-container),
+        var(--ty-color-border-btn-default),
+        var(--ty-color-fill),
+        var(--ty-color-border),
+        var(--ty-color-text),
+        var(--ty-color-fill-secondary),
+        var(--ty-color-border-secondary),
+        var(--ty-color-text)
+      );
+    }
+
+    &.#{$btn-prefix}_color-primary {
+      @include button-vars(
+        outline,
+        primary,
+        var(--ty-color-primary),
+        var(--ty-color-bg-container),
+        var(--ty-color-primary),
+        var(--ty-color-primary-bg),
+        var(--ty-color-primary-hover),
+        var(--ty-color-primary),
+        var(--ty-color-primary-bg-hover),
+        var(--ty-color-primary-active),
+        var(--ty-color-primary)
+      );
+    }
+
+    &.#{$btn-prefix}_color-info {
+      @include button-vars(
+        outline,
+        info,
+        var(--ty-color-info),
+        var(--ty-color-bg-container),
+        var(--ty-color-info),
+        rgba(64, 169, 255, 0.12),
+        var(--ty-color-info-hover),
+        var(--ty-color-info),
+        rgba(64, 169, 255, 0.18),
+        var(--ty-color-info-active),
+        var(--ty-color-info)
+      );
+    }
+
+    &.#{$btn-prefix}_color-success {
+      @include button-vars(
+        outline,
+        success,
+        var(--ty-color-success),
+        var(--ty-color-bg-container),
+        var(--ty-color-success),
+        rgba(82, 196, 26, 0.12),
+        var(--ty-color-success-hover),
+        var(--ty-color-success),
+        rgba(82, 196, 26, 0.18),
+        var(--ty-color-success-active),
+        var(--ty-color-success)
+      );
+    }
+
+    &.#{$btn-prefix}_color-warning {
+      @include button-vars(
+        outline,
+        warning,
+        var(--ty-color-warning),
+        var(--ty-color-bg-container),
+        var(--ty-color-warning),
+        rgba(250, 173, 20, 0.12),
+        var(--ty-color-warning-hover),
+        var(--ty-color-warning),
+        rgba(250, 173, 20, 0.18),
+        var(--ty-color-warning-active),
+        var(--ty-color-warning)
+      );
+    }
+
+    &.#{$btn-prefix}_color-danger {
+      @include button-vars(
+        outline,
+        danger,
+        var(--ty-color-danger),
+        var(--ty-color-bg-container),
+        var(--ty-color-danger),
+        rgba(255, 77, 79, 0.12),
+        var(--ty-color-danger-hover),
+        var(--ty-color-danger),
+        rgba(255, 77, 79, 0.18),
+        var(--ty-color-danger-active),
+        var(--ty-color-danger)
+      );
+    }
+  }
+
+  &_variant-ghost {
+    &.#{$btn-prefix}_color-default {
+      @include button-vars(
+        ghost,
+        default,
+        var(--ty-color-text),
+        transparent,
+        transparent,
+        var(--ty-color-fill),
+        transparent,
+        var(--ty-color-text),
+        var(--ty-color-fill-secondary),
+        transparent,
+        var(--ty-color-text)
+      );
+    }
+
+    &.#{$btn-prefix}_color-primary {
+      @include button-vars(
+        ghost,
+        primary,
+        var(--ty-color-primary),
+        transparent,
+        transparent,
+        var(--ty-color-primary-bg),
+        transparent,
+        var(--ty-color-primary),
+        var(--ty-color-primary-bg-hover),
+        transparent,
+        var(--ty-color-primary)
+      );
+    }
+
+    &.#{$btn-prefix}_color-info {
+      @include button-vars(
+        ghost,
+        info,
+        var(--ty-color-info),
+        transparent,
+        transparent,
+        rgba(64, 169, 255, 0.12),
+        transparent,
+        var(--ty-color-info),
+        rgba(64, 169, 255, 0.18),
+        transparent,
+        var(--ty-color-info)
+      );
+    }
+
+    &.#{$btn-prefix}_color-success {
+      @include button-vars(
+        ghost,
+        success,
+        var(--ty-color-success),
+        transparent,
+        transparent,
+        rgba(82, 196, 26, 0.12),
+        transparent,
+        var(--ty-color-success),
+        rgba(82, 196, 26, 0.18),
+        transparent,
+        var(--ty-color-success)
+      );
+    }
+
+    &.#{$btn-prefix}_color-warning {
+      @include button-vars(
+        ghost,
+        warning,
+        var(--ty-color-warning),
+        transparent,
+        transparent,
+        rgba(250, 173, 20, 0.12),
+        transparent,
+        var(--ty-color-warning),
+        rgba(250, 173, 20, 0.18),
+        transparent,
+        var(--ty-color-warning)
+      );
+    }
+
+    &.#{$btn-prefix}_color-danger {
+      @include button-vars(
+        ghost,
+        danger,
+        var(--ty-color-danger),
+        transparent,
+        transparent,
+        rgba(255, 77, 79, 0.12),
+        transparent,
+        var(--ty-color-danger),
+        rgba(255, 77, 79, 0.18),
+        transparent,
+        var(--ty-color-danger)
+      );
+    }
+  }
+
+  &_variant-link {
+    &.#{$btn-prefix}_color-default {
+      @include button-vars(
+        link,
+        default,
+        var(--ty-color-text),
+        transparent,
+        transparent,
+        transparent,
+        transparent,
+        var(--ty-color-text),
+        transparent,
+        transparent,
+        var(--ty-color-text)
+      );
+    }
+
+    &.#{$btn-prefix}_color-primary {
+      @include button-vars(
+        link,
+        primary,
+        var(--ty-color-primary),
+        transparent,
+        transparent,
+        transparent,
+        transparent,
+        var(--ty-color-primary),
+        transparent,
+        transparent,
+        var(--ty-color-primary)
+      );
+    }
+
+    &.#{$btn-prefix}_color-info {
+      @include button-vars(
+        link,
+        info,
+        var(--ty-color-info),
+        transparent,
+        transparent,
+        transparent,
+        transparent,
+        var(--ty-color-info),
+        transparent,
+        transparent,
+        var(--ty-color-info)
+      );
+    }
+
+    &.#{$btn-prefix}_color-success {
+      @include button-vars(
+        link,
+        success,
+        var(--ty-color-success),
+        transparent,
+        transparent,
+        transparent,
+        transparent,
+        var(--ty-color-success),
+        transparent,
+        transparent,
+        var(--ty-color-success)
+      );
+    }
+
+    &.#{$btn-prefix}_color-warning {
+      @include button-vars(
+        link,
+        warning,
+        var(--ty-color-warning),
+        transparent,
+        transparent,
+        transparent,
+        transparent,
+        var(--ty-color-warning),
+        transparent,
+        transparent,
+        var(--ty-color-warning)
+      );
+    }
+
+    &.#{$btn-prefix}_color-danger {
+      @include button-vars(
+        link,
+        danger,
+        var(--ty-color-danger),
+        transparent,
+        transparent,
+        transparent,
+        transparent,
+        var(--ty-color-danger),
+        transparent,
+        transparent,
+        var(--ty-color-danger)
+      );
+    }
 
     &:hover {
       text-decoration-line: underline;
@@ -115,30 +476,6 @@ $btn-prefix: #{$prefix}-btn;
       border-color: transparent;
       text-decoration-line: none;
     }
-  }
-
-  &_info {
-    @include button-style(#fff, var(--ty-color-info), var(--ty-color-info),
-      var(--ty-color-info-hover), var(--ty-color-info-hover), #fff,
-      var(--ty-color-info-active), var(--ty-color-info-active), #fff);
-  }
-
-  &_success {
-    @include button-style(#fff, var(--ty-color-success), var(--ty-color-success),
-      var(--ty-color-success-hover), var(--ty-color-success-hover), #fff,
-      var(--ty-color-success-active), var(--ty-color-success-active), #fff);
-  }
-
-  &_warning {
-    @include button-style(#fff, var(--ty-color-warning), var(--ty-color-warning),
-      var(--ty-color-warning-hover), var(--ty-color-warning-hover), #fff,
-      var(--ty-color-warning-active), var(--ty-color-warning-active), #fff);
-  }
-
-  &_danger {
-    @include button-style(#fff, var(--ty-color-danger), var(--ty-color-danger),
-      var(--ty-color-danger-hover), var(--ty-color-danger-hover), #fff,
-      var(--ty-color-danger-active), var(--ty-color-danger-active), #fff);
   }
 
   // Sizes
@@ -190,6 +527,10 @@ $btn-prefix: #{$prefix}-btn;
     border-radius: var(--ty-button-round-radius, var(--ty-height-lg));
   }
 
+  &_circle {
+    border-radius: 50%;
+  }
+
   &_loading {
     position: relative;
     pointer-events: none;
@@ -203,7 +544,13 @@ $btn-prefix: #{$prefix}-btn;
       background: var(--ty-button-loading-bg, var(--ty-color-bg-container));
       border-radius: inherit;
       opacity: var(--ty-button-loading-opacity, $btn-loading-opacity);
-      transition: opacity .2s;
+      transition: opacity 0.2s;
+    }
+
+    &:disabled {
+      color: var(--ty-button-current-text);
+      background-color: var(--ty-button-current-bg);
+      border-color: var(--ty-button-current-border);
     }
   }
 
@@ -233,13 +580,25 @@ $btn-prefix: #{$prefix}-btn;
     }
 
     &:first-child {
-      border-top-left-radius: var(--ty-control-group-radius, var(--ty-button-radius, var(--ty-border-radius)));
-      border-bottom-left-radius: var(--ty-control-group-radius, var(--ty-button-radius, var(--ty-border-radius)));
+      border-top-left-radius: var(
+        --ty-control-group-radius,
+        var(--ty-button-radius, var(--ty-border-radius))
+      );
+      border-bottom-left-radius: var(
+        --ty-control-group-radius,
+        var(--ty-button-radius, var(--ty-border-radius))
+      );
     }
 
     &:last-child {
-      border-top-right-radius: var(--ty-control-group-radius, var(--ty-button-radius, var(--ty-border-radius)));
-      border-bottom-right-radius: var(--ty-control-group-radius, var(--ty-button-radius, var(--ty-border-radius)));
+      border-top-right-radius: var(
+        --ty-control-group-radius,
+        var(--ty-button-radius, var(--ty-border-radius))
+      );
+      border-bottom-right-radius: var(
+        --ty-control-group-radius,
+        var(--ty-button-radius, var(--ty-border-radius))
+      );
     }
   }
 
@@ -257,14 +616,17 @@ $btn-prefix: #{$prefix}-btn;
     }
   }
 
-  &_primary,
-  &_info,
-  &_success,
-  &_warning,
-  &_danger {
+  &_variant-solid#{&}_color-primary,
+  &_variant-solid#{&}_color-info,
+  &_variant-solid#{&}_color-success,
+  &_variant-solid#{&}_color-warning,
+  &_variant-solid#{&}_color-danger {
     .#{$btn-prefix} {
       &:not(:first-child) {
-        border-left-color: var(--ty-button-group-divider-color, var(--ty-control-group-divider-color, var(--ty-color-border-secondary)));
+        border-left-color: var(
+          --ty-button-group-divider-color,
+          var(--ty-control-group-divider-color, var(--ty-color-border-secondary))
+        );
       }
     }
   }

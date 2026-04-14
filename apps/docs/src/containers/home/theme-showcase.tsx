@@ -8,7 +8,11 @@ import {
   THEME_EDITOR_PRESETS,
   type ThemeMode,
 } from '../theme-studio/presets';
-import { applyThemeDocumentToDOM, loadStoredThemeDocument, saveThemeDocument } from '../../utils/theme-persistence';
+import {
+  applyThemeDocumentToDOM,
+  loadStoredThemeDocument,
+  saveThemeDocument,
+} from '../../utils/theme-persistence';
 import { useLocaleContext } from '../../context/locale-context';
 
 const PRESET_ID_KEY = 'ty-theme-preset-id';
@@ -79,9 +83,7 @@ export const ThemeShowcase = (): React.ReactElement => {
       <Heading level={1} className="home__feature-title">
         {s.home.themeShowcase}
       </Heading>
-      <Paragraph className="home__theme-showcase-desc">
-        {s.home.themeShowcaseDesc}
-      </Paragraph>
+      <Paragraph className="home__theme-showcase-desc">{s.home.themeShowcaseDesc}</Paragraph>
 
       <div className="home__marquee-container">
         <Marquee duration={50} pauseOnHover>
@@ -91,11 +93,21 @@ export const ThemeShowcase = (): React.ReactElement => {
               className={`home__marquee-card${preset.id === activeId ? ' home__marquee-card_active' : ''}`}
               onClick={() => handleSelect(preset.id)}
               title={preset.name}
-              style={preset.id === activeId ? { borderColor: preset.swatches[0], boxShadow: `0 0 0 1px ${preset.swatches[0]}` } : undefined}
-            >
+              style={
+                preset.id === activeId
+                  ? {
+                      borderColor: preset.swatches[0],
+                      boxShadow: `0 0 0 1px ${preset.swatches[0]}`,
+                    }
+                  : undefined
+              }>
               <div className="home__marquee-swatches">
                 {preset.swatches.map((color, index) => (
-                  <span key={`${preset.id}-${color}-${index}`} className="home__marquee-swatch" style={{ backgroundColor: color }} />
+                  <span
+                    key={`${preset.id}-${color}-${index}`}
+                    className="home__marquee-swatch"
+                    style={{ backgroundColor: color }}
+                  />
                 ))}
               </div>
               <span className="home__marquee-name">{preset.name}</span>
@@ -109,11 +121,21 @@ export const ThemeShowcase = (): React.ReactElement => {
               className={`home__marquee-card${preset.id === activeId ? ' home__marquee-card_active' : ''}`}
               onClick={() => handleSelect(preset.id)}
               title={preset.name}
-              style={preset.id === activeId ? { borderColor: preset.swatches[0], boxShadow: `0 0 0 1px ${preset.swatches[0]}` } : undefined}
-            >
+              style={
+                preset.id === activeId
+                  ? {
+                      borderColor: preset.swatches[0],
+                      boxShadow: `0 0 0 1px ${preset.swatches[0]}`,
+                    }
+                  : undefined
+              }>
               <div className="home__marquee-swatches">
                 {preset.swatches.map((color, index) => (
-                  <span key={`${preset.id}-${color}-${index}`} className="home__marquee-swatch" style={{ backgroundColor: color }} />
+                  <span
+                    key={`${preset.id}-${color}-${index}`}
+                    className="home__marquee-swatch"
+                    style={{ backgroundColor: color }}
+                  />
                 ))}
               </div>
               <span className="home__marquee-name">{preset.name}</span>
@@ -123,7 +145,7 @@ export const ThemeShowcase = (): React.ReactElement => {
       </div>
 
       <div className="home__theme-showcase-cta">
-        <Button btnType="link" onClick={handleOpenStudio}>
+        <Button variant="link" color="primary" onClick={handleOpenStudio}>
           {s.home.themeShowcaseCustomize} &rarr;
         </Button>
       </div>

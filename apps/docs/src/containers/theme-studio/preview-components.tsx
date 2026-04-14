@@ -29,7 +29,17 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from '@tiny-design/charts';
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+} from 'recharts';
 import { swatchTextStyle } from './editor-fields';
 import type { ThemeEditorFields, ThemeEditorSection, ThemePreviewTemplate } from './types';
 import { IconGithub, IconGoogle } from '@tiny-design/icons';
@@ -130,8 +140,8 @@ const subscriptionsChartConfig: ChartConfig = {
   },
 };
 
-const currYear = new Date().getFullYear()
-const currMonth = new Date().getMonth()
+const currYear = new Date().getFullYear();
+const currMonth = new Date().getMonth();
 
 function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.ReactElement {
   const colorPairs = [
@@ -150,7 +160,10 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
         <span className="theme-studio__response-label">Live Colors</span>
         <Grid className="theme-studio__response-swatches" columns={2} gap={6}>
           {colorPairs.map(([label, background, foreground]) => (
-            <div key={label} className="theme-studio__response-swatch" style={swatchTextStyle(background, foreground)}>
+            <div
+              key={label}
+              className="theme-studio__response-swatch"
+              style={swatchTextStyle(background, foreground)}>
               <span>{label}</span>
             </div>
           ))}
@@ -160,9 +173,15 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
       <Flex vertical className="theme-studio__response-section">
         <span className="theme-studio__response-label">Charts</span>
         <Flex className="theme-studio__chart-strip">
-          {[fields.chart1, fields.chart2, fields.chart3, fields.chart4, fields.chart5].map((color, index) => (
-            <span key={`${color}-${index}`} className="theme-studio__chart-dot" style={{ backgroundColor: color }} />
-          ))}
+          {[fields.chart1, fields.chart2, fields.chart3, fields.chart4, fields.chart5].map(
+            (color, index) => (
+              <span
+                key={`${color}-${index}`}
+                className="theme-studio__chart-dot"
+                style={{ backgroundColor: color }}
+              />
+            )
+          )}
         </Flex>
       </Flex>
 
@@ -171,7 +190,9 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
         <Flex align="center" className="theme-studio__type-inline">
           <strong>Ag</strong>
           <span>{fields.fontSans.split(',')[0].replaceAll('"', '')}</span>
-          <code>{fields.fontSizeBase} / {fields.lineHeightBase}</code>
+          <code>
+            {fields.fontSizeBase} / {fields.lineHeightBase}
+          </code>
         </Flex>
       </Flex>
 
@@ -187,8 +208,12 @@ function LiveResponsePanel({ fields }: { fields: ThemeEditorFields }): React.Rea
         <span className="theme-studio__response-label">Sidebar</span>
         <Flex vertical className="theme-studio__sidebar-preview">
           <Flex vertical className="theme-studio__sidebar-preview-shell">
-            <div className="theme-studio__sidebar-preview-item theme-studio__sidebar-preview-item_primary">Primary</div>
-            <div className="theme-studio__sidebar-preview-item theme-studio__sidebar-preview-item_accent">Accent</div>
+            <div className="theme-studio__sidebar-preview-item theme-studio__sidebar-preview-item_primary">
+              Primary
+            </div>
+            <div className="theme-studio__sidebar-preview-item theme-studio__sidebar-preview-item_accent">
+              Accent
+            </div>
           </Flex>
         </Flex>
       </Flex>
@@ -210,8 +235,12 @@ function CardsPreview(): React.ReactElement {
                 </Flex>
               </Flex>
               <Heading level={2}>$15,231.89</Heading>
-              <ChartContainer config={cardsRevenueChartConfig} style={{ height: 72, width: '100%' }}>
-                <LineChart data={cardsRevenueData} margin={{ top: 10, right: 6, left: -22, bottom: 0 }}>
+              <ChartContainer
+                config={cardsRevenueChartConfig}
+                style={{ height: 72, width: '100%' }}>
+                <LineChart
+                  data={cardsRevenueData}
+                  margin={{ top: 10, right: 6, left: -22, bottom: 0 }}>
                   <XAxis dataKey="month" hide />
                   <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
                   <ChartTooltip cursor={false} content={<ChartTooltipContent labelKey="month" />} />
@@ -236,8 +265,12 @@ function CardsPreview(): React.ReactElement {
                 </Flex>
               </Flex>
               <Heading level={2}>+2,350</Heading>
-              <ChartContainer config={subscriptionsChartConfig} style={{ height: 72, width: '100%' }}>
-                <AreaChart data={subscriptionsData} margin={{ top: 8, right: 4, left: -18, bottom: 0 }}>
+              <ChartContainer
+                config={subscriptionsChartConfig}
+                style={{ height: 72, width: '100%' }}>
+                <AreaChart
+                  data={subscriptionsData}
+                  margin={{ top: 8, right: 4, left: -18, bottom: 0 }}>
                   <defs>
                     <linearGradient id="subscriptionsFill" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="10%" stopColor="var(--color-value)" stopOpacity={0.18} />
@@ -265,7 +298,8 @@ function CardsPreview(): React.ReactElement {
             <Flex vertical gap="sm">
               <Text strong>Upgrade your subscription</Text>
               <Text type="secondary">
-                You are currently on the free plan. Upgrade to the pro plan to get access to all features.
+                You are currently on the free plan. Upgrade to the pro plan to get access to all
+                features.
               </Text>
             </Flex>
             <div className="theme-studio__form-stack">
@@ -303,7 +337,9 @@ function CardsPreview(): React.ReactElement {
               <Checkbox>Allow us to send you emails</Checkbox>
               <Flex className="theme-studio__cards-actions-end">
                 <Button>Cancel</Button>
-                <Button btnType="primary">Upgrade Plan</Button>
+                <Button variant="solid" color="primary">
+                  Upgrade Plan
+                </Button>
               </Flex>
             </div>
           </Card.Content>
@@ -327,7 +363,10 @@ function CardsPreview(): React.ReactElement {
                     <Text strong>{name}</Text>
                     <Text type="secondary">{email}</Text>
                   </div>
-                  <Select defaultValue={role.toLowerCase()} size="sm" className="theme-studio__cards-member-select">
+                  <Select
+                    defaultValue={role.toLowerCase()}
+                    size="sm"
+                    className="theme-studio__cards-member-select">
                     <Select.Option value="owner">Owner</Select.Option>
                     <Select.Option value="developer">Developer</Select.Option>
                     <Select.Option value="billing">Billing</Select.Option>
@@ -348,18 +387,24 @@ function CardsPreview(): React.ReactElement {
               <Flex justify="space-between">
                 <Flex vertical>
                   <Text strong>Strictly Necessary</Text>
-                  <Text type="secondary">These cookies are essential in order to use the website and use its features.</Text>
+                  <Text type="secondary">
+                    These cookies are essential in order to use the website and use its features.
+                  </Text>
                 </Flex>
                 <Switch defaultChecked />
               </Flex>
               <Flex justify="space-between">
                 <Flex vertical>
                   <Text strong>Functional Cookies</Text>
-                  <Text type="secondary">These cookies allow the website to provide personalized functionality.</Text>
+                  <Text type="secondary">
+                    These cookies allow the website to provide personalized functionality.
+                  </Text>
                 </Flex>
                 <Switch />
               </Flex>
-              <Button btnType="primary" size='lg'>Save preferences</Button>
+              <Button variant="solid" color="primary" size="lg">
+                Save preferences
+              </Button>
             </Flex>
           </Card.Content>
         </Card>
@@ -367,7 +412,14 @@ function CardsPreview(): React.ReactElement {
         <Grid className="theme-studio__cards-bottom-pair">
           <Card className="theme-studio__cards-panel theme-studio__cards-panel_calendar">
             <Card.Content>
-              <Calendar selectionMode="range" defaultRangeValue={[new Date(currYear, currMonth, 5), new Date(currYear, currMonth, 15)]} fullscreen={false} />
+              <Calendar
+                selectionMode="range"
+                defaultRangeValue={[
+                  new Date(currYear, currMonth, 5),
+                  new Date(currYear, currMonth, 15),
+                ]}
+                fullscreen={false}
+              />
             </Card.Content>
           </Card>
 
@@ -377,23 +429,37 @@ function CardsPreview(): React.ReactElement {
                 <Text strong>Move Goal</Text>
                 <Text type="secondary">Set your daily activity goal.</Text>
               </Flex>
-              <Flex align="center" justify="space-between" className="theme-studio__cards-goal-header">
-                <Button size="sm" className="theme-studio__cards-goal-circle">-</Button>
+              <Flex
+                align="center"
+                justify="space-between"
+                className="theme-studio__cards-goal-header">
+                <Button size="sm" className="theme-studio__cards-goal-circle">
+                  -
+                </Button>
                 <Flex vertical align="center" className="theme-studio__goal-display">
                   <span>350</span>
                   <small>CALORIES/DAY</small>
                 </Flex>
-                <Button size="sm" className="theme-studio__cards-goal-circle">+</Button>
+                <Button size="sm" className="theme-studio__cards-goal-circle">
+                  +
+                </Button>
               </Flex>
               <ChartContainer config={moveGoalChartConfig} style={{ height: 82, width: '100%' }}>
                 <BarChart data={moveGoalData} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
                   <XAxis dataKey="dayLabel" hide />
                   <YAxis hide />
                   <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-                  <Bar dataKey="value" fill="var(--color-value)" radius={[2, 2, 2, 2]} barSize={10} />
+                  <Bar
+                    dataKey="value"
+                    fill="var(--color-value)"
+                    radius={[2, 2, 2, 2]}
+                    barSize={10}
+                  />
                 </BarChart>
               </ChartContainer>
-              <Button btnType="primary">Set Goal</Button>
+              <Button variant="solid" color="primary">
+                Set Goal
+              </Button>
             </Card.Content>
           </Card>
         </Grid>
@@ -407,21 +473,29 @@ function CardsPreview(): React.ReactElement {
               <Text type="secondary">Enter your email below to create your account</Text>
             </Flex>
             <Flex className="theme-studio__cards-auth-actions">
-              <Button><IconGithub /> GitHub</Button>
-              <Button><IconGoogle /> Google</Button>
+              <Button>
+                <IconGithub /> GitHub
+              </Button>
+              <Button>
+                <IconGoogle /> Google
+              </Button>
             </Flex>
             <Divider className="theme-studio__cards-divider-label">OR CONTINUE WITH</Divider>
             <div className="theme-studio__form-stack">
               <Input placeholder="Email" defaultValue="m@example.com" />
               <Input placeholder="Password" type="password" />
-              <Button btnType="primary">Create account</Button>
+              <Button variant="solid" color="primary">
+                Create account
+              </Button>
             </div>
           </Card.Content>
         </Card>
 
         <Card className="theme-studio__cards-panel">
           <Card.Content>
-            <Flex align="center" className="theme-studio__member-row theme-studio__member-row_compact">
+            <Flex
+              align="center"
+              className="theme-studio__member-row theme-studio__member-row_compact">
               <Avatar>S</Avatar>
               <div className="theme-studio__member-copy">
                 <Text strong>Sofia Davis</Text>
@@ -429,20 +503,28 @@ function CardsPreview(): React.ReactElement {
               </div>
             </Flex>
             <Flex vertical className="theme-studio__chat-thread">
-              <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
+              <Card
+                bordered={false}
+                className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
                 <Card.Content>Hi, how can I help you today?</Card.Content>
               </Card>
-              <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
+              <Card
+                bordered={false}
+                className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
                 <Card.Content>Hey, I&apos;m having trouble with my account.</Card.Content>
               </Card>
-              <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
+              <Card
+                bordered={false}
+                className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
                 <Card.Content>What seems to be the problem?</Card.Content>
               </Card>
-              <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
+              <Card
+                bordered={false}
+                className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
                 <Card.Content>I can&apos;t log in.</Card.Content>
               </Card>
             </Flex>
-            <Input size='lg' placeholder="Type your message..." />
+            <Input size="lg" placeholder="Type your message..." />
           </Card.Content>
         </Card>
 
@@ -462,8 +544,12 @@ function CardsPreview(): React.ReactElement {
                 Your exercise minutes are ahead of where you normally are.
               </Text>
             </Flex>
-            <ChartContainer config={cardsExerciseChartConfig} style={{ height: 146, width: '100%' }}>
-              <LineChart data={cardsExerciseData} margin={{ top: 8, right: 4, left: -22, bottom: 0 }}>
+            <ChartContainer
+              config={cardsExerciseChartConfig}
+              style={{ height: 146, width: '100%' }}>
+              <LineChart
+                data={cardsExerciseData}
+                margin={{ top: 8, right: 4, left: -22, bottom: 0 }}>
                 <CartesianGrid vertical={false} />
                 <XAxis dataKey="month" tickLine={false} axisLine={false} />
                 <YAxis tickLine={false} axisLine={false} />
@@ -523,14 +609,16 @@ function DashboardPreview(): React.ReactElement {
             <Button
               key={item}
               className={`theme-studio__sidebar-link${index === 0 ? ' theme-studio__sidebar-link_active' : ''}`}
-              btnType={index === 0 ? 'primary' : 'ghost'}
-            >
+              variant={index === 0 ? 'solid' : 'ghost'}
+              color="primary">
               {item}
             </Button>
           ))}
           <div className="theme-studio__dashboard-sidebar-footer">
             <Text strong>Live Sync</Text>
-            <Text className="theme-studio__sidebar-subtle">Theme changes are applied across docs in real time.</Text>
+            <Text className="theme-studio__sidebar-subtle">
+              Theme changes are applied across docs in real time.
+            </Text>
           </div>
         </Card.Content>
       </Card>
@@ -551,7 +639,9 @@ function DashboardPreview(): React.ReactElement {
               <Select.Option value="30d">Last 30 days</Select.Option>
               <Select.Option value="90d">Last 90 days</Select.Option>
             </Select>
-            <Button btnType="primary">Export</Button>
+            <Button variant="solid" color="primary">
+              Export
+            </Button>
           </Flex>
         </Flex>
 
@@ -574,8 +664,20 @@ function DashboardPreview(): React.ReactElement {
                   <XAxis dataKey="month" tickLine={false} axisLine={false} />
                   <YAxis tickLine={false} axisLine={false} />
                   <ChartTooltip content={<ChartTooltipContent />} />
-                  <Area type="monotone" dataKey="target" stroke="var(--color-target)" strokeWidth={2} fillOpacity={0} />
-                  <Area type="monotone" dataKey="revenue" stroke="var(--color-revenue)" fill="url(#revenueFill)" strokeWidth={2} />
+                  <Area
+                    type="monotone"
+                    dataKey="target"
+                    stroke="var(--color-target)"
+                    strokeWidth={2}
+                    fillOpacity={0}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="revenue"
+                    stroke="var(--color-revenue)"
+                    fill="url(#revenueFill)"
+                    strokeWidth={2}
+                  />
                 </AreaChart>
               </ChartContainer>
             </Card.Content>
@@ -636,7 +738,9 @@ function MailPreview(): React.ReactElement {
               <Text className="theme-studio__eyebrow">Mailbox</Text>
               <Heading level={4}>Studio Mail</Heading>
             </Flex>
-            <Button btnType="primary" style={{ width: '100%' }}>Compose</Button>
+            <Button variant="solid" color="primary" style={{ width: '100%' }}>
+              Compose
+            </Button>
           </Flex>
 
           <Flex vertical className="theme-studio__mail-folder-list">
@@ -650,8 +754,8 @@ function MailPreview(): React.ReactElement {
               <Button
                 key={item}
                 className={`theme-studio__mail-nav-item${index === 0 ? ' theme-studio__mail-nav-item_active' : ''}`}
-                btnType={index === 0 ? 'primary' : 'ghost'}
-              >
+                variant={index === 0 ? 'solid' : 'ghost'}
+                color="primary">
                 <span>{item}</span>
                 <small>{count}</small>
               </Button>
@@ -685,10 +789,26 @@ function MailPreview(): React.ReactElement {
             {[
               ['Sofia Davis', 'New message', 'Hi, how can I help you today?', '12m', true],
               ['Jackson Lee', 'Billing issue', 'I cannot update my card.', '1h', false],
-              ['Olivia Martin', 'Access request', 'Can you grant me editor permissions?', '3h', false],
-              ['William Kim', 'Design review', 'Please review the new dashboard polish.', 'Yesterday', false],
+              [
+                'Olivia Martin',
+                'Access request',
+                'Can you grant me editor permissions?',
+                '3h',
+                false,
+              ],
+              [
+                'William Kim',
+                'Design review',
+                'Please review the new dashboard polish.',
+                'Yesterday',
+                false,
+              ],
             ].map(([sender, subject, preview, time, unread], index) => (
-              <Card key={sender} className={`theme-studio__mail-item${index === 0 ? ' theme-studio__mail-item_active' : ''}`} active={index === 0} hoverable>
+              <Card
+                key={sender}
+                className={`theme-studio__mail-item${index === 0 ? ' theme-studio__mail-item_active' : ''}`}
+                active={index === 0}
+                hoverable>
                 <Card.Content>
                   <div className="theme-studio__mail-item-head">
                     <strong>{sender}</strong>
@@ -718,21 +838,31 @@ function MailPreview(): React.ReactElement {
             </Flex>
             <Flex className="theme-studio__mail-message-actions">
               <Tag color="info">Unread</Tag>
-              <Button btnType="outline">Archive</Button>
+              <Button variant="outline" color="primary">
+                Archive
+              </Button>
             </Flex>
           </Flex>
 
           <Flex vertical className="theme-studio__chat-thread">
-            <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
+            <Card
+              bordered={false}
+              className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
               <Card.Content>Hi, how can I help you today?</Card.Content>
             </Card>
-            <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
+            <Card
+              bordered={false}
+              className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
               <Card.Content>Hey, I&apos;m having trouble with my account.</Card.Content>
             </Card>
-            <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
+            <Card
+              bordered={false}
+              className="theme-studio__chat-bubble theme-studio__chat-bubble_in">
               <Card.Content>What seems to be the problem?</Card.Content>
             </Card>
-            <Card bordered={false} className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
+            <Card
+              bordered={false}
+              className="theme-studio__chat-bubble theme-studio__chat-bubble_out">
               <Card.Content>I can&apos;t log in after resetting my password.</Card.Content>
             </Card>
           </Flex>
@@ -740,7 +870,9 @@ function MailPreview(): React.ReactElement {
           <Textarea rows={5} resizable={false} placeholder="Reply Sofia Davis..." />
           <Flex className="theme-studio__mail-compose">
             <Button>Save Draft</Button>
-            <Button btnType="primary">Send</Button>
+            <Button variant="solid" color="primary">
+              Send
+            </Button>
           </Flex>
         </Card.Content>
       </Card>
@@ -755,7 +887,9 @@ function PricingPreview(): React.ReactElement {
         <Flex vertical>
           <Text className="theme-studio__eyebrow">Pricing</Text>
           <Heading level={2}>Simple pricing for modern teams</Heading>
-          <Paragraph>Choose a plan that scales from solo work to multi-product organizations.</Paragraph>
+          <Paragraph>
+            Choose a plan that scales from solo work to multi-product organizations.
+          </Paragraph>
           <Flex className="theme-studio__pill-row">
             <Tag color="success">No setup fee</Tag>
             <Tag>Cancel anytime</Tag>
@@ -772,14 +906,29 @@ function PricingPreview(): React.ReactElement {
 
       <Grid className="theme-studio__pricing-grid" minColumnWidth={240} gap="sm">
         {[
-          { name: 'Starter', price: '$29', description: 'Perfect for small businesses.', features: ['1 workspace', 'Basic analytics', 'Community support'] },
-          { name: 'Pro', price: '$89', description: 'More features and storage.', featured: true, features: ['5 workspaces', 'Advanced analytics', 'Priority support'] },
-          { name: 'Scale', price: '$199', description: 'For larger teams and advanced reporting.', features: ['Unlimited workspaces', 'SSO + audit log', 'Dedicated onboarding'] },
+          {
+            name: 'Starter',
+            price: '$29',
+            description: 'Perfect for small businesses.',
+            features: ['1 workspace', 'Basic analytics', 'Community support'],
+          },
+          {
+            name: 'Pro',
+            price: '$89',
+            description: 'More features and storage.',
+            featured: true,
+            features: ['5 workspaces', 'Advanced analytics', 'Priority support'],
+          },
+          {
+            name: 'Scale',
+            price: '$199',
+            description: 'For larger teams and advanced reporting.',
+            features: ['Unlimited workspaces', 'SSO + audit log', 'Dedicated onboarding'],
+          },
         ].map((plan) => (
           <Card
             key={plan.name}
-            className={`theme-studio__pricing-card${plan.featured ? ' theme-studio__pricing-card_featured' : ''}`}
-          >
+            className={`theme-studio__pricing-card${plan.featured ? ' theme-studio__pricing-card_featured' : ''}`}>
             <Card.Content>
               <Flex align="center" className="theme-studio__pricing-card-head">
                 {plan.featured ? <Tag color="success">Popular</Tag> : null}
@@ -796,7 +945,9 @@ function PricingPreview(): React.ReactElement {
                 ))}
               </Flex>
               <Flex className="theme-studio__pricing-card-footer">
-                <Button btnType={plan.featured ? 'primary' : 'default'}>{plan.featured ? 'Upgrade plan' : 'Choose plan'}</Button>
+                <Button variant="solid" color={plan.featured ? 'primary' : 'default'}>
+                  {plan.featured ? 'Upgrade plan' : 'Choose plan'}
+                </Button>
               </Flex>
             </Card.Content>
           </Card>
@@ -840,19 +991,25 @@ function PricingPreview(): React.ReactElement {
 export function renderPreview(
   template: ThemePreviewTemplate,
   fields: ThemeEditorFields,
-  section: ThemeEditorSection,
+  section: ThemeEditorSection
 ): React.ReactElement {
-  const content = template === 'dashboard'
-    ? <DashboardPreview />
-    : template === 'mail'
-      ? <MailPreview />
-      : template === 'pricing'
-        ? <PricingPreview />
-        : <CardsPreview />;
+  const content =
+    template === 'dashboard' ? (
+      <DashboardPreview />
+    ) : template === 'mail' ? (
+      <MailPreview />
+    ) : template === 'pricing' ? (
+      <PricingPreview />
+    ) : (
+      <CardsPreview />
+    );
 
   return (
     <Flex vertical className="theme-studio__preview-stack">
-      {(template !== 'cards' && (section === 'colors' || section === 'typography' || section === 'other')) ? <LiveResponsePanel fields={fields} /> : null}
+      {template !== 'cards' &&
+      (section === 'colors' || section === 'typography' || section === 'other') ? (
+        <LiveResponsePanel fields={fields} />
+      ) : null}
       {content}
     </Flex>
   );

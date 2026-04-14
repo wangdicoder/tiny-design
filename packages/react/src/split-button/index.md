@@ -11,13 +11,13 @@ A button with a dropdown menu.
 
 ## Scenario
 
-The user can select a default value bound to a primary button, 
+The user can select a default value bound to a primary button,
 or select from a list of mutually exclusive values displayed in a drop-down list bound to a secondary button.
 
 ## Usage
 
 ```jsx
-import { SplitButton } from 'tiny-design';
+import { SplitButton } from '@tiny-design/react';
 ```
 
 ## Examples
@@ -42,6 +42,7 @@ Disabled the button.
 <DemoBlock component={DisabledDemo} source={DisabledSource} />
 
     </Demo>
+
   </Column>
   <Column>
     <Demo>
@@ -53,20 +54,22 @@ Set the placement of the dropdown menu. The default placement is `bottom-end`.
 <DemoBlock component={PlacementDemo} source={PlacementSource} />
 
     </Demo>
+
   </Column>
 </Layout>
 
 ## Props
 
-| Property          | Description                            | Type                                                                                | Default   |
-| ----------------- | -------------------------------------- | ----------------------------------------------------------------------------------- | --------- |
-| onClick           | click handler for the primary button   | (e: MouseEvent) => void                                                             | -         |
-| loading           | loading state                          | boolean                                                                             | false     |
-| disabled          | whether disabled                       | boolean                                                                             | false     |
-| size              | button size                            | enum: `sm` &#124; `md` &#124; `lg`                                                 | `md`      |
-| btnType           | button type                            | enum: `default` &#124; `primary` &#124; `outline` &#124; `ghost` &#124; `link` &#124; `info` &#124; `success` &#124; `warning` &#124; `danger` | `default` |
-| overlay           | dropdown menu element                  | React.ReactElement&lt;MenuProps&gt;                                                 | -         |
-| dropdownTrigger   | dropdown trigger mode                  | enum: `hover` &#124; `click`                                                       | `hover`   |
-| dropdownPlacement | dropdown placement                     | enum: `bottom-start` &#124; `bottom` &#124; `bottom-end`                           | `bottom-end` |
-| style             | style object of container              | CSSProperties                                                                       | -         |
-| className         | className of container                 | string                                                                              | -         |
+| Property          | Description                          | Type                                                                                             | Default      |
+| ----------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------ |
+| onClick           | click handler for the primary button | (e: MouseEvent) => void                                                                          | -            |
+| loading           | loading state                        | boolean                                                                                          | false        |
+| disabled          | whether disabled                     | boolean                                                                                          | false        |
+| size              | button size                          | enum: `sm` &#124; `md` &#124; `lg`                                                               | `md`         |
+| variant           | button variant                       | enum: `solid` &#124; `outline` &#124; `ghost` &#124; `link`                                      | `solid`      |
+| color             | button color                         | enum: `default` &#124; `primary` &#124; `info` &#124; `success` &#124; `warning` &#124; `danger` | `default`    |
+| overlay           | dropdown menu element                | React.ReactElement&lt;MenuProps&gt;                                                              | -            |
+| dropdownTrigger   | dropdown trigger mode                | enum: `hover` &#124; `click`                                                                     | `hover`      |
+| dropdownPlacement | dropdown placement                   | enum: `bottom-start` &#124; `bottom` &#124; `bottom-end`                                         | `bottom-end` |
+| style             | style object of container            | CSSProperties                                                                                    | -            |
+| className         | className of container               | string                                                                                           | -            |

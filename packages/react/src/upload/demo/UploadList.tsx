@@ -26,7 +26,9 @@ export default function UploadListDemo() {
           url: 'http://www.google.com/zzz.png',
         },
       ]}>
-      <Button btnType="primary">Upload</Button>
+      <Button variant="solid" color="primary">
+        Upload
+      </Button>
     </Upload>
   );
 }

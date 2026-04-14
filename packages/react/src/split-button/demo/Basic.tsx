@@ -12,17 +12,14 @@ export default function BasicDemo() {
 
   return (
     <Flex gap="sm">
-      <SplitButton
-        onClick={() => Message.info('you clicked the button.')}
-        overlay={menu}
-      >
+      <SplitButton onClick={() => Message.info('you clicked the button.')} overlay={menu}>
         Click Me
       </SplitButton>
       <SplitButton
-        btnType="primary"
+        variant="solid"
+        color="primary"
         onClick={() => Message.info('you clicked the button.')}
-        overlay={menu}
-      >
+        overlay={menu}>
         Click Me
       </SplitButton>
     </Flex>

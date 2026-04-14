@@ -16,7 +16,8 @@ export default function PositionDemo() {
         {positions.map((pos) => (
           <Button
             key={pos}
-            btnType={position === pos ? 'primary' : 'default'}
+            variant="solid"
+            color={position === pos ? 'primary' : 'default'}
             onClick={() => setPosition(pos)}>
             {pos}
           </Button>

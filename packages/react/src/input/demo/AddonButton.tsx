@@ -10,7 +10,10 @@ export default function AddonButtonDemo() {
       <Group size="sm">
         <Input />
         <Addon noBorder>
-          <Button btnType="primary" style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0, marginRight: 0 }}>
+          <Button
+            variant="solid"
+            color="primary"
+            style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0, marginRight: 0 }}>
             <IconSearch />
           </Button>
         </Addon>
@@ -19,7 +22,10 @@ export default function AddonButtonDemo() {
       <Group>
         <Input />
         <Addon noBorder>
-          <Button btnType="primary" style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0, marginRight: 0 }}>
+          <Button
+            variant="solid"
+            color="primary"
+            style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0, marginRight: 0 }}>
             <IconSearch />
           </Button>
         </Addon>
@@ -28,7 +34,10 @@ export default function AddonButtonDemo() {
       <Group size="lg">
         <Input />
         <Addon noBorder>
-          <Button btnType="primary" style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0, marginRight: 0 }}>
+          <Button
+            variant="solid"
+            color="primary"
+            style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0, marginRight: 0 }}>
             Search
           </Button>
         </Addon>

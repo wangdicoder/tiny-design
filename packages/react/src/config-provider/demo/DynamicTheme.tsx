@@ -31,7 +31,7 @@ export default function DynamicThemeDemo() {
             }
       }>
       <Space>
-        <Button btnType="primary" onClick={() => setDanger((prev) => !prev)}>
+        <Button variant="solid" color="primary" onClick={() => setDanger((prev) => !prev)}>
           Toggle Theme
         </Button>
         <Button>{danger ? 'Danger Mode' : 'Default Mode'}</Button>

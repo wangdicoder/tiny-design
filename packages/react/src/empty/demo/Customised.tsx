@@ -12,9 +12,10 @@ export default function CustomisedDemo() {
         <span>
           Customize <Link href="#API">Description</Link>
         </span>
-      }
-    >
-      <Button btnType="primary">Create Now</Button>
+      }>
+      <Button variant="solid" color="primary">
+        Create Now
+      </Button>
     </Empty>
   );
 }

@@ -17,22 +17,26 @@ export default function MethodDemo() {
       <Form.Item
         label="Username"
         name="username"
-        rules={[{ required: true, message: 'Please input your username' }]}
-      >
+        rules={[{ required: true, message: 'Please input your username' }]}>
         <Input />
       </Form.Item>
       <Form.Item
         label="Password"
         name="password"
-        rules={[{ required: true, message: 'Please input your password' }]}
-      >
+        rules={[{ required: true, message: 'Please input your password' }]}>
         <InputPassword />
       </Form.Item>
       <Form.Item>
         <Flex gap="sm">
-          <Button btnType="primary" type="submit">Submit</Button>
-          <Button type="button" onClick={resetForm}>Reset</Button>
-          <Button btnType="link" type="button" onClick={fillForm}>Fill form</Button>
+          <Button variant="solid" color="primary" type="submit">
+            Submit
+          </Button>
+          <Button type="button" onClick={resetForm}>
+            Reset
+          </Button>
+          <Button variant="link" color="primary" type="button" onClick={fillForm}>
+            Fill form
+          </Button>
         </Flex>
       </Form.Item>
     </Form>

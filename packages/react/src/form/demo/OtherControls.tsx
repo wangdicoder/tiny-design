@@ -39,51 +39,31 @@ export default function OtherControlsDemo() {
         time: null,
         color: '#6e41bf',
       }}
-      style={{ maxWidth: 500 }}
-    >
+      style={{ maxWidth: 500 }}>
       <Form.Item label="Plain Text">
         <span>A form</span>
       </Form.Item>
-      <Form.Item
-        label="Input Number"
-        name="number"
-        rules={[{ max: 10 }]}
-      >
+      <Form.Item label="Input Number" name="number" rules={[{ max: 10 }]}>
         <InputNumber />
       </Form.Item>
-      <Form.Item
-        label="Switch"
-        name="switch"
-        valuePropName="checked"
-      >
+      <Form.Item label="Switch" name="switch" valuePropName="checked">
         <Switch />
       </Form.Item>
-      <Form.Item
-        label="Radio Group"
-        name="radios"
-        rules={[{ required: true }]}
-      >
+      <Form.Item label="Radio Group" name="radios" rules={[{ required: true }]}>
         <Radio.Group>
           <Radio value="radio1">Radio 1</Radio>
           <Radio value="radio2">Radio 2</Radio>
           <Radio value="radio3">Radio 3</Radio>
         </Radio.Group>
       </Form.Item>
-      <Form.Item
-        label="Check Group"
-        name="checks"
-        rules={[{ required: true }]}
-      >
+      <Form.Item label="Check Group" name="checks" rules={[{ required: true }]}>
         <Checkbox.Group>
           <Checkbox value="check1">Check 1</Checkbox>
           <Checkbox value="check2">Check 2</Checkbox>
           <Checkbox value="check3">Check 3</Checkbox>
         </Checkbox.Group>
       </Form.Item>
-      <Form.Item
-        label="Slider"
-        name="slide"
-      >
+      <Form.Item label="Slider" name="slide">
         <Slider
           dots
           step={20}
@@ -97,49 +77,28 @@ export default function OtherControlsDemo() {
           }}
         />
       </Form.Item>
-      <Form.Item
-        label="Rate"
-        name="rate"
-      >
+      <Form.Item label="Rate" name="rate">
         <Rate />
       </Form.Item>
-      <Form.Item
-        label="Select"
-        name="fruit"
-        rules={[{ required: true }]}
-      >
-        <Select
-          placeholder="Pick a fruit"
-          options={fruitOptions}
-        />
+      <Form.Item label="Select" name="fruit" rules={[{ required: true }]}>
+        <Select placeholder="Pick a fruit" options={fruitOptions} />
       </Form.Item>
-      <Form.Item
-        label="Date"
-        name="date"
-      >
+      <Form.Item label="Date" name="date">
         <DatePicker placeholder="Pick a date" />
       </Form.Item>
-      <Form.Item
-        label="Time"
-        name="time"
-      >
+      <Form.Item label="Time" name="time">
         <TimePicker placeholder="Pick a time" />
       </Form.Item>
-      <Form.Item
-        label="Color"
-        name="color"
-      >
+      <Form.Item label="Color" name="color">
         <ColorPicker />
       </Form.Item>
-      <Form.Item
-        label="Comments"
-        name="comment"
-        rules={[{ required: true }]}
-      >
+      <Form.Item label="Comments" name="comment" rules={[{ required: true }]}>
         <Textarea rows={4} placeholder="Leaving something will be great" />
       </Form.Item>
       <Form.Item>
-        <Button block btnType="primary" type="submit">Submit</Button>
+        <Button block variant="solid" color="primary" type="submit">
+          Submit
+        </Button>
       </Form.Item>
     </Form>
   );

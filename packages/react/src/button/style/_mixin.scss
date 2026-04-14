@@ -7,7 +7,7 @@
   $hover-color: $color,
   $active-background: null,
   $active-border: null,
-  $active-color: $color,
+  $active-color: $color
 ) {
   color: $color;
   background: $background;
@@ -16,17 +16,25 @@
   &:hover {
     color: $hover-color;
 
-    @if $hover-background { background: $hover-background; }
+    @if $hover-background {
+      background: $hover-background;
+    }
 
-    @if $hover-border { border-color: $hover-border; }
+    @if $hover-border {
+      border-color: $hover-border;
+    }
   }
 
   &:focus {
     color: $hover-color;
 
-    @if $hover-background { background: $hover-background; }
+    @if $hover-background {
+      background: $hover-background;
+    }
 
-    @if $hover-border { border-color: $hover-border; }
+    @if $hover-border {
+      border-color: $hover-border;
+    }
 
     z-index: 1;
   }
@@ -34,15 +42,19 @@
   &:active {
     color: $active-color;
 
-    @if $active-background { background: $active-background; }
+    @if $active-background {
+      background: $active-background;
+    }
 
-    @if $active-border { border-color: $active-border; }
+    @if $active-border {
+      border-color: $active-border;
+    }
   }
 
   &:disabled {
-    color: var(--ty-button-text-disabled, var(--ty-color-text-quaternary));
-    background-color: var(--ty-button-bg-disabled, var(--ty-color-bg-disabled));
-    border-color: var(--ty-button-border-disabled, var(--ty-color-border));
+    color: var(--ty-button-disabled-text, var(--ty-color-text-quaternary));
+    background-color: var(--ty-button-disabled-bg, var(--ty-color-bg-disabled));
+    border-color: var(--ty-button-disabled-border, var(--ty-color-border));
   }
 }
 
@@ -55,4 +67,46 @@
   padding: 0 $padding-inline;
   font-size: $font-size;
   gap: $gap;
+}
+
+@mixin button-vars(
+  $variant,
+  $color,
+  $text-fallback,
+  $bg-fallback,
+  $border-fallback,
+  $hover-bg-fallback: $bg-fallback,
+  $hover-border-fallback: $border-fallback,
+  $hover-text-fallback: $text-fallback,
+  $active-bg-fallback: $hover-bg-fallback,
+  $active-border-fallback: $hover-border-fallback,
+  $active-text-fallback: $hover-text-fallback
+) {
+  --ty-button-current-text: var(--ty-button-#{$variant}-#{$color}-text, #{$text-fallback});
+  --ty-button-current-bg: var(--ty-button-#{$variant}-#{$color}-bg, #{$bg-fallback});
+  --ty-button-current-border: var(--ty-button-#{$variant}-#{$color}-border, #{$border-fallback});
+  --ty-button-current-text-hover: var(
+    --ty-button-#{$variant}-#{$color}-text-hover,
+    #{$hover-text-fallback}
+  );
+  --ty-button-current-bg-hover: var(
+    --ty-button-#{$variant}-#{$color}-bg-hover,
+    #{$hover-bg-fallback}
+  );
+  --ty-button-current-border-hover: var(
+    --ty-button-#{$variant}-#{$color}-border-hover,
+    #{$hover-border-fallback}
+  );
+  --ty-button-current-text-active: var(
+    --ty-button-#{$variant}-#{$color}-text-active,
+    #{$active-text-fallback}
+  );
+  --ty-button-current-bg-active: var(
+    --ty-button-#{$variant}-#{$color}-bg-active,
+    #{$active-bg-fallback}
+  );
+  --ty-button-current-border-active: var(
+    --ty-button-#{$variant}-#{$color}-border-active,
+    #{$active-border-fallback}
+  );
 }

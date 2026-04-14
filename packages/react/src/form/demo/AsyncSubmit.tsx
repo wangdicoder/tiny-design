@@ -24,25 +24,20 @@ export default function AsyncSubmitDemo() {
         rules={[
           { required: true, message: 'Username is required' },
           { min: 3, message: 'At least 3 characters' },
-        ]}
-      >
+        ]}>
         <Input placeholder="Enter username" />
       </Form.Item>
-      <Form.Item
-        label="Age"
-        name="age"
-        rules={[
-          { required: true, message: 'Age is required' },
-        ]}
-      >
+      <Form.Item label="Age" name="age" rules={[{ required: true, message: 'Age is required' }]}>
         <InputNumber min={0} max={120} />
       </Form.Item>
       <Form.Item>
         <Flex gap="sm" align="center">
-          <Button btnType="primary" type="submit" loading={loading}>
+          <Button variant="solid" color="primary" type="submit" loading={loading}>
             {loading ? 'Submitting...' : 'Submit'}
           </Button>
-          <Button type="reset" disabled={loading}>Reset</Button>
+          <Button type="reset" disabled={loading}>
+            Reset
+          </Button>
         </Flex>
       </Form.Item>
       {result && (

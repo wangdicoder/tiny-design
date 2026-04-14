@@ -8,8 +8,7 @@ export default function DisabledDemo() {
     <div style={{ width: 400 }}>
       <InputNumber disabled={disabled} min={0} max={10} defaultValue={5} />
       <br />
-      <Button
-        onClick={() => setDisabled(!disabled)} btnType="primary">
+      <Button onClick={() => setDisabled(!disabled)} variant="solid" color="primary">
         Toggle disabled
       </Button>
     </div>

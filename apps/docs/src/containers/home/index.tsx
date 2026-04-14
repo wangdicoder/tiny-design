@@ -7,14 +7,41 @@ import { LightCodeTheme, DarkCodeTheme } from '../../components/demo-block/code-
 import * as TinyDesign from '@tiny-design/react';
 import * as TinyIcons from '@tiny-design/icons';
 import {
-  Button, Flex, Tag, Badge, Avatar, Progress, Rate, Input, Tabs,
-  Tooltip, Checkbox, Keyboard, useTheme, Card, Heading, Paragraph,
-  Statistic, Descriptions, Table, Timeline,
+  Button,
+  Flex,
+  Tag,
+  Badge,
+  Avatar,
+  Progress,
+  Rate,
+  Input,
+  Tabs,
+  Tooltip,
+  Checkbox,
+  Keyboard,
+  useTheme,
+  Card,
+  Heading,
+  Paragraph,
+  Statistic,
+  Descriptions,
+  Table,
+  Timeline,
 } from '@tiny-design/react';
 import {
-  IconGithub, IconSearch, IconCheckmark, IconArrowRight,
-  IconColorlens, IconStructure, IconCheckCircle, IconFire, IconStatistics,
-  IconSettings, IconCalendar, IconComment, IconCreditCard,
+  IconGithub,
+  IconSearch,
+  IconCheckmark,
+  IconArrowRight,
+  IconColorlens,
+  IconStructure,
+  IconCheckCircle,
+  IconFire,
+  IconStatistics,
+  IconSettings,
+  IconCalendar,
+  IconComment,
+  IconCreditCard,
 } from '@tiny-design/icons';
 import { Footer } from './footer';
 import { ThemeShowcase } from './theme-showcase';
@@ -41,9 +68,24 @@ const categoryGroups = [
 ];
 
 const activityItems = [
-  { key: '1', color: 'var(--ty-color-success)', title: 'Theme tokens synced', desc: 'Studio Bloom updated across docs and dashboard previews.' },
-  { key: '2', color: 'var(--ty-color-info)', title: 'Checkout flow reviewed', desc: 'Input, validation, and action states passed the latest visual pass.' },
-  { key: '3', color: 'var(--ty-color-primary)', title: 'Release candidate prepared', desc: '86+ components bundled for the next internal release.' },
+  {
+    key: '1',
+    color: 'var(--ty-color-success)',
+    title: 'Theme tokens synced',
+    desc: 'Studio Bloom updated across docs and dashboard previews.',
+  },
+  {
+    key: '2',
+    color: 'var(--ty-color-info)',
+    title: 'Checkout flow reviewed',
+    desc: 'Input, validation, and action states passed the latest visual pass.',
+  },
+  {
+    key: '3',
+    color: 'var(--ty-color-primary)',
+    title: 'Release candidate prepared',
+    desc: '86+ components bundled for the next internal release.',
+  },
 ];
 
 const ProductPreview = ({ s }: { s: any }): React.ReactElement => {
@@ -83,11 +125,17 @@ const ProductPreview = ({ s }: { s: any }): React.ReactElement => {
               <span className="home__product-swatch home__product-swatch_warning" />
             </div>
             <Descriptions className="home__product-descriptions" column={1} size="sm">
-              <Descriptions.Item label={s.home.preview.themeLabel}>{s.home.preview.themeValue}</Descriptions.Item>
-              <Descriptions.Item label={s.home.preview.tokensLabel}>{s.home.preview.tokensValue}</Descriptions.Item>
+              <Descriptions.Item label={s.home.preview.themeLabel}>
+                {s.home.preview.themeValue}
+              </Descriptions.Item>
+              <Descriptions.Item label={s.home.preview.tokensLabel}>
+                {s.home.preview.tokensValue}
+              </Descriptions.Item>
             </Descriptions>
             <Paragraph>{s.home.preview.themeHint}</Paragraph>
-            <Button btnType="outline" size="sm">{s.home.preview.editTheme}</Button>
+            <Button variant="outline" color="primary" size="sm">
+              {s.home.preview.editTheme}
+            </Button>
           </Card.Content>
         </Card>
       </div>
@@ -101,7 +149,7 @@ const ProductPreview = ({ s }: { s: any }): React.ReactElement => {
           />
           <Flex gap="sm" align="center">
             <Badge count={3}>
-              <Button btnType="ghost" icon={<IconComment size={16} />} />
+              <Button variant="ghost" color="primary" icon={<IconComment size={16} />} />
             </Badge>
             <Avatar className="home__avatar home__avatar_primary">DW</Avatar>
           </Flex>
@@ -110,7 +158,11 @@ const ProductPreview = ({ s }: { s: any }): React.ReactElement => {
         <div className="home__product-metrics">
           <Card className="home__product-metric" variant="filled">
             <Card.Content>
-              <Statistic title={s.home.preview.metrics.velocity} value="24" suffix={s.home.preview.metrics.velocitySuffix} />
+              <Statistic
+                title={s.home.preview.metrics.velocity}
+                value="24"
+                suffix={s.home.preview.metrics.velocitySuffix}
+              />
               <Progress.Bar percent={78} />
             </Card.Content>
           </Card>
@@ -171,7 +223,9 @@ const ProductPreview = ({ s }: { s: any }): React.ReactElement => {
                 <Input placeholder={s.home.preview.form.name} />
                 <Input placeholder={s.home.preview.form.email} />
                 <Checkbox defaultChecked>{s.home.preview.form.updates}</Checkbox>
-                <Button btnType="primary">{s.home.preview.form.submit}</Button>
+                <Button variant="solid" color="primary">
+                  {s.home.preview.form.submit}
+                </Button>
               </Flex>
             </Card.Content>
           </Card>
@@ -205,8 +259,12 @@ const ScenarioShowcase = ({ s }: { s: any }): React.ReactElement => (
     <Card className="home__scenario-card" hoverable variant="outlined">
       <Card.Content>
         <div className="home__scenario-copy">
-          <Tag color="info" variant="soft" className="home__scenario-kicker">{s.home.scenarios.dashboard.kicker}</Tag>
-          <Heading level={3} className="home__scenario-title">{s.home.scenarios.dashboard.title}</Heading>
+          <Tag color="info" variant="soft" className="home__scenario-kicker">
+            {s.home.scenarios.dashboard.kicker}
+          </Tag>
+          <Heading level={3} className="home__scenario-title">
+            {s.home.scenarios.dashboard.title}
+          </Heading>
           <Paragraph className="home__scenario-desc">{s.home.scenarios.dashboard.desc}</Paragraph>
         </div>
         <div className="home__scenario-preview">
@@ -225,8 +283,12 @@ const ScenarioShowcase = ({ s }: { s: any }): React.ReactElement => (
     <Card className="home__scenario-card" hoverable variant="outlined">
       <Card.Content>
         <div className="home__scenario-copy">
-          <Tag color="warning" variant="soft" className="home__scenario-kicker">{s.home.scenarios.forms.kicker}</Tag>
-          <Heading level={3} className="home__scenario-title">{s.home.scenarios.forms.title}</Heading>
+          <Tag color="warning" variant="soft" className="home__scenario-kicker">
+            {s.home.scenarios.forms.kicker}
+          </Tag>
+          <Heading level={3} className="home__scenario-title">
+            {s.home.scenarios.forms.title}
+          </Heading>
           <Paragraph className="home__scenario-desc">{s.home.scenarios.forms.desc}</Paragraph>
         </div>
         <div className="home__scenario-preview">
@@ -244,8 +306,12 @@ const ScenarioShowcase = ({ s }: { s: any }): React.ReactElement => (
     <Card className="home__scenario-card" hoverable variant="outlined">
       <Card.Content>
         <div className="home__scenario-copy">
-          <Tag color="success" variant="soft" className="home__scenario-kicker">{s.home.scenarios.content.kicker}</Tag>
-          <Heading level={3} className="home__scenario-title">{s.home.scenarios.content.title}</Heading>
+          <Tag color="success" variant="soft" className="home__scenario-kicker">
+            {s.home.scenarios.content.kicker}
+          </Tag>
+          <Heading level={3} className="home__scenario-title">
+            {s.home.scenarios.content.title}
+          </Heading>
           <Paragraph className="home__scenario-desc">{s.home.scenarios.content.desc}</Paragraph>
         </div>
         <div className="home__scenario-preview">
@@ -256,7 +322,7 @@ const ScenarioShowcase = ({ s }: { s: any }): React.ReactElement => (
               <Avatar className="home__avatar home__avatar_success">C</Avatar>
             </Avatar.Group>
             <Tooltip title="Fast keyboard flows">
-              <Button btnType="outline" size="sm">
+              <Button variant="outline" color="primary" size="sm">
                 <Keyboard>⌘</Keyboard>
                 <span style={{ marginLeft: 8 }}>K</span>
               </Button>
@@ -274,14 +340,16 @@ const CategoryCoverage = ({ s }: { s: any }): React.ReactElement => (
     {categoryGroups.map((group) => (
       <Card key={group.title} className="home__coverage-card" variant="filled">
         <Card.Content>
-          <Heading level={4} className="home__coverage-title">{group.title}</Heading>
+          <Heading level={4} className="home__coverage-title">
+            {group.title}
+          </Heading>
           <Paragraph className="home__coverage-desc">{group.items}</Paragraph>
         </Card.Content>
       </Card>
     ))}
     <div className="home__coverage-summary">
       <span>{s.home.coverage.summary}</span>
-      <Button btnType="link" onClick={() => window.location.assign('/components')}>
+      <Button variant="link" color="primary" onClick={() => window.location.assign('/components')}>
         {s.home.coverage.cta} <IconArrowRight size={16} />
       </Button>
     </div>
@@ -294,10 +362,10 @@ const INITIAL_CODE = `import { Button, Flex, Tag } from '@tiny-design/react';
 export default function App() {
   return (
     <Flex gap="sm" align="center" wrap="wrap">
-      <Button btnType="primary">
+      <Button variant="solid" color="primary">
         Get Started
       </Button>
-      <Button btnType="outline">
+      <Button variant="outline" color="primary">
         Learn More
       </Button>
       <Tag color="success">v1.6</Tag>
@@ -332,7 +400,8 @@ const LiveCodeExample = (): React.ReactElement => {
       ta.value = newVal;
       ta.selectionStart = ta.selectionEnd = start + 2;
       const setter = Object.getOwnPropertyDescriptor(
-        window.HTMLTextAreaElement.prototype, 'value'
+        window.HTMLTextAreaElement.prototype,
+        'value'
       )?.set;
       setter?.call(ta, newVal);
       ta.dispatchEvent(new Event('input', { bubbles: true }));
@@ -344,7 +413,9 @@ const LiveCodeExample = (): React.ReactElement => {
       <div className="home__code-block">
         <div className="home__code-header">
           <div className="home__code-dots">
-            <span /><span /><span />
+            <span />
+            <span />
+            <span />
           </div>
           <span className="home__code-filename">App.tsx</span>
           <span className="home__code-editable">Editable</span>
@@ -353,7 +424,10 @@ const LiveCodeExample = (): React.ReactElement => {
           <div className="home__code-editor-overlay">
             <Highlight code={code} language="tsx" theme={codeTheme}>
               {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <pre className={className} style={{ ...style, padding: '16px', margin: 0 }} aria-hidden="true">
+                <pre
+                  className={className}
+                  style={{ ...style, padding: '16px', margin: 0 }}
+                  aria-hidden="true">
                   <code>
                     {tokens.map((line, i) => {
                       const { key: _lk, ...lineProps } = getLineProps({ line });
@@ -387,10 +461,7 @@ const LiveCodeExample = (): React.ReactElement => {
       <div className="home__code-result">
         <div className="home__code-result-label">Preview</div>
         <div className="home__code-result-content">
-          {error
-            ? <pre className="home__code-error">{error}</pre>
-            : element
-          }
+          {error ? <pre className="home__code-error">{error}</pre> : element}
         </div>
       </div>
     </div>
@@ -415,14 +486,28 @@ const CtaSection = ({ s }: { s: any }): React.ReactElement => {
       <div className="home__cta-install" onClick={handleCopy}>
         <code>$ {s.home.cta.install}</code>
         <button className="home__cta-copy" aria-label="Copy">
-          {copied
-            ? <><IconCheckmark size={14} /> {s.home.cta.copied}</>
-            : <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" /></svg>
-          }
+          {copied ? (
+            <>
+              <IconCheckmark size={14} /> {s.home.cta.copied}
+            </>
+          ) : (
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+            </svg>
+          )}
         </button>
       </div>
       <Flex gap="sm" justify="center" className="home__cta-actions">
-        <Button btnType="primary" size="lg" onClick={() => navigate('/guide')}>
+        <Button variant="solid" color="primary" size="lg" onClick={() => navigate('/guide')}>
           {s.home.cta.readDocs}
         </Button>
         <Button size="lg" onClick={() => navigate('/components')}>
@@ -469,7 +554,8 @@ const HomePage = (): React.ReactElement => {
           <Flex gap="sm" className="home__hero-actions">
             <Button
               className="home__btn-primary"
-              btnType="primary"
+              variant="solid"
+              color="primary"
               size="lg"
               onClick={() => navigate('/guide')}>
               {s.home.getStarted}
@@ -477,7 +563,8 @@ const HomePage = (): React.ReactElement => {
             <Button
               className="home__btn-secondary"
               size="lg"
-              btnType="outline"
+              variant="outline"
+              color="primary"
               onClick={() => navigate('/components')}>
               {s.home.browseComponents}
             </Button>
@@ -576,7 +663,15 @@ const HomePage = (): React.ReactElement => {
   );
 };
 
-const FeatureCard = ({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) => (
+const FeatureCard = ({
+  icon,
+  title,
+  desc,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}) => (
   <div className="home__feature-card">
     <span className="home__feature-icon">{icon}</span>
     <h3 className="home__feature-name">{title}</h3>

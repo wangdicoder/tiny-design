@@ -7,9 +7,8 @@ export default function IconDemo() {
     <PopConfirm
       title="Are you sure to delete this?"
       icon={<IconQuestionFill color="#f00" />}
-      onConfirm={() => Message.info('You clicked Yes')}
-    >
-      <Button btnType="link">
+      onConfirm={() => Message.info('You clicked Yes')}>
+      <Button variant="link" color="primary">
         Delete
       </Button>
     </PopConfirm>

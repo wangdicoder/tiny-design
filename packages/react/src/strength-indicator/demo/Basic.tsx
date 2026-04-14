@@ -17,7 +17,7 @@ export default function BasicDemo() {
     <div>
       <StrengthIndicator current={current} />
       <br />
-      <Button btnType="primary" onClick={handleClick}>
+      <Button variant="solid" color="primary" onClick={handleClick}>
         Next
       </Button>
     </div>

@@ -76,7 +76,11 @@ const TourPanel = React.forwardRef<HTMLDivElement, TourPanelProps>((props, ref) 
         <Close size={12} />
       </button>
       {step.cover && <div className={`${prefixCls}__cover`}>{step.cover}</div>}
-      {step.title && <div id={titleId} className={`${prefixCls}__title`}>{step.title}</div>}
+      {step.title && (
+        <div id={titleId} className={`${prefixCls}__title`}>
+          {step.title}
+        </div>
+      )}
       {step.description && (
         <div id={descriptionId} className={`${prefixCls}__description`}>
           {step.description}
@@ -86,17 +90,15 @@ const TourPanel = React.forwardRef<HTMLDivElement, TourPanelProps>((props, ref) 
         {renderIndicators()}
         <div className={`${prefixCls}__actions`}>
           {!isFirst && (
-            <Button
-              {...step.prevButtonProps}
-              size="sm"
-              onClick={handlePrev}>
+            <Button {...step.prevButtonProps} size="sm" onClick={handlePrev}>
               {step.prevButtonProps?.children ?? prevButtonText}
             </Button>
           )}
           <Button
             {...step.nextButtonProps}
             size="sm"
-            btnType={type === 'primary' ? 'default' : 'primary'}
+            variant="solid"
+            color={type === 'primary' ? 'default' : 'primary'}
             onClick={handleNext}>
             {step.nextButtonProps?.children ?? (isLast ? finishButtonText : nextButtonText)}
           </Button>

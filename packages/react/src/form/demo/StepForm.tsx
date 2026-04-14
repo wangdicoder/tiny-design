@@ -63,8 +63,7 @@ export default function StepFormDemo() {
               rules={[
                 { required: true, message: 'Username is required' },
                 { min: 3, message: 'At least 3 characters' },
-              ]}
-            >
+              ]}>
               <Input placeholder="Enter username" />
             </Form.Item>
             <Form.Item
@@ -76,8 +75,7 @@ export default function StepFormDemo() {
                   pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                   message: 'Please enter a valid email',
                 },
-              ]}
-            >
+              ]}>
               <Input placeholder="Enter email" />
             </Form.Item>
           </div>
@@ -86,17 +84,13 @@ export default function StepFormDemo() {
             <Form.Item
               label="Full Name"
               name="fullName"
-              rules={[{ required: true, message: 'Full name is required' }]}
-            >
+              rules={[{ required: true, message: 'Full name is required' }]}>
               <Input placeholder="Enter full name" />
             </Form.Item>
             <Form.Item
               label="Age"
               name="age"
-              rules={[
-                { required: true, message: 'Age is required' },
-              ]}
-            >
+              rules={[{ required: true, message: 'Age is required' }]}>
               <InputNumber min={1} max={120} />
             </Form.Item>
             <Form.Item
@@ -105,8 +99,7 @@ export default function StepFormDemo() {
               rules={[
                 { required: true, message: 'Phone number is required' },
                 { pattern: /^\d{7,15}$/, message: 'Please enter a valid phone number' },
-              ]}
-            >
+              ]}>
               <Input placeholder="Enter phone number" />
             </Form.Item>
           </div>
@@ -137,12 +130,12 @@ export default function StepFormDemo() {
                 </Button>
               )}
               {current < 2 && (
-                <Button btnType="primary" type="button" onClick={handleNext}>
+                <Button variant="solid" color="primary" type="button" onClick={handleNext}>
                   Next
                 </Button>
               )}
               {current === 2 && (
-                <Button btnType="primary" type="submit">
+                <Button variant="solid" color="primary" type="submit">
                   Submit
                 </Button>
               )}
@@ -155,7 +148,7 @@ export default function StepFormDemo() {
           title="Registration Successful!"
           subtitle={`Welcome, ${form.getFieldValue('fullName')}. Your account "${form.getFieldValue('username')}" has been created.`}
           extra={
-            <Button btnType="primary" onClick={handleReset}>
+            <Button variant="solid" color="primary" onClick={handleReset}>
               Register Another
             </Button>
           }
