@@ -28,7 +28,8 @@ describe('getComponentProps', () => {
     expect(result).not.toBeNull();
     expect(result!.name).toBe('Button');
     expect(result!.props.length).toBeGreaterThan(0);
-    expect(result!.props.find((p) => p.name === 'btnType')).toBeDefined();
+    expect(result!.props.find((p) => p.name === 'variant')).toBeDefined();
+    expect(result!.props.find((p) => p.name === 'color')).toBeDefined();
   });
 
   it('is case-insensitive', () => {
