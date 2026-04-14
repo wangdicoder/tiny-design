@@ -13,6 +13,10 @@ const isValid = (val: string | number): boolean => {
   return !isNaN(+val);
 };
 
+const isFiniteNumber = (val: unknown): val is number => {
+  return typeof val === 'number' && Number.isFinite(val);
+};
+
 const getDecimalPrecision = (num: number): number => {
   const str = String(num);
   const dotIndex = str.indexOf('.');
@@ -46,9 +50,13 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
     [`${prefixCls}_always-controls`]: controls,
   });
   const resolvedPrecision = precision ?? Math.max(getDecimalPrecision(step), getDecimalPrecision(defaultValue));
-  const [value, setValue] = useState<number>(
+  const [value, setValue] = useState<number | undefined>(
     'value' in props ? (props.value as number) : defaultValue
   );
+  const hasNumericValue = isFiniteNumber(value);
+  const displayValue = hasNumericValue
+    ? (resolvedPrecision > 0 ? value.toFixed(resolvedPrecision) : String(value))
+    : '';
 
   const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const raw = Number(e.target.value.trim());
@@ -60,7 +68,8 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
   const plusOnClick = (e: MouseEvent<HTMLSpanElement>): void => {
     e.stopPropagation();
     if (!disabled && isValid(step)) {
-      const val = toPrecision(+value + +step, resolvedPrecision);
+      const nextBase = hasNumericValue ? value : 0;
+      const val = toPrecision(nextBase + +step, resolvedPrecision);
       if (val <= max) {
         !('value' in props) && setValue(val);
         onChange && onChange(val, e);
@@ -71,7 +80,8 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
   const minusOnClick = (e: MouseEvent<HTMLSpanElement>): void => {
     e.stopPropagation();
     if (!disabled && isValid(step)) {
-      const val = toPrecision(+value - +step, resolvedPrecision);
+      const nextBase = hasNumericValue ? value : 0;
+      const val = toPrecision(nextBase - +step, resolvedPrecision);
       if (val >= min) {
         !('value' in props) && setValue(val);
         onChange && onChange(val, e);
@@ -88,14 +98,14 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
       <input
         autoComplete="off"
         disabled={disabled}
-        value={resolvedPrecision > 0 ? value.toFixed(resolvedPrecision) : value}
+        value={displayValue}
         type="number"
         className={`${prefixCls}__input`}
         max={max}
         min={min}
         step={step}
         onChange={inputOnChange}
-        aria-valuenow={value}
+        aria-valuenow={hasNumericValue ? value : undefined}
         aria-valuemax={max}
         aria-valuemin={min}
         aria-disabled={disabled}

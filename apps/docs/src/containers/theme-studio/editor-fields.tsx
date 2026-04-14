@@ -10,22 +10,30 @@ export function swatchTextStyle(background: string, foreground: string): React.C
 }
 
 function parseSliderValue(value: string, unit?: 'px' | 'em' | 'rem'): number | undefined {
+  const trimmed = value.trim();
+
+  // CSS zero is unit-agnostic. Presets may serialize it as `0px` while the
+  // editor slider expects `rem`, so normalize all zero forms to numeric 0.
+  if (/^-?0(?:\.0+)?(?:px|em|rem)?$/.test(trimmed)) {
+    return 0;
+  }
+
   if (unit === 'px') {
-    const match = /^(-?\d+(?:\.\d+)?)px$/.exec(value.trim());
+    const match = /^(-?\d+(?:\.\d+)?)px$/.exec(trimmed);
     return match ? Number(match[1]) : undefined;
   }
 
   if (unit === 'em') {
-    const match = /^(-?\d+(?:\.\d+)?)em$/.exec(value.trim());
+    const match = /^(-?\d+(?:\.\d+)?)em$/.exec(trimmed);
     return match ? Number(match[1]) : undefined;
   }
 
   if (unit === 'rem') {
-    const match = /^(-?\d+(?:\.\d+)?)rem$/.exec(value.trim());
+    const match = /^(-?\d+(?:\.\d+)?)rem$/.exec(trimmed);
     return match ? Number(match[1]) : undefined;
   }
 
-  const parsed = Number(value);
+  const parsed = Number(trimmed);
   return Number.isNaN(parsed) ? undefined : parsed;
 }
 

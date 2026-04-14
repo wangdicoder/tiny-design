@@ -5,6 +5,7 @@ $dp: #{$prefix}-date-picker;
 .#{$dp} {
   display: inline-flex;
   position: relative;
+  width: 100%;
   font-size: var(--ty-picker-input-font-size);
 
   // ---- Input ----

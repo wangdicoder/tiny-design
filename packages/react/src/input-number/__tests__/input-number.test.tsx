@@ -31,4 +31,9 @@ describe('<InputNumber />', () => {
     expect(container.querySelector('.ty-input-number__up')).toBeInTheDocument();
     expect(container.querySelector('.ty-input-number__down')).toBeInTheDocument();
   });
+
+  it('should not crash when controlled value is undefined', () => {
+    const { container } = render(<InputNumber value={undefined as unknown as number} />);
+    expect(container.querySelector('input')).toHaveValue(null);
+  });
 });
