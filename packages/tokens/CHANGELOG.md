@@ -1,5 +1,15 @@
 # @tiny-design/tokens
 
+## 1.11.4
+
+### Patch Changes
+
+- Refactor button styling to use `variant` and `color` instead of `btnType`. - [#107](https://github.com/wangdicoder/tiny-design/pull/107) [`cce1cdf`](https://github.com/wangdicoder/tiny-design/commit/cce1cdf893a7ee2a58a9503aa5158b14dce322a7)
+
+  This is a breaking change for `Button`, `Button.Group`, and `SplitButton`.
+  Button theme tokens were renamed to variant/color-based keys such as
+  `button.solid.primary.bg` and `button.outline.danger.border`.
+
 ## 1.11.3
 
 ## 1.11.2
