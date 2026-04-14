@@ -6,16 +6,12 @@ export default function ControlledDemo() {
 
   return (
     <>
-      <Tag
-        closable
-        visible={visible}
-        onClose={() => setVisible(false)}
-      >
+      <Tag closable visible={visible} onClose={() => setVisible(false)}>
         Movies
       </Tag>
       <br />
       <br />
-      <Button btnType="primary" size="sm" onClick={() => setVisible(!visible)}>
+      <Button variant="solid" color="primary" size="sm" onClick={() => setVisible(!visible)}>
         Toggle
       </Button>
     </>

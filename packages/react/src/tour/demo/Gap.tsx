@@ -26,15 +26,10 @@ export default function GapDemo() {
         <div style={{ marginBottom: 8 }}>Radius: {radius}px</div>
         <Slider min={0} max={20} value={radius} onChange={(v) => setRadius(v as number)} />
       </div>
-      <Button ref={ref} btnType="primary" onClick={() => setOpen(true)}>
+      <Button ref={ref} variant="solid" color="primary" onClick={() => setOpen(true)}>
         Start Tour
       </Button>
-      <Tour
-        open={open}
-        steps={steps}
-        gap={{ offset, radius }}
-        onClose={() => setOpen(false)}
-      />
+      <Tour open={open} steps={steps} gap={{ offset, radius }} onClose={() => setOpen(false)} />
     </div>
   );
 }

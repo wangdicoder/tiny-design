@@ -15,7 +15,9 @@ export default function CustomisedFooterDemo() {
 
   return (
     <>
-      <Button btnType="primary" onClick={() => setVisible(true)}>Open Modal</Button>
+      <Button variant="solid" color="primary" onClick={() => setVisible(true)}>
+        Open Modal
+      </Button>
       <Modal
         header="Custom Footer"
         visible={visible}

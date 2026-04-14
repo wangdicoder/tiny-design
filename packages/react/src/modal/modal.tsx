@@ -92,9 +92,15 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
         if (e.shiftKey) {
-          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
         } else {
-          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
         }
       }
     };
@@ -122,19 +128,23 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
   const renderFooter = (): React.ReactNode => {
     if (React.isValidElement(footer)) {
-          return footer;
+      return footer;
     } else if (footer === null) {
       return null;
     } else {
       return (
-        <Flex gap="sm" justify='end' className={`${prefixCls}__footer`} style={footerStyle}>
-          <Button onClick={handleCancel} className={`${prefixCls}__footer-btn`} {...cancelButtonProps}>
+        <Flex gap="sm" justify="end" className={`${prefixCls}__footer`} style={footerStyle}>
+          <Button
+            onClick={handleCancel}
+            className={`${prefixCls}__footer-btn`}
+            {...cancelButtonProps}>
             {cancelText}
           </Button>
           <Button
             loading={confirmLoading}
             onClick={onConfirm}
-            btnType="primary"
+            variant="solid"
+            color="primary"
             className={`${prefixCls}__footer-btn`}
             {...confirmButtonProps}>
             {confirmText}
@@ -178,13 +188,19 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
               aria-describedby={children ? bodyId : undefined}
               onClick={(e): void => e.stopPropagation()}>
               {closable && (
-                <button type="button" className={`${prefixCls}__close-btn`} onClick={handleClose} aria-label="Close">
+                <button
+                  type="button"
+                  className={`${prefixCls}__close-btn`}
+                  onClick={handleClose}
+                  aria-label="Close">
                   <Close size={16} />
                 </button>
               )}
               {header && (
                 <div className={`${prefixCls}__header`} style={headerStyle}>
-                  <div className={`${prefixCls}__title`} id={titleId}>{header}</div>
+                  <div className={`${prefixCls}__title`} id={titleId}>
+                    {header}
+                  </div>
                 </div>
               )}
               <div className={`${prefixCls}__body`} id={bodyId} style={bodyStyle}>

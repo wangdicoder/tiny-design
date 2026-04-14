@@ -11,6 +11,8 @@ export default function DurationDemo() {
   };
 
   return (
-    <Button btnType="primary" onClick={btnOnClick}>Open the notification box</Button>
+    <Button variant="solid" color="primary" onClick={btnOnClick}>
+      Open the notification box
+    </Button>
   );
 }

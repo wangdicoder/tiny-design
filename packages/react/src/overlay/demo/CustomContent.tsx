@@ -6,7 +6,9 @@ export default function CustomContentDemo() {
 
   return (
     <>
-      <Button btnType="primary" onClick={() => setIsShow(true)}>Custom Content</Button>
+      <Button variant="solid" color="primary" onClick={() => setIsShow(true)}>
+        Custom Content
+      </Button>
       <Overlay isShow={isShow} clickCallback={() => setIsShow(false)}>
         <div
           style={{
@@ -19,11 +21,14 @@ export default function CustomContentDemo() {
             padding: '24px 32px',
             textAlign: 'center',
           }}
-          onClick={(e) => e.stopPropagation()}
-        >
+          onClick={(e) => e.stopPropagation()}>
           <h3 style={{ margin: '0 0 12px' }}>Custom Panel</h3>
-          <p style={{ margin: '0 0 16px', color: '#666' }}>This content is rendered inside the overlay.</p>
-          <Button btnType="primary" onClick={() => setIsShow(false)}>Close</Button>
+          <p style={{ margin: '0 0 16px', color: '#666' }}>
+            This content is rendered inside the overlay.
+          </p>
+          <Button variant="solid" color="primary" onClick={() => setIsShow(false)}>
+            Close
+          </Button>
         </div>
       </Overlay>
     </>

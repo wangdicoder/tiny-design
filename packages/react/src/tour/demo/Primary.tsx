@@ -26,7 +26,7 @@ export default function PrimaryDemo() {
       <div style={{ display: 'flex', gap: 16 }}>
         <Button ref={ref1}>Upload</Button>
         <Button ref={ref2}>Save</Button>
-        <Button btnType="primary" onClick={() => setOpen(true)}>
+        <Button variant="solid" color="primary" onClick={() => setOpen(true)}>
           Start Tour
         </Button>
       </div>

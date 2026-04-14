@@ -5,7 +5,8 @@ export default function TypeDemo() {
   const btnOnClick = (type: string) => {
     Notification[type]({
       title: 'Notification Title',
-      description: 'This is the content of the notification. This is the content of the notification.',
+      description:
+        'This is the content of the notification. This is the content of the notification.',
       onClick: () => {
         console.log('Notification Clicked!');
       },
@@ -14,10 +15,18 @@ export default function TypeDemo() {
 
   return (
     <Flex gap="sm">
-      <Button btnType="info" onClick={() => btnOnClick('info')}>Info</Button>
-      <Button btnType="success" onClick={() => btnOnClick('success')}>Success</Button>
-      <Button btnType="warning" onClick={() => btnOnClick('warning')}>Warning</Button>
-      <Button btnType="danger" onClick={() => btnOnClick('error')}>Error</Button>
+      <Button variant="solid" color="info" onClick={() => btnOnClick('info')}>
+        Info
+      </Button>
+      <Button variant="solid" color="success" onClick={() => btnOnClick('success')}>
+        Success
+      </Button>
+      <Button variant="solid" color="warning" onClick={() => btnOnClick('warning')}>
+        Warning
+      </Button>
+      <Button variant="solid" color="danger" onClick={() => btnOnClick('error')}>
+        Error
+      </Button>
     </Flex>
   );
 }

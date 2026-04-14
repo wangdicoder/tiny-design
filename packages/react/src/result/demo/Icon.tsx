@@ -8,9 +8,9 @@ export default function IconDemo() {
       title="You order has been delivered!"
       icon={<div style={{ fontSize: 80 }}>🎉</div>}
       extra={[
-        <Button btnType="primary" key="console">
+        <Button variant="solid" color="primary" key="console">
           Go Console
-        </Button>
+        </Button>,
       ]}
     />
   );

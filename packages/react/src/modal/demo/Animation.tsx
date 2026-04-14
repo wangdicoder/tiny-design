@@ -7,10 +7,10 @@ export default function AnimationDemo() {
 
   return (
     <Flex gap="sm">
-      <Button btnType="primary" onClick={() => setVisible1(true)}>
+      <Button variant="solid" color="primary" onClick={() => setVisible1(true)}>
         Default Slide up and down
       </Button>
-      <Button btnType="primary" onClick={() => setVisible2(true)}>
+      <Button variant="solid" color="primary" onClick={() => setVisible2(true)}>
         Scale animation
       </Button>
       <Modal

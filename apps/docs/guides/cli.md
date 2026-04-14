@@ -32,29 +32,29 @@ tiny-design usage ./src                 # Scan project for import stats
 
 ### Knowledge Query
 
-| Command | Description |
-|---------|-------------|
-| `tiny-design list [category]` | List all components grouped by category. Filter by: Foundation, Layout, Navigation, Data Display, Form, Feedback, Miscellany. |
-| `tiny-design info <component>` | Props table with types, required flags, default values, and descriptions. |
-| `tiny-design doc <component>` | Full markdown documentation for a component. |
-| `tiny-design demo <component> [name]` | Demo source code (TSX). Lists available demos if no name is given. |
-| `tiny-design token [category]` | Design token values. Categories: colors, typography, spacing, breakpoints, shadows. |
-| `tiny-design icon [search]` | List all 240+ icons or search by name. |
+| Command                               | Description                                                                                                                   |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `tiny-design list [category]`         | List all components grouped by category. Filter by: Foundation, Layout, Navigation, Data Display, Form, Feedback, Miscellany. |
+| `tiny-design info <component>`        | Props table with types, required flags, default values, and descriptions.                                                     |
+| `tiny-design doc <component>`         | Full markdown documentation for a component.                                                                                  |
+| `tiny-design demo <component> [name]` | Demo source code (TSX). Lists available demos if no name is given.                                                            |
+| `tiny-design token [category]`        | Design token values. Categories: colors, typography, spacing, breakpoints, shadows.                                           |
+| `tiny-design icon [search]`           | List all 240+ icons or search by name.                                                                                        |
 
 ### Project Analysis
 
-| Command | Description |
-|---------|-------------|
-| `tiny-design doctor` | Diagnostic checks: package.json, React version, peer deps, TypeScript, duplicate React detection. |
+| Command                   | Description                                                                                          |
+| ------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `tiny-design doctor`      | Diagnostic checks: package.json, React version, peer deps, TypeScript, duplicate React detection.    |
 | `tiny-design usage [dir]` | Scan source files for `@tiny-design/react` imports. Shows component usage counts and file locations. |
 
 ### Global Flags
 
-| Flag | Description | Default |
-|------|-------------|---------|
-| `--format json\|text\|markdown` | Output format | `text` |
-| `--lang en\|zh` | Output language | `en` |
-| `--detail` | Include extended information | `false` |
+| Flag                            | Description                  | Default |
+| ------------------------------- | ---------------------------- | ------- |
+| `--format json\|text\|markdown` | Output format                | `text`  |
+| `--lang en\|zh`                 | Output language              | `en`    |
+| `--detail`                      | Include extended information | `false` |
 
 ## Examples
 
@@ -123,8 +123,8 @@ export default function TypeDemo() {
   return (
     <Flex gap="sm">
       <Button>Default</Button>
-      <Button btnType="primary">Primary</Button>
-      <Button btnType="outline">Outline</Button>
+      <Button variant="solid" color="primary">Primary</Button>
+      <Button variant="outline" color="primary">Outline</Button>
     </Flex>
   );
 }

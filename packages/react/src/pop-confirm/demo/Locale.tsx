@@ -7,9 +7,8 @@ export default function LocaleDemo() {
       title="Are you sure to delete this?"
       confirmText="OK"
       cancelText="Cancel"
-      onConfirm={() => Message.info('You clicked Yes')}
-    >
-      <Button btnType="link">
+      onConfirm={() => Message.info('You clicked Yes')}>
+      <Button variant="link" color="primary">
         Delete
       </Button>
     </PopConfirm>

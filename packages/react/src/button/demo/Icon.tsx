@@ -5,10 +5,20 @@ import { IconWifi, IconGift, IconSearch, IconCloudUpload } from '@tiny-design/ic
 export default function IconDemo() {
   return (
     <Flex gap="sm">
-      <Button icon={<IconWifi />} color="primary" />
-      <Button icon={<IconGift />} color="primary" />
-      <Button icon={<IconSearch />} color="primary">Search</Button>
-      <Button btnType="primary">Upload <IconCloudUpload /></Button>
+      <Button icon={<IconWifi />} variant="solid" color="primary" aria-label="Network" />
+      <Button
+        icon={<IconGift />}
+        variant="solid"
+        color="primary"
+        shape="circle"
+        aria-label="Gift"
+      />
+      <Button icon={<IconSearch />} variant="solid" color="primary">
+        Search
+      </Button>
+      <Button variant="solid" color="primary" icon={<IconCloudUpload />} iconPosition="end">
+        Upload
+      </Button>
     </Flex>
   );
 }

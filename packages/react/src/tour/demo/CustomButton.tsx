@@ -36,7 +36,7 @@ export default function CustomButtonDemo() {
       <div style={{ display: 'flex', gap: 16 }}>
         <Button ref={ref1}>Upload</Button>
         <Button ref={ref2}>Save</Button>
-        <Button ref={ref3} btnType="primary" onClick={() => setOpen(true)}>
+        <Button ref={ref3} variant="solid" color="primary" onClick={() => setOpen(true)}>
           Start Tour
         </Button>
       </div>

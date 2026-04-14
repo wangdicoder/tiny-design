@@ -9,7 +9,7 @@ export default function DisabledDemo() {
       <Switch disabled={disabled} />
       <br />
       <br />
-      <Button btnType="primary" onClick={() => setDisabled(!disabled)}>
+      <Button variant="solid" color="primary" onClick={() => setDisabled(!disabled)}>
         Toggle Disabled
       </Button>
     </>

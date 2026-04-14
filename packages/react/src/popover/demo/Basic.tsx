@@ -11,7 +11,9 @@ export default function BasicDemo() {
 
   return (
     <Popover trigger="hover" title="Title" content={content}>
-      <Button btnType="primary">Hover me</Button>
+      <Button variant="solid" color="primary">
+        Hover me
+      </Button>
     </Popover>
   );
 }

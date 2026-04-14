@@ -8,11 +8,21 @@ export default function BlockDemo() {
 
   return (
     <>
-      <Button block style={style}>Default Button</Button>
-      <Button block btnType="primary" style={style}>Primary Button</Button>
-      <Button block btnType="outline" style={style}>Outline Button</Button>
-      <Button block btnType="ghost" style={style}>Ghost Button</Button>
-      <Button block btnType="link" style={style}>Link Button</Button>
+      <Button block style={style}>
+        Default Button
+      </Button>
+      <Button block variant="solid" color="primary" style={style}>
+        Primary Button
+      </Button>
+      <Button block variant="outline" color="primary" style={style}>
+        Outline Button
+      </Button>
+      <Button block variant="ghost" color="primary" style={style}>
+        Ghost Button
+      </Button>
+      <Button block variant="link" color="primary" style={style}>
+        Link Button
+      </Button>
     </>
   );
 }

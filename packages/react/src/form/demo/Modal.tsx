@@ -6,34 +6,29 @@ export default function ModalDemo() {
 
   return (
     <>
-      <Button btnType="primary" onClick={() => setVisible(true)}>New Form</Button>
+      <Button variant="solid" color="primary" onClick={() => setVisible(true)}>
+        New Form
+      </Button>
       <Modal
         visible={visible}
         header="Create a new form"
         footer={null}
-        onCancel={() => setVisible(false)}
-      >
+        onCancel={() => setVisible(false)}>
         <Form
           onFinish={(values) => console.log(values)}
           onFinishFailed={({ values, errors }) => console.log(values, errors)}
           initialValues={{ title: '', desc: '' }}
-          style={{ maxWidth: 500 }}
-        >
-          <Form.Item
-            label="Title"
-            name="title"
-            rules={[{ required: true }]}
-          >
+          style={{ maxWidth: 500 }}>
+          <Form.Item label="Title" name="title" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item
-            label="Description"
-            name="desc"
-          >
+          <Form.Item label="Description" name="desc">
             <Input />
           </Form.Item>
           <Form.Item>
-            <Button block btnType="primary" type="submit">Submit</Button>
+            <Button block variant="solid" color="primary" type="submit">
+              Submit
+            </Button>
           </Form.Item>
         </Form>
       </Modal>

@@ -5,10 +5,18 @@ export default function TypeDemo() {
   return (
     <Flex gap="sm">
       <Button>Default</Button>
-      <Button btnType="primary">Primary</Button>
-      <Button btnType="outline">Outline</Button>
-      <Button btnType="ghost">Ghost</Button>
-      <Button btnType="link">Link</Button>
+      <Button variant="solid" color="primary">
+        Primary
+      </Button>
+      <Button variant="outline" color="primary">
+        Outline
+      </Button>
+      <Button variant="ghost" color="primary">
+        Ghost
+      </Button>
+      <Button variant="link" color="primary">
+        Link
+      </Button>
     </Flex>
   );
 }

@@ -17,10 +17,16 @@ export default function SizeDemo() {
       <br />
       <br />
       <Space size={size}>
-        <Button btnType="primary">Primary</Button>
+        <Button variant="solid" color="primary">
+          Primary
+        </Button>
         <Button>Default</Button>
-        <Button btnType="outline">Outline</Button>
-        <Button btnType="link">Link</Button>
+        <Button variant="outline" color="primary">
+          Outline
+        </Button>
+        <Button variant="link" color="primary">
+          Link
+        </Button>
       </Space>
 
       <br />
@@ -35,10 +41,16 @@ export default function SizeDemo() {
         }}
       />
       <Space size={numSize}>
-        <Button btnType="primary">Primary</Button>
+        <Button variant="solid" color="primary">
+          Primary
+        </Button>
         <Button>Default</Button>
-        <Button btnType="outline">Outline</Button>
-        <Button btnType="link">Link</Button>
+        <Button variant="outline" color="primary">
+          Outline
+        </Button>
+        <Button variant="link" color="primary">
+          Link
+        </Button>
       </Space>
     </>
   );

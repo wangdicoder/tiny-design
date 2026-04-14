@@ -35,10 +35,7 @@ import {
   generateThemeCssVariables,
   generateThemeDocumentJSON,
 } from '../../utils/theme-document';
-import {
-  applyThemeDocumentToDOM,
-  saveThemeDocument,
-} from '../../utils/theme-persistence';
+import { applyThemeDocumentToDOM, saveThemeDocument } from '../../utils/theme-persistence';
 import { syncThemeStudioFonts } from './font-loader';
 import './theme-studio.scss';
 
@@ -61,15 +58,17 @@ const ThemeStudioPage = (): React.ReactElement => {
   const cssVars = useMemo(() => generateThemeCssVariables(themeDocument), [themeDocument]);
   const changedTokens = useMemo(() => compareThemeAgainstBase(themeDocument), [themeDocument]);
   const activePreset = useMemo(
-    () => THEME_EDITOR_PRESETS.find((preset) => preset.id === draft.presetId) ?? THEME_EDITOR_PRESETS[0],
-    [draft.presetId],
+    () =>
+      THEME_EDITOR_PRESETS.find((preset) => preset.id === draft.presetId) ??
+      THEME_EDITOR_PRESETS[0],
+    [draft.presetId]
   );
   useEffect(() => {
-    setDraft((current) => (
+    setDraft((current) =>
       current.mode === globalMode
         ? current
         : applyPresetToDraft(current.presetId, current, globalMode)
-    ));
+    );
   }, [globalMode]);
 
   useEffect(() => {
@@ -111,7 +110,9 @@ const ThemeStudioPage = (): React.ReactElement => {
 
   const handlePresetChange = (presetId: string) => {
     setDraft((current) => applyPresetToDraft(presetId, current));
-    setStatus(`Applied ${THEME_EDITOR_PRESETS.find((preset) => preset.id === presetId)?.name ?? 'preset'}`);
+    setStatus(
+      `Applied ${THEME_EDITOR_PRESETS.find((preset) => preset.id === presetId)?.name ?? 'preset'}`
+    );
   };
 
   const handleImport = () => {
@@ -126,7 +127,11 @@ const ThemeStudioPage = (): React.ReactElement => {
       setDraft(buildDraftFromThemeDocument(validation.normalizedDocument as ThemeDocument));
       setImportVisible(false);
       setImportError(null);
-      setStatus(validation.warnings.length > 0 ? 'Imported theme document with validation warnings' : 'Imported theme document');
+      setStatus(
+        validation.warnings.length > 0
+          ? 'Imported theme document with validation warnings'
+          : 'Imported theme document'
+      );
     } catch {
       setImportError('Invalid theme document JSON');
     }
@@ -141,27 +146,44 @@ const ThemeStudioPage = (): React.ReactElement => {
     <ConfigProvider theme={themeDocument}>
       <div
         className={`theme-studio theme-studio_${draft.mode}`}
-        style={buildPreviewVars(draft.fields)}
-      >
+        style={buildPreviewVars(draft.fields)}>
         <div className="theme-studio__topbar">
           <div className="theme-studio__topbar-primary">
             <Select
               className="theme-studio__select"
               value={draft.presetId}
-              onChange={(value) => handlePresetChange(value)}
-            >
+              onChange={(value) => handlePresetChange(value)}>
               {THEME_EDITOR_PRESETS.map((preset) => (
-                <Select.Option key={preset.id} value={preset.id}>{preset.name}</Select.Option>
+                <Select.Option key={preset.id} value={preset.id}>
+                  {preset.name}
+                </Select.Option>
               ))}
             </Select>
           </div>
 
           <div className="theme-studio__topbar-actions">
             <div className="theme-studio__topbar-utility">
-              <Button size="sm" btnType="ghost" onClick={resetToPreset}>Reset</Button>
-              <Button size="sm" btnType="ghost" onClick={() => { setImportText(themeJson); setImportVisible(true); }}>Import</Button>
+              <Button size="sm" variant="ghost" color="primary" onClick={resetToPreset}>
+                Reset
+              </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                color="primary"
+                onClick={() => {
+                  setImportText(themeJson);
+                  setImportVisible(true);
+                }}>
+                Import
+              </Button>
             </div>
-            <Button size="sm" btnType="outline" onClick={() => setCodeVisible(true)}>Code</Button>
+            <Button
+              size="sm"
+              variant="outline"
+              color="primary"
+              onClick={() => setCodeVisible(true)}>
+              Code
+            </Button>
           </div>
         </div>
 
@@ -170,9 +192,17 @@ const ThemeStudioPage = (): React.ReactElement => {
             <div className="theme-studio__sidebar-head">
               <Segmented
                 block
-                options={Object.entries(THEME_SECTION_LABELS).map(([value, label]) => ({ label, value }))}
+                options={Object.entries(THEME_SECTION_LABELS).map(([value, label]) => ({
+                  label,
+                  value,
+                }))}
                 value={draft.activeSection}
-                onChange={(value) => setDraft((current) => ({ ...current, activeSection: value as ThemeEditorSection }))}
+                onChange={(value) =>
+                  setDraft((current) => ({
+                    ...current,
+                    activeSection: value as ThemeEditorSection,
+                  }))
+                }
               />
             </div>
             <ThemeStudioSidebarContent
@@ -189,8 +219,12 @@ const ThemeStudioPage = (): React.ReactElement => {
                   <button
                     key={item.value}
                     className={`theme-studio__template-tab${draft.activeTemplate === item.value ? ' theme-studio__template-tab_active' : ''}`}
-                    onClick={() => setDraft((current) => ({ ...current, activeTemplate: item.value as ThemePreviewTemplate }))}
-                  >
+                    onClick={() =>
+                      setDraft((current) => ({
+                        ...current,
+                        activeTemplate: item.value as ThemePreviewTemplate,
+                      }))
+                    }>
                     {item.label}
                   </button>
                 ))}
@@ -213,13 +247,14 @@ const ThemeStudioPage = (): React.ReactElement => {
           onClose={() => {
             setImportVisible(false);
             setImportError(null);
-          }}
-        >
+          }}>
           <div className="theme-studio__modal-copy">
             <Paragraph>
               Paste a Tiny theme document JSON export to replace the current global theme.
             </Paragraph>
-            <Text type="secondary">Preset selection and all editor controls will sync to the imported values.</Text>
+            <Text type="secondary">
+              Preset selection and all editor controls will sync to the imported values.
+            </Text>
           </div>
           <Textarea
             rows={16}
@@ -227,7 +262,9 @@ const ThemeStudioPage = (): React.ReactElement => {
             value={importText}
             onChange={(next) => setImportText(next)}
           />
-          {importError ? <Paragraph className="theme-studio__error">{importError}</Paragraph> : null}
+          {importError ? (
+            <Paragraph className="theme-studio__error">{importError}</Paragraph>
+          ) : null}
         </Modal>
 
         <Modal
@@ -237,28 +274,45 @@ const ThemeStudioPage = (): React.ReactElement => {
           width={980}
           bodyStyle={{ maxHeight: 'min(74vh, 760px)', overflow: 'auto' }}
           cancelText="Close"
-          confirmText={draft.activeCodeView === 'json' ? 'Copy JSON' : draft.activeCodeView === 'css' ? 'Copy CSS' : 'Done'}
-          confirmButtonProps={draft.activeCodeView === 'tokens' ? { style: { display: 'none' } } : undefined}
-          onConfirm={draft.activeCodeView === 'json'
-            ? () => handleCopy(themeJson, 'Theme JSON')
-            : draft.activeCodeView === 'css'
-              ? () => handleCopy(cssVars, 'CSS variables')
-              : undefined}
-          onClose={() => setCodeVisible(false)}
-        >
+          confirmText={
+            draft.activeCodeView === 'json'
+              ? 'Copy JSON'
+              : draft.activeCodeView === 'css'
+                ? 'Copy CSS'
+                : 'Done'
+          }
+          confirmButtonProps={
+            draft.activeCodeView === 'tokens' ? { style: { display: 'none' } } : undefined
+          }
+          onConfirm={
+            draft.activeCodeView === 'json'
+              ? () => handleCopy(themeJson, 'Theme JSON')
+              : draft.activeCodeView === 'css'
+                ? () => handleCopy(cssVars, 'CSS variables')
+                : undefined
+          }
+          onClose={() => setCodeVisible(false)}>
           <div className="theme-studio__code-head">
             <div>
               <Text strong>Output</Text>
-              <Text type="secondary">{activePreset.name} · {status}</Text>
+              <Text type="secondary">
+                {activePreset.name} · {status}
+              </Text>
             </div>
             <Segmented
               options={CODE_VIEW_OPTIONS}
               value={draft.activeCodeView}
-              onChange={(value) => setDraft((current) => ({ ...current, activeCodeView: value as ThemeCodeView }))}
+              onChange={(value) =>
+                setDraft((current) => ({ ...current, activeCodeView: value as ThemeCodeView }))
+              }
             />
           </div>
-          {draft.activeCodeView === 'json' ? <pre className="theme-studio__code-block">{themeJson}</pre> : null}
-          {draft.activeCodeView === 'css' ? <pre className="theme-studio__code-block">{cssVars}</pre> : null}
+          {draft.activeCodeView === 'json' ? (
+            <pre className="theme-studio__code-block">{themeJson}</pre>
+          ) : null}
+          {draft.activeCodeView === 'css' ? (
+            <pre className="theme-studio__code-block">{cssVars}</pre>
+          ) : null}
           {draft.activeCodeView === 'tokens' ? (
             <div className="theme-studio__tokens-list theme-studio__tokens-list_modal">
               {changedTokens.map((token) => (

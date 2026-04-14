@@ -249,21 +249,15 @@ export interface BreadcrumbItemProps
 import React from 'react';
 import { BaseProps, SizeType } from '../_utils/props';
 
-export type ButtonType =
-  | 'default'
-  | 'primary'
-  | 'outline'
-  | 'ghost'
-  | 'link'
-  | 'info'
-  | 'danger'
-  | 'warning'
-  | 'success';
+export type ButtonVariant = 'solid' | 'outline' | 'ghost' | 'link';
+
+export type ButtonColor = 'default' | 'primary' | 'info' | 'danger' | 'warning' | 'success';
 
 export interface ButtonProps
   extends BaseProps,
     React.PropsWithRef<JSX.IntrinsicElements['button']> {
-  btnType?: ButtonType;
+  variant?: ButtonVariant;
+  color?: ButtonColor;
   loading?: boolean;
   disabled?: boolean;
   block?: boolean;
@@ -275,7 +269,8 @@ export interface ButtonProps
 export interface ButtonGroupProps
   extends BaseProps,
     React.PropsWithRef<JSX.IntrinsicElements['div']> {
-  btnType?: ButtonType;
+  variant?: ButtonVariant;
+  color?: ButtonColor;
   size?: SizeType;
   round?: boolean;
   disabled?: boolean;
@@ -1905,7 +1900,7 @@ export interface SpeedDialActionProps
 ### split-button
 ```typescript
 import React from 'react';
-import { ButtonGroupProps, ButtonType } from '../button/types';
+import { ButtonColor, ButtonGroupProps, ButtonVariant } from '../button/types';
 import { DropdownPlacement, DropdownTrigger } from '../dropdown/types';
 import { MenuProps } from '../menu/types';
 import { SizeType } from '../_utils/props';
@@ -1915,7 +1910,8 @@ export interface SplitButtonProps extends Omit<ButtonGroupProps, 'onClick'> {
   loading?: boolean;
   disabled?: boolean;
   size?: SizeType;
-  btnType?: ButtonType;
+  variant?: ButtonVariant;
+  color?: ButtonColor;
   overlay?: React.ReactElement<MenuProps>;
   dropdownTrigger?: DropdownTrigger;
   dropdownPlacement?: DropdownPlacement;
@@ -2562,4 +2558,3 @@ export interface WaterfallProps<T = any>
 }
 
 ```
-

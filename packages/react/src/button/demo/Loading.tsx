@@ -5,8 +5,12 @@ export default function LoadingDemo() {
   return (
     <Flex gap="sm">
       <Button loading>Default</Button>
-      <Button loading btnType="primary">Primary</Button>
-      <Button loading btnType="link">Link</Button>
+      <Button loading variant="solid" color="primary">
+        Primary
+      </Button>
+      <Button loading variant="link" color="primary">
+        Link
+      </Button>
     </Flex>
   );
 }

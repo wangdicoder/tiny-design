@@ -9,10 +9,7 @@ export default function ExtraFooterDemo() {
       onChange={setTime}
       placeholder="With footer"
       renderExtraFooter={() => (
-        <Button
-          size="sm"
-          btnType="link"
-          onClick={() => setTime(new Date())}>
+        <Button size="sm" variant="link" color="primary" onClick={() => setTime(new Date())}>
           Now
         </Button>
       )}

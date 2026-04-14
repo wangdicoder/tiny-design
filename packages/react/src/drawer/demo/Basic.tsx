@@ -6,15 +6,14 @@ export default function BasicDemo() {
 
   return (
     <div>
-      <Button btnType="primary" onClick={() => setVisible(true)}>
+      <Button variant="solid" color="primary" onClick={() => setVisible(true)}>
         Open
       </Button>
       <Drawer
         header="Basic Drawer"
         placement="right"
         onClose={() => setVisible(false)}
-        visible={visible}
-      >
+        visible={visible}>
         <div>Some contents...</div>
         <div>Some contents...</div>
         <div>Some contents...</div>

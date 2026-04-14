@@ -13,12 +13,16 @@ export default function AlignmentGridDemo() {
         padding: 16,
         border: '1px dashed var(--ty-color-border)',
         borderRadius: 12,
-        background: 'linear-gradient(180deg, color-mix(in srgb, var(--ty-color-primary) 6%, transparent), color-mix(in srgb, var(--ty-color-primary-bg) 45%, transparent))',
-      }}
-    >
-      <Button btnType="primary">Primary</Button>
+        background:
+          'linear-gradient(180deg, color-mix(in srgb, var(--ty-color-primary) 6%, transparent), color-mix(in srgb, var(--ty-color-primary-bg) 45%, transparent))',
+      }}>
+      <Button variant="solid" color="primary">
+        Primary
+      </Button>
       <Button>Default</Button>
-      <Button btnType="outline">Outline</Button>
+      <Button variant="outline" color="primary">
+        Outline
+      </Button>
     </Grid>
   );
 }

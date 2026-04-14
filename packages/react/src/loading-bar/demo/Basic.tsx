@@ -5,8 +5,12 @@ export default function BasicDemo() {
   return (
     <Flex gap="sm">
       <Button onClick={() => LoadingBar.start()}>Start</Button>
-      <Button onClick={() => LoadingBar.succeed()} btnType="success">Success</Button>
-      <Button onClick={() => LoadingBar.fail()} btnType="danger">Fail</Button>
+      <Button onClick={() => LoadingBar.succeed()} variant="solid" color="success">
+        Success
+      </Button>
+      <Button onClick={() => LoadingBar.fail()} variant="solid" color="danger">
+        Fail
+      </Button>
     </Flex>
   );
 }

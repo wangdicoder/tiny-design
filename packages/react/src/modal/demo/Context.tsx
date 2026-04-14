@@ -24,7 +24,9 @@ function Toolbar() {
   const settings = Modal.useModal('settings');
   return (
     <Space>
-      <Button btnType="primary" onClick={confirm.show}>Open Confirm</Button>
+      <Button variant="solid" color="primary" onClick={confirm.show}>
+        Open Confirm
+      </Button>
       <Button onClick={settings.show}>Open Settings</Button>
     </Space>
   );

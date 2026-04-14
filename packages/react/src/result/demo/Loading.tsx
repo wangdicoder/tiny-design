@@ -7,9 +7,9 @@ export default function LoadingDemo() {
       status="loading"
       title="Your order is in processing."
       extra={[
-        <Button btnType="primary" key="console">
+        <Button variant="solid" color="primary" key="console">
           Go Console
-        </Button>
+        </Button>,
       ]}
     />
   );

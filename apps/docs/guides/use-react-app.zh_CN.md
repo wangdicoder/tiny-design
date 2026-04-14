@@ -3,6 +3,7 @@ import { NpmIcon, YarnIcon, PnpmIcon, BunIcon } from './pkg-icons';
 import { HighlightedCode } from '../src/components/highlighted-code';
 
 export const CodeBlock = ({ children }) => (
+
   <div className="markdown__pre-container">
     <HighlightedCode className="language-bash">{children}</HighlightedCode>
   </div>
@@ -15,14 +16,14 @@ export const CodeBlock = ({ children }) => (
 ## 创建项目
 
 <Tabs
-  animated={false}
-  defaultActiveKey="npm"
-  items={[
-    { key: 'npm', label: <span><NpmIcon />npm</span>, children: <CodeBlock>{'$ npm create vite@latest my-app -- --template react-ts\n$ cd my-app\n$ npm install'}</CodeBlock> },
-    { key: 'yarn', label: <span><YarnIcon />yarn</span>, children: <CodeBlock>{'$ yarn create vite my-app --template react-ts\n$ cd my-app\n$ yarn'}</CodeBlock> },
-    { key: 'pnpm', label: <span><PnpmIcon />pnpm</span>, children: <CodeBlock>{'$ pnpm create vite my-app --template react-ts\n$ cd my-app\n$ pnpm install'}</CodeBlock> },
-    { key: 'bun', label: <span><BunIcon />Bun</span>, children: <CodeBlock>{'$ bun create vite my-app --template react-ts\n$ cd my-app\n$ bun install'}</CodeBlock> },
-  ]}
+animated={false}
+defaultActiveKey="npm"
+items={[
+{ key: 'npm', label: <span><NpmIcon />npm</span>, children: <CodeBlock>{'$ npm create vite@latest my-app -- --template react-ts\n$ cd my-app\n$ npm install'}</CodeBlock> },
+{ key: 'yarn', label: <span><YarnIcon />yarn</span>, children: <CodeBlock>{'$ yarn create vite my-app --template react-ts\n$ cd my-app\n$ yarn'}</CodeBlock> },
+{ key: 'pnpm', label: <span><PnpmIcon />pnpm</span>, children: <CodeBlock>{'$ pnpm create vite my-app --template react-ts\n$ cd my-app\n$ pnpm install'}</CodeBlock> },
+{ key: 'bun', label: <span><BunIcon />Bun</span>, children: <CodeBlock>{'$ bun create vite my-app --template react-ts\n$ cd my-app\n$ bun install'}</CodeBlock> },
+]}
 />
 
 启动开发服务器，确认一切正常：
@@ -36,14 +37,14 @@ $ npm run dev
 ## 安装 tiny-design
 
 <Tabs
-  animated={false}
-  defaultActiveKey="npm"
-  items={[
-    { key: 'npm', label: <span><NpmIcon />npm</span>, children: <CodeBlock>$ npm install @tiny-design/react</CodeBlock> },
-    { key: 'yarn', label: <span><YarnIcon />yarn</span>, children: <CodeBlock>$ yarn add @tiny-design/react</CodeBlock> },
-    { key: 'pnpm', label: <span><PnpmIcon />pnpm</span>, children: <CodeBlock>$ pnpm add @tiny-design/react</CodeBlock> },
-    { key: 'bun', label: <span><BunIcon />Bun</span>, children: <CodeBlock>$ bun add @tiny-design/react</CodeBlock> },
-  ]}
+animated={false}
+defaultActiveKey="npm"
+items={[
+{ key: 'npm', label: <span><NpmIcon />npm</span>, children: <CodeBlock>$ npm install @tiny-design/react</CodeBlock> },
+{ key: 'yarn', label: <span><YarnIcon />yarn</span>, children: <CodeBlock>$ yarn add @tiny-design/react</CodeBlock> },
+{ key: 'pnpm', label: <span><PnpmIcon />pnpm</span>, children: <CodeBlock>$ pnpm add @tiny-design/react</CodeBlock> },
+{ key: 'bun', label: <span><BunIcon />Bun</span>, children: <CodeBlock>$ bun add @tiny-design/react</CodeBlock> },
+]}
 />
 
 修改 `src/App.tsx`，从 tiny-design 引入 Button 组件：
@@ -54,7 +55,9 @@ import { Button } from 'tiny-design';
 const App = () => {
   return (
     <div style={{ padding: 24 }}>
-      <Button btnType="primary">Button</Button>
+      <Button variant="solid" color="primary">
+        Button
+      </Button>
     </div>
   );
 };

@@ -9,61 +9,67 @@ export default function ValidateTriggerDemo() {
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: 'Please input your username' }]}
-        >
+          rules={[{ required: true, message: 'Please input your username' }]}>
           <Input />
         </Form.Item>
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password' }]}
-        >
+          rules={[{ required: true, message: 'Please input your password' }]}>
           <InputPassword />
         </Form.Item>
         <Form.Item>
-          <Button btnType="primary" type="submit">Submit</Button>
+          <Button variant="solid" color="primary" type="submit">
+            Submit
+          </Button>
         </Form.Item>
       </Form>
 
       <Divider titlePlacement="start">onBlur</Divider>
-      <Form validateTrigger="onBlur" initialValues={{ username: '', password: '' }} style={{ maxWidth: 500 }}>
+      <Form
+        validateTrigger="onBlur"
+        initialValues={{ username: '', password: '' }}
+        style={{ maxWidth: 500 }}>
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: 'Please input your username' }]}
-        >
+          rules={[{ required: true, message: 'Please input your username' }]}>
           <Input />
         </Form.Item>
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password' }]}
-        >
+          rules={[{ required: true, message: 'Please input your password' }]}>
           <InputPassword />
         </Form.Item>
         <Form.Item>
-          <Button btnType="primary" type="submit">Submit</Button>
+          <Button variant="solid" color="primary" type="submit">
+            Submit
+          </Button>
         </Form.Item>
       </Form>
 
       <Divider titlePlacement="start">onSubmit</Divider>
-      <Form validateTrigger="onSubmit" initialValues={{ username: '', password: '' }} style={{ maxWidth: 500 }}>
+      <Form
+        validateTrigger="onSubmit"
+        initialValues={{ username: '', password: '' }}
+        style={{ maxWidth: 500 }}>
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: 'Please input your username' }]}
-        >
+          rules={[{ required: true, message: 'Please input your username' }]}>
           <Input />
         </Form.Item>
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password' }]}
-        >
+          rules={[{ required: true, message: 'Please input your password' }]}>
           <InputPassword />
         </Form.Item>
         <Form.Item>
-          <Button btnType="primary" type="submit">Submit</Button>
+          <Button variant="solid" color="primary" type="submit">
+            Submit
+          </Button>
         </Form.Item>
       </Form>
     </>

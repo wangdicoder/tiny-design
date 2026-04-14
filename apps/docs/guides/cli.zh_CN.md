@@ -32,29 +32,29 @@ tiny-design usage ./src                 # 扫描项目中的导入统计
 
 ### 知识查询
 
-| 命令 | 描述 |
-|------|------|
-| `tiny-design list [category]` | 按分类列出所有组件。可筛选：基础、布局、导航、数据展示、表单、反馈、其他。 |
-| `tiny-design info <component>` | 属性表，包含类型、是否必填、默认值和描述。 |
-| `tiny-design doc <component>` | 组件的完整 Markdown 文档。 |
-| `tiny-design demo <component> [name]` | 演示源代码（TSX）。未指定名称时列出可用演示。 |
-| `tiny-design token [category]` | 设计令牌值。分类：colors、typography、spacing、breakpoints、shadows。 |
-| `tiny-design icon [search]` | 列出所有 240+ 个图标或按名称搜索。 |
+| 命令                                  | 描述                                                                       |
+| ------------------------------------- | -------------------------------------------------------------------------- |
+| `tiny-design list [category]`         | 按分类列出所有组件。可筛选：基础、布局、导航、数据展示、表单、反馈、其他。 |
+| `tiny-design info <component>`        | 属性表，包含类型、是否必填、默认值和描述。                                 |
+| `tiny-design doc <component>`         | 组件的完整 Markdown 文档。                                                 |
+| `tiny-design demo <component> [name]` | 演示源代码（TSX）。未指定名称时列出可用演示。                              |
+| `tiny-design token [category]`        | 设计令牌值。分类：colors、typography、spacing、breakpoints、shadows。      |
+| `tiny-design icon [search]`           | 列出所有 240+ 个图标或按名称搜索。                                         |
 
 ### 项目分析
 
-| 命令 | 描述 |
-|------|------|
-| `tiny-design doctor` | 诊断检查：package.json、React 版本、对等依赖、TypeScript、重复 React 检测。 |
-| `tiny-design usage [dir]` | 扫描源文件中的 `@tiny-design/react` 导入，显示组件使用次数和文件位置。 |
+| 命令                      | 描述                                                                        |
+| ------------------------- | --------------------------------------------------------------------------- |
+| `tiny-design doctor`      | 诊断检查：package.json、React 版本、对等依赖、TypeScript、重复 React 检测。 |
+| `tiny-design usage [dir]` | 扫描源文件中的 `@tiny-design/react` 导入，显示组件使用次数和文件位置。      |
 
 ### 全局参数
 
-| 参数 | 描述 | 默认值 |
-|------|------|--------|
-| `--format json\|text\|markdown` | 输出格式 | `text` |
-| `--lang en\|zh` | 输出语言 | `en` |
-| `--detail` | 显示扩展信息 | `false` |
+| 参数                            | 描述         | 默认值  |
+| ------------------------------- | ------------ | ------- |
+| `--format json\|text\|markdown` | 输出格式     | `text`  |
+| `--lang en\|zh`                 | 输出语言     | `en`    |
+| `--detail`                      | 显示扩展信息 | `false` |
 
 ## 示例
 
@@ -123,8 +123,8 @@ export default function TypeDemo() {
   return (
     <Flex gap="sm">
       <Button>Default</Button>
-      <Button btnType="primary">Primary</Button>
-      <Button btnType="outline">Outline</Button>
+      <Button variant="solid" color="primary">Primary</Button>
+      <Button variant="outline" color="primary">Outline</Button>
     </Flex>
   );
 }

@@ -34,12 +34,15 @@ const PopConfirm = (props: PopConfirmProps): JSX.Element => {
   const popupVisible = isControlled ? visible : uncontrolledVisible;
   const titleId = useId();
 
-  const setPopupVisibleState = useCallback((nextVisible: boolean): void => {
-    if (!isControlled) {
-      setUncontrolledVisible(nextVisible);
-    }
-    onVisibleChange?.(nextVisible);
-  }, [isControlled, onVisibleChange]);
+  const setPopupVisibleState = useCallback(
+    (nextVisible: boolean): void => {
+      if (!isControlled) {
+        setUncontrolledVisible(nextVisible);
+      }
+      onVisibleChange?.(nextVisible);
+    },
+    [isControlled, onVisibleChange]
+  );
 
   const cancelOnClick = (e: React.MouseEvent): void => {
     setPopupVisibleState(false);
@@ -56,13 +59,15 @@ const PopConfirm = (props: PopConfirmProps): JSX.Element => {
       <div className={`${prefixCls}__overlay`}>
         <div className={`${prefixCls}__messages`}>
           {icon ? icon : <WarningCircle size={14} />}
-          <span id={titleId} className={`${prefixCls}__title`}>{title}</span>
+          <span id={titleId} className={`${prefixCls}__title`}>
+            {title}
+          </span>
         </div>
         <div className={`${prefixCls}__buttons`}>
           <Button size="sm" onClick={cancelOnClick}>
             {cancelText}
           </Button>
-          <Button size="sm" btnType="primary" onClick={confirmOnClick}>
+          <Button size="sm" variant="solid" color="primary" onClick={confirmOnClick}>
             {confirmText}
           </Button>
         </div>

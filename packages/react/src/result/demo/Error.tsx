@@ -8,9 +8,9 @@ export default function ErrorDemo() {
       title="Submission Failed"
       subtitle="Please check and modify the following information before resubmitting."
       extra={[
-        <Button btnType="primary" key="console">
+        <Button variant="solid" color="primary" key="console">
           Go Console
-        </Button>
+        </Button>,
       ]}
     />
   );
