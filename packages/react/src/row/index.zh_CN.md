@@ -1,15 +1,15 @@
-import BasicDemo from '../grid/demo/Basic';
-import BasicSource from '../grid/demo/Basic.tsx?raw';
-import GutterDemo from '../grid/demo/Gutter';
-import GutterSource from '../grid/demo/Gutter.tsx?raw';
-import OffsetDemo from '../grid/demo/Offset';
-import OffsetSource from '../grid/demo/Offset.tsx?raw';
-import OrderDemo from '../grid/demo/Order';
-import OrderSource from '../grid/demo/Order.tsx?raw';
-import AlignmentDemo from '../grid/demo/Alignment';
-import AlignmentSource from '../grid/demo/Alignment.tsx?raw';
-import ResponsiveDemo from '../grid/demo/Responsive';
-import ResponsiveSource from '../grid/demo/Responsive.tsx?raw';
+import BasicDemo from './demo/Basic';
+import BasicSource from './demo/Basic.tsx?raw';
+import GutterDemo from './demo/Gutter';
+import GutterSource from './demo/Gutter.tsx?raw';
+import OffsetDemo from './demo/Offset';
+import OffsetSource from './demo/Offset.tsx?raw';
+import OrderDemo from './demo/Order';
+import OrderSource from './demo/Order.tsx?raw';
+import AlignmentDemo from './demo/Alignment';
+import AlignmentSource from './demo/Alignment.tsx?raw';
+import ResponsiveDemo from './demo/Responsive';
+import ResponsiveSource from './demo/Responsive.tsx?raw';
 
 # Grid System 栅格系统
 
