@@ -3,7 +3,8 @@
 .#{$prefix}-cascader {
   position: relative;
   display: inline-block;
-  min-width: var(--ty-cascader-min-width);
+  width: 100%;
+  min-width: 0;
 
   &_disabled {
     opacity: var(--ty-cascader-opacity-disabled);

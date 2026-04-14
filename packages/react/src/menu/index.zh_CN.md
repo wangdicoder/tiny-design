@@ -1,3 +1,5 @@
+import MegaNavigationDemo from './demo/MegaNavigation';
+import MegaNavigationSource from './demo/MegaNavigation.tsx?raw';
 import HorizontalDemo from './demo/Horizontal';
 import HorizontalSource from './demo/Horizontal.tsx?raw';
 import VerticalDemo from './demo/Vertical';
@@ -29,6 +31,15 @@ const { Item, SubMenu, ItemGroup, Divider } = Menu;
 
 ## 代码示例
 
+<Demo>
+
+### 丰富下拉导航
+
+接近产品官网顶部导航的 mega menu 形式，适合承载带说明文案的可选菜单。
+
+<DemoBlock component={MegaNavigationDemo} source={MegaNavigationSource} />
+
+</Demo>
 <Demo>
 
 ### 顶部导航

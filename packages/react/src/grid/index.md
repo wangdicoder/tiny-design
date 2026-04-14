@@ -28,9 +28,9 @@ import { Grid } from 'tiny-design';
 Grid is a two-dimensional layout component built on CSS Grid. It excels when you need control over both rows **and** columns simultaneously.
 
 - **Dashboard shells** — define named `areas` like `"sidebar header" "sidebar main"` for application-level page structure.
-- **Card walls / galleries** — use `minColumnWidth` with `autoFit` to create responsive card grids that reflow without manual breakpoints.
+- **Adaptive tile layouts** — use `minColumnWidth` with `autoFit` to create responsive blocks that reflow without manual breakpoints.
 - **Data-dense UIs** — use explicit `columns` and `rows` to build spreadsheet-like or calendar-like layouts where items span multiple rows or columns.
-- **Asymmetric layouts** — use `Grid.Item colSpan` and `rowSpan` to create hero sections or featured cards that span across tracks.
+- **Asymmetric layouts** — use `Grid.Item colSpan` and `rowSpan` to create prominent regions that span across tracks.
 - **Responsive rearrangement** — pass responsive objects to `columns`, `gap`, and `areas` to radically change the layout across breakpoints (e.g. stacking sidebar below content on mobile).
 
 ### Grid vs Grid System (Row / Col)
@@ -39,7 +39,7 @@ Grid is a two-dimensional layout component built on CSS Grid. It excels when you
 |---|---|---|
 | CSS technology | CSS Grid | Flexbox + 24-column math |
 | Dimensions | Two-dimensional (rows + columns) | One-dimensional (columns only) |
-| Best for | Dashboards, card walls, named areas, row spanning | Classic page columns, form layouts, marketing pages |
+| Best for | Dashboards, adaptive blocks, named areas, row spanning | Classic page columns, form layouts, marketing pages |
 | Responsive | Responsive props on any value | Breakpoint props (`xs`–`xxl`) on Col |
 
 - If you are migrating from **MUI Grid**, start with `spacing`, `rowSpacing`, `columnSpacing`, `size`, and `offset`, then adopt `areas` or `rowSpan` when you need layouts that flex grids cannot express.
@@ -50,7 +50,7 @@ Grid is a two-dimensional layout component built on CSS Grid. It excels when you
 
 ### Explicit Columns
 
-Define tracks directly with `columns`.
+Define fixed and fluid tracks directly with `columns`.
 
 <DemoBlock component={ExplicitColumnsDemo} source={ExplicitColumnsSource} />
 
@@ -59,7 +59,7 @@ Define tracks directly with `columns`.
 
 ### Auto Fit
 
-Use `minColumnWidth` to create responsive cards without manual breakpoints.
+Use `minColumnWidth` to create responsive blocks without manual breakpoints.
 
 <DemoBlock component={AutoFitDemo} source={AutoFitSource} />
 
@@ -77,7 +77,7 @@ Use `justify` and `align` to control placement inside each cell.
 
 ### Responsive Layout
 
-Use responsive `columns`, `gap`, and `Grid.Item size` values, similar to MUI's breakpoint-driven grid.
+Use responsive `columns`, `gap`, and `Grid.Item size` values to show how spans change across breakpoints.
 
 <DemoBlock component={ResponsiveLayoutDemo} source={ResponsiveLayoutSource} />
 
@@ -86,7 +86,7 @@ Use responsive `columns`, `gap`, and `Grid.Item size` values, similar to MUI's b
 
 ### Named Areas
 
-Use `areas` and `Grid.Item area` for dashboard-style shells that MUI's flex grid cannot express directly.
+Use `areas` and `Grid.Item area` to make region relationships visible at a glance.
 
 <DemoBlock component={NamedAreasDemo} source={NamedAreasSource} />
 
@@ -104,7 +104,7 @@ Use `offset="auto"` to push an item to the far right, similar to MUI Grid.
 
 ### Dashboard Shell
 
-Use `areas` plus nested `Grid` blocks to build an application shell instead of a simple stacked demo.
+Use `areas` plus nested `Grid` blocks to demonstrate shell structure with clear block regions.
 
 <DemoBlock component={DashboardShellDemo} source={DashboardShellSource} />
 

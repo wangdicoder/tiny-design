@@ -1,30 +1,49 @@
 import React from 'react';
-import { Card, Grid, Text } from '@tiny-design/react';
-
-const panelStyle: React.CSSProperties = {
-  minHeight: 104,
-  padding: 16,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  background: 'linear-gradient(180deg, color-mix(in srgb, var(--ty-color-primary) 12%, transparent), color-mix(in srgb, var(--ty-color-primary-bg) 70%, transparent))',
-};
+import { Grid, Slider } from '@tiny-design/react';
+import type { SliderValue } from '@tiny-design/react';
+import { DemoBlock, DemoControlLabel, DemoControls } from './shared';
 
 export default function ExplicitColumnsDemo() {
+  const [sidebarWidth, setSidebarWidth] = React.useState(220);
+  const [inspectorWidth, setInspectorWidth] = React.useState(180);
+
   return (
-    <Grid columns="220px minmax(0, 1fr) 180px" gap="sm">
-      <Card style={panelStyle}>
-        <Text strong>Sidebar</Text>
-        <Text type="secondary">Fixed 220px track</Text>
-      </Card>
-      <Card style={panelStyle}>
-        <Text strong>Main content</Text>
-        <Text type="secondary">Fluid `minmax(0, 1fr)` track</Text>
-      </Card>
-      <Card style={panelStyle}>
-        <Text strong>Inspector</Text>
-        <Text type="secondary">Fixed 180px track</Text>
-      </Card>
-    </Grid>
+    <div>
+      <DemoControls>
+        <div>
+          <DemoControlLabel>Sidebar: {sidebarWidth}px</DemoControlLabel>
+          <Slider
+            min={160}
+            max={320}
+            step={20}
+            value={sidebarWidth}
+            onChange={(val: SliderValue) => {
+              if (typeof val === 'number') {
+                setSidebarWidth(val);
+              }
+            }}
+          />
+        </div>
+        <div>
+          <DemoControlLabel>Inspector: {inspectorWidth}px</DemoControlLabel>
+          <Slider
+            min={120}
+            max={260}
+            step={20}
+            value={inspectorWidth}
+            onChange={(val: SliderValue) => {
+              if (typeof val === 'number') {
+                setInspectorWidth(val);
+              }
+            }}
+          />
+        </div>
+      </DemoControls>
+      <Grid columns={`${sidebarWidth}px minmax(0, 1fr) ${inspectorWidth}px`} gap="sm">
+        <DemoBlock title="Sidebar" detail={`${sidebarWidth}px`} tone="strong" minHeight={104} />
+        <DemoBlock title="Main Content" detail="minmax(0, 1fr)" tone="base" minHeight={104} />
+        <DemoBlock title="Inspector" detail={`${inspectorWidth}px`} tone="soft" minHeight={104} />
+      </Grid>
+    </div>
   );
 }

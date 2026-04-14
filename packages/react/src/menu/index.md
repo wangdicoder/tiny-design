@@ -1,3 +1,5 @@
+import MegaNavigationDemo from './demo/MegaNavigation';
+import MegaNavigationSource from './demo/MegaNavigation.tsx?raw';
 import HorizontalDemo from './demo/Horizontal';
 import HorizontalSource from './demo/Horizontal.tsx?raw';
 import VerticalDemo from './demo/Vertical';
@@ -29,6 +31,15 @@ const { Item, SubMenu, ItemGroup, Divider } = Menu;
 
 ## Examples
 
+<Demo>
+
+### Rich Dropdown Navigation
+
+A mega-menu style top navigation suited for option-rich dropdowns with titles and supporting copy.
+
+<DemoBlock component={MegaNavigationDemo} source={MegaNavigationSource} />
+
+</Demo>
 <Demo>
 
 ### Top Navigation

@@ -5,6 +5,7 @@ $tp: #{$prefix}-time-picker;
 .#{$tp} {
   display: inline-flex;
   position: relative;
+  width: 100%;
   font-size: var(--ty-picker-input-font-size);
 
   // ---- Input ----
