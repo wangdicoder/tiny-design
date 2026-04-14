@@ -22,10 +22,15 @@ describe('extractComponents', () => {
     expect(button!.category).toBe('Foundation');
     expect(button!.description).toBe('To trigger an operation.');
 
-    const btnType = button!.props.find((p) => p.name === 'btnType');
-    expect(btnType).toBeDefined();
-    expect(btnType!.required).toBe(false);
-    expect(btnType!.type).toContain('primary');
+    const variant = button!.props.find((p) => p.name === 'variant');
+    expect(variant).toBeDefined();
+    expect(variant!.required).toBe(false);
+    expect(variant!.type).toContain('outline');
+
+    const color = button!.props.find((p) => p.name === 'color');
+    expect(color).toBeDefined();
+    expect(color!.required).toBe(false);
+    expect(color!.type).toContain('primary');
 
     const style = button!.props.find((p) => p.name === 'style');
     expect(style).toBeDefined();
