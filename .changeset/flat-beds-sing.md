@@ -1,6 +1,6 @@
 ---
-'@tiny-design/react': major
-'@tiny-design/tokens': major
+'@tiny-design/react': patch
+'@tiny-design/tokens': patch
 ---
 
 Refactor button styling to use `variant` and `color` instead of `btnType`.
