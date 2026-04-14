@@ -41,7 +41,7 @@ export default function GutterDemo() {
             setGutter(val);
           }
         }}
-        style={{ width: 300 }}
+        style={{ width: 300, marginBottom: 40 }}
       />
       <Row gutter={gutter} gutterSide>
         <Col span={6}><div style={{...box, ...darkerBox}}>col-6</div></Col>

@@ -28,9 +28,9 @@ import { Grid } from 'tiny-design';
 Grid 是一个基于 CSS Grid 的二维布局组件，适合同时控制行**和**列的场景。
 
 - **Dashboard 壳层** — 使用 `areas` 定义命名区域，如 `"sidebar header" "sidebar main"`，构建应用级页面骨架。
-- **卡片墙 / 图库** — 使用 `minColumnWidth` 配合 `autoFit`，创建无需手动断点即可自动回流的响应式卡片网格。
+- **自适应块布局** — 使用 `minColumnWidth` 配合 `autoFit`，创建无需手动断点即可自动回流的响应式区块网格。
 - **数据密集型界面** — 使用显式 `columns` 和 `rows`，构建类似表格或日历的布局，子项可跨越多行多列。
-- **非对称布局** — 使用 `Grid.Item` 的 `colSpan` 和 `rowSpan`，创建跨轨道的 Hero 区域或特色卡片。
+- **非对称布局** — 使用 `Grid.Item` 的 `colSpan` 和 `rowSpan`，创建跨轨道的重点区域。
 - **响应式重排** — 向 `columns`、`gap`、`areas` 传入响应式对象，在不同断点下彻底改变布局（如移动端将侧边栏堆叠到内容下方）。
 
 ### Grid 与 Grid System（Row / Col）对比
@@ -39,7 +39,7 @@ Grid 是一个基于 CSS Grid 的二维布局组件，适合同时控制行**和
 |---|---|---|
 | CSS 技术 | CSS Grid | Flexbox + 24 栏数学计算 |
 | 布局维度 | 二维（行 + 列） | 一维（仅列） |
-| 最佳场景 | Dashboard、卡片墙、命名区域、跨行布局 | 经典页面分栏、表单布局、营销页 |
+| 最佳场景 | Dashboard、自适应区块、命名区域、跨行布局 | 经典页面分栏、表单布局、营销页 |
 | 响应式方式 | 任意属性均支持响应式对象 | Col 上的断点属性（`xs`–`xxl`） |
 
 - 如果你是从 **MUI Grid** 迁移过来，可以先使用 `spacing`、`rowSpacing`、`columnSpacing`、`size`、`offset`，再逐步使用 `areas` 和 `rowSpan` 这些更强的 CSS Grid 能力。
@@ -50,7 +50,7 @@ Grid 是一个基于 CSS Grid 的二维布局组件，适合同时控制行**和
 
 ### 显式列定义
 
-使用 `columns` 直接定义网格轨道。
+使用 `columns` 直接定义固定轨道和弹性轨道。
 
 <DemoBlock component={ExplicitColumnsDemo} source={ExplicitColumnsSource} />
 
@@ -59,7 +59,7 @@ Grid 是一个基于 CSS Grid 的二维布局组件，适合同时控制行**和
 
 ### 自动适配列
 
-使用 `minColumnWidth` 创建无需手动断点的自适应卡片布局。
+使用 `minColumnWidth` 创建无需手动断点的自适应区块布局。
 
 <DemoBlock component={AutoFitDemo} source={AutoFitSource} />
 
@@ -77,7 +77,7 @@ Grid 是一个基于 CSS Grid 的二维布局组件，适合同时控制行**和
 
 ### 响应式布局
 
-像 MUI Grid 一样使用断点驱动的 `columns`、`gap` 和 `Grid.Item size`。
+使用断点驱动的 `columns`、`gap` 和 `Grid.Item size`，展示不同屏宽下的跨度变化。
 
 <DemoBlock component={ResponsiveLayoutDemo} source={ResponsiveLayoutSource} />
 
@@ -86,7 +86,7 @@ Grid 是一个基于 CSS Grid 的二维布局组件，适合同时控制行**和
 
 ### 命名区域
 
-使用 `areas` 和 `Grid.Item area` 构建 dashboard 壳层，这也是 CSS Grid 相比 MUI Flex Grid 更强的地方。
+使用 `areas` 和 `Grid.Item area`，直接展示不同区域之间的布局关系。
 
 <DemoBlock component={NamedAreasDemo} source={NamedAreasSource} />
 
@@ -104,7 +104,7 @@ Grid 是一个基于 CSS Grid 的二维布局组件，适合同时控制行**和
 
 ### Dashboard 壳层
 
-使用 `areas` 配合嵌套 `Grid` 构建真实应用壳层，而不是简单的堆叠示例。
+使用 `areas` 配合嵌套 `Grid`，用更清晰的区块结构展示壳层布局。
 
 <DemoBlock component={DashboardShellDemo} source={DashboardShellSource} />
 
