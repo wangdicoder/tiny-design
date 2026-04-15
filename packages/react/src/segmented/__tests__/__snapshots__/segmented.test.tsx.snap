@@ -7,46 +7,63 @@ exports[`<Segmented /> should match the snapshot 1`] = `
     role="radiogroup"
   >
     <label
-      class="ty-segmented__item ty-segmented__item_active"
+      class="ty-segmented__item"
     >
       <input
-        checked=""
+        aria-label="Daily"
         class="ty-segmented__input"
+        name=":r0:"
         type="radio"
-        value="Daily"
+        value="daily"
       />
       <span
-        class="ty-segmented__label"
+        class="ty-segmented__item-content"
       >
-        Daily
+        <span
+          class="ty-segmented__label"
+        >
+          Daily
+        </span>
       </span>
     </label>
     <label
       class="ty-segmented__item"
     >
       <input
+        aria-label="Weekly"
         class="ty-segmented__input"
+        name=":r0:"
         type="radio"
-        value="Weekly"
+        value="weekly"
       />
       <span
-        class="ty-segmented__label"
+        class="ty-segmented__item-content"
       >
-        Weekly
+        <span
+          class="ty-segmented__label"
+        >
+          Weekly
+        </span>
       </span>
     </label>
     <label
       class="ty-segmented__item"
     >
       <input
+        aria-label="Monthly"
         class="ty-segmented__input"
+        name=":r0:"
         type="radio"
-        value="Monthly"
+        value="monthly"
       />
       <span
-        class="ty-segmented__label"
+        class="ty-segmented__item-content"
       >
-        Monthly
+        <span
+          class="ty-segmented__label"
+        >
+          Monthly
+        </span>
       </span>
     </label>
   </div>

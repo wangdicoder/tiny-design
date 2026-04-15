@@ -121,7 +121,7 @@ Components that accept sizes use: `'sm' | 'md' | 'lg'`
 - **NativeSelect** — Native HTML select wrapper.
 - **Radio** — Single selection. `Radio.Group` for groups.
 - **Rate** — Star rating component.
-- **Segmented** — Toggle between a set of options.
+- **Segmented** — Segmented single-choice control for switching between mutually exclusive options.
 - **Select** — Select value from dropdown options. Props: `options`, `mode` (`'multiple'|'tags'`), `searchable`.
 - **Slider** — Drag slider within range. Props: `min`, `max`, `step`, `range`.
 - **SplitButton** — Button with attached dropdown menu.

@@ -4,14 +4,18 @@ import type { SegmentedValue } from '@tiny-design/react';
 
 export default function AlignDemo() {
   const justifyOptions = [
-    'flex-start',
-    'center',
-    'flex-end',
-    'space-between',
-    'space-around',
-    'space-evenly',
+    { label: 'flex-start', value: 'flex-start' },
+    { label: 'center', value: 'center' },
+    { label: 'flex-end', value: 'flex-end' },
+    { label: 'space-between', value: 'space-between' },
+    { label: 'space-around', value: 'space-around' },
+    { label: 'space-evenly', value: 'space-evenly' },
   ];
-  const alignOptions = ['flex-start', 'center', 'flex-end'];
+  const alignOptions = [
+    { label: 'flex-start', value: 'flex-start' },
+    { label: 'center', value: 'center' },
+    { label: 'flex-end', value: 'flex-end' },
+  ];
 
   const [justify, setJustify] = React.useState('flex-start');
   const [align, setAlign] = React.useState('flex-start');

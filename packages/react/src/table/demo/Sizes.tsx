@@ -22,7 +22,11 @@ export default function SizesDemo() {
   return (
     <div>
       <Segmented
-        options={['sm', 'md', 'lg']}
+        options={[
+          { label: 'Small', value: 'sm' },
+          { label: 'Medium', value: 'md' },
+          { label: 'Large', value: 'lg' },
+        ]}
         value={size}
         onChange={(val: SegmentedValue) => setSize(String(val) as DemoSize)}
         style={{ marginBottom: 16 }}
