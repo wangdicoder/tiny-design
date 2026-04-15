@@ -1,5 +1,12 @@
 # @tiny-design/icons
 
+## 1.12.0
+
+### Minor Changes
+
+- Redesign the Collapse component API, styles, and docs, align the related tokens, and keep - [#109](https://github.com/wangdicoder/tiny-design/pull/109) [`58c2ea2`](https://github.com/wangdicoder/tiny-design/commit/58c2ea2b024f97a6c769cc0549780fec7d1fccfb)
+  the fixed-version package group in sync for release.
+
 ## 1.11.4
 
 ## 1.11.3
