@@ -1712,21 +1712,31 @@ import React from 'react';
 import { BaseProps, SizeType } from '../_utils/props';
 
 export interface SegmentedOption {
-  label: React.ReactNode;
-  value: string | number;
+  value: SegmentedValue;
+  label?: React.ReactNode;
   disabled?: boolean;
   icon?: React.ReactNode;
+  title?: string;
+  className?: string;
 }
 
 export type SegmentedValue = string | number;
 
 export interface SegmentedProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange'> {
-  options: (string | number | SegmentedOption)[];
+    Omit<
+      React.PropsWithoutRef<JSX.IntrinsicElements['div']>,
+      'children' | 'defaultValue' | 'onChange'
+    > {
+  options: SegmentedOption[];
+  name?: string;
   value?: SegmentedValue;
   defaultValue?: SegmentedValue;
-  onChange?: (value: SegmentedValue) => void;
+  onChange?: (
+    value: SegmentedValue,
+    option: SegmentedOption,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
   block?: boolean;
   disabled?: boolean;
   size?: SizeType;

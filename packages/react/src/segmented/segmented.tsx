@@ -1,23 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useId, useState } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
-import { SegmentedProps, SegmentedOption, SegmentedValue } from './types';
-
-const normalizeOptions = (
-  options: (string | number | SegmentedOption)[]
-): SegmentedOption[] => {
-  return options.map((opt) => {
-    if (typeof opt === 'string' || typeof opt === 'number') {
-      return { label: String(opt), value: opt };
-    }
-    return opt;
-  });
-};
+import { SegmentedOption, SegmentedProps, SegmentedValue } from './types';
 
 const Segmented = React.forwardRef<HTMLDivElement, SegmentedProps>((props, ref) => {
   const {
     options,
+    name,
+    value,
     defaultValue,
     block = false,
     disabled = false,
@@ -32,19 +23,19 @@ const Segmented = React.forwardRef<HTMLDivElement, SegmentedProps>((props, ref) 
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('segmented', configContext.prefixCls, customisedCls);
   const segSize = size || configContext.componentSize || 'md';
-
-  const normalizedOptions = normalizeOptions(options);
-  const [selected, setSelected] = useState<SegmentedValue>(
-    'value' in props
-      ? (props.value as SegmentedValue)
-      : defaultValue ?? normalizedOptions[0]?.value
+  const groupName = useId();
+  const isControlled = 'value' in props;
+  const [uncontrolledValue, setUncontrolledValue] = useState<SegmentedValue | undefined>(
+    defaultValue
   );
+  const selected = isControlled ? value : uncontrolledValue;
 
   useEffect(() => {
-    if ('value' in props) {
-      setSelected(props.value as SegmentedValue);
+    const hasSelectedOption = options.some((option) => option.value === selected);
+    if (!isControlled && typeof selected !== 'undefined' && !hasSelectedOption) {
+      setUncontrolledValue(undefined);
     }
-  }, [props.value]);
+  }, [isControlled, options, selected]);
 
   const cls = classNames(prefixCls, className, {
     [`${prefixCls}_${segSize}`]: segSize,
@@ -52,12 +43,16 @@ const Segmented = React.forwardRef<HTMLDivElement, SegmentedProps>((props, ref) 
     [`${prefixCls}_disabled`]: disabled,
   });
 
-  const handleClick = (value: SegmentedValue, optDisabled?: boolean) => {
-    if (disabled || optDisabled) return;
-    if (!('value' in props)) {
-      setSelected(value);
+  const handleChange = (option: SegmentedOption) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (disabled || option.disabled) {
+      return;
     }
-    onChange?.(value);
+
+    if (!isControlled) {
+      setUncontrolledValue(option.value);
+    }
+
+    onChange?.(option.value, option, event);
   };
 
   return (
@@ -68,28 +63,39 @@ const Segmented = React.forwardRef<HTMLDivElement, SegmentedProps>((props, ref) 
       style={style}
       role="radiogroup"
     >
-      {normalizedOptions.map((opt) => {
+      {options.map((opt) => {
         const isActive = opt.value === selected;
         const itemCls = classNames(`${prefixCls}__item`, {
           [`${prefixCls}__item_active`]: isActive,
           [`${prefixCls}__item_disabled`]: opt.disabled,
-        });
+        }, opt.className);
+        const accessibleLabel =
+          typeof opt.label === 'string' || typeof opt.label === 'number'
+            ? String(opt.label)
+            : opt.title;
+
         return (
           <label
             key={opt.value}
             className={itemCls}
-            onClick={() => handleClick(opt.value, opt.disabled)}
+            title={opt.title}
           >
             <input
               type="radio"
               className={`${prefixCls}__input`}
+              name={name || groupName}
               checked={isActive}
               disabled={disabled || opt.disabled}
-              onChange={() => handleClick(opt.value, opt.disabled)}
+              onChange={handleChange(opt)}
               value={opt.value}
+              aria-label={accessibleLabel}
             />
-            {opt.icon && <span className={`${prefixCls}__icon`}>{opt.icon}</span>}
-            <span className={`${prefixCls}__label`}>{opt.label}</span>
+            <span className={`${prefixCls}__item-content`}>
+              {opt.icon && <span className={`${prefixCls}__icon`}>{opt.icon}</span>}
+              {typeof opt.label !== 'undefined' ? (
+                <span className={`${prefixCls}__label`}>{opt.label}</span>
+              ) : null}
+            </span>
           </label>
         );
       })}

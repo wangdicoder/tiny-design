@@ -1,9 +1,8 @@
 {
-  "segmented.active-bg": {
-    "$value": "{color-bg-container}",
+  "segmented.item-bg": {
+    "$value": "transparent",
     "$type": "color",
-    "description": "Segmented active bg.",
-    "fallback": "--ty-color-bg-container"
+    "description": "Segmented item background."
   },
   "segmented.bg": {
     "$value": "#e9ecef",
@@ -26,42 +25,97 @@
     "$type": "dimension",
     "description": "Segmented item content gap."
   },
+  "segmented.item-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Segmented item color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "segmented.item-bg-hover": {
+    "$value": "{color-fill}",
+    "$type": "color",
+    "description": "Segmented hover item background.",
+    "fallback": "--ty-color-fill"
+  },
   "segmented.item-color-hover": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "Segmented hover item color.",
     "fallback": "--ty-color-text"
   },
-  "segmented.item-color-active": {
+  "segmented.item-bg-selected": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Segmented selected item background.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "segmented.item-color-selected": {
     "$value": "{color-text}",
     "$type": "color",
-    "description": "Segmented active item color.",
+    "description": "Segmented selected item color.",
     "fallback": "--ty-color-text"
   },
-  "segmented.item-shadow-active": {
+  "segmented.item-shadow-selected": {
     "$value": "0 1px 2px 0 rgb(0 0 0 / 6%), 0 1px 3px 0 rgb(0 0 0 / 10%)",
     "$type": "shadow",
-    "description": "Segmented active item shadow."
+    "description": "Segmented selected item shadow."
   },
-  "segmented.item-font-weight-active": {
+  "segmented.item-shadow-focus": {
+    "$value": "{shadow-focus}",
+    "$type": "shadow",
+    "description": "Segmented focus item shadow.",
+    "fallback": "--ty-shadow-focus"
+  },
+  "segmented.item-font-weight-selected": {
     "$value": "500",
     "$type": "font-weight",
-    "description": "Segmented active item font weight."
+    "description": "Segmented selected item font weight."
   },
-  "segmented.item-padding.sm": {
-    "$value": "0 8px",
-    "$type": "string",
-    "description": "Small segmented item padding."
+  "segmented.item-color-disabled": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Segmented disabled item color.",
+    "fallback": "--ty-color-text-quaternary"
   },
-  "segmented.item-padding.md": {
-    "$value": "0 12px",
-    "$type": "string",
-    "description": "Medium segmented item padding."
+  "segmented.item-bg-disabled": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "Segmented disabled item background."
   },
-  "segmented.item-padding.lg": {
-    "$value": "0 16px",
-    "$type": "string",
-    "description": "Large segmented item padding."
+  "segmented.item-opacity-disabled": {
+    "$value": "0.5",
+    "$type": "number",
+    "description": "Segmented disabled item opacity."
+  },
+  "segmented.item-padding-inline.sm": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Small segmented item inline padding."
+  },
+  "segmented.item-padding-inline.md": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Medium segmented item inline padding."
+  },
+  "segmented.item-padding-inline.lg": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Large segmented item inline padding."
+  },
+  "segmented.item-padding-block.sm": {
+    "$value": "0",
+    "$type": "dimension",
+    "description": "Small segmented item block padding."
+  },
+  "segmented.item-padding-block.md": {
+    "$value": "0",
+    "$type": "dimension",
+    "description": "Medium segmented item block padding."
+  },
+  "segmented.item-padding-block.lg": {
+    "$value": "0",
+    "$type": "dimension",
+    "description": "Large segmented item block padding."
   },
   "segmented.item-height.sm": {
     "$value": "calc({height-sm} - 4px)",
@@ -95,5 +149,10 @@
     "$type": "dimension",
     "description": "Large segmented font size.",
     "fallback": "--ty-font-size-lg"
+  },
+  "segmented.icon-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Segmented icon size."
   }
 }

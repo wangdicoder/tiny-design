@@ -4,7 +4,14 @@ import { Segmented } from '@tiny-design/react';
 export default function BasicDemo() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <Segmented options={['Daily', 'Weekly', 'Monthly', 'Yearly']} />
+      <Segmented
+        options={[
+          { label: 'Daily', value: 'daily' },
+          { label: 'Weekly', value: 'weekly' },
+          { label: 'Monthly', value: 'monthly' },
+          { label: 'Yearly', value: 'yearly' },
+        ]}
+      />
       <Segmented
         options={[
           { label: 'Small', value: 'sm' },
@@ -13,7 +20,14 @@ export default function BasicDemo() {
         ]}
         size="sm"
       />
-      <Segmented options={['Map', 'Transit', 'Satellite']} block />
+      <Segmented
+        options={[
+          { label: 'Map', value: 'map' },
+          { label: 'Transit', value: 'transit' },
+          { label: 'Satellite', value: 'satellite' },
+        ]}
+        block
+      />
     </div>
   );
 }
