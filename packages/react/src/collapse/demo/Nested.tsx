@@ -2,27 +2,33 @@ import React from 'react';
 import { Collapse } from '@tiny-design/react';
 
 export default function NestedDemo() {
-  const { Panel } = Collapse;
-
-  const text = `A dog is a type of domesticated animal.
-Known for its loyalty and faithfulness,
-it can be found as a welcome guest in many households across the world.`;
-
   return (
-    <Collapse defaultActiveKey="1">
-      <Panel header="This is panel header 1" itemKey="1">
-        <Collapse defaultActiveKey="1">
-          <Panel header="This is panel nest panel" itemKey="1">
-            <p>{text}</p>
-          </Panel>
-        </Collapse>
-      </Panel>
-      <Panel header="This is panel header 2" itemKey="2">
-        <p>{text}</p>
-      </Panel>
-      <Panel header="This is panel header 3" itemKey="3">
-        <p>{text}</p>
-      </Panel>
-    </Collapse>
+    <Collapse
+      defaultValue={['parent-1']}
+      items={[
+        {
+          key: 'parent-1',
+          label: 'Nested structure',
+          children: (
+            <Collapse
+              bordered={false}
+              defaultValue={['child-1']}
+              items={[
+                {
+                  key: 'child-1',
+                  label: 'Nested panel',
+                  children: 'Nested Collapse now uses the same items-driven API as the root instance.',
+                },
+              ]}
+            />
+          ),
+        },
+        {
+          key: 'parent-2',
+          label: 'Independent panel',
+          children: 'Nested content no longer relies on child index cloning, so ordering stays stable.',
+        },
+      ]}
+    />
   );
 }

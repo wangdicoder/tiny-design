@@ -37,7 +37,6 @@ export function ThemeStudioSidebarContent({
   draft: ThemeEditorDraft;
   updateField: (key: FieldKey, value: string) => void;
 }): React.ReactElement | null {
-  const { Panel } = Collapse;
   const coreColorGroups = COLOR_GROUPS.filter((group) => CORE_COLOR_GROUP_TITLES.has(group.title));
   const advancedColorGroups = COLOR_GROUPS.filter((group) => !CORE_COLOR_GROUP_TITLES.has(group.title));
 
@@ -58,22 +57,22 @@ export function ThemeStudioSidebarContent({
             <Collapse
               bordered={false}
               className="theme-studio__advanced-collapse"
-              defaultActiveKey={[]}
-            >
-              <Panel
-                itemKey="advanced-colors"
-                header={(
+              defaultValue={[]}
+              items={[
+                {
+                  key: 'advanced-colors',
+                  label: (
                   <div className="theme-studio__section-header theme-studio__section-header_inline">
                     <Text strong>Advanced Tokens</Text>
                     <Text type="secondary">
                       Card, popover, sidebar, chart.
                     </Text>
                   </div>
-                )}
-              >
-                {renderColorGroups(advancedColorGroups, draft, updateField)}
-              </Panel>
-            </Collapse>
+                  ),
+                  children: renderColorGroups(advancedColorGroups, draft, updateField),
+                },
+              ]}
+            />
           </div>
         ) : null}
       </div>
@@ -203,44 +202,60 @@ export function ThemeStudioSidebarContent({
             <Text className="theme-studio__subgroup-title">Fields</Text>
             <SliderField label="Field Height / Medium" value={draft.fields.fieldHeightMd} onChange={(next) => updateField('fieldHeightMd', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
             <SliderField label="Field Padding / Medium" value={draft.fields.fieldPaddingMd} onChange={(next) => updateField('fieldPaddingMd', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-            <Collapse bordered={false} className="theme-studio__advanced-collapse" defaultActiveKey={[]}>
-              <Panel
-                itemKey="field-density-advanced"
-                header={(
+            <Collapse
+              bordered={false}
+              className="theme-studio__advanced-collapse"
+              defaultValue={[]}
+              items={[
+                {
+                  key: 'field-density-advanced',
+                  label: (
                   <div className="theme-studio__section-header theme-studio__section-header_inline">
                     <Text strong>Advanced Sizes</Text>
                     <Text type="secondary">Small and large field density.</Text>
                   </div>
-                )}
-              >
-                <SliderField label="Field Height / Small" value={draft.fields.fieldHeightSm} onChange={(next) => updateField('fieldHeightSm', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
-                <SliderField label="Field Height / Large" value={draft.fields.fieldHeightLg} onChange={(next) => updateField('fieldHeightLg', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
-                <SliderField label="Field Padding / Small" value={draft.fields.fieldPaddingSm} onChange={(next) => updateField('fieldPaddingSm', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-                <SliderField label="Field Padding / Large" value={draft.fields.fieldPaddingLg} onChange={(next) => updateField('fieldPaddingLg', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-              </Panel>
-            </Collapse>
+                  ),
+                  children: (
+                    <>
+                      <SliderField label="Field Height / Small" value={draft.fields.fieldHeightSm} onChange={(next) => updateField('fieldHeightSm', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+                      <SliderField label="Field Height / Large" value={draft.fields.fieldHeightLg} onChange={(next) => updateField('fieldHeightLg', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+                      <SliderField label="Field Padding / Small" value={draft.fields.fieldPaddingSm} onChange={(next) => updateField('fieldPaddingSm', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+                      <SliderField label="Field Padding / Large" value={draft.fields.fieldPaddingLg} onChange={(next) => updateField('fieldPaddingLg', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+                    </>
+                  ),
+                },
+              ]}
+            />
           </div>
 
           <div className="theme-studio__group-fields">
             <Text className="theme-studio__subgroup-title">Buttons</Text>
             <SliderField label="Button Height / Medium" value={draft.fields.buttonHeightMd} onChange={(next) => updateField('buttonHeightMd', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
             <SliderField label="Button Padding / Medium" value={draft.fields.buttonPaddingMd} onChange={(next) => updateField('buttonPaddingMd', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-            <Collapse bordered={false} className="theme-studio__advanced-collapse" defaultActiveKey={[]}>
-              <Panel
-                itemKey="button-density-advanced"
-                header={(
+            <Collapse
+              bordered={false}
+              className="theme-studio__advanced-collapse"
+              defaultValue={[]}
+              items={[
+                {
+                  key: 'button-density-advanced',
+                  label: (
                   <div className="theme-studio__section-header theme-studio__section-header_inline">
                     <Text strong>Advanced Sizes</Text>
                     <Text type="secondary">Small and large button density.</Text>
                   </div>
-                )}
-              >
-                <SliderField label="Button Height / Small" value={draft.fields.buttonHeightSm} onChange={(next) => updateField('buttonHeightSm', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
-                <SliderField label="Button Height / Large" value={draft.fields.buttonHeightLg} onChange={(next) => updateField('buttonHeightLg', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
-                <SliderField label="Button Padding / Small" value={draft.fields.buttonPaddingSm} onChange={(next) => updateField('buttonPaddingSm', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-                <SliderField label="Button Padding / Large" value={draft.fields.buttonPaddingLg} onChange={(next) => updateField('buttonPaddingLg', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
-              </Panel>
-            </Collapse>
+                  ),
+                  children: (
+                    <>
+                      <SliderField label="Button Height / Small" value={draft.fields.buttonHeightSm} onChange={(next) => updateField('buttonHeightSm', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+                      <SliderField label="Button Height / Large" value={draft.fields.buttonHeightLg} onChange={(next) => updateField('buttonHeightLg', next)} config={{ min: 20, max: 56, step: 1, unit: 'px' }} />
+                      <SliderField label="Button Padding / Small" value={draft.fields.buttonPaddingSm} onChange={(next) => updateField('buttonPaddingSm', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+                      <SliderField label="Button Padding / Large" value={draft.fields.buttonPaddingLg} onChange={(next) => updateField('buttonPaddingLg', next)} config={{ min: 0, max: 32, step: 1, unit: 'px' }} />
+                    </>
+                  ),
+                },
+              ]}
+            />
           </div>
 
           <div className="theme-studio__group-fields">

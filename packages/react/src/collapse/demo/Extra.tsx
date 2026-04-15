@@ -1,42 +1,40 @@
 import React from 'react';
-import { Collapse, Button, Badge, Tag } from '@tiny-design/react';
+import { Collapse, Badge, Button, Tag } from '@tiny-design/react';
 
 export default function ExtraDemo() {
-  const { Panel } = Collapse;
-
   return (
-    <Collapse defaultActiveKey={['1']}>
-      <Panel
-        itemKey="1"
-        header="Panel with action"
-        extra={
-          <Button
-            size="sm"
-            onClick={(e) => {
-              e.stopPropagation();
-              alert('Settings clicked');
-            }}
-          >
-            Settings
-          </Button>
-        }
-      >
-        Panel content with an extra action button.
-      </Panel>
-      <Panel
-        itemKey="2"
-        header="Panel with badge"
-        extra={<Badge count={5} />}
-      >
-        Panel content with a badge indicator.
-      </Panel>
-      <Panel
-        itemKey="3"
-        header="Panel with tag"
-        extra={<Tag color="#6e41bf">New</Tag>}
-      >
-        Panel content with a tag.
-      </Panel>
-    </Collapse>
+    <Collapse
+      defaultValue={['activity']}
+      items={[
+        {
+          key: 'activity',
+          label: ({ active }) => `Recent activity${active ? ' opened' : ''}`,
+          extra: <Badge count={5} />,
+          children: 'Header and extra content can be rendered from the item definition without composition wrappers.',
+        },
+        {
+          key: 'release',
+          label: 'Release notes',
+          extra: ({ active }) => <Tag color={active ? '#047857' : '#475569'}>{active ? 'Live' : 'Draft'}</Tag>,
+          children: 'Both label and extra accept render functions that receive the active and disabled state.',
+        },
+        {
+          key: 'settings',
+          label: 'Panel with action',
+          extra: (
+            <Button
+              size="sm"
+              onClick={(event) => {
+                event.stopPropagation();
+                alert('Settings clicked');
+              }}
+            >
+              Settings
+            </Button>
+          ),
+          children: 'Interactive controls inside extra should stop propagation if they should not toggle the panel.',
+        },
+      ]}
+    />
   );
 }

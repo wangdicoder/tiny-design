@@ -1,24 +1,32 @@
 import React from 'react';
 import { Collapse } from '@tiny-design/react';
 
-export default function AccordionDemo() {
-  const { Panel } = Collapse;
-
-  const text = `A dog is a type of domesticated animal.
+const text = `A dog is a type of domesticated animal.
 Known for its loyalty and faithfulness,
 it can be found as a welcome guest in many households across the world.`;
 
+export default function AccordionDemo() {
   return (
-    <Collapse accordion defaultActiveKey="1">
-      <Panel header="This is panel header 1" itemKey="1">
-        <p>{text}</p>
-      </Panel>
-      <Panel header="This is panel header 2" itemKey="2">
-        <p>{text}</p>
-      </Panel>
-      <Panel header="This is panel header 3" itemKey="3">
-        <p>{text}</p>
-      </Panel>
-    </Collapse>
+    <Collapse
+      multiple={false}
+      defaultValue={['chapter-1']}
+      items={[
+        {
+          key: 'chapter-1',
+          label: 'Chapter 1',
+          children: <p>{text}</p>,
+        },
+        {
+          key: 'chapter-2',
+          label: 'Chapter 2',
+          children: <p>{text}</p>,
+        },
+        {
+          key: 'chapter-3',
+          label: 'Chapter 3',
+          children: <p>{text}</p>,
+        },
+      ]}
+    />
   );
 }

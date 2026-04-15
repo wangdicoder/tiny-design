@@ -1,32 +1,49 @@
 {
+  "collapse.bg": {
+    "$value": "{color-bg-container}",
+    "$type": "color",
+    "description": "Collapse container background.",
+    "fallback": "--ty-color-bg-container"
+  },
+  "collapse.border-color": {
+    "$value": "{color-border}",
+    "$type": "color",
+    "description": "Collapse container border color.",
+    "fallback": "--ty-color-border"
+  },
+  "collapse.borderless-divider-color": {
+    "$value": "{color-border-secondary}",
+    "$type": "color",
+    "description": "Divider color used by borderless collapse panels.",
+    "fallback": "--ty-color-border-secondary"
+  },
   "collapse.radius": {
     "$value": "{border-radius}",
     "$type": "dimension",
-    "description": "Collapse container border radius.",
+    "description": "Collapse container radius.",
     "fallback": "--ty-border-radius"
   },
-  "collapse.color": {
-    "$value": "{color-text}",
+  "collapse.header-bg": {
+    "$value": "transparent",
     "$type": "color",
-    "description": "Collapse text color.",
-    "fallback": "--ty-color-text"
+    "description": "Default collapse header background."
   },
-  "collapse.font-size": {
-    "$value": "14px",
-    "$type": "dimension",
-    "description": "Collapse font size."
-  },
-  "collapse.bg": {
+  "collapse.header-hover-bg": {
     "$value": "{color-fill}",
     "$type": "color",
-    "description": "Collapse background color.",
+    "description": "Hover background for collapse headers.",
     "fallback": "--ty-color-fill"
   },
-  "collapse.border": {
-    "$value": "{color-border}",
+  "collapse.header-active-bg": {
+    "$value": "{color-fill}",
     "$type": "color",
-    "description": "Collapse border color.",
-    "fallback": "--ty-color-border"
+    "description": "Background for expanded collapse headers.",
+    "fallback": "--ty-color-fill"
+  },
+  "collapse.header-disabled-bg": {
+    "$value": "transparent",
+    "$type": "color",
+    "description": "Background for disabled collapse headers."
   },
   "collapse.header-color": {
     "$value": "{color-text}",
@@ -34,73 +51,128 @@
     "description": "Collapse header text color.",
     "fallback": "--ty-color-text"
   },
-  "collapse.header-line-height": {
-    "$value": "22px",
-    "$type": "dimension",
-    "description": "Collapse header line height."
-  },
-  "collapse.header-hover-bg": {
-    "$value": "#efefef",
-    "$type": "color",
-    "description": "Collapse header hover background color."
-  },
   "collapse.header-disabled-color": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
-    "description": "Disabled collapse header color.",
+    "description": "Text color for disabled collapse headers.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "collapse.toggle-padding": {
-    "$value": "12px 16px",
-    "$type": "string",
-    "description": "Collapse toggle padding."
+  "collapse.header-min-height": {
+    "$value": "44px",
+    "$type": "dimension",
+    "description": "Minimum height of a medium collapse header."
   },
-  "collapse.arrow-gap": {
+  "collapse.header-padding-inline": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Horizontal padding of the medium collapse header."
+  },
+  "collapse.header-padding-block": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Vertical padding of the medium collapse header."
+  },
+  "collapse.header-gap": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Gap between icon and header content."
+  },
+  "collapse.icon-color": {
+    "$value": "{collapse.header-color}",
+    "$type": "color",
+    "description": "Default collapse icon color.",
+    "fallback": "--ty-collapse-header-color"
+  },
+  "collapse.icon-active-color": {
+    "$value": "{collapse.header-color}",
+    "$type": "color",
+    "description": "Expanded collapse icon color.",
+    "fallback": "--ty-collapse-header-color"
+  },
+  "collapse.icon-disabled-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Disabled collapse icon color.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "collapse.icon-slot-size": {
+    "$value": "20px",
+    "$type": "dimension",
+    "description": "Reserved width and height for the collapse icon slot."
+  },
+  "collapse.icon-size": {
     "$value": "10px",
     "$type": "dimension",
-    "description": "Gap between collapse arrow and title."
+    "description": "Rendered collapse icon size."
   },
-  "collapse.extra-font-size": {
-    "$value": "11px",
-    "$type": "dimension",
-    "description": "Collapse extra content font size."
-  },
-  "collapse.extra-padding-inline-end": {
-    "$value": "16px",
-    "$type": "dimension",
-    "description": "Collapse extra content trailing padding."
-  },
-  "collapse.content-color": {
+  "collapse.extra-color": {
     "$value": "{color-text-secondary}",
     "$type": "color",
-    "description": "Collapse content text color.",
+    "description": "Collapse extra content color.",
     "fallback": "--ty-color-text-secondary"
   },
-  "collapse.content-bg": {
+  "collapse.extra-disabled-color": {
+    "$value": "{color-text-quaternary}",
+    "$type": "color",
+    "description": "Collapse extra content color for disabled panels.",
+    "fallback": "--ty-color-text-quaternary"
+  },
+  "collapse.extra-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Gap between extra content items."
+  },
+  "collapse.extra-font-size": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Font size for collapse extra content."
+  },
+  "collapse.body-bg": {
     "$value": "{color-bg-container}",
     "$type": "color",
-    "description": "Collapse content background color.",
+    "description": "Collapse body background.",
     "fallback": "--ty-color-bg-container"
   },
-  "collapse.content-padding": {
+  "collapse.body-color": {
+    "$value": "{color-text-secondary}",
+    "$type": "color",
+    "description": "Collapse body text color.",
+    "fallback": "--ty-color-text-secondary"
+  },
+  "collapse.body-padding-inline": {
     "$value": "16px",
     "$type": "dimension",
-    "description": "Collapse content padding."
+    "description": "Horizontal padding for the collapse body."
   },
-  "collapse.content-transition-duration": {
-    "$value": "300ms",
-    "$type": "duration",
-    "description": "Collapse content height transition duration."
-  },
-  "collapse.borderless-bg": {
-    "$value": "{color-bg-container}",
-    "$type": "color",
-    "description": "Borderless collapse background color.",
-    "fallback": "--ty-color-bg-container"
-  },
-  "collapse.borderless-content-padding-top": {
-    "$value": "4px",
+  "collapse.body-padding-block": {
+    "$value": "16px",
     "$type": "dimension",
-    "description": "Borderless collapse content top padding."
+    "description": "Vertical padding for the collapse body."
+  },
+  "collapse.font-size": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Collapse font size."
+  },
+  "collapse.line-height": {
+    "$value": "1.5",
+    "$type": "number",
+    "description": "Collapse line height."
+  },
+  "collapse.focus-ring": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Focus ring color used by collapse triggers.",
+    "fallback": "--ty-color-primary"
+  },
+  "collapse.motion-duration": {
+    "$value": "240ms",
+    "$type": "duration",
+    "description": "Collapse expand and collapse motion duration."
+  },
+  "collapse.motion-easing": {
+    "$value": "ease",
+    "$type": "string",
+    "description": "Collapse expand and collapse motion easing."
   }
 }

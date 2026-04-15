@@ -1,27 +1,52 @@
-import React, { ReactNode } from 'react';
-import { BaseProps } from '../_utils/props';
+import React, { CSSProperties, ReactNode } from 'react';
+import { BaseProps, SizeType } from '../_utils/props';
 
-export interface CollapsePanelProps extends BaseProps {
-  itemKey: string;
-  header: ReactNode;
+export type CollapseValue = string[];
+export type CollapseCollapsible = 'header' | 'icon' | 'disabled';
+
+export type CollapseRenderState = {
+  active: boolean;
+  disabled: boolean;
+  panelKey: string;
+};
+
+export type CollapseExpandIconRender = (args: CollapseRenderState) => ReactNode;
+export type CollapseHeaderRender = (args: CollapseRenderState) => ReactNode;
+export type CollapseExtraRender = (args: CollapseRenderState) => ReactNode;
+
+export interface CollapseItem {
+  key: string;
+  label: ReactNode | CollapseHeaderRender;
+  children: ReactNode;
+  extra?: ReactNode | CollapseExtraRender;
   disabled?: boolean;
-  extra?: ReactNode;
-  deletable?: boolean;
-  showArrow?: boolean;
-  onHeaderOnClick?: (e: React.MouseEvent) => void;
-  children?: ReactNode;
+  collapsible?: CollapseCollapsible;
+  forceRender?: boolean;
+  destroyOnHidden?: boolean;
+  className?: string;
+  style?: CSSProperties;
 }
 
 export interface CollapseProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange'> {
-  defaultActiveKey?: string | string[];
-  activeKey?: string | string[];
-  /** Only open one panel */
-  accordion?: boolean;
-  /** Allow to delete */
-  deletable?: boolean;
-  showArrow?: boolean;
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'onChange' | 'defaultValue'> {
+  items: CollapseItem[];
+  value?: CollapseValue;
+  defaultValue?: CollapseValue;
+  onValueChange?: (value: CollapseValue) => void;
+  multiple?: boolean;
   bordered?: boolean;
-  onChange?: (keys: string | string[]) => void;
+  size?: SizeType;
+  expandIcon?: ReactNode | CollapseExpandIconRender;
+  expandIconPosition?: 'start' | 'end';
+  showArrow?: boolean;
+  disabled?: boolean;
+  collapsible?: CollapseCollapsible;
+  destroyOnHidden?: boolean;
+  forceRender?: boolean;
+  itemClassName?: string;
+  itemStyle?: CSSProperties;
+  headerClassName?: string;
+  bodyClassName?: string;
+  onItemClick?: (key: string, event: React.MouseEvent) => void;
 }
