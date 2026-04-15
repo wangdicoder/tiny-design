@@ -6,6 +6,9 @@ declare const __TINY_VERSION__: string;
 const TINY_VERSION = `^${__TINY_VERSION__}`;
 const TINY_DESIGN_VERSION = TINY_VERSION;
 const TINY_ICONS_VERSION = TINY_VERSION;
+const TINY_CHARTS_VERSION = TINY_VERSION;
+const RECHARTS_VERSION = '^3.8.1';
+const REACT_IS_VERSION = '^18.3.1';
 
 const BOOTSTRAP_CODE = `import React from 'react';
 import { createRoot } from 'react-dom/client';
@@ -17,6 +20,36 @@ createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 );`;
 
+function getSandboxDependencies(sourceCode: string): Record<string, string> {
+  const dependencies: Record<string, string> = {
+    react: '^18.2.0',
+    'react-dom': '^18.2.0',
+    '@tiny-design/react': TINY_DESIGN_VERSION,
+    '@tiny-design/icons': TINY_ICONS_VERSION,
+  };
+
+  const importPattern = /(?:from\s+|import\s+)['"]([^'"]+)['"]/g;
+  const importedPackages = new Set<string>();
+
+  for (const match of sourceCode.matchAll(importPattern)) {
+    importedPackages.add(match[1]);
+  }
+
+  if (
+    importedPackages.has('@tiny-design/charts') ||
+    importedPackages.has('@tiny-design/charts/style')
+  ) {
+    dependencies['@tiny-design/charts'] = TINY_CHARTS_VERSION;
+  }
+
+  if (importedPackages.has('recharts')) {
+    dependencies.recharts = RECHARTS_VERSION;
+    dependencies['react-is'] = REACT_IS_VERSION;
+  }
+
+  return dependencies;
+}
+
 /**
  * Generate the file set for StackBlitz (Vite-based).
  */
@@ -27,12 +60,7 @@ function buildStackBlitzFiles(sourceCode: string): Record<string, string> {
         name: 'tiny-design-demo',
         private: true,
         scripts: { dev: 'vite', build: 'vite build' },
-        dependencies: {
-          react: '^18.2.0',
-          'react-dom': '^18.2.0',
-          '@tiny-design/react': TINY_DESIGN_VERSION,
-          '@tiny-design/icons': TINY_ICONS_VERSION,
-        },
+        dependencies: getSandboxDependencies(sourceCode),
         devDependencies: {
           '@vitejs/plugin-react': '^4.0.0',
           vite: '^5.0.0',
@@ -77,12 +105,7 @@ function buildCodeSandboxFiles(sourceCode: string): Record<string, string> {
       {
         name: 'tiny-design-demo',
         private: true,
-        dependencies: {
-          react: '^18.2.0',
-          'react-dom': '^18.2.0',
-          '@tiny-design/react': TINY_DESIGN_VERSION,
-          '@tiny-design/icons': TINY_ICONS_VERSION,
-        },
+        dependencies: getSandboxDependencies(sourceCode),
       },
       null,
       2,
