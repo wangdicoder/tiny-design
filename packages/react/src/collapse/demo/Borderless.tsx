@@ -1,24 +1,30 @@
 import React from 'react';
-import { Collapse } from '@tiny-design/react';
+import { Collapse, Tag } from '@tiny-design/react';
 
 export default function BorderlessDemo() {
-  const { Panel } = Collapse;
-
-  const text = `A dog is a type of domesticated animal.
-Known for its loyalty and faithfulness,
-it can be found as a welcome guest in many households across the world.`;
-
   return (
-    <Collapse bordered={false}>
-      <Panel header="This is panel header 1" itemKey="1">
-        <p>{text}</p>
-      </Panel>
-      <Panel header="This is panel header 2" itemKey="2">
-        <p>{text}</p>
-      </Panel>
-      <Panel header="This is panel header 3" itemKey="3" disabled>
-        <p>{text}</p>
-      </Panel>
-    </Collapse>
+    <Collapse
+      bordered={false}
+      size="lg"
+      defaultValue={['palette']}
+      items={[
+        {
+          key: 'palette',
+          label: 'Color palette',
+          extra: <Tag color="#0f766e">Stable</Tag>,
+          children: 'Borderless mode keeps the layout lighter when Collapse is used inside cards or side panels.',
+        },
+        {
+          key: 'spacing',
+          label: 'Spacing rhythm',
+          children: 'Size presets affect both the trigger row and the content body spacing.',
+        },
+        {
+          key: 'motion',
+          label: 'Motion tokens',
+          children: 'Motion is driven by the shared transition token instead of a hard-coded timeout.',
+        },
+      ]}
+    />
   );
 }

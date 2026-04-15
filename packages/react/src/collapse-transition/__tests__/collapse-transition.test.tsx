@@ -1,19 +1,37 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import CollapseTransition from '../index';
 
 describe('<CollapseTransition />', () => {
-  it('should match the snapshot', () => {
-    const { asFragment } = render(
-      <CollapseTransition isShow><div>Content</div></CollapseTransition>
+  it('should render open content', () => {
+    const { container } = render(
+      <CollapseTransition open>
+        <div>Visible Content</div>
+      </CollapseTransition>
     );
-    expect(asFragment()).toMatchSnapshot();
+
+    expect(container.firstChild).toHaveClass('ty-collapse-transition');
   });
 
-  it('should render children when visible', () => {
-    const { getByText } = render(
-      <CollapseTransition isShow><div>Visible Content</div></CollapseTransition>
+  it('should call onHidden after a close transition', () => {
+    const onHidden = jest.fn();
+    const { container, rerender } = render(
+      <CollapseTransition open onHidden={onHidden}>
+        <div>Visible Content</div>
+      </CollapseTransition>
     );
-    expect(getByText('Visible Content')).toBeInTheDocument();
+
+    rerender(
+      <CollapseTransition open={false} onHidden={onHidden}>
+        <div>Visible Content</div>
+      </CollapseTransition>
+    );
+
+    const node = container.firstChild as Element;
+    const event = new Event('transitionend');
+    Object.defineProperty(event, 'propertyName', { value: 'height' });
+    fireEvent(node, event);
+
+    expect(onHidden).toHaveBeenCalledTimes(1);
   });
 });

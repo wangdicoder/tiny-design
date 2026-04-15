@@ -1,104 +1,175 @@
-import React, { useContext, useId, useRef } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import classNames from 'classnames';
-import { ConfigContext } from '../config-provider/config-context';
-import { getPrefixCls } from '../_utils/general';
-import { CollapsePanelProps } from './types';
 import { ArrowDown } from '../_utils/components';
 import CollapseTransition from '../collapse-transition';
-import { CollapseContext } from './collapse-context';
+import {
+  CollapseCollapsible,
+  CollapseExpandIconRender,
+  CollapseItem,
+  CollapseRenderState,
+} from './types';
 
-/**
- * Allow to parse active status to a node
- * @param node
- * @param isActive
- */
-const richNode = (node: React.ReactNode | ((isActive: boolean) => React.ReactNode), isActive: boolean) => {
-  return typeof node === 'function' ? node(isActive) : node;
+type CollapsePanelProps = {
+  prefixCls: string;
+  item: CollapseItem;
+  active: boolean;
+  disabled?: boolean;
+  collapsible?: CollapseCollapsible;
+  showArrow: boolean;
+  expandIcon?: React.ReactNode | CollapseExpandIconRender;
+  expandIconPosition: 'start' | 'end';
+  forceRender?: boolean;
+  destroyOnHidden?: boolean;
+  itemClassName?: string;
+  itemStyle?: React.CSSProperties;
+  headerClassName?: string;
+  bodyClassName?: string;
+  onItemClick?: (key: string, event: React.MouseEvent) => void;
+  onToggle: (key: string, event: React.MouseEvent) => void;
 };
 
-const CollapsePanel = (props: CollapsePanelProps): React.ReactElement => {
-  const {
-    showArrow = true,
-    itemKey,
-    header,
-    disabled,
-    extra,
-    deletable,
-    onHeaderOnClick,
-    className,
-    style,
-    children,
-    prefixCls: customisedCls,
-  } = props;
-  const itemRef = useRef<HTMLDivElement | null>(null);
+const renderContent = <T extends React.ReactNode | ((args: CollapseRenderState) => React.ReactNode)>(
+  content: T,
+  state: CollapseRenderState
+) => {
+  return typeof content === 'function' ? content(state) : content;
+};
+
+const CollapsePanel = ({
+  prefixCls,
+  item,
+  active,
+  disabled = false,
+  collapsible = 'header',
+  showArrow,
+  expandIcon,
+  expandIconPosition,
+  forceRender = false,
+  destroyOnHidden = false,
+  itemClassName,
+  itemStyle,
+  headerClassName,
+  bodyClassName,
+  onItemClick,
+  onToggle,
+}: CollapsePanelProps): React.ReactElement => {
+  const [bodyMounted, setBodyMounted] = useState(active || forceRender);
   const panelId = useId();
   const headerId = useId();
-  const configContext = useContext(ConfigContext);
-  const { activeKeys, onItemClick } = useContext(CollapseContext);
-  const prefixCls = getPrefixCls('collapse-item', configContext.prefixCls, customisedCls);
-  const active = activeKeys.includes(itemKey);
-  const cls = classNames(prefixCls, className, {
-    [`${prefixCls}_active`]: active,
+
+  useEffect(() => {
+    if (active || forceRender) {
+      setBodyMounted(true);
+    }
+  }, [active, forceRender]);
+
+  const requestedCollapsible = showArrow || collapsible !== 'icon' ? collapsible : 'header';
+  const itemDisabled = disabled || item.disabled || requestedCollapsible === 'disabled';
+  const layoutCollapsible: CollapseCollapsible =
+    requestedCollapsible === 'icon' ? 'icon' : 'header';
+  const renderState: CollapseRenderState = {
+    active,
+    disabled: itemDisabled,
+    panelKey: item.key,
+  };
+
+  const itemCls = classNames(`${prefixCls}-item`, itemClassName, item.className, {
+    [`${prefixCls}-item_active`]: active,
+    [`${prefixCls}-item_disabled`]: itemDisabled,
+    [`${prefixCls}-item_icon-only`]: layoutCollapsible === 'icon',
   });
 
-  const headerOnClick = (e: React.MouseEvent) => {
-    if (!disabled) {
-      onHeaderOnClick && onHeaderOnClick(e);
-      onItemClick && onItemClick(itemKey);
-    }
+  const iconCls = classNames(`${prefixCls}-item__arrow`, {
+    [`${prefixCls}-item__arrow_active`]: active,
+  });
+
+  const triggerToggle = (event: React.MouseEvent) => {
+    if (itemDisabled) return;
+    onItemClick?.(item.key, event);
+    onToggle(item.key, event);
   };
 
-  /**
-   * Remove a item from collapse only the header is enabled
-   * @param e
-   * @private
-   */
-  const removeItem = (e: React.MouseEvent<HTMLSpanElement>) => {
-    e.stopPropagation();
-    if (!disabled) {
-      const node = itemRef.current;
-      node && node.parentNode?.removeChild(node);
-    }
-  };
+  const renderExpandIcon = () => {
+    if (!showArrow) return null;
 
-  const renderHeader = () => {
-    const headerCls = classNames(`${prefixCls}__header`, {
-      [`${prefixCls}__header_disabled`]: disabled,
-    });
-    const arrowCls = classNames(`${prefixCls}__arrow`, {
-      [`${prefixCls}__arrow_active`]: active,
+    const iconNode =
+      typeof expandIcon === 'function'
+        ? expandIcon(renderState)
+        : expandIcon ?? <ArrowDown size={10} className={iconCls} />;
+
+    const iconButtonCls = classNames(`${prefixCls}-item__icon-button`, {
+      [`${prefixCls}-item__icon-button_disabled`]: itemDisabled,
     });
 
-    const hasExtra = deletable || extra;
-
-    return (
-      <div className={headerCls}>
+    if (layoutCollapsible === 'icon') {
+      return (
         <button
           type="button"
-          id={headerId}
-          className={`${prefixCls}__toggle`}
-          onClick={headerOnClick}
+          className={iconButtonCls}
+          onClick={triggerToggle}
+          disabled={itemDisabled}
           aria-expanded={active}
           aria-controls={panelId}
-          aria-disabled={disabled || undefined}>
-          {showArrow && <ArrowDown size={10} className={arrowCls} />}
-          <div className={`${prefixCls}__title`}>{richNode(header, active)}</div>
+          aria-labelledby={headerId}
+        >
+          {iconNode}
         </button>
-        {hasExtra && (
-          <div className={`${prefixCls}__extra`}>
-            {deletable ? <span onClick={removeItem}>✕</span> : richNode(extra, active)}
-          </div>
-        )}
-      </div>
-    );
+      );
+    }
+
+    return <span className={`${prefixCls}-item__icon-slot`}>{iconNode}</span>;
   };
 
+  const headerContent = renderContent(item.label, renderState);
+  const extraContent = item.extra ? renderContent(item.extra, renderState) : null;
+  const shouldRenderBody = bodyMounted || active || forceRender;
+
   return (
-    <div className={cls} style={style} ref={itemRef}>
-      {renderHeader()}
-      <CollapseTransition isShow={active}>
-        <div className={`${prefixCls}__content`} id={panelId} role="region" aria-labelledby={headerId}>{richNode(children, active)}</div>
-      </CollapseTransition>
+    <div className={itemCls} style={{ ...itemStyle, ...item.style }}>
+      <div className={classNames(`${prefixCls}-item__header`, headerClassName)}>
+        {layoutCollapsible === 'header' ? (
+          <button
+            type="button"
+            id={headerId}
+            className={`${prefixCls}-item__toggle`}
+            onClick={triggerToggle}
+            disabled={itemDisabled}
+            aria-expanded={active}
+            aria-controls={panelId}
+          >
+            {expandIconPosition === 'start' && renderExpandIcon()}
+            <span className={`${prefixCls}-item__label`}>{headerContent}</span>
+            {expandIconPosition === 'end' && renderExpandIcon()}
+          </button>
+        ) : (
+          <>
+            {expandIconPosition === 'start' && renderExpandIcon()}
+            <div id={headerId} className={`${prefixCls}-item__label ${prefixCls}-item__label_static`}>
+              {headerContent}
+            </div>
+            {expandIconPosition === 'end' && renderExpandIcon()}
+          </>
+        )}
+
+        {extraContent && <div className={`${prefixCls}-item__extra`}>{extraContent}</div>}
+      </div>
+
+      {shouldRenderBody && (
+        <CollapseTransition
+          open={active}
+          className={`${prefixCls}-item__body-wrapper`}
+          onHidden={destroyOnHidden && !forceRender ? () => setBodyMounted(false) : undefined}
+        >
+          <div
+            id={panelId}
+            role="region"
+            aria-labelledby={headerId}
+            className={classNames(`${prefixCls}-item__body`, bodyClassName)}
+          >
+            {item.children}
+          </div>
+        </CollapseTransition>
+      )}
     </div>
   );
 };

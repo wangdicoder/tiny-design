@@ -1,28 +1,32 @@
 import React from 'react';
 import { Collapse } from '@tiny-design/react';
 
-export default function BasicDemo() {
-  const { Panel } = Collapse;
-
-  const callback = (key: string | string[]) => {
-    console.log(key);
-  };
-
-  const text = `A dog is a type of domesticated animal.
+const text = `A dog is a type of domesticated animal.
 Known for its loyalty and faithfulness,
 it can be found as a welcome guest in many households across the world.`;
 
+export default function BasicDemo() {
   return (
-    <Collapse defaultActiveKey={['1']} onChange={callback}>
-      <Panel header="This is panel header 1" itemKey="1">
-        <p>{text}</p>
-      </Panel>
-      <Panel header="This is panel header 2" itemKey="2">
-        <p>{text}</p>
-      </Panel>
-      <Panel header="This is panel header 3" itemKey="3" disabled>
-        <p>{text}</p>
-      </Panel>
-    </Collapse>
+    <Collapse
+      defaultValue={['overview']}
+      items={[
+        {
+          key: 'overview',
+          label: 'Overview',
+          children: <p>{text}</p>,
+        },
+        {
+          key: 'details',
+          label: 'Details',
+          children: <p>{text}</p>,
+        },
+        {
+          key: 'disabled',
+          label: 'Disabled panel',
+          disabled: true,
+          children: <p>{text}</p>,
+        },
+      ]}
+    />
   );
 }

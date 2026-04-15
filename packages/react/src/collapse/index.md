@@ -13,21 +13,15 @@ import NestedSource from './demo/Nested.tsx?raw';
 
 # Collapse
 
-A content area which can be collapsed and expanded.
-
-## Scenario
-
-Can be used to group or hide complex regions to keep the page clean.
-
-`Accordion` is a special kind of `Collapse`, which allows only one panel to be expanded at a time.
+Structured disclosure for dense information.
 
 ## Usage
 
-```jsx
+```tsx
 import { Collapse } from 'tiny-design';
-
-const { Panel } = Collapse;
 ```
+
+`Collapse` is now fully items-driven. Each panel is defined by an item object and expanded state is modeled as `string[]`.
 
 ## Examples
 
@@ -35,27 +29,23 @@ const { Panel } = Collapse;
   <Column>
     <Demo>
 
-### Basic Collapse
-
-By default, any number of panels can be expanded at a time. The first panel is expanded in this example.
+### Basic
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
     </Demo>
     <Demo>
 
-### Accordion
+### Single Open
 
-Only one panel can be expanded at a time.
+Set `multiple={false}` to limit the expanded state to one panel.
 
 <DemoBlock component={AccordionDemo} source={AccordionSource} />
 
     </Demo>
     <Demo>
 
-### Nested panel
-
-`Collapse` is nested inside the `Collapse`.
+### Nested
 
 <DemoBlock component={NestedDemo} source={NestedSource} />
 
@@ -66,8 +56,6 @@ Only one panel can be expanded at a time.
 
 ### Borderless
 
-A borderless style of Collapse.
-
 <DemoBlock component={BorderlessDemo} source={BorderlessSource} />
 
     </Demo>
@@ -75,16 +63,16 @@ A borderless style of Collapse.
 
 ### Deletable
 
-`Panel` can be deleted.
+Use `extra` plus controlled state to remove panels from the source array.
 
 <DemoBlock component={DeletableDemo} source={DeletableSource} />
 
     </Demo>
     <Demo>
 
-### Extra Content
+### Dynamic Header Content
 
-Add extra elements in the panel header corner with the `extra` prop.
+`label`, `extra`, and `expandIcon` can react to panel state.
 
 <DemoBlock component={ExtraDemo} source={ExtraSource} />
 
@@ -96,24 +84,51 @@ Add extra elements in the panel header corner with the `extra` prop.
 
 ### Collapse
 
-| Property          | Description                                               | Type                              | Default   |
-| ----------------- | --------------------------------------------------------- | --------------------------------- | --------- |
-| defaultActiveKey  | initial active panel                                      | string &#124; string[]            | []        |
-| activeKey         | keys of the active panel                                  | string &#124; string[]            | -         |
-| accordion         | accordion mode                                            | boolean                           | false     |
-| deletable         | panel can be deleted                                      | boolean                           | false     |
-| showArrow         | display arrow icon                                        | boolean                           | true      |
-| bordered          | render borders around the collapse block                  | boolean                           | true      |
-| onChange          | callback function executed when active panel is changed   | (keys: string | string[]) => void | -         |
+| Property | Description | Type | Default |
+| --- | --- | --- | --- |
+| items | Panel definitions | `CollapseItem[]` | - |
+| value | Controlled expanded keys | `string[]` | - |
+| defaultValue | Initial expanded keys | `string[]` | `[]` |
+| onValueChange | Callback when expanded keys change | `(value: string[]) => void` | - |
+| multiple | Allow more than one panel to stay open | `boolean` | `true` |
+| bordered | Show the outer border | `boolean` | `true` |
+| size | Preset spacing and font size | `'sm' \| 'md' \| 'lg'` | `'md'` |
+| showArrow | Render the expand icon slot | `boolean` | `true` |
+| expandIcon | Custom expand icon node or render function | `ReactNode \| ((state) => ReactNode)` | - |
+| expandIconPosition | Placement of the expand icon | `'start' \| 'end'` | `'start'` |
+| disabled | Disable all panels | `boolean` | `false` |
+| collapsible | Default trigger area for panels | `'header' \| 'icon' \| 'disabled'` | `'header'` |
+| destroyOnHidden | Unmount panel content after close transition | `boolean` | `false` |
+| forceRender | Pre-render every panel body | `boolean` | `false` |
+| itemClassName | Shared class applied to every panel item | `string` | - |
+| itemStyle | Shared style applied to every panel item | `CSSProperties` | - |
+| headerClassName | Shared class applied to every panel header | `string` | - |
+| bodyClassName | Shared class applied to every panel body | `string` | - |
+| onItemClick | Callback when a panel trigger is activated | `(key: string, event: React.MouseEvent) => void` | - |
 
-### Collapse.Panel
+### CollapseItem
 
-| Property          | Description                                   | Type                              | Default   |
-| ----------------- | --------------------------------------------- | --------------------------------- | --------- |
-| itemKey           | unique key identifying the panel              | string                            | -         |
-| header            | title of the panel                            | ReactNode                         | -         |
-| disabled          | panel cannot be opened or closed if set true  | boolean                           | -         |
-| extra             | extra element in the corner                   | ReactNode                         | -         |
-| deletable         | whether the panel can be deleted              | boolean                           | -         |
-| showArrow         | display arrow icon                            | boolean                           | -         |
-| onHeaderOnClick   | callback when the header is clicked           | (e: React.MouseEvent) => void     | -         |
+| Property | Description | Type | Default |
+| --- | --- | --- | --- |
+| key | Unique panel identifier | `string` | - |
+| label | Header content or render function | `ReactNode \| ((state) => ReactNode)` | - |
+| children | Panel content | `ReactNode` | - |
+| extra | Extra content rendered at the header edge | `ReactNode \| ((state) => ReactNode)` | - |
+| disabled | Disable a single panel | `boolean` | `false` |
+| collapsible | Override the trigger area for a single panel | `'header' \| 'icon' \| 'disabled'` | inherited |
+| forceRender | Pre-render this panel body | `boolean` | inherited |
+| destroyOnHidden | Unmount this panel after close transition | `boolean` | inherited |
+| className | Panel item class name | `string` | - |
+| style | Panel item inline style | `CSSProperties` | - |
+
+### Render State
+
+Render callbacks receive:
+
+```ts
+type CollapseRenderState = {
+  active: boolean;
+  disabled: boolean;
+  panelKey: string;
+};
+```

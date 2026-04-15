@@ -1,99 +1,116 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
-import { CollapseContext } from './collapse-context';
 import { getPrefixCls } from '../_utils/general';
-import { CollapsePanelProps, CollapseProps } from './types';
+import CollapsePanel from './collapse-panel';
+import { CollapseProps, CollapseValue } from './types';
 
-/**
- * Format active key to array
- * @param activeKey
- */
-const toArray = (activeKey: string | string[]): string[] => {
-  return Array.isArray(activeKey) ? activeKey : [activeKey];
+const normalizeValue = (value: string[] | undefined, multiple: boolean): CollapseValue => {
+  if (!value || value.length === 0) return [];
+  return multiple ? [...new Set(value)] : [value[0]];
 };
 
-const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
-  (props: CollapseProps, ref): React.ReactElement => {
-    const {
-      showArrow = true,
-      bordered = true,
-      deletable = false,
-      accordion = false,
-      defaultActiveKey = [],
-      prefixCls: customisedCls,
-      activeKey,
-      onChange,
-      className,
-      children,
-      ...otherProps
-    } = props;
-    let currentActiveKey: string | string[] = defaultActiveKey;
-    if (activeKey) {
-      currentActiveKey = activeKey;
+const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>((props, ref): React.ReactElement => {
+  const {
+    items,
+    value,
+    defaultValue,
+    onValueChange,
+    multiple = true,
+    bordered = true,
+    size = 'md',
+    showArrow = true,
+    expandIcon,
+    expandIconPosition = 'start',
+    disabled = false,
+    collapsible = 'header',
+    destroyOnHidden = false,
+    forceRender = false,
+    itemClassName,
+    itemStyle,
+    headerClassName,
+    bodyClassName,
+    onItemClick,
+    prefixCls: customisedCls,
+    className,
+    ...otherProps
+  } = props;
+  const configContext = useContext(ConfigContext);
+  const prefixCls = getPrefixCls('collapse', configContext.prefixCls, customisedCls);
+  const isControlled = value !== undefined;
+  const [innerValue, setInnerValue] = useState<CollapseValue>(() =>
+    normalizeValue(defaultValue, multiple)
+  );
+
+  useEffect(() => {
+    if (!isControlled) return;
+    setInnerValue(normalizeValue(value, multiple));
+  }, [isControlled, value, multiple]);
+
+  const currentValue = isControlled ? normalizeValue(value, multiple) : innerValue;
+
+  const itemMap = useMemo(() => new Set(items.map((item) => item.key)), [items]);
+  const activeValue = useMemo(
+    () => currentValue.filter((key) => itemMap.has(key)),
+    [currentValue, itemMap]
+  );
+
+  const cls = classNames(prefixCls, className, {
+    [`${prefixCls}_borderless`]: !bordered,
+    [`${prefixCls}_${size}`]: size,
+  });
+
+  const updateValue = (nextValue: CollapseValue) => {
+    const normalized = normalizeValue(nextValue, multiple);
+
+    if (!isControlled) {
+      setInnerValue(normalized);
     }
-    const [activeItems, setActiveItems] = useState<string[]>(toArray(currentActiveKey));
-    const configContext = useContext(ConfigContext);
-    const prefixCls = getPrefixCls('collapse', configContext.prefixCls, customisedCls);
-    const cls = classNames(prefixCls, className, {
-      [`${prefixCls}_borderless`]: !bordered,
-    });
 
-    const updateActiveItems = (items: string[]) => {
-      if (!('activeKey' in props)) {
-        // only for defaultKey
-        setActiveItems(items);
-      }
-      onChange && onChange(items);
-    };
+    onValueChange?.(normalized);
+  };
 
-    const handleOnItemClick = (itemKey: string) => {
-      let items = activeItems;
-      if (accordion) {
-        items = items[0] === itemKey ? [] : [itemKey];
-      } else {
-        items = [...activeItems];
-        const index = items.indexOf(itemKey);
-        const isActive = index > -1;
-        if (isActive) {
-          // remove active state
-          items.splice(index, 1);
-        } else {
-          items.push(itemKey);
-        }
-      }
-      updateActiveItems(items);
-    };
+  const handleToggle = (key: string) => {
+    const isActive = activeValue.includes(key);
 
-    useEffect(() => {
-      // Update state from updated props
-      activeKey && setActiveItems(toArray(activeKey));
-    }, [activeKey]);
+    if (multiple) {
+      updateValue(
+        isActive
+          ? activeValue.filter((activeKey) => activeKey !== key)
+          : [...activeValue, key]
+      );
+      return;
+    }
 
-    return (
-      <div {...otherProps} ref={ref} className={cls}>
-        <CollapseContext.Provider
-          value={{
-            activeKeys: activeItems,
-            onItemClick: handleOnItemClick,
-          }}>
-          {React.Children.map(children, (child, idx) => {
-            const childElement = child as React.FunctionComponentElement<CollapsePanelProps>;
-            if (childElement.type.displayName === 'CollapsePanel') {
-              const itemProps: Partial<CollapsePanelProps> = {
-                deletable,
-                showArrow,
-                itemKey: `${idx}`,
-              };
-              return React.cloneElement(childElement, itemProps);
-            }
-            return child;
-          })}
-        </CollapseContext.Provider>
-      </div>
-    );
-  }
-);
+    updateValue(isActive ? [] : [key]);
+  };
+
+  return (
+    <div {...otherProps} ref={ref} className={cls}>
+      {items.map((item) => (
+        <CollapsePanel
+          key={item.key}
+          prefixCls={prefixCls}
+          item={item}
+          active={activeValue.includes(item.key)}
+          disabled={disabled}
+          collapsible={item.collapsible ?? collapsible}
+          showArrow={showArrow}
+          expandIcon={expandIcon}
+          expandIconPosition={expandIconPosition}
+          forceRender={item.forceRender ?? forceRender}
+          destroyOnHidden={item.destroyOnHidden ?? destroyOnHidden}
+          itemClassName={itemClassName}
+          itemStyle={itemStyle}
+          headerClassName={headerClassName}
+          bodyClassName={bodyClassName}
+          onItemClick={onItemClick}
+          onToggle={handleToggle}
+        />
+      ))}
+    </div>
+  );
+});
 
 Collapse.displayName = 'Collapse';
 

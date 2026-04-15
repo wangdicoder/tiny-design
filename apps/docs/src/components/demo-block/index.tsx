@@ -60,6 +60,28 @@ type DemoBlockProps = {
   description?: string;
 };
 
+const DemoPreview = React.memo(function DemoPreview({
+  component: Component,
+  isEditing,
+  liveElement,
+  runnerError,
+}: {
+  component: React.ComponentType;
+  isEditing: boolean;
+  liveElement: React.ReactNode;
+  runnerError: string | null | undefined;
+}) {
+  if (isEditing) {
+    return runnerError ? (
+      <pre className="demo-block__error">{runnerError}</pre>
+    ) : (
+      <>{liveElement}</>
+    );
+  }
+
+  return <Component />;
+});
+
 export const DemoBlock = ({ component: Component, source, title, description }: DemoBlockProps) => {
   const [showCode, setShowCode] = useState(false);
   const [editedCode, setEditedCode] = useState<string | null>(null);
@@ -93,6 +115,10 @@ export const DemoBlock = ({ component: Component, source, title, description }: 
 
   const handleReset = useCallback(() => {
     setEditedCode(null);
+  }, []);
+
+  const handleToggleCode = useCallback(() => {
+    setShowCode((current) => !current);
   }, []);
 
   const handleCopy = useCallback(async () => {
@@ -129,15 +155,12 @@ export const DemoBlock = ({ component: Component, source, title, description }: 
     <div className="demo-block__container" ref={containerRef}>
       {/* Preview area */}
       <div className="demo-block__previewer">
-        {isEditing ? (
-          runnerError ? (
-            <pre className="demo-block__error">{runnerError}</pre>
-          ) : (
-            liveElement
-          )
-        ) : (
-          <Component />
-        )}
+        <DemoPreview
+          component={Component}
+          isEditing={isEditing}
+          liveElement={liveElement}
+          runnerError={runnerError}
+        />
       </div>
 
       {/* Action bar */}
@@ -178,7 +201,7 @@ export const DemoBlock = ({ component: Component, source, title, description }: 
         )}
         <span
           className="demo-block__action-toggle"
-          onClick={() => setShowCode(!showCode)}>
+          onClick={handleToggleCode}>
           {showCode ? s.codeBlock.hideCode : s.codeBlock.showCode}
         </span>
       </div>

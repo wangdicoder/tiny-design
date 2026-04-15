@@ -1,110 +1,85 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
+import classNames from 'classnames';
 
 type CollapseTransitionProps = {
-  isShow: boolean;
+  open?: boolean;
+  isShow?: boolean;
+  className?: string;
   children: React.ReactNode;
+  onHidden?: () => void;
 };
 
-const COLLAPSE_DURATION = 250;
-
-const CollapseTransition = (props: CollapseTransitionProps): JSX.Element => {
-  const { isShow, children } = props;
-  const leaveTimerRef = useRef<number | null>(null);
-  const enterTimerRef = useRef<number | null>(null);
+const CollapseTransition = ({
+  open,
+  isShow,
+  className,
+  children,
+  onHidden,
+}: CollapseTransitionProps): React.ReactElement => {
   const ref = useRef<HTMLDivElement | null>(null);
-
-  const beforeEnter = useCallback((): void => {
-    const el = ref.current;
-    if (el) {
-      el.style.display = 'block';
-      el.style.height = '0px';
-    }
-  }, []);
-
-  const afterEnter = useCallback((): void => {
-    const el = ref.current;
-    if (el) {
-      el.style.display = 'block';
-      el.style.height = '';
-    }
-  }, []);
-
-  const enter = useCallback((): void => {
-    const el = ref.current;
-    if (el) {
-      if (el.scrollHeight !== 0) {
-        el.style.height = el.scrollHeight + 'px';
-      } else {
-        el.style.height = '';
-      }
-
-      enterTimerRef.current = window.setTimeout(() => afterEnter(), COLLAPSE_DURATION);
-    }
-  }, [afterEnter]);
-
-  const beforeLeave = useCallback((): void => {
-    const el = ref.current;
-    if (el) {
-      el.style.display = 'block';
-      if (el.scrollHeight !== 0) {
-        el.style.height = el.scrollHeight + 'px';
-      }
-    }
-  }, []);
-
-  const afterLeave = useCallback((): void => {
-    const el = ref.current;
-    if (el) {
-      el.style.display = 'none';
-      el.style.height = '';
-    }
-  }, []);
-
-  const leave = useCallback((): void => {
-    const el = ref.current;
-    if (el) {
-      if (el.scrollHeight !== 0) {
-        el.style.height = '0px';
-      }
-
-      leaveTimerRef.current = window.setTimeout(() => afterLeave(), COLLAPSE_DURATION);
-    }
-  }, [afterLeave]);
-
-  const triggerChange = useCallback(
-    (isCollapsed: boolean): void => {
-      const enterTimer = enterTimerRef.current;
-      const leaveTimer = leaveTimerRef.current;
-      enterTimer && window.clearTimeout(enterTimer);
-      leaveTimer && window.clearTimeout(leaveTimer);
-
-      if (isCollapsed) {
-        beforeEnter();
-        enter();
-      } else {
-        beforeLeave();
-        leave();
-      }
-    },
-    [enter, leave, beforeEnter, beforeLeave]
-  );
+  const isFirstRender = useRef(true);
+  const visible = open ?? isShow ?? false;
 
   useEffect(() => {
-    beforeEnter();
-    enter();
+    const node = ref.current;
+    if (!node) return;
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      node.style.display = visible ? 'block' : 'none';
+      node.style.height = visible ? '' : '0px';
+      return;
+    }
+
+    let frameA = 0;
+    let frameB = 0;
+
+    const handleTransitionEnd = (event: TransitionEvent) => {
+      if (event.target !== node || event.propertyName !== 'height') return;
+
+      node.style.overflow = '';
+
+      if (visible) {
+        node.style.height = '';
+      } else {
+        node.style.display = 'none';
+        onHidden?.();
+      }
+    };
+
+    node.addEventListener('transitionend', handleTransitionEnd);
+
+    if (visible) {
+      node.style.display = 'block';
+      node.style.overflow = 'hidden';
+      node.style.height = '0px';
+
+      frameA = window.requestAnimationFrame(() => {
+        frameB = window.requestAnimationFrame(() => {
+          node.style.height = `${node.scrollHeight}px`;
+        });
+      });
+    } else {
+      node.style.display = 'block';
+      node.style.overflow = 'hidden';
+      node.style.height = `${node.scrollHeight}px`;
+
+      frameA = window.requestAnimationFrame(() => {
+        frameB = window.requestAnimationFrame(() => {
+          node.style.height = '0px';
+        });
+      });
+    }
 
     return () => {
-      beforeLeave();
-      leave();
+      if (frameA) window.cancelAnimationFrame(frameA);
+      if (frameB) window.cancelAnimationFrame(frameB);
+      node.removeEventListener('transitionend', handleTransitionEnd);
     };
-  }, [enter, leave, beforeEnter, beforeLeave]);
-
-  useEffect(() => {
-    triggerChange(isShow);
-  }, [isShow, triggerChange]);
+  }, [visible, onHidden]);
 
   return (
-    <div className="ty-collapse-transition" ref={ref}>
+    <div ref={ref} className={classNames('ty-collapse-transition', className)}>
       {children}
     </div>
   );
