@@ -52,6 +52,18 @@ Light and dark themes are supported via the `data-tiny-theme` attribute on the d
 
 Three modes are available: `light`, `dark`, and `system` (follows `prefers-color-scheme`).
 
+## Component Token Conventions
+
+Component tokens are scoped by component name and should not be shared across different components, even when the semantics line up closely.
+
+For example, `DatePicker` and `Calendar` intentionally use parallel token groups without sharing the same key space:
+
+- `date-picker.header-*` and `calendar.header-*`
+- `date-picker.panel-item-*` and `calendar.panel-item-*`
+- `date-picker.today-*` and `calendar.today-*`
+
+This keeps token semantics aligned across related components while allowing each component to evolve or be themed independently.
+
 ## License
 
 MIT

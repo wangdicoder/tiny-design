@@ -27,6 +27,17 @@ import CardModeSource from './demo/CardMode.tsx?raw';
 import { Calendar } from 'tiny-design';
 ```
 
+## Design Tokens
+
+`Calendar` 与 `DatePicker` 使用同构的 token 语义结构，但保留独立的组件命名空间：
+
+- `calendar.header-*`：头部间距、导航操作、标题标签与焦点状态
+- `calendar.cell-*`：月份网格单元、星期标题、周数、选中日期和范围状态
+- `calendar.panel-item-*`：年份 / 十年面板项的 hover 与选中状态
+- `calendar.today-*`：页脚 “Today / 今天” 操作的字体与交互状态
+
+这种设计是刻意的：`Calendar` 和 `DatePicker` 在视觉语义上应当保持一致，但 token key 不共享，这样业务侧可以分别微调两个组件。
+
 ## 代码演示
 
 <Layout>

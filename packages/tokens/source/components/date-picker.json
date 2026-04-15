@@ -47,6 +47,18 @@
     "description": "Date picker header button hover color.",
     "fallback": "--ty-color-primary"
   },
+  "date-picker.header-action-hover-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Date picker header action hover background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "date-picker.header-action-focus-ring": {
+    "$value": "{color-primary-border}",
+    "$type": "color",
+    "description": "Date picker header action keyboard focus ring color.",
+    "fallback": "--ty-color-primary-border"
+  },
   "date-picker.header-label-font-size": {
     "$value": "16px",
     "$type": "dimension",
@@ -100,6 +112,67 @@
     "description": "Date picker cell disabled background color.",
     "fallback": "--ty-color-fill-secondary"
   },
+  "date-picker.panel-item-gap-y": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Date picker month and year panel row gap."
+  },
+  "date-picker.panel-item-min-width": {
+    "$value": "56px",
+    "$type": "dimension",
+    "description": "Date picker month and year panel item minimum width."
+  },
+  "date-picker.panel-item-height": {
+    "$value": "40px",
+    "$type": "dimension",
+    "description": "Date picker month and year panel item height."
+  },
+  "date-picker.panel-item-padding-inline": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Date picker month and year panel item horizontal padding."
+  },
+  "date-picker.panel-item-radius": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Date picker month and year panel item radius."
+  },
+  "date-picker.panel-item-hover-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Date picker month and year panel item hover background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "date-picker.panel-item-current-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Date picker current month/year panel item text color.",
+    "fallback": "--ty-color-primary"
+  },
+  "date-picker.panel-item-current-border": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Date picker current month/year panel item border color.",
+    "fallback": "--ty-color-primary"
+  },
+  "date-picker.panel-item-selected-bg": {
+    "$value": "{color-primary-bg-hover}",
+    "$type": "color",
+    "description": "Date picker month and year panel item selected background color.",
+    "fallback": "--ty-color-primary-bg-hover"
+  },
+  "date-picker.panel-item-selected-color": {
+    "$value": "{color-primary}",
+    "$type": "color",
+    "description": "Date picker month and year panel item selected text color.",
+    "fallback": "--ty-color-primary"
+  },
+  "date-picker.panel-item-selected-hover-bg": {
+    "$value": "{color-primary-bg}",
+    "$type": "color",
+    "description": "Date picker month and year panel item selected hover background color.",
+    "fallback": "--ty-color-primary-bg"
+  },
   "date-picker.cell-today-border": {
     "$value": "{color-primary}",
     "$type": "color",
@@ -150,5 +223,23 @@
     "$type": "color",
     "description": "Date picker today action hover color.",
     "fallback": "--ty-color-primary-hover"
+  },
+  "date-picker.today-hover-bg": {
+    "$value": "{color-primary-bg}",
+    "$type": "color",
+    "description": "Date picker today action hover background color.",
+    "fallback": "--ty-color-primary-bg"
+  },
+  "date-picker.today-active-bg": {
+    "$value": "{color-primary-bg-hover}",
+    "$type": "color",
+    "description": "Date picker today action active background color.",
+    "fallback": "--ty-color-primary-bg-hover"
+  },
+  "date-picker.today-focus-ring": {
+    "$value": "{color-primary-border}",
+    "$type": "color",
+    "description": "Date picker today action keyboard focus ring color.",
+    "fallback": "--ty-color-primary-border"
   }
 }

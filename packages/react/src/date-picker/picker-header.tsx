@@ -50,23 +50,26 @@ const PickerHeader = ({ date, mode, months, onChange, onModeChange, prefixCls }:
             {startDecade} – {startDecade + 9}
           </span>
         ) : mode === 'month' ? (
-          <span
+          <button
+            type="button"
             className={`${prefixCls}__header-label`}
             onClick={() => onModeChange('year')}>
             {year}
-          </span>
+          </button>
         ) : (
           <>
-            <span
+            <button
+              type="button"
               className={`${prefixCls}__header-label`}
               onClick={() => onModeChange('month')}>
               {months[date.getMonth()]}
-            </span>
-            <span
+            </button>
+            <button
+              type="button"
               className={`${prefixCls}__header-label`}
               onClick={() => onModeChange('year')}>
               {year}
-            </span>
+            </button>
           </>
         )}
       </div>

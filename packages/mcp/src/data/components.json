@@ -5765,12 +5765,24 @@
         "code": "import React from 'react';\nimport { Segmented } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>\n      <Segmented\n        options={[\n          { label: 'Daily', value: 'daily' },\n          { label: 'Weekly', value: 'weekly' },\n          { label: 'Monthly', value: 'monthly' },\n          { label: 'Yearly', value: 'yearly' },\n        ]}\n      />\n      <Segmented\n        options={[\n          { label: 'Small', value: 'sm' },\n          { label: 'Medium', value: 'md' },\n          { label: 'Large', value: 'lg' },\n        ]}\n        size=\"sm\"\n      />\n      <Segmented\n        options={[\n          { label: 'Map', value: 'map' },\n          { label: 'Transit', value: 'transit' },\n          { label: 'Satellite', value: 'satellite' },\n        ]}\n        block\n      />\n    </div>\n  );\n}\n"
       },
       {
+        "name": "Controlled",
+        "code": "import React from 'react';\nimport { Segmented, Text } from '@tiny-design/react';\n\nconst options = [\n  { label: 'List', value: 'list' },\n  { label: 'Board', value: 'board' },\n  { label: 'Timeline', value: 'timeline' },\n];\n\nexport default function ControlledDemo() {\n  const [value, setValue] = React.useState('list');\n\n  return (\n    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>\n      <Segmented\n        options={options}\n        value={value}\n        onChange={(nextValue) => setValue(String(nextValue))}\n      />\n      <Text type=\"secondary\">Current value: {value}</Text>\n    </div>\n  );\n}\n"
+      },
+      {
+        "name": "DefaultValue",
+        "code": "import React from 'react';\nimport { Segmented, Text } from '@tiny-design/react';\n\nexport default function DefaultValueDemo() {\n  return (\n    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>\n      <Segmented\n        options={[\n          { label: 'Draft', value: 'draft' },\n          { label: 'Review', value: 'review' },\n          { label: 'Published', value: 'published' },\n        ]}\n        defaultValue=\"review\"\n      />\n      <Text type=\"secondary\">Initial selection is set with defaultValue.</Text>\n    </div>\n  );\n}\n"
+      },
+      {
         "name": "Disabled",
         "code": "import React from 'react';\nimport { Segmented } from '@tiny-design/react';\n\nexport default function DisabledDemo() {\n  return (\n    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>\n      <Segmented\n        options={[\n          { label: 'Daily', value: 'daily' },\n          { label: 'Weekly', value: 'weekly' },\n          { label: 'Monthly', value: 'monthly' },\n        ]}\n        disabled\n      />\n      <Segmented\n        options={[\n          { label: 'Active', value: 'active' },\n          { label: 'Disabled', value: 'disabled', disabled: true },\n          { label: 'Active', value: 'active2' },\n        ]}\n      />\n    </div>\n  );\n}\n"
       },
       {
         "name": "Icon",
         "code": "import React from 'react';\nimport { Segmented } from '@tiny-design/react';\nimport { IconUser, IconStar, IconWifi } from '@tiny-design/icons';\n\nexport default function IconDemo() {\n  return (\n    <Segmented\n      options={[\n        { label: 'User', value: 'user', icon: <IconUser /> },\n        { label: 'Star', value: 'star', icon: <IconStar /> },\n        { label: 'Wifi', value: 'wifi', icon: <IconWifi /> },\n      ]}\n    />\n  );\n}"
+      },
+      {
+        "name": "NoSelection",
+        "code": "import React from 'react';\nimport { Segmented, Text } from '@tiny-design/react';\n\nexport default function NoSelectionDemo() {\n  return (\n    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>\n      <Segmented\n        options={[\n          { label: 'All', value: 'all' },\n          { label: 'Open', value: 'open' },\n          { label: 'Closed', value: 'closed' },\n        ]}\n      />\n      <Text type=\"secondary\">Without value or defaultValue, no option is selected initially.</Text>\n    </div>\n  );\n}\n"
       },
       {
         "name": "Size",

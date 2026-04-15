@@ -16,13 +16,13 @@ const PickerMonth = ({ date, panelDate, months, onChange, prefixCls }: PickerMon
 
   return (
     <div className={`${prefixCls}__body`}>
-      <table className={`${prefixCls}__table`}>
+      <table className={classNames(`${prefixCls}__table`, `${prefixCls}__month-table`)}>
         <tbody>
           {[0, 1, 2].map((row) => (
             <tr key={row}>
               {[0, 1, 2, 3].map((col) => {
                 const monthIdx = row * 4 + col;
-                const cls = classNames(`${prefixCls}__cell`, {
+                const cls = classNames(`${prefixCls}__cell`, `${prefixCls}__month-cell`, {
                   [`${prefixCls}__cell_selected`]: monthIdx === selectedMonth,
                   [`${prefixCls}__cell_today`]: isCurrentYear && monthIdx === now.getMonth(),
                 });
@@ -31,7 +31,9 @@ const PickerMonth = ({ date, panelDate, months, onChange, prefixCls }: PickerMon
                     key={col}
                     className={cls}
                     onClick={() => onChange(new Date(panelYear, monthIdx, 1))}>
-                    <div className={`${prefixCls}__cell-inner`}>{months[monthIdx]}</div>
+                    <div className={classNames(`${prefixCls}__cell-inner`, `${prefixCls}__month-cell-inner`)}>
+                      {months[monthIdx]}
+                    </div>
                   </td>
                 );
               })}

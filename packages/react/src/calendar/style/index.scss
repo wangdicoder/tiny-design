@@ -33,18 +33,27 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--ty-calendar-nav-button-size);
-    height: var(--ty-calendar-nav-button-size);
+    width: var(--ty-calendar-header-action-size);
+    height: var(--ty-calendar-header-action-size);
     border: none;
     background: transparent;
     cursor: pointer;
-    border-radius: var(--ty-calendar-nav-button-radius);
-    font-size: var(--ty-calendar-nav-button-font-size);
-    color: var(--ty-calendar-nav-button-color);
-    transition: color 0.2s;
+    border-radius: var(--ty-calendar-header-action-radius);
+    font-size: var(--ty-calendar-header-action-font-size);
+    color: var(--ty-calendar-header-action-color);
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      box-shadow 0.2s;
 
     &:hover:not(&_disabled) {
-      color: var(--ty-calendar-nav-button-color-hover);
+      color: var(--ty-calendar-header-action-color-hover);
+      background: var(--ty-calendar-header-action-hover-bg);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--ty-calendar-header-action-focus-ring);
     }
 
     &_disabled {
@@ -56,24 +65,39 @@
   &__title {
     display: flex;
     align-items: center;
-    gap: var(--ty-calendar-title-gap);
-    font-weight: var(--ty-calendar-title-font-weight);
-    font-size: var(--ty-calendar-title-font-size);
+    gap: var(--ty-calendar-header-caption-gap);
+    font-weight: var(--ty-calendar-header-label-font-weight);
+    font-size: var(--ty-calendar-header-label-font-size);
   }
 
   &__title-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     background: transparent;
     cursor: pointer;
-    font-weight: var(--ty-calendar-title-font-weight);
+    min-height: var(--ty-calendar-header-label-min-height);
+    padding: 0 var(--ty-calendar-header-label-padding-inline);
+    font-weight: var(--ty-calendar-header-label-font-weight);
     font-size: inherit;
-    padding: var(--ty-calendar-title-button-padding);
-    border-radius: var(--ty-calendar-title-button-radius);
-    color: var(--ty-calendar-title-color);
-    transition: color 0.2s;
+    font-family: inherit;
+    line-height: 1;
+    border-radius: var(--ty-calendar-header-label-radius);
+    color: var(--ty-calendar-header-label-color);
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      box-shadow 0.2s;
 
     &:hover {
-      color: var(--ty-calendar-title-color-hover);
+      color: var(--ty-calendar-header-label-color-hover);
+      background: var(--ty-calendar-header-label-hover-bg);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--ty-calendar-header-label-focus-ring);
     }
   }
 
@@ -134,7 +158,7 @@
     }
 
     &:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-calendar-hover);
+      background: var(--ty-calendar-cell-hover-bg);
     }
 
     &_selected:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
@@ -264,21 +288,22 @@
 
   &__month-cell {
     text-align: center;
-    padding: var(--ty-calendar-panel-cell-padding);
+    min-height: var(--ty-calendar-panel-item-min-height);
+    padding: 16px var(--ty-calendar-panel-item-padding-inline);
     cursor: pointer;
-    border-radius: var(--ty-calendar-panel-cell-radius);
+    border-radius: var(--ty-calendar-panel-item-radius);
     transition: all 0.2s;
 
     &:hover {
-      background: var(--ty-calendar-hover);
+      background: var(--ty-calendar-panel-item-hover-bg);
     }
 
     &_selected {
-      background: var(--ty-calendar-panel-cell-bg-selected);
-      color: var(--ty-calendar-panel-cell-color-selected);
+      background: var(--ty-calendar-panel-item-selected-bg);
+      color: var(--ty-calendar-panel-item-selected-color);
 
       &:hover {
-        background: var(--ty-calendar-panel-cell-bg-selected-hover);
+        background: var(--ty-calendar-panel-item-selected-hover-bg);
       }
     }
   }
@@ -305,22 +330,23 @@
 
   &__decade-cell {
     text-align: center;
-    padding: var(--ty-calendar-panel-cell-padding);
+    min-height: var(--ty-calendar-panel-item-min-height);
+    padding: 16px var(--ty-calendar-panel-item-padding-inline);
     cursor: pointer;
-    border-radius: var(--ty-calendar-panel-cell-radius);
+    border-radius: var(--ty-calendar-panel-item-radius);
     transition: all 0.2s;
     font-size: var(--ty-calendar-decade-font-size);
 
     &:hover {
-      background: var(--ty-calendar-hover);
+      background: var(--ty-calendar-panel-item-hover-bg);
     }
 
     &_selected {
-      background: var(--ty-calendar-panel-cell-bg-selected);
-      color: var(--ty-calendar-panel-cell-color-selected);
+      background: var(--ty-calendar-panel-item-selected-bg);
+      color: var(--ty-calendar-panel-item-selected-color);
 
       &:hover {
-        background: var(--ty-calendar-panel-cell-bg-selected-hover);
+        background: var(--ty-calendar-panel-item-selected-hover-bg);
       }
     }
 
@@ -338,12 +364,38 @@
   }
 
   &__today-link {
-    color: var(--ty-calendar-today-link-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    padding: 0 12px;
+    border: 1px solid transparent;
+    border-radius: var(--ty-calendar-header-label-radius);
+    background: transparent;
+    color: var(--ty-calendar-today-color);
     cursor: pointer;
-    font-size: var(--ty-calendar-today-link-font-size);
+    font: inherit;
+    font-size: var(--ty-calendar-today-font-size);
+    line-height: 1;
+    appearance: none;
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      border-color 0.2s,
+      box-shadow 0.2s;
 
     &:hover {
-      color: var(--ty-calendar-today-link-color-hover);
+      color: var(--ty-calendar-today-color-hover);
+      background: var(--ty-calendar-today-hover-bg);
+    }
+
+    &:active {
+      background: var(--ty-calendar-today-active-bg);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--ty-calendar-today-focus-ring);
     }
   }
 }
