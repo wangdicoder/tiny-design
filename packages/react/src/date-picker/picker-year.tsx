@@ -20,7 +20,7 @@ const PickerYear = ({ date, panelDate, onChange, prefixCls }: PickerYearProps) =
 
   return (
     <div className={`${prefixCls}__body`}>
-      <table className={`${prefixCls}__table`}>
+      <table className={classNames(`${prefixCls}__table`, `${prefixCls}__year-table`)}>
         <tbody>
           {[0, 1, 2].map((row) => (
             <tr key={row}>
@@ -28,7 +28,7 @@ const PickerYear = ({ date, panelDate, onChange, prefixCls }: PickerYearProps) =
                 const idx = row * 4 + col;
                 const year = years[idx];
                 const isOutOfRange = year < startYear || year > startYear + 9;
-                const cls = classNames(`${prefixCls}__cell`, {
+                const cls = classNames(`${prefixCls}__cell`, `${prefixCls}__year-cell`, {
                   [`${prefixCls}__cell_selected`]: year === selectedYear,
                   [`${prefixCls}__cell_today`]: year === now.getFullYear(),
                   [`${prefixCls}__cell_dim`]: isOutOfRange,
@@ -38,7 +38,9 @@ const PickerYear = ({ date, panelDate, onChange, prefixCls }: PickerYearProps) =
                     key={col}
                     className={cls}
                     onClick={() => onChange(new Date(year, panelDate.getMonth(), 1))}>
-                    <div className={`${prefixCls}__cell-inner`}>{year}</div>
+                    <div className={classNames(`${prefixCls}__cell-inner`, `${prefixCls}__year-cell-inner`)}>
+                      {year}
+                    </div>
                   </td>
                 );
               })}

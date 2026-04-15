@@ -25,6 +25,17 @@ To select or input a date.
 import { DatePicker } from 'tiny-design';
 ```
 
+## Design Tokens
+
+`DatePicker` uses component-scoped tokens with a small set of stable semantic groups:
+
+- `date-picker.header-*`: header layout, navigation buttons, caption spacing, and interactive header states
+- `date-picker.cell-*`: date grid cells, selected dates, muted dates, and range states
+- `date-picker.panel-item-*`: month/year panel items for hover, current item, and selected item styling
+- `date-picker.today-*`: footer "Today" action typography and interaction states
+
+`DatePicker` intentionally does not share token keys with `Calendar`. The two components align on token semantics, but keep separate namespaces so each component can evolve independently.
+
 ## Examples
 
 <Layout>

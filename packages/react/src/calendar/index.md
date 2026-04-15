@@ -27,6 +27,17 @@ Display a full calendar view with date selection. Useful for scheduling, event m
 import { Calendar } from 'tiny-design';
 ```
 
+## Design Tokens
+
+`Calendar` follows the same semantic token structure as `DatePicker`, but keeps its own component namespace:
+
+- `calendar.header-*`: header spacing, navigation actions, caption labels, and focus states
+- `calendar.cell-*`: month grid cells, weekday headers, week numbers, selected dates, and range states
+- `calendar.panel-item-*`: year and decade panel items for hover and selected states
+- `calendar.today-*`: footer "Today" action typography and interaction states
+
+This alignment is intentional: `Calendar` and `DatePicker` should feel related, but token keys stay separate so product teams can tune them independently.
+
 ## Examples
 
 <Layout>

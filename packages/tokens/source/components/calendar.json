@@ -16,7 +16,7 @@
     "description": "Calendar panel border radius.",
     "fallback": "--ty-border-radius"
   },
-  "calendar.hover": {
+  "calendar.cell-hover-bg": {
     "$value": "#f6f9fc",
     "$type": "color",
     "description": "Calendar cell hover background color."
@@ -26,69 +26,98 @@
     "$type": "string",
     "description": "Calendar header padding."
   },
-  "calendar.nav-button-size": {
+  "calendar.header-action-size": {
     "$value": "28px",
     "$type": "dimension",
-    "description": "Calendar nav button size."
+    "description": "Calendar header action size."
   },
-  "calendar.nav-button-radius": {
+  "calendar.header-action-radius": {
     "$value": "4px",
     "$type": "dimension",
-    "description": "Calendar nav button radius."
+    "description": "Calendar header action radius."
   },
-  "calendar.nav-button-font-size": {
+  "calendar.header-action-font-size": {
     "$value": "18px",
     "$type": "dimension",
-    "description": "Calendar nav button font size."
+    "description": "Calendar header action font size."
   },
-  "calendar.nav-button-color": {
+  "calendar.header-action-color": {
     "$value": "{color-text-tertiary}",
     "$type": "color",
-    "description": "Calendar nav button color.",
+    "description": "Calendar header action color.",
     "fallback": "--ty-color-text-tertiary"
   },
-  "calendar.nav-button-color-hover": {
+  "calendar.header-action-color-hover": {
     "$value": "{color-primary}",
     "$type": "color",
-    "description": "Calendar nav button hover color.",
+    "description": "Calendar header action hover color.",
     "fallback": "--ty-color-primary"
   },
-  "calendar.title-font-size": {
+  "calendar.header-action-hover-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Calendar header action hover background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "calendar.header-action-focus-ring": {
+    "$value": "{color-primary-border}",
+    "$type": "color",
+    "description": "Calendar header action keyboard focus ring color.",
+    "fallback": "--ty-color-primary-border"
+  },
+  "calendar.header-label-font-size": {
     "$value": "16px",
     "$type": "dimension",
-    "description": "Calendar title font size."
+    "description": "Calendar header label font size."
   },
-  "calendar.title-font-weight": {
+  "calendar.header-label-font-weight": {
     "$value": "500",
     "$type": "font-weight",
-    "description": "Calendar title font weight."
+    "description": "Calendar header label font weight."
   },
-  "calendar.title-gap": {
+  "calendar.header-caption-gap": {
     "$value": "8px",
     "$type": "dimension",
-    "description": "Calendar title item gap."
+    "description": "Calendar header caption gap."
   },
-  "calendar.title-button-padding": {
-    "$value": "2px 6px",
-    "$type": "string",
-    "description": "Calendar title action padding."
+  "calendar.header-label-min-height": {
+    "$value": "32px",
+    "$type": "dimension",
+    "description": "Calendar header label minimum height."
   },
-  "calendar.title-button-radius": {
+  "calendar.header-label-padding-inline": {
+    "$value": "10px",
+    "$type": "dimension",
+    "description": "Calendar header label horizontal padding."
+  },
+  "calendar.header-label-radius": {
     "$value": "4px",
     "$type": "dimension",
-    "description": "Calendar title action radius."
+    "description": "Calendar header label radius."
   },
-  "calendar.title-color": {
+  "calendar.header-label-color": {
     "$value": "{color-text}",
     "$type": "color",
-    "description": "Calendar title color.",
+    "description": "Calendar header label color.",
     "fallback": "--ty-color-text"
   },
-  "calendar.title-color-hover": {
+  "calendar.header-label-color-hover": {
     "$value": "{color-primary}",
     "$type": "color",
-    "description": "Calendar title action hover color.",
+    "description": "Calendar header label hover color.",
     "fallback": "--ty-color-primary"
+  },
+  "calendar.header-label-hover-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Calendar header label hover background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "calendar.header-label-focus-ring": {
+    "$value": "{color-primary-border}",
+    "$type": "color",
+    "description": "Calendar header label keyboard focus ring color.",
+    "fallback": "--ty-color-primary-border"
   },
   "calendar.body-padding": {
     "$value": "8px",
@@ -247,32 +276,43 @@
     "$type": "dimension",
     "description": "Calendar month and decade panel padding."
   },
-  "calendar.panel-cell-padding": {
-    "$value": "16px 8px",
-    "$type": "string",
-    "description": "Calendar month and decade cell padding."
+  "calendar.panel-item-min-height": {
+    "$value": "48px",
+    "$type": "dimension",
+    "description": "Calendar month and decade panel item minimum height."
   },
-  "calendar.panel-cell-radius": {
+  "calendar.panel-item-padding-inline": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Calendar month and decade panel item horizontal padding."
+  },
+  "calendar.panel-item-radius": {
     "$value": "{border-radius}",
     "$type": "dimension",
-    "description": "Calendar month and decade cell radius.",
+    "description": "Calendar month and decade panel item radius.",
     "fallback": "--ty-border-radius"
   },
-  "calendar.panel-cell-color-selected": {
+  "calendar.panel-item-hover-bg": {
+    "$value": "{color-fill-secondary}",
+    "$type": "color",
+    "description": "Calendar month and decade panel item hover background color.",
+    "fallback": "--ty-color-fill-secondary"
+  },
+  "calendar.panel-item-selected-color": {
     "$value": "#fff",
     "$type": "color",
-    "description": "Calendar selected month and decade cell text color."
+    "description": "Calendar selected month and decade panel item text color."
   },
-  "calendar.panel-cell-bg-selected": {
+  "calendar.panel-item-selected-bg": {
     "$value": "{color-primary}",
     "$type": "color",
-    "description": "Calendar selected month and decade cell background color.",
+    "description": "Calendar selected month and decade panel item background color.",
     "fallback": "--ty-color-primary"
   },
-  "calendar.panel-cell-bg-selected-hover": {
+  "calendar.panel-item-selected-hover-bg": {
     "$value": "{color-primary-hover}",
     "$type": "color",
-    "description": "Calendar selected month and decade cell hover background color.",
+    "description": "Calendar selected month and decade panel item hover background color.",
     "fallback": "--ty-color-primary-hover"
   },
   "calendar.month-content-font-size": {
@@ -302,21 +342,39 @@
     "$type": "string",
     "description": "Calendar footer padding."
   },
-  "calendar.today-link-color": {
+  "calendar.today-color": {
     "$value": "{color-primary}",
     "$type": "color",
-    "description": "Calendar today link color.",
+    "description": "Calendar today action color.",
     "fallback": "--ty-color-primary"
   },
-  "calendar.today-link-color-hover": {
+  "calendar.today-color-hover": {
     "$value": "{color-primary-hover}",
     "$type": "color",
-    "description": "Calendar today link hover color.",
+    "description": "Calendar today action hover color.",
     "fallback": "--ty-color-primary-hover"
   },
-  "calendar.today-link-font-size": {
+  "calendar.today-font-size": {
     "$value": "13px",
     "$type": "dimension",
-    "description": "Calendar today link font size."
+    "description": "Calendar today action font size."
+  },
+  "calendar.today-hover-bg": {
+    "$value": "{color-primary-bg}",
+    "$type": "color",
+    "description": "Calendar today action hover background color.",
+    "fallback": "--ty-color-primary-bg"
+  },
+  "calendar.today-active-bg": {
+    "$value": "{color-primary-bg-hover}",
+    "$type": "color",
+    "description": "Calendar today action active background color.",
+    "fallback": "--ty-color-primary-bg-hover"
+  },
+  "calendar.today-focus-ring": {
+    "$value": "{color-primary-border}",
+    "$type": "color",
+    "description": "Calendar today action keyboard focus ring color.",
+    "fallback": "--ty-color-primary-border"
   }
 }

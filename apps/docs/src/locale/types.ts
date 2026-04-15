@@ -81,6 +81,7 @@ export type SiteLocale = {
   themeMenu: {
     customiseTheme: string;
     colors: string;
+    tokenExplorer: string;
     themeStudio: string;
   };
   color: {

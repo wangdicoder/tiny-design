@@ -62,6 +62,10 @@ const guide = {
     () => import('./containers/theme-studio'),
     () => import('./containers/theme-studio'),
   ),
+  tokenExplorer: ll(
+    () => import('./containers/token-explorer'),
+    () => import('./containers/token-explorer'),
+  ),
 };
 
 // Component lazy imports
@@ -192,6 +196,7 @@ export const getThemeMenu = (s: SiteLocale): RouterItem[] => {
   return [
     { title: s.themeMenu.customiseTheme, route: 'customise-theme', component: pick(guide.customiseTheme, isZh) },
     { title: s.themeMenu.colors, route: 'colors', component: pick(guide.colors, isZh) },
+    { title: s.themeMenu.tokenExplorer, route: 'token-explorer', component: pick(guide.tokenExplorer, isZh) },
     { title: s.themeMenu.themeStudio, route: 'theme-studio', component: pick(guide.themeStudio, isZh) },
   ];
 };

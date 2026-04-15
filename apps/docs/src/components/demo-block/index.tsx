@@ -40,7 +40,6 @@ const ResetIcon = () => (
   </svg>
 );
 
-// Build scope for react-runner to resolve imports
 const scope = {
   import: {
     react: React,

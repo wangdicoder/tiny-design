@@ -158,10 +158,19 @@ $dp: #{$prefix}-date-picker;
     cursor: pointer;
     font-size: 18px;
     border-radius: var(--ty-date-picker-header-button-radius);
-    transition: color 0.2s;
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      box-shadow 0.2s;
 
     &:hover {
       color: var(--ty-date-picker-header-button-color-hover);
+      background: var(--ty-date-picker-header-action-hover-bg);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--ty-date-picker-header-action-focus-ring);
     }
   }
 
@@ -173,15 +182,33 @@ $dp: #{$prefix}-date-picker;
   }
 
   &__header-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 0 10px;
+    border: none;
+    background: transparent;
+    color: var(--ty-date-picker-cell-color);
     font-weight: var(--ty-date-picker-header-label-font-weight);
     font-size: var(--ty-date-picker-header-label-font-size);
+    font-family: inherit;
+    line-height: 1;
     cursor: pointer;
-    padding: 2px 6px;
     border-radius: var(--ty-date-picker-header-button-radius);
-    transition: color 0.2s;
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      box-shadow 0.2s;
 
     &:hover {
       color: var(--ty-date-picker-header-button-color-hover);
+      background: var(--ty-date-picker-header-action-hover-bg);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--ty-date-picker-header-action-focus-ring);
     }
   }
 
@@ -293,6 +320,69 @@ $dp: #{$prefix}-date-picker;
     color: var(--ty-date-picker-cell-color-muted);
   }
 
+  &__month-table,
+  &__year-table {
+    border-collapse: separate;
+    border-spacing: 0 var(--ty-date-picker-panel-item-gap-y);
+  }
+
+  &__month-cell,
+  &__year-cell {
+    padding: 0;
+  }
+
+  &__month-cell-inner,
+  &__year-cell-inner {
+    width: auto;
+    min-width: var(--ty-date-picker-panel-item-min-width);
+    height: var(--ty-date-picker-panel-item-height);
+    padding: 0 var(--ty-date-picker-panel-item-padding-inline);
+    border: 1px solid transparent;
+    border-radius: var(--ty-date-picker-panel-item-radius);
+    color: var(--ty-date-picker-cell-color);
+    font-weight: 500;
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  &__month-cell:hover &__month-cell-inner,
+  &__year-cell:hover &__year-cell-inner {
+    background: var(--ty-date-picker-panel-item-hover-bg);
+  }
+
+  &__month-cell.#{$dp}__cell_dim &__month-cell-inner,
+  &__year-cell.#{$dp}__cell_dim &__year-cell-inner {
+    color: var(--ty-date-picker-cell-color-muted);
+    font-weight: 400;
+  }
+
+  &__month-cell.#{$dp}__cell_today &__month-cell-inner,
+  &__year-cell.#{$dp}__cell_today &__year-cell-inner {
+    border-color: var(--ty-date-picker-panel-item-current-border);
+    color: var(--ty-date-picker-panel-item-current-color);
+    background: transparent;
+  }
+
+  &__month-cell.#{$dp}__cell_selected &__month-cell-inner,
+  &__year-cell.#{$dp}__cell_selected &__year-cell-inner {
+    background: var(--ty-date-picker-panel-item-selected-bg);
+    color: var(--ty-date-picker-panel-item-selected-color);
+    font-weight: 600;
+  }
+
+  &__month-cell.#{$dp}__cell_selected:hover &__month-cell-inner,
+  &__year-cell.#{$dp}__cell_selected:hover &__year-cell-inner {
+    background: var(--ty-date-picker-panel-item-selected-hover-bg);
+  }
+
+  &__month-cell.#{$dp}__cell_selected.#{$dp}__cell_today &__month-cell-inner,
+  &__year-cell.#{$dp}__cell_selected.#{$dp}__cell_today &__year-cell-inner {
+    box-shadow: inset 0 0 0 1px var(--ty-date-picker-panel-item-current-border);
+  }
+
   // ---- Footer ----
   &__footer {
     padding: var(--ty-date-picker-footer-padding);
@@ -301,12 +391,38 @@ $dp: #{$prefix}-date-picker;
   }
 
   &__today-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    padding: 0 12px;
+    border: 1px solid transparent;
+    border-radius: var(--ty-border-radius);
+    background: transparent;
     color: var(--ty-date-picker-today-color);
     cursor: pointer;
+    font: inherit;
     font-size: var(--ty-date-picker-today-font-size);
+    line-height: 1;
+    appearance: none;
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      border-color 0.2s,
+      box-shadow 0.2s;
 
     &:hover {
       color: var(--ty-date-picker-today-color-hover);
+      background: var(--ty-date-picker-today-hover-bg);
+    }
+
+    &:active {
+      background: var(--ty-date-picker-today-active-bg);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ty-date-picker-today-focus-ring);
+      outline-offset: 2px;
     }
   }
 }

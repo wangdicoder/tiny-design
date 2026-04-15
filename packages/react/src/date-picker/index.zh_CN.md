@@ -25,6 +25,17 @@ import RangeDisabledSource from './demo/RangeDisabled.tsx?raw';
 import { DatePicker } from 'tiny-design';
 ```
 
+## Design Tokens
+
+`DatePicker` 使用组件级 token，并按稳定的语义分组组织：
+
+- `date-picker.header-*`：头部布局、翻页按钮、标题间距以及头部交互状态
+- `date-picker.cell-*`：日期网格单元、选中态、弱化态和范围选择状态
+- `date-picker.panel-item-*`：月份 / 年份面板项的 hover、当前项和选中项样式
+- `date-picker.today-*`：页脚 “Today / 今天” 操作的字体与交互状态
+
+`DatePicker` 不会与 `Calendar` 共享同一个 token key。两个组件只对齐语义结构，不共用命名空间，这样可以保证后续样式演进彼此独立。
+
 ## 代码示例
 
 <Layout>
