@@ -39,7 +39,7 @@ exports[`<Tree /> should match the snapshot 1`] = `
       </div>
       <div
         class="ty-collapse-transition"
-        style="display: block;"
+        style="display: none; height: 0px;"
       >
         <ul
           aria-level="1"
