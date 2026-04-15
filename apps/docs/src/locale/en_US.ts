@@ -152,6 +152,7 @@ const en_US: SiteLocale = {
   themeMenu: {
     customiseTheme: 'Customise Theme',
     colors: 'Colors',
+    tokenExplorer: 'Token Explorer',
     themeStudio: 'Theme Studio',
   },
   color: {

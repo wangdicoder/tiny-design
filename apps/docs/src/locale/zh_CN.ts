@@ -148,6 +148,7 @@ const zh_CN: SiteLocale = {
   themeMenu: {
     customiseTheme: '自定义主题',
     colors: '色彩',
+    tokenExplorer: 'Token 浏览器',
     themeStudio: '主题工作台',
   },
   color: {

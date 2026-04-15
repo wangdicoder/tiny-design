@@ -16,6 +16,11 @@
     ".": "./css/base.css",
     "./css/*": "./css/*",
     "./registry": "./dist/registry.json",
+    "./registry-runtime": {
+      "types": "./runtime/registry.d.ts",
+      "import": "./runtime/registry.mjs",
+      "require": "./runtime/registry.cjs"
+    },
     "./presets": {
       "types": "./runtime/presets.d.ts",
       "import": "./runtime/presets.mjs",
