@@ -16,8 +16,16 @@
   border: 1px solid var(--ty-color-border-secondary, var(--ty-color-border));
   border-radius: 12px;
   background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--editor-primary), transparent 95%), transparent 22%),
-    linear-gradient(180deg, var(--ty-color-bg-container) 0%, color-mix(in srgb, var(--ty-color-fill), transparent 40%) 100%);
+    radial-gradient(
+      circle at top right,
+      color-mix(in srgb, var(--editor-primary), transparent 95%),
+      transparent 22%
+    ),
+    linear-gradient(
+      180deg,
+      var(--ty-color-bg-container) 0%,
+      color-mix(in srgb, var(--ty-color-fill), transparent 40%) 100%
+    );
   box-shadow: 0 6px 16px rgba(17, 24, 39, 0.03);
 }
 
@@ -288,6 +296,32 @@
   align-items: center;
 }
 
+.theme-studio__shadow-field {
+  margin-top: 10px;
+}
+
+.theme-studio__shadow-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.theme-studio__shadow-color-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.theme-studio__shadow-color-label,
+.theme-studio__shadow-metric-label {
+  font-size: 12px;
+  color: var(--ty-color-text-secondary, var(--ty-color-text));
+}
+
+.theme-studio__shadow-metric .theme-studio__field-row {
+  margin-bottom: 4px;
+}
+
 .theme-studio__pill {
   padding: 8px 12px;
   border-radius: 999px;
@@ -338,7 +372,11 @@
   padding: 9px;
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.6), transparent 30%),
-    linear-gradient(180deg, var(--editor-base) 0%, color-mix(in srgb, var(--editor-base), black 4%) 100%);
+    linear-gradient(
+      180deg,
+      var(--editor-base) 0%,
+      color-mix(in srgb, var(--editor-base), black 4%) 100%
+    );
   color: var(--editor-base-foreground);
   box-shadow: 0 30px 80px rgba(17, 24, 39, 0.08);
   font-family: var(--editor-font-sans);
@@ -350,7 +388,11 @@
 .theme-studio__preview_dark {
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 24%),
-    linear-gradient(180deg, var(--editor-base) 0%, color-mix(in srgb, var(--editor-base), black 10%) 100%);
+    linear-gradient(
+      180deg,
+      var(--editor-base) 0%,
+      color-mix(in srgb, var(--editor-base), black 10%) 100%
+    );
 }
 
 .theme-studio__metrics {
@@ -524,10 +566,18 @@
   gap: 8px;
 }
 
+.theme-studio__control-proxy,
 .theme-studio__focus-proxy,
 .theme-studio__surface-proxy {
   border: 1px solid var(--editor-border);
   font-size: 11px;
+}
+
+.theme-studio__control-proxy {
+  padding: 8px 10px;
+  border-radius: var(--editor-input-radius);
+  background: var(--editor-base);
+  box-shadow: var(--editor-shadow-control);
 }
 
 .theme-studio__focus-proxy {

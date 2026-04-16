@@ -34,6 +34,12 @@
     "description": "Select trigger border color.",
     "fallback": "--ty-color-border"
   },
+  "select.shadow": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "Select trigger surface shadow.",
+    "fallback": "--ty-shadow-control"
+  },
   "select.border.hover": {
     "$value": "{color-primary}",
     "$type": "color",

@@ -12,6 +12,7 @@
   border-radius: var(--ty-input-radius, var(--ty-border-radius));
   font-size: var(--ty-input-font-size-md, var(--ty-font-size-base));
   background-color: var(--ty-input-bg, var(--ty-color-bg-container));
+  box-shadow: var(--ty-input-shadow, none);
 
   &:hover {
     border-color: var(--ty-input-border-hover, var(--ty-color-primary));

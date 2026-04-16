@@ -125,8 +125,8 @@
           "border-radius": "12px"
         },
         "components": {
-          "button.bg.primary": "#3b82f6",
-          "button.bg.primary-hover": "#2563eb",
+          "button.solid.primary.bg": "#3b82f6",
+          "button.solid.primary.bg-hover": "#2563eb",
           "button.radius": "999px",
           "card.header-padding": "16px 20px"
         }

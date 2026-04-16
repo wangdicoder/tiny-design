@@ -41,12 +41,15 @@ $btn-prefix: #{$prefix}-btn;
     var(--ty-button-current-text),
     var(--ty-button-current-bg),
     var(--ty-button-current-border),
+    var(--ty-button-current-shadow, none),
     var(--ty-button-current-bg-hover),
     var(--ty-button-current-border-hover),
     var(--ty-button-current-text-hover),
+    var(--ty-button-current-shadow-hover, var(--ty-button-current-shadow, none)),
     var(--ty-button-current-bg-active),
     var(--ty-button-current-border-active),
-    var(--ty-button-current-text-active)
+    var(--ty-button-current-text-active),
+    var(--ty-button-current-shadow-active, var(--ty-button-current-shadow-hover, var(--ty-button-current-shadow, none)))
   );
 
   &__loader {
@@ -88,7 +91,10 @@ $btn-prefix: #{$prefix}-btn;
         var(--ty-color-primary),
         var(--ty-color-fill),
         var(--ty-color-primary),
-        var(--ty-color-primary)
+        var(--ty-color-primary),
+        var(--ty-button-solid-default-shadow, var(--ty-shadow-control, none)),
+        var(--ty-button-solid-default-shadow-hover, var(--ty-button-solid-default-shadow, var(--ty-shadow-control, none))),
+        var(--ty-button-solid-default-shadow-active, var(--ty-button-solid-default-shadow-hover, var(--ty-button-solid-default-shadow, var(--ty-shadow-control, none))))
       );
     }
 
@@ -104,7 +110,10 @@ $btn-prefix: #{$prefix}-btn;
         #fff,
         var(--ty-color-primary-active),
         var(--ty-color-primary-active),
-        #fff
+        #fff,
+        none,
+        none,
+        none
       );
     }
 
@@ -120,7 +129,10 @@ $btn-prefix: #{$prefix}-btn;
         #fff,
         var(--ty-color-info-active),
         var(--ty-color-info-active),
-        #fff
+        #fff,
+        none,
+        none,
+        none
       );
     }
 
@@ -136,7 +148,10 @@ $btn-prefix: #{$prefix}-btn;
         #fff,
         var(--ty-color-success-active),
         var(--ty-color-success-active),
-        #fff
+        #fff,
+        none,
+        none,
+        none
       );
     }
 
@@ -152,7 +167,10 @@ $btn-prefix: #{$prefix}-btn;
         #fff,
         var(--ty-color-warning-active),
         var(--ty-color-warning-active),
-        #fff
+        #fff,
+        none,
+        none,
+        none
       );
     }
 
@@ -168,7 +186,10 @@ $btn-prefix: #{$prefix}-btn;
         #fff,
         var(--ty-color-danger-active),
         var(--ty-color-danger-active),
-        #fff
+        #fff,
+        none,
+        none,
+        none
       );
     }
   }
@@ -186,7 +207,10 @@ $btn-prefix: #{$prefix}-btn;
         var(--ty-color-text),
         var(--ty-color-fill-secondary),
         var(--ty-color-border-secondary),
-        var(--ty-color-text)
+        var(--ty-color-text),
+        var(--ty-button-outline-default-shadow, var(--ty-shadow-control, none)),
+        var(--ty-button-outline-default-shadow-hover, var(--ty-button-outline-default-shadow, var(--ty-shadow-control, none))),
+        var(--ty-button-outline-default-shadow-active, var(--ty-button-outline-default-shadow-hover, var(--ty-button-outline-default-shadow, var(--ty-shadow-control, none))))
       );
     }
 
@@ -202,7 +226,10 @@ $btn-prefix: #{$prefix}-btn;
         var(--ty-color-primary),
         var(--ty-color-primary-bg-hover),
         var(--ty-color-primary-active),
-        var(--ty-color-primary)
+        var(--ty-color-primary),
+        none,
+        none,
+        none
       );
     }
 
@@ -218,7 +245,10 @@ $btn-prefix: #{$prefix}-btn;
         var(--ty-color-info),
         rgba(64, 169, 255, 0.18),
         var(--ty-color-info-active),
-        var(--ty-color-info)
+        var(--ty-color-info),
+        none,
+        none,
+        none
       );
     }
 
@@ -234,7 +264,10 @@ $btn-prefix: #{$prefix}-btn;
         var(--ty-color-success),
         rgba(82, 196, 26, 0.18),
         var(--ty-color-success-active),
-        var(--ty-color-success)
+        var(--ty-color-success),
+        none,
+        none,
+        none
       );
     }
 
@@ -250,7 +283,10 @@ $btn-prefix: #{$prefix}-btn;
         var(--ty-color-warning),
         rgba(250, 173, 20, 0.18),
         var(--ty-color-warning-active),
-        var(--ty-color-warning)
+        var(--ty-color-warning),
+        none,
+        none,
+        none
       );
     }
 
@@ -266,7 +302,10 @@ $btn-prefix: #{$prefix}-btn;
         var(--ty-color-danger),
         rgba(255, 77, 79, 0.18),
         var(--ty-color-danger-active),
-        var(--ty-color-danger)
+        var(--ty-color-danger),
+        none,
+        none,
+        none
       );
     }
   }

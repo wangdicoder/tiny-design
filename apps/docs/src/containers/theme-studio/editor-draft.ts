@@ -128,6 +128,7 @@ export function buildPreviewVars(fields: ThemeEditorFields): React.CSSProperties
     '--editor-h2-size': fields.h2Size,
     '--editor-letter-spacing': fields.letterSpacing,
     '--editor-radius': fields.radius,
+    '--editor-shadow-control': fields.shadowControl,
     '--editor-shadow-card': fields.shadowCard,
     '--editor-shadow-focus': fields.shadowFocus,
     '--editor-button-radius': fields.buttonRadius,

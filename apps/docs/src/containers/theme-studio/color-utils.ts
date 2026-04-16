@@ -7,6 +7,14 @@ type OklchColor = {
   c: number;
   h: number;
 };
+export type ShadowValue = {
+  color: string;
+  opacity: number;
+  blur: number;
+  spread: number;
+  offsetX: number;
+  offsetY: number;
+};
 
 function normalizeAlpha(value: number): number {
   if (!Number.isFinite(value)) return 1;
@@ -72,42 +80,66 @@ export function formatOklchColor(color: OklchColor): string {
   return `oklch(${color.l.toFixed(3)} ${color.c.toFixed(3)} ${color.h.toFixed(3)})`;
 }
 
-export function deriveStatusPalette(styles: RuntimeStyles): Pick<
+export function deriveStatusPalette(
+  styles: RuntimeStyles
+): Pick<
   ThemeEditorFields,
-  'success' | 'successForeground' | 'info' | 'infoForeground' | 'warning' | 'warningForeground' | 'danger' | 'dangerForeground'
+  | 'success'
+  | 'successForeground'
+  | 'info'
+  | 'infoForeground'
+  | 'warning'
+  | 'warningForeground'
+  | 'danger'
+  | 'dangerForeground'
 > {
-  const mode: ThemeMode = parseCssScalar(styles.background ?? '') != null
-    ? ((parseOklchColor(styles.background)?.l ?? 1) < 0.45 ? 'dark' : 'light')
-    : 'light';
-  const seed = parseOklchColor(styles.primary) ?? parseOklchColor(styles.accent) ?? parseOklchColor(styles.ring);
+  const mode: ThemeMode =
+    parseCssScalar(styles.background ?? '') != null
+      ? (parseOklchColor(styles.background)?.l ?? 1) < 0.45
+        ? 'dark'
+        : 'light'
+      : 'light';
+  const seed =
+    parseOklchColor(styles.primary) ??
+    parseOklchColor(styles.accent) ??
+    parseOklchColor(styles.ring);
   const chromaBase = clamp(seed?.c ?? (mode === 'dark' ? 0.17 : 0.19), 0.1, 0.24);
   const lightnessShift = seed ? (seed.l - (mode === 'dark' ? 0.78 : 0.58)) * 0.08 : 0;
   const hueShift = seed ? ((seed.h - 220) / 220) * 6 : 0;
   const statusForeground = mode === 'dark' ? 'oklch(0.145 0 0)' : 'oklch(0.985 0 0)';
 
-  const createStatus = (hue: number, lightness: number, chromaScale: number) => formatOklchColor({
-    l: clamp(lightness + lightnessShift, mode === 'dark' ? 0.68 : 0.54, mode === 'dark' ? 0.84 : 0.74),
-    c: clamp(chromaBase * chromaScale, 0.12, 0.26),
-    h: normalizeHue(hue + hueShift),
-  });
+  const createStatus = (hue: number, lightness: number, chromaScale: number) =>
+    formatOklchColor({
+      l: clamp(
+        lightness + lightnessShift,
+        mode === 'dark' ? 0.68 : 0.54,
+        mode === 'dark' ? 0.84 : 0.74
+      ),
+      c: clamp(chromaBase * chromaScale, 0.12, 0.26),
+      h: normalizeHue(hue + hueShift),
+    });
 
   return {
     success: createStatus(148, mode === 'dark' ? 0.76 : 0.62, 0.92),
     successForeground: statusForeground,
-    info: createStatus(238, mode === 'dark' ? 0.74 : 0.60, 0.96),
+    info: createStatus(238, mode === 'dark' ? 0.74 : 0.6, 0.96),
     infoForeground: statusForeground,
-    warning: createStatus(72, mode === 'dark' ? 0.80 : 0.69, 0.94),
+    warning: createStatus(72, mode === 'dark' ? 0.8 : 0.69, 0.94),
     warningForeground: mode === 'dark' ? 'oklch(0.145 0 0)' : 'oklch(0.205 0 0)',
-    danger: createStatus(28, mode === 'dark' ? 0.72 : 0.60, 1),
+    danger: createStatus(28, mode === 'dark' ? 0.72 : 0.6, 1),
     dangerForeground: statusForeground,
   };
 }
 
 function parseHexColor(color: string): [number, number, number] | null {
   const normalized = color.trim().replace('#', '');
-  const value = normalized.length === 3
-    ? normalized.split('').map((char) => `${char}${char}`).join('')
-    : normalized;
+  const value =
+    normalized.length === 3
+      ? normalized
+          .split('')
+          .map((char) => `${char}${char}`)
+          .join('')
+      : normalized;
 
   if (!/^[0-9a-f]{6}$/i.test(value)) return null;
 
@@ -155,9 +187,138 @@ export function softenSurface(color: string, mode: ThemeMode, amount: number): s
   return mode === 'dark' ? tintColor(color, amount) : shadeColor(color, amount);
 }
 
-export function buildShadow(styles: RuntimeStyles): string {
+function splitTopLevelTokens(value: string): string[] {
+  const tokens: string[] = [];
+  let current = '';
+  let depth = 0;
+
+  for (const char of value) {
+    if (char === '(') depth += 1;
+    if (char === ')') depth = Math.max(0, depth - 1);
+
+    if (/\s/.test(char) && depth === 0) {
+      if (current) {
+        tokens.push(current);
+        current = '';
+      }
+      continue;
+    }
+
+    current += char;
+  }
+
+  if (current) tokens.push(current);
+  return tokens;
+}
+
+function parsePxValue(token: string): number | null {
+  const trimmed = token.trim();
+  if (/^-?0(?:\.0+)?(?:px)?$/i.test(trimmed)) return 0;
+
+  const match = /^(-?\d+(?:\.\d+)?)px$/i.exec(trimmed);
+  if (!match) return null;
+
+  const parsed = Number.parseFloat(match[1]);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function rgbChannelToHex(value: string): string | null {
+  const parsed = Number.parseInt(value.trim(), 10);
+  if (!Number.isFinite(parsed) || parsed < 0 || parsed > 255) return null;
+  return parsed.toString(16).padStart(2, '0');
+}
+
+function parseShadowColor(value: string): Pick<ShadowValue, 'color' | 'opacity'> | null {
+  const colorMixMatch =
+    /^color-mix\(in srgb,\s*(.+?)\s+(-?\d+(?:\.\d+)?)%,\s*transparent\s*\)$/i.exec(value.trim());
+  if (colorMixMatch) {
+    const percentage = Number.parseFloat(colorMixMatch[2]);
+    if (Number.isFinite(percentage)) {
+      return {
+        color: colorMixMatch[1].trim(),
+        opacity: clamp(percentage / 100, 0, 1),
+      };
+    }
+  }
+
+  const rgbaMatch = /^rgba\(\s*([^,]+)\s*,\s*([^,]+)\s*,\s*([^,]+)\s*,\s*([^)]+)\)$/i.exec(
+    value.trim()
+  );
+  if (rgbaMatch) {
+    const red = rgbChannelToHex(rgbaMatch[1]);
+    const green = rgbChannelToHex(rgbaMatch[2]);
+    const blue = rgbChannelToHex(rgbaMatch[3]);
+    const alpha = Number.parseFloat(rgbaMatch[4]);
+
+    if (red && green && blue && Number.isFinite(alpha)) {
+      return {
+        color: `#${red}${green}${blue}`,
+        opacity: clamp(alpha, 0, 1),
+      };
+    }
+  }
+
+  const rgbMatch = /^rgb\(\s*([^,]+)\s*,\s*([^,]+)\s*,\s*([^,]+)\s*\)$/i.exec(value.trim());
+  if (rgbMatch) {
+    const red = rgbChannelToHex(rgbMatch[1]);
+    const green = rgbChannelToHex(rgbMatch[2]);
+    const blue = rgbChannelToHex(rgbMatch[3]);
+
+    if (red && green && blue) {
+      return {
+        color: `#${red}${green}${blue}`,
+        opacity: 1,
+      };
+    }
+  }
+
+  return value.trim()
+    ? {
+        color: value.trim(),
+        opacity: 1,
+      }
+    : null;
+}
+
+export function formatShadowValue(shadow: ShadowValue): string {
+  const offsetX = `${shadow.offsetX}px`;
+  const offsetY = `${shadow.offsetY}px`;
+  const blur = `${shadow.blur}px`;
+  const spread = `${shadow.spread}px`;
+
+  return `${offsetX} ${offsetY} ${blur} ${spread} ${toRgba(shadow.color, shadow.opacity)}`;
+}
+
+export function parseShadowValue(value: string, fallback: ShadowValue): ShadowValue {
+  const trimmed = value.trim();
+  if (!trimmed || trimmed.toLowerCase() === 'none') return fallback;
+
+  const tokens = splitTopLevelTokens(trimmed);
+  if (tokens.length < 5) return fallback;
+
+  const offsetX = parsePxValue(tokens[0]);
+  const offsetY = parsePxValue(tokens[1]);
+  const blur = parsePxValue(tokens[2]);
+  const spread = parsePxValue(tokens[3]);
+  const color = parseShadowColor(tokens.slice(4).join(' '));
+
+  if (offsetX == null || offsetY == null || blur == null || spread == null || !color) {
+    return fallback;
+  }
+
+  return {
+    color: color.color,
+    opacity: color.opacity,
+    blur,
+    spread,
+    offsetX,
+    offsetY,
+  };
+}
+
+export function buildShadow(styles: RuntimeStyles, fallback = DEFAULT_FIELDS.shadowCard): string {
   const color = styles['shadow-color'];
-  if (!color) return DEFAULT_FIELDS.shadowCard;
+  if (!color) return fallback;
 
   const opacity = Number.parseFloat(styles['shadow-opacity'] ?? '0.1');
   const blur = styles['shadow-blur'] ?? '0px';

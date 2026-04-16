@@ -29,6 +29,12 @@
     "description": "Input border color.",
     "fallback": "--ty-color-border"
   },
+  "input.shadow": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "Input surface shadow.",
+    "fallback": "--ty-shadow-control"
+  },
   "input.border.hover": {
     "$value": "{color-primary}",
     "$type": "color",

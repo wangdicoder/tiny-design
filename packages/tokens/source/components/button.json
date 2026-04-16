@@ -44,6 +44,42 @@
     "$type": "number",
     "description": "Overlay opacity during button loading state."
   },
+  "button.solid.default.shadow": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "solid default button shadow.",
+    "fallback": "--ty-shadow-control"
+  },
+  "button.solid.default.shadow-hover": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "solid default button hover shadow.",
+    "fallback": "--ty-shadow-control"
+  },
+  "button.solid.default.shadow-active": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "solid default button active shadow.",
+    "fallback": "--ty-shadow-control"
+  },
+  "button.outline.default.shadow": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "outline default button shadow.",
+    "fallback": "--ty-shadow-control"
+  },
+  "button.outline.default.shadow-hover": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "outline default button hover shadow.",
+    "fallback": "--ty-shadow-control"
+  },
+  "button.outline.default.shadow-active": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "outline default button active shadow.",
+    "fallback": "--ty-shadow-control"
+  },
   "button.font-size-sm": {
     "$value": "{control.font-size.sm}",
     "$type": "dimension",

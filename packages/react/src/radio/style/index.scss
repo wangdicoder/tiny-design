@@ -29,6 +29,7 @@
     border-radius: 100%;
     background-color: var(--ty-radio-bg, var(--ty-color-bg-container));
     border: 1px solid var(--ty-radio-border, var(--ty-color-primary));
+    box-shadow: var(--ty-radio-shadow, none);
     align-items: center;
     justify-content: center;
 
