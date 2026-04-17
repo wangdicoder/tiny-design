@@ -396,10 +396,10 @@ export function MailPreview(): React.ReactElement {
       <Split min={320} max={360} defaultSize="42%" className="theme-studio__mail-split">
         <Card className="theme-studio__mail-panel">
         <Card.Content>
-          <div className="theme-studio__mail-panel-head">
+          <Flex justify="space-between" className="theme-studio__mail-panel-head">
             <Heading level={3}>{folderLabels[activeFolder]}</Heading>
             <Segmented
-              size="sm"
+              size="md"
               value={activeFilter}
               options={[
                 { label: 'All mail', value: 'all' },
@@ -407,7 +407,7 @@ export function MailPreview(): React.ReactElement {
               ]}
               onChange={(value) => setActiveFilter(String(value) as MailFilter)}
             />
-          </div>
+          </Flex>
 
           <div className="theme-studio__mail-search-wrap">
             <Input
