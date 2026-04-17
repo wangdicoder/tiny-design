@@ -8,6 +8,7 @@ export { IconColorlens } from './icon-colorlens';
 export { IconBrush } from './icon-brush';
 export { IconAccessible } from './icon-accessible';
 export { IconPlus } from './icon-plus';
+export { IconMore } from './icon-more';
 export { IconClose } from './icon-close';
 export { IconMinus } from './icon-minus';
 export { IconEye } from './icon-eye';
