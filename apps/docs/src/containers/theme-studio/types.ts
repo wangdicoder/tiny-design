@@ -52,6 +52,7 @@ export interface ThemeEditorFields {
   h2Size: string;
   letterSpacing: string;
   radius: string;
+  shadowControl: string;
   shadowCard: string;
   shadowFocus: string;
   buttonRadius: string;

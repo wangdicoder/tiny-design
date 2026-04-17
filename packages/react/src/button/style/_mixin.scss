@@ -2,16 +2,23 @@
   $color,
   $background,
   $border,
+  $shadow: null,
   $hover-background: null,
   $hover-border: null,
   $hover-color: $color,
+  $hover-shadow: $shadow,
   $active-background: null,
   $active-border: null,
-  $active-color: $color
+  $active-color: $color,
+  $active-shadow: $hover-shadow
 ) {
   color: $color;
   background: $background;
   border-color: $border;
+
+  @if $shadow {
+    box-shadow: $shadow;
+  }
 
   &:hover {
     color: $hover-color;
@@ -22,6 +29,10 @@
 
     @if $hover-border {
       border-color: $hover-border;
+    }
+
+    @if $hover-shadow {
+      box-shadow: $hover-shadow;
     }
   }
 
@@ -34,6 +45,10 @@
 
     @if $hover-border {
       border-color: $hover-border;
+    }
+
+    @if $hover-shadow {
+      box-shadow: $hover-shadow;
     }
 
     z-index: 1;
@@ -49,12 +64,17 @@
     @if $active-border {
       border-color: $active-border;
     }
+
+    @if $active-shadow {
+      box-shadow: $active-shadow;
+    }
   }
 
   &:disabled {
     color: var(--ty-button-disabled-text, var(--ty-color-text-quaternary));
     background-color: var(--ty-button-disabled-bg, var(--ty-color-bg-disabled));
     border-color: var(--ty-button-disabled-border, var(--ty-color-border));
+    box-shadow: none;
   }
 }
 
@@ -80,11 +100,15 @@
   $hover-text-fallback: $text-fallback,
   $active-bg-fallback: $hover-bg-fallback,
   $active-border-fallback: $hover-border-fallback,
-  $active-text-fallback: $hover-text-fallback
+  $active-text-fallback: $hover-text-fallback,
+  $shadow-fallback: none,
+  $hover-shadow-fallback: $shadow-fallback,
+  $active-shadow-fallback: $hover-shadow-fallback
 ) {
   --ty-button-current-text: var(--ty-button-#{$variant}-#{$color}-text, #{$text-fallback});
   --ty-button-current-bg: var(--ty-button-#{$variant}-#{$color}-bg, #{$bg-fallback});
   --ty-button-current-border: var(--ty-button-#{$variant}-#{$color}-border, #{$border-fallback});
+  --ty-button-current-shadow: var(--ty-button-#{$variant}-#{$color}-shadow, #{$shadow-fallback});
   --ty-button-current-text-hover: var(
     --ty-button-#{$variant}-#{$color}-text-hover,
     #{$hover-text-fallback}
@@ -97,6 +121,10 @@
     --ty-button-#{$variant}-#{$color}-border-hover,
     #{$hover-border-fallback}
   );
+  --ty-button-current-shadow-hover: var(
+    --ty-button-#{$variant}-#{$color}-shadow-hover,
+    #{$hover-shadow-fallback}
+  );
   --ty-button-current-text-active: var(
     --ty-button-#{$variant}-#{$color}-text-active,
     #{$active-text-fallback}
@@ -108,5 +136,9 @@
   --ty-button-current-border-active: var(
     --ty-button-#{$variant}-#{$color}-border-active,
     #{$active-border-fallback}
+  );
+  --ty-button-current-shadow-active: var(
+    --ty-button-#{$variant}-#{$color}-shadow-active,
+    #{$active-shadow-fallback}
   );
 }

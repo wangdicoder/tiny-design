@@ -36,6 +36,7 @@
     border-radius: var(--ty-checkbox-radius, 2px);
     border: 1px solid var(--ty-checkbox-border, var(--ty-color-border));
     background-color: var(--ty-checkbox-bg, var(--ty-color-bg-container));
+    box-shadow: var(--ty-checkbox-shadow, none);
     transition: 200ms;
     line-height: 1;
     vertical-align: middle;

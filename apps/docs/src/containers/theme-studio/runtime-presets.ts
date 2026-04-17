@@ -18,15 +18,20 @@ function buildPresetDescription(source: TweakcnRuntimePresetSource): string {
     : 'Imported from tweakcn runtime preset.';
 }
 
-function readRuntimeStyle(styles: RuntimeStyles, key: string, fallbackStyles?: RuntimeStyles): string | undefined {
+function readRuntimeStyle(
+  styles: RuntimeStyles,
+  key: string,
+  fallbackStyles?: RuntimeStyles
+): string | undefined {
   return styles[key] ?? fallbackStyles?.[key];
 }
 
 function mapRuntimeStylesToFields(
   styles: RuntimeStyles,
-  typographyFallbackStyles?: RuntimeStyles,
+  typographyFallbackStyles?: RuntimeStyles
 ): Partial<ThemeEditorFields> {
-  const radius = styles.radius ?? DEFAULT_FIELDS.radius;
+  const radius =
+    readRuntimeStyle(styles, 'radius', typographyFallbackStyles) ?? DEFAULT_FIELDS.radius;
   const ring = styles.ring ?? styles.primary ?? DEFAULT_FIELDS.ring;
   const statusPalette = deriveStatusPalette(styles);
 
@@ -64,16 +69,23 @@ function mapRuntimeStylesToFields(
     sidebar: styles.sidebar ?? DEFAULT_FIELDS.sidebar,
     sidebarForeground: styles['sidebar-foreground'] ?? DEFAULT_FIELDS.sidebarForeground,
     sidebarPrimary: styles['sidebar-primary'] ?? DEFAULT_FIELDS.sidebarPrimary,
-    sidebarPrimaryForeground: styles['sidebar-primary-foreground'] ?? DEFAULT_FIELDS.sidebarPrimaryForeground,
+    sidebarPrimaryForeground:
+      styles['sidebar-primary-foreground'] ?? DEFAULT_FIELDS.sidebarPrimaryForeground,
     sidebarAccent: styles['sidebar-accent'] ?? DEFAULT_FIELDS.sidebarAccent,
-    sidebarAccentForeground: styles['sidebar-accent-foreground'] ?? DEFAULT_FIELDS.sidebarAccentForeground,
+    sidebarAccentForeground:
+      styles['sidebar-accent-foreground'] ?? DEFAULT_FIELDS.sidebarAccentForeground,
     sidebarBorder: styles['sidebar-border'] ?? DEFAULT_FIELDS.sidebarBorder,
     sidebarRing: styles['sidebar-ring'] ?? DEFAULT_FIELDS.sidebarRing,
-    fontSans: readRuntimeStyle(styles, 'font-sans', typographyFallbackStyles) ?? DEFAULT_FIELDS.fontSans,
-    fontMono: readRuntimeStyle(styles, 'font-mono', typographyFallbackStyles) ?? DEFAULT_FIELDS.fontMono,
-    letterSpacing: readRuntimeStyle(styles, 'letter-spacing', typographyFallbackStyles) ?? DEFAULT_FIELDS.letterSpacing,
+    fontSans:
+      readRuntimeStyle(styles, 'font-sans', typographyFallbackStyles) ?? DEFAULT_FIELDS.fontSans,
+    fontMono:
+      readRuntimeStyle(styles, 'font-mono', typographyFallbackStyles) ?? DEFAULT_FIELDS.fontMono,
+    letterSpacing:
+      readRuntimeStyle(styles, 'letter-spacing', typographyFallbackStyles) ??
+      DEFAULT_FIELDS.letterSpacing,
     radius,
-    shadowCard: buildShadow(styles),
+    shadowControl: buildShadow(styles, DEFAULT_FIELDS.shadowControl),
+    shadowCard: buildShadow(styles, DEFAULT_FIELDS.shadowCard),
     shadowFocus: `0 0 0 3px ${toRgba(ring, 0.24)}`,
     buttonRadius: radius,
     inputRadius: radius,
@@ -98,26 +110,15 @@ function buildPresetFromRuntimeSource(source: TweakcnRuntimePresetSource): Theme
       lightStyles.sidebar ?? DEFAULT_FIELDS.sidebar,
     ],
     drafts: {
-      light: createDraft(
-        source.id,
-        source.label,
-        'tweakcn',
-        'light',
-        lightFields,
-      ),
-      dark: createDraft(
-        source.id,
-        source.label,
-        'tweakcn',
-        'dark',
-        darkFields,
-      ),
+      light: createDraft(source.id, source.label, 'tweakcn', 'light', lightFields),
+      dark: createDraft(source.id, source.label, 'tweakcn', 'dark', darkFields),
     },
   };
 }
 
-export const THEME_EDITOR_PRESETS: ThemeEditorPreset[] =
-  TWEAKCN_RUNTIME_PRESET_SOURCES.map(buildPresetFromRuntimeSource);
+export const THEME_EDITOR_PRESETS: ThemeEditorPreset[] = TWEAKCN_RUNTIME_PRESET_SOURCES.map(
+  buildPresetFromRuntimeSource
+);
 
 export function getPresetById(presetId: string): ThemeEditorPreset {
   return THEME_EDITOR_PRESETS.find((preset) => preset.id === presetId) ?? THEME_EDITOR_PRESETS[0];

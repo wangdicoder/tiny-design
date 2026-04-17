@@ -32,6 +32,12 @@
     "description": "Radio border color.",
     "fallback": "--ty-color-primary"
   },
+  "radio.shadow": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "Radio control shadow.",
+    "fallback": "--ty-shadow-control"
+  },
   "radio.border.checked": {
     "$value": "{color-primary}",
     "$type": "color",

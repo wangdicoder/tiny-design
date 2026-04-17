@@ -37,6 +37,12 @@
     "description": "Checkbox border color.",
     "fallback": "--ty-color-border"
   },
+  "checkbox.shadow": {
+    "$value": "{shadow-control}",
+    "$type": "shadow",
+    "description": "Checkbox control shadow.",
+    "fallback": "--ty-shadow-control"
+  },
   "checkbox.border.hover": {
     "$value": "{color-primary}",
     "$type": "color",

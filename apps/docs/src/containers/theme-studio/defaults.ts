@@ -50,6 +50,7 @@ export const DEFAULT_FIELDS: ThemeEditorFields = {
   h2Size: '32px',
   letterSpacing: '-0.02em',
   radius: '0.3rem',
+  shadowControl: 'none',
   shadowCard: '0 20px 55px rgba(17, 24, 39, 0.08)',
   shadowFocus: '0 0 0 3px rgba(110, 65, 191, 0.22)',
   buttonRadius: '0.3rem',

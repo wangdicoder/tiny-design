@@ -1,6 +1,7 @@
 # Token Registry Spec
 
 ## Purpose
+
 The token registry is the canonical machine-readable index of all supported v2 tokens. It is generated from JSON token sources and consumed by:
 
 - Theme Studio
@@ -11,6 +12,7 @@ The token registry is the canonical machine-readable index of all supported v2 t
 The registry is metadata, not a theme document. It describes what tokens exist, how they map to CSS variables, and what fallback behavior they expect.
 
 ## Output Location
+
 The build step should generate:
 
 - `packages/tokens/dist/registry.json`
@@ -30,8 +32,8 @@ The build step should generate:
 
 ```json
 {
-  "key": "button.bg.primary",
-  "cssVar": "--ty-button-bg-primary",
+  "key": "button.solid.primary.bg",
+  "cssVar": "--ty-button-solid-primary-bg",
   "category": "component",
   "component": "button",
   "type": "color",
@@ -45,6 +47,7 @@ The build step should generate:
 ```
 
 ## Required Fields
+
 - `key`
 - `cssVar`
 - `category`
@@ -53,9 +56,10 @@ The build step should generate:
 - `status`
 
 ## Field Definitions
+
 - `key`
   Stable token id in dot notation with kebab-case segments.
-  Examples: `color-primary`, `button.bg.primary`, `card.header-padding`
+  Examples: `color-primary`, `button.solid.primary.bg`, `card.header-padding`
 - `cssVar`
   Public runtime CSS variable name.
 - `category`
@@ -76,23 +80,28 @@ The build step should generate:
   Recommended component style fallback target. This field is guidance metadata for component authors and docs tooling; it does not mean the build step will emit an automatic fallback chain in generated CSS.
 - `status`
   One of: `active`, `deprecated`, `internal`
+
 ## Naming Rules
+
 - `key` must match the theme schema token key pattern.
 - `cssVar` must always use kebab-case.
 - `component` names must use full nouns such as `button`, `input`, `card`.
 - New entries must use the primary v2 names directly. Short prefixes like `btn`, `picker`, or `kbd` are not allowed.
 
 ## Fallback Rules
+
 - Primitive tokens should not appear in authored component source styles.
 - Semantic tokens usually have no registry fallback.
 - Component tokens should include the semantic fallback they are expected to use in authored component source styles.
 
 Examples:
-- `button.bg.primary` -> fallback `--ty-color-primary`
+
+- `button.solid.primary.bg` -> fallback `--ty-color-primary`
 - `button.radius` -> fallback `--ty-border-radius`
 - `card.bg` -> fallback `--ty-color-bg-container`
 
 ## Status Rules
+
 - `active`
   Visible in Theme Studio and allowed in theme documents.
 - `deprecated`
@@ -132,6 +141,7 @@ Examples:
 ```
 
 ## Validation Rules
+
 Build should fail when:
 
 1. Two entries share the same `key`

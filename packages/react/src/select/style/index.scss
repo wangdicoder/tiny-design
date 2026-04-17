@@ -64,6 +64,7 @@
     border: 1px solid var(--ty-select-border, var(--ty-input-border, var(--ty-color-border)));
     border-radius: var(--ty-select-radius, var(--ty-border-radius));
     background-color: var(--ty-select-bg, var(--ty-input-bg, var(--ty-color-bg-container)));
+    box-shadow: var(--ty-select-shadow, var(--ty-input-shadow, none));
     box-sizing: border-box;
     transition: all 0.3s;
 

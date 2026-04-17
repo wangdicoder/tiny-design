@@ -12,6 +12,7 @@
   border: 1px solid var(--ty-input-border);
   border-radius: var(--ty-input-radius, var(--ty-border-radius));
   background-color: var(--ty-input-bg, var(--ty-color-bg-container));
+  box-shadow: var(--ty-input-shadow, none);
   transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
 
   &:hover {

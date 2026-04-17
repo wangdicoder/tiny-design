@@ -35,11 +35,11 @@ body {
   }
 
   &__layout {
-    padding: 40px 220px 40px #{$sidebar-width + 40px};
+    padding: 40px 220px 40px #{$sidebar-width + 20px};
     overflow-x: hidden;
 
     @media (max-width: $size-xl) {
-      padding: 40px 30px 40px #{$sidebar-width + 30px};
+      padding: 40px 30px 40px #{$sidebar-width + 20px};
     }
 
     @media (max-width: $size-md) {

@@ -1,4 +1,9 @@
 {
+  "shadow-control": {
+    "$value": "none",
+    "$type": "shadow",
+    "description": "Control surface shadow used by input-like components and neutral buttons."
+  },
   "shadow-btn": {
     "$value": "inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)",
     "$type": "shadow",

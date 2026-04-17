@@ -30,6 +30,15 @@ function normalizeImportedThemeDocument(theme: ThemeDocument): ThemeDocument {
   return validation.normalizedDocument as ThemeDocument;
 }
 
+function combineShadowValues(...values: Array<string | undefined>): string {
+  return (
+    values
+      .map((value) => value?.trim())
+      .filter((value): value is string => Boolean(value) && value !== 'none')
+      .join(', ') || 'none'
+  );
+}
+
 export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocument {
   const { fields } = draft;
   const primaryHover = tintColor(fields.primary, draft.mode === 'dark' ? 0.12 : 0.08);
@@ -37,9 +46,21 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
   const primarySurface = toRgba(fields.primary, draft.mode === 'dark' ? 0.16 : 0.08);
   const primarySurfaceActive = toRgba(fields.primary, draft.mode === 'dark' ? 0.28 : 0.18);
   const defaultHover = softenSurface(fields.muted, draft.mode, draft.mode === 'dark' ? 0.1 : 0.06);
-  const defaultActive = softenSurface(fields.muted, draft.mode, draft.mode === 'dark' ? 0.18 : 0.12);
-  const defaultBorderHover = softenSurface(fields.border, draft.mode, draft.mode === 'dark' ? 0.16 : 0.12);
-  const defaultBorderActive = softenSurface(fields.border, draft.mode, draft.mode === 'dark' ? 0.24 : 0.18);
+  const defaultActive = softenSurface(
+    fields.muted,
+    draft.mode,
+    draft.mode === 'dark' ? 0.18 : 0.12
+  );
+  const defaultBorderHover = softenSurface(
+    fields.border,
+    draft.mode,
+    draft.mode === 'dark' ? 0.16 : 0.12
+  );
+  const defaultBorderActive = softenSurface(
+    fields.border,
+    draft.mode,
+    draft.mode === 'dark' ? 0.24 : 0.18
+  );
   const infoHover = tintColor(fields.info, draft.mode === 'dark' ? 0.12 : 0.08);
   const infoActive = tintColor(fields.info, draft.mode === 'dark' ? 0.2 : 0.16);
   const successHover = tintColor(fields.success, draft.mode === 'dark' ? 0.12 : 0.08);
@@ -48,6 +69,7 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
   const warningActive = tintColor(fields.warning, draft.mode === 'dark' ? 0.2 : 0.16);
   const dangerHover = tintColor(fields.danger, draft.mode === 'dark' ? 0.12 : 0.08);
   const dangerActive = tintColor(fields.danger, draft.mode === 'dark' ? 0.2 : 0.16);
+  const controlFocusShadow = combineShadowValues(fields.shadowControl, fields.shadowFocus);
 
   return {
     meta: {
@@ -117,6 +139,7 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'h1-font-size': fields.h1Size,
         'h2-font-size': fields.h2Size,
         'border-radius': fields.radius,
+        'shadow-control': fields.shadowControl,
         'shadow-card': fields.shadowCard,
         'shadow-focus': fields.shadowFocus,
         'control.height.sm': fields.fieldHeightSm,
@@ -127,19 +150,39 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'control.padding-inline.lg': fields.fieldPaddingLg,
       },
       components: {
-        'button.bg.primary': fields.primary,
-        'button.bg.primary-hover': primaryHover,
-        'button.bg.primary-active': primaryActive,
-        'button.text.primary': fields.primaryForeground,
-        'button.bg.default': fields.muted,
-        'button.bg.default-hover': defaultHover,
-        'button.bg.default-active': defaultActive,
-        'button.border.default': fields.border,
-        'button.border.default-hover': defaultBorderHover,
-        'button.border.default-active': defaultBorderActive,
-        'button.text.default': fields.baseForeground,
-        'button.text.default-hover': fields.baseForeground,
-        'button.text.default-active': fields.baseForeground,
+        'button.solid.primary.bg': fields.primary,
+        'button.solid.primary.bg-hover': primaryHover,
+        'button.solid.primary.bg-active': primaryActive,
+        'button.solid.primary.border': fields.primary,
+        'button.solid.primary.border-hover': primaryHover,
+        'button.solid.primary.border-active': primaryActive,
+        'button.solid.primary.text': fields.primaryForeground,
+        'button.solid.primary.text-hover': fields.primaryForeground,
+        'button.solid.primary.text-active': fields.primaryForeground,
+        'button.solid.default.bg': fields.muted,
+        'button.solid.default.bg-hover': defaultHover,
+        'button.solid.default.bg-active': defaultActive,
+        'button.solid.default.border': fields.border,
+        'button.solid.default.border-hover': defaultBorderHover,
+        'button.solid.default.border-active': defaultBorderActive,
+        'button.solid.default.text': fields.baseForeground,
+        'button.solid.default.text-hover': fields.baseForeground,
+        'button.solid.default.text-active': fields.baseForeground,
+        'button.outline.default.bg': fields.base,
+        'button.outline.default.bg-hover': defaultHover,
+        'button.outline.default.bg-active': defaultActive,
+        'button.outline.default.border': fields.border,
+        'button.outline.default.border-hover': defaultBorderHover,
+        'button.outline.default.border-active': defaultBorderActive,
+        'button.outline.default.text': fields.baseForeground,
+        'button.outline.default.text-hover': fields.baseForeground,
+        'button.outline.default.text-active': fields.baseForeground,
+        'button.solid.default.shadow': fields.shadowControl,
+        'button.solid.default.shadow-hover': fields.shadowControl,
+        'button.solid.default.shadow-active': fields.shadowControl,
+        'button.outline.default.shadow': fields.shadowControl,
+        'button.outline.default.shadow-hover': fields.shadowControl,
+        'button.outline.default.shadow-active': fields.shadowControl,
         'button.radius': fields.buttonRadius,
         'button.height.sm': fields.buttonHeightSm,
         'button.height.md': fields.buttonHeightMd,
@@ -159,9 +202,10 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'input.bg': fields.base,
         'input.color': fields.baseForeground,
         'input.border': fields.input,
+        'input.shadow': fields.shadowControl,
         'input.border.hover': fields.ring,
         'input.border.focus': fields.ring,
-        'input.shadow.focus': fields.shadowFocus,
+        'input.shadow.focus': controlFocusShadow,
         'input.radius': fields.inputRadius,
         'input.height.sm': fields.fieldHeightSm,
         'input.height.md': fields.fieldHeightMd,
@@ -172,9 +216,10 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'select.bg': fields.base,
         'select.color': fields.baseForeground,
         'select.border': fields.input,
+        'select.shadow': fields.shadowControl,
         'select.border.hover': fields.ring,
         'select.border.focus': fields.ring,
-        'select.shadow.focus': fields.shadowFocus,
+        'select.shadow.focus': controlFocusShadow,
         'select.radius': fields.inputRadius,
         'select.height.sm': fields.fieldHeightSm,
         'select.height.md': fields.fieldHeightMd,
@@ -190,7 +235,7 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'picker.input-border': fields.input,
         'picker.input-border-hover': fields.ring,
         'picker.input-border-focus': fields.ring,
-        'picker.input-shadow-focus': fields.shadowFocus,
+        'picker.input-shadow-focus': controlFocusShadow,
         'picker.input-color': fields.baseForeground,
         'picker.input-color-placeholder': fields.mutedForeground,
         'picker.input-color-muted': fields.mutedForeground,
@@ -270,7 +315,7 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'cascader.border': fields.input,
         'cascader.border-hover': fields.ring,
         'cascader.border-focus': fields.ring,
-        'cascader.shadow-focus': fields.shadowFocus,
+        'cascader.shadow-focus': controlFocusShadow,
         'cascader.radius': fields.inputRadius,
         'cascader.padding.sm': `0 calc(${fields.fieldPaddingSm} + 20px) 0 ${fields.fieldPaddingSm}`,
         'cascader.padding.md': `0 calc(${fields.fieldPaddingMd} + 20px) 0 ${fields.fieldPaddingMd}`,
@@ -279,10 +324,11 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'native-select.border': fields.input,
         'native-select.border-hover': fields.ring,
         'native-select.border-focus': fields.ring,
-        'native-select.shadow-focus': fields.shadowFocus,
+        'native-select.shadow-focus': controlFocusShadow,
         'native-select.radius': fields.inputRadius,
         'checkbox.bg': fields.base,
         'checkbox.border': fields.input,
+        'checkbox.shadow': fields.shadowControl,
         'checkbox.border.hover': fields.ring,
         'checkbox.radius': fields.radius,
         'checkbox.bg.checked': fields.primary,
@@ -290,6 +336,7 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
         'checkbox.indicator-color': fields.primaryForeground,
         'radio.bg': fields.base,
         'radio.border': fields.input,
+        'radio.shadow': fields.shadowControl,
         'radio.border.checked': fields.primary,
         'radio.dot-bg': fields.primary,
         'switch.bg': fields.mutedForeground,
@@ -342,7 +389,11 @@ export function buildThemeDocumentFromDraft(draft: ThemeEditorDraft): ThemeDocum
   };
 }
 
-function readToken(theme: ThemeDocument, semanticKey: string, componentKey?: string): string | undefined {
+function readToken(
+  theme: ThemeDocument,
+  semanticKey: string,
+  componentKey?: string
+): string | undefined {
   const semantic = theme.tokens?.semantic?.[semanticKey];
   if (semantic != null) return String(semantic);
 
@@ -354,7 +405,11 @@ function readToken(theme: ThemeDocument, semanticKey: string, componentKey?: str
   return undefined;
 }
 
-function readComponentFirst(theme: ThemeDocument, componentKey: string, semanticKey?: string): string | undefined {
+function readComponentFirst(
+  theme: ThemeDocument,
+  componentKey: string,
+  semanticKey?: string
+): string | undefined {
   const component = theme.tokens?.components?.[componentKey];
   if (component != null) return String(component);
 
@@ -384,9 +439,22 @@ export function buildDraftFromThemeDocument(theme: ThemeDocument): ThemeEditorDr
     fields: {
       ...baseFields,
       primary: readToken(normalizedTheme, 'color-primary') ?? baseFields.primary,
-      primaryForeground: readComponentFirst(normalizedTheme, 'button.text.primary') ?? baseFields.primaryForeground,
-      secondary: readToken(normalizedTheme, 'color-fill', 'button.bg.default') ?? baseFields.secondary,
-      secondaryForeground: readToken(normalizedTheme, 'color-text', 'button.text.default') ?? baseFields.secondaryForeground,
+      primaryForeground:
+        readComponentFirst(normalizedTheme, 'button.solid.primary.text') ??
+        readComponentFirst(normalizedTheme, 'button.text.primary') ??
+        baseFields.primaryForeground,
+      secondary:
+        readComponentFirst(normalizedTheme, 'card.bg.filled') ??
+        readComponentFirst(normalizedTheme, 'table.header-bg') ??
+        readComponentFirst(normalizedTheme, 'tag.bg') ??
+        readToken(normalizedTheme, 'color-fill', 'button.solid.default.bg') ??
+        readToken(normalizedTheme, 'color-fill', 'button.bg.default') ??
+        baseFields.secondary,
+      secondaryForeground:
+        readComponentFirst(normalizedTheme, 'tag.color') ??
+        readToken(normalizedTheme, 'color-text', 'button.solid.default.text') ??
+        readToken(normalizedTheme, 'color-text', 'button.text.default') ??
+        baseFields.secondaryForeground,
       accent: readToken(normalizedTheme, 'color-primary-bg') ?? baseFields.accent,
       success: readToken(normalizedTheme, 'color-success') ?? baseFields.success,
       info: readToken(normalizedTheme, 'color-info') ?? baseFields.info,
@@ -395,10 +463,13 @@ export function buildDraftFromThemeDocument(theme: ThemeDocument): ThemeEditorDr
       base: readToken(normalizedTheme, 'color-bg') ?? baseFields.base,
       baseForeground: readToken(normalizedTheme, 'color-text') ?? baseFields.baseForeground,
       card: readToken(normalizedTheme, 'color-bg-container', 'card.bg') ?? baseFields.card,
-      cardForeground: readToken(normalizedTheme, 'color-text-heading', 'card.header-color') ?? baseFields.cardForeground,
+      cardForeground:
+        readToken(normalizedTheme, 'color-text-heading', 'card.header-color') ??
+        baseFields.cardForeground,
       popover: readToken(normalizedTheme, 'color-bg-elevated') ?? baseFields.popover,
       muted: readToken(normalizedTheme, 'color-bg-spotlight') ?? baseFields.muted,
-      mutedForeground: readToken(normalizedTheme, 'color-text-secondary') ?? baseFields.mutedForeground,
+      mutedForeground:
+        readToken(normalizedTheme, 'color-text-secondary') ?? baseFields.mutedForeground,
       border: readToken(normalizedTheme, 'color-border') ?? baseFields.border,
       input: readToken(normalizedTheme, 'color-border', 'input.border') ?? baseFields.input,
       ring: readToken(normalizedTheme, 'color-primary', 'input.border.focus') ?? baseFields.ring,
@@ -407,8 +478,11 @@ export function buildDraftFromThemeDocument(theme: ThemeDocument): ThemeEditorDr
       chart3: readToken(normalizedTheme, 'chart-3') ?? baseFields.chart3,
       chart4: readToken(normalizedTheme, 'chart-4') ?? baseFields.chart4,
       chart5: readToken(normalizedTheme, 'chart-5') ?? baseFields.chart5,
-      sidebar: readToken(normalizedTheme, 'color-bg-layout', 'layout.sidebar-bg') ?? baseFields.sidebar,
-      sidebarForeground: readToken(normalizedTheme, 'color-text', 'layout.sidebar-color') ?? baseFields.sidebarForeground,
+      sidebar:
+        readToken(normalizedTheme, 'color-bg-layout', 'layout.sidebar-bg') ?? baseFields.sidebar,
+      sidebarForeground:
+        readToken(normalizedTheme, 'color-text', 'layout.sidebar-color') ??
+        baseFields.sidebarForeground,
       fontSans: readToken(normalizedTheme, 'font-family') ?? baseFields.fontSans,
       fontMono: readToken(normalizedTheme, 'font-family-monospace') ?? baseFields.fontMono,
       fontSizeBase: readToken(normalizedTheme, 'font-size-base') ?? baseFields.fontSizeBase,
@@ -416,51 +490,76 @@ export function buildDraftFromThemeDocument(theme: ThemeDocument): ThemeEditorDr
       h1Size: readToken(normalizedTheme, 'h1-font-size') ?? baseFields.h1Size,
       h2Size: readToken(normalizedTheme, 'h2-font-size') ?? baseFields.h2Size,
       radius: readToken(normalizedTheme, 'border-radius') ?? baseFields.radius,
+      shadowControl:
+        readToken(normalizedTheme, 'shadow-control', 'input.shadow') ?? baseFields.shadowControl,
       shadowCard: readToken(normalizedTheme, 'shadow-card', 'card.shadow') ?? baseFields.shadowCard,
-      shadowFocus: readToken(normalizedTheme, 'shadow-focus', 'input.shadow.focus') ?? toRgba(baseFields.primary, 0.22),
-      buttonRadius: readToken(normalizedTheme, 'border-radius', 'button.radius') ?? baseFields.buttonRadius,
-      inputRadius: readToken(normalizedTheme, 'border-radius', 'input.radius') ?? baseFields.inputRadius,
-      cardRadius: readToken(normalizedTheme, 'border-radius', 'card.radius') ?? baseFields.cardRadius,
+      shadowFocus: readToken(normalizedTheme, 'shadow-focus') ?? toRgba(baseFields.primary, 0.22),
+      buttonRadius:
+        readToken(normalizedTheme, 'border-radius', 'button.radius') ?? baseFields.buttonRadius,
+      inputRadius:
+        readToken(normalizedTheme, 'border-radius', 'input.radius') ?? baseFields.inputRadius,
+      cardRadius:
+        readToken(normalizedTheme, 'border-radius', 'card.radius') ?? baseFields.cardRadius,
       fieldPaddingSm:
-        readComponentFirst(normalizedTheme, 'input.padding-inline-sm', 'control.padding-inline.sm')
-        ?? baseFields.fieldPaddingSm,
+        readComponentFirst(
+          normalizedTheme,
+          'input.padding-inline-sm',
+          'control.padding-inline.sm'
+        ) ?? baseFields.fieldPaddingSm,
       fieldPaddingMd:
-        readComponentFirst(normalizedTheme, 'input.padding-inline-md', 'control.padding-inline.md')
-        ?? readToken(normalizedTheme, 'spacing-4')
-        ?? baseFields.fieldPaddingMd,
+        readComponentFirst(
+          normalizedTheme,
+          'input.padding-inline-md',
+          'control.padding-inline.md'
+        ) ??
+        readToken(normalizedTheme, 'spacing-4') ??
+        baseFields.fieldPaddingMd,
       fieldPaddingLg:
-        readComponentFirst(normalizedTheme, 'input.padding-inline-lg', 'control.padding-inline.lg')
-        ?? baseFields.fieldPaddingLg,
+        readComponentFirst(
+          normalizedTheme,
+          'input.padding-inline-lg',
+          'control.padding-inline.lg'
+        ) ?? baseFields.fieldPaddingLg,
       buttonPaddingSm:
-        readComponentFirst(normalizedTheme, 'button.padding-inline-sm', 'control.padding-inline.sm')
-        ?? baseFields.buttonPaddingSm,
+        readComponentFirst(
+          normalizedTheme,
+          'button.padding-inline-sm',
+          'control.padding-inline.sm'
+        ) ?? baseFields.buttonPaddingSm,
       buttonPaddingMd:
-        readComponentFirst(normalizedTheme, 'button.padding-inline-md', 'control.padding-inline.md')
-        ?? baseFields.buttonPaddingMd,
+        readComponentFirst(
+          normalizedTheme,
+          'button.padding-inline-md',
+          'control.padding-inline.md'
+        ) ?? baseFields.buttonPaddingMd,
       buttonPaddingLg:
-        readComponentFirst(normalizedTheme, 'button.padding-inline-lg', 'control.padding-inline.lg')
-        ?? baseFields.buttonPaddingLg,
+        readComponentFirst(
+          normalizedTheme,
+          'button.padding-inline-lg',
+          'control.padding-inline.lg'
+        ) ?? baseFields.buttonPaddingLg,
       fieldHeightSm:
-        readComponentFirst(normalizedTheme, 'input.height.sm', 'control.height.sm')
-        ?? baseFields.fieldHeightSm,
+        readComponentFirst(normalizedTheme, 'input.height.sm', 'control.height.sm') ??
+        baseFields.fieldHeightSm,
       fieldHeightMd:
-        readComponentFirst(normalizedTheme, 'input.height.md', 'control.height.md')
-        ?? readToken(normalizedTheme, 'height-md')
-        ?? baseFields.fieldHeightMd,
+        readComponentFirst(normalizedTheme, 'input.height.md', 'control.height.md') ??
+        readToken(normalizedTheme, 'height-md') ??
+        baseFields.fieldHeightMd,
       fieldHeightLg:
-        readComponentFirst(normalizedTheme, 'input.height.lg', 'control.height.lg')
-        ?? baseFields.fieldHeightLg,
+        readComponentFirst(normalizedTheme, 'input.height.lg', 'control.height.lg') ??
+        baseFields.fieldHeightLg,
       buttonHeightSm:
-        readComponentFirst(normalizedTheme, 'button.height.sm', 'control.height.sm')
-        ?? baseFields.buttonHeightSm,
+        readComponentFirst(normalizedTheme, 'button.height.sm', 'control.height.sm') ??
+        baseFields.buttonHeightSm,
       buttonHeightMd:
-        readComponentFirst(normalizedTheme, 'button.height.md', 'control.height.md')
-        ?? readToken(normalizedTheme, 'height-md')
-        ?? baseFields.buttonHeightMd,
+        readComponentFirst(normalizedTheme, 'button.height.md', 'control.height.md') ??
+        readToken(normalizedTheme, 'height-md') ??
+        baseFields.buttonHeightMd,
       buttonHeightLg:
-        readComponentFirst(normalizedTheme, 'button.height.lg', 'control.height.lg')
-        ?? baseFields.buttonHeightLg,
-      cardPadding: readToken(normalizedTheme, 'spacing-5', 'card.body-padding') ?? baseFields.cardPadding,
+        readComponentFirst(normalizedTheme, 'button.height.lg', 'control.height.lg') ??
+        baseFields.buttonHeightLg,
+      cardPadding:
+        readToken(normalizedTheme, 'spacing-5', 'card.body-padding') ?? baseFields.cardPadding,
     },
   };
 }
@@ -472,7 +571,7 @@ export function createDefaultDraft(): ThemeEditorDraft {
 export function applyPresetToDraft(
   presetId: string,
   current?: ThemeEditorDraft,
-  modeOverride?: ThemeMode,
+  modeOverride?: ThemeMode
 ): ThemeEditorDraft {
   const draft = getPresetDraft(presetId, modeOverride ?? current?.mode ?? 'light');
 

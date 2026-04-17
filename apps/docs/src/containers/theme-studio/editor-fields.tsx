@@ -1,5 +1,6 @@
 import React from 'react';
 import { ColorPicker, Input, InputNumber, Slider, Textarea } from '@tiny-design/react';
+import { formatShadowValue, parseShadowValue, type ShadowValue } from './color-utils';
 import type { SliderFieldConfig } from './types';
 
 export function swatchTextStyle(background: string, foreground: string): React.CSSProperties {
@@ -138,5 +139,148 @@ export function SliderField({
         />
       </div>
     </label>
+  );
+}
+
+function ShadowMetricField({
+  label,
+  value,
+  min,
+  max,
+  step,
+  unit,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  unit?: string;
+  onChange: (next: number) => void;
+}): React.ReactElement {
+  return (
+    <label className="theme-studio__field theme-studio__shadow-metric">
+      <div className="theme-studio__field-row">
+        <span className="theme-studio__shadow-metric-label">{label}</span>
+        <span className="theme-studio__field-value">
+          {unit ? `${value}${unit}` : String(value)}
+        </span>
+      </div>
+      <div className="theme-studio__slider-field">
+        <Slider
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={(next) => typeof next === 'number' && onChange(next)}
+        />
+        <InputNumber
+          value={value}
+          min={min}
+          max={max}
+          step={step}
+          onChange={(next) => typeof next === 'number' && onChange(next)}
+        />
+      </div>
+    </label>
+  );
+}
+
+export function ShadowField({
+  label,
+  value,
+  onChange,
+  fallback,
+}: {
+  label: string;
+  value: string;
+  onChange: (next: string) => void;
+  fallback: ShadowValue;
+}): React.ReactElement {
+  const parsed = React.useMemo(() => parseShadowValue(value, fallback), [fallback, value]);
+
+  const updateShadow = (patch: Partial<ShadowValue>) => {
+    onChange(
+      formatShadowValue({
+        ...parsed,
+        ...patch,
+      })
+    );
+  };
+
+  return (
+    <div className="theme-studio__field theme-studio__shadow-field">
+      <span className="theme-studio__field-label">{label}</span>
+      <div className="theme-studio__shadow-editor">
+        <div className="theme-studio__shadow-color-row">
+          <span className="theme-studio__shadow-color-label">Color</span>
+          <div className="theme-studio__color-field">
+            <ColorPicker
+              value={parsed.color}
+              onChange={(next) => updateShadow({ color: next })}
+              presets={[
+                '#000000',
+                '#ffffff',
+                '#1e9df1',
+                '#0f1419',
+                '#e11d48',
+                '#22c55e',
+                '#f59e0b',
+                '#8b5cf6',
+              ]}
+            />
+            <Input
+              value={parsed.color}
+              onChange={(event) => updateShadow({ color: event.target.value })}
+            />
+          </div>
+        </div>
+        <ShadowMetricField
+          label="Opacity"
+          value={parsed.opacity}
+          min={0}
+          max={1}
+          step={0.01}
+          onChange={(next) => updateShadow({ opacity: next })}
+        />
+        <ShadowMetricField
+          label="Blur"
+          value={parsed.blur}
+          min={0}
+          max={32}
+          step={1}
+          unit="px"
+          onChange={(next) => updateShadow({ blur: next })}
+        />
+        <ShadowMetricField
+          label="Spread"
+          value={parsed.spread}
+          min={-16}
+          max={32}
+          step={1}
+          unit="px"
+          onChange={(next) => updateShadow({ spread: next })}
+        />
+        <ShadowMetricField
+          label="Offset X"
+          value={parsed.offsetX}
+          min={-32}
+          max={32}
+          step={1}
+          unit="px"
+          onChange={(next) => updateShadow({ offsetX: next })}
+        />
+        <ShadowMetricField
+          label="Offset Y"
+          value={parsed.offsetY}
+          min={-32}
+          max={32}
+          step={1}
+          unit="px"
+          onChange={(next) => updateShadow({ offsetY: next })}
+        />
+      </div>
+    </div>
   );
 }
