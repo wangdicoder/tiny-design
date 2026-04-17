@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite serve",
-    "build": "vite build",
+    "build:deps": "pnpm -C ../.. --filter @tiny-design/tokens build && pnpm -C ../.. --filter @tiny-design/icons build && pnpm -C ../.. --filter @tiny-design/react build && pnpm -C ../.. --filter @tiny-design/charts build",
+    "build": "pnpm run build:deps && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
