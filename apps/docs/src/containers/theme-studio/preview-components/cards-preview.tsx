@@ -345,7 +345,7 @@ function ChatCard(): React.ReactElement {
         </Flex>
         <Flex className="theme-studio__cards-chat-compose">
           <Input size="lg" placeholder="Type your message..." />
-          <Button variant="solid" color="primary" disabled>
+          <Button variant="solid" color="primary" size='lg'>
             Send
           </Button>
         </Flex>

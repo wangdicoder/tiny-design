@@ -1089,14 +1089,25 @@
   gap: 12px;
 }
 
+.theme-studio__docdash-copy {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
 .theme-studio__docdash_collapsed .theme-studio__docdash-brand,
 .theme-studio__docdash_collapsed .theme-studio__docdash-profile {
   justify-content: center;
 }
 
-.theme-studio__docdash-brand .ty-typography-text,
-.theme-studio__docdash-profile .ty-typography-text {
+.theme-studio__docdash-copy .ty-typography-text {
   display: block;
+  min-width: 0;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.theme-studio__docdash-copy .ty-typography-text-secondary {
+  font-size: 12px;
 }
 
 .theme-studio__docdash-brand .ty-avatar,
@@ -1129,25 +1140,6 @@
   border-top: 1px solid color-mix(in srgb, var(--editor-sidebar-border), transparent 18%);
 }
 
-.theme-studio__docdash-locale {
-  width: 100%;
-  min-height: 34px;
-  padding: 7px 10px;
-  border: 0;
-  border-radius: 8px;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-  text-align: left;
-  font: inherit;
-  font-size: 13px;
-}
-
-.theme-studio__docdash_collapsed .theme-studio__docdash-locale {
-  width: 40px;
-  text-align: center;
-}
-
 .theme-studio__docdash-section-label {
   margin-top: 2px;
   font-size: 10px;
@@ -1155,6 +1147,60 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--editor-sidebar-foreground), transparent 42%);
+}
+
+.theme-studio__docdash-menu.ty-menu {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  gap: 4px;
+  padding: 0;
+  color: inherit;
+  --ty-menu-bg: transparent;
+  --ty-menu-border: transparent;
+  --ty-menu-item-color: var(--editor-sidebar-foreground);
+  --ty-menu-item-hover-bg: color-mix(in srgb, var(--editor-sidebar-foreground), transparent 92%);
+  --ty-menu-item-hover-color: var(--editor-sidebar-foreground);
+  --ty-menu-item-active-bg: color-mix(in srgb, var(--editor-sidebar-primary), transparent 26%);
+  --ty-menu-item-active-color: var(--editor-sidebar-primary-foreground);
+  --ty-menu-item-selected-bg: color-mix(in srgb, var(--editor-sidebar-primary), transparent 26%);
+  --ty-menu-item-selected-color: var(--editor-sidebar-primary-foreground);
+  --ty-menu-submenu-bg: transparent;
+}
+
+.theme-studio__docdash-menu.ty-menu .ty-menu-item,
+.theme-studio__docdash-menu.ty-menu .ty-menu-sub__title {
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.theme-studio__docdash-menu.ty-menu .ty-menu-item__main,
+.theme-studio__docdash-menu.ty-menu .ty-menu-sub__title .ty-menu-item__main {
+  min-width: 0;
+}
+
+.theme-studio__docdash-menu.ty-menu .ty-menu-item__icon,
+.theme-studio__docdash-menu.ty-menu .ty-menu-sub__title .ty-menu-item__icon {
+  width: 18px;
+  min-width: 18px;
+  justify-content: center;
+}
+
+.theme-studio__docdash-menu.ty-menu .ty-menu-item__label,
+.theme-studio__docdash-menu.ty-menu .ty-menu-sub__title .ty-menu-item__label {
+  min-width: 0;
+}
+
+.theme-studio__docdash-menu.ty-menu .ty-menu-item__extra,
+.theme-studio__docdash-menu.ty-menu .ty-menu-sub__title .ty-menu-item__extra {
+  color: color-mix(in srgb, var(--editor-sidebar-foreground), transparent 38%);
+}
+
+.theme-studio__docdash-menu.ty-menu .ty-menu-sub__list {
+  background: transparent;
 }
 
 .theme-studio__docdash-nav-item {
@@ -1223,7 +1269,7 @@
 
 .theme-studio__docdash-toggle.ty-btn {
   min-height: 30px;
-  padding-inline: 0;
+  padding-inline: 8px;
   color: var(--editor-muted-foreground);
 }
 
@@ -1332,26 +1378,37 @@
   gap: 8px;
 }
 
-.theme-studio__docdash-outline-pill {
+.theme-studio__docdash-outline-pill.ty-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   min-height: 30px;
-  padding: 4px 10px;
+  padding-inline: 14px;
   border-radius: 999px;
-  border: 1px solid var(--editor-border);
-  background: color-mix(in srgb, var(--editor-card), var(--editor-base) 10%);
   font-size: 11px;
-  cursor: pointer;
+  color: var(--editor-foreground);
+  --ty-button-radius: 999px;
+  --ty-button-ghost-color: var(--editor-foreground);
+  --ty-button-ghost-hover-color: var(--editor-foreground);
+  --ty-button-ghost-bg: color-mix(in srgb, var(--editor-card), var(--editor-base) 10%);
+  --ty-button-ghost-hover-bg: color-mix(in srgb, var(--editor-border), transparent 84%);
+  --ty-button-ghost-border: var(--editor-border);
+  --ty-button-outline-color: var(--editor-primary);
+  --ty-button-outline-hover-color: var(--editor-primary);
+  --ty-button-outline-bg: color-mix(in srgb, var(--editor-primary), transparent 90%);
+  --ty-button-outline-hover-bg: color-mix(in srgb, var(--editor-primary), transparent 86%);
+  --ty-button-outline-border: color-mix(in srgb, var(--editor-primary), transparent 48%);
 }
 
-.theme-studio__docdash-outline-pill_active {
-  border-color: color-mix(in srgb, var(--editor-primary), transparent 48%);
-  background: color-mix(in srgb, var(--editor-primary), transparent 90%);
+.theme-studio__docdash-outline-pill.ty-btn:hover {
+  color: var(--editor-foreground);
+}
+
+.theme-studio__docdash-outline-pill_active.ty-btn {
   color: var(--editor-primary);
 }
 
-.theme-studio__docdash-outline-pill strong {
+.theme-studio__docdash-outline-pill.ty-btn strong {
   font-size: 13px;
 }
 

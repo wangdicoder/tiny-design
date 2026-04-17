@@ -30,6 +30,27 @@ import {
   IconTeam,
 } from '@tiny-design/icons';
 
+const dashboardPrimaryNavItems = [
+  { key: 'dashboard', label: 'Dashboard', icon: <IconHome /> },
+  { key: 'lifecycle', label: 'Lifecycle', icon: <IconStructure /> },
+  { key: 'analytics', label: 'Analytics', icon: <IconStatistics /> },
+  { key: 'projects', label: 'Projects', icon: <IconDocument /> },
+  { key: 'team', label: 'Team', icon: <IconTeam /> },
+] as const;
+
+const dashboardDocumentNavItems = [
+  { key: 'data-library', label: 'Data Library' },
+  { key: 'reports', label: 'Reports' },
+  { key: 'word-assistant', label: 'Word Assistant' },
+  { key: 'more', label: 'More' },
+] as const;
+
+const dashboardFooterNavItems = [
+  { key: 'settings', label: 'Settings', icon: <IconSetting /> },
+  { key: 'get-help', label: 'Get Help', icon: <IconSupport /> },
+  { key: 'search', label: 'Search', icon: <IconSearch /> },
+] as const;
+
 const dashboardVisitorsData = Array.from({ length: 90 }, (_, index) => {
   const date = new Date(2024, 3, 1 + index);
   const waveA = Math.sin(index * 0.92);
@@ -252,7 +273,7 @@ type DashboardVisibleColumns = {
 };
 
 export function DashboardPreview(): React.ReactElement {
-  const [activeSidebarItem, setActiveSidebarItem] = React.useState('Dashboard');
+  const [activeSidebarItem, setActiveSidebarItem] = React.useState('dashboard');
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
   const [visitorRange, setVisitorRange] = React.useState<DashboardVisitorRange>('last-3-months');
   const [activeDocTab, setActiveDocTab] = React.useState<DashboardDocTab>('outline');
@@ -445,10 +466,10 @@ export function DashboardPreview(): React.ReactElement {
           <div className="theme-studio__docdash-brand">
             <Avatar>A</Avatar>
             {!sidebarCollapsed ? (
-              <div>
+              <Flex vertical gap={2} className="theme-studio__docdash-copy">
                 <Text strong>Acme Inc.</Text>
                 <Text type="secondary">Workspace</Text>
-              </div>
+              </Flex>
             ) : null}
           </div>
 
@@ -461,76 +482,124 @@ export function DashboardPreview(): React.ReactElement {
             {!sidebarCollapsed ? 'Quick Create' : null}
           </Button>
 
-          <div className="theme-studio__docdash-nav-section">
-            {[
-              { label: 'Dashboard', icon: <IconHome /> },
-              { label: 'Lifecycle', icon: <IconStructure /> },
-              { label: 'Analytics', icon: <IconStatistics /> },
-              { label: 'Projects', icon: <IconDocument /> },
-              { label: 'Team', icon: <IconTeam /> },
-            ].map((item) => (
-              <button
-                key={item.label}
-                type="button"
-                aria-label={item.label}
-                title={item.label}
-                onClick={() => setActiveSidebarItem(item.label)}
-                className={`theme-studio__docdash-nav-item${activeSidebarItem === item.label ? ' theme-studio__docdash-nav-item_active' : ''}`}>
-                <span>{item.icon}</span>
-                {!sidebarCollapsed ? <span>{item.label}</span> : null}
-              </button>
-            ))}
-          </div>
+          {!sidebarCollapsed ? (
+            <>
+              <div className="theme-studio__docdash-nav-section">
+                <Menu
+                  mode="inline"
+                  variant="ghost"
+                  appearance="navigation"
+                  selectionStyle="mixed"
+                  size="sm"
+                  inlineIndent={16}
+                  className="theme-studio__docdash-menu"
+                  selectedKeys={[activeSidebarItem]}
+                  onSelect={(selectedKey) => setActiveSidebarItem(selectedKey)}>
+                  {dashboardPrimaryNavItems.map((item) => (
+                    <Menu.Item key={item.key} index={item.key} icon={item.icon}>
+                      {item.label}
+                    </Menu.Item>
+                  ))}
+                </Menu>
+              </div>
 
-          {!sidebarCollapsed ? <div className="theme-studio__docdash-section-label">Documents</div> : null}
-          <div className="theme-studio__docdash-nav-section">
-            {['Data Library', 'Reports', 'Word Assistant', 'More'].map((item) => (
-              <button
-                key={item}
-                type="button"
-                aria-label={item}
-                title={item}
-                onClick={() => setActiveSidebarItem(item)}
-                className={`theme-studio__docdash-nav-item${activeSidebarItem === item ? ' theme-studio__docdash-nav-item_active' : ''}`}>
-                <span>
-                  <IconDocument />
-                </span>
-                {!sidebarCollapsed ? <span>{item}</span> : null}
-                {!sidebarCollapsed ? <small>More</small> : null}
-              </button>
-            ))}
-          </div>
+              <div className="theme-studio__docdash-section-label">Documents</div>
+              <div className="theme-studio__docdash-nav-section">
+                <Menu
+                  mode="inline"
+                  variant="ghost"
+                  appearance="navigation"
+                  selectionStyle="mixed"
+                  size="sm"
+                  inlineIndent={16}
+                  className="theme-studio__docdash-menu"
+                  selectedKeys={[activeSidebarItem]}
+                  onSelect={(selectedKey) => setActiveSidebarItem(selectedKey)}>
+                  {dashboardDocumentNavItems.map((item) => (
+                    <Menu.Item
+                      key={item.key}
+                      index={item.key}
+                      icon={<IconDocument />}>
+                      {item.label}
+                    </Menu.Item>
+                  ))}
+                </Menu>
+              </div>
 
-          <div className="theme-studio__docdash-nav-section theme-studio__docdash-nav-section_footer">
-            {[
-              { label: 'Settings', icon: <IconSetting /> },
-              { label: 'Get Help', icon: <IconSupport /> },
-              { label: 'Search', icon: <IconSearch /> },
-            ].map((item) => (
-              <button
-                key={item.label}
-                type="button"
-                aria-label={item.label}
-                title={item.label}
-                onClick={() => setActiveSidebarItem(item.label)}
-                className={`theme-studio__docdash-nav-item${activeSidebarItem === item.label ? ' theme-studio__docdash-nav-item_active' : ''}`}>
-                <span>{item.icon}</span>
-                {!sidebarCollapsed ? <span>{item.label}</span> : null}
-              </button>
-            ))}
-          </div>
+              <div className="theme-studio__docdash-nav-section theme-studio__docdash-nav-section_footer">
+                <Menu
+                  mode="inline"
+                  variant="ghost"
+                  appearance="navigation"
+                  selectionStyle="mixed"
+                  size="sm"
+                  inlineIndent={16}
+                  className="theme-studio__docdash-menu"
+                  selectedKeys={[activeSidebarItem]}
+                  onSelect={(selectedKey) => setActiveSidebarItem(selectedKey)}>
+                  {dashboardFooterNavItems.map((item) => (
+                    <Menu.Item key={item.key} index={item.key} icon={item.icon}>
+                      {item.label}
+                    </Menu.Item>
+                  ))}
+                </Menu>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="theme-studio__docdash-nav-section">
+                {dashboardPrimaryNavItems.map((item) => (
+                  <button
+                    key={item.key}
+                    type="button"
+                    aria-label={item.label}
+                    title={item.label}
+                    onClick={() => setActiveSidebarItem(item.key)}
+                    className={`theme-studio__docdash-nav-item${activeSidebarItem === item.key ? ' theme-studio__docdash-nav-item_active' : ''}`}>
+                    <span>{item.icon}</span>
+                  </button>
+                ))}
+              </div>
 
-          <button type="button" className="theme-studio__docdash-locale">
-            CN
-          </button>
+              <div className="theme-studio__docdash-nav-section">
+                {dashboardDocumentNavItems.map((item) => (
+                  <button
+                    key={item.key}
+                    type="button"
+                    aria-label={item.label}
+                    title={item.label}
+                    onClick={() => setActiveSidebarItem(item.key)}
+                    className={`theme-studio__docdash-nav-item${activeSidebarItem === item.key ? ' theme-studio__docdash-nav-item_active' : ''}`}>
+                    <span>
+                      <IconDocument />
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="theme-studio__docdash-nav-section theme-studio__docdash-nav-section_footer">
+                {dashboardFooterNavItems.map((item) => (
+                  <button
+                    key={item.key}
+                    type="button"
+                    aria-label={item.label}
+                    title={item.label}
+                    onClick={() => setActiveSidebarItem(item.key)}
+                    className={`theme-studio__docdash-nav-item${activeSidebarItem === item.key ? ' theme-studio__docdash-nav-item_active' : ''}`}>
+                    <span>{item.icon}</span>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
 
           <div className="theme-studio__docdash-profile">
             <Avatar>S</Avatar>
             {!sidebarCollapsed ? (
-              <div>
+              <Flex vertical gap={2} className="theme-studio__docdash-copy">
                 <Text strong>shadcn</Text>
                 <Text type="secondary">m@example.com</Text>
-              </div>
+              </Flex>
             ) : null}
           </div>
         </Card.Content>
@@ -648,14 +717,15 @@ export function DashboardPreview(): React.ReactElement {
                       ['personnel', 'Key Personnel', '2'],
                       ['focus', 'Focus Documents', null],
                     ].map(([key, label, value]) => (
-                      <button
+                      <Button
                         key={key}
-                        type="button"
+                        size="sm"
+                        variant={activeDocTab === key ? 'outline' : 'ghost'}
                         className={`theme-studio__docdash-outline-pill${activeDocTab === key ? ' theme-studio__docdash-outline-pill_active' : ''}`}
                         onClick={() => setActiveDocTab(key as DashboardDocTab)}>
                         <span>{label}</span>
                         {value ? <strong>{value}</strong> : null}
-                      </button>
+                      </Button>
                     ))}
                   </div>
                   <div className="theme-studio__docdash-table-actions">
