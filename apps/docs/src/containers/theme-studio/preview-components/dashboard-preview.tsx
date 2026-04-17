@@ -597,7 +597,7 @@ export function DashboardPreview(): React.ReactElement {
             <Avatar>S</Avatar>
             {!sidebarCollapsed ? (
               <Flex vertical gap={2} className="theme-studio__docdash-copy">
-                <Text strong>shadcn</Text>
+                <Text strong>script</Text>
                 <Text type="secondary">m@example.com</Text>
               </Flex>
             ) : null}

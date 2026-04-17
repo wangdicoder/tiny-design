@@ -1148,6 +1148,10 @@
   width: 100%;
 }
 
+.theme-studio__docdash_collapsed .theme-studio__docdash-nav-section {
+  align-items: center;
+}
+
 .theme-studio__docdash-nav-section_footer {
   margin-top: auto;
   padding-top: 12px;
@@ -2028,90 +2032,192 @@
   gap: 16px;
 }
 
-.theme-studio__pricing-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 12px;
-  gap: var(--theme-studio-block-gap);
-  row-gap: 20px;
-  column-gap: 18px;
+.theme-studio__pricing-shell {
+  padding: clamp(16px, 2vw, 28px) 8px 20px;
 }
 
-.theme-studio__pricing-hero {
-  justify-content: space-between;
-  gap: 18px;
-  align-items: flex-start;
+.theme-studio__pricing-stage {
+  gap: 42px;
+  padding: clamp(10px, 1.5vw, 20px);
+  background: transparent;
+}
+
+.theme-studio__pricing-intro {
+  gap: 12px;
+}
+
+.theme-studio__pricing-title {
+  margin: 0;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-align: center;
+  color: var(--editor-card-foreground);
+}
+
+.theme-studio__pricing-subtitle {
+  font-size: 15px;
+  text-align: center;
+  color: color-mix(in srgb, var(--editor-card-foreground), transparent 42%);
+}
+
+.theme-studio__pricing-subtitle.ty-typography,
+.theme-studio__pricing-subtitle .ty-typography__content {
+  color: color-mix(in srgb, var(--editor-card-foreground), transparent 42%);
+}
+
+.theme-studio__pricing-switch {
+  // display: inline-flex;
+  // align-items: center;
+  // gap: 12px;
+  // line-height: 1;
+  // white-space: nowrap;
+}
+
+.theme-studio__pricing-switch-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--editor-card-foreground), transparent 14%);
+}
+
+.theme-studio__pricing-switch-label_active {
+  color: var(--editor-card-foreground);
+}
+
+.theme-studio__pricing-switch-control.ty-switch {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.theme-studio__pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 336px));
+  align-items: stretch;
+  justify-content: center;
+  gap: 24px;
+}
+
+.theme-studio__pricing-grid > * {
+  height: 100%;
 }
 
 .theme-studio__pricing-card,
 .theme-studio__palette-card {
-  border-radius: var(--editor-card-radius);
+  border-radius: calc(var(--editor-card-radius) + 4px);
 }
 
 .theme-studio__preview-card.ty-card,
 .theme-studio__preview-grid .ty-card,
 .theme-studio__pricing-grid .theme-studio__pricing-card,
 .theme-studio__preview-grid .theme-studio__pricing-card {
-  border-radius: var(--editor-card-radius);
+  border-radius: calc(var(--editor-card-radius) + 4px);
 }
 
-.theme-studio__preview-grid .ty-card__header,
-.theme-studio__preview-grid .ty-card > img:first-child {
-  border-radius: var(--editor-card-radius) var(--editor-card-radius) 0 0;
-}
-
-.theme-studio__pricing-card_featured {
-  background: linear-gradient(180deg, var(--editor-accent) 0%, var(--editor-card) 100%);
-}
-
-.theme-studio__pricing-card {
+.theme-studio__pricing-card.ty-card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  min-height: 320px;
+  border-color: color-mix(in srgb, var(--editor-border), transparent 8%);
+  background: var(--editor-card);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--editor-base-foreground), transparent 94%);
+  height: 100%;
 }
 
 .theme-studio__pricing-card.ty-card > .ty-card__body {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-height: 100%;
+  flex: 1;
+  padding: 0;
 }
 
-.theme-studio__pricing-card-head {
-  gap: 8px;
-  min-height: 24px;
+.theme-studio__pricing-card-content {
+  display: grid;
+  grid-template-rows: auto auto 1px minmax(0, 1fr) auto;
+  flex: 1;
+  gap: 20px;
+  min-height: 100%;
+  padding: 26px 26px 24px;
+}
+
+.theme-studio__pricing-plan {
+  margin: 0 0 6px;
+  font-size: 21px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--editor-card-foreground);
+}
+
+.theme-studio__pricing-caption,
+.theme-studio__pricing-note {
+  color: color-mix(in srgb, var(--editor-card-foreground), transparent 38%);
+}
+
+.theme-studio__pricing-caption.ty-typography,
+.theme-studio__pricing-caption .ty-typography__content,
+.theme-studio__pricing-note.ty-typography,
+.theme-studio__pricing-note .ty-typography__content {
+  color: color-mix(in srgb, var(--editor-card-foreground), transparent 38%);
+}
+
+.theme-studio__pricing-price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .theme-studio__pricing-price {
-  gap: 6px;
+  font-size: clamp(46px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: var(--editor-card-foreground);
 }
 
-.theme-studio__pricing-price .ty-typography-heading {
+.theme-studio__pricing-divider {
+  height: 1px;
+  background: color-mix(in srgb, var(--editor-border), transparent 25%);
+}
+
+.theme-studio__pricing-features {
+  display: grid;
+  gap: 12px;
+  flex: 1;
   margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.theme-studio__pricing-feature-list {
+.theme-studio__pricing-feature {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
   gap: 10px;
-  margin: 0;
+  align-items: center;
 }
 
-.theme-studio__pricing-feature-list .ty-typography-text {
-  color: var(--editor-muted-foreground);
+.theme-studio__pricing-feature-icon {
+  color: var(--editor-card-foreground);
+  opacity: 0.9;
 }
 
-.theme-studio__pricing-card-footer {
+.theme-studio__pricing-feature-text {
+  color: var(--editor-card-foreground);
+}
+
+.theme-studio__pricing-feature-text.ty-typography,
+.theme-studio__pricing-feature-text .ty-typography__content {
+  color: var(--editor-card-foreground);
+}
+
+.theme-studio__pricing-feature-text_strong {
+  font-weight: 600;
+}
+
+.theme-studio__pricing-action.ty-btn {
   margin-top: auto;
-  padding-top: 6px;
-}
-
-.theme-studio__faq-list {
-  gap: 14px;
-}
-
-.theme-studio__faq-item {
-  gap: 6px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--editor-border);
+  width: 100%;
+  min-height: 40px;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
 }
 
 .theme-studio__faq-list .theme-studio__faq-item:last-child {
@@ -2292,8 +2398,8 @@
     display: none;
   }
 
-  .theme-studio__pricing-hero {
-    flex-direction: column;
-    align-items: flex-start;
+  .theme-studio__pricing-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
   }
 }
