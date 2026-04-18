@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.13.0
+
+### Patch Changes
+
+- Fix image loading, fallback handling, and demo behavior. - [#115](https://github.com/wangdicoder/tiny-design/pull/115) [`b853a9e`](https://github.com/wangdicoder/tiny-design/commit/b853a9edb13a0cf81b955c9ef6705251a41d568f)
+
+- Redesign the Split component with a product-grade pane model, refreshed separator styling, updated tokens, and rewritten docs/demos. - [`d6adb83`](https://github.com/wangdicoder/tiny-design/commit/d6adb83a06da178a2f561a55a33c0fc10bbcff74)
+
 ## 1.12.0
 
 ### Minor Changes
