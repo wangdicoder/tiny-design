@@ -1,5 +1,5 @@
 ---
-'@tiny-design/react': major
+'@tiny-design/react': patch
 ---
 
 Redesign the Statistic component with a product-grade metric API, richer states, improved docs guidance, and updated dashboard demos.
