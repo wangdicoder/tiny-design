@@ -27,6 +27,8 @@ Image 组件用于显示图片。
 import { Image } from 'tiny-design';
 ```
 
+`ref` 指向原生 `img` 元素。
+
 ## 代码示例
 
 <Layout>

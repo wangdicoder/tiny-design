@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -13,7 +13,32 @@ const canUseIntersectionObserver = (): boolean => {
 
 const isStringSource = (value: React.ReactNode): value is string => typeof value === 'string' && value.length > 0;
 
-const Image = React.forwardRef<HTMLSpanElement, ImageProps>((props, ref): JSX.Element => {
+const createSyntheticImageEvent = (
+  imageNode: HTMLImageElement,
+  type: 'load' | 'error'
+): React.SyntheticEvent<HTMLImageElement> => {
+  const nativeEvent = new Event(type);
+
+  return {
+    bubbles: nativeEvent.bubbles,
+    cancelable: nativeEvent.cancelable,
+    currentTarget: imageNode,
+    defaultPrevented: nativeEvent.defaultPrevented,
+    eventPhase: nativeEvent.eventPhase,
+    isDefaultPrevented: () => nativeEvent.defaultPrevented,
+    isPropagationStopped: () => false,
+    isTrusted: nativeEvent.isTrusted,
+    nativeEvent,
+    persist: () => undefined,
+    preventDefault: () => nativeEvent.preventDefault(),
+    stopPropagation: () => nativeEvent.stopPropagation(),
+    target: imageNode,
+    timeStamp: nativeEvent.timeStamp,
+    type,
+  } as React.SyntheticEvent<HTMLImageElement>;
+};
+
+const Image = React.forwardRef<HTMLImageElement, ImageProps>((props, ref): JSX.Element => {
   const {
     alt = '',
     objectFit = 'cover',
@@ -49,11 +74,15 @@ const Image = React.forwardRef<HTMLSpanElement, ImageProps>((props, ref): JSX.El
   const fallbackValue = isStringSource(fallback) ? fallback : undefined;
   const resolvedSrc = activeSource === 'fallback' ? fallbackValue : srcValue;
   const hasStringSource = Boolean(srcValue || fallbackValue);
-  const isBounded = width !== undefined || height !== undefined;
+  const isBounded = width !== undefined && height !== undefined;
 
   useEffect(() => {
-    const visible = !lazy || !canUseIntersectionObserver();
-    setIsVisible(visible);
+    const visible = isVisible || !lazy || !canUseIntersectionObserver();
+
+    if (visible !== isVisible) {
+      setIsVisible(visible);
+    }
+
     setActiveSource(srcValue ? 'src' : 'fallback');
 
     if (!visible) {
@@ -67,7 +96,7 @@ const Image = React.forwardRef<HTMLSpanElement, ImageProps>((props, ref): JSX.El
     }
 
     setStatus(fallback ? 'error' : 'idle');
-  }, [fallback, fallbackValue, lazy, srcValue]);
+  }, [fallback, fallbackValue, isVisible, lazy, srcValue]);
 
   useEffect(() => {
     if (!lazy || !canUseIntersectionObserver() || !rootRef.current) {
@@ -93,25 +122,6 @@ const Image = React.forwardRef<HTMLSpanElement, ImageProps>((props, ref): JSX.El
       observer.disconnect();
     };
   }, [fallback, hasStringSource, lazy]);
-
-  useEffect(() => {
-    if (!isVisible || !resolvedSrc || !imageRef.current || status === 'loaded' || status === 'error') {
-      return;
-    }
-
-    const imageNode = imageRef.current;
-
-    if (!imageNode.complete) {
-      return;
-    }
-
-    if (imageNode.naturalWidth > 0) {
-      setStatus('loaded');
-      return;
-    }
-
-    setStatus('error');
-  }, [isVisible, resolvedSrc, status]);
 
   const cls = classNames(prefixCls, className, `${prefixCls}_${status}`, {
     [`${prefixCls}_bounded`]: isBounded,
@@ -150,6 +160,10 @@ const Image = React.forwardRef<HTMLSpanElement, ImageProps>((props, ref): JSX.El
     if (!content) return null;
 
     if (isStringSource(content)) {
+      if (slot === 'fallback' && content === resolvedSrc && status === 'error') {
+        return null;
+      }
+
       return (
         <img
           aria-hidden
@@ -167,12 +181,12 @@ const Image = React.forwardRef<HTMLSpanElement, ImageProps>((props, ref): JSX.El
   const showPlaceholder = status !== 'loaded' && status !== 'error' && Boolean(placeholder);
   const showFallback = status === 'error' && Boolean(fallback);
 
-  const handleLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
+  const handleLoad = useCallback((event: React.SyntheticEvent<HTMLImageElement>) => {
     setStatus('loaded');
     onLoad?.(event);
-  };
+  }, [onLoad]);
 
-  const handleError = (event: React.SyntheticEvent<HTMLImageElement>) => {
+  const handleResolvedError = useCallback((event: React.SyntheticEvent<HTMLImageElement>) => {
     onError?.(event);
 
     if (activeSource === 'src' && fallbackValue && fallbackValue !== srcValue) {
@@ -182,18 +196,30 @@ const Image = React.forwardRef<HTMLSpanElement, ImageProps>((props, ref): JSX.El
     }
 
     setStatus('error');
-  };
+  }, [activeSource, fallbackValue, onError, srcValue]);
+
+  useEffect(() => {
+    if (!isVisible || !resolvedSrc || !imageRef.current || status === 'loaded' || status === 'error') {
+      return;
+    }
+
+    const imageNode = imageRef.current;
+
+    if (!imageNode.complete) {
+      return;
+    }
+
+    if (imageNode.naturalWidth > 0) {
+      handleLoad(createSyntheticImageEvent(imageNode, 'load'));
+      return;
+    }
+
+    handleResolvedError(createSyntheticImageEvent(imageNode, 'error'));
+  }, [handleLoad, handleResolvedError, isVisible, resolvedSrc, status]);
 
   return (
     <span
-      ref={(node) => {
-        rootRef.current = node;
-        if (typeof ref === 'function') {
-          ref(node);
-        } else if (ref) {
-          ref.current = node;
-        }
-      }}
+      ref={rootRef}
       className={cls}
       style={rootStyle}
       data-status={status}
@@ -205,8 +231,15 @@ const Image = React.forwardRef<HTMLSpanElement, ImageProps>((props, ref): JSX.El
           {...otherProps}
           alt={alt}
           className={classNames(`${prefixCls}__img`, imageClassName)}
-          ref={imageRef}
-          onError={handleError}
+          ref={(node) => {
+            imageRef.current = node;
+            if (typeof ref === 'function') {
+              ref(node);
+            } else if (ref) {
+              ref.current = node;
+            }
+          }}
+          onError={handleResolvedError}
           onLoad={handleLoad}
           src={resolvedSrc}
           style={mergedImageStyle}

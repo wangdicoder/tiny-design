@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Radio, Select, Switch } from '@tiny-design/react';
+import { Flex, Image, Radio, Select, Switch } from '@tiny-design/react';
 
 const OBJECT_FIT_OPTIONS = ['cover', 'contain', 'fill', 'none', 'scale-down'] as const;
 
@@ -87,13 +87,12 @@ export default function ImageStyleDemo() {
   const previewHeight = round ? 160 : 120;
 
   return (
-    <div style={{ display: 'grid', gap: 18 }}>
-      <div
+    <Flex vertical gap={18}>
+      <Flex
+        wrap="wrap"
+        align="center"
+        gap={16}
         style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          gap: 16,
           padding: 16,
           border: '1px solid #e2e8f0',
           borderRadius: 12,
@@ -116,16 +115,16 @@ export default function ImageStyleDemo() {
           <Select value={objectPosition} onChange={(value) => setObjectPosition(String(value))} options={focusOptions} />
         </div>
 
-        <div style={{ display: 'grid', gap: 8 }}>
+        <Flex vertical gap={8}>
           <div style={{ fontSize: 12, color: '#64748b', fontWeight: 600 }}>Round preview</div>
           <Switch checked={round} onChange={setRound} />
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
-      <div style={{ display: 'grid', gap: 8 }}>
+      <Flex vertical gap={8}>
         <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b' }}>Interactive comparison</div>
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'flex-start' }}>
-          <div style={{ display: 'grid', gap: 8 }}>
+        <Flex gap={16} wrap="wrap" align="flex-start">
+          <Flex vertical gap={8}>
             <div style={{ fontSize: 12, color: '#64748b' }}>Tall graphic in a wide frame</div>
             <Image
               width={previewWidth}
@@ -141,9 +140,9 @@ export default function ImageStyleDemo() {
               Best for comparing <code>cover</code>, <code>contain</code>, <code>none</code>, and
               <code> scale-down</code>. Changing the focal point moves the visible band.
             </div>
-          </div>
+          </Flex>
 
-          <div style={{ display: 'grid', gap: 8 }}>
+          <Flex vertical gap={8}>
             <div style={{ fontSize: 12, color: '#64748b' }}>Square graphic in a wide frame</div>
             <Image
               width={previewWidth}
@@ -158,9 +157,9 @@ export default function ImageStyleDemo() {
               Best for spotting <code>fill</code>: <code>contain</code> keeps a centered square, while
               <code> fill</code> stretches the circle and square across the whole frame.
             </div>
-          </div>
+          </Flex>
 
-          <div style={{ display: 'grid', gap: 8 }}>
+          <Flex vertical gap={8}>
             <div style={{ fontSize: 12, color: '#64748b' }}>Small asset in a large frame</div>
             <Image
               width={previewWidth}
@@ -175,13 +174,13 @@ export default function ImageStyleDemo() {
               Useful for seeing why <code>scale-down</code> often matches <code>none</code> when the source is
               already smaller than the frame.
             </div>
-          </div>
-        </div>
+          </Flex>
+        </Flex>
         <div style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5 }}>
           Use the tall preview for crop behavior, the square preview for stretch behavior, and the small preview for
           <code> none</code> versus <code>scale-down</code>.
         </div>
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   );
 }

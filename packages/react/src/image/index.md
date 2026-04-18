@@ -27,6 +27,8 @@ Display an image.
 import { Image } from 'tiny-design';
 ```
 
+`ref` points to the native `img` element.
+
 ## Examples
 
 <Layout>

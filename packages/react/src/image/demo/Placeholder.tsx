@@ -1,33 +1,43 @@
 import React from 'react';
-import { Image } from '@tiny-design/react';
-
-const shimmerStyle: React.CSSProperties = {
-  width: '100%',
-  height: '100%',
-  background:
-    'linear-gradient(90deg, rgba(15, 23, 42, 0.08) 25%, rgba(15, 23, 42, 0.16) 37%, rgba(15, 23, 42, 0.08) 63%)',
-  backgroundSize: '400% 100%',
-  animation: 'ty-image-demo-shimmer 1.4s ease infinite',
-};
+import { Button, Flex, Image, Skeleton } from '@tiny-design/react';
 
 export default function PlaceholderDemo() {
+  const [requestId, setRequestId] = React.useState(0);
+  const [src, setSrc] = React.useState<string>();
+  const [isReloading, setIsReloading] = React.useState(true);
+
+  React.useEffect(() => {
+    setIsReloading(true);
+    setSrc(undefined);
+
+    const timer = window.setTimeout(() => {
+      setSrc(
+        `https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80&reload=${requestId}`
+      );
+      setIsReloading(false);
+    }, 1400);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [requestId]);
+
   return (
-    <div>
-      <style>
-        {`
-          @keyframes ty-image-demo-shimmer {
-            0% { background-position: 100% 50%; }
-            100% { background-position: 0 50%; }
-          }
-        `}
-      </style>
+    <Flex vertical gap={12}>
+      <Flex justify="space-between" align="center" gap={12}>
+        <div style={{ fontSize: 12, color: '#64748b' }}>Replay the loading state to inspect the custom placeholder.</div>
+        <Button size="sm" onClick={() => setRequestId((id) => id + 1)}>
+          {isReloading ? 'Loading...' : 'Reload'}
+        </Button>
+      </Flex>
       <Image
+        key={requestId}
         width={320}
         height={180}
-        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80"
+        src={src}
         alt="Mountain lake"
-        placeholder={<span style={shimmerStyle} />}
+        placeholder={<Skeleton active style={{ width: '100%', height: '100%' }} />}
       />
-    </div>
+    </Flex>
   );
 }
