@@ -12,7 +12,7 @@ export type ButtonIconPosition = 'start' | 'end';
 export type ButtonGroupInheritMode = 'fill' | 'override' | 'none';
 
 export interface ButtonProps
-  extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['button']> {
+  extends BaseProps, React.ComponentProps<'button'> {
   variant?: ButtonVariant;
   color?: ButtonColor;
   loading?: boolean;
@@ -27,7 +27,7 @@ export interface ButtonProps
 }
 
 export interface ButtonGroupProps
-  extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['div']> {
+  extends BaseProps, React.ComponentProps<'div'> {
   variant?: ButtonVariant;
   color?: ButtonColor;
   size?: SizeType;

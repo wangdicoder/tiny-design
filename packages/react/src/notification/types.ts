@@ -5,7 +5,7 @@ export type NotificationType = 'success' | 'error' | 'warning' | 'info' | undefi
 
 export interface NotificationProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
   type: NotificationType;
   title?: ReactNode;
   description?: ReactNode;

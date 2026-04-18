@@ -3,7 +3,7 @@ import { BaseProps, SizeType } from '../_utils/props';
 
 export interface SwitchProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['label']>, 'onChange' | 'onClick'> {
+    Omit<React.ComponentProps<'label'>, 'onChange' | 'onClick'> {
   defaultChecked?: boolean;
   checked?: boolean;
   disabled?: boolean;

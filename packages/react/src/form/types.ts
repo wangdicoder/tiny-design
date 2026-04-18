@@ -66,7 +66,7 @@ export interface FormOptionsProps {
 export interface FormProps
   extends BaseProps,
     Partial<FormOptionsProps>,
-    React.PropsWithRef<JSX.IntrinsicElements['form']> {
+    React.ComponentProps<'form'> {
   form?: FormInstance;
   initialValues?: FormValues;
   onFinish?: (values: FormValues) => void;

@@ -5,7 +5,7 @@ export type ResultStatus = 'success' | 'error' | 'info' | 'warning' | 'loading';
 
 export interface ResultProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'title'> {
+    Omit<React.ComponentProps<'div'>, 'title'> {
   title?: ReactNode;
   subtitle?: ReactNode;
   status?: ResultStatus;

@@ -7,7 +7,7 @@ export type SelectionMode = 'single' | 'range' | 'multiple';
 
 export interface CalendarProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange' | 'onSelect' | 'defaultValue'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange' | 'onSelect' | 'defaultValue'> {
   /** Selected date (controlled, single mode) */
   defaultValue?: Date;
   /** Controlled selected date */

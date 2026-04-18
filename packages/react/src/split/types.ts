@@ -18,7 +18,7 @@ export type SplitSeparatorRenderProps = {
 
 export interface SplitPaneProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'children'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   /** Minimum pane size */
   min?: SplitSize;
 
@@ -30,7 +30,7 @@ export interface SplitPaneProps
 
 export interface SplitProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'children'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   /** Pane arrangement: horizontal => left/right, vertical => top/bottom */
   orientation?: SplitOrientation;
 

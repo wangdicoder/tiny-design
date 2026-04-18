@@ -17,7 +17,7 @@ export interface ColorChangeMeta {
 
 export interface ColorPickerProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange' | 'defaultValue'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange' | 'defaultValue'> {
   value?: string;
   defaultValue?: string;
   onChange?: (color: string, meta: ColorChangeMeta) => void;

@@ -13,7 +13,7 @@ export type CascaderValue = (string | number)[];
 
 export interface CascaderProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange' | 'defaultValue'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange' | 'defaultValue'> {
   options: CascaderOption[];
   value?: CascaderValue;
   defaultValue?: CascaderValue;

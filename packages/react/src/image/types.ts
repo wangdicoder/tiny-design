@@ -3,7 +3,7 @@ import { BaseProps } from '../_utils/props';
 
 export interface ImageProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['img']>, 'placeholder'> {
+    Omit<React.ComponentPropsWithoutRef<'img'>, 'placeholder'> {
   src?: string;
   placeholder?: React.ReactNode;
   alt?: string;

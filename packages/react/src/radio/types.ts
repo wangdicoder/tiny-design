@@ -3,7 +3,7 @@ import { BaseProps } from '../_utils/props';
 
 export interface RadioProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['label']>, 'onChange'> {
+    Omit<React.ComponentProps<'label'>, 'onChange'> {
   radioRef?: RefObject<HTMLInputElement>;
   value?: string | number;
   name?: string;
@@ -15,7 +15,7 @@ export interface RadioProps
 
 export interface RadioGroupProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+    Omit<React.ComponentProps<'div'>, 'onChange'> {
   name?: string;
   defaultValue?: number | string;
   value?: number | string;

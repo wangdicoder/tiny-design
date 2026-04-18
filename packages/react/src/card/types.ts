@@ -3,14 +3,14 @@ import { BaseProps } from '../_utils/props';
 
 export type CardVariant = 'outlined' | 'elevated' | 'filled';
 
-export interface CardContentProps extends React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+export interface CardContentProps extends React.ComponentPropsWithoutRef<'div'> {
   prefixCls?: string;
   children: ReactNode;
 }
 
 export interface CardProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
   title?: ReactNode;
   extra?: ReactNode;
   /** Card surface style */

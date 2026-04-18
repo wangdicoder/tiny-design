@@ -3,7 +3,7 @@ import { BaseProps } from '../_utils/props';
 
 export interface StrengthIndicatorProps
   extends BaseProps,
-    React.PropsWithRef<JSX.IntrinsicElements['div']> {
+    React.ComponentProps<'div'> {
   /** the number of indicator, default is 3 */
   blocks?: number;
 

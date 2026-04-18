@@ -6,7 +6,7 @@ export type PaginationSize = 'sm' | 'md';
 
 export interface PaginationProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['ul']>, 'onChange'> {
+    Omit<React.ComponentPropsWithoutRef<'ul'>, 'onChange'> {
   current?: number;
   total?: number;
   defaultCurrent?: number;

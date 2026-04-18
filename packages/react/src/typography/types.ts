@@ -30,11 +30,11 @@ export interface TypographyCopyableConfig {
 
 export interface TypographyProps
   extends BaseProps,
-    React.PropsWithRef<JSX.IntrinsicElements['div']> {
+    React.ComponentProps<'div'> {
   children?: React.ReactNode;
 }
 
-export interface ParagraphProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['p']> {
+export interface ParagraphProps extends BaseProps, React.ComponentProps<'p'> {
   as?: TypographyParagraphTag;
   ellipsis?: boolean | TypographyEllipsisConfig;
   children?: React.ReactNode;
@@ -42,12 +42,12 @@ export interface ParagraphProps extends BaseProps, React.PropsWithRef<JSX.Intrin
 
 export interface HeadingProps
   extends BaseProps,
-    React.PropsWithRef<React.HTMLAttributes<HTMLHeadingElement>> {
+    React.HTMLAttributes<HTMLHeadingElement> {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
   children?: React.ReactNode;
 }
 
-export interface TextProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['span']> {
+export interface TextProps extends BaseProps, React.ComponentProps<'span'> {
   as?: TypographyTextTag;
   type?: TextType;
   copyable?: boolean | TypographyCopyableConfig;

@@ -15,7 +15,7 @@ export type SegmentedValue = string | number;
 export interface SegmentedProps
   extends BaseProps,
     Omit<
-      React.PropsWithoutRef<JSX.IntrinsicElements['div']>,
+      React.ComponentPropsWithoutRef<'div'>,
       'children' | 'defaultValue' | 'onChange'
     > {
   options: SegmentedOption[];

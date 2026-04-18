@@ -3,7 +3,7 @@ import { BaseProps } from '../_utils/props';
 
 export interface AspectRatioProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   /** the width of the content */
   width?: number | string;
 

@@ -11,7 +11,7 @@ import Input from '../input/input';
 
 export interface TransferPanelProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'title' | 'onChange'> {
+    Omit<React.ComponentProps<'div'>, 'title' | 'onChange'> {
   dataSource: TransferItem[];
   checkedKeys: string[];
   onChange: (checkedKeys: string[]) => void;

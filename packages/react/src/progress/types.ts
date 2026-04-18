@@ -7,7 +7,7 @@ export const strokePresetColors = ['primary', 'blue', 'green', 'yellow', 'red'];
 
 export type BarBackgroundType = 'impulse' | 'striped';
 
-export interface BarProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+export interface BarProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {
   percent?: number;
   /** Customise label style for both outer and inner label */
   format?: (percent: number) => React.ReactNode;
@@ -24,7 +24,7 @@ export interface BarProps extends BaseProps, React.PropsWithoutRef<JSX.Intrinsic
 
 export interface CircleProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   percent?: number;
   /** Customise label style for both outer and inner label */
   format?: (percent: number) => React.ReactNode;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseProps, DirectionType } from '../_utils/props';
 
-export interface FlipProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+export interface FlipProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {
   /** a certain parent width and height to prevent the hover empty issue */
   width: string | number;
   height: string | number;
@@ -16,6 +16,6 @@ export interface FlipProps extends BaseProps, React.PropsWithoutRef<JSX.Intrinsi
 
 export interface FlipItemProps
   extends Omit<BaseProps, 'prefixCls'>,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   children?: React.ReactNode;
 }

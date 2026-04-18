@@ -14,7 +14,7 @@ export type SliderMarks = {
 
 export interface SliderProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange' | 'defaultValue'> {
+    Omit<React.ComponentProps<'div'>, 'onChange' | 'defaultValue'> {
   value?: SliderValue;
   defaultValue?: SliderValue;
   min?: number;

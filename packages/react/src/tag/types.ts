@@ -29,7 +29,7 @@ export const PresetColors = [
   ...StatusColors,
 ];
 
-export interface TagProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+export interface TagProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {
   color?: string | StatusColor;
   variant?: TagVariant;
   closable?: boolean;

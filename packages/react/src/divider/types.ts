@@ -7,7 +7,7 @@ export type DividerVariant = 'solid' | 'dashed' | 'dotted';
 
 export interface DividerProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   orientation?: DividerOrientation;
   variant?: DividerVariant;
   titlePlacement?: DividerTitlePlacement;
