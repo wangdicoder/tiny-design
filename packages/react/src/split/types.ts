@@ -1,37 +1,95 @@
 import React from 'react';
 import { BaseProps, DirectionType } from '../_utils/props';
-import { ResizerProps } from './resizer';
+
+export type SplitOrientation = DirectionType;
+export type SplitPrimary = 'first' | 'second';
+export type SplitSize = number | `${number}px` | `${number}%`;
+
+export type SplitSeparatorRenderProps = {
+  orientation: SplitOrientation;
+  disabled: boolean;
+  dragging: boolean;
+  collapsed: boolean;
+  collapsible: boolean;
+  size: number;
+  hitAreaSize: number;
+  toggleCollapse: () => void;
+};
+
+export interface SplitPaneProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'children'> {
+  /** Minimum pane size */
+  min?: SplitSize;
+
+  /** Maximum pane size */
+  max?: SplitSize;
+
+  children?: React.ReactNode;
+}
 
 export interface SplitProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange'> {
-  /** Split mode */
-  mode?: DirectionType;
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'children'> {
+  /** Pane arrangement: horizontal => left/right, vertical => top/bottom */
+  orientation?: SplitOrientation;
+
+  /** Which pane owns the resizable size model */
+  primary?: SplitPrimary;
 
   /** Disabled flag */
   disabled?: boolean;
 
-  /** Minimum width / height of the target pane */
-  min?: number | string;
+  /** Controlled size for the primary pane */
+  size?: SplitSize;
 
-  /** Maximum width / height of the target pane */
-  max?: number | string;
+  /** Initial size for the primary pane */
+  defaultSize?: SplitSize;
 
-  /** Control the size of target pane */
-  size?: number | string;
+  /** Minimum size for the primary pane */
+  min?: SplitSize;
 
-  /** Default size of target pane */
-  defaultSize?: number | string;
+  /** Maximum size for the primary pane */
+  max?: SplitSize;
 
-  /** Resizer's other props */
-  resizerProps?: ResizerProps;
+  /** Allow the primary pane to collapse */
+  collapsible?: boolean;
 
-  /** Drag step */
-  step?: number;
+  /** Controlled collapsed state for the primary pane */
+  collapsed?: boolean;
 
-  resizerSize?: number;
+  /** Initial collapsed state for the primary pane */
+  defaultCollapsed?: boolean;
 
-  onChange?: (size: number) => void;
-  onDragStarted?: () => void;
-  onDragFinished?: () => void;
+  /** Size of the primary pane while collapsed */
+  collapsedSize?: SplitSize;
+
+  onCollapseChange?: (collapsed: boolean) => void;
+
+  /** Pointer drag step */
+  dragStep?: number;
+
+  /** Keyboard drag step */
+  keyboardStep?: number;
+
+  /** Visual separator size */
+  separatorSize?: number;
+
+  /** Interactive separator hit area size */
+  separatorHitAreaSize?: number;
+
+  /** Class name applied to the separator interaction container */
+  separatorClassName?: string;
+
+  /** Inline style applied to the separator interaction container */
+  separatorStyle?: React.CSSProperties;
+
+  /** Custom separator content renderer */
+  separatorRender?: (props: SplitSeparatorRenderProps) => React.ReactNode;
+
+  onResize?: (size: number) => void;
+  onResizeStart?: (size: number) => void;
+  onResizeEnd?: (size: number) => void;
+
+  children: [React.ReactNode, React.ReactNode];
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { DirectionType } from '../_utils/props';
+import { SplitOrientation } from './types';
 
 type Props = {
-  mode: DirectionType;
+  orientation: SplitOrientation;
 };
 
-export const SplitContext = React.createContext<Props>({ mode: 'vertical' });
+export const SplitContext = React.createContext<Props>({ orientation: 'horizontal' });

@@ -1,76 +1,138 @@
-import React, { useContext, MouseEventHandler, TouchEventHandler } from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
 import { BaseProps, DirectionType } from '../_utils/props';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
+import { SplitSeparatorRenderProps } from './types';
 
 export interface ResizerProps
   extends BaseProps,
     React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
-  size: number;
-  mode: DirectionType;
-  onResizerMouseDown: MouseEventHandler<HTMLDivElement>;
-  onResizerTouchStart?: TouchEventHandler<HTMLDivElement>;
+  visualSize?: number;
+  hitAreaSize: number;
+  orientation: DirectionType;
+  disabled?: boolean;
+  dragging?: boolean;
+  collapsed?: boolean;
+  collapsible?: boolean;
+  separatorRender?: (props: SplitSeparatorRenderProps) => React.ReactNode;
+  onDragStart: React.MouseEventHandler<HTMLDivElement>;
+  onTouchDragStart?: React.TouchEventHandler<HTMLDivElement>;
+  onKeyStep?: React.KeyboardEventHandler<HTMLDivElement>;
+  onToggleCollapse?: () => void;
 }
 
 const Resizer = (props: ResizerProps): JSX.Element => {
   const {
-    size,
-    onResizerMouseDown,
-    onResizerTouchStart,
+    visualSize,
+    hitAreaSize,
+    orientation,
+    disabled = false,
+    dragging = false,
+    collapsed = false,
+    collapsible = false,
+    separatorRender,
+    onDragStart,
+    onTouchDragStart,
+    onKeyStep,
+    onToggleCollapse,
     prefixCls: customisedCls,
-    mode,
     className,
+    style,
+    onMouseDown,
+    onTouchStart,
+    onDoubleClick,
     ...otherProps
   } = props;
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('split-bar', configContext.prefixCls, customisedCls);
   const cls = classNames(prefixCls, className, {
-    [`${prefixCls}_${mode}`]: mode,
+    [`${prefixCls}_${orientation}`]: orientation,
+    [`${prefixCls}_disabled`]: disabled,
+    [`${prefixCls}_dragging`]: dragging,
+    [`${prefixCls}_collapsed`]: collapsed,
+    [`${prefixCls}_collapsible`]: collapsible,
   });
+  const slotCls = `${prefixCls}__slot`;
 
-  const style: React.CSSProperties = mode === 'vertical' ? { width: size } : { height: size };
+  const resolvedVisualSize = visualSize ?? 2;
 
-  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    props.onMouseDown && props.onMouseDown(e);
-    onResizerMouseDown(e);
+  const mergedStyle: React.CSSProperties = {
+    ...style,
+    ...(orientation === 'horizontal' ? { width: hitAreaSize } : { height: hitAreaSize }),
+    ['--ty-split-bar-hit-area-size' as string]: `${hitAreaSize}px`,
+  };
+  if (visualSize !== undefined) {
+    (mergedStyle as React.CSSProperties & Record<string, string>)['--ty-split-bar-size'] = `${visualSize}px`;
+  }
+
+  const renderProps: SplitSeparatorRenderProps = {
+    orientation,
+    disabled,
+    dragging,
+    collapsed,
+    collapsible,
+    size: resolvedVisualSize,
+    hitAreaSize,
+    toggleCollapse: () => {
+      if (!disabled && collapsible) {
+        onToggleCollapse?.();
+      }
+    },
   };
 
-  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    props.onTouchStart && props.onTouchStart(e);
-    onResizerTouchStart && onResizerTouchStart(e);
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    onMouseDown?.(event);
+    if (!event.defaultPrevented) {
+      onDragStart(event);
+    }
   };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    onTouchStart?.(event);
+    if (!event.defaultPrevented) {
+      onTouchDragStart?.(event);
+    }
+  };
+
+  const handleDoubleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    onDoubleClick?.(event);
+    if (!event.defaultPrevented && !disabled && collapsible) {
+      onToggleCollapse?.();
+    }
+  };
+
+  const ariaOrientation = orientation === 'horizontal' ? 'vertical' : 'horizontal';
 
   return (
     <div
-      {...otherProps}
-      role="separator"
-      tabIndex={0}
-      aria-orientation={mode === 'vertical' ? 'vertical' : 'horizontal'}
-      className={cls}
-      style={style}
-      onMouseDown={(e): void => onMouseDown(e)}
-      onTouchStart={(e): void => onTouchStart(e)}
-      onKeyDown={(e) => {
-        const step = 10;
-        if (mode === 'vertical' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
-          e.preventDefault();
-          const delta = e.key === 'ArrowRight' ? step : -step;
-          const synthetic = { clientX: (e.target as HTMLElement).getBoundingClientRect().left + delta, clientY: 0 } as MouseEvent;
-          onResizerMouseDown(e as unknown as React.MouseEvent<HTMLDivElement>);
-          window.dispatchEvent(new MouseEvent('mousemove', { clientX: synthetic.clientX }));
-          window.dispatchEvent(new MouseEvent('mouseup'));
-        }
-        if (mode === 'horizontal' && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
-          e.preventDefault();
-          const delta = e.key === 'ArrowDown' ? step : -step;
-          const synthetic = { clientY: (e.target as HTMLElement).getBoundingClientRect().top + delta, clientX: 0 } as MouseEvent;
-          onResizerMouseDown(e as unknown as React.MouseEvent<HTMLDivElement>);
-          window.dispatchEvent(new MouseEvent('mousemove', { clientY: synthetic.clientY }));
-          window.dispatchEvent(new MouseEvent('mouseup'));
-        }
-      }}>
-      <div className={`${prefixCls}__icon`} />
+      className={classNames(slotCls, `${slotCls}_${orientation}`)}
+      style={orientation === 'horizontal' ? { width: resolvedVisualSize } : { height: resolvedVisualSize }}>
+      <div
+        {...otherProps}
+        role="separator"
+        tabIndex={disabled ? -1 : 0}
+        aria-disabled={disabled}
+        aria-orientation={ariaOrientation}
+        className={cls}
+        style={mergedStyle}
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
+        onKeyDown={onKeyStep}
+        onDoubleClick={handleDoubleClick}>
+        {separatorRender ? (
+          separatorRender(renderProps)
+        ) : (
+          <div className={`${prefixCls}__visual`}>
+            <span className={`${prefixCls}__track`} />
+            <span className={`${prefixCls}__handle`}>
+              <span className={`${prefixCls}__grip-dot`} />
+              <span className={`${prefixCls}__grip-dot`} />
+              <span className={`${prefixCls}__grip-dot`} />
+            </span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
