@@ -2,11 +2,16 @@
 
 exports[`<Image /> should match the snapshot 1`] = `
 <DocumentFragment>
-  <img
-    alt="image"
-    class="ty-image"
-    src="test.jpg"
-    style="object-fit: cover;"
-  />
+  <span
+    class="ty-image ty-image_loading"
+    data-status="loading"
+  >
+    <img
+      alt=""
+      class="ty-image__img"
+      src="test.jpg"
+      style="object-fit: cover;"
+    />
+  </span>
 </DocumentFragment>
 `;
