@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { BaseProps } from '../_utils/props';
 
-export interface ImageProps extends BaseProps, React.PropsWithoutRef<JSX.IntrinsicElements['img']> {
+export interface ImageProps
+  extends BaseProps,
+    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['img']>, 'placeholder'> {
   src?: string;
-  placeholder?: string;
+  placeholder?: React.ReactNode;
   alt?: string;
   width?: number | string;
   height?: number | string;
   round?: boolean;
   lazy?: boolean;
-  fallback?: string;
+  fallback?: React.ReactNode;
   objectFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
+  imageClassName?: string;
+  imageStyle?: CSSProperties;
 }

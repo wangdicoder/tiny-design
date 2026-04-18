@@ -6,8 +6,12 @@ import RoundDemo from './demo/Round';
 import RoundSource from './demo/Round.tsx?raw';
 import LazyDemo from './demo/Lazy';
 import LazySource from './demo/Lazy.tsx?raw';
-import FallbackDemo from './demo/Fallback';
-import FallbackSource from './demo/Fallback.tsx?raw';
+import PlaceholderDemo from './demo/Placeholder';
+import PlaceholderSource from './demo/Placeholder.tsx?raw';
+import CustomFallbackDemo from './demo/CustomFallback';
+import CustomFallbackSource from './demo/CustomFallback.tsx?raw';
+import ImageStyleDemo from './demo/ImageStyle';
+import ImageStyleSource from './demo/ImageStyle.tsx?raw';
 
 # Image
 
@@ -22,6 +26,8 @@ Display an image.
 ```jsx
 import { Image } from 'tiny-design';
 ```
+
+`ref` points to the native `img` element.
 
 ## Examples
 
@@ -45,8 +51,6 @@ The size of the image can be adjusted using the `width` and `height` prop.
 <DemoBlock component={SizeDemo} source={SizeSource} />
 
     </Demo>
-  </Column>
-  <Column>
     <Demo>
 
 ### Rounded Image
@@ -58,20 +62,40 @@ Display a rounded image.
     </Demo>
     <Demo>
 
-### Lazy Load
+### Custom Placeholder
 
-Set `lazy` and `placehoulder` properties to implement the lazy load.
+Use `placeholder` to render skeletons or branded loading content.
 
-<DemoBlock component={LazyDemo} source={LazySource} />
+<DemoBlock component={PlaceholderDemo} source={PlaceholderSource} />
+
+    </Demo>
+  </Column>
+  <Column>
+    <Demo>
+
+### Custom Fallback
+
+`fallback` accepts any ReactNode, not just another image URL.
+
+<DemoBlock component={CustomFallbackDemo} source={CustomFallbackSource} />
 
     </Demo>
     <Demo>
 
-### Fallback
+### Interactive Props
 
-Providing a fallback image for when there is an error loading the src of the image.
+Use `Radio`, `Select`, and `Switch` to adjust `objectFit`, focal point, and round mode.
 
-<DemoBlock component={FallbackDemo} source={FallbackSource} />
+<DemoBlock component={ImageStyleDemo} source={ImageStyleSource} />
+
+    </Demo>
+    <Demo>
+
+### Lazy Load
+
+Set `lazy` and `placeholder` to implement lazy loading. When `IntersectionObserver` is not available, the component falls back to eager loading.
+
+<DemoBlock component={LazyDemo} source={LazySource} />
 
     </Demo>
   </Column>
@@ -79,16 +103,18 @@ Providing a fallback image for when there is an error loading the src of the ima
 
 ## Props
 
-| Property      | Description                               | Type                  | Default   |
+| Property | Description | Type | Default |
 | ------------- | ----------------------------------------- | --------------------- | --------- |
-| src           | The path to the image source              | string                | -         |
-| alt           | The alt text that describes the image     | string                | -         |
-| placeholder   | Used when lazy loading                    | string                | -         |
-| width         | Image width                               | string &#124; number  | -         |
-| height        | Image height                              | string &#124; number  | -         |
-| round         | Rounded image                             | boolean               | false     |
-| lazy          | Determine the image lazy loads            | boolean               | false     |
-| fallback      | Image placeholder when an error loading   | string                | -         |
-| objectFit     | Image fit mode                            |                       | -         |
-| style	        | Style object of container object          |                       | -         |
-| className	    | ClassName of container                    | string                | -         |
+| src | The path to the image source | string | - |
+| alt | The alt text that describes the image | string | `''` |
+| placeholder | Content rendered while loading or before a lazy image enters the viewport |ReactNode | - |
+| width | Image container width | string &#124; number | - |
+| height | Image container height | string &#124; number | - |
+| round | Render as a circular image | boolean | false |
+| lazy | Whether to lazy load the image | boolean | false |
+| fallback | Fallback content rendered when the image fails to load | ReactNode | - |
+| objectFit | Image fit mode | `'fill' \| 'contain' \| 'cover' \| 'none' \| 'scale-down'` | `cover` |
+| imageStyle | Style object for the native `img` element | CSSProperties | - |
+| imageClassName | ClassName for the native `img` element | string | - |
+| style | Style object of the container | CSSProperties | - |
+| className | ClassName of the container | string | - |
