@@ -1,5 +1,12 @@
 import type { ThemeDocument } from '@tiny-design/react';
-import { buildThemeDocumentFromDraft, getPresetById, getPresetDraft, inferPresetIdFromThemeDocument, type ThemeMode } from '../containers/theme-studio/presets';
+import {
+  buildThemeDocumentFromDraft,
+  getPresetById,
+  getPresetDraft,
+  inferPresetIdFromThemeDocument,
+  type ThemeMode,
+} from '../containers/theme-studio/presets';
+import { syncThemeStudioFonts } from '../containers/theme-studio/font-loader';
 import { resolveThemeDocument } from './theme-document';
 
 const STORAGE_KEY = 'ty-theme-studio-active-document';
@@ -48,7 +55,7 @@ export function saveThemeDocument(theme: ThemeDocument): void {
 export function loadStoredThemeDocument(): ThemeDocument | undefined {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) as ThemeDocument : undefined;
+    return raw ? (JSON.parse(raw) as ThemeDocument) : undefined;
   } catch {
     return undefined;
   }
@@ -56,6 +63,7 @@ export function loadStoredThemeDocument(): ThemeDocument | undefined {
 
 export function clearStoredThemeDocument(): void {
   localStorage.removeItem(STORAGE_KEY);
+  syncThemeStudioFonts([]);
   clearCssVars();
 }
 
@@ -65,6 +73,7 @@ export function applyThemeDocumentToDOM(
 ): Record<string, string> {
   let stored = theme ?? loadStoredThemeDocument();
   if (!stored) {
+    syncThemeStudioFonts([]);
     clearCssVars();
     return {};
   }
@@ -72,7 +81,11 @@ export function applyThemeDocumentToDOM(
   const currentMode: ThemeMode = detectDarkMode() ? 'dark' : 'light';
   const presetId = inferPresetIdFromThemeDocument(stored);
 
-  if (!options?.respectThemeMode && getPresetById(presetId).id === presetId && stored.mode !== currentMode) {
+  if (
+    !options?.respectThemeMode &&
+    getPresetById(presetId).id === presetId &&
+    stored.mode !== currentMode
+  ) {
     const nextDraft = getPresetDraft(presetId, currentMode);
     const nextTheme = buildThemeDocumentFromDraft({
       ...nextDraft,
@@ -93,6 +106,9 @@ export function applyThemeDocumentToDOM(
     extends: isDark ? 'tiny-dark' : 'tiny-light',
   };
   const vars = resolveThemeDocument(effectiveTheme);
+  syncThemeStudioFonts(
+    [vars['--ty-font-family'], vars['--ty-font-family-monospace']].filter(Boolean)
+  );
   applyCssVars(vars);
   return vars;
 }

@@ -27,6 +27,9 @@ import {
   Descriptions,
   Table,
   Timeline,
+  Text,
+  Image,
+  Menu,
 } from '@tiny-design/react';
 import {
   IconGithub,
@@ -94,30 +97,34 @@ const ProductPreview = ({ s }: { s: any }): React.ReactElement => {
   return (
     <div className="home__product-shell">
       <div className="home__product-sidebar">
-        <div className="home__product-brand">
-          <img src={logoSvg} alt="logo" width={28} height={28} />
+        <Flex align="center" gap="sm" className="home__product-brand">
+          <Image src={logoSvg} alt="Tiny UI logo" width={28} height={28} />
           <div>
-            <strong>Tiny UI</strong>
-            <span>{s.home.preview.workspace}</span>
+            <Text strong>Tiny UI</Text>
+            <Text type="secondary">{s.home.preview.workspace}</Text>
           </div>
-        </div>
-        <div className="home__product-nav">
-          <button className="home__product-nav-item home__product-nav-item_active">
-            <IconStatistics size={16} />
-            <span>{s.home.preview.overview}</span>
-          </button>
-          <button className="home__product-nav-item">
-            <IconStructure size={16} />
-            <span>{s.home.preview.components}</span>
-          </button>
-          <button className="home__product-nav-item">
-            <IconSettings size={16} />
-            <span>{s.home.preview.settings}</span>
-          </button>
-        </div>
+        </Flex>
+        <Menu
+          mode="inline"
+          appearance="navigation"
+          variant="ghost"
+          size="lg"
+          selectionStyle="background"
+          className="home__product-nav"
+          defaultSelectedKeys={['overview']}>
+          <Menu.Item index="overview" icon={<IconStatistics size={16} />}>
+            {s.home.preview.overview}
+          </Menu.Item>
+          <Menu.Item index="components" icon={<IconStructure size={16} />}>
+            {s.home.preview.components}
+          </Menu.Item>
+          <Menu.Item index="settings" icon={<IconSettings size={16} />}>
+            {s.home.preview.settings}
+          </Menu.Item>
+        </Menu>
         <Card className="home__product-sidebar-card" variant="filled">
           <Card.Content>
-            <div className="home__product-sidebar-kicker">{s.home.preview.activeTheme}</div>
+            <Text className="home__product-sidebar-kicker">{s.home.preview.activeTheme}</Text>
             <div className="home__product-swatches">
               <span className="home__product-swatch home__product-swatch_primary" />
               <span className="home__product-swatch home__product-swatch_info" />
@@ -132,7 +139,7 @@ const ProductPreview = ({ s }: { s: any }): React.ReactElement => {
                 {s.home.preview.tokensValue}
               </Descriptions.Item>
             </Descriptions>
-            <Paragraph>{s.home.preview.themeHint}</Paragraph>
+            <Paragraph className="home__product-theme-hint">{s.home.preview.themeHint}</Paragraph>
             <Button variant="outline" color="primary" size="sm">
               {s.home.preview.editTheme}
             </Button>
@@ -240,10 +247,10 @@ const ProductPreview = ({ s }: { s: any }): React.ReactElement => {
             <Timeline>
               {activityItems.map((item) => (
                 <Timeline.Item key={item.key} dotStyle={{ borderColor: item.color }}>
-                  <div className="home__product-activity-item">
-                    <strong>{item.title}</strong>
-                    <span>{item.desc}</span>
-                  </div>
+                  <Flex vertical gap="xs" className="home__product-activity-item">
+                    <Text strong>{item.title}</Text>
+                    <Text type="secondary">{item.desc}</Text>
+                  </Flex>
                 </Timeline.Item>
               ))}
             </Timeline>

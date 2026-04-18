@@ -1,21 +1,48 @@
 @use '../../variables' as *;
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes subtleFloat {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -52%) scale(1.02); }
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -52%) scale(1.02);
+  }
 }
 
 .home {
-  --home-surface-base: color-mix(in srgb, var(--ty-color-bg-elevated) 90%, var(--ty-color-primary) 10%);
+  --home-surface-base: color-mix(
+    in srgb,
+    var(--ty-color-bg-elevated) 90%,
+    var(--ty-color-primary) 10%
+  );
   --home-surface-soft: color-mix(in srgb, var(--ty-color-fill) 86%, var(--ty-color-primary) 14%);
-  --home-surface-strong: color-mix(in srgb, var(--ty-color-bg-elevated) 76%, var(--ty-color-primary) 24%);
-  --home-border-strong: color-mix(in srgb, var(--ty-color-border-secondary) 68%, var(--ty-color-primary) 32%);
-  --home-border-soft: color-mix(in srgb, var(--ty-color-border-secondary) 84%, var(--ty-color-primary) 16%);
+  --home-surface-strong: color-mix(
+    in srgb,
+    var(--ty-color-bg-elevated) 76%,
+    var(--ty-color-primary) 24%
+  );
+  --home-border-strong: color-mix(
+    in srgb,
+    var(--ty-color-border-secondary) 68%,
+    var(--ty-color-primary) 32%
+  );
+  --home-border-soft: color-mix(
+    in srgb,
+    var(--ty-color-border-secondary) 84%,
+    var(--ty-color-primary) 16%
+  );
   --home-shadow-ambient: color-mix(in srgb, var(--ty-color-primary) 18%, transparent);
   --home-shadow-depth: color-mix(in srgb, var(--ty-color-text) 10%, transparent);
   padding-top: $header-height;
@@ -26,7 +53,11 @@
   &__bg-grid {
     position: fixed;
     inset: 0;
-    background-image: radial-gradient(circle, var(--ty-color-border-secondary) 1px, transparent 1px);
+    background-image: radial-gradient(
+      circle,
+      var(--ty-color-border-secondary) 1px,
+      transparent 1px
+    );
     background-size: 32px 32px;
     opacity: 0.5;
     pointer-events: none;
@@ -77,7 +108,9 @@
     color: var(--ty-color-text-secondary);
     margin-bottom: 28px;
 
-    img { border-radius: 50%; }
+    img {
+      border-radius: 50%;
+    }
   }
 
   &__hero-heading {
@@ -204,8 +237,7 @@
     padding: 18px;
     border-radius: 30px;
     border: 1px solid var(--home-border-strong);
-    background:
-      linear-gradient(180deg, var(--home-surface-base) 0%, var(--home-surface-soft) 100%);
+    background: linear-gradient(180deg, var(--home-surface-base) 0%, var(--home-surface-soft) 100%);
     box-shadow:
       0 32px 120px var(--home-shadow-ambient),
       0 16px 40px var(--home-shadow-depth);
@@ -221,64 +253,58 @@
   &__product-sidebar {
     padding: 18px;
     border-radius: 22px;
-    background:
-      linear-gradient(180deg, var(--home-surface-strong) 0%, var(--home-surface-base) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--home-surface-strong) 0%,
+      var(--home-surface-base) 100%
+    );
     border: 1px solid var(--home-border-strong);
     box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ty-color-bg-elevated) 60%, transparent);
   }
 
   &__product-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    .ty-image {
+      flex: none;
+    }
 
-    strong,
-    span {
+    .ty-typography {
       display: block;
     }
 
-    strong {
+    .ty-typography strong {
       font-size: 15px;
       color: var(--ty-color-text);
     }
 
-    span {
+    .ty-typography + .ty-typography {
       margin-top: 2px;
       font-size: 12px;
-      color: var(--ty-color-text-secondary);
     }
   }
 
   &__product-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
     margin-top: 24px;
-  }
+    padding: 4px;
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--ty-color-bg-elevated) 48%, transparent);
 
-  &__product-nav-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid transparent;
-    border-radius: 14px;
-    background: transparent;
-    color: var(--ty-color-text-secondary);
-    cursor: pointer;
-    font: inherit;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: color-mix(in srgb, var(--ty-color-bg-elevated) 80%, transparent);
-      color: var(--ty-color-text);
+    .ty-menu-item {
+      border-radius: 14px;
     }
 
-    &_active {
+    .ty-menu-item:hover {
+      background: color-mix(in srgb, var(--ty-color-bg-elevated) 80%, transparent);
+    }
+
+    .ty-menu-item_active,
+    .ty-menu-item_selected {
       border-color: color-mix(in srgb, var(--ty-color-primary) 16%, transparent);
       background: color-mix(in srgb, var(--ty-color-fill) 76%, var(--ty-color-primary) 24%);
       color: var(--ty-color-text);
+    }
+
+    .ty-menu-item__icon {
+      color: inherit;
     }
   }
 
@@ -292,7 +318,7 @@
       padding: 20px;
     }
 
-    .ty-typography {
+    .home__product-theme-hint {
       margin: 12px 0 16px;
       font-size: 13px;
       line-height: 1.6;
@@ -301,6 +327,7 @@
   }
 
   &__product-sidebar-kicker {
+    display: inline-block;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -320,18 +347,32 @@
     border-radius: 50%;
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ty-color-text) 10%, transparent);
 
-    &_primary { background: var(--ty-color-primary); }
-    &_info { background: var(--ty-color-info); }
-    &_success { background: var(--ty-color-success); }
-    &_warning { background: var(--ty-color-warning); }
+    &_primary {
+      background: var(--ty-color-primary);
+    }
+    &_info {
+      background: var(--ty-color-info);
+    }
+    &_success {
+      background: var(--ty-color-success);
+    }
+    &_warning {
+      background: var(--ty-color-warning);
+    }
   }
 
   &__avatar {
     color: #fff;
 
-    &_primary { background: var(--ty-color-primary); }
-    &_info { background: var(--ty-color-info); }
-    &_success { background: var(--ty-color-success); }
+    &_primary {
+      background: var(--ty-color-primary);
+    }
+    &_info {
+      background: var(--ty-color-info);
+    }
+    &_success {
+      background: var(--ty-color-success);
+    }
   }
 
   &__product-main {
@@ -343,8 +384,11 @@
       position: absolute;
       inset: 0;
       border-radius: 22px;
-      background:
-        radial-gradient(circle at top right, color-mix(in srgb, var(--ty-color-primary) 14%, transparent), transparent 36%);
+      background: radial-gradient(
+        circle at top right,
+        color-mix(in srgb, var(--ty-color-primary) 14%, transparent),
+        transparent 36%
+      );
       pointer-events: none;
     }
   }
@@ -416,7 +460,7 @@
 
     .ty-card__header {
       align-items: center;
-      font-family: $font-display;
+      font-family: inherit;
       font-size: 18px;
       letter-spacing: -0.01em;
       background: transparent;
@@ -438,6 +482,10 @@
   &__product-panel_activity {
     margin-top: 12px;
 
+    .ty-card__header {
+      font-family: inherit;
+    }
+
     .ty-card__body {
       gap: 0;
     }
@@ -448,20 +496,16 @@
   }
 
   &__product-activity-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
     padding-bottom: 6px;
 
-    strong {
+    .ty-typography strong {
       font-size: 13px;
       color: var(--ty-color-text);
     }
 
-    span {
+    .ty-typography {
       font-size: 12px;
       line-height: 1.6;
-      color: var(--ty-color-text-secondary);
     }
   }
 
@@ -474,9 +518,15 @@
   &__scenario-card {
     min-height: 280px;
     border-color: var(--home-border-soft);
-    background:
-      linear-gradient(180deg, var(--home-surface-base) 0%, var(--ty-color-bg-elevated) 100%);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    background: linear-gradient(
+      180deg,
+      var(--home-surface-base) 0%,
+      var(--ty-color-bg-elevated) 100%
+    );
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
 
     .ty-card__body {
       display: flex;
@@ -543,7 +593,11 @@
     span {
       display: block;
       border-radius: 999px 999px 10px 10px;
-      background: linear-gradient(180deg, color-mix(in srgb, var(--ty-color-primary) 70%, var(--ty-color-bg-elevated)) 0%, var(--ty-color-primary) 100%);
+      background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--ty-color-primary) 70%, var(--ty-color-bg-elevated)) 0%,
+        var(--ty-color-primary) 100%
+      );
     }
   }
 
@@ -627,9 +681,15 @@
       background: var(--ty-color-border);
     }
 
-    span:nth-child(1) { background: #ff5f57; }
-    span:nth-child(2) { background: #febc2e; }
-    span:nth-child(3) { background: #28c840; }
+    span:nth-child(1) {
+      background: #ff5f57;
+    }
+    span:nth-child(2) {
+      background: #febc2e;
+    }
+    span:nth-child(3) {
+      background: #28c840;
+    }
   }
 
   &__code-filename {
@@ -742,7 +802,9 @@
     background: var(--ty-color-bg-elevated);
     text-align: center;
     animation: fadeInUp 0.5s ease both;
-    transition: border-color 0.2s, transform 0.2s;
+    transition:
+      border-color 0.2s,
+      transform 0.2s;
 
     &:hover {
       border-color: var(--ty-color-border);
@@ -813,7 +875,9 @@
     background: var(--ty-color-bg-elevated);
     border: 1px solid var(--ty-color-border-secondary);
     cursor: pointer;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
     user-select: all;
 
     &:hover {
@@ -841,7 +905,9 @@
     font-weight: 600;
     padding: 4px 8px;
     border-radius: 6px;
-    transition: color 0.15s, background 0.15s;
+    transition:
+      color 0.15s,
+      background 0.15s;
 
     &:hover {
       color: var(--ty-color-primary);
@@ -885,7 +951,9 @@
     mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 
-    .ty-marquee { padding: 4px 0; }
+    .ty-marquee {
+      padding: 4px 0;
+    }
   }
 
   &__marquee-card {
@@ -909,10 +977,15 @@
       transform: translateY(-2px);
     }
 
-    &_active { transform: translateY(-2px); }
+    &_active {
+      transform: translateY(-2px);
+    }
   }
 
-  &__marquee-swatches { display: flex; gap: 6px; }
+  &__marquee-swatches {
+    display: flex;
+    gap: 6px;
+  }
 
   &__marquee-swatch {
     width: 20px;
@@ -997,10 +1070,16 @@
       grid-template-columns: 1fr;
     }
 
-    &__hero-stat-value { font-size: 24px; }
+    &__hero-stat-value {
+      font-size: 24px;
+    }
 
-    &__section { padding: 48px 0; }
-    &__section-inner { padding: 0 24px; }
+    &__section {
+      padding: 48px 0;
+    }
+    &__section-inner {
+      padding: 0 24px;
+    }
 
     &__code-split {
       grid-template-columns: 1fr;
@@ -1010,7 +1089,9 @@
       grid-template-columns: 1fr;
     }
 
-    &__cta-section { padding: 48px 24px; }
+    &__cta-section {
+      padding: 48px 24px;
+    }
   }
 
   @media (max-width: $size-sm) {
@@ -1024,22 +1105,38 @@
       margin-bottom: 20px;
     }
 
-    &__hero-heading { font-size: 32px; }
-    &__hero-subtitle { font-size: 15px; }
+    &__hero-heading {
+      font-size: 32px;
+    }
+    &__hero-subtitle {
+      font-size: 15px;
+    }
 
     &__hero-stats {
       gap: 16px 28px;
       margin-top: 28px;
     }
 
-    &__hero-stat-value { font-size: 22px; }
-    &__hero-stat-label { font-size: 10px; }
+    &__hero-stat-value {
+      font-size: 22px;
+    }
+    &__hero-stat-label {
+      font-size: 10px;
+    }
 
-    &__section { padding: 40px 0; }
-    &__section-inner { padding: 0 16px; }
+    &__section {
+      padding: 40px 0;
+    }
+    &__section-inner {
+      padding: 0 16px;
+    }
 
-    &__section-title { font-size: 22px; }
-    &__section-subtitle { font-size: 14px; }
+    &__section-title {
+      font-size: 22px;
+    }
+    &__section-subtitle {
+      font-size: 14px;
+    }
 
     &__product-metric .ty-statistic__content {
       font-size: 24px;
@@ -1085,26 +1182,48 @@
       left: 14px;
     }
 
-    &__marquee-card { padding: 12px 14px; }
-    &__marquee-swatch { width: 16px; height: 16px; }
-    &__marquee-name { font-size: 11px; }
+    &__marquee-card {
+      padding: 12px 14px;
+    }
+    &__marquee-swatch {
+      width: 16px;
+      height: 16px;
+    }
+    &__marquee-name {
+      font-size: 11px;
+    }
 
     &__feature-card {
       padding: 20px 16px;
     }
 
-    &__feature-icon { width: 40px; height: 40px; margin-bottom: 10px; border-radius: 10px; }
-    &__feature-name { font-size: 15px; }
-    &__feature-desc { font-size: 12px; }
+    &__feature-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+    &__feature-name {
+      font-size: 15px;
+    }
+    &__feature-desc {
+      font-size: 12px;
+    }
 
     &__theme-showcase-desc.ty-typography {
       padding: 0 20px;
       font-size: 14px;
     }
 
-    &__cta-section { padding: 40px 16px; }
-    &__cta-title { font-size: 22px; }
-    &__cta-subtitle { font-size: 14px; }
+    &__cta-section {
+      padding: 40px 16px;
+    }
+    &__cta-title {
+      font-size: 22px;
+    }
+    &__cta-subtitle {
+      font-size: 14px;
+    }
   }
 
   @media (max-width: $size-xs) {
@@ -1112,14 +1231,22 @@
       padding: 28px 16px 22px;
     }
 
-    &__hero-heading { font-size: 28px; }
-    &__hero-subtitle { font-size: 14px; max-width: 300px; }
+    &__hero-heading {
+      font-size: 28px;
+    }
+    &__hero-subtitle {
+      font-size: 14px;
+      max-width: 300px;
+    }
 
     &__hero-actions {
       flex-direction: column;
       align-items: center;
 
-      .ty-btn { width: 100%; max-width: 280px; }
+      .ty-btn {
+        width: 100%;
+        max-width: 280px;
+      }
     }
 
     &__hero-stats {
@@ -1128,10 +1255,16 @@
       justify-content: center;
     }
 
-    &__hero-stat-value { font-size: 20px; }
+    &__hero-stat-value {
+      font-size: 20px;
+    }
 
-    &__section-inner { padding: 0 12px; }
-    &__section-header { margin-bottom: 24px; }
+    &__section-inner {
+      padding: 0 12px;
+    }
+    &__section-header {
+      margin-bottom: 24px;
+    }
 
     &__features-row {
       gap: 10px;
@@ -1157,14 +1290,19 @@
       width: 100%;
       max-width: 340px;
 
-      code { font-size: 12px; }
+      code {
+        font-size: 12px;
+      }
     }
 
     &__cta-actions {
       flex-direction: column;
       align-items: center;
 
-      .ty-btn { width: 100%; max-width: 280px; }
+      .ty-btn {
+        width: 100%;
+        max-width: 280px;
+      }
     }
   }
 }
