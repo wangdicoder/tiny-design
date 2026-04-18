@@ -8,8 +8,12 @@ export default function CollapseDemo() {
       min="128px"
       collapsible
       collapsedSize={72}
-      style={{ height: 220, border: '1px solid #dcdee2', background: '#f8fafc' }}>
-      <Split.Pane style={{ padding: 16, background: '#fff' }}>
+      style={{
+        height: 220,
+        border: '1px solid var(--ty-color-border-secondary)',
+        background: 'var(--ty-color-fill)',
+      }}>
+      <Split.Pane style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>
         Collapsible sidebar
       </Split.Pane>
       <Split.Pane min="160px" style={{ padding: 16 }}>

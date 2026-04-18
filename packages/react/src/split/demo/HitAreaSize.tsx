@@ -7,7 +7,7 @@ export default function HitAreaSizeDemo() {
 
   return (
     <Flex vertical gap="md">
-      <div style={{ fontSize: 12, color: '#6b7280' }}>Hit area: {hitAreaSize}px</div>
+      <div style={{ fontSize: 12, color: 'var(--ty-color-text-secondary)' }}>Hit area: {hitAreaSize}px</div>
       <Slider
         min={16}
         max={96}
@@ -24,12 +24,16 @@ export default function HitAreaSizeDemo() {
         min="112px"
         separatorHitAreaSize={hitAreaSize}
         separatorStyle={{
-          background: 'rgba(59, 130, 246, 0.24)',
-          borderLeft: '2px solid rgba(59, 130, 246, 0.7)',
-          borderRight: '2px solid rgba(59, 130, 246, 0.7)',
+          background: 'color-mix(in srgb, var(--ty-color-info) 18%, transparent)',
+          borderLeft: '2px solid color-mix(in srgb, var(--ty-color-info) 72%, transparent)',
+          borderRight: '2px solid color-mix(in srgb, var(--ty-color-info) 72%, transparent)',
         }}
-        style={{ height: 240, border: '1px solid #dcdee2', background: '#f8fafc' }}>
-        <Split.Pane style={{ padding: 16, background: '#fff' }}>
+        style={{
+          height: 240,
+          border: '1px solid var(--ty-color-border-secondary)',
+          background: 'var(--ty-color-fill)',
+        }}>
+        <Split.Pane style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>
           Navigation
         </Split.Pane>
         <Split.Pane min="160px" style={{ padding: 16, paddingLeft: 28 }}>
