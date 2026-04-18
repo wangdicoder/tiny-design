@@ -3,7 +3,7 @@ import { BaseProps, SizeType } from '../_utils/props';
 
 export interface InputProps
   extends BaseProps,
-    Omit<React.ComponentProps<'input'>, 'size' | 'prefix'> {
+    Omit<React.ComponentPropsWithoutRef<'input'>, 'size' | 'prefix'> {
   clearable?: boolean;
   prefix?: ReactNode;
   suffix?: ReactNode;

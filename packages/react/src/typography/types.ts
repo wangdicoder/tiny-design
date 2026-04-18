@@ -30,11 +30,11 @@ export interface TypographyCopyableConfig {
 
 export interface TypographyProps
   extends BaseProps,
-    React.ComponentProps<'div'> {
+    React.ComponentPropsWithoutRef<'div'> {
   children?: React.ReactNode;
 }
 
-export interface ParagraphProps extends BaseProps, React.ComponentProps<'p'> {
+export interface ParagraphProps extends BaseProps, React.ComponentPropsWithoutRef<'p'> {
   as?: TypographyParagraphTag;
   ellipsis?: boolean | TypographyEllipsisConfig;
   children?: React.ReactNode;
@@ -47,7 +47,7 @@ export interface HeadingProps
   children?: React.ReactNode;
 }
 
-export interface TextProps extends BaseProps, React.ComponentProps<'span'> {
+export interface TextProps extends BaseProps, React.ComponentPropsWithoutRef<'span'> {
   as?: TypographyTextTag;
   type?: TextType;
   copyable?: boolean | TypographyCopyableConfig;

@@ -15,7 +15,7 @@ export interface WaterfallItem<T = any> {
 
 export interface WaterfallProps<T = any>
   extends BaseProps,
-    Omit<React.ComponentProps<'div'>, 'children'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   /** Number of columns, or responsive breakpoint config. Default: 3 */
   columns?: number | Partial<Record<Breakpoint, number>>;
   /** Spacing between items: number or [horizontal, vertical] */

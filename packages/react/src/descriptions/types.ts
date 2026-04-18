@@ -17,7 +17,7 @@ export interface DescriptionsItemType extends BaseProps {
 
 export interface DescriptionsProps
   extends BaseProps,
-    Omit<React.ComponentProps<'div'>, 'title'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
   title?: React.ReactNode;
   extra?: React.ReactNode;
   footer?: React.ReactNode;

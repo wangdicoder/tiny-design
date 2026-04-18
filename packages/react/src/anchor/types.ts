@@ -12,7 +12,7 @@ export interface AnchorProps extends BaseProps {
   children?: React.ReactNode;
 }
 
-export interface AnchorLinkProps extends BaseProps, React.ComponentProps<'a'> {
+export interface AnchorLinkProps extends BaseProps, React.ComponentPropsWithoutRef<'a'> {
   href: string;
   title: string;
   children?: React.ReactElement<AnchorLinkProps>[];

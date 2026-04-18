@@ -12,7 +12,7 @@ export type TreeData = {
 
 export interface TreeProps
   extends BaseProps,
-    Omit<React.ComponentProps<'ul'>, 'onSelect'> {
+    Omit<React.ComponentPropsWithoutRef<'ul'>, 'onSelect'> {
   data?: TreeData[];
   indent?: number;
   checkable?: boolean;

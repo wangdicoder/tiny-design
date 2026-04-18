@@ -3,7 +3,7 @@ import { BaseProps } from '../_utils/props';
 
 export interface CheckboxGroupProps
   extends BaseProps,
-    Omit<React.ComponentProps<'div'>, 'onChange'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange'> {
   defaultValue?: string[];
   value?: string[];
   onChange?: (checkedValues: string[]) => void;
@@ -13,7 +13,7 @@ export interface CheckboxGroupProps
 
 export interface CheckboxProps
   extends BaseProps,
-    Omit<React.ComponentProps<'label'>, 'onChange'> {
+    Omit<React.ComponentPropsWithoutRef<'label'>, 'onChange'> {
   /** Only required when use checkbox group */
   value?: string;
   defaultChecked?: boolean;

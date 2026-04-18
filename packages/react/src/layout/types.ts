@@ -1,11 +1,11 @@
 import React from 'react';
 import { BaseProps } from '../_utils/props';
 
-export interface LayoutProps extends BaseProps, React.ComponentProps<'div'> {}
+export interface LayoutProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {}
 
 export type SidebarTheme = 'light' | 'dark';
 
-export interface SidebarProps extends BaseProps, React.ComponentProps<'div'> {
+export interface SidebarProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {
   collapsible?: boolean;
   collapsed?: boolean;
   defaultCollapsed?: boolean;

@@ -11,7 +11,7 @@ export type RowJustify =
   | 'space-between'
   | 'space-evenly';
 
-export interface RowProps extends BaseProps, React.ComponentProps<'div'> {
+export interface RowProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {
   gutter?: number | [number, number];
   gutterSide?: boolean;
   align?: RowAlign;
@@ -29,7 +29,7 @@ export type GridTrackValue = number | React.CSSProperties['gridTemplateColumns']
 export type GridItemSize = number | 'auto' | 'grow' | 'full';
 export type GridItemOffset = number | 'auto';
 
-export interface GridProps extends BaseProps, React.ComponentProps<'div'> {
+export interface GridProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {
   columns?: ResponsiveValue<GridTrackValue>;
   rows?: ResponsiveValue<React.CSSProperties['gridTemplateRows']>;
   spacing?: ResponsiveValue<SizeType | React.CSSProperties['gap']>;
@@ -51,7 +51,7 @@ export interface GridProps extends BaseProps, React.ComponentProps<'div'> {
   component?: React.ElementType;
 }
 
-export interface GridItemProps extends BaseProps, React.ComponentProps<'div'> {
+export interface GridItemProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {
   size?: ResponsiveValue<GridItemSize>;
   offset?: ResponsiveValue<GridItemOffset>;
   column?: ResponsiveValue<React.CSSProperties['gridColumn']>;
@@ -64,7 +64,7 @@ export interface GridItemProps extends BaseProps, React.ComponentProps<'div'> {
   component?: React.ElementType;
 }
 
-export interface ColProps extends BaseProps, React.ComponentProps<'div'> {
+export interface ColProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {
   span?: number;
   offset?: number;
   order?: number;

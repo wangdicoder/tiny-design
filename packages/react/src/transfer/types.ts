@@ -9,7 +9,7 @@ export type TransferItem = {
 
 export interface TransferProps
   extends BaseProps,
-    Omit<React.ComponentProps<'div'>, 'onChange'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange'> {
   dataSource?: TransferItem[];
   value?: string[];
   defaultValue?: string[];
