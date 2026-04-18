@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.13.1
+
+### Patch Changes
+
+- Redesign the Statistic component with a product-grade metric API, richer states, improved docs guidance, and updated dashboard demos. - [#118](https://github.com/wangdicoder/tiny-design/pull/118) [`83a8994`](https://github.com/wangdicoder/tiny-design/commit/83a8994a8f6e168db64380fc871d6adeee8873a1)
+
+- Redesign the Descriptions component with a new data-driven API, responsive columns, semantic rendering modes, richer docs demos, and updated layout behavior. - [#117](https://github.com/wangdicoder/tiny-design/pull/117) [`ff862e1`](https://github.com/wangdicoder/tiny-design/commit/ff862e162b88b08369ce2fc85521b864151f9687)
+
 ## 1.13.0
 
 ### Patch Changes
