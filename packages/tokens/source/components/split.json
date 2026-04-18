@@ -1,27 +1,78 @@
 {
   "split.bar-bg": {
-    "$value": "#f8f8f9",
+    "$value": "#fafbfc",
     "$type": "color",
-    "description": "Split bar bg."
+    "description": "Split bar handle background."
+  },
+  "split.bar-bg-active": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "description": "Split bar handle background when active."
   },
   "split.bar-border": {
-    "$value": "#dcdee2",
+    "$value": "#d7dbe0",
     "$type": "color",
-    "description": "Split bar border."
+    "description": "Split bar handle border."
+  },
+  "split.bar-border-active": {
+    "$value": "#c8cdd3",
+    "$type": "color",
+    "description": "Split bar handle border when active."
   },
   "split.bar-line": {
-    "$value": "#d5d5d5",
+    "$value": "#c8ced5",
     "$type": "color",
-    "description": "Split bar line."
+    "description": "Split bar track and grip color."
   },
-  "split.bar-handle-size": {
+  "split.bar-line-active": {
+    "$value": "#aeb6bf",
+    "$type": "color",
+    "description": "Split bar track and grip color when active."
+  },
+  "split.bar-size": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Split bar visual thickness."
+  },
+  "split.bar-handle-length": {
+    "$value": "30px",
+    "$type": "dimension",
+    "description": "Split bar handle long edge size."
+  },
+  "split.bar-handle-thickness": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Split bar handle short edge size."
+  },
+  "split.bar-handle-padding": {
     "$value": "4px",
     "$type": "dimension",
-    "description": "Split bar handle line size."
+    "description": "Split bar handle padding."
   },
-  "split.bar-handle-gap": {
+  "split.bar-handle-radius": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Split bar handle corner radius."
+  },
+  "split.bar-grip-size": {
+    "$value": "2px",
+    "$type": "dimension",
+    "description": "Split bar grip dot size."
+  },
+  "split.bar-grip-gap": {
     "$value": "1px",
     "$type": "dimension",
-    "description": "Split bar handle gap."
+    "description": "Split bar grip gap."
+  },
+  "split.bar-shadow": {
+    "$value": "0 1px 2px rgba(15, 23, 42, 0.08)",
+    "$type": "shadow",
+    "description": "Split bar handle shadow."
+  },
+  "split.bar-focus-ring": {
+    "$value": "{shadow-focus}",
+    "$type": "shadow",
+    "description": "Split bar handle focus ring.",
+    "fallback": "--ty-shadow-focus"
   }
 }

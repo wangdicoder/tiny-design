@@ -1,23 +1,23 @@
 import React from 'react';
 import { Split } from '@tiny-design/react';
 
-export default function MultipleDemo() {
+export default function CollapseDemo() {
   return (
     <Split
-      primary="second"
-      defaultSize="28%"
-      min="160px"
-      max="420px"
+      defaultSize={240}
+      min="128px"
+      collapsible
+      collapsedSize={72}
       style={{
         height: 220,
         border: '1px solid var(--ty-color-border-secondary)',
         background: 'var(--ty-color-fill)',
       }}>
-      <Split.Pane min="120px" style={{ padding: 16 }}>
-        Canvas
-      </Split.Pane>
       <Split.Pane style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>
-        Secondary panel
+        Collapsible sidebar
+      </Split.Pane>
+      <Split.Pane min="160px" style={{ padding: 16 }}>
+        Press Enter on the separator or double-click it to collapse.
       </Split.Pane>
     </Split>
   );
