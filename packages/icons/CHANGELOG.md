@@ -1,5 +1,7 @@
 # @tiny-design/icons
 
+## 1.13.1
+
 ## 1.13.0
 
 ### Minor Changes
