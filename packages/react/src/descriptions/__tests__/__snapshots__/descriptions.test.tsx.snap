@@ -3,49 +3,114 @@
 exports[`<Descriptions /> should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ty-descriptions ty-descriptions_md"
+    class="ty-descriptions ty-descriptions_md ty-descriptions_horizontal ty-descriptions_list ty-descriptions_label-start ty-descriptions_content-start"
   >
+    <div
+      class="ty-descriptions__header"
+    >
+      <div
+        class="ty-descriptions__title"
+      >
+        Profile
+      </div>
+    </div>
     <div
       class="ty-descriptions__body"
     >
-      <table>
-        <tbody>
-          <tr
-            class="ty-descriptions__row"
+      <dl
+        class="ty-descriptions__list"
+        style="grid-template-columns: repeat(3, minmax(0, 1fr));"
+      >
+        <div
+          class="ty-descriptions__list-item"
+          style="grid-column: span 1;"
+        >
+          <dt
+            class="ty-descriptions__item-label"
           >
-            <td
-              class="ty-descriptions__item"
-              colspan="1"
+            <div
+              class="ty-descriptions__label-inner"
             >
               <span
-                class="ty-descriptions__item-label ty-descriptions__item_colon"
+                class="ty-descriptions__label-text"
               >
                 Name
               </span>
               <span
-                class="ty-descriptions__item-content"
+                class="ty-descriptions__separator"
               >
-                John
+                :
               </span>
-            </td>
-            <td
-              class="ty-descriptions__item"
-              colspan="2"
+            </div>
+          </dt>
+          <dd
+            class="ty-descriptions__item-content"
+          >
+            John
+          </dd>
+        </div>
+        <div
+          class="ty-descriptions__list-item"
+          style="grid-column: span 1;"
+        >
+          <dt
+            class="ty-descriptions__item-label"
+          >
+            <div
+              class="ty-descriptions__label-inner"
             >
               <span
-                class="ty-descriptions__item-label ty-descriptions__item_colon"
+                class="ty-descriptions__label-text"
               >
                 Age
               </span>
               <span
-                class="ty-descriptions__item-content"
+                class="ty-descriptions__separator"
               >
-                30
+                :
               </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
+          </dt>
+          <dd
+            class="ty-descriptions__item-content"
+          >
+            30
+          </dd>
+        </div>
+        <div
+          class="ty-descriptions__list-item"
+          style="grid-column: span 1;"
+        >
+          <dt
+            class="ty-descriptions__item-label"
+          >
+            <div
+              class="ty-descriptions__label-inner"
+            >
+              <span
+                class="ty-descriptions__label-text"
+              >
+                Address
+              </span>
+              <span
+                class="ty-descriptions__separator"
+              >
+                :
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="ty-descriptions__item-content"
+          >
+            Sydney
+          </dd>
+        </div>
+      </dl>
+    </div>
+    <div
+      class="ty-descriptions__footer"
+    >
+      Footer
     </div>
   </div>
 </DocumentFragment>
