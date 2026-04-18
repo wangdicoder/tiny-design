@@ -3,22 +3,66 @@
 exports[`<Statistic /> should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ty-statistic"
+    class="ty-statistic ty-statistic_md ty-statistic_align-start ty-statistic_emphasis-strong ty-statistic_monospace"
   >
     <div
-      class="ty-statistic__title"
+      class="ty-statistic__header"
     >
-      Active Users
+      <div
+        class="ty-statistic__title"
+      >
+        Monthly Revenue
+      </div>
     </div>
     <div
-      aria-label="112,893"
+      class="ty-statistic__description"
+    >
+      Booked revenue across all active subscriptions.
+    </div>
+    <div
+      aria-label="Monthly Revenue, $128,430.50, up +12.4% vs last month, success Healthy growth"
       class="ty-statistic__content"
     >
       <span
         class="ty-statistic__value"
       >
-        112,893
+        $128,430.50
       </span>
+    </div>
+    <div
+      class="ty-statistic__aux"
+    >
+      <div
+        class="ty-statistic__trend ty-statistic__trend_positive"
+      >
+        <span
+          aria-hidden="true"
+          class="ty-statistic__trend-icon ty-statistic__trend-icon_up"
+        />
+        <span
+          class="ty-statistic__trend-value"
+        >
+          +12.4%
+        </span>
+        <span
+          class="ty-statistic__trend-label"
+        >
+          vs last month
+        </span>
+      </div>
+      <div
+        class="ty-statistic__status ty-statistic__status_success"
+      >
+        <span
+          aria-hidden="true"
+          class="ty-statistic__status-dot"
+        />
+        <span
+          class="ty-statistic__status-text"
+        >
+          Healthy growth
+        </span>
+      </div>
     </div>
   </div>
 </DocumentFragment>

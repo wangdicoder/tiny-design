@@ -1,22 +1,30 @@
 import React from 'react';
-import { Statistic, Flex } from '@tiny-design/react';
+import { Flex, Statistic } from '@tiny-design/react';
 
 export default function FormatterDemo() {
   return (
-    <Flex gap="lg">
+    <Flex gap="lg" wrap="wrap">
       <Statistic
-        title="Countdown"
-        value={Date.now() + 86400000}
-        formatter={(val) => {
-          const diff = Math.max(0, Math.floor((Number(val) - Date.now()) / 3600000));
-          return `${diff}h remaining`;
-        }}
+        title="Compact Number"
+        value={3498200}
+        format={{ type: 'compact', maximumFractionDigits: 1 }}
+        size="sm"
       />
       <Statistic
-        title="Conversion"
-        value={0.2386}
-        precision={2}
-        formatter={(_, info) => <span style={{ color: '#1677ff' }}>{info.formattedValue}%</span>}
+        title="German Revenue"
+        value={1128930.5}
+        format={{ type: 'currency', currency: 'EUR', locale: 'de-DE', maximumFractionDigits: 2 }}
+      />
+      <Statistic
+        title="API Latency"
+        value={184}
+        format={{ type: 'duration', durationUnit: 'ms' }}
+      />
+      <Statistic
+        title="Fulfillment Rate"
+        value={0.9962}
+        format={{ type: 'percent', signDisplay: 'exceptZero', maximumFractionDigits: 2 }}
+        suffix=" SLA"
       />
     </Flex>
   );
