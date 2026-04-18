@@ -1,5 +1,11 @@
 # @tiny-design/tokens
 
+## 1.13.0
+
+### Patch Changes
+
+- Redesign the Split component with a product-grade pane model, refreshed separator styling, updated tokens, and rewritten docs/demos. - [`d6adb83`](https://github.com/wangdicoder/tiny-design/commit/d6adb83a06da178a2f561a55a33c0fc10bbcff74)
+
 ## 1.12.0
 
 ### Minor Changes

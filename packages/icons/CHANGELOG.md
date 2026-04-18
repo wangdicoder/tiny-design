@@ -1,5 +1,11 @@
 # @tiny-design/icons
 
+## 1.13.0
+
+### Minor Changes
+
+- Add the new `IconMore` export to the icons package. - [#113](https://github.com/wangdicoder/tiny-design/pull/113) [`972a104`](https://github.com/wangdicoder/tiny-design/commit/972a10433275e855badea3df15021459c0c880c0)
+
 ## 1.12.0
 
 ### Minor Changes
