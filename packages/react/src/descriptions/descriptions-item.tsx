@@ -1,7 +1,5 @@
-import { DescriptionsItemProps } from './types';
-
-const DescriptionsItem = (props: DescriptionsItemProps): JSX.Element => {
-  return props.children as JSX.Element;
+const DescriptionsItem = (): JSX.Element => {
+  return null as unknown as JSX.Element;
 };
 
 DescriptionsItem.displayName = 'DescriptionsItem';

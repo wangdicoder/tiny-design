@@ -3,12 +3,26 @@ import { Descriptions } from '@tiny-design/react';
 
 export default function VerticalDemo() {
   return (
-    <Descriptions title="User Info" layout="vertical">
-      <Descriptions.Item label="UserName">React</Descriptions.Item>
-      <Descriptions.Item label="Telephone">0200004567</Descriptions.Item>
-      <Descriptions.Item label="Live">Sydney, Australia</Descriptions.Item>
-      <Descriptions.Item label="Remark">Great</Descriptions.Item>
-      <Descriptions.Item label="Address">456P+HW Camperdown, New South Wales</Descriptions.Item>
-    </Descriptions>
+    <Descriptions
+      title="Release Notes"
+      layout="vertical"
+      columns={1}
+      items={[
+        { key: 'channel', label: 'Channel', content: 'Stable' },
+        { key: 'owner', label: 'Release Owner', content: 'Release Desk' },
+        {
+          key: 'summary',
+          label: 'Summary',
+          span: 'fill',
+          content: 'Refined menu navigation, new shell templates, and a redesigned descriptions primitive.',
+        },
+        {
+          key: 'links',
+          label: 'Related Links',
+          span: 'fill',
+          content: 'RFC #218 · Docs preview · Visual baseline update',
+        },
+      ]}
+    />
   );
 }
