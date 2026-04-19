@@ -18,7 +18,7 @@ export const CATEGORY_MAP: Record<string, string> = {
   waterfall: 'Layout',
 
   anchor: 'Navigation', breadcrumb: 'Navigation', dropdown: 'Navigation',
-  menu: 'Navigation', pagination: 'Navigation', 'speed-dial': 'Navigation',
+  menu: 'Navigation', pagination: 'Navigation', 'quick-actions': 'Navigation',
   steps: 'Navigation',
 
   avatar: 'Data Display', badge: 'Data Display', calendar: 'Data Display',

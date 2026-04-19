@@ -46,7 +46,7 @@ Avatar, Badge, Card, Descriptions, Empty, Image, List, Table, Tag, Timeline, Tre
 Modal, Drawer, Alert, Tooltip, Popover, PopConfirm, Notification, Message, Result, Loader, LoadingBar
 
 ### Other
-Dropdown, SplitButton, Overlay, Countdown, CopyToClipboard, Flip, BackTop, Sticky, SpeedDial, Split, ScrollIndicator, StrengthIndicator, Transition
+Dropdown, SplitButton, Overlay, Countdown, CopyToClipboard, Flip, BackTop, Sticky, QuickActions, Split, ScrollIndicator, StrengthIndicator, Transition
 
 ## Configuration
 
