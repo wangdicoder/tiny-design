@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- Redesign Skeleton animation APIs, component structure, and related configuration. - [#123](https://github.com/wangdicoder/tiny-design/pull/123) [`35e3b82`](https://github.com/wangdicoder/tiny-design/commit/35e3b82949aca1456edf6bbc959f29884caff5fe)
+
 ## 1.13.2
 
 ### Patch Changes
