@@ -20,7 +20,7 @@ Display global messages as feedback in response to user operations.
 ## Usage
 
 ```jsx
-import { Message } from 'tiny-design';
+import { Message } from '@tiny-design/react';
 ```
 
 ## Examples

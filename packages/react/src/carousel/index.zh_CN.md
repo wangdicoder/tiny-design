@@ -14,7 +14,7 @@ import MethodsSource from './demo/Methods.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Carousel } from 'tiny-design';
+import { Carousel } from '@tiny-design/react';
 ```
 
 ## 代码示例

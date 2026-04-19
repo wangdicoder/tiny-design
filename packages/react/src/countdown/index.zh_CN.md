@@ -16,7 +16,7 @@ import ScrollNumberSource from './demo/ScrollNumber.tsx?raw';
 ## 使用方式
 
 ```js
-import { Countdown } from 'tiny-design';
+import { Countdown } from '@tiny-design/react';
 ```
 
 ## 代码示例

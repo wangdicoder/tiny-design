@@ -32,7 +32,7 @@ Flex 是一个一维布局容器，适合将元素排列在一行或一列中。
 ## 使用方式
 
 ```jsx
-import { Flex } from 'tiny-design';
+import { Flex } from '@tiny-design/react';
 ```
 
 ## 代码示例

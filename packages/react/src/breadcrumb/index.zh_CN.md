@@ -19,7 +19,7 @@ import SeparatorSource from './demo/Separator.tsx?raw';
 ## 使用方式
 
 ```js
-import { Breadcrumb } from 'tiny-design';
+import { Breadcrumb } from '@tiny-design/react';
 
 const { Item } = Breadcrumb;
 ```

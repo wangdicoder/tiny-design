@@ -20,7 +20,7 @@ Display a timeline.
 ## Usage
 
 ```jsx
-import { Timeline } from 'tiny-design';
+import { Timeline } from '@tiny-design/react';
 
 const { Item } = Timeline;
 ```

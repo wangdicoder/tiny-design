@@ -22,7 +22,7 @@ import ThemeSource from './demo/Theme.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Menu } from 'tiny-design';
+import { Menu } from '@tiny-design/react';
 
 const { Item, SubMenu, ItemGroup, Divider } = Menu;
 ```

@@ -17,7 +17,7 @@ import NoDescSource from './demo/NoDesc.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Empty } from 'tiny-design';
+import { Empty } from '@tiny-design/react';
 ```
 
 ## 代码示例

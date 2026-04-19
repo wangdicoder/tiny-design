@@ -20,8 +20,9 @@ pnpm add @tiny-design/react
 
 ```tsx
 import { Button, Modal, Table } from '@tiny-design/react';
-import '@tiny-design/react/es/style.css'; // import styles
 ```
+
+Component styles are automatically imported alongside each component entry. Do not import a separate global stylesheet from `@tiny-design/react`.
 
 ## Theming
 
@@ -30,7 +31,7 @@ Use `ConfigProvider` to customize the prefix class name and theme mode:
 ```tsx
 import { ConfigProvider } from '@tiny-design/react';
 
-<ConfigProvider prefixCls="my-app" themeMode="dark">
+<ConfigProvider prefixCls="my-app" theme="dark">
   <App />
 </ConfigProvider>
 ```

@@ -12,7 +12,7 @@ A keyboard style button.
 ## Usage
 
 ```jsx
-import { Keyboard } from 'tiny-design';
+import { Keyboard } from '@tiny-design/react';
 ```
 
 ## Examples

@@ -24,7 +24,7 @@ Used to display structured data in a vertical list, with support for avatars, ti
 ## Usage
 
 ```jsx
-import { List } from 'tiny-design';
+import { List } from '@tiny-design/react';
 ```
 
 ## Examples

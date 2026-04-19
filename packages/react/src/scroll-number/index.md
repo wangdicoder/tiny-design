@@ -18,7 +18,7 @@ Used in dashboards, stat counters, badges, and anywhere numbers change dynamical
 ## Usage
 
 ```jsx
-import { ScrollNumber } from 'tiny-design';
+import { ScrollNumber } from '@tiny-design/react';
 ```
 
 ## Examples

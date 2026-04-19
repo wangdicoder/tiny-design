@@ -21,7 +21,7 @@ import VerticalSource from './demo/Vertical.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Divider } from 'tiny-design';
+import { Divider } from '@tiny-design/react';
 ```
 
 ## 代码示例

@@ -18,7 +18,7 @@ Use `Row` and `Col` to build classic 24-column page grids with responsive breakp
 ## Usage
 
 ```jsx
-import { Row, Col } from 'tiny-design';
+import { Row, Col } from '@tiny-design/react';
 ```
 
 ## When To Use

@@ -20,7 +20,7 @@ Build modern two-dimensional layouts with CSS Grid semantics.
 ## Usage
 
 ```jsx
-import { Grid } from 'tiny-design';
+import { Grid } from '@tiny-design/react';
 ```
 
 ## When To Use

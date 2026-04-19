@@ -23,7 +23,7 @@ import SizeSource from './demo/Size.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { AutoComplete } from 'tiny-design';
+import { AutoComplete } from '@tiny-design/react';
 ```
 
 ## 示例

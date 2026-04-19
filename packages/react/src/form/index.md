@@ -33,7 +33,7 @@ Form data management, including data collection, verification, and styles.
 ## Usages
 
 ```jsx
-import { Form } from 'tiny-design';
+import { Form } from '@tiny-design/react';
 
 const { Item, useForm, FormInstance } = Form;
 ```

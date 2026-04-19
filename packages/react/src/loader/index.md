@@ -24,7 +24,7 @@ When part of the page is waiting for asynchronous data or during a rendering pro
 ## Usage
 
 ```jsx
-import { Loader } from 'tiny-design';
+import { Loader } from '@tiny-design/react';
 ```
 
 ## Examples

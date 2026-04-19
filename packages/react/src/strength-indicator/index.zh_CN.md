@@ -16,7 +16,7 @@ import PasswordSource from './demo/Password.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { StrengthIndicator } from 'tiny-design';
+import { StrengthIndicator } from '@tiny-design/react';
 ```
 
 ## 代码示例

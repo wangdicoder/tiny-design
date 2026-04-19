@@ -22,7 +22,7 @@ An accessible dropdown menu for the common dropdown menu button design pattern. 
 ## Usage
 
 ```jsx
-import { Menu } from 'tiny-design';
+import { Menu } from '@tiny-design/react';
 
 const { Item, SubMenu, ItemGroup, Divider } = Menu;
 ```

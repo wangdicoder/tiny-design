@@ -20,7 +20,7 @@ A Drawer is a panel that is typically overlaid on top of a page and slides in fr
 ## Usage
 
 ```jsx
-import { Drawer } from 'tiny-design';
+import { Drawer } from '@tiny-design/react';
 ```
 
 ## Examples

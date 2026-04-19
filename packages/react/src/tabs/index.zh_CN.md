@@ -20,7 +20,7 @@ import AnimatedSource from './demo/Animated.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Tabs } from 'tiny-design';
+import { Tabs } from '@tiny-design/react';
 ```
 
 ## 代码示例

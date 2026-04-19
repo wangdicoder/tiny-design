@@ -30,7 +30,7 @@ import SquareLinecapsSource from './demo/SquareLinecaps.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Progress } from 'tiny-design';
+import { Progress } from '@tiny-design/react';
 
 const { Bar, Circle } = Progress;
 ```

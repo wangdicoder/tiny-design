@@ -16,7 +16,7 @@ import ResizeSource from './demo/Resize.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Textarea } from 'tiny-design';
+import { Textarea } from '@tiny-design/react';
 ```
 
 ## 代码示例

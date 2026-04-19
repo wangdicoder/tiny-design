@@ -20,7 +20,7 @@ import MultiLevelSource from './demo/MultiLevel.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Drawer } from 'tiny-design';
+import { Drawer } from '@tiny-design/react';
 ```
 
 ## 代码示例

@@ -28,7 +28,7 @@ import VerticalBorderSource from './demo/VerticalBorder.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Descriptions } from 'tiny-design';
+import { Descriptions } from '@tiny-design/react';
 ```
 
 ## 代码示例

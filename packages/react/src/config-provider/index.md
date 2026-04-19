@@ -12,7 +12,7 @@ This component provides a universal configuration for components, including them
 ## Usage
 
 ```jsx
-import { ConfigProvider, zh_CN } from 'tiny-design';
+import { ConfigProvider, zh_CN } from '@tiny-design/react';
 
 // ...
 
@@ -76,7 +76,7 @@ The `theme` prop accepts either a theme mode string or a `ThemeConfig` object fo
 Use `ThemeConfig` to customize semantic tokens and component-level tokens:
 
 ```jsx
-import { ConfigProvider } from 'tiny-design';
+import { ConfigProvider } from '@tiny-design/react';
 
 <ConfigProvider
   theme={{

@@ -16,7 +16,7 @@ import CallbackSource from './demo/Callback.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Sticky } from 'tiny-design';
+import { Sticky } from '@tiny-design/react';
 ```
 
 ## 代码示例

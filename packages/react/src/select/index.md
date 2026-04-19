@@ -28,7 +28,7 @@ Select component to select value from options.
 ## Usage
 
 ```jsx
-import { Select } from 'tiny-design';
+import { Select } from '@tiny-design/react';
 
 const { Option, OptGroup } = Select;
 ```

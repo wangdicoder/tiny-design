@@ -16,7 +16,7 @@ Countdown activities, like sec-kill.
 ## Usage
 
 ```js
-import { Countdown } from 'tiny-design';
+import { Countdown } from '@tiny-design/react';
 ```
 
 ## Examples

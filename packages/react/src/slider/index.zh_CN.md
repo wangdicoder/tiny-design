@@ -28,7 +28,7 @@ import TrackSource from './demo/Track.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Slider } from 'tiny-design';
+import { Slider } from '@tiny-design/react';
 ```
 
 ## 代码示例

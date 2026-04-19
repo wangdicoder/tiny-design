@@ -22,7 +22,7 @@ Split 用于把一个区域拆成两个可调尺寸的 pane，提供顶层主 pa
 ## 用法
 
 ```jsx
-import { Split } from 'tiny-design';
+import { Split } from '@tiny-design/react';
 ```
 
 当两个 pane 需要共享同一块区域，并且希望用户自己调整空间分配时，可以使用 `Split`。通常建议：

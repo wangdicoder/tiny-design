@@ -17,7 +17,7 @@ import PlacementSource from './demo/Placement.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Tooltip } from 'tiny-design';
+import { Tooltip } from '@tiny-design/react';
 ```
 
 ## 代码示例

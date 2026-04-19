@@ -18,7 +18,7 @@ Use when you want to display a continuous stream of items (e.g. logos, cards, ta
 ## Usage
 
 ```jsx
-import { Marquee } from 'tiny-design';
+import { Marquee } from '@tiny-design/react';
 ```
 
 ## Examples

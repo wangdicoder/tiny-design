@@ -20,7 +20,7 @@ The difference with the confirm modal dialog is that it's more lightweight than 
 ## Usage
 
 ```jsx
-import { PopConfirm } from 'tiny-design';
+import { PopConfirm } from '@tiny-design/react';
 ```
 
 ## Examples

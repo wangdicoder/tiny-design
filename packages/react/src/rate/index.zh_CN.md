@@ -20,7 +20,7 @@ import HalfSource from './demo/Half.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Rate } from 'tiny-design';
+import { Rate } from '@tiny-design/react';
 ```
 
 ## 代码示例

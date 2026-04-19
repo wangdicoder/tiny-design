@@ -18,13 +18,13 @@ Display a title or paragraph contents.
 ## Usage
 
 ```jsx
-import { Heading, Paragraph, Text } from 'tiny-design';
+import { Heading, Paragraph, Text } from '@tiny-design/react';
 ```
 
 Equivalent compatibility usage:
 
 ```jsx
-import { Typography } from 'tiny-design';
+import { Typography } from '@tiny-design/react';
 
 const { Heading, Paragraph, Text } = Typography;
 ```

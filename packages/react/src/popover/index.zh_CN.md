@@ -20,7 +20,7 @@ import ControlledSource from './demo/Controlled.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Popover } from 'tiny-design';
+import { Popover } from '@tiny-design/react';
 ```
 
 ## 代码示例

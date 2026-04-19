@@ -18,7 +18,7 @@ When a numeric value needs to be provided.
 ## Usage
 
 ```jsx
-import { InputNumber } from 'tiny-design';
+import { InputNumber } from '@tiny-design/react';
 ```
 
 ## Examples

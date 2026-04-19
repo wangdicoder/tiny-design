@@ -26,7 +26,7 @@ Verification code input for login, registration, or two-factor authentication fl
 ## Usage
 
 ```js
-import { InputOTP } from 'tiny-design';
+import { InputOTP } from '@tiny-design/react';
 ```
 
 ## Examples

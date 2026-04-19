@@ -22,7 +22,7 @@ import SizesSource from './demo/Sizes.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Cascader } from 'tiny-design';
+import { Cascader } from '@tiny-design/react';
 ```
 
 ## 代码演示

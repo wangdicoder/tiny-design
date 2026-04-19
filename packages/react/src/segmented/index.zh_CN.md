@@ -24,7 +24,7 @@ import SizeSource from './demo/Size.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Segmented } from 'tiny-design';
+import { Segmented } from '@tiny-design/react';
 ```
 
 ## 代码演示

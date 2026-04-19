@@ -24,7 +24,7 @@ Image 组件用于显示图片。
 ## 使用方式
 
 ```jsx
-import { Image } from 'tiny-design';
+import { Image } from '@tiny-design/react';
 ```
 
 `ref` 指向原生 `img` 元素。

@@ -12,7 +12,7 @@ import UseInputSource from './demo/UseInput.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { CopyToClipboard } from 'tiny-design';
+import { CopyToClipboard } from '@tiny-design/react';
 ```
 
 ## 代码示例

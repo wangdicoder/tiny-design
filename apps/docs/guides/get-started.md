@@ -34,7 +34,7 @@ The following is a simple example of using a default button component.
 ```jsx
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button } from 'tiny-design';
+import { Button } from '@tiny-design/react';
 
 const App = () => {
   return <Button>Hello World</Button>;

@@ -14,7 +14,7 @@ import DirectionSource from './demo/Direction.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Flip } from 'tiny-design';
+import { Flip } from '@tiny-design/react';
 
 const { Item } = Flip;
 ```

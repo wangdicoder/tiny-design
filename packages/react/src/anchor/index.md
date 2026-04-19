@@ -19,7 +19,7 @@ Hyperlinks to scroll on one page.
 ## Usage
 
 ```jsx
-import { Anchor } from 'tiny-design';
+import { Anchor } from '@tiny-design/react';
 ```
 
 ## Examples

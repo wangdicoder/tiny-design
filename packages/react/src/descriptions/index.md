@@ -28,7 +28,7 @@ Use it for metadata, release notes, system details, or any dense read-only summa
 ## Usage
 
 ```jsx
-import { Descriptions } from 'tiny-design';
+import { Descriptions } from '@tiny-design/react';
 ```
 
 ## Examples

@@ -18,7 +18,7 @@ import StatesSource from './demo/States.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Statistic } from 'tiny-design';
+import { Statistic } from '@tiny-design/react';
 ```
 
 ## 代码演示

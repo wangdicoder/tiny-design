@@ -22,7 +22,7 @@ Evaluate stuff component.
 ## Usage
 
 ```jsx
-import { Rate } from 'tiny-design';
+import { Rate } from '@tiny-design/react';
 ```
 
 ## Examples

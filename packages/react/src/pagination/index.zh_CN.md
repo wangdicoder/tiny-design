@@ -24,7 +24,7 @@ import ControlledSource from './demo/Controlled.tsx?raw';
 ## 使用方式
 
 ```js
-import { Pagination } from 'tiny-design';
+import { Pagination } from '@tiny-design/react';
 ```
 
 ## 代码示例

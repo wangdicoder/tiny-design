@@ -22,7 +22,7 @@ When a given task is complicated or has a certain sequence in the series of sub 
 ## Usage
 
 ```jsx
-import { Steps } from 'tiny-design';
+import { Steps } from '@tiny-design/react';
 
 const { Step } = Steps;
 ```

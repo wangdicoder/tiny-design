@@ -12,7 +12,7 @@ import BasicSource from './demo/Basic.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { LoadingBar } from 'tiny-design';
+import { LoadingBar } from '@tiny-design/react';
 
 LoadingBar.start();
 LoadingBar.succeed();

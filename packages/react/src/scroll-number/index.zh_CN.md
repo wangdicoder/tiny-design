@@ -18,7 +18,7 @@ import CustomStyleSource from './demo/CustomStyle.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { ScrollNumber } from 'tiny-design';
+import { ScrollNumber } from '@tiny-design/react';
 ```
 
 ## 代码演示

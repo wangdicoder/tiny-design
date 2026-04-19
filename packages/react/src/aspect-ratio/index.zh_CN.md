@@ -16,7 +16,7 @@ import MapSource from './demo/Map.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { AspectRatio } from 'tiny-design';
+import { AspectRatio } from '@tiny-design/react';
 ```
 
 ## 代码示例

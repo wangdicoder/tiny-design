@@ -18,7 +18,7 @@ When you need a floating action button that can reveal multiple related actions.
 ## Usage
 
 ```jsx
-import { SpeedDial } from 'tiny-design';
+import { SpeedDial } from '@tiny-design/react';
 ```
 
 ## Examples

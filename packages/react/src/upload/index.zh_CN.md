@@ -18,7 +18,7 @@ import DragSource from './demo/Drag.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Upload } from 'tiny-design';
+import { Upload } from '@tiny-design/react';
 ```
 
 ## 代码示例

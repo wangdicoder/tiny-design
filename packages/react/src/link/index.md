@@ -16,7 +16,7 @@ Display a hyperlink. This component is styled to resemble a hyperlink and semant
 ## Usage
 
 ```jsx
-import { Link } from 'tiny-design';
+import { Link } from '@tiny-design/react';
 ```
 
 ## Examples

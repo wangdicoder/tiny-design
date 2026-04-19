@@ -14,7 +14,7 @@ import TargetSource from './demo/Target.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { ScrollIndicator } from 'tiny-design';
+import { ScrollIndicator } from '@tiny-design/react';
 ```
 
 ## 代码示例

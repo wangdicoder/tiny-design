@@ -50,7 +50,7 @@ items={[
 修改 `src/App.tsx`，从 tiny-design 引入 Button 组件：
 
 ```tsx
-import { Button } from 'tiny-design';
+import { Button } from '@tiny-design/react';
 
 const App = () => {
   return (

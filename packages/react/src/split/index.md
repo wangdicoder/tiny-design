@@ -22,7 +22,7 @@ Split lays out two panes with a product-ready separator model: top-level sizing 
 ## Usage
 
 ```jsx
-import { Split } from 'tiny-design';
+import { Split } from '@tiny-design/react';
 ```
 
 Use `Split` when two panels need to share the same region and users should be able to rebalance space themselves. In most cases:

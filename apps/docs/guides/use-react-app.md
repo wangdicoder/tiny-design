@@ -50,7 +50,7 @@ items={[
 Edit `src/App.tsx` to import a Button component from tiny-design:
 
 ```tsx
-import { Button } from 'tiny-design';
+import { Button } from '@tiny-design/react';
 
 const App = () => {
   return (

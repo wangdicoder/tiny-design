@@ -25,7 +25,7 @@ import LoopBannerSource from './demo/LoopBanner.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Alert } from 'tiny-design';
+import { Alert } from '@tiny-design/react';
 ```
 
 ## 代码示例

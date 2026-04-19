@@ -19,7 +19,7 @@ import SizeSource from './demo/Size.tsx?raw';
 ## 使用方式
 
 ```js
-import { NativeSelect } from 'tiny-design';
+import { NativeSelect } from '@tiny-design/react';
 
 const { Group, Option } = NativeSelect;
 ```

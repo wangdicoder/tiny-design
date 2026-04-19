@@ -12,7 +12,7 @@ import DynamicThemeSource from './demo/DynamicTheme.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { ConfigProvider, zh_CN } from 'tiny-design';
+import { ConfigProvider, zh_CN } from '@tiny-design/react';
 
 // ...
 
@@ -76,7 +76,7 @@ return (
 使用 `ThemeConfig` 自定义语义令牌和组件级令牌：
 
 ```jsx
-import { ConfigProvider } from 'tiny-design';
+import { ConfigProvider } from '@tiny-design/react';
 
 <ConfigProvider
   theme={{

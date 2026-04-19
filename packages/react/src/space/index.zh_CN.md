@@ -18,7 +18,7 @@ import AlignSource from './demo/Align.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Space } from 'tiny-design';
+import { Space } from '@tiny-design/react';
 ```
 
 ## 代码示例

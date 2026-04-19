@@ -24,7 +24,7 @@ import VirtualSource from './demo/Virtual.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Table } from 'tiny-design';
+import { Table } from '@tiny-design/react';
 ```
 
 ## 代码演示

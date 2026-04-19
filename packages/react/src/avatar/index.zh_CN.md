@@ -20,7 +20,7 @@ import AutoFontSource from './demo/AutoFont.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Avatar } from 'tiny-design';
+import { Avatar } from '@tiny-design/react';
 
 const { Group } = Avatar;
 ```

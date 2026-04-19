@@ -22,7 +22,7 @@ Use when important operations need to inform the user to process the results and
 ## Usage
 
 ```jsx
-import { Result } from 'tiny-design';
+import { Result } from '@tiny-design/react';
 ```
 
 ## Examples

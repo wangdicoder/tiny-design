@@ -18,7 +18,7 @@ import NestedSource from './demo/Nested.tsx?raw';
 ## 使用方式
 
 ```tsx
-import { Collapse } from 'tiny-design';
+import { Collapse } from '@tiny-design/react';
 ```
 
 新版 `Collapse` 完全采用 `items` 数据驱动，展开状态统一建模为 `string[]`。

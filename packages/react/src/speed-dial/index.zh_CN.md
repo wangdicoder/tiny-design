@@ -18,7 +18,7 @@ import CustomIconSource from './demo/CustomIcon.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { SpeedDial } from 'tiny-design';
+import { SpeedDial } from '@tiny-design/react';
 ```
 
 ## 示例

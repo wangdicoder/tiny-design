@@ -17,7 +17,7 @@ import SearchSource from './demo/Search.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Transfer } from 'tiny-design';
+import { Transfer } from '@tiny-design/react';
 ```
 
 ## 代码示例

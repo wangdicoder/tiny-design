@@ -26,7 +26,7 @@ import ImageSource from './demo/Image.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Card } from 'tiny-design';
+import { Card } from '@tiny-design/react';
 
 const { Content } = Card;
 ```

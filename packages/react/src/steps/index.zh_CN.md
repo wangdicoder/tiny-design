@@ -22,7 +22,7 @@ import ClickableSource from './demo/Clickable.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Steps } from 'tiny-design';
+import { Steps } from '@tiny-design/react';
 
 const { Step } = Steps;
 ```

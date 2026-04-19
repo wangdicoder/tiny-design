@@ -18,7 +18,7 @@ import SidebarSource from './demo/Sidebar.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Layout } from 'tiny-design';
+import { Layout } from '@tiny-design/react';
 
 const { Header, Footer, Content, Sidebar } = Layout;
 ```

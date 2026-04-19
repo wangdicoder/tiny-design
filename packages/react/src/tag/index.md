@@ -26,7 +26,7 @@ Tag for categorizing or markup.
 ## Usage
 
 ```js
-import { Tag } from 'tiny-design';
+import { Tag } from '@tiny-design/react';
 
 const { CheckableTag } = Tag;
 ```

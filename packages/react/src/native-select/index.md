@@ -19,7 +19,7 @@ Select component to select value from options.
 ## Usage
 
 ```js
-import { NativeSelect } from 'tiny-design';
+import { NativeSelect } from '@tiny-design/react';
 
 const { Group, Option } = NativeSelect;
 ```

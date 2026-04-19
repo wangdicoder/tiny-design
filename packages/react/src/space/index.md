@@ -18,7 +18,7 @@ Avoid components clinging together and set a unified space.
 ## Usage
 
 ```jsx
-import { Space } from 'tiny-design';
+import { Space } from '@tiny-design/react';
 ```
 
 ## Examples

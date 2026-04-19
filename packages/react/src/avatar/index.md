@@ -20,7 +20,7 @@ Display user's profile picture
 ## Usage
 
 ```jsx
-import { Avatar } from 'tiny-design';
+import { Avatar } from '@tiny-design/react';
 
 const { Group } = Avatar;
 ```

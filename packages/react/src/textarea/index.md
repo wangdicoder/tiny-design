@@ -16,7 +16,7 @@ Comments, etc.
 ## Usage
 
 ```jsx
-import { Textarea } from 'tiny-design';
+import { Textarea } from '@tiny-design/react';
 ```
 
 ## Examples

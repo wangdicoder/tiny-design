@@ -12,7 +12,7 @@ A component to handle copying contents to the clipboard.
 ## Usage
 
 ```jsx
-import { CopyToClipboard } from 'tiny-design';
+import { CopyToClipboard } from '@tiny-design/react';
 ```
 
 ## Examples

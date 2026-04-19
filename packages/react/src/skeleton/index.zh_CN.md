@@ -18,7 +18,7 @@ import CombinationSource from './demo/Combination.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Skeleton } from 'tiny-design';
+import { Skeleton } from '@tiny-design/react';
 ```
 
 ## 代码示例

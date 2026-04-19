@@ -20,7 +20,7 @@ import TypeSource from './demo/Type.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Message } from 'tiny-design';
+import { Message } from '@tiny-design/react';
 ```
 
 ## 代码示例

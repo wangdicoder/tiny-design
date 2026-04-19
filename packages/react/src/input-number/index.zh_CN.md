@@ -18,7 +18,7 @@ import PrecisionSource from './demo/Precision.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { InputNumber } from 'tiny-design';
+import { InputNumber } from '@tiny-design/react';
 ```
 
 ## 代码示例

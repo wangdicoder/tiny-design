@@ -26,7 +26,7 @@ To display a notification message at any of the four corners of the viewport. Ty
 ## Usage
 
 ```js
-import { Notification } from 'tiny-design';
+import { Notification } from '@tiny-design/react';
 ```
 
 ## Examples

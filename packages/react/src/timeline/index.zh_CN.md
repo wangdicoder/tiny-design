@@ -20,7 +20,7 @@ import CustomisedSource from './demo/Customised.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Timeline } from 'tiny-design';
+import { Timeline } from '@tiny-design/react';
 
 const { Item } = Timeline;
 ```

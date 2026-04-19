@@ -24,7 +24,7 @@ import VirtualSource from './demo/Virtual.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { List } from 'tiny-design';
+import { List } from '@tiny-design/react';
 ```
 
 ## 代码演示

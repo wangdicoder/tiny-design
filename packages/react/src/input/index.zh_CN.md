@@ -22,7 +22,7 @@ import ClearableSource from './demo/Clearable.tsx?raw';
 ## 使用方式
 
 ```js
-import { Input } from 'tiny-design';
+import { Input } from '@tiny-design/react';
 
 const { Group, Addon } = Input;
 ```

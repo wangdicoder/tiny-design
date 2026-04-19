@@ -12,7 +12,7 @@ import BasicSource from './demo/Basic.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Keyboard } from 'tiny-design';
+import { Keyboard } from '@tiny-design/react';
 ```
 
 ## 代码示例

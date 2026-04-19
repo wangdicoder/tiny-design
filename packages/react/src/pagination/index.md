@@ -24,7 +24,7 @@ It is used to separate long sets of data so that it is easier for a user to cons
 ## Usage
 
 ```js
-import { Pagination } from 'tiny-design';
+import { Pagination } from '@tiny-design/react';
 ```
 
 ## Examples

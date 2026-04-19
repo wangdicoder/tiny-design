@@ -24,7 +24,7 @@ import CardModeSource from './demo/CardMode.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Calendar } from 'tiny-design';
+import { Calendar } from '@tiny-design/react';
 ```
 
 ## Design Tokens

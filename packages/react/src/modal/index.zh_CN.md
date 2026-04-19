@@ -20,7 +20,7 @@ import ContextSource from './demo/Context.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Modal } from 'tiny-design';
+import { Modal } from '@tiny-design/react';
 ```
 
 ## 静态方法

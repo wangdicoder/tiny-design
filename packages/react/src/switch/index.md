@@ -21,7 +21,7 @@ Switch is used for switching between two opposing states.
 ## Usage
 
 ```jsx
-import { Switch } from 'tiny-design';
+import { Switch } from '@tiny-design/react';
 ```
 
 ## Examples

@@ -26,7 +26,7 @@ import VariantSource from './demo/Variant.tsx?raw';
 ## 使用方式
 
 ```js
-import { Tag } from 'tiny-design';
+import { Tag } from '@tiny-design/react';
 
 const { CheckableTag } = Tag;
 ```

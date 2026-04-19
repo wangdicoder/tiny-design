@@ -14,7 +14,7 @@ A carousel component for cycling through elements like a slideshow.
 ## Usage
 
 ```jsx
-import { Carousel } from 'tiny-design';
+import { Carousel } from '@tiny-design/react';
 ```
 
 ## Examples

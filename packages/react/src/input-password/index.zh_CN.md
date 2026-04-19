@@ -16,7 +16,7 @@ import StrengthSource from './demo/Strength.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { InputPassword } from 'tiny-design';
+import { InputPassword } from '@tiny-design/react';
 ```
 
 ## 代码示例

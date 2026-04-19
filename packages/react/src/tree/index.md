@@ -16,7 +16,7 @@ Anything represented in a tree structure can use the `Tree` component.
 ## Usage
 
 ```jsx
-import { Tree } from 'tiny-design';
+import { Tree } from '@tiny-design/react';
 ```
 
 ## Examples

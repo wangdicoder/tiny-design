@@ -33,7 +33,7 @@ import StepFormSource from './demo/StepForm.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Form } from 'tiny-design';
+import { Form } from '@tiny-design/react';
 
 const { Item, useForm, FormInstance } = Form;
 ```

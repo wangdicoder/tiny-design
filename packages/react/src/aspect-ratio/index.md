@@ -16,7 +16,7 @@ Used to embed responsive images, videos and maps, etc. It uses a very common [pa
 ## Usage
 
 ```jsx
-import { AspectRatio } from 'tiny-design';
+import { AspectRatio } from '@tiny-design/react';
 ```
 
 ## Examples

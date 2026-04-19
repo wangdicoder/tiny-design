@@ -19,7 +19,7 @@ import OffsetTopSource from './demo/OffsetTop.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Anchor } from 'tiny-design';
+import { Anchor } from '@tiny-design/react';
 ```
 
 ## 示例

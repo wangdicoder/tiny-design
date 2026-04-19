@@ -14,7 +14,7 @@ If one thing with extra content which is not important, you can display the main
 ## Usage
 
 ```jsx
-import { Flip } from 'tiny-design';
+import { Flip } from '@tiny-design/react';
 
 const { Item } = Flip;
 ```

@@ -24,7 +24,7 @@ import CloseSource from './demo/Close.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Dropdown } from 'tiny-design';
+import { Dropdown } from '@tiny-design/react';
 ```
 
 ## 推荐模式

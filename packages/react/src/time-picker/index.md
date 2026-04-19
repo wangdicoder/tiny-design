@@ -26,7 +26,7 @@ To select or input a time.
 ## Usage
 
 ```jsx
-import { TimePicker } from 'tiny-design';
+import { TimePicker } from '@tiny-design/react';
 ```
 
 ## Examples

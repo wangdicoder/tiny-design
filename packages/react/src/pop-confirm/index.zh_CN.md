@@ -20,7 +20,7 @@ import IconSource from './demo/Icon.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { PopConfirm } from 'tiny-design';
+import { PopConfirm } from '@tiny-design/react';
 ```
 
 ## 代码示例

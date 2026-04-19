@@ -18,7 +18,7 @@ import CardsSource from './demo/cards.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Marquee } from 'tiny-design';
+import { Marquee } from '@tiny-design/react';
 ```
 
 ## 代码示例

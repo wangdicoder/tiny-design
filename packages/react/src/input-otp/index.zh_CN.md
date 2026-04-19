@@ -26,7 +26,7 @@ import AutoFocusSource from './demo/AutoFocus.tsx?raw';
 ## 使用方式
 
 ```js
-import { InputOTP } from 'tiny-design';
+import { InputOTP } from '@tiny-design/react';
 ```
 
 ## 代码示例

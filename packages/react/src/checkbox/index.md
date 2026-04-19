@@ -19,7 +19,7 @@ A multiple entry component.
 ## Usage
 
 ```jsx
-import { Checkbox } from 'tiny-design';
+import { Checkbox } from '@tiny-design/react';
 
 const { Group } = Checkbox;
 ```

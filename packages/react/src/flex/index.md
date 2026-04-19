@@ -32,7 +32,7 @@ Both use flexbox under the hood, but they serve different purposes:
 ## Usage
 
 ```jsx
-import { Flex } from 'tiny-design';
+import { Flex } from '@tiny-design/react';
 ```
 
 ## Examples

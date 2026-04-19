@@ -22,7 +22,7 @@ UI 元素的小型数值或状态描述符。
 ## 使用方式
 
 ```jsx
-import { Badge } from 'tiny-design';
+import { Badge } from '@tiny-design/react';
 ```
 
 ## 代码示例

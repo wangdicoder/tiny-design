@@ -19,7 +19,7 @@ A breadcrumb displays the current location within a hierarchy. It allows going b
 ## Usage
 
 ```js
-import { Breadcrumb } from 'tiny-design';
+import { Breadcrumb } from '@tiny-design/react';
 
 const { Item } = Breadcrumb;
 ```

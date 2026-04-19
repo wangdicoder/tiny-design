@@ -16,7 +16,7 @@ A particle usage when the user types the password.
 ## Usage
 
 ```jsx
-import { InputPassword } from 'tiny-design';
+import { InputPassword } from '@tiny-design/react';
 ```
 
 ## Examples

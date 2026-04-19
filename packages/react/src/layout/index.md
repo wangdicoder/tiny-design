@@ -18,7 +18,7 @@ Page layout.
 ## Usage
 
 ```jsx
-import { Layout } from 'tiny-design';
+import { Layout } from '@tiny-design/react';
 
 const { Header, Footer, Content, Sidebar } = Layout;
 ```

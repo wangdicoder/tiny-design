@@ -20,7 +20,9 @@ import { Button, ConfigProvider } from '@tiny-design/react';
 function App() {
   return (
     <ConfigProvider theme="light">
-      <Button btnType="primary">Hello Tiny</Button>
+      <Button variant="solid" color="primary">
+        Hello Tiny
+      </Button>
     </ConfigProvider>
   );
 }
@@ -51,7 +53,7 @@ Dropdown, SplitButton, Overlay, Countdown, CopyToClipboard, Flip, BackTop, Stick
 Use `ConfigProvider` to set global defaults:
 
 ```tsx
-import { ConfigProvider } from '@tiny-design/react';
+import { ConfigProvider, zh_CN } from '@tiny-design/react';
 
 <ConfigProvider
   theme="dark"
@@ -64,9 +66,9 @@ import { ConfigProvider } from '@tiny-design/react';
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `theme` | `'light' \| 'dark' \| 'system'` | `'light'` | Color theme |
+| `theme` | `'light' \| 'dark' \| 'system' \| ThemeConfig` | `-` | Global theme mode or token config |
 | `componentSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Global component size |
-| `locale` | `Locale` | `en_US` | Locale for i18n |
+| `locale` | `Locale` | `-` | Locale for i18n |
 | `prefixCls` | `string` | `'ty'` | CSS class prefix |
 
 ## Theming
@@ -77,11 +79,13 @@ Toggle themes programmatically with the `useTheme` hook:
 import { useTheme } from '@tiny-design/react';
 
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { mode, resolvedTheme, setMode, toggle } = useTheme();
+
   return (
-    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-      Current: {theme}
-    </button>
+    <>
+      <button onClick={toggle}>Current: {resolvedTheme}</button>
+      <button onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}>Toggle mode</button>
+    </>
   );
 }
 ```
@@ -93,8 +97,7 @@ Theme preference is persisted to `localStorage` and the `system` option follows 
 Built-in locales: `en_US`, `zh_CN`.
 
 ```tsx
-import { ConfigProvider, IntlProvider } from '@tiny-design/react';
-import zh_CN from '@tiny-design/react/es/locale/zh_CN';
+import { ConfigProvider, zh_CN } from '@tiny-design/react';
 
 <ConfigProvider locale={zh_CN}>
   <App />
@@ -108,7 +111,7 @@ Tiny Design is optimized for AI-assisted development:
 - **`llms.txt`** — Structured library overview for LLMs ([view](https://wangdicoder.github.io/tiny-design/llms.txt))
 - **`llms-full.txt`** — Complete Props API reference for all components ([view](https://wangdicoder.github.io/tiny-design/llms-full.txt))
 - **`.cursorrules`** — Cursor IDE context for accurate code generation
-- **MCP Tools** — Claude Code / Claude Desktop integration via `@anthropic-ai/tiny-design` MCP server
+- **MCP Tools** — Claude Code / Claude Desktop integration via `@tiny-design/mcp`
 
 Use with Cursor, Claude Code, or any AI coding assistant for the best experience.
 

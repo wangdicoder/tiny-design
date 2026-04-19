@@ -18,7 +18,7 @@ import CustomContentSource from './demo/CustomContent.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Overlay } from 'tiny-design';
+import { Overlay } from '@tiny-design/react';
 ```
 
 ## 代码示例

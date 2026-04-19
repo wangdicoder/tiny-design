@@ -18,7 +18,7 @@ import ResponsiveSource from './demo/Responsive.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Row, Col } from 'tiny-design';
+import { Row, Col } from '@tiny-design/react';
 ```
 
 ## 使用场景

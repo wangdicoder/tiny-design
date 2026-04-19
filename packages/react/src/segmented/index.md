@@ -24,7 +24,7 @@ Use when you have 2-5 mutually exclusive options and want a more visual alternat
 ## Usage
 
 ```jsx
-import { Segmented } from 'tiny-design';
+import { Segmented } from '@tiny-design/react';
 ```
 
 ## Examples

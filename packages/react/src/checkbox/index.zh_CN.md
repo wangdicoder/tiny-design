@@ -19,7 +19,7 @@ import GroupSource from './demo/Group.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Checkbox } from 'tiny-design';
+import { Checkbox } from '@tiny-design/react';
 
 const { Group } = Checkbox;
 ```

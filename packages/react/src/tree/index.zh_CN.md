@@ -16,7 +16,7 @@ import IconSource from './demo/Icon.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Tree } from 'tiny-design';
+import { Tree } from '@tiny-design/react';
 ```
 
 ## 代码示例

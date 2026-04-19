@@ -17,7 +17,7 @@ Empty state placeholder.
 ## Usage
 
 ```jsx
-import { Empty } from 'tiny-design';
+import { Empty } from '@tiny-design/react';
 ```
 
 ## Examples

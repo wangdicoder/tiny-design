@@ -24,7 +24,7 @@ Display an image.
 ## Usage
 
 ```jsx
-import { Image } from 'tiny-design';
+import { Image } from '@tiny-design/react';
 ```
 
 `ref` points to the native `img` element.

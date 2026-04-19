@@ -61,7 +61,9 @@ import { Button, Switch } from '@tiny-design/react';
 
 const App = () => (
   <>
-    <Button btnType="primary">Click Me</Button>
+    <Button variant="solid" color="primary">
+      Click Me
+    </Button>
     <Switch checked />
   </>
 );

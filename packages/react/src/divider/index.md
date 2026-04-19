@@ -21,7 +21,7 @@ A divider line separates different content.
 ## Usage
 
 ```jsx
-import { Divider } from 'tiny-design';
+import { Divider } from '@tiny-design/react';
 ```
 
 ## Examples

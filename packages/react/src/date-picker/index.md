@@ -22,7 +22,7 @@ To select or input a date.
 ## Usage
 
 ```jsx
-import { DatePicker } from 'tiny-design';
+import { DatePicker } from '@tiny-design/react';
 ```
 
 ## Design Tokens

@@ -26,7 +26,7 @@ import TypeSource from './demo/Type.tsx?raw';
 ## 使用方式
 
 ```js
-import { Notification } from 'tiny-design';
+import { Notification } from '@tiny-design/react';
 ```
 
 ## 代码示例

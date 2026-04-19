@@ -18,7 +18,7 @@ Structured disclosure for dense information.
 ## Usage
 
 ```tsx
-import { Collapse } from 'tiny-design';
+import { Collapse } from '@tiny-design/react';
 ```
 
 `Collapse` is now fully items-driven. Each panel is defined by an item object and expanded state is modeled as `string[]`.

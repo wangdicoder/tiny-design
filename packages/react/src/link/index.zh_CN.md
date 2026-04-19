@@ -16,7 +16,7 @@ import ExternalSource from './demo/External.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Link } from 'tiny-design';
+import { Link } from '@tiny-design/react';
 ```
 
 ## 代码示例

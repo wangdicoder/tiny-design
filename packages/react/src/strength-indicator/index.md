@@ -16,7 +16,7 @@ When use a password form.
 ## Usage
 
 ```jsx
-import { StrengthIndicator } from 'tiny-design';
+import { StrengthIndicator } from '@tiny-design/react';
 ```
 
 ## Examples

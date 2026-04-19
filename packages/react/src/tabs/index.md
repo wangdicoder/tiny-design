@@ -20,7 +20,7 @@ Tabs make it easy to switch between different views.
 ## Usage
 
 ```jsx
-import { Tabs } from 'tiny-design';
+import { Tabs } from '@tiny-design/react';
 ```
 
 ## Examples

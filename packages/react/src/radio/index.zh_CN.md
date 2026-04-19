@@ -17,7 +17,7 @@ import GroupSource from './demo/Group.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Radio } from 'tiny-design';
+import { Radio } from '@tiny-design/react';
 
 const { Group } = Radio;
 ```

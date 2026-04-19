@@ -16,7 +16,7 @@ On longer web pages, its helpful for some content to stick to the viewport. This
 ## Usage
 
 ```jsx
-import { Sticky } from 'tiny-design';
+import { Sticky } from '@tiny-design/react';
 ```
 
 ## Examples

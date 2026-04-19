@@ -20,7 +20,7 @@ import DashboardShellSource from './demo/DashboardShell.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Grid } from 'tiny-design';
+import { Grid } from '@tiny-design/react';
 ```
 
 ## 适用场景

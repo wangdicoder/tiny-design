@@ -26,7 +26,7 @@ import LoopSource from './demo/Loop.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { TimePicker } from 'tiny-design';
+import { TimePicker } from '@tiny-design/react';
 ```
 
 ## 代码示例

@@ -18,7 +18,7 @@ Use `Statistic` in dashboards, metric cards, review pages, and operational surfa
 ## Usage
 
 ```jsx
-import { Statistic } from 'tiny-design';
+import { Statistic } from '@tiny-design/react';
 ```
 
 ## Examples

@@ -22,7 +22,7 @@ import RangeDisabledSource from './demo/RangeDisabled.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { DatePicker } from 'tiny-design';
+import { DatePicker } from '@tiny-design/react';
 ```
 
 ## Design Tokens

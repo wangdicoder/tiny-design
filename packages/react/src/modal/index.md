@@ -20,7 +20,7 @@ When requiring users to interact with the application, but without jumping to a 
 ## Usage
 
 ```jsx
-import { Modal } from 'tiny-design';
+import { Modal } from '@tiny-design/react';
 ```
 
 ## Static Methods

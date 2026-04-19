@@ -15,7 +15,7 @@ import CustomSource from './demo/Custom.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { BackTop } from 'tiny-design';
+import { BackTop } from '@tiny-design/react';
 ```
 
 ## 代码示例

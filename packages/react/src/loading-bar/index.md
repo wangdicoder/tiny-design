@@ -12,7 +12,7 @@ Display a loading bar on the top of a browser to show that the content is fetchi
 ## Usage
 
 ```jsx
-import { LoadingBar } from 'tiny-design';
+import { LoadingBar } from '@tiny-design/react';
 
 LoadingBar.start();
 LoadingBar.succeed();

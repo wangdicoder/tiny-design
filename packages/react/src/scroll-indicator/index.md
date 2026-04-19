@@ -14,7 +14,7 @@ Used when the length of content is too long.
 ## Usage
 
 ```jsx
-import { ScrollIndicator } from 'tiny-design';
+import { ScrollIndicator } from '@tiny-design/react';
 ```
 
 ## Examples

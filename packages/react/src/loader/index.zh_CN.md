@@ -24,7 +24,7 @@ import TipsSource from './demo/Tips.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Loader } from 'tiny-design';
+import { Loader } from '@tiny-design/react';
 ```
 
 ## 代码示例

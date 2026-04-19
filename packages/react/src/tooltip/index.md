@@ -17,7 +17,7 @@ A simple text popup tip.
 ## Usage
 
 ```jsx
-import { Tooltip } from 'tiny-design';
+import { Tooltip } from '@tiny-design/react';
 ```
 
 ## Examples

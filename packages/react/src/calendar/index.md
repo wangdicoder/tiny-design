@@ -24,7 +24,7 @@ Display a full calendar view with date selection. Useful for scheduling, event m
 ## Usage
 
 ```jsx
-import { Calendar } from 'tiny-design';
+import { Calendar } from '@tiny-design/react';
 ```
 
 ## Design Tokens

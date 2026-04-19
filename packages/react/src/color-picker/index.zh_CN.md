@@ -22,7 +22,7 @@ import TriggerSource from './demo/Trigger.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { ColorPicker } from 'tiny-design';
+import { ColorPicker } from '@tiny-design/react';
 ```
 
 ## 代码演示

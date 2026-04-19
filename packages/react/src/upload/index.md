@@ -18,7 +18,7 @@ Upload files by clicking or drag-and-drop
 ## Usage
 
 ```jsx
-import { Upload } from 'tiny-design';
+import { Upload } from '@tiny-design/react';
 ```
 
 ## Examples

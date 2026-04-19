@@ -28,7 +28,7 @@ To input a value in a range.
 ## Usage
 
 ```jsx
-import { Slider } from 'tiny-design';
+import { Slider } from '@tiny-design/react';
 ```
 
 ## Examples

@@ -28,7 +28,7 @@ import ScrollToSelectedSource from './demo/ScrollToSelected.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { Select } from 'tiny-design';
+import { Select } from '@tiny-design/react';
 
 const { Option, OptGroup } = Select;
 ```
