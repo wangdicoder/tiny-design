@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.13.3
+
+### Patch Changes
+
+- Redesign QuickActions with a new product-grade API, richer action content, and improved keyboard and hover interactions. - [#125](https://github.com/wangdicoder/tiny-design/pull/125) [`c74ee8b`](https://github.com/wangdicoder/tiny-design/commit/c74ee8ba33c96a29609a4c72afa1c2eb29a21f12)
+
+- Redesign Skeleton animation APIs, component structure, and related configuration. - [#123](https://github.com/wangdicoder/tiny-design/pull/123) [`35e3b82`](https://github.com/wangdicoder/tiny-design/commit/35e3b82949aca1456edf6bbc959f29884caff5fe)
+
 ## 1.13.2
 
 ### Patch Changes
