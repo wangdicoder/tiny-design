@@ -6,7 +6,7 @@ export type AvatarPresence = 'online' | 'busy' | 'away' | 'offline';
 
 export interface AvatarProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['span']> {
+    React.ComponentPropsWithoutRef<'span'> {
   /** use an icon */
   icon?: React.ReactNode;
 
@@ -28,7 +28,7 @@ export interface AvatarProps
 
 export interface AvatarGroupProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['span']> {
+    React.ComponentPropsWithoutRef<'span'> {
   /** the distance between two avatars */
   gap: number | string;
 }

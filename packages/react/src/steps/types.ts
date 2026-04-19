@@ -5,7 +5,7 @@ export type StepsStatus = 'wait' | 'process' | 'finish' | 'error';
 
 export interface StepsProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange'> {
   current?: number;
   defaultCurrent?: number;
   direction?: DirectionType;
@@ -16,7 +16,7 @@ export interface StepsProps
 
 export interface StepsItemProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['div']>, 'title'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
   stepIndex?: number;
   icon?: ReactNode;
   title?: ReactNode;

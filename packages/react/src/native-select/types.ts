@@ -1,13 +1,13 @@
 import React from 'react';
 import { BaseProps, SizeType } from '../_utils/props';
 
-export type NativeSelectGroupProps = React.PropsWithRef<JSX.IntrinsicElements['optgroup']>;
+export type NativeSelectGroupProps = React.ComponentPropsWithoutRef<'optgroup'>;
 
-export type NativeSelectOptionProps = React.PropsWithRef<JSX.IntrinsicElements['option']>;
+export type NativeSelectOptionProps = React.ComponentPropsWithoutRef<'option'>;
 
 export interface NativeSelectProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['select']>, 'size'> {
+    Omit<React.ComponentPropsWithoutRef<'select'>, 'size'> {
   size?: SizeType;
   children:
     | React.ReactElement<NativeSelectGroupProps | NativeSelectOptionProps>

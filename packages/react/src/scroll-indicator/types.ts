@@ -4,7 +4,7 @@ import { Target } from '../_utils/dom';
 
 export interface ScrollIndicatorProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   fixed?: boolean;
   target?: () => Target;
 }

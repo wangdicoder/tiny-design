@@ -15,7 +15,7 @@ export interface MenuSelectInfo {
 
 export interface MenuProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['ul']>, 'onSelect'> {
+    Omit<React.ComponentPropsWithoutRef<'ul'>, 'onSelect'> {
   defaultIndex?: string;
   selectedKeys?: string[];
   defaultSelectedKeys?: string[];
@@ -55,7 +55,7 @@ export interface MenuProps
 
 export interface MenuItemProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+    React.ComponentPropsWithoutRef<'li'> {
   index?: string;
   disabled?: boolean;
   danger?: boolean;
@@ -66,14 +66,14 @@ export interface MenuItemProps
 
 export interface MenuItemGroupProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['li']>, 'title'> {
+    Omit<React.ComponentPropsWithoutRef<'li'>, 'title'> {
   index?: string;
   title?: ReactNode;
 }
 
 export interface SubMenuProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['li']>, 'title'> {
+    Omit<React.ComponentPropsWithoutRef<'li'>, 'title'> {
   title: ReactNode;
   index?: string;
   disabled?: boolean;

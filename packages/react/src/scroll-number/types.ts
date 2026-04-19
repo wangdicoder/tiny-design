@@ -3,7 +3,7 @@ import { BaseProps } from '../_utils/props';
 
 export interface ScrollNumberProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title' | 'prefix'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'title' | 'prefix'> {
   /** The numeric value to display */
   value?: number | string;
   /** Title displayed above the value */

@@ -3,7 +3,7 @@ import { BaseProps } from '../_utils/props';
 
 export interface LoadingBarProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   didMount?: () => void;
   children?: React.ReactNode;
 }

@@ -7,7 +7,7 @@ import { SplitSeparatorRenderProps } from './types';
 
 export interface ResizerProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   visualSize?: number;
   hitAreaSize: number;
   orientation: DirectionType;

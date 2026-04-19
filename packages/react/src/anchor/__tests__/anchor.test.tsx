@@ -32,4 +32,16 @@ describe('<Anchor />', () => {
     expect(getByText('Link 1')).toBeInTheDocument();
     expect(getByText('Link 2')).toBeInTheDocument();
   });
+
+  it('should forward ref to root list element', () => {
+    const ref = React.createRef<HTMLUListElement>();
+
+    render(
+      <Anchor ref={ref}>
+        <Anchor.Link href="#section1" title="Section 1" />
+      </Anchor>
+    );
+
+    expect(ref.current).toBeInstanceOf(HTMLUListElement);
+  });
 });

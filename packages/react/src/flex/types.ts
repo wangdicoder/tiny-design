@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseProps, SizeType } from '../_utils/props';
 
-export interface FlexProps extends BaseProps, React.PropsWithRef<JSX.IntrinsicElements['div']> {
+export interface FlexProps extends BaseProps, React.ComponentPropsWithoutRef<'div'> {
   vertical?: boolean;
   wrap?: React.CSSProperties['flexWrap'];
   justify?: React.CSSProperties['justifyContent'];

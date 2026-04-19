@@ -4,7 +4,7 @@ import { PaginationProps } from '../pagination/types';
 
 export interface ListProps<T = any>
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'children'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   dataSource?: T[];
   renderItem?: (item: T, index: number) => React.ReactNode;
   header?: React.ReactNode;
@@ -36,7 +36,7 @@ export interface ListPaginationProps extends Pick<PaginationProps, 'size' | 'ali
 
 export interface ListItemProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+    React.ComponentPropsWithoutRef<'li'> {
   extra?: React.ReactNode;
   actions?: React.ReactNode[];
   children?: React.ReactNode;
@@ -44,7 +44,7 @@ export interface ListItemProps
 
 export interface ListItemMetaProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
   avatar?: React.ReactNode;
   title?: React.ReactNode;
   description?: React.ReactNode;

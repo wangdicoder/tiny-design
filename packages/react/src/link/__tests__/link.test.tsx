@@ -24,4 +24,18 @@ describe('<Link />', () => {
     const { container } = render(<Link disabled>Link</Link>);
     expect(container.firstChild).toHaveClass('ty-link_disabled');
   });
+
+  it('should forward ref to anchor element', () => {
+    const ref = React.createRef<HTMLAnchorElement | HTMLSpanElement>();
+    render(<Link ref={ref} href="#">Link</Link>);
+
+    expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+  });
+
+  it('should forward ref to disabled fallback element', () => {
+    const ref = React.createRef<HTMLAnchorElement | HTMLSpanElement>();
+    render(<Link ref={ref} disabled>Link</Link>);
+
+    expect(ref.current).toBeInstanceOf(HTMLSpanElement);
+  });
 });

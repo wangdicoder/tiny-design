@@ -33,7 +33,7 @@ export interface TablePaginationConfig extends Pick<PaginationProps, 'size' | 'a
 
 export interface TableProps<T = any>
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'onChange'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange'> {
   columns: ColumnType<T>[];
   dataSource?: T[];
   rowKey?: string | ((record: T) => React.Key);

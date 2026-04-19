@@ -7,7 +7,20 @@ import { AnchorLinkProps, AnchorProps } from './types';
 import { AnchorContext } from './anchor-context';
 import Sticky from '../sticky';
 
-const Anchor = (props: AnchorProps): JSX.Element => {
+function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null): void {
+  if (!ref) {
+    return;
+  }
+
+  if (typeof ref === 'function') {
+    ref(value);
+    return;
+  }
+
+  (ref as React.MutableRefObject<T | null>).current = value;
+}
+
+const Anchor = React.forwardRef<HTMLUListElement, AnchorProps>((props, ref): JSX.Element => {
   const {
     affix = false,
     offsetTop = 0,
@@ -20,6 +33,7 @@ const Anchor = (props: AnchorProps): JSX.Element => {
     style,
     children,
     prefixCls: customisedCls,
+    ...otherProps
   } = props;
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('anchor', configContext.prefixCls, customisedCls);
@@ -36,6 +50,14 @@ const Anchor = (props: AnchorProps): JSX.Element => {
   const unregisterLink = useCallback((href: string) => {
     linksRef.current.delete(href);
   }, []);
+
+  const setAnchorNode = useCallback(
+    (node: HTMLUListElement | null) => {
+      anchorRef.current = node;
+      assignRef(ref, node);
+    },
+    [ref]
+  );
 
   const updateInk = useCallback(() => {
     const anchorEl = anchorRef.current;
@@ -200,7 +222,7 @@ const Anchor = (props: AnchorProps): JSX.Element => {
   );
 
   const anchorContent = (
-    <ul className={cls} style={style} ref={anchorRef}>
+    <ul {...otherProps} className={cls} style={style} ref={setAnchorNode}>
       <div className={`${prefixCls}__ink`}>
         <div className={`${prefixCls}__ink-ball`} ref={inkBallRef} />
       </div>
@@ -228,7 +250,7 @@ const Anchor = (props: AnchorProps): JSX.Element => {
       )}
     </AnchorContext.Provider>
   );
-};
+});
 
 Anchor.displayName = 'Anchor';
 

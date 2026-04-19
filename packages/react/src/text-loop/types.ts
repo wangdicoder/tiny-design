@@ -3,7 +3,7 @@ import { BaseProps } from '../_utils/props';
 
 export interface TextLoopProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   /** Time each item stays visible, in ms (default: 3000) */
   interval?: number;
   /** Pause cycling on hover (default: true) */

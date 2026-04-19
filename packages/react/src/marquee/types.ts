@@ -3,7 +3,7 @@ import { BaseProps } from '../_utils/props';
 
 export interface MarqueeProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   /** Scroll direction */
   direction?: 'left' | 'right';
 

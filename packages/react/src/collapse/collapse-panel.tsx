@@ -2,12 +2,7 @@ import React, { useEffect, useId, useState } from 'react';
 import classNames from 'classnames';
 import { ArrowDown } from '../_utils/components';
 import CollapseTransition from '../collapse-transition';
-import {
-  CollapseCollapsible,
-  CollapseExpandIconRender,
-  CollapseItem,
-  CollapseRenderState,
-} from './types';
+import { CollapseCollapsible, CollapseExpandIconRender, CollapseItem, CollapseRenderState } from './types';
 
 type CollapsePanelProps = {
   prefixCls: string;
@@ -28,10 +23,10 @@ type CollapsePanelProps = {
   onToggle: (key: string, event: React.MouseEvent) => void;
 };
 
-const renderContent = <T extends React.ReactNode | ((args: CollapseRenderState) => React.ReactNode)>(
-  content: T,
+const renderContent = (
+  content: React.ReactNode | ((args: CollapseRenderState) => React.ReactNode),
   state: CollapseRenderState
-) => {
+): React.ReactNode => {
   return typeof content === 'function' ? content(state) : content;
 };
 

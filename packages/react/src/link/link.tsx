@@ -4,43 +4,47 @@ import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { LinkProps } from './types';
 
-const Link = React.memo((props: LinkProps): React.ReactElement => {
-  const {
-    disabled = false,
-    external = true,
-    underline = true,
-    className,
-    style,
-    children,
-    target,
-    prefixCls: customisedCls,
-    ...otherProps
-  } = props;
-  const configContext = useContext(ConfigContext);
-  const prefixCls = getPrefixCls('link', configContext.prefixCls, customisedCls);
-  const cls = classNames(prefixCls, className, {
-    [`${prefixCls}_disabled`]: disabled,
-    [`${prefixCls}_no-underline`]: !underline,
-  });
+const Link = React.memo(
+  React.forwardRef<HTMLAnchorElement | HTMLSpanElement, LinkProps>((props, ref): React.ReactElement => {
+    const {
+      disabled = false,
+      external = true,
+      underline = true,
+      className,
+      style,
+      children,
+      target,
+      prefixCls: customisedCls,
+      ...otherProps
+    } = props;
+    const configContext = useContext(ConfigContext);
+    const prefixCls = getPrefixCls('link', configContext.prefixCls, customisedCls);
+    const cls = classNames(prefixCls, className, {
+      [`${prefixCls}_disabled`]: disabled,
+      [`${prefixCls}_no-underline`]: !underline,
+    });
 
-  if (disabled) {
+    if (disabled) {
+      return (
+        <span ref={ref as React.Ref<HTMLSpanElement>} className={cls} style={style} role="link" aria-disabled="true">
+          <span>{children}</span>
+        </span>
+      );
+    }
+
     return (
-      <span className={cls} style={style} role="link" aria-disabled="true">
+      <a
+        {...otherProps}
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        target={target ? target : external ? '_blank' : '_self'}
+        className={cls}
+        style={style}
+        role="link">
         <span>{children}</span>
-      </span>
+      </a>
     );
-  }
-  return (
-    <a
-      {...otherProps}
-      target={target ? target : external ? '_blank' : '_self'}
-      className={cls}
-      style={style}
-      role="link">
-      <span>{children}</span>
-    </a>
-  );
-});
+  })
+);
 
 Link.displayName = 'Link';
 

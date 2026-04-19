@@ -5,7 +5,7 @@ export type AlertType = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
   /** alert title */
   title?: string | ReactNode;
 

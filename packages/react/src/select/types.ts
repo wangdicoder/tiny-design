@@ -3,14 +3,14 @@ import { BaseProps, SizeType } from '../_utils/props';
 
 export interface SelectOptGroupProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+    React.ComponentPropsWithoutRef<'li'> {
   label?: string;
   children?: React.ReactNode;
 }
 
 export interface SelectOptionsProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['li']> {
+    React.ComponentPropsWithoutRef<'li'> {
   value: string;
   label?: React.ReactNode;
   disabled?: boolean;
@@ -28,7 +28,7 @@ export type SelectValue = string | string[];
 export interface SelectProps
   extends BaseProps,
     Omit<
-      React.PropsWithoutRef<JSX.IntrinsicElements['div']>,
+      React.ComponentPropsWithoutRef<'div'>,
       'onSelect' | 'onChange' | 'defaultValue'
     > {
   value?: SelectValue;

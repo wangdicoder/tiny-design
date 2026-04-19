@@ -3,7 +3,7 @@ import { BaseProps, SizeType } from '../_utils/props';
 
 export interface InputProps
   extends BaseProps,
-    Omit<React.PropsWithRef<JSX.IntrinsicElements['input']>, 'size' | 'prefix'> {
+    Omit<React.ComponentPropsWithoutRef<'input'>, 'size' | 'prefix'> {
   clearable?: boolean;
   prefix?: ReactNode;
   suffix?: ReactNode;
@@ -19,7 +19,7 @@ export interface InputProps
 
 export interface InputGroupProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   size?: SizeType;
   disabled?: boolean;
   children: React.ReactNode;
@@ -27,7 +27,7 @@ export interface InputGroupProps
 
 export interface InputGroupAddonProps
   extends BaseProps,
-    React.PropsWithoutRef<JSX.IntrinsicElements['div']> {
+    React.ComponentPropsWithoutRef<'div'> {
   noBorder?: boolean;
   disabled?: boolean;
   size?: SizeType;

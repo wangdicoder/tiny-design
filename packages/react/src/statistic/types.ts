@@ -49,7 +49,7 @@ export interface StatisticStatus {
 
 export interface StatisticProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'title' | 'prefix'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'title' | 'prefix'> {
   title?: React.ReactNode;
   description?: React.ReactNode;
   tooltip?: React.ReactNode;

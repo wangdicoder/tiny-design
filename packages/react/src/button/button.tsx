@@ -5,6 +5,7 @@ import { getPrefixCls } from '../_utils/general';
 import { ButtonProps } from './types';
 
 export const BUTTON_MARK = Symbol('tiny-design.button');
+const isProduction = (globalThis as { process?: { env?: { NODE_ENV?: string } } }).process?.env?.NODE_ENV === 'production';
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props: ButtonProps, ref) => {
   const {
@@ -37,7 +38,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props: ButtonPr
   const accessibleName =
     otherProps['aria-label'] || otherProps['aria-labelledby'] || otherProps.title;
 
-  if (process.env.NODE_ENV !== 'production' && isIconOnly && !accessibleName) {
+  if (!isProduction && isIconOnly && !accessibleName) {
     // Icon-only buttons need an accessible name.
     console.warn(
       'Button with icon only should provide `aria-label`, `aria-labelledby`, or `title`.'

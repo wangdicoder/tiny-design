@@ -6,7 +6,7 @@ export type SpeedDialTrigger = 'hover' | 'click';
 
 export interface SpeedDialProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['div']>, 'children'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   icon?: React.ReactNode;
   openIcon?: React.ReactNode;
   direction?: SpeedDialDirection;
@@ -20,7 +20,7 @@ export interface SpeedDialProps
 
 export interface SpeedDialActionProps
   extends BaseProps,
-    Omit<React.PropsWithoutRef<JSX.IntrinsicElements['button']>, 'children'> {
+    Omit<React.ComponentPropsWithoutRef<'button'>, 'children'> {
   icon: React.ReactNode;
   tooltip?: string;
   tooltipPlacement?: 'left' | 'right' | 'top' | 'bottom';
