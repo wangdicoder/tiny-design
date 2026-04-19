@@ -374,20 +374,16 @@ const Statistic = React.forwardRef<HTMLDivElement, StatisticProps>((props, ref) 
     skeleton || (
       <div className={`${prefixCls}__skeleton`} aria-hidden="true">
         <Skeleton
-          active
-          style={{
-            width: size === 'sm' ? 64 : 72,
-            height: 12,
-            borderRadius: 6,
-          }}
+          animation="shimmer"
+          shape="round"
+          width={size === 'sm' ? 64 : 72}
+          height={12}
         />
         <Skeleton
-          active
-          style={{
-            width: size === 'lg' ? 192 : 156,
-            height: size === 'lg' ? 36 : 28,
-            borderRadius: 8,
-          }}
+          animation="shimmer"
+          shape="round"
+          width={size === 'lg' ? 192 : 156}
+          height={size === 'lg' ? 36 : 28}
         />
       </div>
     )

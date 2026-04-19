@@ -1,25 +1,20 @@
 import React from 'react';
-import { Skeleton, ConfigProvider, Row, Col } from '@tiny-design/react';
+import { Skeleton, ConfigProvider, Flex } from '@tiny-design/react';
 
 export default function CombinationDemo() {
   return (
-    <ConfigProvider shimmer>
-      <Row>
-        <Col span={2}>
-          <Skeleton rounded style={{ width: 50, height: 50 }} />
-        </Col>
-        <Col span={22}>
+    <ConfigProvider skeleton={{ animation: 'shimmer' }}>
+      <Flex gap="sm" vertical>
+        <Flex gap="sm">
+          <Skeleton.Avatar size={50} />
           <div>
-            <Skeleton style={{ width: 300 }} />
+            <Skeleton width={300} />
+            <Skeleton width={300} />
           </div>
-          <div>
-            <Skeleton style={{ width: 300 }} />
-          </div>
-        </Col>
-      </Row>
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
+        </Flex>
+        <Skeleton title paragraph={{ rows: 2 }} />
+        <Skeleton title paragraph={{ rows: 4 }} />
+      </Flex>
     </ConfigProvider>
   );
 }

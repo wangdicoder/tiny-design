@@ -9,10 +9,20 @@
     "$type": "dimension",
     "description": "Skeleton default height."
   },
-  "skeleton.stack-gap": {
+  "skeleton.row-gap": {
     "$value": "10px",
     "$type": "dimension",
-    "description": "Skeleton vertical stack gap."
+    "description": "Skeleton row gap."
+  },
+  "skeleton.radius-round": {
+    "$value": "999px",
+    "$type": "dimension",
+    "description": "Skeleton rounded rectangle radius."
+  },
+  "skeleton.block-gap": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Skeleton structured block gap."
   },
   "skeleton.shimmer": {
     "$value": "linear-gradient(to right, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%)",

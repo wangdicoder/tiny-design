@@ -36,7 +36,7 @@ export default function PlaceholderDemo() {
         height={180}
         src={src}
         alt="Mountain lake"
-        placeholder={<Skeleton active style={{ width: '100%', height: '100%' }} />}
+        placeholder={<Skeleton animation="shimmer" width="100%" height="100%" />}
       />
     </Flex>
   );

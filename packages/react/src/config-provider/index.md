@@ -226,8 +226,8 @@ const { componentSize, getPopupContainer, locale } = ConfigProvider.useConfig();
 | ----------------- | ------------------------------------------------------------- | ------------------------------------------------- | --------- |
 | prefixCls         | set prefix class.                                             | string                                            | ty        |
 | componentSize     | component size.                                               | enum: `lg` &#124; `md` &#124; `sm`                | `md`      |
-| shimmer           | display shimmer effect for [Skeleton](#/components/skeleton). | boolean                                           | false     |
-| space             | set Space size, ref [Space](#/components/space).              | enum: `sm` &#124; `md` &#124; `lg` or `number`.   | `sm`      |
+| skeleton          | global config for [Skeleton](../components/skeleton), such as animation. | `{ animation?: false \| 'pulse' \| 'shimmer' }` | -         |
+| space             | set Space size, ref [Space](../components/space).              | enum: `sm` &#124; `md` &#124; `lg` or `number`.   | `sm`      |
 | locale            | set locale for components (e.g. `en_US`, `zh_CN`).           | Locale                                            | -         |
 | getPopupContainer | set the container for popup-based components within this provider scope. | `(trigger?: HTMLElement \| null) => HTMLElement` | provider popup holder |
 | getTargetContainer | set the default scroll target for components such as `Anchor`, `Sticky`, and `BackTop`, and the scroll-lock target for layers such as `Overlay` and `Tour`. | `() => HTMLElement \| Window`                    | `() => window` |
