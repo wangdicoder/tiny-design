@@ -2,20 +2,28 @@ import BasicDemo from './demo/Basic';
 import BasicSource from './demo/Basic.tsx?raw';
 import DirectionDemo from './demo/Direction';
 import DirectionSource from './demo/Direction.tsx?raw';
-import ClickDemo from './demo/Click';
-import ClickSource from './demo/Click.tsx?raw';
-import CustomIconDemo from './demo/CustomIcon';
-import CustomIconSource from './demo/CustomIcon.tsx?raw';
+import HoverDemo from './demo/Click';
+import HoverSource from './demo/Click.tsx?raw';
+import ControlledDemo from './demo/CustomIcon';
+import ControlledSource from './demo/CustomIcon.tsx?raw';
+import ActionBehaviorDemo from './demo/ActionBehavior';
+import ActionBehaviorSource from './demo/ActionBehavior.tsx?raw';
 
 # QuickActions 快捷操作
 
-悬浮按钮，展开后显示一组操作。
+用于承载少量高优先级操作的浮动动作启动器。
 
-## 使用场景
+## 何时使用
 
-当需要一个悬浮操作按钮来展示多个相关操作时使用。常用于页面底部角落的快速操作入口。
+当页面或卡片存在一组需要始终可达、但又不希望长期占用布局空间的操作时，可以使用 QuickActions。
 
-## 使用方式
+更适合以下场景：
+
+- 2 到 5 个快捷操作
+- 短链路、高频使用的动作
+- 需要直接展示操作文案，而不是只靠图标和 tooltip 猜含义
+
+## 使用
 
 ```jsx
 import { QuickActions } from '@tiny-design/react';
@@ -27,65 +35,81 @@ import { QuickActions } from '@tiny-design/react';
   <Column>
     <Demo>
 
-### 基础用法
+### 产品化默认形态
 
-基础的 QuickActions，hover 时展开。
+点击展开，展示带标题和辅助说明的快捷操作。
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
     </Demo>
     <Demo>
 
-### 点击触发
+### Hover 或焦点触发
 
-设置 `trigger="click"` 可以通过点击触发 QuickActions 展开。
+`trigger="hover"` 不只支持鼠标移入，也支持键盘焦点进入后的展开。
 
-<DemoBlock component={ClickDemo} source={ClickSource} />
+<DemoBlock component={HoverDemo} source={HoverSource} />
 
     </Demo>
+
   </Column>
   <Column>
     <Demo>
 
-### 方向
+### 展开方向
 
-支持四个展开方向：`up`、`down`、`left`、`right`。
+支持 `up`、`down`、`left`、`right` 四个方向，方便适配不同边缘布局。
 
 <DemoBlock component={DirectionDemo} source={DirectionSource} />
 
     </Demo>
     <Demo>
 
-### 自定义图标
+### 受控模式
 
-可以自定义主按钮图标和展开后的图标。
+当组件需要和外部产品状态联动时，可以使用 `open` 与 `onOpenChange`。
 
-<DemoBlock component={CustomIconDemo} source={CustomIconSource} />
+<DemoBlock component={ControlledDemo} source={ControlledSource} />
 
     </Demo>
+    <Demo>
+
+### Action 行为
+
+通过 `closeOnActionClick={false}` 保持整个面板展开，或者用 `keepOpen` 只让特定 action 点击后保持展开。
+
+<DemoBlock component={ActionBehaviorDemo} source={ActionBehaviorSource} />
+
+    </Demo>
+
   </Column>
 </Layout>
 
-## Props
+## API
 
 ### QuickActions
 
-| 属性      | 说明                       | 类型                                                   | 默认值   |
-| --------- | -------------------------- | ------------------------------------------------------ | -------- |
-| icon      | 主按钮图标                 | ReactNode                                              | `+`      |
-| openIcon  | 展开时显示的图标           | ReactNode                                              | -        |
-| direction | 操作项展开方向             | enum: `up` &#124; `down` &#124; `left` &#124; `right` | `up`     |
-| open      | 受控的展开状态             | boolean                                                | -        |
-| trigger   | 触发方式                   | enum: `hover` &#124; `click`                           | `hover`  |
-| onOpen    | 展开时的回调               | () => void                                             | -        |
-| onClose   | 关闭时的回调               | () => void                                             | -        |
-| disabled  | 是否禁用                   | boolean                                                | false    |
+| 属性               | 说明                       | 类型                                                                                                                                     | 默认值            |
+| ------------------ | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| icon               | 触发按钮图标               | ReactNode                                                                                                                                | `+`               |
+| openIcon           | 展开后的触发按钮图标       | ReactNode                                                                                                                                | -                 |
+| label              | 触发按钮的无障碍名称       | string                                                                                                                                   | `'Quick actions'` |
+| direction          | 动作展开方向               | `up` \| `down` \| `left` \| `right`                                                                                                      | `up`              |
+| trigger            | 触发展开方式               | `click` \| `hover`                                                                                                                       | `click`           |
+| open               | 受控展开状态               | boolean                                                                                                                                  | -                 |
+| defaultOpen        | 默认展开状态               | boolean                                                                                                                                  | false             |
+| closeOnActionClick | 点击 action 后是否自动收起 | boolean                                                                                                                                  | true              |
+| disabled           | 是否禁用                   | boolean                                                                                                                                  | false             |
+| onOpenChange       | 展开状态变化回调           | `(open: boolean, context: { source: 'trigger-click' \| 'trigger-hover' \| 'focus' \| 'outside' \| 'escape' \| 'action-click' }) => void` | -                 |
 
 ### QuickActions.Action
 
-| 属性             | 说明             | 类型                                                    | 默认值  |
-| ---------------- | ---------------- | ------------------------------------------------------- | ------- |
-| icon             | 操作按钮图标     | ReactNode                                               | -       |
-| tooltip          | 提示文字         | string                                                  | -       |
-| tooltipPlacement | 提示位置         | enum: `left` &#124; `right` &#124; `top` &#124; `bottom` | -       |
-| disabled         | 是否禁用         | boolean                                                 | false   |
+| 属性        | 说明                             | 类型      | 默认值 |
+| ----------- | -------------------------------- | --------- | ------ |
+| icon        | 操作前置图标                     | ReactNode | -      |
+| label       | 操作主文案                       | ReactNode | -      |
+| description | 操作辅助说明                     | ReactNode | -      |
+| danger      | 是否使用危险态样式               | boolean   | false  |
+| loading     | 是否显示加载态并禁用该 action    | boolean   | false  |
+| disabled    | 是否禁用                         | boolean   | false  |
+| keepOpen    | 点击该 action 后是否保持面板展开 | boolean   | false  |

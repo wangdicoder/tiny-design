@@ -1,29 +1,36 @@
 import React from 'react';
 import { QuickActions } from '@tiny-design/react';
 
-export default function DirectionDemo() {
-  const actions = (
-    <>
-      <QuickActions.Action icon="A" tooltip="Action 1" />
-      <QuickActions.Action icon="B" tooltip="Action 2" />
-      <QuickActions.Action icon="C" tooltip="Action 3" />
-    </>
-  );
+const actions = (
+  <>
+    <QuickActions.Action icon="R" label="Review" description="Collect final approvals." />
+    <QuickActions.Action icon="S" label="Schedule" description="Set launch time and audience." />
+    <QuickActions.Action icon="P" label="Publish" description="Push this update live." danger />
+  </>
+);
 
+export default function DirectionDemo() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300, gap: 80 }}>
-      <QuickActions direction="right">
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 320,
+        gap: 96,
+      }}>
+      <QuickActions direction="right" label="Right actions">
         {actions}
       </QuickActions>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 120 }}>
-        <QuickActions direction="down">
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 140 }}>
+        <QuickActions direction="down" label="Down actions">
           {actions}
         </QuickActions>
-        <QuickActions direction="up">
+        <QuickActions direction="up" label="Up actions">
           {actions}
         </QuickActions>
       </div>
-      <QuickActions direction="left">
+      <QuickActions direction="left" label="Left actions">
         {actions}
       </QuickActions>
     </div>

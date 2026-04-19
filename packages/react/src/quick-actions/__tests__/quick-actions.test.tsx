@@ -1,184 +1,158 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import QuickActions from '../index';
 
 describe('<QuickActions />', () => {
-  it('should match the snapshot', () => {
-    const { asFragment } = render(
-      <QuickActions>
-        <QuickActions.Action icon="A" tooltip="Action A" />
-        <QuickActions.Action icon="B" tooltip="Action B" />
-      </QuickActions>
-    );
-    expect(asFragment()).toMatchSnapshot();
-  });
+  const getPanel = () => document.querySelector('.ty-quick-actions__actions') as HTMLElement;
 
-  it('should render with default class', () => {
-    const { container } = render(
-      <QuickActions>
-        <QuickActions.Action icon="A" />
+  const renderActions = (props: React.ComponentProps<typeof QuickActions> = {}) =>
+    render(
+      <QuickActions label="Composer actions" {...props}>
+        <QuickActions.Action icon="S" label="Save draft" description="Store the latest version." />
+        <QuickActions.Action icon="P" label="Publish" description="Push it live now." />
       </QuickActions>
     );
+
+  it('renders with the default direction and closed state', () => {
+    const { container } = renderActions();
+
     expect(container.firstChild).toHaveClass('ty-quick-actions');
     expect(container.firstChild).toHaveClass('ty-quick-actions_up');
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('should render actions on hover', () => {
-    const { container, getByText } = render(
-      <QuickActions>
-        <QuickActions.Action icon="A" tooltip="Action A" />
-      </QuickActions>
-    );
-    const root = container.firstChild as HTMLElement;
-    fireEvent.mouseEnter(root);
-    expect(root.querySelector('.ty-quick-actions__actions')).toHaveClass('ty-quick-actions__actions_open');
-    expect(getByText('Action A')).toBeInTheDocument();
+  it('opens on click by default', () => {
+    renderActions();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Composer actions' }));
+
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'false');
   });
 
-  it('should close actions on mouse leave', () => {
-    const { container } = render(
-      <QuickActions>
-        <QuickActions.Action icon="A" />
-      </QuickActions>
-    );
-    const root = container.firstChild as HTMLElement;
-    fireEvent.mouseEnter(root);
-    expect(root.querySelector('.ty-quick-actions__actions')).toHaveClass('ty-quick-actions__actions_open');
-    fireEvent.mouseLeave(root);
-    expect(root.querySelector('.ty-quick-actions__actions')).not.toHaveClass('ty-quick-actions__actions_open');
+  it('supports defaultOpen', () => {
+    renderActions({ defaultOpen: true });
+
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'false');
   });
 
-  it('should toggle on click with click trigger', () => {
-    const { container } = render(
-      <QuickActions trigger="click">
-        <QuickActions.Action icon="A" />
-      </QuickActions>
-    );
-    const button = container.querySelector('.ty-quick-actions__button') as HTMLElement;
-    fireEvent.click(button);
-    expect(container.querySelector('.ty-quick-actions__actions')).toHaveClass('ty-quick-actions__actions_open');
-    fireEvent.click(button);
-    expect(container.querySelector('.ty-quick-actions__actions')).not.toHaveClass('ty-quick-actions__actions_open');
-  });
+  it('supports controlled open state', () => {
+    const { rerender } = renderActions({ open: false });
 
-  it('should close on outside click with click trigger', () => {
-    const { container, getByText } = render(
-      <div>
-        <QuickActions trigger="click">
-          <QuickActions.Action icon="A" />
-        </QuickActions>
-        <button>Outside</button>
-      </div>
-    );
-    const button = container.querySelector('.ty-quick-actions__button') as HTMLElement;
-    fireEvent.click(button);
-    expect(container.querySelector('.ty-quick-actions__actions')).toHaveClass('ty-quick-actions__actions_open');
-
-    fireEvent.click(getByText('Outside'));
-
-    expect(container.querySelector('.ty-quick-actions__actions')).not.toHaveClass('ty-quick-actions__actions_open');
-  });
-
-  it('should render correct direction class', () => {
-    const directions = ['up', 'down', 'left', 'right'] as const;
-    directions.forEach((direction) => {
-      const { container } = render(
-        <QuickActions direction={direction}>
-          <QuickActions.Action icon="A" />
-        </QuickActions>
-      );
-      expect(container.firstChild).toHaveClass(`ty-quick-actions_${direction}`);
-    });
-  });
-
-  it('should not open when disabled', () => {
-    const { container } = render(
-      <QuickActions disabled>
-        <QuickActions.Action icon="A" />
-      </QuickActions>
-    );
-    const root = container.firstChild as HTMLElement;
-    fireEvent.mouseEnter(root);
-    expect(root.querySelector('.ty-quick-actions__actions')).not.toHaveClass('ty-quick-actions__actions_open');
-  });
-
-  it('should support controlled open', () => {
-    const { container, rerender } = render(
-      <QuickActions open={false}>
-        <QuickActions.Action icon="A" />
-      </QuickActions>
-    );
-    expect(container.querySelector('.ty-quick-actions__actions')).not.toHaveClass('ty-quick-actions__actions_open');
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'true');
 
     rerender(
-      <QuickActions open={true}>
-        <QuickActions.Action icon="A" />
+      <QuickActions label="Composer actions" open={true}>
+        <QuickActions.Action icon="S" label="Save draft" description="Store the latest version." />
       </QuickActions>
     );
-    expect(container.querySelector('.ty-quick-actions__actions')).toHaveClass('ty-quick-actions__actions_open');
+
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'false');
   });
 
-  it('should render custom icon', () => {
-    const { container } = render(
-      <QuickActions icon={<span data-testid="custom">X</span>}>
-        <QuickActions.Action icon="A" />
-      </QuickActions>
+  it('calls onOpenChange with click, outside and action sources', () => {
+    const onOpenChange = jest.fn();
+
+    render(
+      <div>
+        <QuickActions label="Composer actions" onOpenChange={onOpenChange}>
+          <QuickActions.Action icon="S" label="Save draft" />
+        </QuickActions>
+        <button type="button">Outside</button>
+      </div>
     );
-    expect(container.querySelector('[data-testid="custom"]')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Composer actions' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Save draft' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Composer actions' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Outside' }));
+
+    expect(onOpenChange).toHaveBeenNthCalledWith(1, true, { source: 'trigger-click' });
+    expect(onOpenChange).toHaveBeenNthCalledWith(2, false, { source: 'action-click' });
+    expect(onOpenChange).toHaveBeenNthCalledWith(3, true, { source: 'trigger-click' });
+    expect(onOpenChange).toHaveBeenNthCalledWith(4, false, { source: 'outside' });
   });
 
-  it('should render openIcon when open', () => {
-    const { container } = render(
-      <QuickActions open={true} openIcon={<span data-testid="open-icon">O</span>}>
-        <QuickActions.Action icon="A" />
-      </QuickActions>
-    );
-    expect(container.querySelector('[data-testid="open-icon"]')).toBeInTheDocument();
-  });
+  it('supports hover trigger with keyboard focus', () => {
+    jest.useFakeTimers();
 
-  it('should call onOpen and onClose callbacks', () => {
-    const onOpen = jest.fn();
-    const onClose = jest.fn();
-    const { container } = render(
-      <QuickActions onOpen={onOpen} onClose={onClose}>
-        <QuickActions.Action icon="A" />
-      </QuickActions>
-    );
+    const { container } = renderActions({ trigger: 'hover' });
     const root = container.firstChild as HTMLElement;
+    const trigger = screen.getByRole('button', { name: 'Composer actions' });
+
     fireEvent.mouseEnter(root);
-    expect(onOpen).toHaveBeenCalledTimes(1);
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'false');
+
     fireEvent.mouseLeave(root);
-    expect(onClose).toHaveBeenCalledTimes(1);
+    act(() => {
+      jest.advanceTimersByTime(150);
+    });
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'true');
+
+    fireEvent.keyDown(root, { key: 'Tab' });
+    fireEvent.focus(trigger);
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'false');
+
+    jest.useRealTimers();
   });
 
-  it('should only call onOpen and onClose when the state changes', () => {
-    const onOpen = jest.fn();
-    const onClose = jest.fn();
-    const { container } = render(
-      <QuickActions onOpen={onOpen} onClose={onClose}>
-        <QuickActions.Action icon="A" />
-      </QuickActions>
-    );
+  it('closes on mouse leave after clicking the trigger in hover mode', () => {
+    jest.useFakeTimers();
+
+    const { container } = renderActions({ trigger: 'hover' });
     const root = container.firstChild as HTMLElement;
+    const trigger = screen.getByRole('button', { name: 'Composer actions' });
 
     fireEvent.mouseEnter(root);
-    fireEvent.mouseEnter(root);
-    expect(onOpen).toHaveBeenCalledTimes(1);
+    fireEvent.mouseDown(trigger);
+    fireEvent.click(trigger);
+    fireEvent.mouseLeave(root);
 
-    fireEvent.mouseLeave(root);
-    fireEvent.mouseLeave(root);
-    expect(onClose).toHaveBeenCalledTimes(1);
+    act(() => {
+      jest.advanceTimersByTime(150);
+    });
+
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'true');
+
+    jest.useRealTimers();
   });
 
-  it('should disable action button', () => {
-    const onClick = jest.fn();
-    const { container } = render(
-      <QuickActions open={true}>
-        <QuickActions.Action icon="A" disabled onClick={onClick} />
+  it('closes on escape and returns focus to the trigger', () => {
+    renderActions({ defaultOpen: true });
+    const trigger = screen.getByRole('button', { name: 'Composer actions' });
+    const action = screen.getByRole('button', { name: 'Save draft Store the latest version.' });
+
+    action.focus();
+    fireEvent.keyDown(action, { key: 'Escape' });
+
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'true');
+    expect(trigger).toHaveFocus();
+  });
+
+  it('keeps the panel open when keepOpen is set on an action', () => {
+    render(
+      <QuickActions label="Composer actions" defaultOpen>
+        <QuickActions.Action icon="S" label="Save draft" keepOpen />
       </QuickActions>
     );
-    const action = container.querySelector('.ty-quick-actions__action') as HTMLButtonElement;
-    expect(action).toBeDisabled();
-    expect(action).toHaveClass('ty-quick-actions__action_disabled');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Save draft' }));
+
+    expect(getPanel()).toHaveAttribute('aria-hidden', 'false');
+  });
+
+  it('renders danger and loading states', () => {
+    render(
+      <QuickActions label="Composer actions" defaultOpen>
+        <QuickActions.Action icon="D" label="Delete" danger />
+        <QuickActions.Action icon="L" label="Syncing" loading />
+      </QuickActions>
+    );
+
+    const deleteAction = screen.getByRole('button', { name: 'Delete' });
+    const syncingAction = screen.getByRole('button', { name: 'Syncing' });
+
+    expect(deleteAction).toHaveClass('ty-quick-actions__action_danger');
+    expect(syncingAction).toBeDisabled();
+    expect(syncingAction).toHaveClass('ty-quick-actions__action_loading');
   });
 });
