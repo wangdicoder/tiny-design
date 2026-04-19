@@ -67,6 +67,9 @@ export type SiteLocale = {
     introduction: string;
     getStarted: string;
     useWithVite: string;
+    useWithNextjs: string;
+    useWithNextjsPagesRouter: string;
+    ssrAndHydration: string;
     changelog: string;
     faq: string;
     mcpServer: string;

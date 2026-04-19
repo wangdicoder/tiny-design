@@ -34,6 +34,18 @@ const guide = {
     () => import('../guides/use-react-app.md'),
     () => import('../guides/use-react-app.zh_CN.md'),
   ),
+  useWithNextjs: ll(
+    () => import('../guides/use-nextjs.md'),
+    () => import('../guides/use-nextjs.zh_CN.md'),
+  ),
+  useWithNextjsPagesRouter: ll(
+    () => import('../guides/use-nextjs-pages-router.md'),
+    () => import('../guides/use-nextjs-pages-router.zh_CN.md'),
+  ),
+  ssrAndHydration: ll(
+    () => import('../guides/ssr-and-hydration.md'),
+    () => import('../guides/ssr-and-hydration.zh_CN.md'),
+  ),
   customiseTheme: ll(
     () => import('../guides/customise-theme.md'),
     () => import('../guides/customise-theme.zh_CN.md'),
@@ -172,6 +184,9 @@ export const getGuideMenu = (s: SiteLocale): RouterItem[] => {
       children: [
         { title: s.guideMenu.getStarted, route: 'get-started', component: pick(guide.getStarted, isZh) },
         { title: s.guideMenu.useWithVite, route: 'use-with-vite', component: pick(guide.useWithVite, isZh) },
+        { title: s.guideMenu.useWithNextjs, route: 'use-with-nextjs', component: pick(guide.useWithNextjs, isZh) },
+        { title: s.guideMenu.useWithNextjsPagesRouter, route: 'use-with-nextjs-pages-router', component: pick(guide.useWithNextjsPagesRouter, isZh) },
+        { title: s.guideMenu.ssrAndHydration, route: 'ssr-and-hydration', component: pick(guide.ssrAndHydration, isZh) },
       ],
     },
     {
