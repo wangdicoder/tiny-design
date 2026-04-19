@@ -7,7 +7,7 @@ import ClickSource from './demo/Click.tsx?raw';
 import CustomIconDemo from './demo/CustomIcon';
 import CustomIconSource from './demo/CustomIcon.tsx?raw';
 
-# SpeedDial 快捷操作
+# QuickActions 快捷操作
 
 悬浮按钮，展开后显示一组操作。
 
@@ -18,7 +18,7 @@ import CustomIconSource from './demo/CustomIcon.tsx?raw';
 ## 使用方式
 
 ```jsx
-import { SpeedDial } from '@tiny-design/react';
+import { QuickActions } from '@tiny-design/react';
 ```
 
 ## 示例
@@ -29,7 +29,7 @@ import { SpeedDial } from '@tiny-design/react';
 
 ### 基础用法
 
-基础的 SpeedDial，hover 时展开。
+基础的 QuickActions，hover 时展开。
 
 <DemoBlock component={BasicDemo} source={BasicSource} />
 
@@ -38,7 +38,7 @@ import { SpeedDial } from '@tiny-design/react';
 
 ### 点击触发
 
-设置 `trigger="click"` 可以通过点击触发展开。
+设置 `trigger="click"` 可以通过点击触发 QuickActions 展开。
 
 <DemoBlock component={ClickDemo} source={ClickSource} />
 
@@ -68,7 +68,7 @@ import { SpeedDial } from '@tiny-design/react';
 
 ## Props
 
-### SpeedDial
+### QuickActions
 
 | 属性      | 说明                       | 类型                                                   | 默认值   |
 | --------- | -------------------------- | ------------------------------------------------------ | -------- |
@@ -81,7 +81,7 @@ import { SpeedDial } from '@tiny-design/react';
 | onClose   | 关闭时的回调               | () => void                                             | -        |
 | disabled  | 是否禁用                   | boolean                                                | false    |
 
-### SpeedDial.Action
+### QuickActions.Action
 
 | 属性             | 说明             | 类型                                                    | 默认值  |
 | ---------------- | ---------------- | ------------------------------------------------------- | ------- |

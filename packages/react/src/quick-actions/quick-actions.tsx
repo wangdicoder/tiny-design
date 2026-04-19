@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { useClickOutside } from '../_utils/hooks';
-import { SpeedDialProps } from './types';
-import { SpeedDialContext } from './speed-dial-context';
+import { QuickActionsProps } from './types';
+import { QuickActionsContext } from './quick-actions-context';
 
-const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
+const QuickActions = React.forwardRef<HTMLDivElement, QuickActionsProps>(
   (props, ref): JSX.Element => {
     const {
       icon,
@@ -25,7 +25,7 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
     } = props;
 
     const configContext = useContext(ConfigContext);
-    const prefixCls = getPrefixCls('speed-dial', configContext.prefixCls, customisedCls);
+    const prefixCls = getPrefixCls('quick-actions', configContext.prefixCls, customisedCls);
 
     const [internalOpen, setInternalOpen] = useState(false);
     const isControlled = open !== undefined;
@@ -108,20 +108,20 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
           onClick={handleButtonClick}
           disabled={disabled}
           aria-expanded={isOpen}
-          aria-label="SpeedDial"
+          aria-label="QuickActions"
         >
           {renderIcon()}
         </button>
-        <SpeedDialContext.Provider value={{ direction }}>
+        <QuickActionsContext.Provider value={{ direction }}>
           <div className={actionsCls} role="menu">
             {children}
           </div>
-        </SpeedDialContext.Provider>
+        </QuickActionsContext.Provider>
       </div>
     );
   }
 );
 
-SpeedDial.displayName = 'SpeedDial';
+QuickActions.displayName = 'QuickActions';
 
-export default SpeedDial;
+export default QuickActions;

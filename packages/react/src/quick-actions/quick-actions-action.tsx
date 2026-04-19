@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
-import { SpeedDialActionProps } from './types';
-import { SpeedDialContext } from './speed-dial-context';
+import { QuickActionsActionProps } from './types';
+import { QuickActionsContext } from './quick-actions-context';
 
 const getDefaultTooltipPlacement = (direction: string): 'left' | 'right' | 'top' | 'bottom' => {
   if (direction === 'left' || direction === 'right') return 'top';
   return 'left';
 };
 
-const SpeedDialAction = React.forwardRef<HTMLButtonElement, SpeedDialActionProps>(
+const QuickActionsAction = React.forwardRef<HTMLButtonElement, QuickActionsActionProps>(
   (props, ref): JSX.Element => {
     const {
       icon,
@@ -24,8 +24,8 @@ const SpeedDialAction = React.forwardRef<HTMLButtonElement, SpeedDialActionProps
     } = props;
 
     const configContext = useContext(ConfigContext);
-    const { direction } = useContext(SpeedDialContext);
-    const prefixCls = getPrefixCls('speed-dial', configContext.prefixCls, customisedCls);
+    const { direction } = useContext(QuickActionsContext);
+    const prefixCls = getPrefixCls('quick-actions', configContext.prefixCls, customisedCls);
     const placement = tooltipPlacement || getDefaultTooltipPlacement(direction);
 
     const cls = classNames(`${prefixCls}__action`, className, {
@@ -55,6 +55,6 @@ const SpeedDialAction = React.forwardRef<HTMLButtonElement, SpeedDialActionProps
   }
 );
 
-SpeedDialAction.displayName = 'SpeedDialAction';
+QuickActionsAction.displayName = 'QuickActions.Action';
 
-export default SpeedDialAction;
+export default QuickActionsAction;

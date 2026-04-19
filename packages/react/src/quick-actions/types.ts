@@ -1,24 +1,24 @@
 import React from 'react';
 import { BaseProps } from '../_utils/props';
 
-export type SpeedDialDirection = 'up' | 'down' | 'left' | 'right';
-export type SpeedDialTrigger = 'hover' | 'click';
+export type QuickActionsDirection = 'up' | 'down' | 'left' | 'right';
+export type QuickActionsTrigger = 'hover' | 'click';
 
-export interface SpeedDialProps
+export interface QuickActionsProps
   extends BaseProps,
     Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   icon?: React.ReactNode;
   openIcon?: React.ReactNode;
-  direction?: SpeedDialDirection;
+  direction?: QuickActionsDirection;
   open?: boolean;
-  trigger?: SpeedDialTrigger;
+  trigger?: QuickActionsTrigger;
   onOpen?: () => void;
   onClose?: () => void;
   disabled?: boolean;
   children?: React.ReactNode;
 }
 
-export interface SpeedDialActionProps
+export interface QuickActionsActionProps
   extends BaseProps,
     Omit<React.ComponentPropsWithoutRef<'button'>, 'children'> {
   icon: React.ReactNode;

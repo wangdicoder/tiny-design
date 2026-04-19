@@ -29,7 +29,7 @@ const icons: Record<string, IconFn> = {
   dropdown: () => <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="5" rx="1.5" {...s} /><polyline points="9,15 12,18 15,15" {...s} /><rect x="4" y="12" width="16" height="9" rx="1.5" {...s} strokeDasharray="3 2" /></svg>,
   menu: () => <svg viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" {...s} /><line x1="4" y1="12" x2="20" y2="12" {...s} /><line x1="4" y1="18" x2="20" y2="18" {...s} /></svg>,
   pagination: () => <svg viewBox="0 0 24 24" fill="none"><polyline points="3,12 6,9 6,15" {...s} /><rect x="8" y="9" width="3" height="6" rx="1" fill="currentColor" opacity="0.2" {...s} /><rect x="13" y="9" width="3" height="6" rx="1" {...s} /><rect x="18" y="9" width="3" height="6" rx="1" {...s} /></svg>,
-  'speed-dial': () => <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="18" r="3" {...s} /><line x1="12" y1="15" x2="12" y2="13" {...s} /><circle cx="12" cy="11" r="1.5" {...s} /><circle cx="12" cy="6" r="1.5" {...s} /></svg>,
+  'quick-actions': () => <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="18" r="3" {...s} /><line x1="12" y1="15" x2="12" y2="13" {...s} /><circle cx="12" cy="11" r="1.5" {...s} /><circle cx="12" cy="6" r="1.5" {...s} /></svg>,
   steps: () => <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.5" fill="currentColor" opacity="0.2" {...s} /><line x1="7.5" y1="12" x2="10" y2="12" {...s} /><circle cx="12" cy="12" r="2.5" {...s} /><line x1="14.5" y1="12" x2="17" y2="12" {...s} /><circle cx="19" cy="12" r="2.5" {...s} /></svg>,
 
   // Data Display

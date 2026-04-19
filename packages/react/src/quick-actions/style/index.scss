@@ -1,6 +1,6 @@
 @use "../../style/variables" as *;
 
-.#{$prefix}-speed-dial {
+.#{$prefix}-quick-actions {
   position: relative;
   display: inline-flex;
 
@@ -9,34 +9,34 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--ty-speed-dial-fab-size);
-    height: var(--ty-speed-dial-fab-size);
+    width: var(--ty-quick-actions-fab-size);
+    height: var(--ty-quick-actions-fab-size);
     border-radius: 50%;
     border: none;
-    background-color: var(--ty-speed-dial-bg);
-    color: var(--ty-speed-dial-color);
-    font-size: var(--ty-speed-dial-fab-font-size);
+    background-color: var(--ty-quick-actions-bg);
+    color: var(--ty-quick-actions-color);
+    font-size: var(--ty-quick-actions-fab-font-size);
     cursor: pointer;
     box-shadow: var(--ty-shadow);
-    transition: background-color var(--ty-speed-dial-button-transition-duration) ease;
+    transition: background-color var(--ty-quick-actions-button-transition-duration) ease;
     outline: none;
 
-    &:hover:not(.#{$prefix}-speed-dial__button_disabled) {
-      background-color: var(--ty-speed-dial-bg-hover);
+    &:hover:not(.#{$prefix}-quick-actions__button_disabled) {
+      background-color: var(--ty-quick-actions-bg-hover);
     }
 
     &:focus-visible {
-      box-shadow: var(--ty-speed-dial-focus-ring), var(--ty-shadow);
+      box-shadow: var(--ty-quick-actions-focus-ring), var(--ty-shadow);
     }
 
     &_open {
-      .#{$prefix}-speed-dial__icon-default {
+      .#{$prefix}-quick-actions__icon-default {
         transform: rotate(45deg);
       }
     }
 
     &_disabled {
-      opacity: var(--ty-speed-dial-disabled-opacity);
+      opacity: var(--ty-quick-actions-disabled-opacity);
       cursor: not-allowed;
     }
   }
@@ -46,7 +46,7 @@
     display: inline-block;
     width: 1em;
     height: 1em;
-    transition: transform var(--ty-speed-dial-icon-transition-duration) ease;
+    transition: transform var(--ty-quick-actions-icon-transition-duration) ease;
 
     &::before,
     &::after {
@@ -78,13 +78,13 @@
     z-index: 1;
     opacity: 0;
     visibility: hidden;
-    transform: scale(var(--ty-speed-dial-actions-scale-closed));
-    transition: opacity var(--ty-speed-dial-actions-transition-duration) ease, visibility var(--ty-speed-dial-actions-transition-duration) ease, transform var(--ty-speed-dial-actions-transition-duration) ease;
+    transform: scale(var(--ty-quick-actions-actions-scale-closed));
+    transition: opacity var(--ty-quick-actions-actions-transition-duration) ease, visibility var(--ty-quick-actions-actions-transition-duration) ease, transform var(--ty-quick-actions-actions-transition-duration) ease;
 
     &_open {
       opacity: 1;
       visibility: visible;
-      transform: scale(var(--ty-speed-dial-actions-scale-open));
+      transform: scale(var(--ty-quick-actions-actions-scale-open));
     }
   }
 
@@ -95,7 +95,7 @@
     left: 50%;
     transform-origin: bottom center;
     translate: -50% 0;
-    padding-bottom: var(--ty-speed-dial-actions-gap);
+    padding-bottom: var(--ty-quick-actions-actions-gap);
   }
 
   &_up &__actions_open {
@@ -108,7 +108,7 @@
     left: 50%;
     transform-origin: top center;
     translate: -50% 0;
-    padding-top: var(--ty-speed-dial-actions-gap);
+    padding-top: var(--ty-quick-actions-actions-gap);
   }
 
   &_down &__actions_open {
@@ -121,7 +121,7 @@
     top: 50%;
     transform-origin: center right;
     translate: 0 -50%;
-    padding-right: var(--ty-speed-dial-actions-gap);
+    padding-right: var(--ty-quick-actions-actions-gap);
   }
 
   &_left &__actions_open {
@@ -134,7 +134,7 @@
     top: 50%;
     transform-origin: center left;
     translate: 0 -50%;
-    padding-left: var(--ty-speed-dial-actions-gap);
+    padding-left: var(--ty-quick-actions-actions-gap);
   }
 
   &_right &__actions_open {
@@ -147,12 +147,12 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin: var(--ty-speed-dial-action-wrapper-gap) 0;
+    margin: var(--ty-quick-actions-action-wrapper-gap) 0;
   }
 
   &_left &__action-wrapper,
   &_right &__action-wrapper {
-    margin: 0 var(--ty-speed-dial-action-wrapper-gap);
+    margin: 0 var(--ty-quick-actions-action-wrapper-gap);
   }
 
   // Action button
@@ -160,29 +160,29 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--ty-speed-dial-action-size);
-    height: var(--ty-speed-dial-action-size);
+    width: var(--ty-quick-actions-action-size);
+    height: var(--ty-quick-actions-action-size);
     border-radius: 50%;
     border: none;
-    background-color: var(--ty-speed-dial-action-bg);
-    color: var(--ty-speed-dial-action-color);
-    font-size: var(--ty-speed-dial-action-font-size);
+    background-color: var(--ty-quick-actions-action-bg);
+    color: var(--ty-quick-actions-action-color);
+    font-size: var(--ty-quick-actions-action-font-size);
     cursor: pointer;
     box-shadow: var(--ty-shadow-sm);
-    transition: background-color var(--ty-speed-dial-button-transition-duration) ease, box-shadow var(--ty-speed-dial-button-transition-duration) ease;
+    transition: background-color var(--ty-quick-actions-button-transition-duration) ease, box-shadow var(--ty-quick-actions-button-transition-duration) ease;
     outline: none;
 
-    &:hover:not(.#{$prefix}-speed-dial__action_disabled) {
-      background-color: var(--ty-speed-dial-action-bg-hover);
+    &:hover:not(.#{$prefix}-quick-actions__action_disabled) {
+      background-color: var(--ty-quick-actions-action-bg-hover);
       box-shadow: var(--ty-shadow);
     }
 
     &:focus-visible {
-      box-shadow: var(--ty-speed-dial-focus-ring), var(--ty-shadow-sm);
+      box-shadow: var(--ty-quick-actions-focus-ring), var(--ty-shadow-sm);
     }
 
     &_disabled {
-      opacity: var(--ty-speed-dial-disabled-opacity);
+      opacity: var(--ty-quick-actions-disabled-opacity);
       cursor: not-allowed;
     }
   }
@@ -191,33 +191,33 @@
   &__action-tooltip {
     position: absolute;
     white-space: nowrap;
-    background-color: var(--ty-speed-dial-tooltip-bg);
-    color: var(--ty-speed-dial-tooltip-color);
-    font-size: var(--ty-speed-dial-tooltip-font-size);
-    padding: var(--ty-speed-dial-tooltip-padding);
-    border-radius: var(--ty-speed-dial-tooltip-radius);
+    background-color: var(--ty-quick-actions-tooltip-bg);
+    color: var(--ty-quick-actions-tooltip-color);
+    font-size: var(--ty-quick-actions-tooltip-font-size);
+    padding: var(--ty-quick-actions-tooltip-padding);
+    border-radius: var(--ty-quick-actions-tooltip-radius);
     pointer-events: none;
 
     &_left {
-      right: calc(100% + var(--ty-speed-dial-tooltip-offset));
+      right: calc(100% + var(--ty-quick-actions-tooltip-offset));
       top: 50%;
       translate: 0 -50%;
     }
 
     &_right {
-      left: calc(100% + var(--ty-speed-dial-tooltip-offset));
+      left: calc(100% + var(--ty-quick-actions-tooltip-offset));
       top: 50%;
       translate: 0 -50%;
     }
 
     &_top {
-      bottom: calc(100% + var(--ty-speed-dial-tooltip-offset));
+      bottom: calc(100% + var(--ty-quick-actions-tooltip-offset));
       left: 50%;
       translate: -50% 0;
     }
 
     &_bottom {
-      top: calc(100% + var(--ty-speed-dial-tooltip-offset));
+      top: calc(100% + var(--ty-quick-actions-tooltip-offset));
       left: 50%;
       translate: -50% 0;
     }

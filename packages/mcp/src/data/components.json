@@ -2233,11 +2233,23 @@
     "name": "Descriptions",
     "dirName": "descriptions",
     "category": "Data Display",
-    "description": "Display multiple read-only fields in groups.",
-    "descriptionZh": "成组展示多个只读字段。",
+    "description": "Display grouped read-only fields with responsive columns and explicit span rules.",
+    "descriptionZh": "以响应式列布局展示成组只读字段。",
     "props": [
       {
         "name": "title",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "extra",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "footer",
         "type": "React.ReactNode",
         "required": false,
         "description": ""
@@ -2249,8 +2261,8 @@
         "description": ""
       },
       {
-        "name": "column",
-        "type": "number",
+        "name": "columns",
+        "type": "ResponsiveValue<number>",
         "required": false,
         "description": ""
       },
@@ -2269,6 +2281,54 @@
       {
         "name": "colon",
         "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "separator",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "items",
+        "type": "DescriptionsItemType[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "empty",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "semantic",
+        "type": "'auto' | 'table' | 'list'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "'start' | 'center' | 'end'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "contentAlign",
+        "type": "'start' | 'center' | 'end'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "labelRender",
+        "type": "(item: DescriptionsItemType, index: number) => React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "contentRender",
+        "type": "(item: DescriptionsItemType, index: number) => React.ReactNode",
         "required": false,
         "description": ""
       },
@@ -2294,23 +2354,39 @@
     "demos": [
       {
         "name": "Basic",
-        "code": "import React from 'react';\nimport { Descriptions } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <Descriptions title=\"User Info\">\n      <Descriptions.Item label=\"UserName\">React</Descriptions.Item>\n      <Descriptions.Item label=\"Telephone\">0200004567</Descriptions.Item>\n      <Descriptions.Item label=\"Live\">Sydney, Australia</Descriptions.Item>\n      <Descriptions.Item label=\"Remark\">Great</Descriptions.Item>\n      <Descriptions.Item label=\"Address\">456P+HW Camperdown, New South Wales</Descriptions.Item>\n    </Descriptions>\n  );\n}"
+        "code": "import React from 'react';\nimport { Button, Descriptions, Tag } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <Descriptions\n      title=\"Workspace Profile\"\n      extra={<Button size=\"sm\" type=\"primary\">Edit</Button>}\n      columns={2}\n      footer={<span style={{ color: 'var(--ty-color-text-3)' }}>Last synced 2 minutes ago</span>}>\n      <Descriptions.Item label=\"Name\">Tiny Studio</Descriptions.Item>\n      <Descriptions.Item label=\"Region\">Australia Southeast</Descriptions.Item>\n      <Descriptions.Item label=\"Owner\" extra={<Tag size=\"sm\">Core</Tag>}>\n        Product Ops\n      </Descriptions.Item>\n      <Descriptions.Item label=\"Website\">tiny.design</Descriptions.Item>\n      <Descriptions.Item label=\"Summary\" span=\"fill\">\n        Shared component workspace for tokens, docs, charts, and platform-specific UI packages.\n      </Descriptions.Item>\n    </Descriptions>\n  );\n}\n"
       },
       {
         "name": "Border",
-        "code": "import React from 'react';\nimport { Descriptions, Badge } from '@tiny-design/react';\n\nexport default function BorderDemo() {\n  return (\n    <Descriptions title=\"User Info\" bordered>\n      <Descriptions.Item label=\"Product\">Cloud Database</Descriptions.Item>\n      <Descriptions.Item label=\"Billing Mode\">Prepaid</Descriptions.Item>\n      <Descriptions.Item label=\"Automatic Renewal\">YES</Descriptions.Item>\n      <Descriptions.Item label=\"Order time\">2018-04-24 18:00:00</Descriptions.Item>\n      <Descriptions.Item label=\"Usage Time\" span={2}>\n        2019-04-24 18:00:00\n      </Descriptions.Item>\n      <Descriptions.Item label=\"Status\" span={3}>\n        <Badge dot processing color=\"#1890ff\" />\n        Running\n      </Descriptions.Item>\n      <Descriptions.Item label=\"Negotiated Amount\">$80.00</Descriptions.Item>\n      <Descriptions.Item label=\"Discount\">$20.00</Descriptions.Item>\n      <Descriptions.Item label=\"Official Receipts\">$60.00</Descriptions.Item>\n      <Descriptions.Item label=\"Config Info\">\n        Data disk type: MongoDB\n        <br />\n        Database version: 3.4\n        <br />\n        Package: dds.mongo.mid\n        <br />\n        Storage space: 10 GB\n        <br />\n        Replication factor: 3\n        <br />\n        Region: East China 1\n      </Descriptions.Item>\n    </Descriptions>\n  );\n}"
+        "code": "import React from 'react';\nimport { Badge, Descriptions } from '@tiny-design/react';\n\nexport default function BorderDemo() {\n  return (\n    <Descriptions\n      title=\"Deployment Contract\"\n      bordered\n      semantic=\"table\"\n      columns={2}\n      items={[\n        { key: 'service', label: 'Service', content: 'Managed DB' },\n        { key: 'billing', label: 'Billing', content: 'Annual prepaid' },\n        { key: 'renewal', label: 'Renewal', content: 'Enabled' },\n        { key: 'orderedAt', label: 'Ordered', content: 'Apr 18, 10:30' },\n        { key: 'period', label: 'Usage Window', content: 'Apr 18, 2026 to Apr 18, 2027', span: 'fill' },\n        {\n          key: 'status',\n          label: 'Status',\n          content: (\n            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>\n              <Badge dot processing color=\"#1890ff\" />\n              Running\n            </span>\n          ),\n          span: 'fill',\n        },\n        { key: 'amount', label: 'Amount', content: '$80.00' },\n        { key: 'discount', label: 'Discount', content: '$20.00' },\n        { key: 'total', label: 'Receipts', content: '$60.00' },\n        {\n          key: 'config',\n          label: 'Config',\n          span: 'fill',\n          content: 'MongoDB / 3 replicas / 10 GB',\n        },\n      ]}\n    />\n  );\n}\n"
+      },
+      {
+        "name": "EmptyHidden",
+        "code": "import React from 'react';\nimport { Descriptions } from '@tiny-design/react';\n\nexport default function EmptyHiddenDemo() {\n  return (\n    <Descriptions\n      title=\"Empty And Hidden\"\n      columns={2}\n      empty=\"Not configured\"\n      items={[\n        { key: 'env', label: 'Environment', content: 'Production' },\n        { key: 'token', label: 'Access Token', content: null },\n        { key: 'internal', label: 'Internal Note', content: 'Only for admins', hidden: true },\n        { key: 'fallback', label: 'Rollback Plan', content: undefined },\n      ]}\n    />\n  );\n}\n"
+      },
+      {
+        "name": "RenderAlign",
+        "code": "import React from 'react';\nimport { Descriptions, Tag } from '@tiny-design/react';\n\nexport default function RenderAlignDemo() {\n  return (\n    <Descriptions\n      title=\"Render And Align\"\n      semantic=\"table\"\n      bordered\n      columns={1}\n      labelAlign=\"end\"\n      contentAlign=\"start\"\n      items={[\n        { key: 'severity', label: 'Severity', content: 'High' },\n        { key: 'owner', label: 'Owner', content: 'UI Foundation' },\n        { key: 'eta', label: 'ETA', content: '2 days' },\n        { key: 'scope', label: 'Scope', content: 'Descriptions demo refinement' },\n      ]}\n      labelRender={(item) => (\n        <span style={{ display: 'inline-block', minWidth: 88, fontSize: 12, letterSpacing: '0.08em' }}>\n          {item.label}\n        </span>\n      )}\n      contentRender={(item) => {\n        if (item.key === 'severity') {\n          return <Tag color=\"warning\">High</Tag>;\n        }\n\n        return item.content;\n      }}\n    />\n  );\n}\n"
+      },
+      {
+        "name": "Semantic",
+        "code": "import React from 'react';\nimport { Descriptions } from '@tiny-design/react';\n\nexport default function SemanticDemo() {\n  return (\n    <div style={{ display: 'grid', gap: 20 }}>\n      <Descriptions\n        title=\"List Semantic\"\n        semantic=\"list\"\n        columns={2}\n        items={[\n          { key: 'channel', label: 'Channel', content: 'Stable' },\n          { key: 'package', label: 'Package', content: '@tiny-design/react' },\n          { key: 'summary', label: 'Summary', content: 'Best when you want lighter metadata cards.', span: 'fill' },\n        ]}\n      />\n      <Descriptions\n        title=\"Table Semantic\"\n        semantic=\"table\"\n        bordered\n        columns={1}\n        items={[\n          { key: 'channel', label: 'Channel', content: 'Stable' },\n          { key: 'package', label: 'Package', content: '@tiny-design/react' },\n          { key: 'summary', label: 'Summary', content: 'Best when rows need stronger alignment.' },\n        ]}\n      />\n    </div>\n  );\n}\n"
+      },
+      {
+        "name": "Separator",
+        "code": "import React from 'react';\nimport { Descriptions } from '@tiny-design/react';\n\nexport default function SeparatorDemo() {\n  return (\n    <Descriptions\n      title=\"Formatting Controls\"\n      columns={2}\n      separator=\"→\"\n      items={[\n        { key: 'owner', label: 'Owner', content: 'Operations Desk' },\n        { key: 'reviewer', label: 'Reviewer', content: 'QA Review' },\n        { key: 'status', label: 'Status', content: 'Ready for release' },\n        { key: 'window', label: 'Deploy Window', content: 'Friday 18:00 UTC' },\n      ]}\n    />\n  );\n}\n"
       },
       {
         "name": "Size",
-        "code": "import React from 'react';\nimport { Descriptions, Radio } from '@tiny-design/react';\n\ntype DemoSize = 'sm' | 'md' | 'lg';\n\nexport default function SizeDemo() {\n  const [size, setSize] = React.useState<DemoSize>('md');\n\n  return (\n    <div>\n      <Radio.Group onChange={(val) => setSize(val as DemoSize)} value={size}>\n        <Radio value=\"sm\">Small</Radio>\n        <Radio value=\"md\">Medium</Radio>\n        <Radio value=\"lg\">Large</Radio>\n      </Radio.Group>\n      <br />\n      <br />\n      <Descriptions bordered title=\"Customised Size\" size={size}>\n        <Descriptions.Item label=\"Product\">Cloud Database</Descriptions.Item>\n        <Descriptions.Item label=\"Billing\">Prepaid</Descriptions.Item>\n        <Descriptions.Item label=\"time\">18:00:00</Descriptions.Item>\n        <Descriptions.Item label=\"Amount\">$80.00</Descriptions.Item>\n        <Descriptions.Item label=\"Discount\">$20.00</Descriptions.Item>\n        <Descriptions.Item label=\"Official\">$60.00</Descriptions.Item>\n        <Descriptions.Item label=\"Config Info\">\n          Data disk type: MongoDB\n          <br />\n          Database version: 3.4\n          <br />\n          Package: dds.mongo.mid\n          <br />\n          Storage space: 10 GB\n          <br />\n          Replication factor: 3\n          <br />\n          Region: East China 1\n        </Descriptions.Item>\n      </Descriptions>\n      <br />\n      <br />\n      <Descriptions title=\"Customised Size\" size={size}>\n        <Descriptions.Item label=\"Product\">Cloud Database</Descriptions.Item>\n        <Descriptions.Item label=\"Billing\">Prepaid</Descriptions.Item>\n        <Descriptions.Item label=\"time\">18:00:00</Descriptions.Item>\n        <Descriptions.Item label=\"Amount\">$80.00</Descriptions.Item>\n        <Descriptions.Item label=\"Discount\">$20.00</Descriptions.Item>\n        <Descriptions.Item label=\"Official\">$60.00</Descriptions.Item>\n      </Descriptions>\n    </div>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Descriptions } from '@tiny-design/react';\n\nexport default function SizeDemo() {\n  return (\n    <Descriptions\n      title=\"Responsive API\"\n      columns={{ xs: 1, md: 2 }}\n      items={[\n        { key: 'env', label: 'Environment', content: 'Production' },\n        { key: 'version', label: 'Version', content: 'v1.13.0' },\n        { key: 'coverage', label: 'Coverage', content: '92%' },\n        { key: 'runtime', label: 'Runtime', content: 'Node 22' },\n        {\n          key: 'notes',\n          label: 'Notes',\n          span: 'fill',\n          content: 'Resize the page to see columns collapse from four to two to one.',\n        },\n      ]}\n    />\n  );\n}\n"
       },
       {
         "name": "Vertical",
-        "code": "import React from 'react';\nimport { Descriptions } from '@tiny-design/react';\n\nexport default function VerticalDemo() {\n  return (\n    <Descriptions title=\"User Info\" layout=\"vertical\">\n      <Descriptions.Item label=\"UserName\">React</Descriptions.Item>\n      <Descriptions.Item label=\"Telephone\">0200004567</Descriptions.Item>\n      <Descriptions.Item label=\"Live\">Sydney, Australia</Descriptions.Item>\n      <Descriptions.Item label=\"Remark\">Great</Descriptions.Item>\n      <Descriptions.Item label=\"Address\">456P+HW Camperdown, New South Wales</Descriptions.Item>\n    </Descriptions>\n  );\n}"
+        "code": "import React from 'react';\nimport { Descriptions } from '@tiny-design/react';\n\nexport default function VerticalDemo() {\n  return (\n    <Descriptions\n      title=\"Release Notes\"\n      layout=\"vertical\"\n      columns={1}\n      items={[\n        { key: 'channel', label: 'Channel', content: 'Stable' },\n        { key: 'owner', label: 'Release Owner', content: 'Release Desk' },\n        {\n          key: 'summary',\n          label: 'Summary',\n          span: 'fill',\n          content: 'Refined menu navigation, new shell templates, and a redesigned descriptions primitive.',\n        },\n        {\n          key: 'links',\n          label: 'Related Links',\n          span: 'fill',\n          content: 'RFC #218 · Docs preview · Visual baseline update',\n        },\n      ]}\n    />\n  );\n}\n"
       },
       {
         "name": "VerticalBorder",
-        "code": "import React from 'react';\nimport { Descriptions, Badge } from '@tiny-design/react';\n\nexport default function VerticalBorderDemo() {\n  return (\n    <Descriptions title=\"User Info\" bordered layout=\"vertical\">\n      <Descriptions.Item label=\"Product\">Cloud Database</Descriptions.Item>\n      <Descriptions.Item label=\"Billing Mode\">Prepaid</Descriptions.Item>\n      <Descriptions.Item label=\"Automatic Renewal\">YES</Descriptions.Item>\n      <Descriptions.Item label=\"Order time\">2018-04-24 18:00:00</Descriptions.Item>\n      <Descriptions.Item label=\"Usage Time\" span={2}>\n        2019-04-24 18:00:00\n      </Descriptions.Item>\n      <Descriptions.Item label=\"Status\" span={3}>\n        <Badge dot processing color=\"#1890ff\" />\n        Running\n      </Descriptions.Item>\n      <Descriptions.Item label=\"Negotiated Amount\">$80.00</Descriptions.Item>\n      <Descriptions.Item label=\"Discount\">$20.00</Descriptions.Item>\n      <Descriptions.Item label=\"Official Receipts\">$60.00</Descriptions.Item>\n      <Descriptions.Item label=\"Config Info\">\n        Data disk type: MongoDB\n        <br />\n        Database version: 3.4\n        <br />\n        Package: dds.mongo.mid\n        <br />\n        Storage space: 10 GB\n        <br />\n        Replication factor: 3\n        <br />\n        Region: East China 1\n      </Descriptions.Item>\n    </Descriptions>\n  );\n}"
+        "code": "import React from 'react';\nimport { Descriptions } from '@tiny-design/react';\n\nexport default function VerticalBorderDemo() {\n  return (\n    <Descriptions\n      title=\"Audit Snapshot\"\n      layout=\"vertical\"\n      bordered\n      semantic=\"table\"\n      columns={1}\n      items={[\n        { key: 'createdBy', label: 'Created By', content: 'Product Team' },\n        { key: 'approvedBy', label: 'Approved By', content: 'Review Board' },\n        { key: 'risk', label: 'Risk Level', content: 'Moderate' },\n        { key: 'window', label: 'Maintenance Window', content: 'Saturday 02:00-04:00 UTC' },\n        {\n          key: 'scope',\n          label: 'Scope',\n          span: 'fill',\n          content: 'Descriptions, docs pages, snapshots, and visual regression fixtures.',\n        },\n      ]}\n    />\n  );\n}\n"
       }
     ]
   },
@@ -3147,7 +3223,7 @@
       },
       {
         "name": "placeholder",
-        "type": "string",
+        "type": "React.ReactNode",
         "required": false,
         "description": ""
       },
@@ -3183,13 +3259,25 @@
       },
       {
         "name": "fallback",
-        "type": "string",
+        "type": "React.ReactNode",
         "required": false,
         "description": ""
       },
       {
         "name": "objectFit",
         "type": "'fill' | 'contain' | 'cover' | 'none' | 'scale-down'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "imageClassName",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "imageStyle",
+        "type": "CSSProperties",
         "required": false,
         "description": ""
       },
@@ -3215,15 +3303,27 @@
     "demos": [
       {
         "name": "Basic",
-        "code": "import React from 'react';\nimport { Image } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return <Image width=\"100%\" src=\"https://cdn.pixabay.com/photo/2019/12/30/20/35/snow-4730565__340.jpg\" />;\n}"
+        "code": "import React from 'react';\nimport { Image } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <Image\n      width=\"100%\"\n      src=\"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&h=420&q=80\"\n      alt=\"Wide mountain lake\"\n    />\n  );\n}\n"
+      },
+      {
+        "name": "CustomFallback",
+        "code": "import React from 'react';\nimport { Flex, Image } from '@tiny-design/react';\n\nconst fallbackStyle: React.CSSProperties = {\n  width: '100%',\n  height: '100%',\n  color: '#475569',\n  background:\n    'radial-gradient(circle at top, rgba(59, 130, 246, 0.12), rgba(148, 163, 184, 0.12) 45%, rgba(248, 250, 252, 1) 100%)',\n  fontSize: 14,\n  textAlign: 'center',\n};\n\nexport default function CustomFallbackDemo() {\n  return (\n    <Image\n      width={320}\n      height={180}\n      src=\"../avatar/not-exists.png\"\n      alt=\"Unavailable landscape\"\n      fallback={\n        <Flex vertical align=\"center\" justify=\"center\" gap={8} style={fallbackStyle}>\n          <strong style={{ fontSize: 16 }}>Image unavailable</strong>\n          <span>The asset could not be loaded.</span>\n        </Flex>\n      }\n    />\n  );\n}\n"
       },
       {
         "name": "Fallback",
-        "code": "import React from 'react';\nimport { Image } from '@tiny-design/react';\n\nexport default function FallbackDemo() {\n  return <Image src=\"\" fallback=\"../avatar/avatar4.png\" />;\n}"
+        "code": "import React from 'react';\nimport { Image } from '@tiny-design/react';\n\nexport default function FallbackDemo() {\n  return <Image src=\"../avatar/not-exists.png\" fallback=\"../avatar/avatar4.png\" />;\n}\n"
+      },
+      {
+        "name": "ImageStyle",
+        "code": "import React from 'react';\nimport { Flex, Image, Radio, Select, Switch } from '@tiny-design/react';\n\nconst OBJECT_FIT_OPTIONS = ['cover', 'contain', 'fill', 'none', 'scale-down'] as const;\n\nfunction createSvgDataUrl(svg: string): string {\n  return `data:image/svg+xml;utf8,${encodeURIComponent(svg.trim())}`;\n}\n\nfunction createTallPoster(): string {\n  return createSvgDataUrl(`\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"180\" height=\"540\" viewBox=\"0 0 180 540\" preserveAspectRatio=\"none\">\n      <rect width=\"180\" height=\"540\" rx=\"28\" fill=\"#111827\" />\n      <rect width=\"180\" height=\"180\" fill=\"#0f766e\" />\n      <rect y=\"180\" width=\"180\" height=\"180\" fill=\"#2563eb\" />\n      <rect y=\"360\" width=\"180\" height=\"180\" fill=\"#7c3aed\" />\n      <rect x=\"18\" y=\"18\" width=\"144\" height=\"504\" rx=\"22\" fill=\"none\" stroke=\"rgba(255,255,255,0.72)\" stroke-width=\"6\" stroke-dasharray=\"16 10\" />\n      <line x1=\"28\" y1=\"180\" x2=\"152\" y2=\"180\" stroke=\"rgba(255,255,255,0.45)\" stroke-width=\"5\" />\n      <line x1=\"28\" y1=\"360\" x2=\"152\" y2=\"360\" stroke=\"rgba(255,255,255,0.45)\" stroke-width=\"5\" />\n      <circle cx=\"90\" cy=\"270\" r=\"34\" fill=\"#f8fafc\" fill-opacity=\"0.92\" />\n      <text x=\"90\" y=\"84\" text-anchor=\"middle\" fill=\"white\" font-size=\"28\" font-family=\"Arial, sans-serif\" font-weight=\"700\">TOP</text>\n      <text x=\"90\" y=\"280\" text-anchor=\"middle\" fill=\"white\" font-size=\"28\" font-family=\"Arial, sans-serif\" font-weight=\"700\">CENTER</text>\n      <text x=\"90\" y=\"458\" text-anchor=\"middle\" fill=\"white\" font-size=\"28\" font-family=\"Arial, sans-serif\" font-weight=\"700\">BOTTOM</text>\n    </svg>\n  `);\n}\n\nfunction createStretchChart(): string {\n  return createSvgDataUrl(`\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"240\" viewBox=\"0 0 240 240\" preserveAspectRatio=\"none\">\n      <rect width=\"240\" height=\"240\" rx=\"28\" fill=\"#082f49\" />\n      <rect x=\"18\" y=\"18\" width=\"204\" height=\"204\" rx=\"20\" fill=\"none\" stroke=\"rgba(255,255,255,0.7)\" stroke-width=\"5\" stroke-dasharray=\"12 8\" />\n      <path d=\"M30 120 H210\" stroke=\"rgba(255,255,255,0.38)\" stroke-width=\"4\" />\n      <path d=\"M120 30 V210\" stroke=\"rgba(255,255,255,0.38)\" stroke-width=\"4\" />\n      <circle cx=\"120\" cy=\"120\" r=\"62\" fill=\"#facc15\" fill-opacity=\"0.96\" />\n      <rect x=\"50\" y=\"50\" width=\"140\" height=\"140\" rx=\"18\" fill=\"none\" stroke=\"#f8fafc\" stroke-width=\"8\" />\n      <path d=\"M52 52 L188 188\" stroke=\"rgba(255,255,255,0.28)\" stroke-width=\"5\" />\n      <path d=\"M188 52 L52 188\" stroke=\"rgba(255,255,255,0.28)\" stroke-width=\"5\" />\n      <text x=\"120\" y=\"34\" text-anchor=\"middle\" fill=\"white\" font-size=\"20\" font-family=\"Arial, sans-serif\" font-weight=\"700\">CIRCLE</text>\n      <text x=\"120\" y=\"230\" text-anchor=\"middle\" fill=\"white\" font-size=\"20\" font-family=\"Arial, sans-serif\" font-weight=\"700\">SQUARE</text>\n    </svg>\n  `);\n}\n\nfunction createSmallBadge(): string {\n  return createSvgDataUrl(`\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"96\" height=\"64\" viewBox=\"0 0 96 64\" preserveAspectRatio=\"none\">\n      <rect width=\"96\" height=\"64\" rx=\"16\" fill=\"#c2410c\" />\n      <rect x=\"8\" y=\"8\" width=\"80\" height=\"48\" rx=\"10\" fill=\"none\" stroke=\"rgba(255,255,255,0.72)\" stroke-width=\"4\" stroke-dasharray=\"8 6\" />\n      <circle cx=\"48\" cy=\"22\" r=\"10\" fill=\"#fdba74\" />\n      <path d=\"M18 50 L48 28 L78 50 Z\" fill=\"#facc15\" fill-opacity=\"0.96\" />\n      <text x=\"48\" y=\"42\" text-anchor=\"middle\" fill=\"white\" font-size=\"18\" font-family=\"Arial, sans-serif\" font-weight=\"700\">96×64</text>\n    </svg>\n  `);\n}\n\nconst focusOptions = [\n  { label: 'Center', value: 'center center' },\n  { label: 'Top section', value: 'center 15%' },\n  { label: 'Bottom section', value: 'center 85%' },\n];\n\nconst tallSrc = createTallPoster();\nconst chartSrc = createStretchChart();\nconst smallSrc = createSmallBadge();\n\nconst checkerboardStyle: React.CSSProperties = {\n  boxShadow: '0 8px 24px rgba(15, 23, 42, 0.12)',\n  backgroundColor: '#e2e8f0',\n  backgroundImage:\n    'linear-gradient(45deg, rgba(148, 163, 184, 0.18) 25%, transparent 25%), linear-gradient(-45deg, rgba(148, 163, 184, 0.18) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(148, 163, 184, 0.18) 75%), linear-gradient(-45deg, transparent 75%, rgba(148, 163, 184, 0.18) 75%)',\n  backgroundSize: '18px 18px',\n  backgroundPosition: '0 0, 0 9px, 9px -9px, -9px 0',\n};\n\nconst captionStyle: React.CSSProperties = {\n  fontSize: 12,\n  color: '#64748b',\n  lineHeight: 1.5,\n};\n\nexport default function ImageStyleDemo() {\n  const [objectFit, setObjectFit] = React.useState<(typeof OBJECT_FIT_OPTIONS)[number]>('cover');\n  const [objectPosition, setObjectPosition] = React.useState('center center');\n  const [round, setRound] = React.useState(false);\n  const previewWidth = round ? 160 : 240;\n  const previewHeight = round ? 160 : 120;\n\n  return (\n    <Flex vertical gap={18}>\n      <Flex\n        wrap=\"wrap\"\n        align=\"center\"\n        gap={16}\n        style={{\n          padding: 16,\n          border: '1px solid #e2e8f0',\n          borderRadius: 12,\n          background: '#f8fafc',\n        }}\n      >\n        <div>\n          <div style={{ marginBottom: 8, fontSize: 12, color: '#64748b', fontWeight: 600 }}>objectFit</div>\n          <Radio.Group value={objectFit} onChange={(value) => setObjectFit(value as (typeof OBJECT_FIT_OPTIONS)[number])}>\n            {OBJECT_FIT_OPTIONS.map((option) => (\n              <Radio key={option} value={option}>\n                {option}\n              </Radio>\n            ))}\n          </Radio.Group>\n        </div>\n\n        <div style={{ minWidth: 200 }}>\n          <div style={{ marginBottom: 8, fontSize: 12, color: '#64748b', fontWeight: 600 }}>Focal point</div>\n          <Select value={objectPosition} onChange={(value) => setObjectPosition(String(value))} options={focusOptions} />\n        </div>\n\n        <Flex vertical gap={8}>\n          <div style={{ fontSize: 12, color: '#64748b', fontWeight: 600 }}>Round preview</div>\n          <Switch checked={round} onChange={setRound} />\n        </Flex>\n      </Flex>\n\n      <Flex vertical gap={8}>\n        <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b' }}>Interactive comparison</div>\n        <Flex gap={16} wrap=\"wrap\" align=\"flex-start\">\n          <Flex vertical gap={8}>\n            <div style={{ fontSize: 12, color: '#64748b' }}>Tall graphic in a wide frame</div>\n            <Image\n              width={previewWidth}\n              height={previewHeight}\n              src={tallSrc}\n              alt=\"Tall test graphic\"\n              objectFit={objectFit}\n              round={round}\n              imageStyle={{ objectPosition }}\n              style={checkerboardStyle}\n            />\n            <div style={captionStyle}>\n              Best for comparing <code>cover</code>, <code>contain</code>, <code>none</code>, and\n              <code> scale-down</code>. Changing the focal point moves the visible band.\n            </div>\n          </Flex>\n\n          <Flex vertical gap={8}>\n            <div style={{ fontSize: 12, color: '#64748b' }}>Square graphic in a wide frame</div>\n            <Image\n              width={previewWidth}\n              height={previewHeight}\n              src={chartSrc}\n              alt=\"Square chart test graphic\"\n              objectFit={objectFit}\n              round={round}\n              style={checkerboardStyle}\n            />\n            <div style={captionStyle}>\n              Best for spotting <code>fill</code>: <code>contain</code> keeps a centered square, while\n              <code> fill</code> stretches the circle and square across the whole frame.\n            </div>\n          </Flex>\n\n          <Flex vertical gap={8}>\n            <div style={{ fontSize: 12, color: '#64748b' }}>Small asset in a large frame</div>\n            <Image\n              width={previewWidth}\n              height={previewHeight}\n              src={smallSrc}\n              alt=\"Small test graphic in a large frame\"\n              objectFit={objectFit}\n              round={round}\n              style={checkerboardStyle}\n            />\n            <div style={captionStyle}>\n              Useful for seeing why <code>scale-down</code> often matches <code>none</code> when the source is\n              already smaller than the frame.\n            </div>\n          </Flex>\n        </Flex>\n        <div style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5 }}>\n          Use the tall preview for crop behavior, the square preview for stretch behavior, and the small preview for\n          <code> none</code> versus <code>scale-down</code>.\n        </div>\n      </Flex>\n    </Flex>\n  );\n}\n"
       },
       {
         "name": "Lazy",
-        "code": "import React from 'react';\nimport { Image } from '@tiny-design/react';\n\nexport default function LazyDemo() {\n  return (\n    <div style={{ height: 250, overflowY: 'scroll' }}>\n      <p>Scroll up to make images into the view area.</p>\n      <div style={{ height: 350 }} />\n      <Image lazy round src=\"../avatar/avatar3.png\" placeholder=\"../avatar/avatar3_blur.png\" />\n      <div style={{ height: 350 }} />\n      <Image lazy width={300} height={200} src=\"../avatar/plants.jpg\" placeholder=\"../avatar/plants_blur.png\" />\n      <div style={{ height: 100 }} />\n    </div>\n  );\n}"
+        "code": "import React from 'react';\nimport { Image } from '@tiny-design/react';\n\nexport default function LazyDemo() {\n  return (\n    <div style={{ height: 250, overflowY: 'scroll' }}>\n      <p>Scroll up to make images into the view area.</p>\n      <div style={{ height: 350 }} />\n      <Image lazy round src=\"../avatar/avatar3.png\" placeholder=\"../avatar/avatar3_blur.png\" />\n      <div style={{ height: 350 }} />\n      <Image lazy width={300} height={200} src=\"../avatar/plants.jpg\" placeholder=\"../avatar/plants_blur.png\" />\n      <div style={{ height: 100 }} />\n    </div>\n  );\n}\n"
+      },
+      {
+        "name": "Placeholder",
+        "code": "import React from 'react';\nimport { Button, Flex, Image, Skeleton } from '@tiny-design/react';\n\nexport default function PlaceholderDemo() {\n  const [requestId, setRequestId] = React.useState(0);\n  const [src, setSrc] = React.useState<string>();\n  const [isReloading, setIsReloading] = React.useState(true);\n\n  React.useEffect(() => {\n    setIsReloading(true);\n    setSrc(undefined);\n\n    const timer = window.setTimeout(() => {\n      setSrc(\n        `https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80&reload=${requestId}`\n      );\n      setIsReloading(false);\n    }, 1400);\n\n    return () => {\n      window.clearTimeout(timer);\n    };\n  }, [requestId]);\n\n  return (\n    <Flex vertical gap={12}>\n      <Flex justify=\"space-between\" align=\"center\" gap={12}>\n        <div style={{ fontSize: 12, color: '#64748b' }}>Replay the loading state to inspect the custom placeholder.</div>\n        <Button size=\"sm\" onClick={() => setRequestId((id) => id + 1)}>\n          {isReloading ? 'Loading...' : 'Reload'}\n        </Button>\n      </Flex>\n      <Image\n        key={requestId}\n        width={320}\n        height={180}\n        src={src}\n        alt=\"Mountain lake\"\n        placeholder={<Skeleton animation=\"shimmer\" width=\"100%\" height=\"100%\" />}\n      />\n    </Flex>\n  );\n}\n"
       },
       {
         "name": "Round",
@@ -3231,7 +3331,7 @@
       },
       {
         "name": "Size",
-        "code": "import React from 'react';\nimport { Image } from '@tiny-design/react';\n\nexport default function SizeDemo() {\n  return <Image width={250} height={150} src=\"https://cdn.pixabay.com/photo/2019/12/21/18/31/discus-fish-4711042__340.jpg\" />;\n}"
+        "code": "import React from 'react';\nimport { Flex, Image, Slider } from '@tiny-design/react';\n\nexport default function SizeDemo() {\n  const [width, setWidth] = React.useState(250);\n  const [height, setHeight] = React.useState(150);\n\n  return (\n    <Flex vertical gap={16}>\n      <Image\n        width={width}\n        height={height}\n        src=\"https://cdn.pixabay.com/photo/2019/12/21/18/31/discus-fish-4711042__340.jpg\"\n        alt=\"Discus fish\"\n      />\n\n      <Flex vertical gap={12}>\n        <div style={{ fontSize: 12, color: '#64748b' }}>Width: {width}px</div>\n        <Slider min={160} max={360} value={width} onChange={(value) => setWidth(Number(value))} />\n\n        <div style={{ fontSize: 12, color: '#64748b' }}>Height: {height}px</div>\n        <Slider min={100} max={260} value={height} onChange={(value) => setHeight(Number(value))} />\n      </Flex>\n    </Flex>\n  );\n}\n"
       }
     ]
   },
@@ -5257,6 +5357,105 @@
     ]
   },
   {
+    "name": "QuickActions",
+    "dirName": "quick-actions",
+    "category": "Navigation",
+    "description": "A compact action launcher that expands to reveal a set of quick actions.",
+    "descriptionZh": "悬浮按钮，展开后显示一组操作。",
+    "props": [
+      {
+        "name": "icon",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "openIcon",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "direction",
+        "type": "'up' | 'down' | 'left' | 'right'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "trigger",
+        "type": "'hover' | 'click'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onOpen",
+        "type": "() => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "style",
+        "type": "CSSProperties",
+        "required": false,
+        "description": "Inline styles"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "CSS class name"
+      },
+      {
+        "name": "prefixCls",
+        "type": "string",
+        "required": false,
+        "description": "CSS class prefix (default: \"ty\")"
+      }
+    ],
+    "demos": [
+      {
+        "name": "Basic",
+        "code": "import React from 'react';\nimport { QuickActions, Message } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 16, right: 16 }}>\n        <QuickActions>\n          <QuickActions.Action icon=\"C\" tooltip=\"Copy\" onClick={() => Message.info('Copy')} />\n          <QuickActions.Action icon=\"P\" tooltip=\"Print\" onClick={() => Message.info('Print')} />\n          <QuickActions.Action icon=\"S\" tooltip=\"Share\" onClick={() => Message.info('Share')} />\n          <QuickActions.Action icon=\"D\" tooltip=\"Save\" onClick={() => Message.info('Save')} />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
+      },
+      {
+        "name": "Click",
+        "code": "import React from 'react';\nimport { QuickActions, Message } from '@tiny-design/react';\n\nexport default function ClickDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 16, right: 16 }}>\n        <QuickActions trigger=\"click\">\n          <QuickActions.Action icon=\"C\" tooltip=\"Copy\" onClick={() => Message.info('Copy')} />\n          <QuickActions.Action icon=\"P\" tooltip=\"Print\" onClick={() => Message.info('Print')} />\n          <QuickActions.Action icon=\"S\" tooltip=\"Share\" onClick={() => Message.info('Share')} />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
+      },
+      {
+        "name": "CustomIcon",
+        "code": "import React from 'react';\nimport { QuickActions } from '@tiny-design/react';\nimport { IconPlus, IconClose, IconBookmark, IconStar, IconShare } from '@tiny-design/icons';\n\nexport default function CustomIconDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 16, right: 16 }}>\n        <QuickActions\n          icon={<IconPlus />}\n          openIcon={<IconClose />}\n        >\n          <QuickActions.Action icon={<IconBookmark />} tooltip=\"Save\" />\n          <QuickActions.Action icon={<IconStar />} tooltip=\"Favorite\" />\n          <QuickActions.Action icon={<IconShare />} tooltip=\"Share\" />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
+      },
+      {
+        "name": "Direction",
+        "code": "import React from 'react';\nimport { QuickActions } from '@tiny-design/react';\n\nexport default function DirectionDemo() {\n  const actions = (\n    <>\n      <QuickActions.Action icon=\"A\" tooltip=\"Action 1\" />\n      <QuickActions.Action icon=\"B\" tooltip=\"Action 2\" />\n      <QuickActions.Action icon=\"C\" tooltip=\"Action 3\" />\n    </>\n  );\n\n  return (\n    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300, gap: 80 }}>\n      <QuickActions direction=\"right\">\n        {actions}\n      </QuickActions>\n      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 120 }}>\n        <QuickActions direction=\"down\">\n          {actions}\n        </QuickActions>\n        <QuickActions direction=\"up\">\n          {actions}\n        </QuickActions>\n      </div>\n      <QuickActions direction=\"left\">\n        {actions}\n      </QuickActions>\n    </div>\n  );\n}\n"
+      }
+    ]
+  },
+  {
     "name": "Radio",
     "dirName": "radio",
     "category": "Form",
@@ -6003,14 +6202,50 @@
     "descriptionZh": "在内容加载过程中提供占位图形。",
     "props": [
       {
-        "name": "active",
+        "name": "loading",
         "type": "boolean",
         "required": false,
         "description": ""
       },
       {
-        "name": "rounded",
-        "type": "boolean",
+        "name": "shape",
+        "type": "'rect' | 'round' | 'circle'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "width",
+        "type": "number | string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number | string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "animation",
+        "type": "boolean | 'pulse' | 'shimmer'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "avatar",
+        "type": "boolean | SkeletonAvatarConfig",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "boolean | SkeletonTitleConfig",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "paragraph",
+        "type": "boolean | SkeletonParagraphConfig",
         "required": false,
         "description": ""
       },
@@ -6042,15 +6277,23 @@
     "demos": [
       {
         "name": "Active",
-        "code": "import React from 'react';\nimport { Skeleton } from '@tiny-design/react';\n\nexport default function ActiveDemo() {\n  return (\n    <>\n      <Skeleton active style={{ width: 300 }} />\n      <Skeleton active />\n      <Skeleton active />\n      <Skeleton active />\n    </>\n  );\n}"
+        "code": "import React from 'react';\nimport { Flex, Radio, Skeleton } from '@tiny-design/react';\n\ntype AnimationMode = 'shimmer' | 'pulse';\n\nexport default function ActiveDemo() {\n  const [animation, setAnimation] = React.useState<AnimationMode>('shimmer');\n\n  return (\n    <Flex vertical gap={16}>\n      <Radio.Group value={animation} onChange={(value) => setAnimation(value as AnimationMode)}>\n        <Radio value=\"shimmer\">shimmer</Radio>\n        <Radio value=\"pulse\">pulse</Radio>\n      </Radio.Group>\n\n      <div>\n        <Skeleton animation={animation} width={300} />\n        <Skeleton animation={animation} />\n        <Skeleton animation={animation} />\n        <Skeleton animation={animation} />\n      </div>\n    </Flex>\n  );\n}\n"
       },
       {
         "name": "Basic",
-        "code": "import React from 'react';\nimport { Skeleton } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <>\n      <Skeleton style={{ width: 300 }} />\n      <Skeleton />\n      <Skeleton />\n      <Skeleton />\n    </>\n  );\n}"
+        "code": "import React from 'react';\nimport { Skeleton } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <>\n      <Skeleton width={300} />\n      <Skeleton />\n      <Skeleton />\n      <Skeleton />\n    </>\n  );\n}\n"
       },
       {
         "name": "Combination",
-        "code": "import React from 'react';\nimport { Skeleton, ConfigProvider, Row, Col } from '@tiny-design/react';\n\nexport default function CombinationDemo() {\n  return (\n    <ConfigProvider shimmer>\n      <Row>\n        <Col span={2}>\n          <Skeleton rounded style={{ width: 50, height: 50 }} />\n        </Col>\n        <Col span={22}>\n          <div>\n            <Skeleton style={{ width: 300 }} />\n          </div>\n          <div>\n            <Skeleton style={{ width: 300 }} />\n          </div>\n        </Col>\n      </Row>\n      <Skeleton />\n      <Skeleton />\n      <Skeleton />\n    </ConfigProvider>\n  );\n}"
+        "code": "import React from 'react';\nimport { Skeleton, ConfigProvider, Flex } from '@tiny-design/react';\n\nexport default function CombinationDemo() {\n  return (\n    <ConfigProvider skeleton={{ animation: 'shimmer' }}>\n      <Flex gap=\"sm\" vertical>\n        <Flex gap=\"sm\">\n          <Skeleton.Avatar size={50} />\n          <div>\n            <Skeleton width={300} />\n            <Skeleton width={300} />\n          </div>\n        </Flex>\n        <Skeleton title paragraph={{ rows: 2 }} />\n        <Skeleton title paragraph={{ rows: 4 }} />\n      </Flex>\n    </ConfigProvider>\n  );\n}\n"
+      },
+      {
+        "name": "Composed",
+        "code": "import React from 'react';\nimport { Flex, Skeleton, useTheme } from '@tiny-design/react';\n\nexport default function ComposedDemo() {\n  const { resolvedTheme } = useTheme();\n  const isDark = resolvedTheme === 'dark';\n\n  const shellStyle: React.CSSProperties = {\n    padding: 18,\n    border: `1px solid ${isDark ? '#303030' : '#e2e8f0'}`,\n    borderRadius: 20,\n    background: isDark\n      ? 'linear-gradient(180deg, #1f1f1f 0%, #262626 100%)'\n      : 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)',\n    boxShadow: isDark ? 'none' : '0 10px 30px rgba(15, 23, 42, 0.04)',\n  };\n\n  const sectionLabelStyle: React.CSSProperties = {\n    marginBottom: 14,\n    fontSize: 11,\n    fontWeight: 700,\n    letterSpacing: '0.08em',\n    textTransform: 'uppercase',\n    color: isDark ? '#8f8f8f' : '#64748b',\n  };\n\n  const statCardStyle: React.CSSProperties = {\n    padding: 12,\n    border: `1px solid ${isDark ? '#3a3a3a' : '#e2e8f0'}`,\n    borderRadius: 16,\n    background: isDark ? '#242424' : 'rgba(255, 255, 255, 0.75)',\n  };\n\n  return (\n    <div style={shellStyle}>\n      <div style={sectionLabelStyle}>Profile Summary</div>\n      <Flex align=\"flex-start\" gap={16}>\n        <Skeleton.Avatar size={64} animation=\"shimmer\" />\n        <Flex vertical gap={14} style={{ flex: 1 }}>\n          <Flex justify=\"space-between\" align=\"center\" gap={12}>\n            <Skeleton.Text rows={1} width=\"42%\" animation=\"shimmer\" />\n            <Skeleton.Block shape=\"round\" width={74} height={24} animation=\"pulse\" />\n          </Flex>\n          <Skeleton.Text rows={2} widths={['96%', '58%']} animation=\"shimmer\" />\n\n          <div\n            style={{\n              display: 'grid',\n              gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',\n              gap: 12,\n            }}\n          >\n            <div style={statCardStyle}>\n              <Skeleton.Text rows={1} width=\"52%\" animation=\"pulse\" />\n              <div style={{ marginTop: 12 }}>\n                <Skeleton.Block shape=\"round\" width=\"72%\" height={28} animation=\"shimmer\" />\n              </div>\n            </div>\n            <div style={statCardStyle}>\n              <Skeleton.Text rows={1} width=\"48%\" animation=\"pulse\" />\n              <div style={{ marginTop: 12 }}>\n                <Skeleton.Block shape=\"round\" width=\"68%\" height={28} animation=\"shimmer\" />\n              </div>\n            </div>\n            <div style={statCardStyle}>\n              <Skeleton.Text rows={1} width=\"44%\" animation=\"pulse\" />\n              <div style={{ marginTop: 12 }}>\n                <Skeleton.Block shape=\"round\" width=\"66%\" height={28} animation=\"shimmer\" />\n              </div>\n            </div>\n          </div>\n\n          <Flex justify=\"space-between\" align=\"center\" gap={12}>\n            <Skeleton.Text rows={1} width=\"32%\" animation=\"pulse\" />\n            <Flex gap={10}>\n              <Skeleton.Block shape=\"round\" width={88} height={34} animation=\"pulse\" />\n              <Skeleton.Block shape=\"round\" width={112} height={34} animation=\"shimmer\" />\n            </Flex>\n          </Flex>\n        </Flex>\n      </Flex>\n    </div>\n  );\n}\n"
+      },
+      {
+        "name": "Loading",
+        "code": "import React from 'react';\nimport { Button, Card, Flex, Skeleton, Tag } from '@tiny-design/react';\n\nexport default function LoadingDemo() {\n  const [loading, setLoading] = React.useState(true);\n\n  return (\n    <Flex vertical gap={12}>\n      <Button size=\"sm\" onClick={() => setLoading((prev) => !prev)} style={{ alignSelf: 'flex-start' }}>\n        {loading ? 'Show content' : 'Show skeleton'}\n      </Button>\n      <Skeleton\n        loading={loading}\n        animation=\"shimmer\"\n        avatar={{ size: 'lg' }}\n        title={{ width: '32%' }}\n        paragraph={{ rows: 3, widths: ['100%', '88%', '56%'] }}\n      >\n        <Card style={{ maxWidth: 520 }}>\n          <Card.Content>\n            <Flex vertical gap={12}>\n              <Flex justify=\"space-between\" align=\"center\">\n                <Flex align=\"center\" gap={12}>\n                  <div\n                    style={{\n                      width: 48,\n                      height: 48,\n                      borderRadius: '50%',\n                      background: 'linear-gradient(135deg, #0f766e, #14b8a6)',\n                    }}\n                  />\n                  <div>\n                    <div style={{ fontWeight: 600 }}>API Sync Health</div>\n                    <div style={{ fontSize: 12, color: '#64748b' }}>Updated 2 minutes ago</div>\n                  </div>\n                </Flex>\n                <Tag color=\"success\">Healthy</Tag>\n              </Flex>\n              <div style={{ color: '#475569', lineHeight: 1.6 }}>\n                14 upstream services are responding within the expected latency band. No manual action is\n                required for the current release window.\n              </div>\n            </Flex>\n          </Card.Content>\n        </Card>\n      </Skeleton>\n    </Flex>\n  );\n}\n"
       }
     ]
   },
@@ -6279,116 +6522,23 @@
     ]
   },
   {
-    "name": "SpeedDial",
-    "dirName": "speed-dial",
-    "category": "Navigation",
-    "description": "A floating action button that expands to reveal a set of actions.",
-    "descriptionZh": "悬浮按钮，展开后显示一组操作。",
-    "props": [
-      {
-        "name": "icon",
-        "type": "React.ReactNode",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "openIcon",
-        "type": "React.ReactNode",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "direction",
-        "type": "'up' | 'down' | 'left' | 'right'",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "open",
-        "type": "boolean",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "trigger",
-        "type": "'hover' | 'click'",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "onOpen",
-        "type": "() => void",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "onClose",
-        "type": "() => void",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "disabled",
-        "type": "boolean",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "children",
-        "type": "React.ReactNode",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "style",
-        "type": "CSSProperties",
-        "required": false,
-        "description": "Inline styles"
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "required": false,
-        "description": "CSS class name"
-      },
-      {
-        "name": "prefixCls",
-        "type": "string",
-        "required": false,
-        "description": "CSS class prefix (default: \"ty\")"
-      }
-    ],
-    "demos": [
-      {
-        "name": "Basic",
-        "code": "import React from 'react';\nimport { SpeedDial, Message } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 16, right: 16 }}>\n        <SpeedDial>\n          <SpeedDial.Action icon=\"C\" tooltip=\"Copy\" onClick={() => Message.info('Copy')} />\n          <SpeedDial.Action icon=\"P\" tooltip=\"Print\" onClick={() => Message.info('Print')} />\n          <SpeedDial.Action icon=\"S\" tooltip=\"Share\" onClick={() => Message.info('Share')} />\n          <SpeedDial.Action icon=\"D\" tooltip=\"Save\" onClick={() => Message.info('Save')} />\n        </SpeedDial>\n      </div>\n    </div>\n  );\n}"
-      },
-      {
-        "name": "Click",
-        "code": "import React from 'react';\nimport { SpeedDial, Message } from '@tiny-design/react';\n\nexport default function ClickDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 16, right: 16 }}>\n        <SpeedDial trigger=\"click\">\n          <SpeedDial.Action icon=\"C\" tooltip=\"Copy\" onClick={() => Message.info('Copy')} />\n          <SpeedDial.Action icon=\"P\" tooltip=\"Print\" onClick={() => Message.info('Print')} />\n          <SpeedDial.Action icon=\"S\" tooltip=\"Share\" onClick={() => Message.info('Share')} />\n        </SpeedDial>\n      </div>\n    </div>\n  );\n}"
-      },
-      {
-        "name": "CustomIcon",
-        "code": "import React from 'react';\nimport { SpeedDial } from '@tiny-design/react';\nimport { IconPlus, IconClose, IconBookmark, IconStar, IconShare } from '@tiny-design/icons';\n\nexport default function CustomIconDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 16, right: 16 }}>\n        <SpeedDial\n          icon={<IconPlus />}\n          openIcon={<IconClose />}\n        >\n          <SpeedDial.Action icon={<IconBookmark />} tooltip=\"Save\" />\n          <SpeedDial.Action icon={<IconStar />} tooltip=\"Favorite\" />\n          <SpeedDial.Action icon={<IconShare />} tooltip=\"Share\" />\n        </SpeedDial>\n      </div>\n    </div>\n  );\n}"
-      },
-      {
-        "name": "Direction",
-        "code": "import React from 'react';\nimport { SpeedDial } from '@tiny-design/react';\n\nexport default function DirectionDemo() {\n  const actions = (\n    <>\n      <SpeedDial.Action icon=\"A\" tooltip=\"Action 1\" />\n      <SpeedDial.Action icon=\"B\" tooltip=\"Action 2\" />\n      <SpeedDial.Action icon=\"C\" tooltip=\"Action 3\" />\n    </>\n  );\n\n  return (\n    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300, gap: 80 }}>\n      <SpeedDial direction=\"right\">\n        {actions}\n      </SpeedDial>\n      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 120 }}>\n        <SpeedDial direction=\"down\">\n          {actions}\n        </SpeedDial>\n        <SpeedDial direction=\"up\">\n          {actions}\n        </SpeedDial>\n      </div>\n      <SpeedDial direction=\"left\">\n        {actions}\n      </SpeedDial>\n    </div>\n  );\n}"
-      }
-    ]
-  },
-  {
     "name": "Split",
     "dirName": "split",
     "category": "Layout",
-    "description": "Divide one pane into two parts that can be dragged to adjust width or height.",
-    "descriptionZh": "将一个面板分割为两部分，可以通过拖拽调整宽度或高度。",
+    "description": "Split lays out two panes with a product-ready separator model: top-level sizing for the primary pane, explicit primary pane ownership, custom separator rendering, and collapsible side panels.",
+    "descriptionZh": "Split 用于把一个区域拆成两个可调尺寸的 pane，提供顶层主 pane 尺寸配置、主 pane 模型、可折叠侧栏，以及可自定义的 separator。",
     "props": [
       {
-        "name": "mode",
+        "name": "orientation",
         "type": "DirectionType",
         "required": false,
-        "description": "Split mode"
+        "description": "Pane arrangement: horizontal => left/right, vertical => top/bottom"
+      },
+      {
+        "name": "primary",
+        "type": "'first' | 'second'",
+        "required": false,
+        "description": "Which pane owns the resizable size model"
       },
       {
         "name": "disabled",
@@ -6397,63 +6547,123 @@
         "description": "Disabled flag"
       },
       {
-        "name": "min",
-        "type": "number | string",
-        "required": false,
-        "description": "Minimum width / height of the target pane"
-      },
-      {
-        "name": "max",
-        "type": "number | string",
-        "required": false,
-        "description": "Maximum width / height of the target pane"
-      },
-      {
         "name": "size",
-        "type": "number | string",
+        "type": "number | `${number}px` | `${number}%`",
         "required": false,
-        "description": "Control the size of target pane"
+        "description": "Controlled size for the primary pane"
       },
       {
         "name": "defaultSize",
-        "type": "number | string",
+        "type": "number | `${number}px` | `${number}%`",
         "required": false,
-        "description": "Default size of target pane"
+        "description": "Initial size for the primary pane"
       },
       {
-        "name": "resizerProps",
-        "type": "ResizerProps",
+        "name": "min",
+        "type": "number | `${number}px` | `${number}%`",
         "required": false,
-        "description": "Resizer's other props"
+        "description": "Minimum size for the primary pane"
       },
       {
-        "name": "step",
-        "type": "number",
+        "name": "max",
+        "type": "number | `${number}px` | `${number}%`",
         "required": false,
-        "description": "Drag step"
+        "description": "Maximum size for the primary pane"
       },
       {
-        "name": "resizerSize",
-        "type": "number",
+        "name": "collapsible",
+        "type": "boolean",
+        "required": false,
+        "description": "Allow the primary pane to collapse"
+      },
+      {
+        "name": "collapsed",
+        "type": "boolean",
+        "required": false,
+        "description": "Controlled collapsed state for the primary pane"
+      },
+      {
+        "name": "defaultCollapsed",
+        "type": "boolean",
+        "required": false,
+        "description": "Initial collapsed state for the primary pane"
+      },
+      {
+        "name": "collapsedSize",
+        "type": "number | `${number}px` | `${number}%`",
+        "required": false,
+        "description": "Size of the primary pane while collapsed"
+      },
+      {
+        "name": "onCollapseChange",
+        "type": "(collapsed: boolean) => void",
         "required": false,
         "description": ""
       },
       {
-        "name": "onChange",
+        "name": "dragStep",
+        "type": "number",
+        "required": false,
+        "description": "Pointer drag step"
+      },
+      {
+        "name": "keyboardStep",
+        "type": "number",
+        "required": false,
+        "description": "Keyboard drag step"
+      },
+      {
+        "name": "separatorSize",
+        "type": "number",
+        "required": false,
+        "description": "Visual separator size"
+      },
+      {
+        "name": "separatorHitAreaSize",
+        "type": "number",
+        "required": false,
+        "description": "Interactive separator hit area size"
+      },
+      {
+        "name": "separatorClassName",
+        "type": "string",
+        "required": false,
+        "description": "Class name applied to the separator interaction container"
+      },
+      {
+        "name": "separatorStyle",
+        "type": "React.CSSProperties",
+        "required": false,
+        "description": "Inline style applied to the separator interaction container"
+      },
+      {
+        "name": "separatorRender",
+        "type": "(props: SplitSeparatorRenderProps) => React.ReactNode",
+        "required": false,
+        "description": "Custom separator content renderer"
+      },
+      {
+        "name": "onResize",
         "type": "(size: number) => void",
         "required": false,
         "description": ""
       },
       {
-        "name": "onDragStarted",
-        "type": "() => void",
+        "name": "onResizeStart",
+        "type": "(size: number) => void",
         "required": false,
         "description": ""
       },
       {
-        "name": "onDragFinished",
-        "type": "() => void",
+        "name": "onResizeEnd",
+        "type": "(size: number) => void",
         "required": false,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "[React.ReactNode, React.ReactNode]",
+        "required": true,
         "description": ""
       },
       {
@@ -6477,24 +6687,36 @@
     ],
     "demos": [
       {
+        "name": "Collapse",
+        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function CollapseDemo() {\n  return (\n    <Split\n      defaultSize={240}\n      min=\"128px\"\n      collapsible\n      collapsedSize={72}\n      style={{\n        height: 220,\n        border: '1px solid var(--ty-color-border-secondary)',\n        background: 'var(--ty-color-fill)',\n      }}>\n      <Split.Pane style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>\n        Collapsible sidebar\n      </Split.Pane>\n      <Split.Pane min=\"160px\" style={{ padding: 16 }}>\n        Press Enter on the separator or double-click it to collapse.\n      </Split.Pane>\n    </Split>\n  );\n}\n"
+      },
+      {
+        "name": "CustomHandle",
+        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function CustomHandleDemo() {\n  return (\n    <Split\n      defaultSize=\"36%\"\n      min=\"120px\"\n      separatorSize={4}\n      separatorHitAreaSize={24}\n      separatorRender={({ orientation, dragging, collapsed }) => (\n        <div\n          style={{\n            position: 'relative',\n            width: '100%',\n            height: '100%',\n            display: 'flex',\n            alignItems: 'center',\n            justifyContent: 'center',\n            pointerEvents: 'none',\n          }}>\n          <div\n            style={{\n              position: 'absolute',\n              inset: 0,\n              display: 'flex',\n              alignItems: 'center',\n              justifyContent: 'center',\n            }}>\n            <div\n              style={{\n                width: orientation === 'horizontal' ? 2 : '100%',\n                height: orientation === 'vertical' ? 2 : '100%',\n                background: dragging\n                  ? 'color-mix(in srgb, var(--ty-color-primary) 52%, var(--ty-color-border))'\n                  : 'var(--ty-color-border)',\n              }}\n            />\n          </div>\n          <div\n            style={{\n              position: 'relative',\n              zIndex: 1,\n              minWidth: orientation === 'horizontal' ? 20 : 36,\n              minHeight: orientation === 'vertical' ? 20 : 36,\n              borderRadius: 999,\n              background: collapsed\n                ? 'var(--ty-color-fill-secondary)'\n                : 'var(--ty-color-bg-container)',\n              border: `1px solid ${\n                dragging\n                  ? 'color-mix(in srgb, var(--ty-color-primary) 48%, var(--ty-color-border))'\n                  : 'var(--ty-color-border-secondary)'\n              }`,\n              boxShadow: dragging\n                ? '0 0 0 4px color-mix(in srgb, var(--ty-color-primary) 14%, transparent)'\n                : '0 1px 2px rgba(15, 23, 42, 0.12)',\n              display: 'flex',\n              flexDirection: orientation === 'horizontal' ? 'column' : 'row',\n              alignItems: 'center',\n              justifyContent: 'center',\n              gap: 2,\n              padding: 6,\n            }}>\n            {Array.from({ length: 6 }).map((_, index) => (\n              <span\n                key={index}\n                style={{\n                  width: 3,\n                  height: 3,\n                  borderRadius: '50%',\n                  background: collapsed\n                    ? 'var(--ty-color-text-tertiary)'\n                    : 'var(--ty-color-text-secondary)',\n                }}\n              />\n            ))}\n          </div>\n        </div>\n      )}\n      style={{\n        height: 220,\n        border: '1px solid var(--ty-color-border-secondary)',\n        background: 'var(--ty-color-fill)',\n      }}>\n      <Split.Pane style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>\n        Navigation\n      </Split.Pane>\n      <Split.Pane min=\"160px\" style={{ padding: 16 }}>\n        Workspace\n      </Split.Pane>\n    </Split>\n  );\n}\n"
+      },
+      {
+        "name": "HitAreaSize",
+        "code": "import React from 'react';\nimport { Flex, Slider, Split, Alert } from '@tiny-design/react';\nimport type { SliderValue } from '@tiny-design/react';\n\nexport default function HitAreaSizeDemo() {\n  const [hitAreaSize, setHitAreaSize] = React.useState(48);\n\n  return (\n    <Flex vertical gap=\"md\">\n      <div style={{ fontSize: 12, color: 'var(--ty-color-text-secondary)' }}>Hit area: {hitAreaSize}px</div>\n      <Slider\n        min={16}\n        max={96}\n        step={4}\n        value={hitAreaSize}\n        onChange={(value: SliderValue) => {\n          if (typeof value === 'number') {\n            setHitAreaSize(value);\n          }\n        }}\n      />\n      <Split\n        defaultSize=\"36%\"\n        min=\"112px\"\n        separatorHitAreaSize={hitAreaSize}\n        separatorStyle={{\n          background: 'color-mix(in srgb, var(--ty-color-info) 18%, transparent)',\n          borderLeft: '2px solid color-mix(in srgb, var(--ty-color-info) 72%, transparent)',\n          borderRight: '2px solid color-mix(in srgb, var(--ty-color-info) 72%, transparent)',\n        }}\n        style={{\n          height: 240,\n          border: '1px solid var(--ty-color-border-secondary)',\n          background: 'var(--ty-color-fill)',\n        }}>\n        <Split.Pane style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>\n          Navigation\n        </Split.Pane>\n        <Split.Pane min=\"160px\" style={{ padding: 16, paddingLeft: 28 }}>\n          Workspace\n        </Split.Pane>\n      </Split>\n      <Alert type=\"info\">\n        Blue band = interaction zone. The visual handle stays slim while the drag target grows.\n      </Alert>\n    </Flex>\n  );\n}\n"
+      },
+      {
         "name": "Horizontal",
-        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function HorizontalDemo() {\n  return (\n    <Split mode=\"horizontal\" style={{ height: 200, border: '1px solid #dcdee2' }}>\n      <div>\n        Left\n      </div>\n      <div>\n        Right\n      </div>\n    </Split>\n  );\n}"
+        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nconst paneStyle: React.CSSProperties = {\n  padding: 16,\n  background: 'var(--ty-color-bg-container)',\n};\n\nexport default function HorizontalDemo() {\n  return (\n    <Split\n      defaultSize=\"32%\"\n      min=\"120px\"\n      style={{\n        height: 220,\n        border: '1px solid var(--ty-color-border-secondary)',\n        background: 'var(--ty-color-fill)',\n      }}>\n      <Split.Pane style={paneStyle}>\n        Navigation\n      </Split.Pane>\n      <Split.Pane min=\"160px\" style={{ ...paneStyle, background: 'var(--ty-color-fill)' }}>\n        Workspace\n      </Split.Pane>\n    </Split>\n  );\n}\n"
       },
       {
         "name": "Multiple",
-        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function MultipleDemo() {\n  return (\n    <Split style={{ height: 200, border: '1px solid #dcdee2' }}>\n      <div>\n        Left\n      </div>\n      <div>\n        Right\n      </div>\n    </Split>\n  );\n}"
+        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function MultipleDemo() {\n  return (\n    <Split\n      primary=\"second\"\n      defaultSize=\"28%\"\n      min=\"160px\"\n      max=\"420px\"\n      style={{\n        height: 220,\n        border: '1px solid var(--ty-color-border-secondary)',\n        background: 'var(--ty-color-fill)',\n      }}>\n      <Split.Pane min=\"120px\" style={{ padding: 16 }}>\n        Canvas\n      </Split.Pane>\n      <Split.Pane style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>\n        Secondary panel\n      </Split.Pane>\n    </Split>\n  );\n}\n"
       },
       {
         "name": "Nest",
-        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function NestDemo() {\n  return (\n    <Split defaultSize={200} style={{ height: 300, border: '1px solid #dcdee2' }}>\n      <div>\n        Left\n      </div>\n      <Split mode=\"horizontal\">\n        <div>\n          Top\n        </div>\n        <div>\n          Bottom\n        </div>\n      </Split>\n    </Split>\n  );\n}"
+        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function NestDemo() {\n  return (\n    <Split\n      defaultSize={220}\n      min=\"120px\"\n      style={{\n        height: 320,\n        border: '1px solid var(--ty-color-border-secondary)',\n        background: 'var(--ty-color-fill)',\n      }}>\n      <Split.Pane style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>\n        Sidebar\n      </Split.Pane>\n      <Split.Pane min=\"180px\">\n        <Split orientation=\"vertical\" defaultSize=\"38%\" min=\"72px\" style={{ height: '100%' }}>\n          <Split.Pane\n            style={{\n              padding: 16,\n              background: 'color-mix(in srgb, var(--ty-color-warning) 10%, var(--ty-color-bg-container))',\n            }}>\n            Summary\n          </Split.Pane>\n          <Split.Pane min=\"96px\" style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>\n            Detail\n          </Split.Pane>\n        </Split>\n      </Split.Pane>\n    </Split>\n  );\n}\n"
       },
       {
         "name": "Step",
-        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function StepDemo() {\n  return (\n    <Split step={30} style={{ height: 200, border: '1px solid #dcdee2' }}>\n      <div>\n        Left\n      </div>\n      <div>\n        Right\n      </div>\n    </Split>\n  );\n}"
+        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function StepDemo() {\n  return (\n    <Split\n      dragStep={24}\n      keyboardStep={16}\n      defaultSize={220}\n      min=\"120px\"\n      style={{ height: 220, border: '1px solid var(--ty-color-border-secondary)' }}>\n      <Split.Pane style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>\n        Step-based pane\n      </Split.Pane>\n      <Split.Pane min=\"160px\" style={{ padding: 16, background: 'var(--ty-color-fill)' }}>\n        Content\n      </Split.Pane>\n    </Split>\n  );\n}\n"
       },
       {
         "name": "Vertical",
-        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function VerticalDemo() {\n  return (\n    <Split style={{ height: 200, border: '1px solid #dcdee2' }}>\n      <div>\n        Left\n      </div>\n      <div>\n        Right\n      </div>\n    </Split>\n  );\n}"
+        "code": "import React from 'react';\nimport { Split } from '@tiny-design/react';\n\nexport default function VerticalDemo() {\n  return (\n    <Split\n      orientation=\"vertical\"\n      defaultSize=\"42%\"\n      min=\"64px\"\n      style={{ height: 220, border: '1px solid var(--ty-color-border-secondary)' }}>\n      <Split.Pane\n        style={{\n          padding: 16,\n          background: 'color-mix(in srgb, var(--ty-color-warning) 10%, var(--ty-color-bg-container))',\n        }}>\n        Preview\n      </Split.Pane>\n      <Split.Pane min=\"72px\" style={{ padding: 16, background: 'var(--ty-color-bg-container)' }}>\n        Inspector\n      </Split.Pane>\n    </Split>\n  );\n}\n"
       }
     ]
   },
@@ -6597,8 +6819,8 @@
     "name": "Statistic",
     "dirName": "statistic",
     "category": "Data Display",
-    "description": "Display key figures with clear formatting, prefix/suffix content, and customizable rendering.",
-    "descriptionZh": "展示关键统计数值，支持数值格式化、前后缀和自定义渲染。",
+    "description": "Product-grade metric display with internationalized formatting, semantic states, trend indicators, and supporting context.",
+    "descriptionZh": "面向产品场景的指标展示组件，支持国际化格式化、状态表达、趋势信息和辅助上下文。",
     "props": [
       {
         "name": "title",
@@ -6607,14 +6829,26 @@
         "description": ""
       },
       {
-        "name": "value",
-        "type": "number | string",
+        "name": "description",
+        "type": "React.ReactNode",
         "required": false,
         "description": ""
       },
       {
-        "name": "precision",
-        "type": "number",
+        "name": "tooltip",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "number | string | null | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "format",
+        "type": "StatisticFormatOptions",
         "required": false,
         "description": ""
       },
@@ -6631,13 +6865,97 @@
         "description": ""
       },
       {
-        "name": "groupSeparator",
+        "name": "formatter",
+        "type": "(value: StatisticValue, info: StatisticRenderInfo) => React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "trend",
+        "type": "StatisticTrend",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "status",
+        "type": "StatisticStatus",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "extra",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "footer",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "skeleton",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "empty",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "error",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "SizeType",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "emphasis",
+        "type": "'normal' | 'strong'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "align",
+        "type": "'start' | 'center' | 'end'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "monospace",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "valueClassName",
         "type": "string",
         "required": false,
         "description": ""
       },
       {
-        "name": "decimalSeparator",
+        "name": "titleClassName",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "trendClassName",
         "type": "string",
         "required": false,
         "description": ""
@@ -6649,20 +6967,20 @@
         "description": ""
       },
       {
-        "name": "valueClassName",
+        "name": "titleStyle",
+        "type": "React.CSSProperties",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "trendStyle",
+        "type": "React.CSSProperties",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "'aria-label'",
         "type": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "empty",
-        "type": "React.ReactNode",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "formatter",
-        "type": "(value: number | string, info: StatisticFormatterInfo) => React.ReactNode",
         "required": false,
         "description": ""
       },
@@ -6688,15 +7006,19 @@
     "demos": [
       {
         "name": "Basic",
-        "code": "import React from 'react';\nimport { Statistic, Flex } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <Flex gap=\"lg\">\n      <Statistic title=\"Active Users\" value={112893} />\n      <Statistic title=\"Account Balance\" value={112893.4} precision={2} prefix=\"$\" />\n      <Statistic title=\"Growth Rate\" value={93.12} suffix=\"%\" precision={2} />\n    </Flex>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Card, Flex, Statistic } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <Flex gap=\"md\" wrap=\"wrap\">\n      <Card style={{ minWidth: 260, flex: '1 1 260px' }}>\n        <Card.Content>\n          <Statistic\n            title=\"Monthly Revenue\"\n            description=\"Booked revenue across all active subscriptions.\"\n            value={128430.5}\n            format={{ type: 'currency', currency: 'USD', maximumFractionDigits: 2 }}\n            trend={{ direction: 'up', value: '+12.4%', label: 'vs last month', sentiment: 'positive' }}\n            status={{ type: 'success', text: 'Healthy growth' }}\n          />\n        </Card.Content>\n      </Card>\n      <Card style={{ minWidth: 260, flex: '1 1 260px' }}>\n        <Card.Content>\n          <Statistic\n            title=\"Conversion Rate\"\n            description=\"Signup to paid conversion in the last 7 days.\"\n            value={0.2386}\n            format={{ type: 'percent', maximumFractionDigits: 2 }}\n            trend={{ direction: 'flat', value: 'Stable', label: 'within target band', sentiment: 'neutral' }}\n            status={{ type: 'info', text: 'Watching experiment B' }}\n          />\n        </Card.Content>\n      </Card>\n      <Card style={{ minWidth: 260, flex: '1 1 260px' }}>\n        <Card.Content>\n          <Statistic\n            title=\"Daily Active Users\"\n            description=\"Unique users active in the last 24 hours.\"\n            value={112893}\n            format={{ type: 'compact', maximumFractionDigits: 1 }}\n            trend={{ direction: 'down', value: '-2.1%', label: 'after campaign cooldown', sentiment: 'negative' }}\n            extra=\"Last updated 2 minutes ago\"\n          />\n        </Card.Content>\n      </Card>\n    </Flex>\n  );\n}\n"
       },
       {
         "name": "Formatter",
-        "code": "import React from 'react';\nimport { Statistic, Flex } from '@tiny-design/react';\n\nexport default function FormatterDemo() {\n  return (\n    <Flex gap=\"lg\">\n      <Statistic\n        title=\"Countdown\"\n        value={Date.now() + 86400000}\n        formatter={(val) => {\n          const diff = Math.max(0, Math.floor((Number(val) - Date.now()) / 3600000));\n          return `${diff}h remaining`;\n        }}\n      />\n      <Statistic\n        title=\"Conversion\"\n        value={0.2386}\n        precision={2}\n        formatter={(_, info) => <span style={{ color: '#1677ff' }}>{info.formattedValue}%</span>}\n      />\n    </Flex>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Flex, Statistic } from '@tiny-design/react';\n\nexport default function FormatterDemo() {\n  return (\n    <Flex gap=\"lg\" wrap=\"wrap\">\n      <Statistic\n        title=\"Compact Number\"\n        value={3498200}\n        format={{ type: 'compact', maximumFractionDigits: 1 }}\n        size=\"sm\"\n      />\n      <Statistic\n        title=\"German Revenue\"\n        value={1128930.5}\n        format={{ type: 'currency', currency: 'EUR', locale: 'de-DE', maximumFractionDigits: 2 }}\n      />\n      <Statistic\n        title=\"API Latency\"\n        value={184}\n        format={{ type: 'duration', durationUnit: 'ms' }}\n      />\n      <Statistic\n        title=\"Fulfillment Rate\"\n        value={0.9962}\n        format={{ type: 'percent', signDisplay: 'exceptZero', maximumFractionDigits: 2 }}\n        suffix=\" SLA\"\n      />\n    </Flex>\n  );\n}\n"
+      },
+      {
+        "name": "States",
+        "code": "import React from 'react';\nimport { Card, Flex, Statistic } from '@tiny-design/react';\n\nexport default function StatesDemo() {\n  return (\n    <Flex gap=\"md\" wrap=\"wrap\">\n      <Card style={{ minWidth: 260, flex: '1 1 260px' }}>\n        <Card.Content>\n          <Statistic\n            title=\"Net Retention\"\n            description=\"Syncing finance data from the billing warehouse.\"\n            loading\n            footer=\"Loading has the highest display priority.\"\n          />\n        </Card.Content>\n      </Card>\n      <Card style={{ minWidth: 260, flex: '1 1 260px' }}>\n        <Card.Content>\n          <Statistic\n            title=\"Refund Rate\"\n            description=\"Last 30 days\"\n            value={null}\n            empty=\"No data yet\"\n            status={{ type: 'info', text: 'Awaiting first billing cycle' }}\n            footer=\"Use concise empty states that do not overpower normal values.\"\n          />\n        </Card.Content>\n      </Card>\n      <Card style={{ minWidth: 260, flex: '1 1 260px' }}>\n        <Card.Content>\n          <Statistic\n            title=\"Warehouse Feed\"\n            description=\"Most recent ETL job\"\n            error=\"Unavailable\"\n            status={{ type: 'danger', text: 'Connection timeout while reading the warehouse feed' }}\n            footer=\"Keep the main error state short, and move details into supporting copy.\"\n          />\n        </Card.Content>\n      </Card>\n      <Card style={{ minWidth: 260, flex: '1 1 260px' }}>\n        <Card.Content>\n          <Statistic\n            title=\"Forecast Confidence\"\n            description=\"This card shows the normal value state after status fallbacks are resolved.\"\n            value={82}\n            suffix=\"/100\"\n            status={{ type: 'success', text: 'Model calibrated' }}\n            extra=\"Updated after pipeline clean-up\"\n            footer=\"Value renders when loading, error, and empty conditions are absent.\"\n          />\n        </Card.Content>\n      </Card>\n    </Flex>\n  );\n}\n"
       },
       {
         "name": "Style",
-        "code": "import React from 'react';\nimport { Statistic, Flex } from '@tiny-design/react';\n\nexport default function StyleDemo() {\n  return (\n    <Flex gap=\"lg\">\n      <Statistic\n        title=\"Revenue\"\n        value={1128930}\n        prefix=\"$\"\n        valueStyle={{ color: '#52c41a' }}\n      />\n      <Statistic\n        title=\"EU Revenue\"\n        value={1128930.5}\n        prefix=\"EUR\"\n        groupSeparator=\".\"\n        decimalSeparator=\",\"\n        precision={2}\n        valueStyle={{ color: '#f59e0b' }}\n      />\n      <Statistic\n        title=\"Data Pending\"\n        empty=\"Pending\"\n        valueClassName=\"statistic-demo__pending\"\n      />\n    </Flex>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Card, Flex, Statistic } from '@tiny-design/react';\n\nexport default function StyleDemo() {\n  return (\n    <Flex gap=\"md\" wrap=\"wrap\">\n      <Card title=\"North America\" style={{ minWidth: 320, flex: '1 1 320px' }}>\n        <Card.Content>\n          <Statistic\n            title=\"Pipeline Coverage\"\n            tooltip=\"Coverage compares weighted pipeline against next quarter target.\"\n            description=\"Weighted opportunity pipeline for next quarter.\"\n            value={3.4}\n            suffix=\"x\"\n            trend={{ direction: 'up', value: '+0.6x', label: 'since forecast review', sentiment: 'positive' }}\n            footer=\"Target coverage is 3.0x to 3.5x.\"\n          />\n        </Card.Content>\n      </Card>\n      <Card title=\"Operations\" style={{ minWidth: 320, flex: '1 1 320px' }}>\n        <Card.Content>\n          <Statistic\n            title=\"Incident Response\"\n            description=\"Median time from alert open to first owner action.\"\n            value={8 * 60 + 24}\n            format={{ type: 'duration', durationUnit: 's' }}\n            status={{ type: 'warning', text: 'Above weekly target' }}\n            extra=\"Target: under 7m\"\n            footer=\"Escalation routing is currently being tuned for APAC.\"\n          />\n        </Card.Content>\n      </Card>\n    </Flex>\n  );\n}\n"
       }
     ]
   },

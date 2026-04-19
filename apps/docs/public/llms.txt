@@ -81,7 +81,7 @@ Components that accept sizes use: `'sm' | 'md' | 'lg'`
 - **Dropdown** — Drop-down list with menu items.
 - **Menu** — Navigation menu with dropdown support. Props: `mode` (`'horizontal'|'vertical'|'inline'`).
 - **Pagination** — Page through data sets. Props: `total`, `current`, `pageSize`, `onChange`.
-- **SpeedDial** — Floating action button expanding to actions.
+- **QuickActions** — Floating action button expanding to actions.
 - **Steps** — Wizard-like numbered step navigation.
 
 ### Data Display

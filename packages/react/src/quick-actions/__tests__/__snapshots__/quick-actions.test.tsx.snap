@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<QuickActions /> should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ty-quick-actions ty-quick-actions_up"
+  >
+    <button
+      aria-expanded="false"
+      aria-label="QuickActions"
+      class="ty-quick-actions__button"
+      type="button"
+    >
+      <span
+        class="ty-quick-actions__icon-default"
+      />
+    </button>
+    <div
+      class="ty-quick-actions__actions"
+      role="menu"
+    >
+      <div
+        class="ty-quick-actions__action-wrapper"
+      >
+        <button
+          class="ty-quick-actions__action"
+          type="button"
+        >
+          A
+        </button>
+        <span
+          class="ty-quick-actions__action-tooltip ty-quick-actions__action-tooltip_left"
+        >
+          Action A
+        </span>
+      </div>
+      <div
+        class="ty-quick-actions__action-wrapper"
+      >
+        <button
+          class="ty-quick-actions__action"
+          type="button"
+        >
+          B
+        </button>
+        <span
+          class="ty-quick-actions__action-tooltip ty-quick-actions__action-tooltip_left"
+        >
+          Action B
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
