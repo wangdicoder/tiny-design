@@ -4,8 +4,12 @@ exports[`<Skeleton /> should match the snapshot 1`] = `
 <DocumentFragment>
   <div
     aria-busy="true"
-    class="ty-skeleton"
     role="status"
-  />
+  >
+    <div
+      aria-hidden="true"
+      class="ty-skeleton ty-skeleton_round"
+    />
+  </div>
 </DocumentFragment>
 `;

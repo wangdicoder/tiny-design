@@ -16,7 +16,7 @@ const ConfigProviderImpl = (props: ConfigProviderProps): React.ReactElement => {
     locale,
     prefixCls,
     componentSize,
-    shimmer,
+    skeleton,
     space,
     getPopupContainer,
     getTargetContainer,
@@ -49,7 +49,10 @@ const ConfigProviderImpl = (props: ConfigProviderProps): React.ReactElement => {
     () => ({
       prefixCls: prefixCls ?? parentConfig.prefixCls,
       componentSize: componentSize ?? parentConfig.componentSize,
-      shimmer: shimmer ?? parentConfig.shimmer,
+      skeleton: {
+        ...parentConfig.skeleton,
+        ...skeleton,
+      },
       space: space ?? parentConfig.space,
       theme: mode ?? parentConfig.theme,
       themeConfig: themeConfig ?? parentConfig.themeConfig,
@@ -65,7 +68,7 @@ const ConfigProviderImpl = (props: ConfigProviderProps): React.ReactElement => {
       mode,
       parentConfig,
       prefixCls,
-      shimmer,
+      skeleton,
       space,
       themeConfig,
     ]

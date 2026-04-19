@@ -226,8 +226,8 @@ const { componentSize, getPopupContainer, locale } = ConfigProvider.useConfig();
 | ----------------- | ------------------------------------------------------------- | ------------------------------------------------- | --------- |
 | prefixCls         | 设置类名前缀                                                  | string                                            | ty        |
 | componentSize     | 组件大小                                                      | enum: `lg` &#124; `md` &#124; `sm`                | `md`      |
-| shimmer           | 为 [Skeleton](#/components/skeleton) 显示微光动画效果         | boolean                                           | false     |
-| space             | 设置 Space 间距，参考 [Space](#/components/space)             | enum: `sm` &#124; `md` &#124; `lg` or `number`.   | `sm`      |
+| skeleton          | 为 [Skeleton](../components/skeleton) 提供全局配置，例如动画效果 | `{ animation?: false \| 'pulse' \| 'shimmer' }` | -         |
+| space             | 设置 Space 间距，参考 [Space](../components/space)             | enum: `sm` &#124; `md` &#124; `lg` or `number`.   | `sm`      |
 | locale            | 设置组件语言包（如 `en_US`、`zh_CN`）                         | Locale                                            | -         |
 | getPopupContainer | 为当前 provider 作用域内的弹层组件指定挂载容器               | `(trigger?: HTMLElement \| null) => HTMLElement`  | provider popup holder |
 | getTargetContainer | 为 `Anchor`、`Sticky`、`BackTop` 等组件设置默认滚动容器，同时为 `Overlay`、`Tour` 这类层级组件设置滚动锁目标 | `() => HTMLElement \| Window`                     | `() => window` |

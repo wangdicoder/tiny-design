@@ -2,14 +2,19 @@ import React from 'react';
 import { SizeType } from '../_utils/props';
 import { SpaceSize } from '../space/types';
 import { Locale } from '../locale/types';
+import { SkeletonAnimation } from '../skeleton/types';
 import { ThemeConfig } from './token-utils';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
 
+export interface SkeletonConfig {
+  animation?: SkeletonAnimation;
+}
+
 export interface ConfigContextProps {
   prefixCls?: string;
   componentSize?: SizeType;
-  shimmer?: boolean;
+  skeleton?: SkeletonConfig;
   space?: SpaceSize;
   theme?: ThemeMode;
   themeConfig?: ThemeConfig;
@@ -21,7 +26,7 @@ export interface ConfigContextProps {
 export const ConfigContext = React.createContext<ConfigContextProps>({
   prefixCls: 'ty',
   componentSize: 'md',
-  shimmer: false,
+  skeleton: undefined,
   space: 'sm',
   getPopupContainer: () => document.body,
   getTargetContainer: () => window,
