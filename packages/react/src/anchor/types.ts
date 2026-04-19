@@ -1,7 +1,9 @@
 import React from 'react';
 import { BaseProps } from '../_utils/props';
 
-export interface AnchorProps extends BaseProps {
+export interface AnchorProps
+  extends BaseProps,
+    Omit<React.ComponentPropsWithoutRef<'ul'>, 'children' | 'onChange' | 'onClick'> {
   affix?: boolean;
   type?: 'dot' | 'line';
   offsetBottom?: number;

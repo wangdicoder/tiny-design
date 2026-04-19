@@ -60,4 +60,16 @@ describe('<Form />', () => {
     fireEvent.click(screen.getByText('submit'));
     expect(screen.getByText('username required')).toBeInTheDocument();
   });
+
+  it('should forward ref to native form element', () => {
+    const ref = React.createRef<HTMLFormElement>();
+
+    render(
+      <Form ref={ref}>
+        <button type="submit">submit</button>
+      </Form>
+    );
+
+    expect(ref.current).toBeInstanceOf(HTMLFormElement);
+  });
 });

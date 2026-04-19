@@ -14,6 +14,8 @@ import {
   DescriptionsSpan,
 } from './types';
 
+const isProduction = (globalThis as { process?: { env?: { NODE_ENV?: string } } }).process?.env?.NODE_ENV === 'production';
+
 type NormalizedItem = DescriptionsItemType & {
   key: React.Key;
   content: React.ReactNode;
@@ -119,7 +121,7 @@ const Descriptions = (props: DescriptionsProps): React.ReactElement => {
 
   const normalizedItems = useMemo<NormalizedItem[]>(() => {
     if (items && items.length > 0) {
-      if (process.env.NODE_ENV !== 'production' && React.Children.count(children) > 0) {
+      if (!isProduction && React.Children.count(children) > 0) {
         warning(true, 'Descriptions `items` takes priority over `children`.');
       }
 

@@ -7,7 +7,7 @@ import { getPrefixCls } from '../_utils/general';
 import { FormProps } from './types';
 import FormInstance from './form-instance';
 
-const Form = (props: FormProps): JSX.Element => {
+const Form = React.forwardRef<HTMLFormElement, FormProps>((props, ref): JSX.Element => {
   const {
     initialValues = {},
     labelCol = { span: 8, offset: 0 },
@@ -49,13 +49,13 @@ const Form = (props: FormProps): JSX.Element => {
   return (
     <FormInstanceContext.Provider value={formRef.current}>
       <FormOptionsContext.Provider value={{ labelCol, wrapperCol, validateTrigger, layout }}>
-        <form {...otherProps} className={cls} onSubmit={formOnSubmit} onReset={formOnReset}>
+        <form {...otherProps} ref={ref} className={cls} onSubmit={formOnSubmit} onReset={formOnReset}>
           {children}
         </form>
       </FormOptionsContext.Provider>
     </FormInstanceContext.Provider>
   );
-};
+});
 
 Form.displayName = 'Form';
 
