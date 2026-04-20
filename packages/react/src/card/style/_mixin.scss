@@ -1,4 +1,4 @@
-@mixin card_elevation() {
+@mixin card-elevation() {
   box-shadow: var(--ty-shadow-card);
-  border-color: var(--ty-card-shadow-border);
+  border-color: var(--ty-card-shadow-border, var(--ty-card-border, var(--ty-color-border-secondary)));
 }

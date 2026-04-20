@@ -6,7 +6,7 @@ const cardStyle: React.CSSProperties = {
   width: 200,
   padding: 16,
   borderRadius: 12,
-  background: 'var(--ty-color-bg-component)',
+  background: 'var(--ty-color-bg-container)',
   border: '1px solid var(--ty-color-border-secondary)',
 };
 

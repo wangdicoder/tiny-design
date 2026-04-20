@@ -37,8 +37,8 @@
   &__placeholder,
   &__fallback {
     align-items: center;
-    background: var(--ty-image-placeholder-bg, var(--ty-color-fill-1, #f5f5f5));
-    color: var(--ty-image-placeholder-color, var(--ty-color-text-3, #999));
+    background: var(--ty-image-placeholder-bg, var(--ty-color-fill-secondary, #f5f5f5));
+    color: var(--ty-image-placeholder-color, var(--ty-color-text-tertiary, #999));
     display: inline-flex;
     justify-content: center;
   }

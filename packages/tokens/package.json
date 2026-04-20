@@ -50,6 +50,7 @@
     "build": "node scripts/build.js",
     "build:base-css": "node -e \"require('./scripts/build').buildBaseCss()\"",
     "build:runtime": "node scripts/build-runtime.js",
+    "test": "node scripts/build-runtime.js --validate-only",
     "clean": "rimraf css dist"
   },
   "devDependencies": {

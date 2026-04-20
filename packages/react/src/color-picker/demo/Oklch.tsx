@@ -21,7 +21,7 @@ export default function OklchDemo() {
         />
         <span>Value: {color}</span>
       </div>
-      <pre style={{ margin: 0, padding: 12, fontSize: 12, borderRadius: 8, background: 'var(--ty-color-fill-2, rgba(0,0,0,0.04))' }}>
+      <pre style={{ margin: 0, padding: 12, fontSize: 12, borderRadius: 8, background: 'var(--ty-color-fill-secondary, rgba(0,0,0,0.04))' }}>
         {JSON.stringify(meta, null, 2)}
       </pre>
     </div>

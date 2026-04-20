@@ -29,12 +29,12 @@
     cursor: pointer;
 
     &:hover {
-      @include card_elevation;
+      @include card-elevation;
     }
   }
 
   &_active {
-    @include card_elevation;
+    @include card-elevation;
   }
 
   &__header {

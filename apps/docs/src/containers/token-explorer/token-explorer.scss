@@ -62,7 +62,7 @@
     padding: 12px 14px;
     border: 1px solid var(--ty-color-border-light);
     border-radius: 12px;
-    background: linear-gradient(180deg, var(--ty-color-bg-container) 0%, var(--ty-color-fill-quaternary) 100%);
+    background: linear-gradient(180deg, var(--ty-color-bg-container) 0%, var(--ty-color-fill-tertiary) 100%);
   }
 
   &__summary-item span {
@@ -128,7 +128,7 @@
   }
 
   &__token-key {
-    font-family: var(--ty-font-mono);
+    font-family: var(--ty-font-family-monospace);
     font-size: 14px;
     font-weight: 600;
     color: var(--ty-color-text);
@@ -137,7 +137,7 @@
 
   &__token-var {
     margin-top: 4px;
-    font-family: var(--ty-font-mono);
+    font-family: var(--ty-font-family-monospace);
     font-size: 12px;
     color: var(--ty-color-text-secondary);
     word-break: break-word;
@@ -194,7 +194,7 @@
 
   &__token-meta dd {
     margin: 0;
-    font-family: var(--ty-font-mono);
+    font-family: var(--ty-font-family-monospace);
     font-size: 12px;
     color: var(--ty-color-text);
     word-break: break-word;

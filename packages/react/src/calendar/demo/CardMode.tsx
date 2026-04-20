@@ -6,7 +6,7 @@ export default function CardModeDemo() {
 
   return (
     <div>
-      <style>{`.weekend-cell.ty-calendar__cell_in-view { color: var(--ty-color-error, #e5484d); }`}</style>
+      <style>{`.weekend-cell.ty-calendar__cell_in-view { color: var(--ty-color-danger, #e5484d); }`}</style>
       <p style={{ marginBottom: 8, fontSize: 13, color: '#666' }}>
         Use arrow keys to navigate, Enter to select, Escape to reset focus.
       </p>
