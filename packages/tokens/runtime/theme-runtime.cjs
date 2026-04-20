@@ -361,8 +361,44 @@ function resolveTheme(input, options) {
   };
 }
 
+function escapeAttr(value) {
+  return String(value).replace(/"/g, '\\"');
+}
+
+function getThemeStylesheet(input, options) {
+  const opts = options || {};
+  const selector = opts.selector || ':root';
+  const result = resolveTheme(input, opts);
+  const mode = result.mode;
+
+  const overrides = [];
+  const merged = result.normalizedDocument && result.normalizedDocument.tokens;
+  const semanticOverrides = (merged && merged.semantic) || {};
+  const componentOverrides = (merged && merged.components) || {};
+
+  for (const [key, value] of Object.entries(semanticOverrides)) {
+    overrides.push(`  ${tokenKeyToCssVar(key)}: ${value};`);
+  }
+  for (const [key, value] of Object.entries(componentOverrides)) {
+    overrides.push(`  ${tokenKeyToCssVar(key)}: ${value};`);
+  }
+
+  if (mode) {
+    overrides.push(`  color-scheme: ${mode === 'system' ? 'light dark' : mode};`);
+  }
+
+  if (overrides.length === 0 && !mode) {
+    return '';
+  }
+
+  const attr = mode ? `[data-tiny-theme="${escapeAttr(mode)}"]` : '';
+  const lines = [`${selector}${attr} {`, ...overrides, '}'];
+  return lines.join('\n') + '\n';
+}
+
 module.exports = {
   defaultPresets,
+  getThemeStylesheet,
   mergeThemeDocuments,
   normalizeThemeInput,
   resolveTheme,

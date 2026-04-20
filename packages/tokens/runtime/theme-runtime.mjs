@@ -349,8 +349,53 @@ function resolveTheme(input, options) {
   };
 }
 
+function escapeAttr(value) {
+  return String(value).replace(/"/g, '\\"');
+}
+
+/**
+ * Build a CSS stylesheet string that, when injected before hydration, applies
+ * the given theme without FOUC. Only overrides (not the full registry) are
+ * emitted — base.css already contains default values.
+ */
+function getThemeStylesheet(input, options) {
+  const opts = options || {};
+  const selector = opts.selector || ':root';
+  const result = resolveTheme(input, opts);
+  const mode = result.mode;
+
+  const lines = [];
+  const overrides = [];
+
+  const merged = result.normalizedDocument && result.normalizedDocument.tokens;
+  const semanticOverrides = (merged && merged.semantic) || {};
+  const componentOverrides = (merged && merged.components) || {};
+
+  for (const [key, value] of Object.entries(semanticOverrides)) {
+    overrides.push(`  ${tokenKeyToCssVar(key)}: ${value};`);
+  }
+  for (const [key, value] of Object.entries(componentOverrides)) {
+    overrides.push(`  ${tokenKeyToCssVar(key)}: ${value};`);
+  }
+
+  if (mode) {
+    overrides.push(`  color-scheme: ${mode === 'system' ? 'light dark' : mode};`);
+  }
+
+  if (overrides.length === 0 && !mode) {
+    return '';
+  }
+
+  const attr = mode ? `[data-tiny-theme="${escapeAttr(mode)}"]` : '';
+  lines.push(`${selector}${attr} {`);
+  lines.push(...overrides);
+  lines.push('}');
+  return lines.join('\n') + '\n';
+}
+
 export {
   defaultPresets,
+  getThemeStylesheet,
   mergeThemeDocuments,
   normalizeThemeInput,
   resolveTheme,

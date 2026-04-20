@@ -10,9 +10,38 @@ const PRESETS_DTS_PATH = path.join(DIST_DIR, 'presets.d.ts');
 const SCHEMA_DIST_DIR = path.join(DIST_DIR, 'schema');
 const THEME_SCHEMA_PATH = path.join(SOURCE_DIR, 'schema', 'theme.schema.json');
 
+const PRIMITIVE_DIR = path.join(SOURCE_DIR, 'primitive');
 const SEMANTIC_DIR = path.join(SOURCE_DIR, 'semantic');
 const COMPONENT_DIR = path.join(SOURCE_DIR, 'components');
 const THEMES_DIR = path.join(SOURCE_DIR, 'themes');
+
+const COLOR_FN_PREFIXES = [
+  'rgb',
+  'rgba',
+  'hsl',
+  'hsla',
+  'hwb',
+  'lab',
+  'lch',
+  'oklab',
+  'oklch',
+  'color',
+  'color-mix',
+  'linear-gradient',
+  'radial-gradient',
+  'conic-gradient',
+  'var',
+];
+const COLOR_FN_PATTERN = new RegExp(`^(${COLOR_FN_PREFIXES.join('|')})\\(.+\\)$`);
+const COLOR_KEYWORD_PATTERN = /^(transparent|currentColor|inherit|initial|unset|none)$/;
+const COLOR_HEX_PATTERN = /^#[0-9a-fA-F]{3,8}$/;
+const SINGLE_DIMENSION = '(auto|0|-?\\d*\\.?\\d+(px|em|rem|%|vh|vw|vmin|vmax|ch|ex)|calc\\(.+?\\)|var\\(.+?\\))';
+const DIMENSION_PATTERN = new RegExp(`^${SINGLE_DIMENSION}(\\s+${SINGLE_DIMENSION}){0,3}$`);
+const NUMBER_PATTERN = /^-?\d*\.?\d+$/;
+
+function looksLikeColor(value) {
+  return COLOR_HEX_PATTERN.test(value) || COLOR_KEYWORD_PATTERN.test(value) || COLOR_FN_PATTERN.test(value);
+}
 
 function mkdirp(dir) {
   fs.mkdirSync(dir, { recursive: true });
@@ -103,9 +132,34 @@ function loadTokenFiles(dir, category) {
   });
 }
 
+function isReferenceValue(value) {
+  return typeof value === 'string' && /^\{[^}]+\}$/.test(value);
+}
+
+function typeMatchesValue(type, rawValue, tokenMap) {
+  if (isReferenceValue(rawValue)) {
+    const refKey = rawValue.slice(1, -1);
+    const refToken = tokenMap.get(refKey);
+    if (!refToken) return true;
+    return refToken.$type === type;
+  }
+  const value = String(rawValue).trim();
+  switch (type) {
+    case 'color':
+      return looksLikeColor(value);
+    case 'dimension':
+      return DIMENSION_PATTERN.test(value);
+    case 'number':
+      return NUMBER_PATTERN.test(value);
+    default:
+      return true;
+  }
+}
+
 function validateTokens(tokens) {
   const keys = new Set();
   const cssVars = new Set();
+  const tokenMap = new Map(tokens.map((t) => [t.key, t]));
 
   for (const token of tokens) {
     assert(!keys.has(token.key), `Duplicate token key: ${token.key}`);
@@ -117,6 +171,26 @@ function validateTokens(tokens) {
 
     if (token.category === 'component') {
       assert(token.component, `Missing component name for token: ${token.key}`);
+    }
+
+    if (token.$type && !typeMatchesValue(token.$type, token.$value, tokenMap)) {
+      throw new Error(
+        `Token "${token.key}" declares $type "${token.$type}" but $value "${token.$value}" does not match.`
+      );
+    }
+  }
+
+  for (const token of tokens) {
+    if (!token.fallback) continue;
+    if (!token.fallback.startsWith('--ty-')) {
+      throw new Error(
+        `Token "${token.key}" has invalid fallback "${token.fallback}"; must reference a --ty-* custom property.`
+      );
+    }
+    if (!cssVars.has(token.fallback)) {
+      throw new Error(
+        `Token "${token.key}" fallback "${token.fallback}" does not match any registered CSS var.`
+      );
     }
   }
 }
@@ -152,7 +226,9 @@ function buildRegistry(tokens) {
       type: token.$type,
       group: token.component
         ? token.component.charAt(0).toUpperCase() + token.component.slice(1)
-        : 'Semantic',
+        : token.category === 'primitive'
+          ? 'Primitive'
+          : 'Semantic',
       description: token.description || '',
       source: token.source,
       defaultValue: token.$value,
@@ -201,7 +277,9 @@ function buildBaseThemeCss(tokens, cssValues, tokenMap, lightTheme, darkTheme) {
   };
 
   const parts = [];
-  parts.push(buildThemeCss(tokens, cssValues, tokenMap, lightOverrides, ':root'));
+  parts.push(
+    buildThemeCss(tokens, cssValues, tokenMap, lightOverrides, ":root, [data-tiny-theme='light']")
+  );
   parts.push(buildThemeCss(tokens, cssValues, tokenMap, darkOverrides, "[data-tiny-theme='dark']"));
   parts.push('@media (prefers-color-scheme: dark) {');
   parts.push(buildThemeCss(tokens, cssValues, tokenMap, darkOverrides, "  [data-tiny-theme='system']").trimEnd());
@@ -211,7 +289,16 @@ function buildBaseThemeCss(tokens, cssValues, tokenMap, lightTheme, darkTheme) {
   return parts.join('\n');
 }
 
-function buildRegistryDts() {
+function buildKeyUnion(keys) {
+  if (keys.length === 0) return 'never';
+  return keys.map((k) => `'${k}'`).join('\n  | ');
+}
+
+function buildRegistryDts(tokens) {
+  const primitiveKeys = tokens.filter((t) => t.category === 'primitive').map((t) => t.key);
+  const semanticKeys = tokens.filter((t) => t.category === 'semantic').map((t) => t.key);
+  const componentKeys = tokens.filter((t) => t.category === 'component').map((t) => t.key);
+
   return `export type TokenCategory = 'primitive' | 'semantic' | 'component';
 export type TokenType =
   | 'color'
@@ -245,6 +332,17 @@ export interface TokenRegistryDocument {
   generatedAt: string;
   tokens: TokenRegistryEntry[];
 }
+
+export type PrimitiveTokenKey =
+  | ${buildKeyUnion(primitiveKeys)};
+
+export type SemanticTokenKey =
+  | ${buildKeyUnion(semanticKeys)};
+
+export type ComponentTokenKey =
+  | ${buildKeyUnion(componentKeys)};
+
+export type TokenKey = PrimitiveTokenKey | SemanticTokenKey | ComponentTokenKey;
 `;
 }
 
@@ -252,7 +350,9 @@ function buildPresetsDts(presets) {
   const ids = Object.keys(presets);
   const presetUnion = ids.length > 0 ? ids.map((id) => `'${id}'`).join(' | ') : 'string';
 
-  return `export type PresetThemeId = ${presetUnion};
+  return `import type { SemanticTokenKey, ComponentTokenKey } from './registry';
+
+export type PresetThemeId = ${presetUnion};
 
 export interface ThemeDocumentMeta {
   id?: string;
@@ -269,12 +369,29 @@ export interface ThemeDocumentTokens {
   components?: Record<string, string | number>;
 }
 
+/** Same shape as ThemeDocumentTokens but with typed, autocompleted keys. */
+export interface TypedThemeDocumentTokens {
+  semantic?: Partial<Record<SemanticTokenKey, string | number>> &
+    Record<string, string | number>;
+  components?: Partial<Record<ComponentTokenKey, string | number>> &
+    Record<string, string | number>;
+}
+
 export interface ThemeDocument {
   $schema?: string;
   meta?: ThemeDocumentMeta;
   mode: 'light' | 'dark' | 'system';
   extends?: string;
   tokens?: ThemeDocumentTokens;
+}
+
+/** Theme document with autocompletion and type-checking on token keys. */
+export interface TypedThemeDocument {
+  $schema?: string;
+  meta?: ThemeDocumentMeta;
+  mode: 'light' | 'dark' | 'system';
+  extends?: PresetThemeId | (string & {});
+  tokens?: TypedThemeDocumentTokens;
 }
 
 declare const presets: Record<PresetThemeId, ThemeDocument>;
@@ -285,9 +402,10 @@ export default presets;
 function buildRuntimeTokens() {
   console.log('Building runtime tokens...\n');
 
+  const primitiveTokens = loadTokenFiles(PRIMITIVE_DIR, 'primitive');
   const semanticTokens = loadTokenFiles(SEMANTIC_DIR, 'semantic');
   const componentTokens = loadTokenFiles(COMPONENT_DIR, 'component');
-  const allTokens = [...semanticTokens, ...componentTokens];
+  const allTokens = [...primitiveTokens, ...semanticTokens, ...componentTokens];
   const themes = loadThemes();
 
   validateTokens(allTokens);
@@ -335,7 +453,7 @@ function buildRuntimeTokens() {
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'light.css'), lightCss);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'dark.css'), darkCss);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'base.css'), baseCss);
-  fs.writeFileSync(REGISTRY_DTS_PATH, buildRegistryDts());
+  fs.writeFileSync(REGISTRY_DTS_PATH, buildRegistryDts(allTokens));
   fs.writeFileSync(PRESETS_DTS_PATH, buildPresetsDts(presets));
   fs.copyFileSync(THEME_SCHEMA_PATH, path.join(SCHEMA_DIST_DIR, 'theme.schema.json'));
 

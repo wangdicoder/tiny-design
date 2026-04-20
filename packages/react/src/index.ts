@@ -180,4 +180,6 @@ export type * from './waterfall';
 
 export { useLocale } from './_utils/use-locale';
 export { useTheme } from './_utils/use-theme';
+export { useActiveTheme } from './config-provider/config-context';
+export { getThemeStylesheet } from '@tiny-design/tokens/resolve-theme';
 export type { ThemeMode } from './config-provider/config-context';

@@ -1,1 +1,1 @@
-export { resolveTheme, tokenKeyToCssVar } from './theme-runtime.mjs';
+export { getThemeStylesheet, resolveTheme, tokenKeyToCssVar } from './theme-runtime.mjs';

@@ -1,0 +1,52 @@
+{
+  "color.brand.50": {
+    "$value": "#f3eefa",
+    "$type": "color",
+    "description": "Brand palette 50 (lightest tint)."
+  },
+  "color.brand.100": {
+    "$value": "#ece3f7",
+    "$type": "color",
+    "description": "Brand palette 100."
+  },
+  "color.brand.200": {
+    "$value": "#c4a7e6",
+    "$type": "color",
+    "description": "Brand palette 200."
+  },
+  "color.brand.300": {
+    "$value": "#a882dc",
+    "$type": "color",
+    "description": "Brand palette 300."
+  },
+  "color.brand.400": {
+    "$value": "#8b62d0",
+    "$type": "color",
+    "description": "Brand palette 400."
+  },
+  "color.brand.500": {
+    "$value": "#6e41bf",
+    "$type": "color",
+    "description": "Brand palette 500 (base)."
+  },
+  "color.brand.600": {
+    "$value": "#5a30a8",
+    "$type": "color",
+    "description": "Brand palette 600."
+  },
+  "color.brand.700": {
+    "$value": "#4a2790",
+    "$type": "color",
+    "description": "Brand palette 700."
+  },
+  "color.brand.800": {
+    "$value": "#3a1f70",
+    "$type": "color",
+    "description": "Brand palette 800."
+  },
+  "color.brand.900": {
+    "$value": "#2a1650",
+    "$type": "color",
+    "description": "Brand palette 900 (darkest shade)."
+  }
+}
