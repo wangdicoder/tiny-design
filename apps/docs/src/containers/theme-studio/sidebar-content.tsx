@@ -1,13 +1,8 @@
 import React from 'react';
-import { Collapse, Select, Text } from '@tiny-design/react';
+import { Collapse, Flex, Select, Text } from '@tiny-design/react';
 import { FONT_OPTIONS, MONO_OPTIONS, SEED_COLOR_GROUPS } from './editor-config';
 import { ColorField, ShadowField, SliderField, TextField } from './editor-fields';
-import type {
-  FieldKey,
-  ThemeEditorDraft,
-  ThemeEditorSection,
-  ThemeEditorSeedGroup,
-} from './types';
+import type { FieldKey, ThemeEditorDraft, ThemeEditorSection, ThemeEditorSeedGroup } from './types';
 
 const CONTROL_SHADOW_FALLBACK = {
   color: 'oklch(0 0 0)',
@@ -43,11 +38,11 @@ function renderColorGroups(
 ): React.ReactElement[] {
   return groups.map((group) => (
     <div key={group.title} className="theme-studio__group-card">
-      <div className="theme-studio__group-header">
+      <Flex vertical gap={2} className="theme-studio__group-header theme-studio__copy-stack">
         <Text strong>{group.title}</Text>
         {group.description ? <Text type="secondary">{group.description}</Text> : null}
-      </div>
-      <div className="theme-studio__group-fields">
+      </Flex>
+      <Flex vertical gap={8} className="theme-studio__group-fields">
         {group.fields.map((field) => (
           <ColorField
             key={field.key}
@@ -56,7 +51,7 @@ function renderColorGroups(
             onChange={(next) => updateField(field.key, next)}
           />
         ))}
-      </div>
+      </Flex>
     </div>
   ));
 }
@@ -75,17 +70,17 @@ export function ThemeStudioSidebarContent({
 
   if (section === 'colors') {
     return (
-      <div className="theme-studio__panel-stack">
+      <Flex vertical gap={8} className="theme-studio__panel-stack">
         <div className="theme-studio__group-card theme-studio__group-card_toolbar">
-          <div className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
-            <div>
+          <Flex className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
+            <Flex vertical gap={2} className="theme-studio__copy-stack">
               <Text strong>Primitive Color Seeds</Text>
               <Text type="secondary">
-                Edit the brand seed layer directly. These values compile into semantic and
-                component color tokens.
+                Edit the brand seed layer directly. These values compile into semantic and component
+                color tokens.
               </Text>
-            </div>
-          </div>
+            </Flex>
+          </Flex>
           <div className="theme-studio__summary-grid theme-studio__summary-grid_compact">
             <div className="theme-studio__summary-card">
               <span>Layer 1</span>
@@ -101,17 +96,17 @@ export function ThemeStudioSidebarContent({
             </div>
           </div>
         </div>
-        <div className="theme-studio__group-section">
-          <div className="theme-studio__section-header">
+        <Flex vertical gap={8} className="theme-studio__group-section">
+          <Flex vertical gap={2} className="theme-studio__section-header">
             <Text strong>Core Seed Groups</Text>
             <Text type="secondary">
               Start with brand, surfaces, feedback, and interaction primitives.
             </Text>
-          </div>
+          </Flex>
           {renderColorGroups(coreColorGroups, draft, updateField)}
-        </div>
+        </Flex>
         {advancedColorGroups.length > 0 ? (
-          <div className="theme-studio__group-section">
+          <Flex vertical gap={8} className="theme-studio__group-section">
             <Collapse
               bordered={false}
               className="theme-studio__advanced-collapse"
@@ -120,33 +115,33 @@ export function ThemeStudioSidebarContent({
                 {
                   key: 'advanced-colors',
                   label: (
-                    <div className="theme-studio__section-header theme-studio__section-header_inline">
+                    <Flex vertical gap={2} className="theme-studio__section-header">
                       <Text strong>Advanced Seed Groups</Text>
                       <Text type="secondary">Shell, charts, and specialized palettes.</Text>
-                    </div>
+                    </Flex>
                   ),
                   children: renderColorGroups(advancedColorGroups, draft, updateField),
                 },
               ]}
             />
-          </div>
+          </Flex>
         ) : null}
-      </div>
+      </Flex>
     );
   }
 
   if (section === 'typography') {
     return (
-      <div className="theme-studio__panel-stack">
+      <Flex vertical gap={8} className="theme-studio__panel-stack">
         <div className="theme-studio__group-card theme-studio__group-card_toolbar">
-          <div className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
-            <div>
+          <Flex className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
+            <Flex vertical gap={2} className="theme-studio__copy-stack">
               <Text strong>Primitive Type Seeds</Text>
               <Text type="secondary">
                 Font families, scale, and rhythm compile into semantic typography tokens.
               </Text>
-            </div>
-          </div>
+            </Flex>
+          </Flex>
           <div className="theme-studio__summary-grid theme-studio__summary-grid_compact">
             <div className="theme-studio__summary-card">
               <span>Sans</span>
@@ -259,22 +254,22 @@ export function ThemeStudioSidebarContent({
             </span>
           </div>
         </div>
-      </div>
+      </Flex>
     );
   }
 
   if (section === 'other') {
     return (
-      <div className="theme-studio__panel-stack">
+      <Flex vertical gap={8} className="theme-studio__panel-stack">
         <div className="theme-studio__group-card theme-studio__group-card_toolbar">
-          <div className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
-            <div>
+          <Flex className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
+            <Flex vertical gap={2} className="theme-studio__copy-stack">
               <Text strong>Primitive Scale & Effect Seeds</Text>
               <Text type="secondary">
                 Shape, density, and elevation seeds compile into control and component tokens.
               </Text>
-            </div>
-          </div>
+            </Flex>
+          </Flex>
           <div className="theme-studio__summary-grid theme-studio__summary-grid_compact">
             <div className="theme-studio__summary-card">
               <span>Radius</span>
@@ -324,11 +319,11 @@ export function ThemeStudioSidebarContent({
         </div>
 
         <div className="theme-studio__group-card">
-          <div className="theme-studio__section-header">
+          <Flex vertical gap={2} className="theme-studio__section-header">
             <Text strong>Density</Text>
             <Text type="secondary">Tune spacing and heights for fields, buttons, and cards.</Text>
-          </div>
-          <div className="theme-studio__group-fields">
+          </Flex>
+          <Flex vertical gap={8} className="theme-studio__group-fields">
             <Text className="theme-studio__subgroup-title">Fields</Text>
             <SliderField
               label="Field Height / Medium"
@@ -350,10 +345,10 @@ export function ThemeStudioSidebarContent({
                 {
                   key: 'field-density-advanced',
                   label: (
-                    <div className="theme-studio__section-header theme-studio__section-header_inline">
+                    <Flex vertical gap={2} className="theme-studio__section-header">
                       <Text strong>Advanced Sizes</Text>
                       <Text type="secondary">Small and large field density.</Text>
-                    </div>
+                    </Flex>
                   ),
                   children: (
                     <>
@@ -386,9 +381,9 @@ export function ThemeStudioSidebarContent({
                 },
               ]}
             />
-          </div>
+          </Flex>
 
-          <div className="theme-studio__group-fields">
+          <Flex vertical gap={8} className="theme-studio__group-fields">
             <Text className="theme-studio__subgroup-title">Buttons</Text>
             <SliderField
               label="Button Height / Medium"
@@ -410,10 +405,10 @@ export function ThemeStudioSidebarContent({
                 {
                   key: 'button-density-advanced',
                   label: (
-                    <div className="theme-studio__section-header theme-studio__section-header_inline">
+                    <Flex vertical gap={2} className="theme-studio__section-header">
                       <Text strong>Advanced Sizes</Text>
                       <Text type="secondary">Small and large button density.</Text>
-                    </div>
+                    </Flex>
                   ),
                   children: (
                     <>
@@ -446,9 +441,9 @@ export function ThemeStudioSidebarContent({
                 },
               ]}
             />
-          </div>
+          </Flex>
 
-          <div className="theme-studio__group-fields">
+          <Flex vertical gap={8} className="theme-studio__group-fields">
             <Text className="theme-studio__subgroup-title">Cards</Text>
             <SliderField
               label="Card Padding"
@@ -456,7 +451,7 @@ export function ThemeStudioSidebarContent({
               onChange={(next) => updateField('cardPadding', next)}
               config={{ min: 12, max: 40, step: 1, unit: 'px' }}
             />
-          </div>
+          </Flex>
         </div>
 
         <div className="theme-studio__group-card">
@@ -485,7 +480,7 @@ export function ThemeStudioSidebarContent({
             onChange={(next) => updateField('shadowFocus', next)}
           />
         </div>
-      </div>
+      </Flex>
     );
   }
 

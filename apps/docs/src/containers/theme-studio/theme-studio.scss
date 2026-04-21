@@ -38,8 +38,6 @@
 
 .theme-studio__topbar-actions,
 .theme-studio__sidebar,
-.theme-studio__panel-stack,
-.theme-studio__group-fields,
 .theme-studio__preview-stack,
 .theme-studio__tokens-list,
 .theme-studio__member-list,
@@ -147,34 +145,22 @@
 }
 
 .theme-studio__panel-stack {
-  gap: 8px;
   min-width: 0;
 }
 
-.theme-studio__group-section {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.theme-studio__copy-stack {
+  min-width: 0;
+}
+
+.theme-studio__copy-stack .ty-typography_secondary,
+.theme-studio__section-header .ty-typography_secondary {
+  display: block;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .theme-studio__section-header {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
   padding: 0 2px;
-}
-
-.theme-studio__section-header_inline {
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 0;
-}
-
-.theme-studio__section-header .ty-typography-text-secondary {
-  font-size: 12px;
-  line-height: 1.4;
 }
 
 .theme-studio__group-card {
@@ -193,7 +179,6 @@
 }
 
 .theme-studio__group-toolbar {
-  display: flex;
   justify-content: space-between;
   gap: 12px;
   align-items: center;
@@ -203,25 +188,13 @@
   justify-content: flex-start;
 }
 
-.theme-studio__group-toolbar .ty-typography-text-secondary {
-  display: block;
-  margin-top: 2px;
-  font-size: 12px;
+.theme-studio__group-toolbar .theme-studio__copy-stack {
+  flex: 1 1 auto;
 }
 
 .theme-studio__group-header {
+  min-width: 0;
   margin-bottom: 6px;
-}
-
-.theme-studio__group-header .ty-typography-text-secondary {
-  display: block;
-  margin-top: 2px;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-.theme-studio__group-fields {
-  gap: 8px;
 }
 
 .theme-studio__subgroup-title {
@@ -2246,17 +2219,20 @@
 
 .theme-studio__summary-grid_compact {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
   margin-top: 12px;
 }
 
 .theme-studio__summary-grid_compact .theme-studio__summary-card {
-  padding: 10px 12px;
+  padding: 10px;
   border-radius: 14px;
 }
 
 .theme-studio__summary-grid_compact .theme-studio__summary-card strong {
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
 }
 
 .theme-studio__palette-card {

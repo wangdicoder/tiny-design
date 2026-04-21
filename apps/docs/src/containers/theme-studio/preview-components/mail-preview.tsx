@@ -393,7 +393,7 @@ export function MailPreview(): React.ReactElement {
         </Card.Content>
       </Card>
 
-      <Split min={320} max={360} defaultSize="42%" className="theme-studio__mail-split">
+      <Split min={250} max={500} defaultSize="42%" className="theme-studio__mail-split">
         <Card className="theme-studio__mail-panel">
         <Card.Content>
           <Flex justify="space-between" className="theme-studio__mail-panel-head">
