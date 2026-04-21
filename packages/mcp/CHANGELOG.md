@@ -1,5 +1,13 @@
 # @tiny-design/mcp
 
+## 1.6.2
+
+### Patch Changes
+
+- Add seed-driven token foundations to `@tiny-design/tokens` with an internal `primitive -> semantic -> component` model, a shared `compile-brand-theme` runtime export, stricter build validation, and richer registry metadata including resolved token values for downstream tooling. - [#128](https://github.com/wangdicoder/tiny-design/pull/128) [`4444b58`](https://github.com/wangdicoder/tiny-design/commit/4444b585720bb5339d3b965dc4541fee305141ef)
+
+  Fix `@tiny-design/mcp` token extraction so MCP clients receive concrete resolved token values instead of unresolved token references.
+
 ## 1.6.1
 
 ### Patch Changes
