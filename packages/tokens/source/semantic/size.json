@@ -1,21 +1,21 @@
 {
   "height-sm": {
-    "$value": "24px",
+    "$value": "{seed.size.height.sm}",
     "$type": "dimension",
     "description": "Small control height."
   },
   "height-md": {
-    "$value": "35px",
+    "$value": "{seed.size.height.md}",
     "$type": "dimension",
     "description": "Medium control height."
   },
   "height-lg": {
-    "$value": "44px",
+    "$value": "{seed.size.height.lg}",
     "$type": "dimension",
     "description": "Large control height."
   },
   "border-radius": {
-    "$value": "6px",
+    "$value": "{seed.radius.base}",
     "$type": "dimension",
     "description": "Default border radius."
   }

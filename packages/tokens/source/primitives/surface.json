@@ -1,0 +1,112 @@
+{
+  "seed.surface.page": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "description": "Base page surface seed."
+  },
+  "seed.surface.container": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "description": "Base container surface seed."
+  },
+  "seed.surface.elevated": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "description": "Elevated surface seed."
+  },
+  "seed.surface.layout": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "description": "Layout surface seed."
+  },
+  "seed.surface.spotlight": {
+    "$value": "#f5f5f5",
+    "$type": "color",
+    "description": "Spotlight surface seed."
+  },
+  "seed.surface.disabled": {
+    "$value": "#f5f5f5",
+    "$type": "color",
+    "description": "Disabled surface seed."
+  },
+  "seed.surface.fill.base": {
+    "$value": "#fafafa",
+    "$type": "color",
+    "description": "Base fill surface seed."
+  },
+  "seed.surface.fill.secondary": {
+    "$value": "#f5f5f5",
+    "$type": "color",
+    "description": "Secondary fill surface seed."
+  },
+  "seed.surface.fill.tertiary": {
+    "$value": "#f0f0f0",
+    "$type": "color",
+    "description": "Tertiary fill surface seed."
+  },
+  "seed.text.base": {
+    "$value": "rgba(0, 0, 0, 0.85)",
+    "$type": "color",
+    "description": "Base text seed."
+  },
+  "seed.text.label": {
+    "$value": "rgba(0, 0, 0, 0.85)",
+    "$type": "color",
+    "description": "Label text seed."
+  },
+  "seed.text.secondary": {
+    "$value": "rgba(0, 0, 0, 0.65)",
+    "$type": "color",
+    "description": "Secondary text seed."
+  },
+  "seed.text.tertiary": {
+    "$value": "rgba(0, 0, 0, 0.45)",
+    "$type": "color",
+    "description": "Tertiary text seed."
+  },
+  "seed.text.heading": {
+    "$value": "rgba(0, 0, 0, 0.85)",
+    "$type": "color",
+    "description": "Heading text seed."
+  },
+  "seed.text.placeholder": {
+    "$value": "#bfbfbf",
+    "$type": "color",
+    "description": "Placeholder text seed."
+  },
+  "seed.text.quaternary": {
+    "$value": "rgba(0, 0, 0, 0.25)",
+    "$type": "color",
+    "description": "Quaternary text seed."
+  },
+  "seed.border.base": {
+    "$value": "#d9d9d9",
+    "$type": "color",
+    "description": "Base border seed."
+  },
+  "seed.border.light": {
+    "$value": "#f0f0f0",
+    "$type": "color",
+    "description": "Light border seed."
+  },
+  "seed.border.secondary": {
+    "$value": "#e8e8e8",
+    "$type": "color",
+    "description": "Secondary border seed."
+  },
+  "seed.border.button-default": {
+    "$value": "#d0d0d5",
+    "$type": "color",
+    "description": "Default button border seed."
+  },
+  "seed.overlay.backdrop": {
+    "$value": "rgba(0, 0, 0, 0.55)",
+    "$type": "color",
+    "description": "Overlay backdrop seed."
+  },
+  "seed.overlay.inverted": {
+    "$value": "rgba(255, 255, 255, 0.75)",
+    "$type": "color",
+    "description": "Inverted overlay seed."
+  }
+}

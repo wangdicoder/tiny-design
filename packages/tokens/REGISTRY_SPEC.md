@@ -41,6 +41,7 @@ The build step should generate:
   "description": "Primary button background color.",
   "source": "source/components/button.json",
   "defaultValue": "{color-primary}",
+  "resolvedValue": "#6e41bf",
   "fallback": "--ty-color-primary",
   "status": "active"
 }
@@ -76,6 +77,8 @@ The build step should generate:
   Relative path to the token source file.
 - `defaultValue`
   Unresolved default value from the source token document.
+- `resolvedValue`
+  Fully resolved default value after token references are expanded. This exists for downstream consumers that need actionable values instead of token-reference syntax.
 - `fallback`
   Recommended component style fallback target. This field is guidance metadata for component authors and docs tooling; it does not mean the build step will emit an automatic fallback chain in generated CSS.
 - `status`
@@ -122,6 +125,7 @@ Examples:
     "description": "Primary brand color.",
     "source": "source/semantic/colors.json",
     "defaultValue": "{color.brand.500}",
+    "resolvedValue": "#6e41bf",
     "status": "active"
   },
   {
@@ -134,6 +138,7 @@ Examples:
     "description": "Button border radius.",
     "source": "source/components/button.json",
     "defaultValue": "{border-radius}",
+    "resolvedValue": "0.3rem",
     "fallback": "--ty-border-radius",
     "status": "active"
   }

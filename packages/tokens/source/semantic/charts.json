@@ -1,26 +1,26 @@
 {
   "chart-1": {
-    "$value": "#6e41bf",
+    "$value": "{seed.brand.chart.1}",
     "$type": "color",
     "description": "Chart palette color 1."
   },
   "chart-2": {
-    "$value": "#1890ff",
+    "$value": "{seed.brand.chart.2}",
     "$type": "color",
     "description": "Chart palette color 2."
   },
   "chart-3": {
-    "$value": "#52c41a",
+    "$value": "{seed.brand.chart.3}",
     "$type": "color",
     "description": "Chart palette color 3."
   },
   "chart-4": {
-    "$value": "#ff9800",
+    "$value": "{seed.brand.chart.4}",
     "$type": "color",
     "description": "Chart palette color 4."
   },
   "chart-5": {
-    "$value": "#f44336",
+    "$value": "{seed.brand.chart.5}",
     "$type": "color",
     "description": "Chart palette color 5."
   }

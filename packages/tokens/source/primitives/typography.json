@@ -1,0 +1,77 @@
+{
+  "seed.font.family.sans": {
+    "$value": "-apple-system, blinkmacsystemfont, \"Segoe UI\", roboto, \"Helvetica Neue\", arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+    "$type": "font-family",
+    "description": "Base sans-serif font family seed."
+  },
+  "seed.font.family.monospace": {
+    "$value": "lucida console, consolas, monaco, andale mono, ubuntu mono, monospace",
+    "$type": "font-family",
+    "description": "Base monospace font family seed."
+  },
+  "seed.font.size.sm": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Small font size seed."
+  },
+  "seed.font.size.base": {
+    "$value": "14px",
+    "$type": "dimension",
+    "description": "Base font size seed."
+  },
+  "seed.font.size.lg": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Large font size seed."
+  },
+  "seed.font.weight.regular": {
+    "$value": "400",
+    "$type": "font-weight",
+    "description": "Regular font weight seed."
+  },
+  "seed.font.weight.medium": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Medium font weight seed."
+  },
+  "seed.font.weight.heading": {
+    "$value": "500",
+    "$type": "font-weight",
+    "description": "Heading font weight seed."
+  },
+  "seed.line.height.base": {
+    "$value": "1.5715",
+    "$type": "line-height",
+    "description": "Base line-height seed."
+  },
+  "seed.heading.size.h1": {
+    "$value": "2.5rem",
+    "$type": "dimension",
+    "description": "H1 heading size seed."
+  },
+  "seed.heading.size.h2": {
+    "$value": "2rem",
+    "$type": "dimension",
+    "description": "H2 heading size seed."
+  },
+  "seed.heading.size.h3": {
+    "$value": "1.75rem",
+    "$type": "dimension",
+    "description": "H3 heading size seed."
+  },
+  "seed.heading.size.h4": {
+    "$value": "1.5rem",
+    "$type": "dimension",
+    "description": "H4 heading size seed."
+  },
+  "seed.heading.size.h5": {
+    "$value": "1.25rem",
+    "$type": "dimension",
+    "description": "H5 heading size seed."
+  },
+  "seed.heading.size.h6": {
+    "$value": "1rem",
+    "$type": "dimension",
+    "description": "H6 heading size seed."
+  }
+}

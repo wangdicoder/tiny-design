@@ -1,266 +1,266 @@
 {
   "color-bg-container": {
-    "$value": "#ffffff",
+    "$value": "{seed.surface.container}",
     "$type": "color",
     "description": "Default container background color."
   },
   "color-bg": {
-    "$value": "#fff",
+    "$value": "{seed.surface.page}",
     "$type": "color",
     "description": "Page background color."
   },
   "color-bg-elevated": {
-    "$value": "#fff",
+    "$value": "{seed.surface.elevated}",
     "$type": "color",
     "description": "Elevated surface background color."
   },
   "color-bg-layout": {
-    "$value": "#fff",
+    "$value": "{seed.surface.layout}",
     "$type": "color",
     "description": "Layout background color."
   },
   "color-bg-spotlight": {
-    "$value": "#f5f5f5",
+    "$value": "{seed.surface.spotlight}",
     "$type": "color",
     "description": "Spotlight surface background color."
   },
   "color-bg-disabled": {
-    "$value": "#f5f5f5",
+    "$value": "{seed.surface.disabled}",
     "$type": "color",
     "description": "Disabled surface background color."
   },
   "color-fill": {
-    "$value": "#fafafa",
+    "$value": "{seed.surface.fill.base}",
     "$type": "color",
     "description": "Secondary filled surface color."
   },
   "color-text": {
-    "$value": "rgba(0, 0, 0, 0.85)",
+    "$value": "{seed.text.base}",
     "$type": "color",
     "description": "Default text color."
   },
   "color-text-label": {
-    "$value": "rgba(0, 0, 0, 0.85)",
+    "$value": "{seed.text.label}",
     "$type": "color",
     "description": "Label text color."
   },
   "color-text-secondary": {
-    "$value": "rgba(0, 0, 0, 0.65)",
+    "$value": "{seed.text.secondary}",
     "$type": "color",
     "description": "Secondary text color."
   },
   "color-text-tertiary": {
-    "$value": "rgba(0, 0, 0, 0.45)",
+    "$value": "{seed.text.tertiary}",
     "$type": "color",
     "description": "Tertiary text color."
   },
   "color-text-heading": {
-    "$value": "rgba(0, 0, 0, 0.85)",
+    "$value": "{seed.text.heading}",
     "$type": "color",
     "description": "Heading text color."
   },
   "color-text-placeholder": {
-    "$value": "#bfbfbf",
+    "$value": "{seed.text.placeholder}",
     "$type": "color",
     "description": "Placeholder text color."
   },
   "color-text-quaternary": {
-    "$value": "rgba(0, 0, 0, 0.25)",
+    "$value": "{seed.text.quaternary}",
     "$type": "color",
     "description": "Low-emphasis text color."
   },
   "color-border": {
-    "$value": "#d9d9d9",
+    "$value": "{seed.border.base}",
     "$type": "color",
     "description": "Default border color."
   },
   "color-border-light": {
-    "$value": "#f0f0f0",
+    "$value": "{seed.border.light}",
     "$type": "color",
     "description": "Light border color."
   },
   "color-border-secondary": {
-    "$value": "#e8e8e8",
+    "$value": "{seed.border.secondary}",
     "$type": "color",
     "description": "Secondary border color."
   },
   "color-border-btn-default": {
-    "$value": "#d0d0d5",
+    "$value": "{seed.border.button-default}",
     "$type": "color",
     "description": "Default button border color."
   },
   "color-primary": {
-    "$value": "#6e41bf",
+    "$value": "{seed.brand.primary}",
     "$type": "color",
     "description": "Primary brand color."
   },
   "color-primary-hover": {
-    "$value": "#8b62d0",
+    "$value": "{seed.brand.primary.hover}",
     "$type": "color",
     "description": "Primary hover color."
   },
   "color-primary-active": {
-    "$value": "#5a30a8",
+    "$value": "{seed.brand.primary.active}",
     "$type": "color",
     "description": "Primary active color."
   },
   "color-primary-bg": {
-    "$value": "#f3eefa",
+    "$value": "{seed.brand.primary.surface}",
     "$type": "color",
     "description": "Primary tinted background color."
   },
   "color-primary-border": {
-    "$value": "#c4a7e6",
+    "$value": "{seed.brand.primary.border}",
     "$type": "color",
     "description": "Primary border color."
   },
   "color-primary-bg-hover": {
-    "$value": "#ece3f7",
+    "$value": "{seed.brand.primary.surface-hover}",
     "$type": "color",
     "description": "Primary tinted background hover color."
   },
   "color-primary-text-hover": {
-    "$value": "#8b62d0",
+    "$value": "{seed.brand.primary.text-hover}",
     "$type": "color",
     "description": "Primary text hover color."
   },
   "color-info": {
-    "$value": "#1890ff",
+    "$value": "{seed.status.info}",
     "$type": "color",
     "description": "Info semantic color."
   },
   "color-info-bg": {
-    "$value": "#e6f7ff",
+    "$value": "{seed.status.info.bg}",
     "$type": "color",
     "description": "Info background color."
   },
   "color-info-border": {
-    "$value": "#91d5ff",
+    "$value": "{seed.status.info.border}",
     "$type": "color",
     "description": "Info border color."
   },
   "color-info-text": {
-    "$value": "#096dd9",
+    "$value": "{seed.status.info.text}",
     "$type": "color",
     "description": "Info text color."
   },
   "color-info-hover": {
-    "$value": "#40a9ff",
+    "$value": "{seed.status.info.hover}",
     "$type": "color",
     "description": "Info hover color."
   },
   "color-info-active": {
-    "$value": "#096dd9",
+    "$value": "{seed.status.info.active}",
     "$type": "color",
     "description": "Info active color."
   },
   "color-success": {
-    "$value": "#52c41a",
+    "$value": "{seed.status.success}",
     "$type": "color",
     "description": "Success semantic color."
   },
   "color-success-bg": {
-    "$value": "#f6ffed",
+    "$value": "{seed.status.success.bg}",
     "$type": "color",
     "description": "Success background color."
   },
   "color-success-border": {
-    "$value": "#b7eb8f",
+    "$value": "{seed.status.success.border}",
     "$type": "color",
     "description": "Success border color."
   },
   "color-success-text": {
-    "$value": "#49b10e",
+    "$value": "{seed.status.success.text}",
     "$type": "color",
     "description": "Success text color."
   },
   "color-success-hover": {
-    "$value": "#73d13d",
+    "$value": "{seed.status.success.hover}",
     "$type": "color",
     "description": "Success hover color."
   },
   "color-success-active": {
-    "$value": "#389e0d",
+    "$value": "{seed.status.success.active}",
     "$type": "color",
     "description": "Success active color."
   },
   "color-warning": {
-    "$value": "#ff9800",
+    "$value": "{seed.status.warning}",
     "$type": "color",
     "description": "Warning semantic color."
   },
   "color-warning-bg": {
-    "$value": "#fffbe6",
+    "$value": "{seed.status.warning.bg}",
     "$type": "color",
     "description": "Warning background color."
   },
   "color-warning-border": {
-    "$value": "#ffe58f",
+    "$value": "{seed.status.warning.border}",
     "$type": "color",
     "description": "Warning border color."
   },
   "color-warning-text": {
-    "$value": "#d48806",
+    "$value": "{seed.status.warning.text}",
     "$type": "color",
     "description": "Warning text color."
   },
   "color-warning-hover": {
-    "$value": "#ffad33",
+    "$value": "{seed.status.warning.hover}",
     "$type": "color",
     "description": "Warning hover color."
   },
   "color-warning-active": {
-    "$value": "#e68a00",
+    "$value": "{seed.status.warning.active}",
     "$type": "color",
     "description": "Warning active color."
   },
   "color-danger": {
-    "$value": "#f44336",
+    "$value": "{seed.status.danger}",
     "$type": "color",
     "description": "Danger semantic color."
   },
   "color-danger-bg": {
-    "$value": "#fff1f0",
+    "$value": "{seed.status.danger.bg}",
     "$type": "color",
     "description": "Danger background color."
   },
   "color-danger-border": {
-    "$value": "#ffa39e",
+    "$value": "{seed.status.danger.border}",
     "$type": "color",
     "description": "Danger border color."
   },
   "color-danger-text": {
-    "$value": "#cf1322",
+    "$value": "{seed.status.danger.text}",
     "$type": "color",
     "description": "Danger text color."
   },
   "color-danger-hover": {
-    "$value": "#ff7875",
+    "$value": "{seed.status.danger.hover}",
     "$type": "color",
     "description": "Danger hover color."
   },
   "color-danger-active": {
-    "$value": "#cf1322",
+    "$value": "{seed.status.danger.active}",
     "$type": "color",
     "description": "Danger active color."
   },
   "color-fill-secondary": {
-    "$value": "#f5f5f5",
+    "$value": "{seed.surface.fill.secondary}",
     "$type": "color",
     "description": "Secondary fill color."
   },
   "color-fill-tertiary": {
-    "$value": "#f0f0f0",
+    "$value": "{seed.surface.fill.tertiary}",
     "$type": "color",
     "description": "Tertiary fill color."
   },
   "color-overlay-bg": {
-    "$value": "rgba(0, 0, 0, 0.55)",
+    "$value": "{seed.overlay.backdrop}",
     "$type": "color",
     "description": "Overlay background color."
   },
   "color-overlay-inverted": {
-    "$value": "rgba(255, 255, 255, 0.75)",
+    "$value": "{seed.overlay.inverted}",
     "$type": "color",
     "description": "Inverted overlay color."
   }

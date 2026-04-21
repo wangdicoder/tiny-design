@@ -31,6 +31,11 @@
       "import": "./runtime/resolve-theme.mjs",
       "require": "./runtime/resolve-theme.cjs"
     },
+    "./compile-brand-theme": {
+      "types": "./runtime/compile-brand-theme.d.ts",
+      "import": "./runtime/compile-brand-theme.mjs",
+      "require": "./runtime/compile-brand-theme.cjs"
+    },
     "./validate-theme": {
       "types": "./runtime/validate-theme.d.ts",
       "import": "./runtime/validate-theme.mjs",

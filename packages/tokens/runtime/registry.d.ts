@@ -10,7 +10,8 @@ declare const registry: {
     group?: string;
     description?: string;
     source: string;
-    defaultValue?: string;
+    defaultValue: string | number;
+    resolvedValue: string | number;
     fallback?: string;
     status: string;
   }>;
