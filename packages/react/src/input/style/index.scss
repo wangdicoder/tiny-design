@@ -8,7 +8,7 @@
   color: var(--ty-input-color, var(--ty-color-text));
   height: var(--ty-input-height-current, var(--ty-input-height-md, var(--ty-height-md)));
   padding-inline: var(--ty-input-padding-inline-current, var(--ty-input-padding-inline-md, #{$input-md-padding}));
-  gap: var(--ty-input-affix-gap, var(--ty-spacing-2));
+  gap: var(--ty-input-affix-gap, var(--ty-spacing-3));
   border: 1px solid var(--ty-input-border);
   border-radius: var(--ty-input-radius, var(--ty-border-radius));
   background-color: var(--ty-input-bg, var(--ty-color-bg-container));

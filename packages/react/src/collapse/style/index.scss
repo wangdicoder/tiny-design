@@ -30,9 +30,9 @@
   --ty-collapse-body-padding-block: 16px;
   --ty-collapse-font-size: 14px;
   --ty-collapse-line-height: 1.5;
-  --ty-collapse-focus-ring: var(--ty-control-outline, var(--ty-color-primary));
-  --ty-collapse-motion-duration: var(--ty-motion-duration-mid, 240ms);
-  --ty-collapse-motion-easing: var(--ty-motion-ease-standard, ease);
+  --ty-collapse-focus-ring: var(--ty-color-primary-border);
+  --ty-collapse-motion-duration: 240ms;
+  --ty-collapse-motion-easing: ease;
 
   box-sizing: border-box;
   border: 1px solid var(--ty-collapse-border-color);

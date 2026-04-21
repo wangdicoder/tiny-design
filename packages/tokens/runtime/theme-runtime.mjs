@@ -212,6 +212,35 @@ function validateTokenSection(section, category, registryMaps, errors, warnings,
         warnings.push(message);
       }
     }
+
+    if (typeof value !== 'string') {
+      continue;
+    }
+
+    const referenceMatch = value.match(/^\{([^}]+)\}$/);
+    if (!referenceMatch) {
+      continue;
+    }
+
+    const referenceToken = registryMaps.byKey.get(referenceMatch[1]);
+    if (!referenceToken) {
+      const message = `Theme token "${key}" references unknown token "${referenceMatch[1]}".`;
+      if (strict) {
+        errors.push(message);
+      } else {
+        warnings.push(message);
+      }
+      continue;
+    }
+
+    if (referenceToken.category === 'primitive' || referenceToken.status === 'internal') {
+      const message = `Theme token "${key}" cannot reference internal primitive token "${referenceMatch[1]}".`;
+      if (strict) {
+        errors.push(message);
+      } else {
+        warnings.push(message);
+      }
+    }
   }
 }
 

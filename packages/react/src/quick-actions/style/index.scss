@@ -23,7 +23,7 @@
       var(--ty-quick-actions-bg);
     color: var(--ty-quick-actions-color);
     font-size: var(--ty-quick-actions-fab-font-size);
-    box-shadow: var(--ty-shadow);
+    box-shadow: var(--ty-shadow-card);
     cursor: pointer;
     transition:
       transform var(--ty-quick-actions-button-transition-duration) ease,
@@ -37,7 +37,7 @@
     }
 
     &:focus-visible {
-      box-shadow: var(--ty-quick-actions-focus-ring), var(--ty-shadow);
+      box-shadow: var(--ty-quick-actions-focus-ring), var(--ty-shadow-card);
     }
 
     &_open {
@@ -192,7 +192,7 @@
         --ty-quick-actions-action-bg-hover,
         color-mix(in srgb, var(--ty-color-primary) 8%, var(--ty-color-bg-container))
       );
-      box-shadow: var(--ty-shadow);
+      box-shadow: var(--ty-shadow-card);
       transform: translateY(-1px);
     }
 

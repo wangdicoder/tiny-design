@@ -1,12 +1,12 @@
 import React from 'react';
 import { Collapse, Select, Text } from '@tiny-design/react';
-import { COLOR_GROUPS, CORE_COLOR_GROUP_TITLES, FONT_OPTIONS, MONO_OPTIONS } from './editor-config';
+import { FONT_OPTIONS, MONO_OPTIONS, SEED_COLOR_GROUPS } from './editor-config';
 import { ColorField, ShadowField, SliderField, TextField } from './editor-fields';
 import type {
   FieldKey,
   ThemeEditorDraft,
   ThemeEditorSection,
-  ThemeEditorColorGroup,
+  ThemeEditorSeedGroup,
 } from './types';
 
 const CONTROL_SHADOW_FALLBACK = {
@@ -37,7 +37,7 @@ const FOCUS_SHADOW_FALLBACK = {
 };
 
 function renderColorGroups(
-  groups: ThemeEditorColorGroup[],
+  groups: ThemeEditorSeedGroup[],
   draft: ThemeEditorDraft,
   updateField: (key: FieldKey, value: string) => void
 ): React.ReactElement[] {
@@ -45,6 +45,7 @@ function renderColorGroups(
     <div key={group.title} className="theme-studio__group-card">
       <div className="theme-studio__group-header">
         <Text strong>{group.title}</Text>
+        {group.description ? <Text type="secondary">{group.description}</Text> : null}
       </div>
       <div className="theme-studio__group-fields">
         {group.fields.map((field) => (
@@ -69,18 +70,43 @@ export function ThemeStudioSidebarContent({
   draft: ThemeEditorDraft;
   updateField: (key: FieldKey, value: string) => void;
 }): React.ReactElement | null {
-  const coreColorGroups = COLOR_GROUPS.filter((group) => CORE_COLOR_GROUP_TITLES.has(group.title));
-  const advancedColorGroups = COLOR_GROUPS.filter(
-    (group) => !CORE_COLOR_GROUP_TITLES.has(group.title)
-  );
+  const coreColorGroups = SEED_COLOR_GROUPS.filter((group) => group.tier !== 'advanced');
+  const advancedColorGroups = SEED_COLOR_GROUPS.filter((group) => group.tier === 'advanced');
 
   if (section === 'colors') {
     return (
       <div className="theme-studio__panel-stack">
+        <div className="theme-studio__group-card theme-studio__group-card_toolbar">
+          <div className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
+            <div>
+              <Text strong>Primitive Color Seeds</Text>
+              <Text type="secondary">
+                Edit the brand seed layer directly. These values compile into semantic and
+                component color tokens.
+              </Text>
+            </div>
+          </div>
+          <div className="theme-studio__summary-grid theme-studio__summary-grid_compact">
+            <div className="theme-studio__summary-card">
+              <span>Layer 1</span>
+              <strong>Seeds</strong>
+            </div>
+            <div className="theme-studio__summary-card">
+              <span>Layer 2</span>
+              <strong>Semantic</strong>
+            </div>
+            <div className="theme-studio__summary-card">
+              <span>Layer 3</span>
+              <strong>Components</strong>
+            </div>
+          </div>
+        </div>
         <div className="theme-studio__group-section">
           <div className="theme-studio__section-header">
-            <Text strong>Core Colors</Text>
-            <Text type="secondary">Start with brand, surfaces, feedback, and focus.</Text>
+            <Text strong>Core Seed Groups</Text>
+            <Text type="secondary">
+              Start with brand, surfaces, feedback, and interaction primitives.
+            </Text>
           </div>
           {renderColorGroups(coreColorGroups, draft, updateField)}
         </div>
@@ -95,8 +121,8 @@ export function ThemeStudioSidebarContent({
                   key: 'advanced-colors',
                   label: (
                     <div className="theme-studio__section-header theme-studio__section-header_inline">
-                      <Text strong>Advanced Tokens</Text>
-                      <Text type="secondary">Card, popover, sidebar, chart.</Text>
+                      <Text strong>Advanced Seed Groups</Text>
+                      <Text type="secondary">Shell, charts, and specialized palettes.</Text>
                     </div>
                   ),
                   children: renderColorGroups(advancedColorGroups, draft, updateField),
@@ -115,8 +141,10 @@ export function ThemeStudioSidebarContent({
         <div className="theme-studio__group-card theme-studio__group-card_toolbar">
           <div className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
             <div>
-              <Text strong>Typography System</Text>
-              <Text type="secondary">Font, scale, rhythm.</Text>
+              <Text strong>Primitive Type Seeds</Text>
+              <Text type="secondary">
+                Font families, scale, and rhythm compile into semantic typography tokens.
+              </Text>
             </div>
           </div>
           <div className="theme-studio__summary-grid theme-studio__summary-grid_compact">
@@ -241,8 +269,10 @@ export function ThemeStudioSidebarContent({
         <div className="theme-studio__group-card theme-studio__group-card_toolbar">
           <div className="theme-studio__group-toolbar theme-studio__group-toolbar_start">
             <div>
-              <Text strong>Surface & Shape</Text>
-              <Text type="secondary">Corners, density, elevation.</Text>
+              <Text strong>Primitive Scale & Effect Seeds</Text>
+              <Text type="secondary">
+                Shape, density, and elevation seeds compile into control and component tokens.
+              </Text>
             </div>
           </div>
           <div className="theme-studio__summary-grid theme-studio__summary-grid_compact">

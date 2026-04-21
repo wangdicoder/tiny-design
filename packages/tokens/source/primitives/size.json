@@ -1,0 +1,67 @@
+{
+  "seed.space.base": {
+    "$value": "1rem",
+    "$type": "dimension",
+    "description": "Base spacing seed."
+  },
+  "seed.space.3": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Spacing scale seed 3."
+  },
+  "seed.space.4": {
+    "$value": "12px",
+    "$type": "dimension",
+    "description": "Spacing scale seed 4."
+  },
+  "seed.space.5": {
+    "$value": "16px",
+    "$type": "dimension",
+    "description": "Spacing scale seed 5."
+  },
+  "seed.size.height.sm": {
+    "$value": "24px",
+    "$type": "dimension",
+    "description": "Small height seed."
+  },
+  "seed.size.height.md": {
+    "$value": "35px",
+    "$type": "dimension",
+    "description": "Medium height seed."
+  },
+  "seed.size.height.lg": {
+    "$value": "44px",
+    "$type": "dimension",
+    "description": "Large height seed."
+  },
+  "seed.radius.base": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Base radius seed."
+  },
+  "seed.gap.control.sm": {
+    "$value": "4px",
+    "$type": "dimension",
+    "description": "Small control gap seed."
+  },
+  "seed.gap.control.md": {
+    "$value": "6px",
+    "$type": "dimension",
+    "description": "Medium control gap seed."
+  },
+  "seed.gap.control.lg": {
+    "$value": "8px",
+    "$type": "dimension",
+    "description": "Large control gap seed."
+  },
+  "seed.border.width.base": {
+    "$value": "1px",
+    "$type": "dimension",
+    "description": "Base border width seed."
+  },
+  "seed.layer.focus": {
+    "$value": "1",
+    "$type": "number",
+    "description": "Focused interactive layer seed."
+  }
+}

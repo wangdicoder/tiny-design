@@ -38,7 +38,7 @@ $input-md-padding: var(--ty-input-padding-inline-md, var(--ty-control-padding-in
 $input-lg-padding: var(--ty-input-padding-inline-lg, var(--ty-control-padding-inline-lg)) !default;
 
 // Menu
-$menu-item-padding-vertical: var(--ty-menu-item-padding-vertical) !default;
+$menu-item-padding-vertical: var(--ty-menu-item-padding-vertical, var(--ty-menu-item-padding-block)) !default;
 
 // Native Select
 $native-select-sm-padding: var(--ty-native-select-sm-padding) !default;
@@ -53,7 +53,7 @@ $notification-margin: var(--ty-notification-margin) !default;
 $popover-arrow-size: var(--ty-popover-arrow-size) !default;
 
 // Select
-$select-selected-font-weight: var(--ty-select-selected-font-weight) !default;
+$select-selected-font-weight: var(--ty-select-selected-font-weight, 500) !default;
 $select-dropdown-max-height: var(--ty-select-dropdown-max-height) !default;
 $select-dropdown-shadow: var(--ty-select-dropdown-shadow) !default;
 
@@ -68,9 +68,9 @@ $steps-title-font-size: var(--ty-steps-title-font-size) !default;
 $strength-indicator-border-radius: var(--ty-strength-indicator-border-radius) !default;
 
 // Switch
-$switch-md-font-size: var(--ty-switch-md-font-size) !default;
-$switch-sm-font-size: var(--ty-switch-sm-font-size) !default;
-$switch-lg-font-size: var(--ty-switch-lg-font-size) !default;
+$switch-md-font-size: var(--ty-switch-md-font-size, var(--ty-switch-font-size-md)) !default;
+$switch-sm-font-size: var(--ty-switch-sm-font-size, var(--ty-switch-font-size-sm)) !default;
+$switch-lg-font-size: var(--ty-switch-lg-font-size, var(--ty-switch-font-size-lg)) !default;
 
 // Textarea
 $textarea-padding: var(--ty-textarea-padding) !default;

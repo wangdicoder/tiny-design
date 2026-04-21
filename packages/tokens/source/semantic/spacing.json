@@ -1,21 +1,21 @@
 {
   "spacer": {
-    "$value": "1rem",
+    "$value": "{seed.space.base}",
     "$type": "dimension",
     "description": "Base spacing unit."
   },
   "spacing-3": {
-    "$value": "8px",
+    "$value": "{seed.space.3}",
     "$type": "dimension",
     "description": "Spacing scale step 3."
   },
   "spacing-4": {
-    "$value": "12px",
+    "$value": "{seed.space.4}",
     "$type": "dimension",
     "description": "Spacing scale step 4."
   },
   "spacing-5": {
-    "$value": "16px",
+    "$value": "{seed.space.5}",
     "$type": "dimension",
     "description": "Spacing scale step 5."
   }

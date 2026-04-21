@@ -1,0 +1,42 @@
+{
+  "seed.shadow.control": {
+    "$value": "none",
+    "$type": "shadow",
+    "description": "Control elevation seed."
+  },
+  "seed.shadow.button": {
+    "$value": "inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)",
+    "$type": "shadow",
+    "description": "Button elevation seed."
+  },
+  "seed.shadow.card": {
+    "$value": "0 1px 6px rgba(0, 0, 0, 0.12)",
+    "$type": "shadow",
+    "description": "Card elevation seed."
+  },
+  "seed.shadow.focus": {
+    "$value": "0 0 0 3px rgba(110, 65, 191, 0.2)",
+    "$type": "shadow",
+    "description": "Focus ring shadow seed."
+  },
+  "seed.shadow.lg": {
+    "$value": "0 1rem 3rem rgba(0, 0, 0, 0.175)",
+    "$type": "shadow",
+    "description": "Large elevation seed."
+  },
+  "seed.shadow.modal": {
+    "$value": "0 4px 12px rgba(0, 0, 0, 0.15)",
+    "$type": "shadow",
+    "description": "Modal elevation seed."
+  },
+  "seed.shadow.popup": {
+    "$value": "0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05)",
+    "$type": "shadow",
+    "description": "Popup elevation seed."
+  },
+  "seed.shadow.sm": {
+    "$value": "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)",
+    "$type": "shadow",
+    "description": "Small elevation seed."
+  }
+}

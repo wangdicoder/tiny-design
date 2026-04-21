@@ -46,7 +46,7 @@ const ThemeStudioPage = (): React.ReactElement => {
   const [codeVisible, setCodeVisible] = useState(false);
   const [importText, setImportText] = useState('');
   const [importError, setImportError] = useState<string | null>(null);
-  const [status, setStatus] = useState<string>('Editing local draft');
+  const [status, setStatus] = useState<string>('Editing local seed draft');
   const globalMode: ThemeMode = resolvedTheme === 'dark' ? 'dark' : 'light';
 
   useEffect(() => {
@@ -54,6 +54,20 @@ const ThemeStudioPage = (): React.ReactElement => {
   }, [draft]);
 
   const themeDocument = useMemo(() => buildThemeDocumentFromDraft(draft), [draft]);
+  const seedJson = useMemo(
+    () =>
+      JSON.stringify(
+        {
+          meta: draft.meta,
+          mode: draft.mode,
+          presetId: draft.presetId,
+          fields: draft.fields,
+        },
+        null,
+        2
+      ),
+    [draft]
+  );
   const themeJson = useMemo(() => generateThemeDocumentJSON(themeDocument), [themeDocument]);
   const cssVars = useMemo(() => generateThemeCssVariables(themeDocument), [themeDocument]);
   const changedTokens = useMemo(() => compareThemeAgainstBase(themeDocument), [themeDocument]);
@@ -105,13 +119,13 @@ const ThemeStudioPage = (): React.ReactElement => {
 
   const resetToPreset = () => {
     setDraft((current) => applyPresetToDraft(current.presetId, current));
-    setStatus('Reset to preset defaults');
+    setStatus('Reset seed draft to preset defaults');
   };
 
   const handlePresetChange = (presetId: string) => {
     setDraft((current) => applyPresetToDraft(presetId, current));
     setStatus(
-      `Applied ${THEME_EDITOR_PRESETS.find((preset) => preset.id === presetId)?.name ?? 'preset'}`
+      `Applied ${THEME_EDITOR_PRESETS.find((preset) => preset.id === presetId)?.name ?? 'preset'} seed preset`
     );
   };
 
@@ -129,8 +143,8 @@ const ThemeStudioPage = (): React.ReactElement => {
       setImportError(null);
       setStatus(
         validation.warnings.length > 0
-          ? 'Imported theme document with validation warnings'
-          : 'Imported theme document'
+          ? 'Imported theme document and remapped it into seed groups with validation warnings'
+          : 'Imported theme document and remapped it into seed groups'
       );
     } catch {
       setImportError('Invalid theme document JSON');
@@ -253,7 +267,8 @@ const ThemeStudioPage = (): React.ReactElement => {
               Paste a Tiny theme document JSON export to replace the current global theme.
             </Paragraph>
             <Text type="secondary">
-              Preset selection and all editor controls will sync to the imported values.
+              The studio will map semantic and component token overrides back into the seed groups
+              shown in the editor.
             </Text>
           </div>
           <Textarea
@@ -275,7 +290,9 @@ const ThemeStudioPage = (): React.ReactElement => {
           bodyStyle={{ maxHeight: 'min(74vh, 760px)', overflow: 'auto' }}
           cancelText="Close"
           confirmText={
-            draft.activeCodeView === 'json'
+            draft.activeCodeView === 'seeds'
+              ? 'Copy Seed JSON'
+              : draft.activeCodeView === 'json'
               ? 'Copy JSON'
               : draft.activeCodeView === 'css'
                 ? 'Copy CSS'
@@ -285,7 +302,9 @@ const ThemeStudioPage = (): React.ReactElement => {
             draft.activeCodeView === 'tokens' ? { style: { display: 'none' } } : undefined
           }
           onConfirm={
-            draft.activeCodeView === 'json'
+            draft.activeCodeView === 'seeds'
+              ? () => handleCopy(seedJson, 'Seed JSON')
+              : draft.activeCodeView === 'json'
               ? () => handleCopy(themeJson, 'Theme JSON')
               : draft.activeCodeView === 'css'
                 ? () => handleCopy(cssVars, 'CSS variables')
@@ -296,7 +315,7 @@ const ThemeStudioPage = (): React.ReactElement => {
             <div>
               <Text strong>Output</Text>
               <Text type="secondary">
-                {activePreset.name} · {status}
+                {activePreset.name} · {status} · seed draft compiles to theme JSON and CSS vars
               </Text>
             </div>
             <Segmented
@@ -307,6 +326,9 @@ const ThemeStudioPage = (): React.ReactElement => {
               }
             />
           </div>
+          {draft.activeCodeView === 'seeds' ? (
+            <pre className="theme-studio__code-block">{seedJson}</pre>
+          ) : null}
           {draft.activeCodeView === 'json' ? (
             <pre className="theme-studio__code-block">{themeJson}</pre>
           ) : null}

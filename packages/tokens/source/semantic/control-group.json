@@ -5,7 +5,7 @@
     "description": "Radius applied to the outer corners of grouped controls."
   },
   "control-group.border-width": {
-    "$value": "1px",
+    "$value": "{seed.border.width.base}",
     "$type": "dimension",
     "description": "Shared border width used when attaching grouped controls."
   },
@@ -15,7 +15,7 @@
     "description": "Divider color between grouped controls."
   },
   "control-group.focus-z-index": {
-    "$value": "1",
+    "$value": "{seed.layer.focus}",
     "$type": "number",
     "description": "Stacking level for hovered or focused grouped controls."
   }

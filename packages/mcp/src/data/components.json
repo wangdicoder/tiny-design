@@ -1061,7 +1061,7 @@
       },
       {
         "name": "CardMode",
-        "code": "import React from 'react';\nimport { Calendar } from '@tiny-design/react';\n\nexport default function CardModeDemo() {\n  const [value, setValue] = React.useState(new Date());\n\n  return (\n    <div>\n      <style>{`.weekend-cell.ty-calendar__cell_in-view { color: var(--ty-color-error, #e5484d); }`}</style>\n      <p style={{ marginBottom: 8, fontSize: 13, color: '#666' }}>\n        Use arrow keys to navigate, Enter to select, Escape to reset focus.\n      </p>\n      <Calendar\n        value={value}\n        onChange={(date) => setValue(date)}\n        fullscreen={false}\n        cellClassName={(date) =>\n          date.getDay() === 0 || date.getDay() === 6 ? 'weekend-cell' : undefined\n        }\n      />\n    </div>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Calendar } from '@tiny-design/react';\n\nexport default function CardModeDemo() {\n  const [value, setValue] = React.useState(new Date());\n\n  return (\n    <div>\n      <style>{`.weekend-cell.ty-calendar__cell_in-view { color: var(--ty-color-danger, #e5484d); }`}</style>\n      <p style={{ marginBottom: 8, fontSize: 13, color: '#666' }}>\n        Use arrow keys to navigate, Enter to select, Escape to reset focus.\n      </p>\n      <Calendar\n        value={value}\n        onChange={(date) => setValue(date)}\n        fullscreen={false}\n        cellClassName={(date) =>\n          date.getDay() === 0 || date.getDay() === 6 ? 'weekend-cell' : undefined\n        }\n      />\n    </div>\n  );\n}\n"
       },
       {
         "name": "DotIndicator",
@@ -1879,7 +1879,7 @@
       },
       {
         "name": "Oklch",
-        "code": "import React from 'react';\nimport ColorPicker from '../index';\nimport type { ColorChangeMeta, ColorFormat } from '../types';\n\nexport default function OklchDemo() {\n  const format: ColorFormat = 'oklch';\n  const [color, setColor] = React.useState('oklch(0.667 0.178 258.4)');\n  const [meta, setMeta] = React.useState<ColorChangeMeta | null>(null);\n\n  return (\n    <div style={{ display: 'grid', gap: 12 }}>\n      <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>\n        <ColorPicker\n          value={color}\n          format={format}\n          formats={['hex', 'rgb', 'oklch']}\n          onChange={(next: string, nextMeta: ColorChangeMeta) => {\n            setColor(next);\n            setMeta(nextMeta);\n          }}\n        />\n        <span>Value: {color}</span>\n      </div>\n      <pre style={{ margin: 0, padding: 12, fontSize: 12, borderRadius: 8, background: 'var(--ty-color-fill-2, rgba(0,0,0,0.04))' }}>\n        {JSON.stringify(meta, null, 2)}\n      </pre>\n    </div>\n  );\n}\n"
+        "code": "import React from 'react';\nimport ColorPicker from '../index';\nimport type { ColorChangeMeta, ColorFormat } from '../types';\n\nexport default function OklchDemo() {\n  const format: ColorFormat = 'oklch';\n  const [color, setColor] = React.useState('oklch(0.667 0.178 258.4)');\n  const [meta, setMeta] = React.useState<ColorChangeMeta | null>(null);\n\n  return (\n    <div style={{ display: 'grid', gap: 12 }}>\n      <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>\n        <ColorPicker\n          value={color}\n          format={format}\n          formats={['hex', 'rgb', 'oklch']}\n          onChange={(next: string, nextMeta: ColorChangeMeta) => {\n            setColor(next);\n            setMeta(nextMeta);\n          }}\n        />\n        <span>Value: {color}</span>\n      </div>\n      <pre style={{ margin: 0, padding: 12, fontSize: 12, borderRadius: 8, background: 'var(--ty-color-fill-secondary, rgba(0,0,0,0.04))' }}>\n        {JSON.stringify(meta, null, 2)}\n      </pre>\n    </div>\n  );\n}\n"
       },
       {
         "name": "Trigger",
@@ -2354,7 +2354,7 @@
     "demos": [
       {
         "name": "Basic",
-        "code": "import React from 'react';\nimport { Button, Descriptions, Tag } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <Descriptions\n      title=\"Workspace Profile\"\n      extra={<Button size=\"sm\" type=\"primary\">Edit</Button>}\n      columns={2}\n      footer={<span style={{ color: 'var(--ty-color-text-3)' }}>Last synced 2 minutes ago</span>}>\n      <Descriptions.Item label=\"Name\">Tiny Studio</Descriptions.Item>\n      <Descriptions.Item label=\"Region\">Australia Southeast</Descriptions.Item>\n      <Descriptions.Item label=\"Owner\" extra={<Tag size=\"sm\">Core</Tag>}>\n        Product Ops\n      </Descriptions.Item>\n      <Descriptions.Item label=\"Website\">tiny.design</Descriptions.Item>\n      <Descriptions.Item label=\"Summary\" span=\"fill\">\n        Shared component workspace for tokens, docs, charts, and platform-specific UI packages.\n      </Descriptions.Item>\n    </Descriptions>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Button, Descriptions, Tag } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <Descriptions\n      title=\"Workspace Profile\"\n      extra={<Button size=\"sm\" type=\"primary\">Edit</Button>}\n      columns={2}\n      footer={<span style={{ color: 'var(--ty-color-text-tertiary)' }}>Last synced 2 minutes ago</span>}>\n      <Descriptions.Item label=\"Name\">Tiny Studio</Descriptions.Item>\n      <Descriptions.Item label=\"Region\">Australia Southeast</Descriptions.Item>\n      <Descriptions.Item label=\"Owner\" extra={<Tag size=\"sm\">Core</Tag>}>\n        Product Ops\n      </Descriptions.Item>\n      <Descriptions.Item label=\"Website\">tiny.design</Descriptions.Item>\n      <Descriptions.Item label=\"Summary\" span=\"fill\">\n        Shared component workspace for tokens, docs, charts, and platform-specific UI packages.\n      </Descriptions.Item>\n    </Descriptions>\n  );\n}\n"
       },
       {
         "name": "Border",
@@ -4246,19 +4246,19 @@
     "demos": [
       {
         "name": "basic",
-        "code": "import React from 'react';\nimport { Marquee } from '@tiny-design/react';\n\nconst itemStyle: React.CSSProperties = {\n  flexShrink: 0,\n  padding: '12px 24px',\n  borderRadius: 8,\n  background: 'var(--ty-color-bg-component)',\n  border: '1px solid var(--ty-color-border-secondary)',\n  whiteSpace: 'nowrap',\n};\n\nexport default function BasicDemo() {\n  return (\n    <Marquee fade>\n      {Array.from({ length: 8 }, (_, i) => (\n        <div key={i} style={itemStyle}>\n          Item {i + 1}\n        </div>\n      ))}\n    </Marquee>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Marquee } from '@tiny-design/react';\n\nconst itemStyle: React.CSSProperties = {\n  flexShrink: 0,\n  padding: '12px 24px',\n  borderRadius: 8,\n  background: 'var(--ty-color-bg-container)',\n  border: '1px solid var(--ty-color-border-secondary)',\n  whiteSpace: 'nowrap',\n};\n\nexport default function BasicDemo() {\n  return (\n    <Marquee fade>\n      {Array.from({ length: 8 }, (_, i) => (\n        <div key={i} style={itemStyle}>\n          Item {i + 1}\n        </div>\n      ))}\n    </Marquee>\n  );\n}\n"
       },
       {
         "name": "cards",
-        "code": "import React from 'react';\nimport { Marquee } from '@tiny-design/react';\n\nconst cardStyle: React.CSSProperties = {\n  flexShrink: 0,\n  width: 200,\n  padding: 16,\n  borderRadius: 12,\n  background: 'var(--ty-color-bg-component)',\n  border: '1px solid var(--ty-color-border-secondary)',\n};\n\nconst avatarStyle: React.CSSProperties = {\n  width: 40,\n  height: 40,\n  borderRadius: '50%',\n  background: 'var(--ty-color-primary)',\n  opacity: 0.2,\n};\n\nconst nameStyle: React.CSSProperties = {\n  height: 12,\n  width: '60%',\n  borderRadius: 6,\n  background: 'var(--ty-color-text-secondary)',\n  opacity: 0.2,\n  marginTop: 12,\n};\n\nconst textStyle: React.CSSProperties = {\n  height: 8,\n  borderRadius: 4,\n  background: 'var(--ty-color-text-secondary)',\n  opacity: 0.1,\n  marginTop: 8,\n};\n\nexport default function CardsDemo() {\n  return (\n    <Marquee fade duration={40} gap={20}>\n      {Array.from({ length: 6 }, (_, i) => (\n        <div key={i} style={cardStyle}>\n          <div style={avatarStyle} />\n          <div style={nameStyle} />\n          <div style={textStyle} />\n          <div style={{ ...textStyle, width: '80%' }} />\n          <div style={{ ...textStyle, width: '45%' }} />\n        </div>\n      ))}\n    </Marquee>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Marquee } from '@tiny-design/react';\n\nconst cardStyle: React.CSSProperties = {\n  flexShrink: 0,\n  width: 200,\n  padding: 16,\n  borderRadius: 12,\n  background: 'var(--ty-color-bg-container)',\n  border: '1px solid var(--ty-color-border-secondary)',\n};\n\nconst avatarStyle: React.CSSProperties = {\n  width: 40,\n  height: 40,\n  borderRadius: '50%',\n  background: 'var(--ty-color-primary)',\n  opacity: 0.2,\n};\n\nconst nameStyle: React.CSSProperties = {\n  height: 12,\n  width: '60%',\n  borderRadius: 6,\n  background: 'var(--ty-color-text-secondary)',\n  opacity: 0.2,\n  marginTop: 12,\n};\n\nconst textStyle: React.CSSProperties = {\n  height: 8,\n  borderRadius: 4,\n  background: 'var(--ty-color-text-secondary)',\n  opacity: 0.1,\n  marginTop: 8,\n};\n\nexport default function CardsDemo() {\n  return (\n    <Marquee fade duration={40} gap={20}>\n      {Array.from({ length: 6 }, (_, i) => (\n        <div key={i} style={cardStyle}>\n          <div style={avatarStyle} />\n          <div style={nameStyle} />\n          <div style={textStyle} />\n          <div style={{ ...textStyle, width: '80%' }} />\n          <div style={{ ...textStyle, width: '45%' }} />\n        </div>\n      ))}\n    </Marquee>\n  );\n}\n"
       },
       {
         "name": "direction",
-        "code": "import React from 'react';\nimport { Marquee } from '@tiny-design/react';\n\nconst itemStyle: React.CSSProperties = {\n  flexShrink: 0,\n  padding: '12px 24px',\n  borderRadius: 8,\n  background: 'var(--ty-color-bg-component)',\n  border: '1px solid var(--ty-color-border-secondary)',\n  whiteSpace: 'nowrap',\n};\n\nexport default function DirectionDemo() {\n  return (\n    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>\n      <Marquee fade duration={30}>\n        {Array.from({ length: 6 }, (_, i) => (\n          <div key={i} style={itemStyle}>\n            Left {i + 1}\n          </div>\n        ))}\n      </Marquee>\n      <Marquee fade duration={30} direction=\"right\">\n        {Array.from({ length: 6 }, (_, i) => (\n          <div key={i} style={itemStyle}>\n            Right {i + 1}\n          </div>\n        ))}\n      </Marquee>\n    </div>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Marquee } from '@tiny-design/react';\n\nconst itemStyle: React.CSSProperties = {\n  flexShrink: 0,\n  padding: '12px 24px',\n  borderRadius: 8,\n  background: 'var(--ty-color-bg-container)',\n  border: '1px solid var(--ty-color-border-secondary)',\n  whiteSpace: 'nowrap',\n};\n\nexport default function DirectionDemo() {\n  return (\n    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>\n      <Marquee fade duration={30}>\n        {Array.from({ length: 6 }, (_, i) => (\n          <div key={i} style={itemStyle}>\n            Left {i + 1}\n          </div>\n        ))}\n      </Marquee>\n      <Marquee fade duration={30} direction=\"right\">\n        {Array.from({ length: 6 }, (_, i) => (\n          <div key={i} style={itemStyle}>\n            Right {i + 1}\n          </div>\n        ))}\n      </Marquee>\n    </div>\n  );\n}\n"
       },
       {
         "name": "speed",
-        "code": "import React from 'react';\nimport { Marquee } from '@tiny-design/react';\n\nconst itemStyle: React.CSSProperties = {\n  flexShrink: 0,\n  padding: '12px 24px',\n  borderRadius: 8,\n  background: 'var(--ty-color-bg-component)',\n  border: '1px solid var(--ty-color-border-secondary)',\n  whiteSpace: 'nowrap',\n};\n\nexport default function SpeedDemo() {\n  return (\n    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>\n      <Marquee fade duration={10}>\n        {Array.from({ length: 6 }, (_, i) => (\n          <div key={i} style={itemStyle}>\n            Fast {i + 1}\n          </div>\n        ))}\n      </Marquee>\n      <Marquee fade duration={60}>\n        {Array.from({ length: 6 }, (_, i) => (\n          <div key={i} style={itemStyle}>\n            Slow {i + 1}\n          </div>\n        ))}\n      </Marquee>\n    </div>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { Marquee } from '@tiny-design/react';\n\nconst itemStyle: React.CSSProperties = {\n  flexShrink: 0,\n  padding: '12px 24px',\n  borderRadius: 8,\n  background: 'var(--ty-color-bg-container)',\n  border: '1px solid var(--ty-color-border-secondary)',\n  whiteSpace: 'nowrap',\n};\n\nexport default function SpeedDemo() {\n  return (\n    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>\n      <Marquee fade duration={10}>\n        {Array.from({ length: 6 }, (_, i) => (\n          <div key={i} style={itemStyle}>\n            Fast {i + 1}\n          </div>\n        ))}\n      </Marquee>\n      <Marquee fade duration={60}>\n        {Array.from({ length: 6 }, (_, i) => (\n          <div key={i} style={itemStyle}>\n            Slow {i + 1}\n          </div>\n        ))}\n      </Marquee>\n    </div>\n  );\n}\n"
       }
     ]
   },
@@ -5360,8 +5360,8 @@
     "name": "QuickActions",
     "dirName": "quick-actions",
     "category": "Navigation",
-    "description": "A compact action launcher that expands to reveal a set of quick actions.",
-    "descriptionZh": "悬浮按钮，展开后显示一组操作。",
+    "description": "A floating action launcher for a small set of high-priority tasks.",
+    "descriptionZh": "用于承载少量高优先级操作的浮动动作启动器。",
     "props": [
       {
         "name": "icon",
@@ -5376,8 +5376,20 @@
         "description": ""
       },
       {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
         "name": "direction",
         "type": "'up' | 'down' | 'left' | 'right'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "trigger",
+        "type": "'click' | 'hover'",
         "required": false,
         "description": ""
       },
@@ -5388,20 +5400,14 @@
         "description": ""
       },
       {
-        "name": "trigger",
-        "type": "'hover' | 'click'",
+        "name": "defaultOpen",
+        "type": "boolean",
         "required": false,
         "description": ""
       },
       {
-        "name": "onOpen",
-        "type": "() => void",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "onClose",
-        "type": "() => void",
+        "name": "closeOnActionClick",
+        "type": "boolean",
         "required": false,
         "description": ""
       },
@@ -5414,6 +5420,12 @@
       {
         "name": "children",
         "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean, context: QuickActionsOpenChangeContext) => void",
         "required": false,
         "description": ""
       },
@@ -5438,20 +5450,24 @@
     ],
     "demos": [
       {
+        "name": "ActionBehavior",
+        "code": "import React from 'react';\nimport { QuickActions, Message } from '@tiny-design/react';\nimport { IconBookmark, IconShare, IconStar } from '@tiny-design/icons';\n\nexport default function ActionBehaviorDemo() {\n  return (\n    <div\n      style={{\n        display: 'flex',\n        justifyContent: 'center',\n        alignItems: 'flex-end',\n        gap: 32,\n        minHeight: 320,\n        padding: '0 16px 20px',\n        flexWrap: 'wrap',\n      }}>\n      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>\n        <div style={{ fontSize: 12, color: 'var(--ty-color-text-secondary)', textAlign: 'center' }}>\n          Keep the whole launcher open\n        </div>\n        <QuickActions label=\"Persistent actions\" closeOnActionClick={false}>\n          <QuickActions.Action\n            icon={<IconBookmark />}\n            label=\"Pin selection\"\n            description=\"Every action click keeps this stack visible.\"\n            onClick={() => Message.info('Pinned')}\n          />\n          <QuickActions.Action\n            icon={<IconStar />}\n            label=\"Mark priority\"\n            description=\"Useful when several quick actions happen in sequence.\"\n            onClick={() => Message.success('Priority updated')}\n          />\n          <QuickActions.Action\n            icon={<IconShare />}\n            label=\"Share update\"\n            description=\"Still stays open after sharing.\"\n            onClick={() => Message.info('Shared')}\n          />\n        </QuickActions>\n      </div>\n\n      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>\n        <div style={{ fontSize: 12, color: 'var(--ty-color-text-secondary)', textAlign: 'center' }}>\n          Keep only one action open\n        </div>\n        <QuickActions label=\"Selective persistence\">\n          <QuickActions.Action\n            icon={<IconBookmark />}\n            label=\"Save draft\"\n            description=\"Default action clicks close the launcher.\"\n            onClick={() => Message.success('Draft saved')}\n          />\n          <QuickActions.Action\n            icon={<IconStar />}\n            label=\"Adjust audience\"\n            description=\"This action opts into keeping the launcher open.\"\n            keepOpen\n            onClick={() => Message.info('Audience panel opened')}\n          />\n          <QuickActions.Action\n            icon={<IconShare />}\n            label=\"Send update\"\n            description=\"Closes again because keepOpen is not set.\"\n            onClick={() => Message.info('Update sent')}\n          />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
+      },
+      {
         "name": "Basic",
-        "code": "import React from 'react';\nimport { QuickActions, Message } from '@tiny-design/react';\n\nexport default function BasicDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 16, right: 16 }}>\n        <QuickActions>\n          <QuickActions.Action icon=\"C\" tooltip=\"Copy\" onClick={() => Message.info('Copy')} />\n          <QuickActions.Action icon=\"P\" tooltip=\"Print\" onClick={() => Message.info('Print')} />\n          <QuickActions.Action icon=\"S\" tooltip=\"Share\" onClick={() => Message.info('Share')} />\n          <QuickActions.Action icon=\"D\" tooltip=\"Save\" onClick={() => Message.info('Save')} />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { QuickActions, Message } from '@tiny-design/react';\nimport { IconBookmark, IconShare, IconStar, IconPlus, IconClose } from '@tiny-design/icons';\n\nexport default function BasicDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 20, right: 20 }}>\n        <QuickActions label=\"Post actions\" icon={<IconPlus />} openIcon={<IconClose />}>\n          <QuickActions.Action\n            icon={<IconBookmark />}\n            label=\"Save draft\"\n            description=\"Keep this update in your private workspace.\"\n            onClick={() => Message.success('Draft saved')}\n          />\n          <QuickActions.Action\n            icon={<IconStar />}\n            label=\"Feature post\"\n            description=\"Pin it to the top of your campaign board.\"\n            onClick={() => Message.info('Marked as featured')}\n          />\n          <QuickActions.Action\n            icon={<IconShare />}\n            label=\"Share now\"\n            description=\"Send the latest version to collaborators.\"\n            onClick={() => Message.info('Share started')}\n          />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
       },
       {
         "name": "Click",
-        "code": "import React from 'react';\nimport { QuickActions, Message } from '@tiny-design/react';\n\nexport default function ClickDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 16, right: 16 }}>\n        <QuickActions trigger=\"click\">\n          <QuickActions.Action icon=\"C\" tooltip=\"Copy\" onClick={() => Message.info('Copy')} />\n          <QuickActions.Action icon=\"P\" tooltip=\"Print\" onClick={() => Message.info('Print')} />\n          <QuickActions.Action icon=\"S\" tooltip=\"Share\" onClick={() => Message.info('Share')} />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { QuickActions, Message } from '@tiny-design/react';\nimport { IconBookmark, IconShare, IconStar } from '@tiny-design/icons';\n\nexport default function ClickDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 20, right: 20 }}>\n        <QuickActions label=\"Project actions\" trigger=\"hover\">\n          <QuickActions.Action\n            icon={<IconBookmark />}\n            label=\"Save snapshot\"\n            description=\"Open on pointer hover and keyboard focus.\"\n            onClick={() => Message.success('Snapshot saved')}\n          />\n          <QuickActions.Action\n            icon={<IconStar />}\n            label=\"Keep panel open\"\n            description=\"Useful for multi-step quick operations.\"\n            keepOpen\n            onClick={() => Message.info('Panel kept open')}\n          />\n          <QuickActions.Action\n            icon={<IconShare />}\n            label=\"Share board\"\n            description=\"Invite teammates into the current workspace.\"\n            onClick={() => Message.info('Invite sent')}\n          />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
       },
       {
         "name": "CustomIcon",
-        "code": "import React from 'react';\nimport { QuickActions } from '@tiny-design/react';\nimport { IconPlus, IconClose, IconBookmark, IconStar, IconShare } from '@tiny-design/icons';\n\nexport default function CustomIconDemo() {\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 16, right: 16 }}>\n        <QuickActions\n          icon={<IconPlus />}\n          openIcon={<IconClose />}\n        >\n          <QuickActions.Action icon={<IconBookmark />} tooltip=\"Save\" />\n          <QuickActions.Action icon={<IconStar />} tooltip=\"Favorite\" />\n          <QuickActions.Action icon={<IconShare />} tooltip=\"Share\" />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
+        "code": "import React, { useState } from 'react';\nimport { QuickActions, Message } from '@tiny-design/react';\nimport { IconBookmark, IconClose, IconPlus, IconShare, IconStar } from '@tiny-design/icons';\n\nexport default function CustomIconDemo() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div style={{ position: 'relative', height: 320 }}>\n      <div style={{ position: 'absolute', bottom: 20, right: 20 }}>\n        <QuickActions\n          open={open}\n          onOpenChange={(nextOpen) => setOpen(nextOpen)}\n          label=\"Campaign actions\"\n          icon={<IconPlus />}\n          openIcon={<IconClose />}>\n          <QuickActions.Action\n            icon={<IconBookmark />}\n            label=\"Save for later\"\n            description=\"Keep this campaign editable for the next sprint.\"\n            onClick={() => Message.success('Saved for later')}\n          />\n          <QuickActions.Action\n            icon={<IconStar />}\n            label=\"Featured slot\"\n            description=\"Reserve a premium slot on the landing page.\"\n            loading={open}\n          />\n          <QuickActions.Action\n            icon={<IconShare />}\n            label=\"Share campaign\"\n            description=\"Send the campaign link to stakeholders.\"\n            danger\n            onClick={() => Message.warning('Shared with external reviewers')}\n          />\n        </QuickActions>\n      </div>\n    </div>\n  );\n}\n"
       },
       {
         "name": "Direction",
-        "code": "import React from 'react';\nimport { QuickActions } from '@tiny-design/react';\n\nexport default function DirectionDemo() {\n  const actions = (\n    <>\n      <QuickActions.Action icon=\"A\" tooltip=\"Action 1\" />\n      <QuickActions.Action icon=\"B\" tooltip=\"Action 2\" />\n      <QuickActions.Action icon=\"C\" tooltip=\"Action 3\" />\n    </>\n  );\n\n  return (\n    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300, gap: 80 }}>\n      <QuickActions direction=\"right\">\n        {actions}\n      </QuickActions>\n      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 120 }}>\n        <QuickActions direction=\"down\">\n          {actions}\n        </QuickActions>\n        <QuickActions direction=\"up\">\n          {actions}\n        </QuickActions>\n      </div>\n      <QuickActions direction=\"left\">\n        {actions}\n      </QuickActions>\n    </div>\n  );\n}\n"
+        "code": "import React from 'react';\nimport { QuickActions } from '@tiny-design/react';\n\nconst actions = (\n  <>\n    <QuickActions.Action icon=\"R\" label=\"Review\" description=\"Collect final approvals.\" />\n    <QuickActions.Action icon=\"S\" label=\"Schedule\" description=\"Set launch time and audience.\" />\n    <QuickActions.Action icon=\"P\" label=\"Publish\" description=\"Push this update live.\" danger />\n  </>\n);\n\nexport default function DirectionDemo() {\n  return (\n    <div\n      style={{\n        display: 'flex',\n        justifyContent: 'center',\n        alignItems: 'center',\n        height: 320,\n        gap: 96,\n      }}>\n      <QuickActions direction=\"right\" label=\"Right actions\">\n        {actions}\n      </QuickActions>\n      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 140 }}>\n        <QuickActions direction=\"down\" label=\"Down actions\">\n          {actions}\n        </QuickActions>\n        <QuickActions direction=\"up\" label=\"Up actions\">\n          {actions}\n        </QuickActions>\n      </div>\n      <QuickActions direction=\"left\" label=\"Left actions\">\n        {actions}\n      </QuickActions>\n    </div>\n  );\n}\n"
       }
     ]
   },

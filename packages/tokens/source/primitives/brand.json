@@ -1,0 +1,182 @@
+{
+  "seed.brand.primary": {
+    "$value": "#6e41bf",
+    "$type": "color",
+    "description": "Base brand primary color seed."
+  },
+  "seed.brand.primary.hover": {
+    "$value": "#8b62d0",
+    "$type": "color",
+    "description": "Brand primary hover seed."
+  },
+  "seed.brand.primary.active": {
+    "$value": "#5a30a8",
+    "$type": "color",
+    "description": "Brand primary active seed."
+  },
+  "seed.brand.primary.surface": {
+    "$value": "#f3eefa",
+    "$type": "color",
+    "description": "Brand primary surface tint seed."
+  },
+  "seed.brand.primary.surface-hover": {
+    "$value": "#ece3f7",
+    "$type": "color",
+    "description": "Brand primary surface hover seed."
+  },
+  "seed.brand.primary.border": {
+    "$value": "#c4a7e6",
+    "$type": "color",
+    "description": "Brand primary border seed."
+  },
+  "seed.brand.primary.text-hover": {
+    "$value": "#8b62d0",
+    "$type": "color",
+    "description": "Brand primary text hover seed."
+  },
+  "seed.status.info": {
+    "$value": "#1890ff",
+    "$type": "color",
+    "description": "Info status base seed."
+  },
+  "seed.status.info.bg": {
+    "$value": "#e6f7ff",
+    "$type": "color",
+    "description": "Info status background seed."
+  },
+  "seed.status.info.border": {
+    "$value": "#91d5ff",
+    "$type": "color",
+    "description": "Info status border seed."
+  },
+  "seed.status.info.text": {
+    "$value": "#096dd9",
+    "$type": "color",
+    "description": "Info status text seed."
+  },
+  "seed.status.info.hover": {
+    "$value": "#40a9ff",
+    "$type": "color",
+    "description": "Info status hover seed."
+  },
+  "seed.status.info.active": {
+    "$value": "#096dd9",
+    "$type": "color",
+    "description": "Info status active seed."
+  },
+  "seed.status.success": {
+    "$value": "#52c41a",
+    "$type": "color",
+    "description": "Success status base seed."
+  },
+  "seed.status.success.bg": {
+    "$value": "#f6ffed",
+    "$type": "color",
+    "description": "Success status background seed."
+  },
+  "seed.status.success.border": {
+    "$value": "#b7eb8f",
+    "$type": "color",
+    "description": "Success status border seed."
+  },
+  "seed.status.success.text": {
+    "$value": "#49b10e",
+    "$type": "color",
+    "description": "Success status text seed."
+  },
+  "seed.status.success.hover": {
+    "$value": "#73d13d",
+    "$type": "color",
+    "description": "Success status hover seed."
+  },
+  "seed.status.success.active": {
+    "$value": "#389e0d",
+    "$type": "color",
+    "description": "Success status active seed."
+  },
+  "seed.status.warning": {
+    "$value": "#ff9800",
+    "$type": "color",
+    "description": "Warning status base seed."
+  },
+  "seed.status.warning.bg": {
+    "$value": "#fffbe6",
+    "$type": "color",
+    "description": "Warning status background seed."
+  },
+  "seed.status.warning.border": {
+    "$value": "#ffe58f",
+    "$type": "color",
+    "description": "Warning status border seed."
+  },
+  "seed.status.warning.text": {
+    "$value": "#d48806",
+    "$type": "color",
+    "description": "Warning status text seed."
+  },
+  "seed.status.warning.hover": {
+    "$value": "#ffad33",
+    "$type": "color",
+    "description": "Warning status hover seed."
+  },
+  "seed.status.warning.active": {
+    "$value": "#e68a00",
+    "$type": "color",
+    "description": "Warning status active seed."
+  },
+  "seed.status.danger": {
+    "$value": "#f44336",
+    "$type": "color",
+    "description": "Danger status base seed."
+  },
+  "seed.status.danger.bg": {
+    "$value": "#fff1f0",
+    "$type": "color",
+    "description": "Danger status background seed."
+  },
+  "seed.status.danger.border": {
+    "$value": "#ffa39e",
+    "$type": "color",
+    "description": "Danger status border seed."
+  },
+  "seed.status.danger.text": {
+    "$value": "#cf1322",
+    "$type": "color",
+    "description": "Danger status text seed."
+  },
+  "seed.status.danger.hover": {
+    "$value": "#ff7875",
+    "$type": "color",
+    "description": "Danger status hover seed."
+  },
+  "seed.status.danger.active": {
+    "$value": "#cf1322",
+    "$type": "color",
+    "description": "Danger status active seed."
+  },
+  "seed.brand.chart.1": {
+    "$value": "#6e41bf",
+    "$type": "color",
+    "description": "Chart palette seed 1."
+  },
+  "seed.brand.chart.2": {
+    "$value": "#1890ff",
+    "$type": "color",
+    "description": "Chart palette seed 2."
+  },
+  "seed.brand.chart.3": {
+    "$value": "#52c41a",
+    "$type": "color",
+    "description": "Chart palette seed 3."
+  },
+  "seed.brand.chart.4": {
+    "$value": "#ff9800",
+    "$type": "color",
+    "description": "Chart palette seed 4."
+  },
+  "seed.brand.chart.5": {
+    "$value": "#f44336",
+    "$type": "color",
+    "description": "Chart palette seed 5."
+  }
+}

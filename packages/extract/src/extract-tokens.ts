@@ -34,7 +34,13 @@ export function extractTokens(options: ExtractTokensOptions): TokenData {
 
   if (options.registryPath) {
     const registry = JSON.parse(fs.readFileSync(options.registryPath, 'utf-8')) as {
-      tokens?: Array<{ key: string; cssVar: string; type: string; defaultValue: string | number }>;
+      tokens?: Array<{
+        key: string;
+        cssVar: string;
+        type: string;
+        defaultValue: string | number;
+        resolvedValue?: string | number;
+      }>;
     };
 
     for (const token of registry.tokens ?? []) {
@@ -43,7 +49,7 @@ export function extractTokens(options: ExtractTokensOptions): TokenData {
       if (category) {
         result[category][token.key] = {
           variable: token.cssVar,
-          value: String(token.defaultValue),
+          value: String(token.resolvedValue ?? token.defaultValue),
         };
       }
     }

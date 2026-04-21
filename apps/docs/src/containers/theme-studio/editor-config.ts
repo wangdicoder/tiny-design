@@ -1,70 +1,53 @@
-import type { FieldKey, ThemeEditorColorGroup } from './types';
+import type { ThemeEditorSeedGroup } from './types';
 
-export const COLOR_GROUPS: ThemeEditorColorGroup[] = [
+export const SEED_COLOR_GROUPS: ThemeEditorSeedGroup[] = [
   {
-    title: 'Primary',
+    title: 'Brand Core',
+    description: 'Primary, accent, and supporting brand surfaces.',
+    tier: 'core',
     fields: [
-      { key: 'primary', label: 'Background' },
-      { key: 'primaryForeground', label: 'Foreground' },
+      { key: 'primary', label: 'Primary' },
+      { key: 'primaryForeground', label: 'On Primary' },
+      { key: 'secondary', label: 'Secondary' },
+      { key: 'secondaryForeground', label: 'On Secondary' },
+      { key: 'accent', label: 'Accent' },
+      { key: 'accentForeground', label: 'On Accent' },
     ],
   },
   {
-    title: 'Secondary',
-    fields: [
-      { key: 'secondary', label: 'Background' },
-      { key: 'secondaryForeground', label: 'Foreground' },
-    ],
-  },
-  {
-    title: 'Accent',
-    fields: [
-      { key: 'accent', label: 'Background' },
-      { key: 'accentForeground', label: 'Foreground' },
-    ],
-  },
-  {
-    title: 'Status',
+    title: 'Feedback States',
+    description: 'Semantic status hues that propagate through alerts, tags, and feedback UI.',
+    tier: 'core',
     fields: [
       { key: 'success', label: 'Success' },
-      { key: 'successForeground', label: 'Success FG' },
+      { key: 'successForeground', label: 'On Success' },
       { key: 'info', label: 'Info' },
-      { key: 'infoForeground', label: 'Info FG' },
+      { key: 'infoForeground', label: 'On Info' },
       { key: 'warning', label: 'Warning' },
-      { key: 'warningForeground', label: 'Warning FG' },
+      { key: 'warningForeground', label: 'On Warning' },
       { key: 'danger', label: 'Danger' },
-      { key: 'dangerForeground', label: 'Danger FG' },
+      { key: 'dangerForeground', label: 'On Danger' },
     ],
   },
   {
-    title: 'Base',
+    title: 'Surfaces & Text',
+    description: 'Page, card, popover, and muted surfaces plus their text companions.',
+    tier: 'core',
     fields: [
-      { key: 'base', label: 'Background' },
-      { key: 'baseForeground', label: 'Foreground' },
+      { key: 'base', label: 'Page' },
+      { key: 'baseForeground', label: 'On Page' },
+      { key: 'card', label: 'Card' },
+      { key: 'cardForeground', label: 'On Card' },
+      { key: 'popover', label: 'Popover' },
+      { key: 'popoverForeground', label: 'On Popover' },
+      { key: 'muted', label: 'Muted' },
+      { key: 'mutedForeground', label: 'On Muted' },
     ],
   },
   {
-    title: 'Card',
-    fields: [
-      { key: 'card', label: 'Background' },
-      { key: 'cardForeground', label: 'Foreground' },
-    ],
-  },
-  {
-    title: 'Popover',
-    fields: [
-      { key: 'popover', label: 'Background' },
-      { key: 'popoverForeground', label: 'Foreground' },
-    ],
-  },
-  {
-    title: 'Muted',
-    fields: [
-      { key: 'muted', label: 'Background' },
-      { key: 'mutedForeground', label: 'Foreground' },
-    ],
-  },
-  {
-    title: 'Border & Input',
+    title: 'Lines & Focus',
+    description: 'Borders, field chrome, and the interaction ring seed.',
+    tier: 'core',
     fields: [
       { key: 'border', label: 'Border' },
       { key: 'input', label: 'Input' },
@@ -72,39 +55,33 @@ export const COLOR_GROUPS: ThemeEditorColorGroup[] = [
     ],
   },
   {
-    title: 'Chart',
+    title: 'Data Visualization',
+    description: 'Chart palette seeds for data-heavy views.',
+    tier: 'advanced',
     fields: [
-      { key: 'chart1', label: 'Chart 1' },
-      { key: 'chart2', label: 'Chart 2' },
-      { key: 'chart3', label: 'Chart 3' },
-      { key: 'chart4', label: 'Chart 4' },
-      { key: 'chart5', label: 'Chart 5' },
+      { key: 'chart1', label: 'Series 1' },
+      { key: 'chart2', label: 'Series 2' },
+      { key: 'chart3', label: 'Series 3' },
+      { key: 'chart4', label: 'Series 4' },
+      { key: 'chart5', label: 'Series 5' },
     ],
   },
   {
-    title: 'Sidebar',
+    title: 'Sidebar Shell',
+    description: 'Dedicated app-shell seeds for navigation-heavy layouts.',
+    tier: 'advanced',
     fields: [
-      { key: 'sidebar', label: 'Background' },
-      { key: 'sidebarForeground', label: 'Foreground' },
-      { key: 'sidebarPrimary', label: 'Primary' },
-      { key: 'sidebarPrimaryForeground', label: 'Primary FG' },
-      { key: 'sidebarAccent', label: 'Accent' },
-      { key: 'sidebarAccentForeground', label: 'Accent FG' },
-      { key: 'sidebarBorder', label: 'Border' },
-      { key: 'sidebarRing', label: 'Ring' },
+      { key: 'sidebar', label: 'Sidebar' },
+      { key: 'sidebarForeground', label: 'On Sidebar' },
+      { key: 'sidebarPrimary', label: 'Sidebar Primary' },
+      { key: 'sidebarPrimaryForeground', label: 'On Sidebar Primary' },
+      { key: 'sidebarAccent', label: 'Sidebar Accent' },
+      { key: 'sidebarAccentForeground', label: 'On Sidebar Accent' },
+      { key: 'sidebarBorder', label: 'Sidebar Border' },
+      { key: 'sidebarRing', label: 'Sidebar Ring' },
     ],
   },
 ];
-
-export const CORE_COLOR_GROUP_TITLES = new Set([
-  'Primary',
-  'Secondary',
-  'Accent',
-  'Status',
-  'Base',
-  'Muted',
-  'Border & Input',
-]);
 
 export const FONT_OPTIONS = [
   'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',

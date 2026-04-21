@@ -30,6 +30,15 @@ describe('extractTokens', () => {
     });
   });
 
+  it('extracts resolved semantic color values from the token registry', () => {
+    const result = extractTokens({ registryPath: TOKEN_REGISTRY_PATH, variablesPath: VARIABLES_PATH });
+
+    expect(result.colors['color-bg']).toEqual({
+      variable: '--ty-color-bg',
+      value: '#ffffff',
+    });
+  });
+
   it('extracts typography tokens', () => {
     const result = extractTokens({ registryPath: TOKEN_REGISTRY_PATH, variablesPath: VARIABLES_PATH });
 

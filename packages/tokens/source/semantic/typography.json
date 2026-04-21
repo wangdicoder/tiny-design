@@ -1,76 +1,76 @@
 {
   "font-family": {
-    "$value": "-apple-system, blinkmacsystemfont, \"Segoe UI\", roboto, \"Helvetica Neue\", arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+    "$value": "{seed.font.family.sans}",
     "$type": "font-family",
     "description": "Default font family."
   },
   "font-family-monospace": {
-    "$value": "lucida console, consolas, monaco, andale mono, ubuntu mono, monospace",
+    "$value": "{seed.font.family.monospace}",
     "$type": "font-family",
     "description": "Monospace font family."
   },
   "font-size-sm": {
-    "$value": "12px",
+    "$value": "{seed.font.size.sm}",
     "$type": "dimension",
     "description": "Small font size."
   },
   "font-size-base": {
-    "$value": "14px",
+    "$value": "{seed.font.size.base}",
     "$type": "dimension",
     "description": "Base font size."
   },
   "font-size-lg": {
-    "$value": "16px",
+    "$value": "{seed.font.size.lg}",
     "$type": "dimension",
     "description": "Large font size."
   },
   "font-weight": {
-    "$value": "400",
+    "$value": "{seed.font.weight.regular}",
     "$type": "font-weight",
     "description": "Default font weight."
   },
   "font-weight-medium": {
-    "$value": "500",
+    "$value": "{seed.font.weight.medium}",
     "$type": "font-weight",
     "description": "Medium font weight."
   },
   "headings-font-weight": {
-    "$value": "500",
+    "$value": "{seed.font.weight.heading}",
     "$type": "font-weight",
     "description": "Heading font weight."
   },
   "line-height-base": {
-    "$value": "1.5715",
+    "$value": "{seed.line.height.base}",
     "$type": "line-height",
     "description": "Base line height."
   },
   "h1-font-size": {
-    "$value": "2.5rem",
+    "$value": "{seed.heading.size.h1}",
     "$type": "dimension",
     "description": "H1 font size."
   },
   "h2-font-size": {
-    "$value": "2rem",
+    "$value": "{seed.heading.size.h2}",
     "$type": "dimension",
     "description": "H2 font size."
   },
   "h3-font-size": {
-    "$value": "1.75rem",
+    "$value": "{seed.heading.size.h3}",
     "$type": "dimension",
     "description": "H3 font size."
   },
   "h4-font-size": {
-    "$value": "1.5rem",
+    "$value": "{seed.heading.size.h4}",
     "$type": "dimension",
     "description": "H4 font size."
   },
   "h5-font-size": {
-    "$value": "1.25rem",
+    "$value": "{seed.heading.size.h5}",
     "$type": "dimension",
     "description": "H5 font size."
   },
   "h6-font-size": {
-    "$value": "1rem",
+    "$value": "{seed.heading.size.h6}",
     "$type": "dimension",
     "description": "H6 font size."
   }

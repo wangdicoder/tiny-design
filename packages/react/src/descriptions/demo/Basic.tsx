@@ -7,7 +7,7 @@ export default function BasicDemo() {
       title="Workspace Profile"
       extra={<Button size="sm" type="primary">Edit</Button>}
       columns={2}
-      footer={<span style={{ color: 'var(--ty-color-text-3)' }}>Last synced 2 minutes ago</span>}>
+      footer={<span style={{ color: 'var(--ty-color-text-tertiary)' }}>Last synced 2 minutes ago</span>}>
       <Descriptions.Item label="Name">Tiny Studio</Descriptions.Item>
       <Descriptions.Item label="Region">Australia Southeast</Descriptions.Item>
       <Descriptions.Item label="Owner" extra={<Tag size="sm">Core</Tag>}>

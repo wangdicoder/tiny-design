@@ -50,17 +50,17 @@
     "description": "Large control horizontal padding."
   },
   "control.gap.sm": {
-    "$value": "4px",
+    "$value": "{seed.gap.control.sm}",
     "$type": "dimension",
     "description": "Small control content gap."
   },
   "control.gap.md": {
-    "$value": "6px",
+    "$value": "{seed.gap.control.md}",
     "$type": "dimension",
     "description": "Medium control content gap."
   },
   "control.gap.lg": {
-    "$value": "8px",
+    "$value": "{seed.gap.control.lg}",
     "$type": "dimension",
     "description": "Large control content gap."
   }
