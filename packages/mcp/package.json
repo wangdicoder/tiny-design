@@ -1,6 +1,6 @@
 {
   "name": "@tiny-design/mcp",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "MCP server for AI assistants to access the Tiny Design component library",
   "license": "MIT",
   "keywords": [
