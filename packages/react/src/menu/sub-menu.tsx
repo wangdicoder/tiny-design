@@ -1,5 +1,13 @@
 import React, { useContext, useEffect, useLayoutEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
+import {
+  hasMarker,
+  markComponent,
+  MENU_DIVIDER_MARK,
+  MENU_ITEM_GROUP_MARK,
+  MENU_ITEM_MARK,
+  SUB_MENU_MARK,
+} from '../_utils/component-markers';
 import { MenuContext } from './menu-context';
 import { SubMenuContext } from './sub-menu-context';
 import { ArrowDown } from '../_utils/components';
@@ -139,15 +147,14 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
       <ul className={subMenuCls} style={{ minWidth }}>
         {React.Children.map(children, (child, idx) => {
           const childElement = child as React.FunctionComponentElement<MenuItemProps>;
-          const { displayName } = childElement.type;
           const childProps = {
             index: childElement.props.index ?? `${index}-${idx}`,
           };
           if (
-            displayName === 'MenuItem' ||
-            displayName === 'MenuItemGroup' ||
-            displayName === 'SubMenu' ||
-            displayName === 'MenuDivider'
+            hasMarker(childElement.type, MENU_ITEM_MARK) ||
+            hasMarker(childElement.type, MENU_ITEM_GROUP_MARK) ||
+            hasMarker(childElement.type, SUB_MENU_MARK) ||
+            hasMarker(childElement.type, MENU_DIVIDER_MARK)
           ) {
             return React.cloneElement(childElement, childProps);
           } else {
@@ -229,5 +236,6 @@ const SubMenu = (props: SubMenuProps): JSX.Element => {
 };
 
 SubMenu.displayName = 'SubMenu';
+markComponent(SubMenu, SUB_MENU_MARK);
 
 export default SubMenu;

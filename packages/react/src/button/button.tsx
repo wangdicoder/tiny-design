@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { INPUT_GROUP_CONTROL_MARK, markComponent } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { ButtonProps } from './types';
@@ -93,6 +94,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props: ButtonPr
 });
 
 Button.displayName = 'Button';
-(Button as typeof Button & { [BUTTON_MARK]?: boolean })[BUTTON_MARK] = true;
+markComponent(Button, BUTTON_MARK);
+markComponent(Button, INPUT_GROUP_CONTROL_MARK);
 
 export default Button;

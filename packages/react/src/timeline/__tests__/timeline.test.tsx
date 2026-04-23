@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { markComponent, TIMELINE_ITEM_MARK } from '../../_utils/component-markers';
 import Timeline from '../index';
 
 describe('<Timeline />', () => {
@@ -31,5 +32,20 @@ describe('<Timeline />', () => {
     );
     expect(getByText('Event 1')).toBeInTheDocument();
     expect(getByText('Event 2')).toBeInTheDocument();
+  });
+
+  it('should recognize marker-based timeline item wrappers', () => {
+    const WrappedItem = markComponent(
+      (props: React.ComponentProps<typeof Timeline.Item>) => <Timeline.Item {...props} />,
+      TIMELINE_ITEM_MARK
+    );
+
+    const { getByText } = render(
+      <Timeline>
+        <WrappedItem>Wrapped Event</WrappedItem>
+      </Timeline>
+    );
+
+    expect(getByText('Wrapped Event')).toBeInTheDocument();
   });
 });

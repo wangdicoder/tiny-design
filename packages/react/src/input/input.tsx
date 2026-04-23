@@ -2,6 +2,7 @@ import React, { useEffect, useState, ReactNode, useContext } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
+import { INPUT_GROUP_CONTROL_MARK, markComponent } from '../_utils/component-markers';
 import { CloseCircle } from '../_utils/components';
 import { InputProps } from './types';
 
@@ -95,5 +96,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = 'Input';
+markComponent(Input, INPUT_GROUP_CONTROL_MARK);
 
 export default Input;

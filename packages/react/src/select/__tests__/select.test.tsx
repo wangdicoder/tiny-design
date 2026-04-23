@@ -1,4 +1,6 @@
+import React from 'react';
 import { render, fireEvent, screen, waitFor, act } from '@testing-library/react';
+import { markComponent, SELECT_OPT_GROUP_MARK, SELECT_OPTION_MARK } from '../../_utils/component-markers';
 import Select from '../index';
 
 const { Option, OptGroup } = Select;
@@ -32,6 +34,28 @@ describe('<Select />', () => {
       </Select>
     );
     expect(container.firstChild).toHaveClass('ty-select');
+  });
+
+  it('should recognize marker-based option wrappers', () => {
+    const WrappedOption = markComponent(
+      (props: React.ComponentProps<typeof Option>) => <Option {...props} />,
+      SELECT_OPTION_MARK
+    );
+    const WrappedGroup = markComponent(
+      (props: React.ComponentProps<typeof OptGroup>) => <OptGroup {...props} />,
+      SELECT_OPT_GROUP_MARK
+    );
+
+    render(
+      <Select defaultOpen>
+        <WrappedGroup label="Group A">
+          <WrappedOption value="a">Apple</WrappedOption>
+        </WrappedGroup>
+      </Select>
+    );
+
+    expect(getOptions()).toHaveLength(1);
+    expect(getOptions()[0]).toHaveTextContent('Apple');
   });
 
   // Single select

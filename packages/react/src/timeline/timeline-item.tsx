@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { markComponent, TIMELINE_ITEM_MARK } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { TimelineItemProps } from './types';
@@ -23,5 +24,6 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>((props, 
 });
 
 TimelineItem.displayName = 'TimelineItem';
+markComponent(TimelineItem, TIMELINE_ITEM_MARK);
 
 export default TimelineItem;

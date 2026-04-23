@@ -1,5 +1,11 @@
 import React from 'react';
 import { render, fireEvent, screen, waitFor, act } from '@testing-library/react';
+import {
+  markComponent,
+  MENU_ITEM_GROUP_MARK,
+  MENU_ITEM_MARK,
+  SUB_MENU_MARK,
+} from '../../_utils/component-markers';
 import Menu from '../index';
 import ConfigProvider from '../../config-provider';
 
@@ -29,6 +35,40 @@ describe('<Menu />', () => {
       </Menu>
     );
     expect(container.firstChild).toHaveClass('ty-menu');
+  });
+
+  it('should recognize marker-based menu wrappers', async () => {
+    const WrappedItem = markComponent(
+      (props: React.ComponentProps<typeof Menu.Item>) => <Menu.Item {...props} />,
+      MENU_ITEM_MARK
+    );
+    const WrappedSubMenu = markComponent(
+      (props: React.ComponentProps<typeof Menu.SubMenu>) => <Menu.SubMenu {...props} />,
+      SUB_MENU_MARK
+    );
+    const WrappedGroup = markComponent(
+      (props: React.ComponentProps<typeof Menu.ItemGroup>) => <Menu.ItemGroup {...props} />,
+      MENU_ITEM_GROUP_MARK
+    );
+
+    render(
+      <Menu mode="vertical">
+        <WrappedSubMenu title="Parent">
+          <WrappedGroup title="Group">
+            <WrappedItem index="child">Child</WrappedItem>
+          </WrappedGroup>
+        </WrappedSubMenu>
+      </Menu>
+    );
+
+    fireEvent.mouseEnter(screen.getByText('Parent').closest('.ty-menu-sub') as HTMLElement);
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Child')).toBeInTheDocument();
+    });
   });
 
   it('should render items', () => {

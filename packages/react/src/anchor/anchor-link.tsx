@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import classNames from 'classnames';
+import { ANCHOR_LINK_MARK, markComponent } from '../_utils/component-markers';
 import { AnchorLinkProps } from './types';
 import { AnchorContext } from './anchor-context';
 
@@ -50,5 +51,6 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement, AnchorLinkProps>(
 );
 
 AnchorLink.displayName = 'AnchorLink';
+markComponent(AnchorLink, ANCHOR_LINK_MARK);
 
 export default AnchorLink;

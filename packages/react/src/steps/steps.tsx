@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { hasMarker, STEPS_ITEM_MARK } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { StepsContext } from './steps-context';
@@ -46,7 +47,7 @@ const Steps = React.forwardRef<HTMLDivElement, StepsProps>(
         <div {...otherProps} ref={ref} className={cls}>
           {React.Children.map(children, (child, idx) => {
             const childElement = child as React.FunctionComponentElement<StepsItemProps>;
-            if (childElement.type.displayName === 'StepsItem') {
+            if (hasMarker(childElement.type, STEPS_ITEM_MARK)) {
               const childProps: Partial<StepsItemProps> = {
                 stepIndex: idx,
               };

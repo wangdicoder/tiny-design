@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { hasMarker, INPUT_GROUP_CONTROL_MARK } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
-import { InputGroupAddonProps, InputProps } from './types';
+import { InputGroupAddonProps, InputGroupControlProps } from './types';
 import { SizeType } from '../_utils/props';
 
 const InputGroupAddon = (props: InputGroupAddonProps): React.ReactElement => {
@@ -19,11 +20,7 @@ const InputGroupAddon = (props: InputGroupAddonProps): React.ReactElement => {
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('input-group-addon', configContext.prefixCls, customisedCls);
   const inputSize = props.size || configContext.componentSize || size;
-  const childDisplayName = React.isValidElement(children) ? (children.type as any)?.displayName : null;
-  const isControlChild = childDisplayName === 'Input'
-    || childDisplayName === 'Button'
-    || childDisplayName === 'Select'
-    || childDisplayName === 'InputNumber';
+  const isControlChild = React.isValidElement(children) && hasMarker(children.type, INPUT_GROUP_CONTROL_MARK);
   const cls = classNames(prefixCls, className, `${prefixCls}_${inputSize}`, {
     [`${prefixCls}_no-border`]: noBorder,
     [`${prefixCls}_control`]: isControlChild,
@@ -33,9 +30,8 @@ const InputGroupAddon = (props: InputGroupAddonProps): React.ReactElement => {
     return (
       <div className={cls} style={style}>
         {React.Children.map(children, (child: React.ReactElement) => {
-          const displayName = (child.type as any)?.displayName;
-          if (displayName === 'Input' || displayName === 'Button' || displayName === 'Select' || displayName === 'InputNumber') {
-            const childProps: Partial<InputProps> = {
+          if (hasMarker(child.type, INPUT_GROUP_CONTROL_MARK)) {
+            const childProps: Partial<InputGroupControlProps> = {
               disabled,
               size: inputSize as SizeType,
             };

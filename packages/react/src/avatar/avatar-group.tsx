@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { AVATAR_MARK, hasMarker } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { AvatarProps, AvatarGroupProps } from './types';
@@ -14,7 +15,7 @@ const AvatarGroup = (props: AvatarGroupProps): JSX.Element => {
     <span {...otherProps} className={cls} style={style}>
       {React.Children.map(children, (child, idx) => {
         const childElement = child as React.FunctionComponentElement<AvatarProps>;
-        if (childElement.type.displayName === 'Avatar') {
+        if (hasMarker(childElement.type, AVATAR_MARK)) {
           const childProps: Partial<AvatarProps> = {
             style: {
               ...childElement.props.style,

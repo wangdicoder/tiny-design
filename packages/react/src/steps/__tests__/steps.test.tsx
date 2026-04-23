@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { markComponent, STEPS_ITEM_MARK } from '../../_utils/component-markers';
 import Steps from '../index';
 
 describe('<Steps />', () => {
@@ -32,5 +33,20 @@ describe('<Steps />', () => {
     );
     expect(getByText('First')).toBeInTheDocument();
     expect(getByText('Second')).toBeInTheDocument();
+  });
+
+  it('should recognize marker-based step wrappers', () => {
+    const WrappedStep = markComponent(
+      (props: React.ComponentProps<typeof Steps.Step>) => <Steps.Step {...props} />,
+      STEPS_ITEM_MARK
+    );
+
+    const { getByText } = render(
+      <Steps current={0}>
+        <WrappedStep title="Wrapped Step" />
+      </Steps>
+    );
+
+    expect(getByText('Wrapped Step')).toBeInTheDocument();
   });
 });

@@ -1,5 +1,6 @@
 import React, { useContext, ReactNode } from 'react';
 import classNames from 'classnames';
+import { markComponent, STEPS_ITEM_MARK } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { StepsContext } from './steps-context';
@@ -99,5 +100,6 @@ const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
 );
 
 StepsItem.displayName = 'StepsItem';
+markComponent(StepsItem, STEPS_ITEM_MARK);
 
 export default StepsItem;

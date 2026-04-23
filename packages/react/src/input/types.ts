@@ -33,3 +33,8 @@ export interface InputGroupAddonProps
   size?: SizeType;
   children: React.ReactNode;
 }
+
+export interface InputGroupControlProps {
+  disabled?: boolean;
+  size?: SizeType;
+}

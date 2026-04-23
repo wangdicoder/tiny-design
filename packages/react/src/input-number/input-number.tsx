@@ -1,5 +1,6 @@
 import React, { useEffect, useState, MouseEvent, useContext } from 'react';
 import classNames from 'classnames';
+import { INPUT_GROUP_CONTROL_MARK, markComponent } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { InputNumberProps } from './types';
@@ -123,5 +124,6 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
 });
 
 InputNumber.displayName = 'InputNumber';
+markComponent(InputNumber, INPUT_GROUP_CONTROL_MARK);
 
 export default InputNumber;
