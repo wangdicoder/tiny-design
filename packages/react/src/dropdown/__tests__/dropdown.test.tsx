@@ -1,5 +1,6 @@
 import React from 'react';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { markComponent, MENU_MARK } from '../../_utils/component-markers';
 import Dropdown from '../index';
 import Menu from '../../menu';
 
@@ -74,6 +75,33 @@ describe('<Dropdown />', () => {
           <Menu>
             <Menu.Item>Menu Item</Menu.Item>
           </Menu>
+        }
+      >
+        <button>Trigger</button>
+      </Dropdown>
+    );
+
+    fireEvent.click(screen.getByText('Trigger'));
+
+    await waitFor(() => {
+      expect(screen.getByRole('menu')).toHaveClass('ty-menu_vertical');
+      expect(screen.getByRole('menu')).toHaveClass('ty-menu_appearance-dropdown');
+    });
+  });
+
+  it('should treat marker-based menu overlays as menus', async () => {
+    const WrappedMenu = markComponent(
+      (props: React.ComponentProps<typeof Menu>) => <Menu {...props} />,
+      MENU_MARK
+    );
+
+    render(
+      <Dropdown
+        trigger="click"
+        overlay={
+          <WrappedMenu>
+            <Menu.Item>Menu Item</Menu.Item>
+          </WrappedMenu>
         }
       >
         <button>Trigger</button>

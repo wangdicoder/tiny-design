@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { FLIP_ITEM_MARK, hasMarker } from '../_utils/component-markers';
 import warning from '../_utils/warning';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -39,7 +40,7 @@ const Flip = (props: FlipProps): React.ReactElement => {
       <div className={innerCls}>
         {React.Children.map(children, (child, index: number) => {
           const childElement = child as React.FunctionComponentElement<FlipItemProps>;
-          if (childElement.type.displayName === 'FlipItem') {
+          if (hasMarker(childElement.type, FLIP_ITEM_MARK)) {
             const childProps: Partial<FlipItemProps> = {
               className: classNames(
                 {

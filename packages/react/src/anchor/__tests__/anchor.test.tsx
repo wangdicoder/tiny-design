@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { ANCHOR_LINK_MARK, markComponent } from '../../_utils/component-markers';
 import Anchor from '../index';
 
 describe('<Anchor />', () => {
@@ -31,6 +32,21 @@ describe('<Anchor />', () => {
     );
     expect(getByText('Link 1')).toBeInTheDocument();
     expect(getByText('Link 2')).toBeInTheDocument();
+  });
+
+  it('should recognize marker-based link wrappers', () => {
+    const WrappedLink = markComponent(
+      (props: React.ComponentProps<typeof Anchor.Link>) => <Anchor.Link {...props} />,
+      ANCHOR_LINK_MARK
+    );
+
+    const { getByText } = render(
+      <Anchor>
+        <WrappedLink href="#s1" title="Wrapped Link" />
+      </Anchor>
+    );
+
+    expect(getByText('Wrapped Link')).toBeInTheDocument();
   });
 
   it('should forward ref to root list element', () => {

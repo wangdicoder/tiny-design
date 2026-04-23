@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { hasMarker, markComponent, MENU_ITEM_GROUP_MARK, MENU_ITEM_MARK } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { MenuItemGroupProps, MenuItemProps } from './types';
@@ -38,7 +39,7 @@ const MenuItemGroup = (props: MenuItemGroupProps): JSX.Element => {
       <ul className={`${prefixCls}__list`}>
         {React.Children.map(children, (child, idx) => {
           const childElement = child as React.FunctionComponentElement<MenuItemProps>;
-          if (childElement.type.displayName === 'MenuItem') {
+          if (hasMarker(childElement.type, MENU_ITEM_MARK)) {
             const popupGroupedStyle = mode !== 'inline'
               ? {
                   paddingLeft: 44,
@@ -65,5 +66,6 @@ const MenuItemGroup = (props: MenuItemGroupProps): JSX.Element => {
 };
 
 MenuItemGroup.displayName = 'MenuItemGroup';
+markComponent(MenuItemGroup, MENU_ITEM_GROUP_MARK);
 
 export default MenuItemGroup;

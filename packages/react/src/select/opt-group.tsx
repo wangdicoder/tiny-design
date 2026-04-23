@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { hasMarker, markComponent, SELECT_OPT_GROUP_MARK, SELECT_OPTION_MARK } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { SelectOptGroupProps, SelectOptionsProps } from './types';
@@ -16,7 +17,7 @@ const SelectOptGroup = (props: SelectOptGroupProps): React.ReactElement => {
       <ul className={`${prefixCls}__list`}>
         {React.Children.map(children, (child) => {
           const childElement = child as React.FunctionComponentElement<SelectOptionsProps>;
-          if (childElement.type.displayName === 'SelectOption') {
+          if (hasMarker(childElement.type, SELECT_OPTION_MARK)) {
             const childProps = {
               ...childElement.props,
             };
@@ -34,5 +35,6 @@ const SelectOptGroup = (props: SelectOptGroupProps): React.ReactElement => {
 };
 
 SelectOptGroup.displayName = 'SelectOptGroup';
+markComponent(SelectOptGroup, SELECT_OPT_GROUP_MARK);
 
 export default SelectOptGroup;

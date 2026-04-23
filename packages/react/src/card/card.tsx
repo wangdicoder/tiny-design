@@ -1,5 +1,6 @@
 import React, { ReactNode, useContext } from 'react';
 import classNames from 'classnames';
+import { CARD_CONTENT_MARK, hasMarker } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { CardContentProps, CardProps, CardVariant } from './types';
@@ -72,7 +73,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
 
         // Pass prefixCls attribute to child if it is a CardContent instance
         const childElement = child as React.FunctionComponentElement<CardContentProps>;
-        if (childElement.type.displayName === 'CardContent') {
+        if (hasMarker(childElement.type, CARD_CONTENT_MARK)) {
           const childProps: Partial<CardContentProps> = {
             prefixCls,
           };

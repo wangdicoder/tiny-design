@@ -1,5 +1,14 @@
 import React, { useCallback, useContext, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
+import {
+  hasMarker,
+  markComponent,
+  MENU_DIVIDER_MARK,
+  MENU_ITEM_GROUP_MARK,
+  MENU_ITEM_MARK,
+  MENU_MARK,
+  SUB_MENU_MARK,
+} from '../_utils/component-markers';
 import { MenuContext } from './menu-context';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -18,6 +27,12 @@ const getInitialSelectedKeys = (props: MenuProps): string[] => {
   return ['0'];
 };
 
+const isMenuStructureType = (type: unknown): boolean =>
+  hasMarker(type, MENU_ITEM_MARK) ||
+  hasMarker(type, SUB_MENU_MARK) ||
+  hasMarker(type, MENU_ITEM_GROUP_MARK) ||
+  hasMarker(type, MENU_DIVIDER_MARK);
+
 const collectParentMap = (
   children: React.ReactNode,
   ancestors: string[] = [],
@@ -33,32 +48,25 @@ const collectParentMap = (
     const childElement = child as React.FunctionComponentElement<
       MenuItemProps | MenuItemGroupProps | SubMenuProps
     >;
-    const displayName = childElement.type.displayName;
-
-    if (
-      displayName !== 'MenuItem' &&
-      displayName !== 'SubMenu' &&
-      displayName !== 'MenuItemGroup' &&
-      displayName !== 'MenuDivider'
-    ) {
+    if (!isMenuStructureType(childElement.type)) {
       return;
     }
 
     const fallbackIndex = parentIndex === undefined ? `${idx}` : `${parentIndex}-${idx}`;
     const resolvedIndex = childElement.props.index ?? fallbackIndex;
 
-    if (displayName === 'MenuItem' || displayName === 'SubMenu') {
+    if (hasMarker(childElement.type, MENU_ITEM_MARK) || hasMarker(childElement.type, SUB_MENU_MARK)) {
       parentMap.set(resolvedIndex, ancestors);
     }
 
-    if (displayName === 'SubMenu') {
+    if (hasMarker(childElement.type, SUB_MENU_MARK)) {
       const subMenuMap = collectParentMap(childElement.props.children, [...ancestors, resolvedIndex], resolvedIndex);
       subMenuMap.forEach((value, key) => {
         parentMap.set(key, value);
       });
     }
 
-    if (displayName === 'MenuItemGroup') {
+    if (hasMarker(childElement.type, MENU_ITEM_GROUP_MARK)) {
       const groupMap = collectParentMap(childElement.props.children, ancestors, resolvedIndex);
       groupMap.forEach((value, key) => {
         parentMap.set(key, value);
@@ -246,15 +254,14 @@ const Menu = (props: MenuProps): JSX.Element => {
       <MenuContext.Provider value={contextValue}>
         {React.Children.map(children, (child, index) => {
           const childElement = child as React.FunctionComponentElement<MenuItemProps>;
-          const { displayName } = childElement.type;
           if (
-            displayName === 'MenuItem' ||
-            displayName === 'SubMenu' ||
-            displayName === 'MenuItemGroup' ||
-            (displayName === 'MenuDivider' && mode !== 'horizontal')
+            hasMarker(childElement.type, MENU_ITEM_MARK) ||
+            hasMarker(childElement.type, SUB_MENU_MARK) ||
+            hasMarker(childElement.type, MENU_ITEM_GROUP_MARK) ||
+            (hasMarker(childElement.type, MENU_DIVIDER_MARK) && mode !== 'horizontal')
           ) {
             const resolvedIndex = childElement.props.index ?? `${index}`;
-            const childProps = displayName === 'SubMenu' && overlayClassName
+            const childProps = hasMarker(childElement.type, SUB_MENU_MARK) && overlayClassName
               ? { index: resolvedIndex, overlayClassName }
               : { index: resolvedIndex };
             return React.cloneElement(childElement, childProps);
@@ -269,5 +276,6 @@ const Menu = (props: MenuProps): JSX.Element => {
 };
 
 Menu.displayName = 'Menu';
+markComponent(Menu, MENU_MARK);
 
 export default Menu;

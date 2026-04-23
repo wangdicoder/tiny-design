@@ -1,5 +1,6 @@
 import React, { useContext, useLayoutEffect } from 'react';
 import classNames from 'classnames';
+import { markComponent, MENU_ITEM_MARK } from '../_utils/component-markers';
 import { MenuContext } from './menu-context';
 import { SubMenuContext } from './sub-menu-context';
 import { ConfigContext } from '../config-provider/config-context';
@@ -81,5 +82,6 @@ const MenuItem = (props: MenuItemProps): JSX.Element => {
 };
 
 MenuItem.displayName = 'MenuItem';
+markComponent(MenuItem, MENU_ITEM_MARK);
 
 export default MenuItem;

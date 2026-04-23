@@ -1,5 +1,13 @@
 import React, { useContext, useEffect, useId, useRef, useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
+import {
+  hasMarker,
+  INPUT_GROUP_CONTROL_MARK,
+  markComponent,
+  SELECT_MARK,
+  SELECT_OPT_GROUP_MARK,
+  SELECT_OPTION_MARK,
+} from '../_utils/component-markers';
 import { useCombobox } from '../_utils/useCombobox';
 import { ArrowDown, Close, CloseCircle, LoadingCircle, Check } from '../_utils/components';
 import { SelectContext } from './select-context';
@@ -79,13 +87,13 @@ const Select = (props: SelectProps): React.ReactElement => {
       React.Children.forEach(nodes, (child) => {
         const el = child as React.FunctionComponentElement<SelectOptionsProps>;
         if (!el?.type) return;
-        if (el.type.displayName === 'SelectOption') {
+        if (hasMarker(el.type, SELECT_OPTION_MARK)) {
           result.push({
             value: el.props.value,
             label: el.props.label ?? el.props.children,
             disabled: !!el.props.disabled,
           });
-        } else if (el.type.displayName === 'SelectOptGroup') {
+        } else if (hasMarker(el.type, SELECT_OPT_GROUP_MARK)) {
           extractFromChildren(el.props.children);
         }
       });
@@ -353,7 +361,7 @@ const Select = (props: SelectProps): React.ReactElement => {
     return React.Children.map(nodes, (child) => {
       const el = child as React.FunctionComponentElement<SelectOptionsProps>;
       if (!el?.type) return null;
-      if (el.type.displayName === 'SelectOption') {
+      if (hasMarker(el.type, SELECT_OPTION_MARK)) {
         const opt: SelectOptionItem = {
           value: el.props.value,
           label: el.props.label ?? el.props.children,
@@ -362,7 +370,7 @@ const Select = (props: SelectProps): React.ReactElement => {
         if (!combo.matchesFilter(opt)) return null;
         return React.cloneElement(el, el.props);
       }
-      if (el.type.displayName === 'SelectOptGroup') {
+      if (hasMarker(el.type, SELECT_OPT_GROUP_MARK)) {
         const filteredGroupChildren = filterChildren(el.props.children);
         const hasVisibleChildren = React.Children.toArray(filteredGroupChildren).some(Boolean);
         if (!hasVisibleChildren) return null;
@@ -585,5 +593,7 @@ const Select = (props: SelectProps): React.ReactElement => {
 };
 
 Select.displayName = 'Select';
+markComponent(Select, INPUT_GROUP_CONTROL_MARK);
+markComponent(Select, SELECT_MARK);
 
 export default Select;

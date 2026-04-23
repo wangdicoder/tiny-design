@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from 'react';
 import classNames from 'classnames';
+import { AVATAR_MARK, markComponent } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { AvatarProps } from './types';
@@ -98,5 +99,6 @@ const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
 });
 
 Avatar.displayName = 'Avatar';
+markComponent(Avatar, AVATAR_MARK);
 
 export default Avatar;

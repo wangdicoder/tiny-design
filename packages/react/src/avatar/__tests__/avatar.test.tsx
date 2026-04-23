@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { AVATAR_MARK, markComponent } from '../../_utils/component-markers';
 import Avatar from '../index';
 
 describe('<Avatar />', () => {
@@ -36,5 +37,23 @@ describe('<Avatar />', () => {
   it('should render with custom size', () => {
     const { container } = render(<Avatar size={50}>A</Avatar>);
     expect(container.firstChild).toHaveStyle({ width: '50px', height: '50px' });
+  });
+
+  it('should recognize marker-based avatar wrappers in Avatar.Group', () => {
+    const WrappedAvatar = markComponent(
+      (props: React.ComponentProps<typeof Avatar>) => <Avatar {...props} />,
+      AVATAR_MARK
+    );
+
+    const { container } = render(
+      <Avatar.Group gap={-10}>
+        <WrappedAvatar>A</WrappedAvatar>
+        <WrappedAvatar>B</WrappedAvatar>
+      </Avatar.Group>
+    );
+
+    const avatars = container.querySelectorAll('.ty-avatar');
+    expect(avatars).toHaveLength(2);
+    expect(avatars[1]).toHaveStyle({ marginLeft: '-10px' });
   });
 });

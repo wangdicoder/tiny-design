@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { CARD_CONTENT_MARK, markComponent } from '../../_utils/component-markers';
 import Card from '../index';
 
 describe('<Card />', () => {
@@ -64,5 +65,20 @@ describe('<Card />', () => {
   it('should render footer', () => {
     const { getByText } = render(<Card footer={<div>Footer</div>}>Content</Card>);
     expect(getByText('Footer')).toBeInTheDocument();
+  });
+
+  it('should recognize marker-based card content wrappers', () => {
+    const WrappedContent = markComponent(
+      (props: React.ComponentProps<typeof Card.Content>) => <Card.Content {...props} />,
+      CARD_CONTENT_MARK
+    );
+
+    const { container } = render(
+      <Card>
+        <WrappedContent>Wrapped body</WrappedContent>
+      </Card>
+    );
+
+    expect(container.querySelector('.ty-card__body')).toHaveTextContent('Wrapped body');
   });
 });

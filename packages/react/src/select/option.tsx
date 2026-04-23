@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
 import { Check } from '../_utils/components';
+import { markComponent, SELECT_OPTION_MARK } from '../_utils/component-markers';
 import { SelectContext } from './select-context';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -58,5 +59,6 @@ const SelectOption = (props: SelectOptionsProps): React.ReactElement => {
 };
 
 SelectOption.displayName = 'SelectOption';
+markComponent(SelectOption, SELECT_OPTION_MARK);
 
 export default SelectOption;

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import classNames from 'classnames';
+import { ANCHOR_LINK_MARK, hasMarker } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { resolveTargetContainer } from '../config-provider/container-utils';
 import { getPrefixCls } from '../_utils/general';
@@ -228,7 +229,7 @@ const Anchor = React.forwardRef<HTMLUListElement, AnchorProps>((props, ref): JSX
       </div>
       {React.Children.map(children, (child) => {
         const childElement = child as React.FunctionComponentElement<AnchorLinkProps>;
-        if (childElement.type.displayName === 'AnchorLink') {
+        if (hasMarker(childElement.type, ANCHOR_LINK_MARK)) {
           const childProps: Partial<AnchorLinkProps> = {
             prefixCls,
           };

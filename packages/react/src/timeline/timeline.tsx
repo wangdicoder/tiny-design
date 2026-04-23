@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { hasMarker, TIMELINE_ITEM_MARK } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { TimelineItemProps, TimelineProps } from './types';
@@ -16,7 +17,7 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>((props, ref) 
     <ul {...otherProps} ref={ref} className={cls}>
       {React.Children.map(children, (child, idx) => {
         const childElement = child as React.FunctionComponentElement<TimelineItemProps>;
-        if (childElement.type.displayName === 'TimelineItem') {
+        if (hasMarker(childElement.type, TIMELINE_ITEM_MARK)) {
           const childProps: Partial<TimelineItemProps> = {
             className:
               position === 'center'

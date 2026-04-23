@@ -1,4 +1,5 @@
 import React from 'react';
+import { CARD_CONTENT_MARK, markComponent } from '../_utils/component-markers';
 import { CardContentProps } from './types';
 
 const CardContent = (props: CardContentProps): React.ReactElement => {
@@ -11,5 +12,6 @@ const CardContent = (props: CardContentProps): React.ReactElement => {
 };
 
 CardContent.displayName = 'CardContent';
+markComponent(CardContent, CARD_CONTENT_MARK);
 
 export default CardContent;

@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react';
 import classNames from 'classnames';
+import { hasMarker, MENU_MARK } from '../_utils/component-markers';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
 import { DropdownProps } from './types';
@@ -43,7 +44,7 @@ const Dropdown = (props: DropdownProps): JSX.Element => {
 
     const originalOnSelect = overlay.props.onSelect;
     const isMenuOverlay =
-      (overlay.type as React.ElementType & { displayName?: string }).displayName === 'Menu';
+      hasMarker(overlay.type, MENU_MARK);
 
     if (!isMenuOverlay) {
       return overlay;
