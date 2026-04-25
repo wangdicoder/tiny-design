@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.15.0
+
+### Minor Changes
+
+- Emit per-component CSS token slices to dramatically shrink per-component bundles. The tokens package now emits `dist/css/foundation.css` (primitives), `dist/css/semantic.css` (semantics), and `dist/css/components/<name>.css` (per-component) alongside the existing `base.css`. Each compiled component entry imports only the slices it transitively needs, reducing per-component CSS by ~60% raw and ~80% gzipped (Button: 261 KB → 103 KB raw, 36 KB → 7.5 KB gzipped). Full-library bundle size is unchanged; `base.css` is still emitted for backward compatibility. - [#132](https://github.com/wangdicoder/tiny-design/pull/132) [`e5335cf`](https://github.com/wangdicoder/tiny-design/commit/e5335cf44e879b2202b41f204436132fd171bf9e)
+
+### Patch Changes
+
+- Replace runtime displayName checks with component markers for React component composition and keep displayName for debugging only. - [#130](https://github.com/wangdicoder/tiny-design/pull/130) [`d06e59d`](https://github.com/wangdicoder/tiny-design/commit/d06e59d7a6e010b858b6840d7088f00676ff6751)
+
 ## 1.14.0
 
 ## 1.13.3
