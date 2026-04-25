@@ -69,41 +69,48 @@ function transformPath(cssPath) {
   return cssPath;
 }
 
+function loadSliceManifest(baseDir) {
+  const manifestPath = path.join(baseDir, 'style', 'component-deps.json');
+  if (!fs.existsSync(manifestPath)) return {};
+  return JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+}
+
+function formatImport(p, format) {
+  return format === 'esm' ? `import '${p}';` : `require('${p}');`;
+}
+
 /**
  * Build the CSS import lines to prepend to a component's index.js.
+ *
+ * Component CSS now resolves tokens through three layers:
+ *   1. foundation.css — primitive token tier (always loaded)
+ *   2. semantic.css   — semantic token tier (always loaded)
+ *   3. components/<slice>.css — only the component-tier slices this component needs
+ *      (own + transitive style/var() deps), per the slice manifest
+ * After tokens come the component's own selectors and any composed selector deps.
  */
-function buildImportLines(componentDir, format) {
+function buildImportLines(componentDir, format, manifest) {
+  const componentName = path.basename(componentDir);
   const styleJsPath = path.join(componentDir, 'style', 'index.js');
   const ownCssPath = path.join(componentDir, 'style', 'index.css');
   const deps = parseCssDeps(styleJsPath);
 
   const imports = [];
 
-  // Always import base styles first (theme, normalize, animations)
-  const basePath = '../style/base.css';
-  if (format === 'esm') {
-    imports.push(`import '${basePath}';`);
-  } else {
-    imports.push(`require('${basePath}');`);
+  imports.push(formatImport('../style/foundation.css', format));
+  imports.push(formatImport('../style/semantic.css', format));
+
+  const sliceNames = manifest[componentName] || [];
+  for (const sliceName of sliceNames) {
+    imports.push(formatImport(`../style/components/${sliceName}.css`, format));
   }
 
   if (deps.length > 0) {
-    // Use parsed dependencies from style/index.js (includes own CSS + deps)
     for (const dep of deps) {
-      const transformed = transformPath(dep);
-      if (format === 'esm') {
-        imports.push(`import '${transformed}';`);
-      } else {
-        imports.push(`require('${transformed}');`);
-      }
+      imports.push(formatImport(transformPath(dep), format));
     }
   } else if (fs.existsSync(ownCssPath)) {
-    // Fallback: no style/index.js but has compiled CSS
-    if (format === 'esm') {
-      imports.push("import './style/index.css';");
-    } else {
-      imports.push("require('./style/index.css');");
-    }
+    imports.push(formatImport('./style/index.css', format));
   }
 
   return imports;
@@ -112,17 +119,17 @@ function buildImportLines(componentDir, format) {
 /**
  * Inject CSS imports into a component's index.js file.
  */
-function injectComponent(componentDir, format) {
+function injectComponent(componentDir, format, manifest) {
   const indexPath = path.join(componentDir, 'index.js');
   if (!fs.existsSync(indexPath)) return false;
 
-  const imports = buildImportLines(componentDir, format);
-  if (imports.length <= 1) return false; // Only base import, no component CSS
+  const imports = buildImportLines(componentDir, format, manifest);
+  if (imports.length <= 2) return false; // Only foundation + semantic, no component CSS
 
   const content = fs.readFileSync(indexPath, 'utf-8');
 
   // Don't inject twice
-  if (content.includes("style/index.css") || content.includes("style/base.css")) {
+  if (content.includes('style/foundation.css') || content.includes('style/index.css')) {
     return false;
   }
 
@@ -132,24 +139,29 @@ function injectComponent(componentDir, format) {
 }
 
 /**
- * Inject base CSS import into the barrel index.js (es/index.js or lib/index.js).
+ * Inject foundation + semantic token imports into the barrel index.js.
+ * Per-component slices are NOT injected here — each component entry pulls its own slices.
  */
 function injectBarrel(dir, format) {
   const indexPath = path.join(dir, 'index.js');
   if (!fs.existsSync(indexPath)) return;
 
   const content = fs.readFileSync(indexPath, 'utf-8');
-  if (content.includes("style/base.css")) return;
+  if (content.includes('style/foundation.css')) return;
 
-  const line = format === 'esm'
-    ? "import './style/base.css';\n"
-    : "require('./style/base.css');\n";
+  const lines = [
+    formatImport('./style/foundation.css', format),
+    formatImport('./style/semantic.css', format),
+  ].join('\n') + '\n';
 
-  fs.writeFileSync(indexPath, line + content);
-  console.log(`  injected base CSS into ${path.relative(path.resolve(__dirname, '..'), indexPath)}`);
+  fs.writeFileSync(indexPath, lines + content);
+  console.log(
+    `  injected foundation + semantic CSS into ${path.relative(path.resolve(__dirname, '..'), indexPath)}`
+  );
 }
 
 function processDir(baseDir, format) {
+  const manifest = loadSliceManifest(baseDir);
   const entries = fs.readdirSync(baseDir, { withFileTypes: true });
   let count = 0;
 
@@ -159,7 +171,7 @@ function processDir(baseDir, format) {
     if (entry.name.startsWith('_') || entry.name === 'style' || entry.name === 'locale') continue;
 
     const componentDir = path.join(baseDir, entry.name);
-    if (injectComponent(componentDir, format)) {
+    if (injectComponent(componentDir, format, manifest)) {
       count++;
     }
   }
