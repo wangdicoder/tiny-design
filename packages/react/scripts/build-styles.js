@@ -19,15 +19,37 @@ async function processWithPostcss(css) {
   return result.css;
 }
 
-// 1. Base CSS: copy the runtime theme bundle from @tiny-design/tokens
+// 1. Base CSS: copy the runtime theme bundle from @tiny-design/tokens.
+//    Also copies the per-tier (foundation/semantic) and per-component slice files
+//    plus the slice manifest so inject-style-imports.js can wire components to slices.
 function copyBaseCss() {
-  const src = require.resolve('@tiny-design/tokens/dist/css/base.css');
+  const baseSrc = require.resolve('@tiny-design/tokens/dist/css/base.css');
+  const tokensCssDir = path.dirname(baseSrc);
+  const foundationSrc = path.join(tokensCssDir, 'foundation.css');
+  const semanticSrc = path.join(tokensCssDir, 'semantic.css');
+  const componentsSrcDir = path.join(tokensCssDir, 'components');
+  const manifestSrc = path.join(tokensCssDir, 'component-deps.json');
+
   for (const dir of [ES_DIR, LIB_DIR]) {
     const outDir = path.join(dir, 'style');
+    const componentsOutDir = path.join(outDir, 'components');
     mkdirp(outDir);
-    fs.copyFileSync(src, path.join(outDir, 'base.css'));
+    mkdirp(componentsOutDir);
+    fs.copyFileSync(baseSrc, path.join(outDir, 'base.css'));
+    fs.copyFileSync(foundationSrc, path.join(outDir, 'foundation.css'));
+    fs.copyFileSync(semanticSrc, path.join(outDir, 'semantic.css'));
+    fs.copyFileSync(manifestSrc, path.join(outDir, 'component-deps.json'));
+
+    for (const file of fs.readdirSync(componentsSrcDir)) {
+      if (!file.endsWith('.css')) continue;
+      fs.copyFileSync(path.join(componentsSrcDir, file), path.join(componentsOutDir, file));
+    }
   }
-  console.log('  es/style/base.css + lib/style/base.css (copied from @tiny-design/tokens base theme CSS)');
+  const sliceCount = fs.readdirSync(componentsSrcDir).filter((f) => f.endsWith('.css')).length;
+  console.log(
+    `  es/style/{base,foundation,semantic}.css + lib/style/{base,foundation,semantic}.css copied`
+  );
+  console.log(`  es/style/components/*.css + lib/style/components/*.css (${sliceCount} slices)`);
 }
 
 // 2. Per-component CSS: compile each component's style/index.scss entry

@@ -735,6 +735,127 @@ function buildBaseThemeCss(tokens, cssValues, tokenMap, lightTheme, darkTheme) {
   return parts.join('\n');
 }
 
+function buildSliceCss(tokens, cssValues, tokenMap, lightTheme, darkTheme) {
+  if (tokens.length === 0) return '';
+  return buildBaseThemeCss(tokens, cssValues, tokenMap, lightTheme, darkTheme);
+}
+
+const SLICE_SCAN_SKIP_DIRS = new Set(['__tests__', '__snapshots__', 'demo']);
+
+function listSliceScanFiles(dirPath) {
+  if (!fs.existsSync(dirPath)) return [];
+  const result = [];
+  for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
+    if (SLICE_SCAN_SKIP_DIRS.has(entry.name)) continue;
+    const full = path.join(dirPath, entry.name);
+    if (entry.isDirectory()) {
+      result.push(...listSliceScanFiles(full));
+    } else if (CONSUMER_FILE_EXTENSIONS.has(path.extname(entry.name))) {
+      result.push(full);
+    }
+  }
+  return result;
+}
+
+function listReactComponentDirs() {
+  if (!fs.existsSync(REACT_SRC_DIR)) return [];
+  return listDirectories(REACT_SRC_DIR).filter(
+    (name) => !name.startsWith('_') && name !== 'style' && name !== 'locale'
+  );
+}
+
+function extractStyleEntryDeps(dirName, namespacesWithStyles) {
+  const styleEntryPath = path.join(REACT_SRC_DIR, dirName, 'style', 'index.tsx');
+  if (!fs.existsSync(styleEntryPath)) return new Set();
+
+  const sourceText = readText(styleEntryPath);
+  const importRegex = /from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]/g;
+  const deps = new Set();
+  let match;
+
+  while ((match = importRegex.exec(sourceText)) !== null) {
+    const importPath = match[1] || match[2];
+    const styleDepMatch = importPath.match(/^\.\.\/\.\.\/([^/]+)\/style/);
+    if (styleDepMatch && namespacesWithStyles.has(styleDepMatch[1])) {
+      deps.add(styleDepMatch[1]);
+    }
+  }
+
+  return deps;
+}
+
+function computeSliceManifest(allTokens) {
+  const componentTokens = allTokens.filter((token) => token.category === 'component');
+  const tokensByNamespace = new Map();
+  for (const token of componentTokens) {
+    if (!token.component) continue;
+    if (!tokensByNamespace.has(token.component)) {
+      tokensByNamespace.set(token.component, []);
+    }
+    tokensByNamespace.get(token.component).push(token);
+  }
+
+  const varToNamespace = new Map();
+  for (const token of componentTokens) {
+    if (token.component) {
+      varToNamespace.set(tokenKeyToCssVar(token.key), token.component);
+    }
+  }
+
+  const reactDirs = listReactComponentDirs();
+  const namespacesWithStyles = new Set(reactDirs);
+
+  const directDeps = new Map();
+  for (const dirName of reactDirs) {
+    const dirPath = path.join(REACT_SRC_DIR, dirName);
+    const deps = new Set();
+
+    for (const filePath of listSliceScanFiles(dirPath)) {
+      const sourceText = readText(filePath);
+      for (const reference of extractTyVarReferences(sourceText)) {
+        const namespace = varToNamespace.get(reference.name);
+        if (namespace) deps.add(namespace);
+      }
+    }
+
+    for (const styleDep of extractStyleEntryDeps(dirName, namespacesWithStyles)) {
+      deps.add(styleDep);
+    }
+
+    directDeps.set(dirName, deps);
+  }
+
+  const closure = new Map();
+  for (const dirName of directDeps.keys()) {
+    const visited = new Set();
+    const queue = [...(directDeps.get(dirName) || [])];
+    while (queue.length > 0) {
+      const namespace = queue.shift();
+      if (visited.has(namespace)) continue;
+      visited.add(namespace);
+      const nsDeps = directDeps.get(namespace);
+      if (nsDeps) {
+        for (const next of nsDeps) {
+          if (!visited.has(next)) queue.push(next);
+        }
+      }
+    }
+    closure.set(dirName, visited);
+  }
+
+  const manifest = {};
+  const tokenSliceNames = new Set(tokensByNamespace.keys());
+  for (const [dirName, namespaceSet] of closure.entries()) {
+    const sliceNames = Array.from(namespaceSet)
+      .filter((namespace) => tokenSliceNames.has(namespace))
+      .sort();
+    if (sliceNames.length === 0) continue;
+    manifest[dirName] = sliceNames;
+  }
+
+  return { tokensByNamespace, manifest };
+}
+
 function buildRegistryDts() {
   return `export type TokenCategory = 'primitive' | 'semantic' | 'component';
 export type TokenType =
@@ -970,13 +1091,32 @@ function buildRuntimeTokens(options = {}) {
   const darkCss = buildThemeCss(allTokens, cssValues, tokenMap, darkThemeOverrides, "[data-tiny-theme='dark']");
   const baseCss = buildBaseThemeCss(allTokens, cssValues, tokenMap, lightTheme, darkTheme);
 
+  const primitiveTier = allTokens.filter((token) => token.category === 'primitive');
+  const semanticTier = allTokens.filter((token) => token.category === 'semantic');
+  const foundationCss = buildSliceCss(primitiveTier, cssValues, tokenMap, lightTheme, darkTheme);
+  const semanticCss = buildSliceCss(semanticTier, cssValues, tokenMap, lightTheme, darkTheme);
+
+  const { tokensByNamespace, manifest } = computeSliceManifest(allTokens);
+
   mkdirp(DIST_CSS_DIR);
   mkdirp(SCHEMA_DIST_DIR);
+  const componentsDir = path.join(DIST_CSS_DIR, 'components');
+  mkdirp(componentsDir);
   writeJson(path.join(DIST_DIR, 'registry.json'), registry);
   writeJson(path.join(DIST_DIR, 'presets.json'), presets);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'light.css'), lightCss);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'dark.css'), darkCss);
   fs.writeFileSync(path.join(DIST_CSS_DIR, 'base.css'), baseCss);
+  fs.writeFileSync(path.join(DIST_CSS_DIR, 'foundation.css'), foundationCss);
+  fs.writeFileSync(path.join(DIST_CSS_DIR, 'semantic.css'), semanticCss);
+
+  for (const [namespace, namespaceTokens] of tokensByNamespace.entries()) {
+    const sliceCss = buildSliceCss(namespaceTokens, cssValues, tokenMap, lightTheme, darkTheme);
+    fs.writeFileSync(path.join(componentsDir, `${namespace}.css`), sliceCss);
+  }
+
+  writeJson(path.join(DIST_CSS_DIR, 'component-deps.json'), manifest);
+
   fs.writeFileSync(REGISTRY_DTS_PATH, buildRegistryDts());
   fs.writeFileSync(PRESETS_DTS_PATH, buildPresetsDts(presets));
   fs.copyFileSync(THEME_SCHEMA_PATH, path.join(SCHEMA_DIST_DIR, 'theme.schema.json'));
@@ -989,6 +1129,10 @@ function buildRuntimeTokens(options = {}) {
   console.log('  dist/css/light.css');
   console.log('  dist/css/dark.css');
   console.log('  dist/css/base.css');
+  console.log('  dist/css/foundation.css');
+  console.log('  dist/css/semantic.css');
+  console.log(`  dist/css/components/*.css (${tokensByNamespace.size} slices)`);
+  console.log(`  dist/css/component-deps.json (${Object.keys(manifest).length} dirs)`);
   console.log('\nRuntime tokens done.');
 
   return { registry, presets };
