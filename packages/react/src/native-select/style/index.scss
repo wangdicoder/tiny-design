@@ -35,9 +35,9 @@ $select-arrow: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcm
   &_disabled {
     background-image: url($select-arrow);
     background-size: 0.52em auto, 100%;
-    background-color: var(--ty-native-select-disabled-bg);
+    background-color: var(--ty-native-select-bg-disabled);
     opacity: var(--ty-native-select-opacity-disabled);
-    color: var(--ty-native-select-disabled-color);
+    color: var(--ty-native-select-color-disabled);
     cursor: not-allowed;
     resize: none;
 

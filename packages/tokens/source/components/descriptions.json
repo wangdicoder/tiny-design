@@ -83,34 +83,34 @@
     "description": "Descriptions bordered container radius.",
     "fallback": "--ty-border-radius"
   },
-  "descriptions.lg-padding-hr": {
+  "descriptions.padding-hr.lg": {
     "$value": "{height-sm}",
     "$type": "dimension",
     "description": "Descriptions lg padding hr.",
     "fallback": "--ty-height-sm"
   },
-  "descriptions.lg-padding-vt": {
+  "descriptions.padding-vt.lg": {
     "$value": "16px",
     "$type": "dimension",
     "description": "Descriptions lg padding vt."
   },
-  "descriptions.md-padding-hr": {
+  "descriptions.padding-hr.md": {
     "$value": "{height-sm}",
     "$type": "dimension",
     "description": "Descriptions md padding hr.",
     "fallback": "--ty-height-sm"
   },
-  "descriptions.md-padding-vt": {
+  "descriptions.padding-vt.md": {
     "$value": "12px",
     "$type": "dimension",
     "description": "Descriptions md padding vt."
   },
-  "descriptions.sm-padding-hr": {
+  "descriptions.padding-hr.sm": {
     "$value": "16px",
     "$type": "dimension",
     "description": "Descriptions sm padding hr."
   },
-  "descriptions.sm-padding-vt": {
+  "descriptions.padding-vt.sm": {
     "$value": "8px",
     "$type": "dimension",
     "description": "Descriptions sm padding vt."

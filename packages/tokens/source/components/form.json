@@ -4,7 +4,7 @@
     "$type": "color",
     "description": "Form error color."
   },
-  "form.error-hover": {
+  "form.error.hover": {
     "$value": "#ff7875",
     "$type": "color",
     "description": "Form error hover."

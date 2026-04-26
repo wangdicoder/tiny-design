@@ -22,9 +22,9 @@
 
   &_disabled {
     .#{$prefix}-pagination__item_active {
-      background: var(--ty-pagination-disabled-active-bg, #dbdbdb) !important;
+      background: var(--ty-pagination-bg-disabled-active, #dbdbdb) !important;
       border-color: transparent !important;
-      color: var(--ty-pagination-disabled-active-color, #fff) !important;
+      color: var(--ty-pagination-color-disabled-active, #fff) !important;
     }
   }
 
@@ -98,7 +98,7 @@
 
       &_disabled {
         color: var(--ty-pagination-disabled-color-md, var(--ty-color-text-tertiary));
-        background: var(--ty-pagination-disabled-bg, var(--ty-color-fill-secondary));
+        background: var(--ty-pagination-bg-disabled, var(--ty-color-fill-secondary));
         border-color: var(--ty-pagination-item-border-md, var(--ty-color-border));
 
         &:hover {

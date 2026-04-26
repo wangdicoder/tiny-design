@@ -49,7 +49,7 @@
     }
 
     &_disabled {
-      opacity: var(--ty-quick-actions-disabled-opacity);
+      opacity: var(--ty-quick-actions-opacity-disabled);
       cursor: not-allowed;
       transform: none;
     }
@@ -218,7 +218,7 @@
     }
 
     &_disabled {
-      opacity: var(--ty-quick-actions-disabled-opacity);
+      opacity: var(--ty-quick-actions-opacity-disabled);
       cursor: not-allowed;
       transform: none;
     }

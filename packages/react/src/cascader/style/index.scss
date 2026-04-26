@@ -155,12 +155,12 @@
     &_active {
       color: var(--ty-cascader-option-color-active);
       font-weight: var(--ty-cascader-option-font-weight-active);
-      background: var(--ty-cascader-selected-bg);
+      background: var(--ty-cascader-bg-selected);
     }
 
     &_disabled {
       cursor: not-allowed;
-      opacity: var(--ty-cascader-menu-item-disabled-opacity);
+      opacity: var(--ty-cascader-menu-item-opacity-disabled);
     }
   }
 

@@ -22,19 +22,19 @@
     "description": "Cascader selector radius.",
     "fallback": "--ty-border-radius"
   },
-  "cascader.border-hover": {
+  "cascader.border.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Cascader selector hover border color.",
     "fallback": "--ty-color-primary"
   },
-  "cascader.border-focus": {
+  "cascader.border.focus": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Cascader selector focus border color.",
     "fallback": "--ty-color-primary"
   },
-  "cascader.shadow-focus": {
+  "cascader.shadow.focus": {
     "$value": "{shadow-focus}",
     "$type": "shadow",
     "description": "Cascader selector focus shadow.",
@@ -114,7 +114,7 @@
     "description": "Cascader clear icon color.",
     "fallback": "--ty-color-text-tertiary"
   },
-  "cascader.clear-color-hover": {
+  "cascader.clear-color.hover": {
     "$value": "{color-text-secondary}",
     "$type": "color",
     "description": "Cascader clear icon hover color.",
@@ -195,18 +195,18 @@
     "$type": "string",
     "description": "Cascader menu item padding."
   },
-  "cascader.menu-item-disabled-opacity": {
+  "cascader.menu-item.opacity.disabled": {
     "$value": "0.5",
     "$type": "number",
     "description": "Cascader disabled menu item opacity."
   },
-  "cascader.option-color-active": {
+  "cascader.option-color.active": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Cascader active option text color.",
     "fallback": "--ty-color-primary"
   },
-  "cascader.option-font-weight-active": {
+  "cascader.option-font-weight.active": {
     "$value": "500",
     "$type": "font-weight",
     "description": "Cascader active option font weight."
@@ -227,7 +227,7 @@
     "$type": "dimension",
     "description": "Cascader submenu arrow font size."
   },
-  "cascader.selected-bg": {
+  "cascader.bg.selected": {
     "$value": "rgba(110, 65, 191, 0.06)",
     "$type": "color",
     "description": "Cascader active option background color."

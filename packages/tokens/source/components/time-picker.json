@@ -56,19 +56,19 @@
     "$type": "dimension",
     "description": "Time picker cell line height."
   },
-  "time-picker.cell-bg-selected": {
+  "time-picker.cell-bg.selected": {
     "$value": "{color-primary-bg}",
     "$type": "color",
     "description": "Time picker selected cell background color.",
     "fallback": "--ty-color-primary-bg"
   },
-  "time-picker.cell-bg-selected-hover": {
+  "time-picker.cell-bg.selected-hover": {
     "$value": "{color-primary-bg-hover}",
     "$type": "color",
     "description": "Time picker selected cell hover background color.",
     "fallback": "--ty-color-primary-bg-hover"
   },
-  "time-picker.cell-font-weight-selected": {
+  "time-picker.cell-font-weight.selected": {
     "$value": "500",
     "$type": "font-weight",
     "description": "Time picker selected cell font weight."
@@ -95,7 +95,7 @@
     "description": "Time picker now action color.",
     "fallback": "--ty-color-primary"
   },
-  "time-picker.now-color-hover": {
+  "time-picker.now-color.hover": {
     "$value": "{color-primary-hover}",
     "$type": "color",
     "description": "Time picker now action hover color.",
@@ -127,7 +127,7 @@
     "description": "Time picker ok button background color.",
     "fallback": "--ty-color-primary"
   },
-  "time-picker.ok-button-bg-hover": {
+  "time-picker.ok-button-bg.hover": {
     "$value": "{color-primary-hover}",
     "$type": "color",
     "description": "Time picker ok button hover background color.",

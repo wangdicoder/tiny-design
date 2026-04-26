@@ -48,24 +48,24 @@
     "description": "Inactive tab text color.",
     "fallback": "--ty-color-text"
   },
-  "tabs.tab-hover-color": {
+  "tabs.tab.color.hover": {
     "$value": "{color-primary-text-hover}",
     "$type": "color",
     "description": "Tab hover text color.",
     "fallback": "--ty-color-primary-text-hover"
   },
-  "tabs.tab-active-color": {
+  "tabs.tab.color.active": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Active tab text color.",
     "fallback": "--ty-color-primary"
   },
-  "tabs.tab-active-font-weight": {
+  "tabs.tab.font-weight.active": {
     "$value": "500",
     "$type": "font-weight",
     "description": "Active tab font weight."
   },
-  "tabs.tab-disabled-color": {
+  "tabs.tab.color.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Disabled tab text color.",
@@ -92,7 +92,7 @@
     "description": "Editable tab close icon color.",
     "fallback": "--ty-color-text-tertiary"
   },
-  "tabs.remove-color-hover": {
+  "tabs.remove-color.hover": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "Editable tab close icon hover color.",
@@ -125,13 +125,13 @@
     "description": "Scrollable tabs nav button color.",
     "fallback": "--ty-color-text-tertiary"
   },
-  "tabs.nav-button-color-hover": {
+  "tabs.nav-button-color.hover": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "Scrollable tabs nav button hover color.",
     "fallback": "--ty-color-text"
   },
-  "tabs.nav-button-color-disabled": {
+  "tabs.nav-button-color.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Scrollable tabs nav button disabled color.",
@@ -169,13 +169,13 @@
     "description": "Editable tabs add button color.",
     "fallback": "--ty-color-text-tertiary"
   },
-  "tabs.add-color-hover": {
+  "tabs.add-color.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Editable tabs add button hover color.",
     "fallback": "--ty-color-primary"
   },
-  "tabs.add-border-color-hover": {
+  "tabs.add-border-color.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Editable tabs add button hover border color.",
@@ -227,7 +227,7 @@
     "description": "Card tabs background color.",
     "fallback": "--ty-color-fill"
   },
-  "tabs.card-active-bg": {
+  "tabs.card.bg.active": {
     "$value": "{color-bg-container}",
     "$type": "color",
     "description": "Active card tabs background color.",

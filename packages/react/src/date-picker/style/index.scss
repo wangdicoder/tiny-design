@@ -165,7 +165,7 @@ $dp: #{$prefix}-date-picker;
 
     &:hover {
       color: var(--ty-date-picker-header-button-color-hover);
-      background: var(--ty-date-picker-header-action-hover-bg);
+      background: var(--ty-date-picker-header-action-bg-hover);
     }
 
     &:focus-visible {
@@ -203,7 +203,7 @@ $dp: #{$prefix}-date-picker;
 
     &:hover {
       color: var(--ty-date-picker-header-button-color-hover);
-      background: var(--ty-date-picker-header-action-hover-bg);
+      background: var(--ty-date-picker-header-action-bg-hover);
     }
 
     &:focus-visible {
@@ -258,7 +258,7 @@ $dp: #{$prefix}-date-picker;
   }
 
   &__cell:hover &__cell-inner {
-    background: var(--ty-picker-cell-hover-bg);
+    background: var(--ty-picker-cell-bg-hover);
   }
 
   &__cell_today &__cell-inner {
@@ -267,13 +267,13 @@ $dp: #{$prefix}-date-picker;
   }
 
   &__cell_selected &__cell-inner {
-    background: var(--ty-date-picker-cell-selected-bg);
-    color: var(--ty-date-picker-cell-selected-color);
+    background: var(--ty-date-picker-cell-bg-selected);
+    color: var(--ty-date-picker-cell-color-selected);
     font-weight: 500;
   }
 
   &__cell_selected:hover &__cell-inner {
-    background: var(--ty-date-picker-cell-selected-hover-bg);
+    background: var(--ty-date-picker-cell-bg-selected-hover);
   }
 
   &__cell_in-range,
@@ -288,8 +288,8 @@ $dp: #{$prefix}-date-picker;
 
   &__cell_range-start &__cell-inner,
   &__cell_range-end &__cell-inner {
-    background: var(--ty-date-picker-cell-selected-bg);
-    color: var(--ty-date-picker-cell-selected-color);
+    background: var(--ty-date-picker-cell-bg-selected);
+    color: var(--ty-date-picker-cell-color-selected);
     font-weight: 500;
   }
 
@@ -303,17 +303,17 @@ $dp: #{$prefix}-date-picker;
   &__cell_range-end.#{$dp}__cell_in-preview-range &__cell-inner,
   &__cell_range-start.#{$dp}__cell_in-range &__cell-inner,
   &__cell_range-end.#{$dp}__cell_in-range &__cell-inner {
-    background: var(--ty-date-picker-cell-selected-bg);
-    color: var(--ty-date-picker-cell-selected-color);
+    background: var(--ty-date-picker-cell-bg-selected);
+    color: var(--ty-date-picker-cell-color-selected);
   }
 
   &__cell_disabled &__cell-inner {
     color: var(--ty-date-picker-cell-color-muted);
-    background: var(--ty-date-picker-cell-disabled-bg);
+    background: var(--ty-date-picker-cell-bg-disabled);
   }
 
   &__cell_disabled:hover &__cell-inner {
-    background: var(--ty-date-picker-cell-disabled-bg);
+    background: var(--ty-date-picker-cell-bg-disabled);
   }
 
   &__cell_dim &__cell-inner {
@@ -350,7 +350,7 @@ $dp: #{$prefix}-date-picker;
 
   &__month-cell:hover &__month-cell-inner,
   &__year-cell:hover &__year-cell-inner {
-    background: var(--ty-date-picker-panel-item-hover-bg);
+    background: var(--ty-date-picker-panel-item-bg-hover);
   }
 
   &__month-cell.#{$dp}__cell_dim &__month-cell-inner,
@@ -368,14 +368,14 @@ $dp: #{$prefix}-date-picker;
 
   &__month-cell.#{$dp}__cell_selected &__month-cell-inner,
   &__year-cell.#{$dp}__cell_selected &__year-cell-inner {
-    background: var(--ty-date-picker-panel-item-selected-bg);
-    color: var(--ty-date-picker-panel-item-selected-color);
+    background: var(--ty-date-picker-panel-item-bg-selected);
+    color: var(--ty-date-picker-panel-item-color-selected);
     font-weight: 600;
   }
 
   &__month-cell.#{$dp}__cell_selected:hover &__month-cell-inner,
   &__year-cell.#{$dp}__cell_selected:hover &__year-cell-inner {
-    background: var(--ty-date-picker-panel-item-selected-hover-bg);
+    background: var(--ty-date-picker-panel-item-bg-selected-hover);
   }
 
   &__month-cell.#{$dp}__cell_selected.#{$dp}__cell_today &__month-cell-inner,
@@ -413,11 +413,11 @@ $dp: #{$prefix}-date-picker;
 
     &:hover {
       color: var(--ty-date-picker-today-color-hover);
-      background: var(--ty-date-picker-today-hover-bg);
+      background: var(--ty-date-picker-today-bg-hover);
     }
 
     &:active {
-      background: var(--ty-date-picker-today-active-bg);
+      background: var(--ty-date-picker-today-bg-active);
     }
 
     &:focus-visible {

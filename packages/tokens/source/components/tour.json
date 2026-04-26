@@ -98,7 +98,7 @@
     "$type": "color",
     "description": "Primary tour close button hover color."
   },
-  "tour.close-bg-hover": {
+  "tour.close-bg.hover": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Default tour close button hover background color.",

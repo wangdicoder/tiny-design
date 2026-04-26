@@ -48,7 +48,7 @@
 
     &:hover:not(&_disabled) {
       color: var(--ty-calendar-header-action-color-hover);
-      background: var(--ty-calendar-header-action-hover-bg);
+      background: var(--ty-calendar-header-action-bg-hover);
     }
 
     &:focus-visible {
@@ -92,7 +92,7 @@
 
     &:hover {
       color: var(--ty-calendar-header-label-color-hover);
-      background: var(--ty-calendar-header-label-hover-bg);
+      background: var(--ty-calendar-header-label-bg-hover);
     }
 
     &:focus-visible {
@@ -152,17 +152,17 @@
       color: var(--ty-calendar-cell-color-muted);
 
       .#{$prefix}-calendar__cell-inner {
-        background: var(--ty-calendar-cell-disabled-bg);
+        background: var(--ty-calendar-cell-bg-disabled);
       }
 
     }
 
     &:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-calendar-cell-hover-bg);
+      background: var(--ty-calendar-cell-bg-hover);
     }
 
     &_selected:not(&_disabled):hover .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-calendar-cell-selected-bg);
+      background: var(--ty-calendar-cell-bg-selected);
     }
 
     &_in-view:not(&_disabled) {
@@ -183,8 +183,8 @@
     }
 
     &_selected .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-calendar-cell-selected-bg);
-      color: var(--ty-calendar-cell-selected-color);
+      background: var(--ty-calendar-cell-bg-selected);
+      color: var(--ty-calendar-cell-color-selected);
       border-radius: var(--ty-calendar-radius);
     }
 
@@ -204,8 +204,8 @@
     }
 
     &_range-start .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-calendar-cell-selected-bg);
-      color: var(--ty-calendar-cell-selected-color);
+      background: var(--ty-calendar-cell-bg-selected);
+      color: var(--ty-calendar-cell-color-selected);
       border-radius: var(--ty-calendar-radius);
     }
 
@@ -215,8 +215,8 @@
     }
 
     &_range-end .#{$prefix}-calendar__cell-inner {
-      background: var(--ty-calendar-cell-selected-bg);
-      color: var(--ty-calendar-cell-selected-color);
+      background: var(--ty-calendar-cell-bg-selected);
+      color: var(--ty-calendar-cell-color-selected);
       border-radius: var(--ty-calendar-radius);
     }
 
@@ -228,7 +228,7 @@
 
     &_focused .#{$prefix}-calendar__cell-inner,
     &:focus-visible .#{$prefix}-calendar__cell-inner {
-      outline: 2px solid var(--ty-calendar-cell-focus-outline);
+      outline: 2px solid var(--ty-calendar-cell-outline-focus);
       outline-offset: 1px;
     }
   }
@@ -295,15 +295,15 @@
     transition: all 0.2s;
 
     &:hover {
-      background: var(--ty-calendar-panel-item-hover-bg);
+      background: var(--ty-calendar-panel-item-bg-hover);
     }
 
     &_selected {
-      background: var(--ty-calendar-panel-item-selected-bg);
-      color: var(--ty-calendar-panel-item-selected-color);
+      background: var(--ty-calendar-panel-item-bg-selected);
+      color: var(--ty-calendar-panel-item-color-selected);
 
       &:hover {
-        background: var(--ty-calendar-panel-item-selected-hover-bg);
+        background: var(--ty-calendar-panel-item-bg-selected-hover);
       }
     }
   }
@@ -338,15 +338,15 @@
     font-size: var(--ty-calendar-decade-font-size);
 
     &:hover {
-      background: var(--ty-calendar-panel-item-hover-bg);
+      background: var(--ty-calendar-panel-item-bg-hover);
     }
 
     &_selected {
-      background: var(--ty-calendar-panel-item-selected-bg);
-      color: var(--ty-calendar-panel-item-selected-color);
+      background: var(--ty-calendar-panel-item-bg-selected);
+      color: var(--ty-calendar-panel-item-color-selected);
 
       &:hover {
-        background: var(--ty-calendar-panel-item-selected-hover-bg);
+        background: var(--ty-calendar-panel-item-bg-selected-hover);
       }
     }
 
@@ -386,11 +386,11 @@
 
     &:hover {
       color: var(--ty-calendar-today-color-hover);
-      background: var(--ty-calendar-today-hover-bg);
+      background: var(--ty-calendar-today-bg-hover);
     }
 
     &:active {
-      background: var(--ty-calendar-today-active-bg);
+      background: var(--ty-calendar-today-bg-active);
     }
 
     &:focus-visible {

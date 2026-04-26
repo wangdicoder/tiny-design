@@ -190,7 +190,7 @@
     transition: transform var(--ty-color-picker-preset-transition-duration);
 
     &:hover {
-      transform: scale(var(--ty-color-picker-preset-hover-scale));
+      transform: scale(var(--ty-color-picker-preset-scale-hover));
     }
   }
 }

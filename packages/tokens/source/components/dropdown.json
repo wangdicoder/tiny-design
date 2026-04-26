@@ -15,7 +15,7 @@
     "description": "Dropdown menu item text color.",
     "fallback": "--ty-color-text"
   },
-  "dropdown.item-hover-bg": {
+  "dropdown.item.bg.hover": {
     "$value": "{color-bg-spotlight}",
     "$type": "color",
     "description": "Dropdown menu item hover background color.",

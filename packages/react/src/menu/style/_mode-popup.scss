@@ -136,7 +136,7 @@
     --_menu-popup-item-padding: var(--ty-menu-popup-item-padding, 8px 15px);
     --_menu-overlay-item-color: var(--ty-menu-overlay-item-color, var(--ty-popup-color-light, var(--ty-color-text)));
     --ty-menu-overlay-item-selected-color: var(--ty-menu-color-selected, var(--ty-color-primary));
-    --_menu-overlay-item-hover-bg: var(--ty-menu-overlay-item-hover-bg, var(--ty-color-bg-spotlight));
+    --_menu-overlay-item-hover-bg: var(--ty-menu-overlay-item-bg-hover, var(--ty-color-bg-spotlight));
     --_menu-group-title-padding: var(--ty-menu-group-title-padding, 8px 10px);
     --_menu-popup-shadow: var(--ty-menu-popup-shadow, var(--ty-shadow-popup));
     --_menu-popup-border: var(--ty-menu-popup-border, transparent);
@@ -153,7 +153,7 @@
       --ty-menu-dark-color-selected,
       var(--ty-color-primary-hover, var(--ty-color-primary))
     );
-    --_menu-overlay-item-hover-bg: var(--ty-menu-dark-overlay-item-hover-bg, var(--ty-color-bg-spotlight));
+    --_menu-overlay-item-hover-bg: var(--ty-menu-dark-overlay-item-bg-hover, var(--ty-color-bg-spotlight));
     --_menu-overlay-group-title-color: var(--ty-menu-dark-group-title-color, var(--_menu-group-title-color));
 
     background: var(--_menu-popup-bg);

@@ -48,20 +48,20 @@ $tab-prefix: #{$prefix}-tabs;
     transition: color 0.3s;
 
     &:hover {
-      color: var(--ty-tabs-tab-hover-color, var(--ty-color-primary-text-hover));
+      color: var(--ty-tabs-tab-color-hover, var(--ty-color-primary-text-hover));
     }
 
     &_active {
-      color: var(--ty-tabs-tab-active-color, var(--ty-color-primary));
-      font-weight: var(--ty-tabs-tab-active-font-weight, 500);
+      color: var(--ty-tabs-tab-color-active, var(--ty-color-primary));
+      font-weight: var(--ty-tabs-tab-font-weight-active, 500);
     }
 
     &_disabled {
-      color: var(--ty-tabs-tab-disabled-color, var(--ty-color-text-quaternary));
+      color: var(--ty-tabs-tab-color-disabled, var(--ty-color-text-quaternary));
       cursor: not-allowed;
 
       &:hover {
-        color: var(--ty-tabs-tab-disabled-color, var(--ty-color-text-quaternary));
+        color: var(--ty-tabs-tab-color-disabled, var(--ty-color-text-quaternary));
       }
     }
 
@@ -213,8 +213,8 @@ $tab-prefix: #{$prefix}-tabs;
       }
 
       &_active {
-        background: var(--ty-tabs-card-active-bg, var(--ty-color-bg-container));
-        border-bottom-color: var(--ty-tabs-card-active-bg, var(--ty-color-bg-container));
+        background: var(--ty-tabs-card-bg-active, var(--ty-color-bg-container));
+        border-bottom-color: var(--ty-tabs-card-bg-active, var(--ty-color-bg-container));
       }
     }
 

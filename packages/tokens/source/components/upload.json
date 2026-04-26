@@ -16,7 +16,7 @@
     "$type": "dimension",
     "description": "Upload list item margin top."
   },
-  "upload.list-item-hover-bg": {
+  "upload.list-item.bg.hover": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Upload list item hover background color.",
@@ -75,13 +75,13 @@
     "description": "Upload dragger border color.",
     "fallback": "--ty-color-border"
   },
-  "upload.dragger-border-hover": {
+  "upload.dragger-border.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Upload dragger hover border color.",
     "fallback": "--ty-color-primary"
   },
-  "upload.dragger-hover-bg": {
+  "upload.dragger.bg.hover": {
     "$value": "#efefef",
     "$type": "color",
     "description": "Upload dragger hover background color."

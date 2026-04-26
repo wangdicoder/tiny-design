@@ -1,5 +1,5 @@
 {
-  "slider.dot-active-border": {
+  "slider.dot.border.active": {
     "$value": "#9570d4",
     "$type": "color",
     "description": "Slider dot active border."
@@ -15,7 +15,7 @@
     "$type": "color",
     "description": "Slider dot border."
   },
-  "slider.mark-active-color": {
+  "slider.mark.color.active": {
     "$value": "rgba(0, 0, 0, 0.7)",
     "$type": "color",
     "description": "Slider mark active color."
@@ -31,7 +31,7 @@
     "description": "Slider primary accent color.",
     "fallback": "--ty-color-primary"
   },
-  "slider.disabled-color": {
+  "slider.color.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Slider disabled color.",
@@ -77,7 +77,7 @@
     "$type": "dimension",
     "description": "Slider dot size."
   },
-  "slider.thumb-scale-hover": {
+  "slider.thumb-scale.hover": {
     "$value": "1.2",
     "$type": "number",
     "description": "Slider thumb hover scale."

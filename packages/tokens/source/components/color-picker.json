@@ -159,7 +159,7 @@
     "description": "Color picker format button text color.",
     "fallback": "--ty-color-text"
   },
-  "color-picker.button-border-hover": {
+  "color-picker.button-border.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Color picker format button hover border color.",
@@ -187,7 +187,7 @@
     "description": "Color picker hex input font family.",
     "fallback": "--ty-font-family-monospace"
   },
-  "color-picker.input-border-focus": {
+  "color-picker.input-border.focus": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Color picker hex input focus border color.",
@@ -213,7 +213,7 @@
     "$type": "dimension",
     "description": "Color picker preset size."
   },
-  "color-picker.preset-hover-scale": {
+  "color-picker.preset.scale.hover": {
     "$value": "1.2",
     "$type": "number",
     "description": "Color picker preset hover scale."
