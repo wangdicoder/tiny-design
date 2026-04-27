@@ -1,6 +1,6 @@
 {
   "name": "@tiny-design/tokens",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "description": "Design tokens and v2 theme runtime for Tiny UI",
   "license": "MIT",
   "repository": {
