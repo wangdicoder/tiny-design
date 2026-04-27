@@ -6,12 +6,16 @@ import './md-tag.scss';
 import { DemoBlock } from '../demo-block';
 import { HighlightedCode } from '../highlighted-code';
 
-const slugifyLink = (name) => {
-  if (name.includes(' ')) {
-    return name.toLowerCase().split(' ').join('-');
-  }
-  return typeof name === 'string' ? name.toLowerCase() : name;
+const extractText = (node) => {
+  if (node == null || typeof node === 'boolean') return '';
+  if (typeof node === 'string' || typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join('');
+  if (React.isValidElement(node)) return extractText(node.props.children);
+  return '';
 };
+
+const slugifyLink = (children) =>
+  extractText(children).toLowerCase().trim().split(/\s+/).filter(Boolean).join('-');
 
 export const components = {
   wrapper: (props) => <div {...props} className="markdown" />,

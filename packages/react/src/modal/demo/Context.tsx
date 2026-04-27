@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, Button, Space } from '@tiny-design/react';
+import React, { useMemo } from 'react';
+import { Modal, Button, Space, createModalStore } from '@tiny-design/react';
 
 function ConfirmModal() {
   const { visible, close } = Modal.useModal('confirm');
@@ -20,21 +20,21 @@ function SettingsModal() {
 }
 
 function Toolbar() {
-  const confirm = Modal.useModal('confirm');
-  const settings = Modal.useModal('settings');
+  const { show } = Modal.useModalActions();
   return (
     <Space>
-      <Button variant="solid" color="primary" onClick={confirm.show}>
+      <Button variant="solid" color="primary" onClick={() => show('confirm')}>
         Open Confirm
       </Button>
-      <Button onClick={settings.show}>Open Settings</Button>
+      <Button onClick={() => show('settings')}>Open Settings</Button>
     </Space>
   );
 }
 
 export default function ContextDemo() {
+  const store = useMemo(() => createModalStore(), []);
   return (
-    <Modal.Provider>
+    <Modal.Provider store={store}>
       <Toolbar />
       <ConfirmModal />
       <SettingsModal />

@@ -8,6 +8,8 @@ import AnimationDemo from './demo/Animation';
 import AnimationSource from './demo/Animation.tsx?raw';
 import ContextDemo from './demo/Context';
 import ContextSource from './demo/Context.tsx?raw';
+import ContextRegisterDemo from './demo/ContextRegister';
+import ContextRegisterSource from './demo/ContextRegister.tsx?raw';
 
 # Modal 模态对话框
 
@@ -87,13 +89,73 @@ instance.destroy();
 
 ### 上下文
 
-使用 `Modal.Provider` 和 `Modal.useModal` 通过 ID 管理多个对话框。
+使用 `Modal.Provider` 和 `Modal.useModal` 通过 ID 管理多个对话框。触发组件可以使用 `Modal.useModalActions()` 来避免在可见性变化时重新渲染。
 
 <DemoBlock component={ContextDemo} source={ContextSource} />
 
     </Demo>
+    <Demo>
+
+### 注册式对话框与可等待结果
+
+通过 `Modal.Register`（或 `store.register`）注册一次对话框，之后即可在任意位置调用 `show(id, props)`。`show` 返回一个 Promise，会以传给 `hide(result)` 的值进行 resolve，因此可以 `await` 用户的选择。在已注册的组件内部，使用 `Modal.useModalSelf()` 即可拿到 `props`、`visible`、`hide` 与 `remove`。
+
+<DemoBlock component={ContextRegisterDemo} source={ContextRegisterSource} />
+
+    </Demo>
   </Column>
 </Layout>
+
+## 上下文 API
+
+`Modal.Provider` 将子树绑定到一个 `ModalStore`，支持两种使用方式：
+
+- **手动挂载** —— 自己渲染对话框，使用 `useModal(id)` 读取可见状态。
+- **注册式** —— 通过 id 注册组件，使用 `useModalActions().show(id, props)` 触发，并在组件内部使用 `useModalSelf()` 读取自身状态。
+
+### 选择 store
+
+`<Modal.Provider>` 接受可选的 `store` 属性。如果不传，会回退到包级单例 `Modal.store` —— 对只有一个 Provider 的简单应用很方便，但所有省略 `store` 的 Provider 都会共享同一份状态。两个挂载到单例的 Provider 会订阅同一个注册表，任何注册过的对话框会被**每个 Provider 各渲染一次**（你会看到重复的浮层），同时它们也会互相看到对方的 `show()` 调用。
+
+实际项目中建议使用 `createModalStore()` 创建自己的 store 并显式传入。只有在确实需要从 React 之外触发对话框时才使用单例。
+
+```jsx
+import { Modal, createModalStore } from '@tiny-design/react';
+
+function App() {
+  const store = useMemo(() => createModalStore(), []);
+  return (
+    <Modal.Provider store={store}>
+      {/* … */}
+    </Modal.Provider>
+  );
+}
+```
+
+任何需要独立 store 的场景都应使用 `createModalStore()`：应用级 Provider、单元测试、SSR 每请求 store，或同页面上互不相关的对话框子树。
+
+### API 参考
+
+| 导出                          | 类型                                                                | 说明                                                                                                                                       |
+| ----------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Modal.Provider`              | `({ store?, children }) => Element`                                 | 向后代提供 store，并为已注册的对话框渲染 outlet。默认使用单例 `Modal.store`，参见上文。                                                    |
+| `Modal.Register`              | `({ id, component }) => null`                                       | 声明式注册。挂载时注册，卸载时反注册。                                                                                                      |
+| `Modal.useModal(id)`          | `(id) => { visible, show, close, toggle }`                          | 按 id 订阅可见性的状态 hook，仅在该 id 的可见性变化时重新渲染。配合手动挂载使用。                                                            |
+| `Modal.useModalActions()`     | `() => { show, hide, hideAll, register }`                           | 命令式 actions，不订阅 state —— 调用方不会因开/关而重新渲染。                                                                                |
+| `Modal.useModalSelf<P, R>()`  | `() => { id, visible, props, hide, reject, remove }`                | 在已注册的组件内部读取自身状态。在 outlet 之外使用会抛错。                                                                                  |
+| `Modal.store`                 | `ModalStore`                                                        | 进程级单例 store。**仅**当需要在 React 之外触发对话框（路由守卫、错误处理等）时使用。在 React 内部请优先使用 `useModalActions`。            |
+| `createModalStore()`          | `() => ModalStore` _(从 `@tiny-design/react` 具名导入)_             | 创建独立的 store。推荐用于应用级 Provider、单元测试、SSR 每请求 store，或互相独立的对话框子树。                                              |
+
+### `ModalStore`
+
+| 方法                            | 说明                                                                                                                |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `register(id, component)`       | 注册组件，返回反注册函数。                                                                                          |
+| `show<R, P>(id, props?)`        | 打开对话框。返回的 Promise 会以 `hide(result)` 传入的值进行 resolve。                                                |
+| `hide(id, result?)`             | 关闭对话框并 resolve 其 Promise。对话框会保持挂载直到 `afterClose` 触发 `remove`。                                  |
+| `remove(id)`                    | 从 store 中硬删除该记录。如果还有未完成的 resolver，会以 `undefined` 进行 resolve。                                 |
+| `hideAll()`                     | 隐藏所有可见对话框；将它们的 Promise 以 `undefined` resolve。                                                       |
+| `getState()` / `subscribe(fn)`  | 低层 state 访问，便于自定义集成。                                                                                   |
 
 ## Props
 

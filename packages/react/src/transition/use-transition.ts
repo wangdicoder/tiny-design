@@ -67,6 +67,8 @@ function useTransition(options: UseTransitionOptions): UseTransitionResult {
   };
 
   const [state, setState] = useState<TransitionState>(getInitialState);
+  const stateRef = useRef(state);
+  stateRef.current = state;
   const rafRef = useRef<number>(0);
   const timerRef = useRef<number>(0);
   const transitionEndRef = useRef<(() => void) | null>(null);
@@ -173,13 +175,12 @@ function useTransition(options: UseTransitionOptions): UseTransitionResult {
         callbacksRef.current.onExiting?.();
 
         waitForTransition('exit', () => {
-          setState((prev) => {
-            if (prev === 'exiting') {
-              callbacksRef.current.onExited?.();
-              return unmountOnExit ? 'unmounted' : 'exited';
-            }
-            return prev;
-          });
+          // Guard via ref so we skip a stale done-callback if state was raced
+          // (e.g. modal re-opened mid-exit). Side effect lives outside the
+          // setState updater to avoid "update X while rendering Y" warnings.
+          if (stateRef.current !== 'exiting') return;
+          setState(unmountOnExit ? 'unmounted' : 'exited');
+          callbacksRef.current.onExited?.();
         });
       });
     }

@@ -8,6 +8,8 @@ import AnimationDemo from './demo/Animation';
 import AnimationSource from './demo/Animation.tsx?raw';
 import ContextDemo from './demo/Context';
 import ContextSource from './demo/Context.tsx?raw';
+import ContextRegisterDemo from './demo/ContextRegister';
+import ContextRegisterSource from './demo/ContextRegister.tsx?raw';
 
 # Modal
 
@@ -87,13 +89,73 @@ Use `animation` to set different popup animation.
 
 ### Context
 
-Manage multiple modals by ID with `Modal.Provider` and `Modal.useModal`.
+Manage multiple modals by ID with `Modal.Provider` and `Modal.useModal`. Trigger components subscribe with `Modal.useModalActions()` to avoid re-rendering on visibility changes.
 
 <DemoBlock component={ContextDemo} source={ContextSource} />
 
     </Demo>
+    <Demo>
+
+### Registered modals with awaitable result
+
+Register a modal once with `Modal.Register` (or `store.register`), then call `show(id, props)` from anywhere. `show` returns a promise that resolves with the value passed to `hide(result)`, so you can `await` the user's choice. Inside the registered component, `Modal.useModalSelf()` exposes `props`, `visible`, `hide`, and `remove`.
+
+<DemoBlock component={ContextRegisterDemo} source={ContextRegisterSource} />
+
+    </Demo>
   </Column>
 </Layout>
+
+## Context API
+
+`Modal.Provider` wires children to a `ModalStore`. Two patterns coexist:
+
+- **Manual mount** — render modals yourself and read state with `useModal(id)`.
+- **Registered** — register a component with an id, then trigger it imperatively with `useModalActions().show(id, props)` and read its own state with `useModalSelf()` from inside the component.
+
+### Choosing a store
+
+`<Modal.Provider>` accepts an optional `store` prop. If you don't pass one, it falls back to the package-level `Modal.store` singleton — convenient for trivial apps with a single provider, but every provider that omits `store` shares the same state. Two providers backed by the singleton both subscribe to the same registry, so any registered modal renders **once per provider** (you'll see duplicate overlays). They also see each other's `show()` calls.
+
+In practice, create your own store with `createModalStore()` and pass it explicitly. Use the singleton only when you specifically need to trigger modals from outside React.
+
+```jsx
+import { Modal, createModalStore } from '@tiny-design/react';
+
+function App() {
+  const store = useMemo(() => createModalStore(), []);
+  return (
+    <Modal.Provider store={store}>
+      {/* … */}
+    </Modal.Provider>
+  );
+}
+```
+
+Reach for `createModalStore()` whenever you need an isolated store: app-level providers, unit tests, SSR per-request stores, or independent modal trees on the same page.
+
+### Reference
+
+| Export                        | Type                                                                | Description                                                                                                                              |
+| ----------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `Modal.Provider`              | `({ store?, children }) => Element`                                 | Provides a store to descendants and renders the outlet for registered modals. Defaults to the `Modal.store` singleton — see above.       |
+| `Modal.Register`              | `({ id, component }) => null`                                       | Declarative registration. Registers on mount, unregisters on unmount.                                                                    |
+| `Modal.useModal(id)`          | `(id) => { visible, show, close, toggle }`                          | Per-id state hook. Re-renders only when this id's visibility flips. Use with manually mounted modals.                                    |
+| `Modal.useModalActions()`     | `() => { show, hide, hideAll, register }`                           | Imperative actions. Does not subscribe to state — components calling this never re-render on open/close.                                 |
+| `Modal.useModalSelf<P, R>()`  | `() => { id, visible, props, hide, reject, remove }`                | Read this modal's own state from inside a registered component. Throws if used outside the outlet.                                       |
+| `Modal.store`                 | `ModalStore`                                                        | Process-wide singleton store. Use **only** to trigger modals from outside React (route guards, error handlers). Inside React, prefer `useModalActions`. |
+| `createModalStore()`          | `() => ModalStore` _(named import from `@tiny-design/react`)_       | Create an isolated store. Recommended for app-level providers, tests, SSR per-request stores, and independent modal trees.               |
+
+### `ModalStore`
+
+| Method                          | Description                                                                                                       |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `register(id, component)`       | Register a component. Returns an unregister function.                                                             |
+| `show<R, P>(id, props?)`        | Open a modal. Returns a promise that resolves with the value passed to `hide(result)`.                            |
+| `hide(id, result?)`             | Close a modal and resolve its pending promise. Modal stays mounted until `afterClose` fires `remove`.             |
+| `remove(id)`                    | Hard-remove the record from the store. Drains a still-pending resolver with `undefined`.                          |
+| `hideAll()`                     | Hide every visible modal; resolves their pending promises with `undefined`.                                        |
+| `getState()` / `subscribe(fn)`  | Low-level state access for custom integrations.                                                                   |
 
 ## Props
 
