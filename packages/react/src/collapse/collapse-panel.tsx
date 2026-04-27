@@ -149,12 +149,12 @@ const CollapsePanel = ({
         {extraContent && <div className={`${prefixCls}-item__extra`}>{extraContent}</div>}
       </div>
 
-      {shouldRenderBody && (
-        <CollapseTransition
-          open={active}
-          className={`${prefixCls}-item__body-wrapper`}
-          onHidden={destroyOnHidden && !forceRender ? () => setBodyMounted(false) : undefined}
-        >
+      <CollapseTransition
+        open={active}
+        className={`${prefixCls}-item__body-wrapper`}
+        onHidden={destroyOnHidden && !forceRender ? () => setBodyMounted(false) : undefined}
+      >
+        {shouldRenderBody ? (
           <div
             id={panelId}
             role="region"
@@ -163,8 +163,8 @@ const CollapsePanel = ({
           >
             {item.children}
           </div>
-        </CollapseTransition>
-      )}
+        ) : null}
+      </CollapseTransition>
     </div>
   );
 };

@@ -20,6 +20,12 @@ const CollapseTransition = ({
   const isFirstRender = useRef(true);
   const visible = open ?? isShow ?? false;
 
+  // Stash the latest onHidden so the animation effect can depend on `visible`
+  // alone. Callers commonly pass an inline arrow (e.g. `() => setX(false)`),
+  // and re-running the effect on every parent render restarts the animation.
+  const onHiddenRef = useRef(onHidden);
+  onHiddenRef.current = onHidden;
+
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
@@ -43,7 +49,7 @@ const CollapseTransition = ({
         node.style.height = '';
       } else {
         node.style.display = 'none';
-        onHidden?.();
+        onHiddenRef.current?.();
       }
     };
 
@@ -76,7 +82,7 @@ const CollapseTransition = ({
       if (frameB) window.cancelAnimationFrame(frameB);
       node.removeEventListener('transitionend', handleTransitionEnd);
     };
-  }, [visible, onHidden]);
+  }, [visible]);
 
   return (
     <div ref={ref} className={classNames('ty-collapse-transition', className)}>

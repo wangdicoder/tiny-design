@@ -45,7 +45,7 @@ export { default as Menu } from './menu';
 export { default as Message } from './message';
 export { default as NativeSelect } from './native-select';
 export { default as Row } from './row';
-export { default as Modal } from './modal';
+export { default as Modal, createModalStore } from './modal';
 export { default as Notification } from './notification';
 export { default as Overlay } from './overlay';
 export { default as Popover } from './popover';
