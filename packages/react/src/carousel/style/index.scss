@@ -66,7 +66,7 @@ $carousel-prefix: #{$prefix}-carousel;
     outline: none;
 
     &:hover {
-      background: var(--ty-carousel-arrow-hover-bg);
+      background: var(--ty-carousel-arrow-bg-hover);
     }
 
     &_prev {
@@ -136,12 +136,12 @@ $carousel-prefix: #{$prefix}-carousel;
     }
 
     &:hover {
-      background: var(--ty-carousel-dot-hover-bg);
+      background: var(--ty-carousel-dot-bg-hover);
     }
 
     &_active {
       width: var(--ty-carousel-dot-width-active);
-      background: var(--ty-carousel-dot-active-bg);
+      background: var(--ty-carousel-dot-bg-active);
     }
   }
 

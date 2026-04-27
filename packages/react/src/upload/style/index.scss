@@ -25,7 +25,7 @@
     transition: background-color var(--ty-upload-transition-duration, 300ms);
 
     &:hover {
-      background-color: var(--ty-upload-list-item-hover-bg, var(--ty-color-fill-secondary));
+      background-color: var(--ty-upload-list-item-bg-hover, var(--ty-color-fill-secondary));
 
       .#{$prefix}-upload {
         &__upload-list-item-status {
@@ -99,7 +99,7 @@
 
     &:hover:not(&_disabled),
     &_dragover {
-      background-color: var(--ty-upload-dragger-hover-bg, #efefef);
+      background-color: var(--ty-upload-dragger-bg-hover, #efefef);
       border-color: var(--ty-upload-dragger-border-hover, var(--ty-color-primary));
     }
 

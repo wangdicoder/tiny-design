@@ -1,5 +1,5 @@
 {
-  "input-number.control-active-bg": {
+  "input-number.control.bg.active": {
     "$value": "#f4f4f4",
     "$type": "color",
     "description": "Input Number control active bg."
@@ -15,7 +15,7 @@
     "$type": "color",
     "description": "Input Number icon color."
   },
-  "input-number.icon-color-hover": {
+  "input-number.icon-color.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Input Number icon hover color.",

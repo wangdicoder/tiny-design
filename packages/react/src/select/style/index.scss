@@ -258,19 +258,19 @@
   }
 
   &_active {
-    background-color: var(--ty-select-option-active-bg, var(--ty-color-fill-secondary));
+    background-color: var(--ty-select-option-bg-active, var(--ty-color-fill-secondary));
   }
 
   &_selected {
-    background-color: var(--ty-select-option-selected-bg, var(--ty-color-primary-bg));
+    background-color: var(--ty-select-option-bg-selected, var(--ty-color-primary-bg));
     font-weight: var(--ty-select-selected-font-weight, $select-selected-font-weight);
   }
 
   &_disabled {
     cursor: not-allowed;
-    background-color: var(--ty-select-option-disabled-bg, var(--ty-color-bg-container));
-    color: var(--ty-select-option-disabled-color, var(--ty-color-text-quaternary));
-    opacity: var(--ty-select-option-disabled-opacity);
+    background-color: var(--ty-select-option-bg-disabled, var(--ty-color-bg-container));
+    color: var(--ty-select-option-color-disabled, var(--ty-color-text-quaternary));
+    opacity: var(--ty-select-option-opacity-disabled);
   }
 }
 

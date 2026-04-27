@@ -90,6 +90,10 @@ The build step should generate:
 - `cssVar` must always use kebab-case.
 - `component` names must use full nouns such as `button`, `input`, `card`.
 - New entries must use the primary v2 names directly. Short prefixes like `btn`, `picker`, or `kbd` are not allowed.
+- **Variant axes are dot-separated segments, not dash-joined leaves.** Sizes (`sm`, `md`, `lg`, `xs`, `xl`) and interaction states (`hover`, `active`, `focus`, `disabled`, `checked`, `selected`) must appear as their own trailing segment after a dot. Compound CSS property names (`font-size`, `padding-inline`, `line-height`) keep their internal dashes.
+  - Correct: `button.font-size.sm`, `button.solid.primary.bg.hover`, `checkbox.bg.checked`
+  - Incorrect: `button.font-size-sm`, `button.solid.primary.bg-hover`, `checkbox.bg-checked`
+  - The build fails on component tokens whose key ends with a dash-joined axis suffix.
 
 ## Fallback Rules
 

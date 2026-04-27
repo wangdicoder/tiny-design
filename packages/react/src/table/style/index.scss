@@ -84,7 +84,7 @@
       user-select: none;
 
       &:hover {
-        background: var(--ty-table-cell-sortable-hover-bg, var(--ty-table-row-hover-bg));
+        background: var(--ty-table-cell-sortable-bg-hover, var(--ty-table-row-bg-hover));
       }
     }
 
@@ -109,11 +109,11 @@
     transition: background 0.2s;
 
     &:hover {
-      background: var(--ty-table-row-hover-bg);
+      background: var(--ty-table-row-bg-hover);
     }
 
     &_selected {
-      background: var(--ty-table-row-selected-bg);
+      background: var(--ty-table-row-bg-selected);
     }
   }
 

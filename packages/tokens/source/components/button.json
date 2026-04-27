@@ -50,13 +50,13 @@
     "description": "solid default button shadow.",
     "fallback": "--ty-shadow-control"
   },
-  "button.solid.default.shadow-hover": {
+  "button.solid.default.shadow.hover": {
     "$value": "{shadow-control}",
     "$type": "shadow",
     "description": "solid default button hover shadow.",
     "fallback": "--ty-shadow-control"
   },
-  "button.solid.default.shadow-active": {
+  "button.solid.default.shadow.active": {
     "$value": "{shadow-control}",
     "$type": "shadow",
     "description": "solid default button active shadow.",
@@ -68,31 +68,31 @@
     "description": "outline default button shadow.",
     "fallback": "--ty-shadow-control"
   },
-  "button.outline.default.shadow-hover": {
+  "button.outline.default.shadow.hover": {
     "$value": "{shadow-control}",
     "$type": "shadow",
     "description": "outline default button hover shadow.",
     "fallback": "--ty-shadow-control"
   },
-  "button.outline.default.shadow-active": {
+  "button.outline.default.shadow.active": {
     "$value": "{shadow-control}",
     "$type": "shadow",
     "description": "outline default button active shadow.",
     "fallback": "--ty-shadow-control"
   },
-  "button.font-size-sm": {
+  "button.font-size.sm": {
     "$value": "{control.font-size.sm}",
     "$type": "dimension",
     "description": "Small button font size.",
     "fallback": "--ty-font-size-sm"
   },
-  "button.font-size-md": {
+  "button.font-size.md": {
     "$value": "{control.font-size.md}",
     "$type": "dimension",
     "description": "Medium button font size.",
     "fallback": "--ty-font-size-base"
   },
-  "button.font-size-lg": {
+  "button.font-size.lg": {
     "$value": "{control.font-size.lg}",
     "$type": "dimension",
     "description": "Large button font size.",
@@ -116,47 +116,47 @@
     "description": "Large button height.",
     "fallback": "--ty-height-lg"
   },
-  "button.padding-inline-sm": {
+  "button.padding-inline.sm": {
     "$value": "{control.padding-inline.sm}",
     "$type": "dimension",
     "description": "Small button inline padding."
   },
-  "button.padding-inline-md": {
+  "button.padding-inline.md": {
     "$value": "15px",
     "$type": "dimension",
     "description": "Medium button inline padding."
   },
-  "button.padding-inline-lg": {
+  "button.padding-inline.lg": {
     "$value": "20px",
     "$type": "dimension",
     "description": "Large button inline padding."
   },
-  "button.gap-sm": {
+  "button.gap.sm": {
     "$value": "{control.gap.sm}",
     "$type": "dimension",
     "description": "Small button content gap."
   },
-  "button.gap-md": {
+  "button.gap.md": {
     "$value": "{control.gap.md}",
     "$type": "dimension",
     "description": "Medium button content gap."
   },
-  "button.gap-lg": {
+  "button.gap.lg": {
     "$value": "{control.gap.lg}",
     "$type": "dimension",
     "description": "Large button content gap."
   },
-  "button.icon-size-sm": {
+  "button.icon-size.sm": {
     "$value": "14px",
     "$type": "dimension",
     "description": "Small button icon size."
   },
-  "button.icon-size-md": {
+  "button.icon-size.md": {
     "$value": "16px",
     "$type": "dimension",
     "description": "Medium button icon size."
   },
-  "button.icon-size-lg": {
+  "button.icon-size.lg": {
     "$value": "18px",
     "$type": "dimension",
     "description": "Large button icon size."
@@ -179,7 +179,7 @@
     "description": "Disabled button border color.",
     "fallback": "--ty-color-border"
   },
-  "button.text-link-disabled": {
+  "button.text-link.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Disabled link button text color.",
@@ -200,32 +200,32 @@
     "$type": "color",
     "description": "solid default button border color."
   },
-  "button.solid.default.text-hover": {
+  "button.solid.default.text.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "solid default button hover text color."
   },
-  "button.solid.default.bg-hover": {
+  "button.solid.default.bg.hover": {
     "$value": "{color-bg-container}",
     "$type": "color",
     "description": "solid default button hover background color."
   },
-  "button.solid.default.border-hover": {
+  "button.solid.default.border.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "solid default button hover border color."
   },
-  "button.solid.default.text-active": {
+  "button.solid.default.text.active": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "solid default button active text color."
   },
-  "button.solid.default.bg-active": {
+  "button.solid.default.bg.active": {
     "$value": "{color-fill}",
     "$type": "color",
     "description": "solid default button active background color."
   },
-  "button.solid.default.border-active": {
+  "button.solid.default.border.active": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "solid default button active border color."
@@ -245,32 +245,32 @@
     "$type": "color",
     "description": "outline default button border color."
   },
-  "button.outline.default.text-hover": {
+  "button.outline.default.text.hover": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "outline default button hover text color."
   },
-  "button.outline.default.bg-hover": {
+  "button.outline.default.bg.hover": {
     "$value": "{color-fill}",
     "$type": "color",
     "description": "outline default button hover background color."
   },
-  "button.outline.default.border-hover": {
+  "button.outline.default.border.hover": {
     "$value": "{color-border}",
     "$type": "color",
     "description": "outline default button hover border color."
   },
-  "button.outline.default.text-active": {
+  "button.outline.default.text.active": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "outline default button active text color."
   },
-  "button.outline.default.bg-active": {
+  "button.outline.default.bg.active": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "outline default button active background color."
   },
-  "button.outline.default.border-active": {
+  "button.outline.default.border.active": {
     "$value": "{color-border-secondary}",
     "$type": "color",
     "description": "outline default button active border color."
@@ -290,32 +290,32 @@
     "$type": "color",
     "description": "ghost default button border color."
   },
-  "button.ghost.default.text-hover": {
+  "button.ghost.default.text.hover": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "ghost default button hover text color."
   },
-  "button.ghost.default.bg-hover": {
+  "button.ghost.default.bg.hover": {
     "$value": "{color-fill}",
     "$type": "color",
     "description": "ghost default button hover background color."
   },
-  "button.ghost.default.border-hover": {
+  "button.ghost.default.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost default button hover border color."
   },
-  "button.ghost.default.text-active": {
+  "button.ghost.default.text.active": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "ghost default button active text color."
   },
-  "button.ghost.default.bg-active": {
+  "button.ghost.default.bg.active": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "ghost default button active background color."
   },
-  "button.ghost.default.border-active": {
+  "button.ghost.default.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost default button active border color."
@@ -335,32 +335,32 @@
     "$type": "color",
     "description": "link default button border color."
   },
-  "button.link.default.text-hover": {
+  "button.link.default.text.hover": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "link default button hover text color."
   },
-  "button.link.default.bg-hover": {
+  "button.link.default.bg.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link default button hover background color."
   },
-  "button.link.default.border-hover": {
+  "button.link.default.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link default button hover border color."
   },
-  "button.link.default.text-active": {
+  "button.link.default.text.active": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "link default button active text color."
   },
-  "button.link.default.bg-active": {
+  "button.link.default.bg.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link default button active background color."
   },
-  "button.link.default.border-active": {
+  "button.link.default.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link default button active border color."
@@ -380,32 +380,32 @@
     "$type": "color",
     "description": "solid primary button border color."
   },
-  "button.solid.primary.text-hover": {
+  "button.solid.primary.text.hover": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid primary button hover text color."
   },
-  "button.solid.primary.bg-hover": {
+  "button.solid.primary.bg.hover": {
     "$value": "{color-primary-hover}",
     "$type": "color",
     "description": "solid primary button hover background color."
   },
-  "button.solid.primary.border-hover": {
+  "button.solid.primary.border.hover": {
     "$value": "{color-primary-hover}",
     "$type": "color",
     "description": "solid primary button hover border color."
   },
-  "button.solid.primary.text-active": {
+  "button.solid.primary.text.active": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid primary button active text color."
   },
-  "button.solid.primary.bg-active": {
+  "button.solid.primary.bg.active": {
     "$value": "{color-primary-active}",
     "$type": "color",
     "description": "solid primary button active background color."
   },
-  "button.solid.primary.border-active": {
+  "button.solid.primary.border.active": {
     "$value": "{color-primary-active}",
     "$type": "color",
     "description": "solid primary button active border color."
@@ -425,32 +425,32 @@
     "$type": "color",
     "description": "outline primary button border color."
   },
-  "button.outline.primary.text-hover": {
+  "button.outline.primary.text.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "outline primary button hover text color."
   },
-  "button.outline.primary.bg-hover": {
+  "button.outline.primary.bg.hover": {
     "$value": "{color-primary-bg}",
     "$type": "color",
     "description": "outline primary button hover background color."
   },
-  "button.outline.primary.border-hover": {
+  "button.outline.primary.border.hover": {
     "$value": "{color-primary-hover}",
     "$type": "color",
     "description": "outline primary button hover border color."
   },
-  "button.outline.primary.text-active": {
+  "button.outline.primary.text.active": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "outline primary button active text color."
   },
-  "button.outline.primary.bg-active": {
+  "button.outline.primary.bg.active": {
     "$value": "{color-primary-bg-hover}",
     "$type": "color",
     "description": "outline primary button active background color."
   },
-  "button.outline.primary.border-active": {
+  "button.outline.primary.border.active": {
     "$value": "{color-primary-active}",
     "$type": "color",
     "description": "outline primary button active border color."
@@ -470,32 +470,32 @@
     "$type": "color",
     "description": "ghost primary button border color."
   },
-  "button.ghost.primary.text-hover": {
+  "button.ghost.primary.text.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "ghost primary button hover text color."
   },
-  "button.ghost.primary.bg-hover": {
+  "button.ghost.primary.bg.hover": {
     "$value": "{color-primary-bg}",
     "$type": "color",
     "description": "ghost primary button hover background color."
   },
-  "button.ghost.primary.border-hover": {
+  "button.ghost.primary.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost primary button hover border color."
   },
-  "button.ghost.primary.text-active": {
+  "button.ghost.primary.text.active": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "ghost primary button active text color."
   },
-  "button.ghost.primary.bg-active": {
+  "button.ghost.primary.bg.active": {
     "$value": "{color-primary-bg-hover}",
     "$type": "color",
     "description": "ghost primary button active background color."
   },
-  "button.ghost.primary.border-active": {
+  "button.ghost.primary.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost primary button active border color."
@@ -515,32 +515,32 @@
     "$type": "color",
     "description": "link primary button border color."
   },
-  "button.link.primary.text-hover": {
+  "button.link.primary.text.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "link primary button hover text color."
   },
-  "button.link.primary.bg-hover": {
+  "button.link.primary.bg.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link primary button hover background color."
   },
-  "button.link.primary.border-hover": {
+  "button.link.primary.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link primary button hover border color."
   },
-  "button.link.primary.text-active": {
+  "button.link.primary.text.active": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "link primary button active text color."
   },
-  "button.link.primary.bg-active": {
+  "button.link.primary.bg.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link primary button active background color."
   },
-  "button.link.primary.border-active": {
+  "button.link.primary.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link primary button active border color."
@@ -560,32 +560,32 @@
     "$type": "color",
     "description": "solid info button border color."
   },
-  "button.solid.info.text-hover": {
+  "button.solid.info.text.hover": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid info button hover text color."
   },
-  "button.solid.info.bg-hover": {
+  "button.solid.info.bg.hover": {
     "$value": "{color-info-hover}",
     "$type": "color",
     "description": "solid info button hover background color."
   },
-  "button.solid.info.border-hover": {
+  "button.solid.info.border.hover": {
     "$value": "{color-info-hover}",
     "$type": "color",
     "description": "solid info button hover border color."
   },
-  "button.solid.info.text-active": {
+  "button.solid.info.text.active": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid info button active text color."
   },
-  "button.solid.info.bg-active": {
+  "button.solid.info.bg.active": {
     "$value": "{color-info-active}",
     "$type": "color",
     "description": "solid info button active background color."
   },
-  "button.solid.info.border-active": {
+  "button.solid.info.border.active": {
     "$value": "{color-info-active}",
     "$type": "color",
     "description": "solid info button active border color."
@@ -605,32 +605,32 @@
     "$type": "color",
     "description": "outline info button border color."
   },
-  "button.outline.info.text-hover": {
+  "button.outline.info.text.hover": {
     "$value": "{color-info}",
     "$type": "color",
     "description": "outline info button hover text color."
   },
-  "button.outline.info.bg-hover": {
+  "button.outline.info.bg.hover": {
     "$value": "rgba(64, 169, 255, 0.12)",
     "$type": "color",
     "description": "outline info button hover background color."
   },
-  "button.outline.info.border-hover": {
+  "button.outline.info.border.hover": {
     "$value": "{color-info-hover}",
     "$type": "color",
     "description": "outline info button hover border color."
   },
-  "button.outline.info.text-active": {
+  "button.outline.info.text.active": {
     "$value": "{color-info}",
     "$type": "color",
     "description": "outline info button active text color."
   },
-  "button.outline.info.bg-active": {
+  "button.outline.info.bg.active": {
     "$value": "rgba(64, 169, 255, 0.18)",
     "$type": "color",
     "description": "outline info button active background color."
   },
-  "button.outline.info.border-active": {
+  "button.outline.info.border.active": {
     "$value": "{color-info-active}",
     "$type": "color",
     "description": "outline info button active border color."
@@ -650,32 +650,32 @@
     "$type": "color",
     "description": "ghost info button border color."
   },
-  "button.ghost.info.text-hover": {
+  "button.ghost.info.text.hover": {
     "$value": "{color-info}",
     "$type": "color",
     "description": "ghost info button hover text color."
   },
-  "button.ghost.info.bg-hover": {
+  "button.ghost.info.bg.hover": {
     "$value": "rgba(64, 169, 255, 0.12)",
     "$type": "color",
     "description": "ghost info button hover background color."
   },
-  "button.ghost.info.border-hover": {
+  "button.ghost.info.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost info button hover border color."
   },
-  "button.ghost.info.text-active": {
+  "button.ghost.info.text.active": {
     "$value": "{color-info}",
     "$type": "color",
     "description": "ghost info button active text color."
   },
-  "button.ghost.info.bg-active": {
+  "button.ghost.info.bg.active": {
     "$value": "rgba(64, 169, 255, 0.18)",
     "$type": "color",
     "description": "ghost info button active background color."
   },
-  "button.ghost.info.border-active": {
+  "button.ghost.info.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost info button active border color."
@@ -695,32 +695,32 @@
     "$type": "color",
     "description": "link info button border color."
   },
-  "button.link.info.text-hover": {
+  "button.link.info.text.hover": {
     "$value": "{color-info}",
     "$type": "color",
     "description": "link info button hover text color."
   },
-  "button.link.info.bg-hover": {
+  "button.link.info.bg.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link info button hover background color."
   },
-  "button.link.info.border-hover": {
+  "button.link.info.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link info button hover border color."
   },
-  "button.link.info.text-active": {
+  "button.link.info.text.active": {
     "$value": "{color-info}",
     "$type": "color",
     "description": "link info button active text color."
   },
-  "button.link.info.bg-active": {
+  "button.link.info.bg.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link info button active background color."
   },
-  "button.link.info.border-active": {
+  "button.link.info.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link info button active border color."
@@ -740,32 +740,32 @@
     "$type": "color",
     "description": "solid success button border color."
   },
-  "button.solid.success.text-hover": {
+  "button.solid.success.text.hover": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid success button hover text color."
   },
-  "button.solid.success.bg-hover": {
+  "button.solid.success.bg.hover": {
     "$value": "{color-success-hover}",
     "$type": "color",
     "description": "solid success button hover background color."
   },
-  "button.solid.success.border-hover": {
+  "button.solid.success.border.hover": {
     "$value": "{color-success-hover}",
     "$type": "color",
     "description": "solid success button hover border color."
   },
-  "button.solid.success.text-active": {
+  "button.solid.success.text.active": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid success button active text color."
   },
-  "button.solid.success.bg-active": {
+  "button.solid.success.bg.active": {
     "$value": "{color-success-active}",
     "$type": "color",
     "description": "solid success button active background color."
   },
-  "button.solid.success.border-active": {
+  "button.solid.success.border.active": {
     "$value": "{color-success-active}",
     "$type": "color",
     "description": "solid success button active border color."
@@ -785,32 +785,32 @@
     "$type": "color",
     "description": "outline success button border color."
   },
-  "button.outline.success.text-hover": {
+  "button.outline.success.text.hover": {
     "$value": "{color-success}",
     "$type": "color",
     "description": "outline success button hover text color."
   },
-  "button.outline.success.bg-hover": {
+  "button.outline.success.bg.hover": {
     "$value": "rgba(82, 196, 26, 0.12)",
     "$type": "color",
     "description": "outline success button hover background color."
   },
-  "button.outline.success.border-hover": {
+  "button.outline.success.border.hover": {
     "$value": "{color-success-hover}",
     "$type": "color",
     "description": "outline success button hover border color."
   },
-  "button.outline.success.text-active": {
+  "button.outline.success.text.active": {
     "$value": "{color-success}",
     "$type": "color",
     "description": "outline success button active text color."
   },
-  "button.outline.success.bg-active": {
+  "button.outline.success.bg.active": {
     "$value": "rgba(82, 196, 26, 0.18)",
     "$type": "color",
     "description": "outline success button active background color."
   },
-  "button.outline.success.border-active": {
+  "button.outline.success.border.active": {
     "$value": "{color-success-active}",
     "$type": "color",
     "description": "outline success button active border color."
@@ -830,32 +830,32 @@
     "$type": "color",
     "description": "ghost success button border color."
   },
-  "button.ghost.success.text-hover": {
+  "button.ghost.success.text.hover": {
     "$value": "{color-success}",
     "$type": "color",
     "description": "ghost success button hover text color."
   },
-  "button.ghost.success.bg-hover": {
+  "button.ghost.success.bg.hover": {
     "$value": "rgba(82, 196, 26, 0.12)",
     "$type": "color",
     "description": "ghost success button hover background color."
   },
-  "button.ghost.success.border-hover": {
+  "button.ghost.success.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost success button hover border color."
   },
-  "button.ghost.success.text-active": {
+  "button.ghost.success.text.active": {
     "$value": "{color-success}",
     "$type": "color",
     "description": "ghost success button active text color."
   },
-  "button.ghost.success.bg-active": {
+  "button.ghost.success.bg.active": {
     "$value": "rgba(82, 196, 26, 0.18)",
     "$type": "color",
     "description": "ghost success button active background color."
   },
-  "button.ghost.success.border-active": {
+  "button.ghost.success.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost success button active border color."
@@ -875,32 +875,32 @@
     "$type": "color",
     "description": "link success button border color."
   },
-  "button.link.success.text-hover": {
+  "button.link.success.text.hover": {
     "$value": "{color-success}",
     "$type": "color",
     "description": "link success button hover text color."
   },
-  "button.link.success.bg-hover": {
+  "button.link.success.bg.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link success button hover background color."
   },
-  "button.link.success.border-hover": {
+  "button.link.success.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link success button hover border color."
   },
-  "button.link.success.text-active": {
+  "button.link.success.text.active": {
     "$value": "{color-success}",
     "$type": "color",
     "description": "link success button active text color."
   },
-  "button.link.success.bg-active": {
+  "button.link.success.bg.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link success button active background color."
   },
-  "button.link.success.border-active": {
+  "button.link.success.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link success button active border color."
@@ -920,32 +920,32 @@
     "$type": "color",
     "description": "solid warning button border color."
   },
-  "button.solid.warning.text-hover": {
+  "button.solid.warning.text.hover": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid warning button hover text color."
   },
-  "button.solid.warning.bg-hover": {
+  "button.solid.warning.bg.hover": {
     "$value": "{color-warning-hover}",
     "$type": "color",
     "description": "solid warning button hover background color."
   },
-  "button.solid.warning.border-hover": {
+  "button.solid.warning.border.hover": {
     "$value": "{color-warning-hover}",
     "$type": "color",
     "description": "solid warning button hover border color."
   },
-  "button.solid.warning.text-active": {
+  "button.solid.warning.text.active": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid warning button active text color."
   },
-  "button.solid.warning.bg-active": {
+  "button.solid.warning.bg.active": {
     "$value": "{color-warning-active}",
     "$type": "color",
     "description": "solid warning button active background color."
   },
-  "button.solid.warning.border-active": {
+  "button.solid.warning.border.active": {
     "$value": "{color-warning-active}",
     "$type": "color",
     "description": "solid warning button active border color."
@@ -965,32 +965,32 @@
     "$type": "color",
     "description": "outline warning button border color."
   },
-  "button.outline.warning.text-hover": {
+  "button.outline.warning.text.hover": {
     "$value": "{color-warning}",
     "$type": "color",
     "description": "outline warning button hover text color."
   },
-  "button.outline.warning.bg-hover": {
+  "button.outline.warning.bg.hover": {
     "$value": "rgba(250, 173, 20, 0.12)",
     "$type": "color",
     "description": "outline warning button hover background color."
   },
-  "button.outline.warning.border-hover": {
+  "button.outline.warning.border.hover": {
     "$value": "{color-warning-hover}",
     "$type": "color",
     "description": "outline warning button hover border color."
   },
-  "button.outline.warning.text-active": {
+  "button.outline.warning.text.active": {
     "$value": "{color-warning}",
     "$type": "color",
     "description": "outline warning button active text color."
   },
-  "button.outline.warning.bg-active": {
+  "button.outline.warning.bg.active": {
     "$value": "rgba(250, 173, 20, 0.18)",
     "$type": "color",
     "description": "outline warning button active background color."
   },
-  "button.outline.warning.border-active": {
+  "button.outline.warning.border.active": {
     "$value": "{color-warning-active}",
     "$type": "color",
     "description": "outline warning button active border color."
@@ -1010,32 +1010,32 @@
     "$type": "color",
     "description": "ghost warning button border color."
   },
-  "button.ghost.warning.text-hover": {
+  "button.ghost.warning.text.hover": {
     "$value": "{color-warning}",
     "$type": "color",
     "description": "ghost warning button hover text color."
   },
-  "button.ghost.warning.bg-hover": {
+  "button.ghost.warning.bg.hover": {
     "$value": "rgba(250, 173, 20, 0.12)",
     "$type": "color",
     "description": "ghost warning button hover background color."
   },
-  "button.ghost.warning.border-hover": {
+  "button.ghost.warning.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost warning button hover border color."
   },
-  "button.ghost.warning.text-active": {
+  "button.ghost.warning.text.active": {
     "$value": "{color-warning}",
     "$type": "color",
     "description": "ghost warning button active text color."
   },
-  "button.ghost.warning.bg-active": {
+  "button.ghost.warning.bg.active": {
     "$value": "rgba(250, 173, 20, 0.18)",
     "$type": "color",
     "description": "ghost warning button active background color."
   },
-  "button.ghost.warning.border-active": {
+  "button.ghost.warning.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost warning button active border color."
@@ -1055,32 +1055,32 @@
     "$type": "color",
     "description": "link warning button border color."
   },
-  "button.link.warning.text-hover": {
+  "button.link.warning.text.hover": {
     "$value": "{color-warning}",
     "$type": "color",
     "description": "link warning button hover text color."
   },
-  "button.link.warning.bg-hover": {
+  "button.link.warning.bg.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link warning button hover background color."
   },
-  "button.link.warning.border-hover": {
+  "button.link.warning.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link warning button hover border color."
   },
-  "button.link.warning.text-active": {
+  "button.link.warning.text.active": {
     "$value": "{color-warning}",
     "$type": "color",
     "description": "link warning button active text color."
   },
-  "button.link.warning.bg-active": {
+  "button.link.warning.bg.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link warning button active background color."
   },
-  "button.link.warning.border-active": {
+  "button.link.warning.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link warning button active border color."
@@ -1100,32 +1100,32 @@
     "$type": "color",
     "description": "solid danger button border color."
   },
-  "button.solid.danger.text-hover": {
+  "button.solid.danger.text.hover": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid danger button hover text color."
   },
-  "button.solid.danger.bg-hover": {
+  "button.solid.danger.bg.hover": {
     "$value": "{color-danger-hover}",
     "$type": "color",
     "description": "solid danger button hover background color."
   },
-  "button.solid.danger.border-hover": {
+  "button.solid.danger.border.hover": {
     "$value": "{color-danger-hover}",
     "$type": "color",
     "description": "solid danger button hover border color."
   },
-  "button.solid.danger.text-active": {
+  "button.solid.danger.text.active": {
     "$value": "#fff",
     "$type": "color",
     "description": "solid danger button active text color."
   },
-  "button.solid.danger.bg-active": {
+  "button.solid.danger.bg.active": {
     "$value": "{color-danger-active}",
     "$type": "color",
     "description": "solid danger button active background color."
   },
-  "button.solid.danger.border-active": {
+  "button.solid.danger.border.active": {
     "$value": "{color-danger-active}",
     "$type": "color",
     "description": "solid danger button active border color."
@@ -1145,32 +1145,32 @@
     "$type": "color",
     "description": "outline danger button border color."
   },
-  "button.outline.danger.text-hover": {
+  "button.outline.danger.text.hover": {
     "$value": "{color-danger}",
     "$type": "color",
     "description": "outline danger button hover text color."
   },
-  "button.outline.danger.bg-hover": {
+  "button.outline.danger.bg.hover": {
     "$value": "rgba(255, 77, 79, 0.12)",
     "$type": "color",
     "description": "outline danger button hover background color."
   },
-  "button.outline.danger.border-hover": {
+  "button.outline.danger.border.hover": {
     "$value": "{color-danger-hover}",
     "$type": "color",
     "description": "outline danger button hover border color."
   },
-  "button.outline.danger.text-active": {
+  "button.outline.danger.text.active": {
     "$value": "{color-danger}",
     "$type": "color",
     "description": "outline danger button active text color."
   },
-  "button.outline.danger.bg-active": {
+  "button.outline.danger.bg.active": {
     "$value": "rgba(255, 77, 79, 0.18)",
     "$type": "color",
     "description": "outline danger button active background color."
   },
-  "button.outline.danger.border-active": {
+  "button.outline.danger.border.active": {
     "$value": "{color-danger-active}",
     "$type": "color",
     "description": "outline danger button active border color."
@@ -1190,32 +1190,32 @@
     "$type": "color",
     "description": "ghost danger button border color."
   },
-  "button.ghost.danger.text-hover": {
+  "button.ghost.danger.text.hover": {
     "$value": "{color-danger}",
     "$type": "color",
     "description": "ghost danger button hover text color."
   },
-  "button.ghost.danger.bg-hover": {
+  "button.ghost.danger.bg.hover": {
     "$value": "rgba(255, 77, 79, 0.12)",
     "$type": "color",
     "description": "ghost danger button hover background color."
   },
-  "button.ghost.danger.border-hover": {
+  "button.ghost.danger.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost danger button hover border color."
   },
-  "button.ghost.danger.text-active": {
+  "button.ghost.danger.text.active": {
     "$value": "{color-danger}",
     "$type": "color",
     "description": "ghost danger button active text color."
   },
-  "button.ghost.danger.bg-active": {
+  "button.ghost.danger.bg.active": {
     "$value": "rgba(255, 77, 79, 0.18)",
     "$type": "color",
     "description": "ghost danger button active background color."
   },
-  "button.ghost.danger.border-active": {
+  "button.ghost.danger.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "ghost danger button active border color."
@@ -1235,32 +1235,32 @@
     "$type": "color",
     "description": "link danger button border color."
   },
-  "button.link.danger.text-hover": {
+  "button.link.danger.text.hover": {
     "$value": "{color-danger}",
     "$type": "color",
     "description": "link danger button hover text color."
   },
-  "button.link.danger.bg-hover": {
+  "button.link.danger.bg.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link danger button hover background color."
   },
-  "button.link.danger.border-hover": {
+  "button.link.danger.border.hover": {
     "$value": "transparent",
     "$type": "color",
     "description": "link danger button hover border color."
   },
-  "button.link.danger.text-active": {
+  "button.link.danger.text.active": {
     "$value": "{color-danger}",
     "$type": "color",
     "description": "link danger button active text color."
   },
-  "button.link.danger.bg-active": {
+  "button.link.danger.bg.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link danger button active background color."
   },
-  "button.link.danger.border-active": {
+  "button.link.danger.border.active": {
     "$value": "transparent",
     "$type": "color",
     "description": "link danger button active border color."

@@ -25,12 +25,12 @@ $card-body-padding: var(--ty-card-body-padding) !default;
 $card-footer-padding: var(--ty-card-footer-padding) !default;
 
 // Description
-$description-sm-padding-vt: var(--ty-descriptions-sm-padding-vt) !default;
-$description-md-padding-vt: var(--ty-descriptions-md-padding-vt) !default;
-$description-lg-padding-vt: var(--ty-descriptions-lg-padding-vt) !default;
-$description-sm-padding-hr: var(--ty-descriptions-sm-padding-hr) !default;
-$description-md-padding-hr: var(--ty-descriptions-md-padding-hr) !default;
-$description-lg-padding-hr: var(--ty-descriptions-lg-padding-hr) !default;
+$description-sm-padding-vt: var(--ty-descriptions-padding-vt-sm) !default;
+$description-md-padding-vt: var(--ty-descriptions-padding-vt-md) !default;
+$description-lg-padding-vt: var(--ty-descriptions-padding-vt-lg) !default;
+$description-sm-padding-hr: var(--ty-descriptions-padding-hr-sm) !default;
+$description-md-padding-hr: var(--ty-descriptions-padding-hr-md) !default;
+$description-lg-padding-hr: var(--ty-descriptions-padding-hr-lg) !default;
 
 // Input
 $input-sm-padding: var(--ty-input-padding-inline-sm, var(--ty-control-padding-inline-sm)) !default;
@@ -41,9 +41,9 @@ $input-lg-padding: var(--ty-input-padding-inline-lg, var(--ty-control-padding-in
 $menu-item-padding-vertical: var(--ty-menu-item-padding-vertical, var(--ty-menu-item-padding-block)) !default;
 
 // Native Select
-$native-select-sm-padding: var(--ty-native-select-sm-padding) !default;
-$native-select-md-padding: var(--ty-native-select-md-padding) !default;
-$native-select-lg-padding: var(--ty-native-select-lg-padding) !default;
+$native-select-sm-padding: var(--ty-native-select-padding-sm) !default;
+$native-select-md-padding: var(--ty-native-select-padding-md) !default;
+$native-select-lg-padding: var(--ty-native-select-padding-lg) !default;
 
 // Notification
 $notification-width: var(--ty-notification-width) !default;

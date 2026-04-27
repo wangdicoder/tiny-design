@@ -92,7 +92,7 @@
     "description": "Select clear button icon color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "select.clear-color-hover": {
+  "select.clear-color.hover": {
     "$value": "{color-text-tertiary}",
     "$type": "color",
     "description": "Select clear button icon hover color.",
@@ -234,7 +234,7 @@
     "description": "Multiple select tag close icon color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "select.tag-close-color-hover": {
+  "select.tag-close-color.hover": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "Multiple select tag close icon hover color.",
@@ -305,31 +305,31 @@
     "$type": "dimension",
     "description": "Gap between select option content and check icon."
   },
-  "select.option.active-bg": {
+  "select.option.bg.active": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Select option hover and active background color.",
     "fallback": "--ty-color-fill-secondary"
   },
-  "select.option.selected-bg": {
+  "select.option.bg.selected": {
     "$value": "{color-primary-bg}",
     "$type": "color",
     "description": "Select option selected background color.",
     "fallback": "--ty-color-primary-bg"
   },
-  "select.option.disabled-bg": {
+  "select.option.bg.disabled": {
     "$value": "{color-bg-container}",
     "$type": "color",
     "description": "Select option disabled background color.",
     "fallback": "--ty-color-bg-container"
   },
-  "select.option.disabled-color": {
+  "select.option.color.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Select option disabled text color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "select.option.disabled-opacity": {
+  "select.option.opacity.disabled": {
     "$value": "0.5",
     "$type": "number",
     "description": "Select option disabled opacity."

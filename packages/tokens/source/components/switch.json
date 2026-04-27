@@ -138,7 +138,7 @@
     "$type": "duration",
     "description": "Switch transition duration."
   },
-  "switch.disabled-opacity": {
+  "switch.opacity.disabled": {
     "$value": "0.4",
     "$type": "number",
     "description": "Disabled switch opacity."

@@ -4,7 +4,7 @@
     "$type": "color",
     "description": "Split bar handle background."
   },
-  "split.bar-bg-active": {
+  "split.bar-bg.active": {
     "$value": "#ffffff",
     "$type": "color",
     "description": "Split bar handle background when active."
@@ -14,7 +14,7 @@
     "$type": "color",
     "description": "Split bar handle border."
   },
-  "split.bar-border-active": {
+  "split.bar-border.active": {
     "$value": "#c8cdd3",
     "$type": "color",
     "description": "Split bar handle border when active."
@@ -24,7 +24,7 @@
     "$type": "color",
     "description": "Split bar track and grip color."
   },
-  "split.bar-line-active": {
+  "split.bar-line.active": {
     "$value": "#aeb6bf",
     "$type": "color",
     "description": "Split bar track and grip color when active."

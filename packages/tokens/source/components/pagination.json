@@ -32,7 +32,7 @@
     "description": "Pagination ellipsis color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "pagination.item-color.ellipsis-hover": {
+  "pagination.item-color.ellipsis.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Pagination ellipsis hover color.",
@@ -98,17 +98,17 @@
     "description": "Small pagination item hover text color.",
     "fallback": "--ty-color-primary"
   },
-  "pagination.disabled-active-bg": {
+  "pagination.bg.disabled-active": {
     "$value": "#dbdbdb",
     "$type": "color",
     "description": "Disabled active pagination item background color."
   },
-  "pagination.disabled-active-color": {
+  "pagination.color.disabled-active": {
     "$value": "#fff",
     "$type": "color",
     "description": "Disabled active pagination item text color."
   },
-  "pagination.disabled-bg": {
+  "pagination.bg.disabled": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Disabled pagination item background color.",
