@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useContext, useMemo, useCallback } from 'react';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/config-context';
 import { getPrefixCls } from '../_utils/general';
@@ -6,10 +6,7 @@ import { ArrowDown, ClearIcon } from '../_utils/components';
 import Popup from '../popup';
 import { CascaderProps, CascaderOption, CascaderValue } from './types';
 
-const getOptionsByValue = (
-  options: CascaderOption[],
-  value: CascaderValue
-): CascaderOption[] => {
+const getOptionsByValue = (options: CascaderOption[], value: CascaderValue): CascaderOption[] => {
   const result: CascaderOption[] = [];
   let current = options;
   for (const v of value) {
@@ -36,6 +33,11 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     prefixCls: customisedCls,
     className,
     style,
+    id,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-describedby': ariaDescribedBy,
+    'aria-invalid': ariaInvalid,
     onChange,
     onDropdownVisibleChange,
     ...otherProps
@@ -44,8 +46,6 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('cascader', configContext.prefixCls, customisedCls);
   const cascaderSize = size || configContext.componentSize || 'md';
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<CascaderValue>(
     'value' in props ? (props.value ?? []) : (defaultValue ?? [])
@@ -82,15 +82,18 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     setActiveColumns(cols);
   }, [options, selectedValue]);
 
-  const setDropdownOpen = useCallback((nextOpen: boolean) => {
-    if (!('open' in props)) {
-      setOpen(nextOpen);
-    }
-    onDropdownVisibleChange?.(nextOpen);
-    if (!nextOpen) {
-      setHoveredPath([]);
-    }
-  }, [onDropdownVisibleChange, props]);
+  const setDropdownOpen = useCallback(
+    (nextOpen: boolean) => {
+      if (!('open' in props)) {
+        setOpen(nextOpen);
+      }
+      onDropdownVisibleChange?.(nextOpen);
+      if (!nextOpen) {
+        setHoveredPath([]);
+      }
+    },
+    [onDropdownVisibleChange, props]
+  );
 
   const toggleOpen = () => {
     if (disabled) return;
@@ -117,15 +120,18 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     }
   };
 
-  const getPathAtLevel = useCallback((level: number): CascaderValue => {
-    if (hoveredPath.length > level) {
-      return hoveredPath;
-    }
-    if (selectedValue.length > level) {
-      return selectedValue;
-    }
-    return hoveredPath.length > 0 ? hoveredPath : selectedValue;
-  }, [hoveredPath, selectedValue]);
+  const getPathAtLevel = useCallback(
+    (level: number): CascaderValue => {
+      if (hoveredPath.length > level) {
+        return hoveredPath;
+      }
+      if (selectedValue.length > level) {
+        return selectedValue;
+      }
+      return hoveredPath.length > 0 ? hoveredPath : selectedValue;
+    },
+    [hoveredPath, selectedValue]
+  );
 
   const handleOptionSelect = (option: CascaderOption, level: number) => {
     if (option.disabled) return;
@@ -198,63 +204,65 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
     [`${prefixCls}_has-value`]: allowClear && selectedValue.length > 0 && !disabled,
   });
 
-  const dropdown = open
-    ? (
-        <div className={`${prefixCls}__dropdown`}>
-          <div className={`${prefixCls}__menus`}>
-            {activeColumns.map((columnOptions, level) => (
-              <ul key={level} className={`${prefixCls}__menu`} role="listbox">
-                {columnOptions.length === 0 ? (
-                  <li className={`${prefixCls}__menu-empty`}>{notFoundContent}</li>
-                ) : (
-                  columnOptions.map((option) => {
-                    const isActive =
-                      (selectedValue[level] === option.value) ||
-                      (hoveredPath[level] === option.value);
-                    const hasChildren = !!(option.children?.length);
-                    const itemCls = classNames(`${prefixCls}__menu-item`, {
-                      [`${prefixCls}__menu-item_active`]: isActive,
-                      [`${prefixCls}__menu-item_disabled`]: option.disabled,
-                    });
-                    return (
-                      <li
-                        key={option.value}
-                        className={itemCls}
-                        role="option"
-                        aria-selected={isActive}
-                        onClick={() => handleOptionSelect(option, level)}
-                        onMouseEnter={() => handleOptionHover(option, level)}
-                      >
-                        <span className={`${prefixCls}__menu-item-label`}>{option.label}</span>
-                        {hasChildren && (
-                          <span className={`${prefixCls}__menu-item-arrow`}>›</span>
-                        )}
-                      </li>
-                    );
-                  })
-                )}
-              </ul>
-            ))}
-          </div>
-        </div>
-    )
-    : null;
+  const dropdown = open ? (
+    <div className={`${prefixCls}__dropdown`}>
+      <div className={`${prefixCls}__menus`}>
+        {activeColumns.map((columnOptions, level) => (
+          <ul
+            key={level}
+            className={`${prefixCls}__menu`}
+            role="listbox"
+            aria-label={`Cascader level ${level + 1}`}>
+            {columnOptions.length === 0 ? (
+              <li className={`${prefixCls}__menu-empty`}>{notFoundContent}</li>
+            ) : (
+              columnOptions.map((option) => {
+                const isActive =
+                  selectedValue[level] === option.value || hoveredPath[level] === option.value;
+                const hasChildren = !!option.children?.length;
+                const itemCls = classNames(`${prefixCls}__menu-item`, {
+                  [`${prefixCls}__menu-item_active`]: isActive,
+                  [`${prefixCls}__menu-item_disabled`]: option.disabled,
+                });
+                return (
+                  <li
+                    key={option.value}
+                    className={itemCls}
+                    role="option"
+                    aria-selected={isActive}
+                    onClick={() => handleOptionSelect(option, level)}
+                    onMouseEnter={() => handleOptionHover(option, level)}>
+                    <span className={`${prefixCls}__menu-item-label`}>{option.label}</span>
+                    {hasChildren && <span className={`${prefixCls}__menu-item-arrow`}>›</span>}
+                  </li>
+                );
+              })
+            )}
+          </ul>
+        ))}
+      </div>
+    </div>
+  ) : null;
 
   return (
-    <div {...otherProps} ref={wrapperRef} className={cls} style={style}>
+    <div {...otherProps} ref={ref} className={cls} style={style}>
       <Popup
         trigger="manual"
         placement="bottom-start"
         arrow={false}
         visible={open}
         onVisibleChange={setDropdownOpen}
-        content={dropdown}
-      >
+        content={dropdown}>
         <div
           className={`${prefixCls}__selector`}
+          id={id}
           onClick={toggleOpen}
           onKeyDown={handleSelectorKeyDown}
           role="combobox"
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+          aria-describedby={ariaDescribedBy}
+          aria-invalid={ariaInvalid}
           aria-expanded={open}
           aria-haspopup="listbox"
           tabIndex={disabled ? -1 : 0}>
@@ -268,12 +276,13 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>((props, ref) =>
               type="button"
               className={`${prefixCls}__clear`}
               onClick={handleClear}
-              aria-label="Clear selection"
-            >
+              aria-label="Clear selection">
               <ClearIcon size="1em" />
             </button>
           )}
-          <span className={`${prefixCls}__arrow`}><ArrowDown size={10} /></span>
+          <span className={`${prefixCls}__arrow`}>
+            <ArrowDown size={10} />
+          </span>
         </div>
       </Popup>
     </div>

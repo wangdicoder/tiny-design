@@ -7,13 +7,9 @@ exports[`<InputNumber /> should match the snapshot 1`] = `
   >
     <input
       aria-disabled="false"
-      aria-valuemax="Infinity"
-      aria-valuemin="-Infinity"
       aria-valuenow="0"
       autocomplete="off"
       class="ty-input-number__input"
-      max="Infinity"
-      min="-Infinity"
       step="1"
       type="number"
       value="0"

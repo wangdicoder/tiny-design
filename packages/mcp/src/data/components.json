@@ -3522,12 +3522,6 @@
         "description": "Determine whether always display the control button"
       },
       {
-        "name": "children",
-        "type": "React.ReactNode",
-        "required": false,
-        "description": ""
-      },
-      {
         "name": "style",
         "type": "CSSProperties",
         "required": false,

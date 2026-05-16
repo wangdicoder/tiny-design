@@ -40,3 +40,20 @@ jobs:
 
       - name: Test
         run: pnpm test -- --coverage
+
+      - name: Install browser for Playwright
+        run: pnpm exec playwright install --with-deps chrome
+
+      - name: Accessibility tests
+        run: pnpm test:accessibility
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            apps/docs/playwright-report/
+            apps/docs/test-results/
+          if-no-files-found: ignore

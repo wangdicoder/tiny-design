@@ -1,4 +1,4 @@
-@use "../../style/variables" as *;
+@use '../../style/variables' as *;
 
 $dp: #{$prefix}-date-picker;
 
@@ -20,7 +20,9 @@ $dp: #{$prefix}-date-picker;
     border-radius: var(--ty-picker-input-radius);
     background: var(--ty-picker-input-bg);
     cursor: pointer;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s;
 
     &:hover {
       border-color: var(--ty-picker-input-border-hover);
@@ -47,7 +49,10 @@ $dp: #{$prefix}-date-picker;
     min-width: var(--ty-date-picker-input-min-width-md);
 
     &::placeholder {
-      color: var(--ty-input-placeholder, var(--ty-picker-input-color-placeholder, var(--ty-color-text-placeholder)));
+      color: var(
+        --ty-input-placeholder,
+        var(--ty-picker-input-color-placeholder, var(--ty-color-text-placeholder))
+      );
       opacity: 1;
     }
 
@@ -226,7 +231,7 @@ $dp: #{$prefix}-date-picker;
 
   &__cell-header {
     font-weight: 400;
-    color: var(--ty-picker-input-color-muted);
+    color: var(--ty-color-text-secondary, var(--ty-date-picker-cell-color));
     padding: 4px 0;
     font-size: 12px;
   }
@@ -249,7 +254,7 @@ $dp: #{$prefix}-date-picker;
     height: var(--ty-date-picker-cell-size);
     border-radius: var(--ty-date-picker-cell-radius);
     transition: background 0.2s;
-    color: var(--ty-date-picker-cell-color-muted);
+    color: var(--ty-color-text-secondary, var(--ty-date-picker-cell-color-muted));
     font-size: var(--ty-date-picker-cell-font-size);
   }
 
@@ -308,7 +313,7 @@ $dp: #{$prefix}-date-picker;
   }
 
   &__cell_disabled &__cell-inner {
-    color: var(--ty-date-picker-cell-color-muted);
+    color: var(--ty-color-text-secondary, var(--ty-date-picker-cell-color-muted));
     background: var(--ty-date-picker-cell-disabled-bg);
   }
 
@@ -317,7 +322,7 @@ $dp: #{$prefix}-date-picker;
   }
 
   &__cell_dim &__cell-inner {
-    color: var(--ty-date-picker-cell-color-muted);
+    color: var(--ty-color-text-secondary, var(--ty-date-picker-cell-color-muted));
   }
 
   &__month-table,
@@ -355,7 +360,7 @@ $dp: #{$prefix}-date-picker;
 
   &__month-cell.#{$dp}__cell_dim &__month-cell-inner,
   &__year-cell.#{$dp}__cell_dim &__year-cell-inner {
-    color: var(--ty-date-picker-cell-color-muted);
+    color: var(--ty-color-text-secondary, var(--ty-date-picker-cell-color-muted));
     font-weight: 400;
   }
 

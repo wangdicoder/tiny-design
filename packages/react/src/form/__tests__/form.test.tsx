@@ -61,6 +61,18 @@ describe('<Form />', () => {
     expect(screen.getByText('username required')).toBeInTheDocument();
   });
 
+  it('should associate labels with named controls', () => {
+    render(
+      <Form>
+        <Form.Item name="username" label="Username">
+          <Input />
+        </Form.Item>
+      </Form>
+    );
+
+    expect(screen.getByLabelText('Username')).toBe(screen.getByRole('textbox'));
+  });
+
   it('should forward ref to native form element', () => {
     const ref = React.createRef<HTMLFormElement>();
 

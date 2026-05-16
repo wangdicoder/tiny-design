@@ -37,6 +37,12 @@ const FormItem = (props: FormItemProps): JSX.Element => {
   );
   const [hasErrLabel, setHasErrLabel] = useState(false);
   const errorRef = useRef<HTMLDivElement>(null);
+  const controlUid = React.useId();
+  const controlId = name ? `${prefixCls}-${name}-${controlUid.replace(/:/g, '')}` : undefined;
+  const labelId = label
+    ? `${controlId ?? `${prefixCls}-${controlUid.replace(/:/g, '')}`}-label`
+    : undefined;
+  const errorId = name ? `${controlId}-error` : undefined;
   const cls = classNames(prefixCls, className, {
     [`${prefixCls}_has-error`]: !!error,
     [`${prefixCls}_with-err-label`]: hasErrLabel,
@@ -62,7 +68,36 @@ const FormItem = (props: FormItemProps): JSX.Element => {
 
   let child: any = children;
   const prop = getPropName(valuePropName, child && child.type);
-  const childProps = { [prop]: value, onChange, onBlur };
+  const childProps: Record<string, unknown> = { [prop]: value, onChange, onBlur };
+  const childElement = child as React.ReactElement<Record<string, unknown>>;
+
+  if (React.isValidElement(childElement)) {
+    if (controlId && childElement.props.id === undefined) {
+      childProps.id = controlId;
+    }
+
+    if (
+      labelId &&
+      childElement.props['aria-label'] === undefined &&
+      childElement.props['aria-labelledby'] === undefined
+    ) {
+      childProps['aria-labelledby'] = labelId;
+    }
+
+    if (error) {
+      childProps['aria-invalid'] = true;
+      if (errorId) {
+        const existingDescribedBy = childElement.props['aria-describedby'];
+        childProps['aria-describedby'] = [
+          typeof existingDescribedBy === 'string' ? existingDescribedBy : undefined,
+          errorId,
+        ]
+          .filter(Boolean)
+          .join(' ');
+      }
+    }
+  }
+
   child = React.cloneElement(child, childProps);
 
   const labelCls = classNames({
@@ -123,7 +158,8 @@ const FormItem = (props: FormItemProps): JSX.Element => {
     <Row className={cls} style={style}>
       <Col span={labelSpan} offset={labelOffset} className={`${prefixCls}__label`}>
         <label
-          htmlFor={name}
+          id={labelId}
+          htmlFor={controlId}
           title={typeof label === 'string' ? label : undefined}
           className={labelCls}>
           {label}
@@ -135,8 +171,14 @@ const FormItem = (props: FormItemProps): JSX.Element => {
         </div>
         {notice && <div className={`${prefixCls}__notice`}>{notice}</div>}
         {helper && <div className={`${prefixCls}__helper`}>{helper}</div>}
-        <Transition in={!!error} nodeRef={errorRef} animation="slide-down" onExited={() => setHasErrLabel(false)}>
-          <div ref={errorRef} className={`${prefixCls}__error`}>{error}</div>
+        <Transition
+          in={!!error}
+          nodeRef={errorRef}
+          animation="slide-down"
+          onExited={() => setHasErrLabel(false)}>
+          <div ref={errorRef} id={errorId} className={`${prefixCls}__error`}>
+            {error}
+          </div>
         </Transition>
       </Col>
     </Row>
