@@ -47,6 +47,9 @@ jobs:
       - name: Accessibility tests
         run: pnpm test:accessibility
 
+      - name: Visual regression tests
+        run: pnpm test:visual
+
       - name: Upload Playwright report
         if: failure()
         uses: actions/upload-artifact@v4

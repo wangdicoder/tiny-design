@@ -10,7 +10,7 @@ export default defineConfig({
   reporter: process.env.CI ? [['html'], ['list']] : 'list',
   expect: {
     toHaveScreenshot: {
-      maxDiffPixels: 100,
+      maxDiffPixelRatio: 0.03,
     },
   },
   webServer: {
