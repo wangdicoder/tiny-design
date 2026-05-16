@@ -6,22 +6,22 @@
   --ty-collapse-borderless-divider-color: var(--ty-color-border-secondary);
   --ty-collapse-radius: var(--ty-border-radius);
   --ty-collapse-header-bg: transparent;
-  --ty-collapse-header-hover-bg: var(--ty-color-fill);
-  --ty-collapse-header-active-bg: var(--ty-color-fill);
-  --ty-collapse-header-disabled-bg: transparent;
+  --ty-collapse-header-bg-hover: var(--ty-color-fill);
+  --ty-collapse-header-bg-active: var(--ty-color-fill);
+  --ty-collapse-header-bg-disabled: transparent;
   --ty-collapse-header-color: var(--ty-color-text);
-  --ty-collapse-header-disabled-color: var(--ty-color-text-quaternary);
+  --ty-collapse-header-color-disabled: var(--ty-color-text-quaternary);
   --ty-collapse-header-min-height: 44px;
   --ty-collapse-header-padding-inline: 16px;
   --ty-collapse-header-padding-block: 14px;
   --ty-collapse-header-gap: 12px;
   --ty-collapse-icon-color: currentcolor;
-  --ty-collapse-icon-active-color: currentcolor;
-  --ty-collapse-icon-disabled-color: var(--ty-color-text-quaternary);
+  --ty-collapse-icon-color-active: currentcolor;
+  --ty-collapse-icon-color-disabled: var(--ty-color-text-quaternary);
   --ty-collapse-icon-slot-size: 20px;
   --ty-collapse-icon-size: 10px;
   --ty-collapse-extra-color: var(--ty-color-text-secondary);
-  --ty-collapse-extra-disabled-color: var(--ty-color-text-quaternary);
+  --ty-collapse-extra-color-disabled: var(--ty-color-text-quaternary);
   --ty-collapse-extra-gap: 8px;
   --ty-collapse-extra-font-size: 12px;
   --ty-collapse-body-bg: var(--ty-color-bg-container);
@@ -54,20 +54,20 @@
     &_disabled {
       .#{$prefix}-collapse-item__header {
         cursor: not-allowed;
-        background: var(--ty-collapse-header-disabled-bg);
+        background: var(--ty-collapse-header-bg-disabled);
 
         &:hover {
-          background: var(--ty-collapse-header-disabled-bg);
+          background: var(--ty-collapse-header-bg-disabled);
         }
       }
 
       .#{$prefix}-collapse-item__label {
-        color: var(--ty-collapse-header-disabled-color);
+        color: var(--ty-collapse-header-color-disabled);
       }
 
       .#{$prefix}-collapse-item__arrow,
       .#{$prefix}-collapse-item__extra {
-        color: var(--ty-collapse-icon-disabled-color);
+        color: var(--ty-collapse-icon-color-disabled);
       }
     }
 
@@ -84,12 +84,12 @@
         color var(--ty-collapse-motion-duration) var(--ty-collapse-motion-easing);
 
       &:hover {
-        background: var(--ty-collapse-header-hover-bg);
+        background: var(--ty-collapse-header-bg-hover);
       }
     }
 
     &_active > .#{$prefix}-collapse-item__header {
-      background: var(--ty-collapse-header-active-bg);
+      background: var(--ty-collapse-header-bg-active);
     }
 
     &__toggle {
@@ -156,7 +156,7 @@
       transition: transform var(--ty-collapse-motion-duration) var(--ty-collapse-motion-easing);
 
       &_active {
-        color: var(--ty-collapse-icon-active-color);
+        color: var(--ty-collapse-icon-color-active);
         transform: rotate(0deg);
       }
     }

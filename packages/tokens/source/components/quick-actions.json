@@ -25,7 +25,7 @@
     "$type": "dimension",
     "description": "Speed Dial action wrapper gap."
   },
-  "quick-actions.action-bg-hover": {
+  "quick-actions.action-bg.hover": {
     "$value": "#f6f9fc",
     "$type": "color",
     "description": "Speed Dial action bg hover."
@@ -41,7 +41,7 @@
     "description": "Speed Dial bg.",
     "fallback": "--ty-chart-1"
   },
-  "quick-actions.bg-hover": {
+  "quick-actions.bg.hover": {
     "$value": "{color-primary-active}",
     "$type": "color",
     "description": "Speed Dial bg hover.",
@@ -62,7 +62,7 @@
     "$type": "dimension",
     "description": "Speed Dial action button icon font size."
   },
-  "quick-actions.disabled-opacity": {
+  "quick-actions.opacity.disabled": {
     "$value": "0.5",
     "$type": "number",
     "description": "Speed Dial disabled opacity."

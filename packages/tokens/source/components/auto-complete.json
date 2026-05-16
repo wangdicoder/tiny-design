@@ -76,13 +76,13 @@
     "description": "AutoComplete option text color.",
     "fallback": "--ty-color-text"
   },
-  "auto-complete.option-active-bg": {
+  "auto-complete.option.bg.active": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "AutoComplete active option background color.",
     "fallback": "--ty-color-fill-secondary"
   },
-  "auto-complete.option-disabled-opacity": {
+  "auto-complete.option.opacity.disabled": {
     "$value": "0.5",
     "$type": "number",
     "description": "AutoComplete disabled option opacity."

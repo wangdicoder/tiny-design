@@ -54,7 +54,7 @@
     "$type": "dimension",
     "description": "Gap between tag content and close button."
   },
-  "tag.close-opacity-hover": {
+  "tag.close-opacity.hover": {
     "$value": "0.8",
     "$type": "number",
     "description": "Tag close button hover opacity."

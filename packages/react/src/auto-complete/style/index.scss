@@ -47,11 +47,11 @@
   transition: background-color 0.2s;
 
   &_active {
-    background-color: var(--ty-auto-complete-option-active-bg);
+    background-color: var(--ty-auto-complete-option-bg-active);
   }
 
   &_disabled {
     cursor: not-allowed;
-    opacity: var(--ty-auto-complete-option-disabled-opacity);
+    opacity: var(--ty-auto-complete-option-opacity-disabled);
   }
 }

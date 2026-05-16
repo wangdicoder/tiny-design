@@ -38,7 +38,7 @@
   --_menu-popup-item-gap: var(--ty-menu-popup-item-gap, 0);
   --_menu-popup-group-item-indent: var(--ty-menu-popup-group-item-indent, 30px);
   --_menu-overlay-item-color: var(--ty-menu-overlay-item-color, var(--ty-color-text));
-  --_menu-overlay-item-hover-bg: var(--ty-menu-overlay-item-hover-bg, var(--ty-color-bg-spotlight));
+  --_menu-overlay-item-hover-bg: var(--ty-menu-overlay-item-bg-hover, var(--ty-color-bg-spotlight));
   --_menu-overlay-group-title-color: var(--ty-menu-overlay-group-title-color, var(--_menu-group-title-color));
   --_menu-item-text: var(--ty-menu-color, var(--ty-color-text-secondary));
   --_menu-item-bg: transparent;
@@ -84,7 +84,7 @@
     --_menu-popup-bg: var(--ty-menu-light-popup-bg, var(--ty-menu-popup-bg, #fff));
     --_menu-popup-border: var(--ty-menu-light-popup-border, var(--ty-menu-popup-border, transparent));
     --_menu-overlay-item-color: var(--ty-menu-light-overlay-item-color, var(--ty-menu-light-color, var(--ty-color-text)));
-    --_menu-overlay-item-hover-bg: var(--ty-menu-light-overlay-item-hover-bg, var(--ty-color-bg-spotlight));
+    --_menu-overlay-item-hover-bg: var(--ty-menu-light-overlay-item-bg-hover, var(--ty-color-bg-spotlight));
   }
 
   &_dark {
@@ -103,7 +103,7 @@
     --_menu-item-border-hover: var(--ty-menu-dark-item-border-hover, color-mix(in srgb, var(--ty-color-primary) 28%, transparent));
     --_menu-item-border-selected: var(--ty-menu-dark-item-border-selected, color-mix(in srgb, var(--ty-color-primary) 56%, transparent));
     --_menu-overlay-item-color: var(--ty-menu-dark-overlay-item-color, rgba(255 255 255 / 85%));
-    --_menu-overlay-item-hover-bg: var(--ty-menu-dark-overlay-item-hover-bg, rgba(255 255 255 / 8%));
+    --_menu-overlay-item-hover-bg: var(--ty-menu-dark-overlay-item-bg-hover, rgba(255 255 255 / 8%));
     --_menu-overlay-group-title-color: var(--ty-menu-dark-group-title-color, rgba(255 255 255 / 45%));
   }
 

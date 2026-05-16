@@ -138,7 +138,7 @@
     user-select: none;
 
     &_active {
-      color: var(--ty-slider-mark-active-color);
+      color: var(--ty-slider-mark-color-active);
     }
   }
 
@@ -147,11 +147,11 @@
 
     .#{$prefix}-slider {
       &__track {
-        background-color: var(--ty-slider-disabled-color);
+        background-color: var(--ty-slider-color-disabled);
       }
 
       &__thumb {
-        border-color: var(--ty-slider-disabled-color);
+        border-color: var(--ty-slider-color-disabled);
         transform: scale(1);
       }
 

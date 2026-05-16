@@ -192,7 +192,7 @@ $tp: #{$prefix}-time-picker;
     user-select: none;
 
     &:hover {
-      background: var(--ty-picker-cell-hover-bg);
+      background: var(--ty-picker-cell-bg-hover);
     }
 
     &_selected {

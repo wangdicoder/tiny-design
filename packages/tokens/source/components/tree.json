@@ -4,7 +4,7 @@
     "$type": "color",
     "description": "Tree arrow color."
   },
-  "tree.hover-bg": {
+  "tree.bg.hover": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Tree hover background color.",

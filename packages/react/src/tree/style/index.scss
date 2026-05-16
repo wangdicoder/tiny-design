@@ -46,7 +46,7 @@
     transition: background-color 250ms;
 
     &:hover {
-      background-color: var(--ty-tree-hover-bg);
+      background-color: var(--ty-tree-bg-hover);
     }
   }
 
@@ -59,7 +59,7 @@
       display: flex;
 
       &:hover {
-        background-color: var(--ty-tree-hover-bg);
+        background-color: var(--ty-tree-bg-hover);
       }
     }
   }

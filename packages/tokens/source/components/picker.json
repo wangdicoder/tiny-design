@@ -31,25 +31,25 @@
     "$type": "dimension",
     "description": "Picker input radius."
   },
-  "picker.input-border-hover": {
+  "picker.input-border.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Picker input hover border color.",
     "fallback": "--ty-color-primary"
   },
-  "picker.input-border-focus": {
+  "picker.input-border.focus": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Picker input focus border color.",
     "fallback": "--ty-color-primary"
   },
-  "picker.input-shadow-focus": {
+  "picker.input-shadow.focus": {
     "$value": "{shadow-focus}",
     "$type": "shadow",
     "description": "Picker input focus shadow.",
     "fallback": "--ty-shadow-focus"
   },
-  "picker.input-bg-disabled": {
+  "picker.input-bg.disabled": {
     "$value": "{color-bg-disabled}",
     "$type": "color",
     "description": "Picker disabled input background color.",
@@ -89,7 +89,7 @@
     "description": "Picker suffix color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "picker.cell-hover-bg": {
+  "picker.cell.bg.hover": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Picker cell hover bg.",
@@ -107,7 +107,7 @@
     "description": "Picker clear icon color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "picker.clear-color-hover": {
+  "picker.clear-color.hover": {
     "$value": "{color-text-tertiary}",
     "$type": "color",
     "description": "Picker clear icon hover color.",

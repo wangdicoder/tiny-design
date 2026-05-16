@@ -4,7 +4,7 @@
     "$type": "color",
     "description": "Carousel arrow background color."
   },
-  "carousel.arrow-hover-bg": {
+  "carousel.arrow.bg.hover": {
     "$value": "rgba(0, 0, 0, 0.45)",
     "$type": "color",
     "description": "Carousel arrow hover background color."
@@ -24,7 +24,7 @@
     "$type": "dimension",
     "description": "Carousel arrow and dots inset offset."
   },
-  "carousel.dot-active-bg": {
+  "carousel.dot.bg.active": {
     "$value": "#fff",
     "$type": "color",
     "description": "Carousel dot active bg."
@@ -34,7 +34,7 @@
     "$type": "color",
     "description": "Carousel dot bg."
   },
-  "carousel.dot-hover-bg": {
+  "carousel.dot.bg.hover": {
     "$value": "rgba(255, 255, 255, 0.6)",
     "$type": "color",
     "description": "Carousel dot hover background color."
@@ -59,12 +59,12 @@
     "$type": "dimension",
     "description": "Carousel dot radius."
   },
-  "carousel.dot-width-active": {
+  "carousel.dot-width.active": {
     "$value": "24px",
     "$type": "dimension",
     "description": "Carousel active horizontal dot width."
   },
-  "carousel.dot-height-active": {
+  "carousel.dot-height.active": {
     "$value": "24px",
     "$type": "dimension",
     "description": "Carousel active vertical dot height."

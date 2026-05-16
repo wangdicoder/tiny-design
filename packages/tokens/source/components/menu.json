@@ -14,18 +14,18 @@
     "$type": "color",
     "description": "Menu dark color."
   },
-  "menu.dark-color-hover": {
+  "menu.dark-color.hover": {
     "$value": "rgba(255, 255, 255, 0.85)",
     "$type": "color",
     "description": "Menu dark hover color."
   },
-  "menu.dark-color-selected": {
+  "menu.dark-color.selected": {
     "$value": "{color-primary-hover}",
     "$type": "color",
     "description": "Menu dark selected color.",
     "fallback": "--ty-color-primary-hover"
   },
-  "menu.dark-color-disabled": {
+  "menu.dark-color.disabled": {
     "$value": "rgba(255, 255, 255, 0.25)",
     "$type": "color",
     "description": "Menu dark disabled color."
@@ -133,27 +133,27 @@
     "description": "Menu indicator color.",
     "fallback": "--ty-color-primary"
   },
-  "menu.item-bg-hover": {
+  "menu.item-bg.hover": {
     "$value": "color-mix(in srgb, var(--ty-color-primary) 6%, transparent)",
     "$type": "color",
     "description": "Menu item hover background."
   },
-  "menu.item-bg-active": {
+  "menu.item-bg.active": {
     "$value": "color-mix(in srgb, var(--ty-color-primary) 10%, transparent)",
     "$type": "color",
     "description": "Menu item active background."
   },
-  "menu.item-bg-selected": {
+  "menu.item-bg.selected": {
     "$value": "color-mix(in srgb, var(--ty-color-primary) 8%, transparent)",
     "$type": "color",
     "description": "Menu item selected background."
   },
-  "menu.item-border-hover": {
+  "menu.item-border.hover": {
     "$value": "color-mix(in srgb, var(--ty-color-primary) 20%, transparent)",
     "$type": "color",
     "description": "Menu item hover border."
   },
-  "menu.item-border-selected": {
+  "menu.item-border.selected": {
     "$value": "color-mix(in srgb, var(--ty-color-primary) 48%, transparent)",
     "$type": "color",
     "description": "Menu item selected border."
@@ -184,7 +184,7 @@
     "description": "Popup submenu item text color.",
     "fallback": "--ty-color-text"
   },
-  "menu.overlay-item-hover-bg": {
+  "menu.overlay-item.bg.hover": {
     "$value": "{color-bg-spotlight}",
     "$type": "color",
     "description": "Popup submenu item hover background color.",
@@ -195,7 +195,7 @@
     "$type": "color",
     "description": "Popup submenu item text color in dark menu."
   },
-  "menu.dark-overlay-item-hover-bg": {
+  "menu.dark-overlay-item.bg.hover": {
     "$value": "#2a2a2a",
     "$type": "color",
     "description": "Popup submenu item hover background color in dark menu."
@@ -245,47 +245,47 @@
     "$type": "dimension",
     "description": "Popup submenu item gap."
   },
-  "menu.item-height-sm": {
+  "menu.item-height.sm": {
     "$value": "32px",
     "$type": "dimension",
     "description": "Small menu item height."
   },
-  "menu.item-height-md": {
+  "menu.item-height.md": {
     "$value": "40px",
     "$type": "dimension",
     "description": "Medium menu item height."
   },
-  "menu.item-height-lg": {
+  "menu.item-height.lg": {
     "$value": "48px",
     "$type": "dimension",
     "description": "Large menu item height."
   },
-  "menu.item-padding-inline-sm": {
+  "menu.item-padding-inline.sm": {
     "$value": "10px",
     "$type": "dimension",
     "description": "Small menu item horizontal padding."
   },
-  "menu.item-padding-inline-md": {
+  "menu.item-padding-inline.md": {
     "$value": "12px",
     "$type": "dimension",
     "description": "Medium menu item horizontal padding."
   },
-  "menu.item-padding-inline-lg": {
+  "menu.item-padding-inline.lg": {
     "$value": "14px",
     "$type": "dimension",
     "description": "Large menu item horizontal padding."
   },
-  "menu.item-gap-sm": {
+  "menu.item-gap.sm": {
     "$value": "8px",
     "$type": "dimension",
     "description": "Small menu item gap."
   },
-  "menu.item-gap-md": {
+  "menu.item-gap.md": {
     "$value": "10px",
     "$type": "dimension",
     "description": "Medium menu item gap."
   },
-  "menu.item-gap-lg": {
+  "menu.item-gap.lg": {
     "$value": "12px",
     "$type": "dimension",
     "description": "Large menu item gap."
@@ -300,7 +300,7 @@
     "$type": "dimension",
     "description": "Comfortable menu item vertical padding."
   },
-  "menu.disabled-opacity": {
+  "menu.opacity.disabled": {
     "$value": "0.55",
     "$type": "number",
     "description": "Menu disabled item opacity."
@@ -335,7 +335,7 @@
     "$type": "color",
     "description": "Popup submenu item text color in light menu."
   },
-  "menu.light-overlay-item-hover-bg": {
+  "menu.light-overlay-item.bg.hover": {
     "$value": "#f5f5ff",
     "$type": "color",
     "description": "Popup submenu item hover background color in light menu."

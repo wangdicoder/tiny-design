@@ -21,7 +21,7 @@
     "$type": "color",
     "description": "Notification close button color."
   },
-  "notification.close-hover": {
+  "notification.close.hover": {
     "$value": "rgba(0, 0, 0, 0.7)",
     "$type": "color",
     "description": "Notification close button hover color."

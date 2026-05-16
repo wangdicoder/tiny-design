@@ -86,19 +86,19 @@
     "description": "Clear button icon color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "input.font-size-sm": {
+  "input.font-size.sm": {
     "$value": "{control.font-size.sm}",
     "$type": "dimension",
     "description": "Small input font size.",
     "fallback": "--ty-font-size-sm"
   },
-  "input.font-size-md": {
+  "input.font-size.md": {
     "$value": "{control.font-size.md}",
     "$type": "dimension",
     "description": "Medium input font size.",
     "fallback": "--ty-font-size-base"
   },
-  "input.font-size-lg": {
+  "input.font-size.lg": {
     "$value": "{control.font-size.lg}",
     "$type": "dimension",
     "description": "Large input font size.",
@@ -122,17 +122,17 @@
     "description": "Large input height.",
     "fallback": "--ty-height-lg"
   },
-  "input.padding-inline-sm": {
+  "input.padding-inline.sm": {
     "$value": "{control.padding-inline.sm}",
     "$type": "dimension",
     "description": "Small input inline padding."
   },
-  "input.padding-inline-md": {
+  "input.padding-inline.md": {
     "$value": "{control.padding-inline.md}",
     "$type": "dimension",
     "description": "Medium input inline padding."
   },
-  "input.padding-inline-lg": {
+  "input.padding-inline.lg": {
     "$value": "{control.padding-inline.lg}",
     "$type": "dimension",
     "description": "Large input inline padding."
@@ -142,17 +142,17 @@
     "$type": "dimension",
     "description": "Additional spacing reserved around input affixes."
   },
-  "input.clear-size-sm": {
+  "input.clear-size.sm": {
     "$value": "14px",
     "$type": "dimension",
     "description": "Small clear button square size."
   },
-  "input.clear-size-md": {
+  "input.clear-size.md": {
     "$value": "16px",
     "$type": "dimension",
     "description": "Medium clear button square size."
   },
-  "input.clear-size-lg": {
+  "input.clear-size.lg": {
     "$value": "18px",
     "$type": "dimension",
     "description": "Large clear button square size."

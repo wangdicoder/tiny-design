@@ -55,7 +55,7 @@
 
   &_disabled {
     color: var(--_menu-text-color-disabled) !important;
-    opacity: var(--ty-menu-disabled-opacity, 0.55);
+    opacity: var(--ty-menu-opacity-disabled, 0.55);
     cursor: not-allowed;
   }
 

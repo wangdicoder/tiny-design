@@ -23,7 +23,7 @@
     "description": "Anchor link text color.",
     "fallback": "--ty-color-text-secondary"
   },
-  "anchor.link-color-active": {
+  "anchor.link-color.active": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Anchor active link text color.",

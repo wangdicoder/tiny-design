@@ -16,7 +16,7 @@
     "description": "Calendar panel border radius.",
     "fallback": "--ty-border-radius"
   },
-  "calendar.cell-hover-bg": {
+  "calendar.cell.bg.hover": {
     "$value": "#f6f9fc",
     "$type": "color",
     "description": "Calendar cell hover background color."
@@ -47,13 +47,13 @@
     "description": "Calendar header action color.",
     "fallback": "--ty-color-text-tertiary"
   },
-  "calendar.header-action-color-hover": {
+  "calendar.header-action-color.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Calendar header action hover color.",
     "fallback": "--ty-color-primary"
   },
-  "calendar.header-action-hover-bg": {
+  "calendar.header-action.bg.hover": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Calendar header action hover background color.",
@@ -101,13 +101,13 @@
     "description": "Calendar header label color.",
     "fallback": "--ty-color-text"
   },
-  "calendar.header-label-color-hover": {
+  "calendar.header-label-color.hover": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Calendar header label hover color.",
     "fallback": "--ty-color-primary"
   },
-  "calendar.header-label-hover-bg": {
+  "calendar.header-label.bg.hover": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Calendar header label hover background color.",
@@ -174,7 +174,7 @@
     "description": "Calendar out-of-view and disabled cell text color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "calendar.cell-disabled-bg": {
+  "calendar.cell.bg.disabled": {
     "$value": "{color-bg-disabled}",
     "$type": "color",
     "description": "Calendar disabled cell inner background color.",
@@ -186,13 +186,13 @@
     "description": "Calendar today cell border color.",
     "fallback": "--ty-color-primary"
   },
-  "calendar.cell-selected-bg": {
+  "calendar.cell.bg.selected": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Calendar selected cell background color.",
     "fallback": "--ty-color-primary"
   },
-  "calendar.cell-selected-color": {
+  "calendar.cell.color.selected": {
     "$value": "#fff",
     "$type": "color",
     "description": "Calendar selected cell text color."
@@ -203,7 +203,7 @@
     "description": "Calendar range background color.",
     "fallback": "--ty-color-primary-bg"
   },
-  "calendar.cell-focus-outline": {
+  "calendar.cell.outline.focus": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Calendar focused cell outline color.",
@@ -292,24 +292,24 @@
     "description": "Calendar month and decade panel item radius.",
     "fallback": "--ty-border-radius"
   },
-  "calendar.panel-item-hover-bg": {
+  "calendar.panel-item.bg.hover": {
     "$value": "{color-fill-secondary}",
     "$type": "color",
     "description": "Calendar month and decade panel item hover background color.",
     "fallback": "--ty-color-fill-secondary"
   },
-  "calendar.panel-item-selected-color": {
+  "calendar.panel-item.color.selected": {
     "$value": "#fff",
     "$type": "color",
     "description": "Calendar selected month and decade panel item text color."
   },
-  "calendar.panel-item-selected-bg": {
+  "calendar.panel-item.bg.selected": {
     "$value": "{color-primary}",
     "$type": "color",
     "description": "Calendar selected month and decade panel item background color.",
     "fallback": "--ty-color-primary"
   },
-  "calendar.panel-item-selected-hover-bg": {
+  "calendar.panel-item.bg.selected-hover": {
     "$value": "{color-primary-hover}",
     "$type": "color",
     "description": "Calendar selected month and decade panel item hover background color.",
@@ -348,7 +348,7 @@
     "description": "Calendar today action color.",
     "fallback": "--ty-color-primary"
   },
-  "calendar.today-color-hover": {
+  "calendar.today-color.hover": {
     "$value": "{color-primary-hover}",
     "$type": "color",
     "description": "Calendar today action hover color.",
@@ -359,13 +359,13 @@
     "$type": "dimension",
     "description": "Calendar today action font size."
   },
-  "calendar.today-hover-bg": {
+  "calendar.today.bg.hover": {
     "$value": "{color-primary-bg}",
     "$type": "color",
     "description": "Calendar today action hover background color.",
     "fallback": "--ty-color-primary-bg"
   },
-  "calendar.today-active-bg": {
+  "calendar.today.bg.active": {
     "$value": "{color-primary-bg-hover}",
     "$type": "color",
     "description": "Calendar today action active background color.",

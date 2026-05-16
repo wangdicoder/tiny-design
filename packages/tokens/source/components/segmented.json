@@ -31,58 +31,58 @@
     "description": "Segmented item color.",
     "fallback": "--ty-color-text-secondary"
   },
-  "segmented.item-bg-hover": {
+  "segmented.item-bg.hover": {
     "$value": "{color-fill}",
     "$type": "color",
     "description": "Segmented hover item background.",
     "fallback": "--ty-color-fill"
   },
-  "segmented.item-color-hover": {
+  "segmented.item-color.hover": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "Segmented hover item color.",
     "fallback": "--ty-color-text"
   },
-  "segmented.item-bg-selected": {
+  "segmented.item-bg.selected": {
     "$value": "{color-bg-container}",
     "$type": "color",
     "description": "Segmented selected item background.",
     "fallback": "--ty-color-bg-container"
   },
-  "segmented.item-color-selected": {
+  "segmented.item-color.selected": {
     "$value": "{color-text}",
     "$type": "color",
     "description": "Segmented selected item color.",
     "fallback": "--ty-color-text"
   },
-  "segmented.item-shadow-selected": {
+  "segmented.item-shadow.selected": {
     "$value": "0 1px 2px 0 rgb(0 0 0 / 6%), 0 1px 3px 0 rgb(0 0 0 / 10%)",
     "$type": "shadow",
     "description": "Segmented selected item shadow."
   },
-  "segmented.item-shadow-focus": {
+  "segmented.item-shadow.focus": {
     "$value": "{shadow-focus}",
     "$type": "shadow",
     "description": "Segmented focus item shadow.",
     "fallback": "--ty-shadow-focus"
   },
-  "segmented.item-font-weight-selected": {
+  "segmented.item-font-weight.selected": {
     "$value": "500",
     "$type": "font-weight",
     "description": "Segmented selected item font weight."
   },
-  "segmented.item-color-disabled": {
+  "segmented.item-color.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Segmented disabled item color.",
     "fallback": "--ty-color-text-quaternary"
   },
-  "segmented.item-bg-disabled": {
+  "segmented.item-bg.disabled": {
     "$value": "transparent",
     "$type": "color",
     "description": "Segmented disabled item background."
   },
-  "segmented.item-opacity-disabled": {
+  "segmented.item-opacity.disabled": {
     "$value": "0.5",
     "$type": "number",
     "description": "Segmented disabled item opacity."

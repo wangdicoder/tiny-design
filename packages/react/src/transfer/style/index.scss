@@ -78,7 +78,7 @@
     transition: background-color 250ms;
 
     &:not(.#{$prefix}-checkbox_disabled):hover{
-      background-color: var(--ty-transfer-item-hover-bg);
+      background-color: var(--ty-transfer-item-bg-hover);
     }
   }
 

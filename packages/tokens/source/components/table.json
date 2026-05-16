@@ -58,17 +58,17 @@
     "$type": "font-weight",
     "description": "Table header font weight."
   },
-  "table.row-hover-bg": {
+  "table.row.bg.hover": {
     "$value": "#f6f9fc",
     "$type": "color",
     "description": "Table row hover background color."
   },
-  "table.cell-sortable-hover-bg": {
+  "table.cell-sortable.bg.hover": {
     "$value": "#f6f9fc",
     "$type": "color",
     "description": "Sortable table cell hover background color."
   },
-  "table.row-selected-bg": {
+  "table.row.bg.selected": {
     "$value": "rgba(110, 65, 191, 0.06)",
     "$type": "color",
     "description": "Selected table row background color."

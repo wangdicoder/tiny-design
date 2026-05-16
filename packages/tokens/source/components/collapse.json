@@ -28,19 +28,19 @@
     "$type": "color",
     "description": "Default collapse header background."
   },
-  "collapse.header-hover-bg": {
+  "collapse.header.bg.hover": {
     "$value": "{color-fill}",
     "$type": "color",
     "description": "Hover background for collapse headers.",
     "fallback": "--ty-color-fill"
   },
-  "collapse.header-active-bg": {
+  "collapse.header.bg.active": {
     "$value": "{color-fill}",
     "$type": "color",
     "description": "Background for expanded collapse headers.",
     "fallback": "--ty-color-fill"
   },
-  "collapse.header-disabled-bg": {
+  "collapse.header.bg.disabled": {
     "$value": "transparent",
     "$type": "color",
     "description": "Background for disabled collapse headers."
@@ -51,7 +51,7 @@
     "description": "Collapse header text color.",
     "fallback": "--ty-color-text"
   },
-  "collapse.header-disabled-color": {
+  "collapse.header.color.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Text color for disabled collapse headers.",
@@ -83,13 +83,13 @@
     "description": "Default collapse icon color.",
     "fallback": "--ty-collapse-header-color"
   },
-  "collapse.icon-active-color": {
+  "collapse.icon.color.active": {
     "$value": "{collapse.header-color}",
     "$type": "color",
     "description": "Expanded collapse icon color.",
     "fallback": "--ty-collapse-header-color"
   },
-  "collapse.icon-disabled-color": {
+  "collapse.icon.color.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Disabled collapse icon color.",
@@ -111,7 +111,7 @@
     "description": "Collapse extra content color.",
     "fallback": "--ty-color-text-secondary"
   },
-  "collapse.extra-disabled-color": {
+  "collapse.extra.color.disabled": {
     "$value": "{color-text-quaternary}",
     "$type": "color",
     "description": "Collapse extra content color for disabled panels.",
