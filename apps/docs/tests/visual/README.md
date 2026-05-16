@@ -17,3 +17,10 @@ pnpm test:visual:update
 
 The suite targets the docs app and uses the local Chrome channel to avoid storing
 browser binaries in the repository workflow.
+
+Accessibility coverage for the same high-risk component families lives in
+`apps/docs/tests/accessibility` and runs with:
+
+```sh
+pnpm test:accessibility
+```

@@ -18,6 +18,24 @@ describe('<InputNumber />', () => {
     expect(container.querySelector('input')).toBeDisabled();
   });
 
+  it('should omit infinite ARIA and number bounds', () => {
+    const { container } = render(<InputNumber />);
+    const input = container.querySelector('input')!;
+    expect(input).not.toHaveAttribute('min');
+    expect(input).not.toHaveAttribute('max');
+    expect(input).not.toHaveAttribute('aria-valuemin');
+    expect(input).not.toHaveAttribute('aria-valuemax');
+  });
+
+  it('should render finite ARIA and number bounds', () => {
+    const { container } = render(<InputNumber min={0} max={10} />);
+    const input = container.querySelector('input')!;
+    expect(input).toHaveAttribute('min', '0');
+    expect(input).toHaveAttribute('max', '10');
+    expect(input).toHaveAttribute('aria-valuemin', '0');
+    expect(input).toHaveAttribute('aria-valuemax', '10');
+  });
+
   it('should fire onChange', () => {
     const fn = jest.fn();
     const { container } = render(<InputNumber onChange={fn} />);

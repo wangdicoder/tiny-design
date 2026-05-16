@@ -1,7 +1,21 @@
 import React from 'react';
 import { BaseProps, SizeType } from '../_utils/props';
 
-export interface InputNumberProps extends BaseProps {
+export interface InputNumberProps
+  extends
+    BaseProps,
+    Omit<
+      React.ComponentPropsWithoutRef<'input'>,
+      | 'className'
+      | 'children'
+      | 'defaultValue'
+      | 'max'
+      | 'min'
+      | 'onChange'
+      | 'size'
+      | 'style'
+      | 'value'
+    > {
   min?: number;
   max?: number;
   step?: number;
@@ -16,5 +30,4 @@ export interface InputNumberProps extends BaseProps {
   disabled?: boolean;
   /** Determine whether always display the control button  */
   controls?: boolean;
-  children?: React.ReactNode;
 }

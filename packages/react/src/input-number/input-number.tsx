@@ -42,6 +42,7 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
     className,
     prefixCls: customisedCls,
     style,
+    ...inputProps
   } = props;
   const configContext = useContext(ConfigContext);
   const prefixCls = getPrefixCls('input-number', configContext.prefixCls, customisedCls);
@@ -50,14 +51,19 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
     [`${prefixCls}_disabled`]: disabled,
     [`${prefixCls}_always-controls`]: controls,
   });
-  const resolvedPrecision = precision ?? Math.max(getDecimalPrecision(step), getDecimalPrecision(defaultValue));
+  const resolvedPrecision =
+    precision ?? Math.max(getDecimalPrecision(step), getDecimalPrecision(defaultValue));
   const [value, setValue] = useState<number | undefined>(
     'value' in props ? (props.value as number) : defaultValue
   );
   const hasNumericValue = isFiniteNumber(value);
   const displayValue = hasNumericValue
-    ? (resolvedPrecision > 0 ? value.toFixed(resolvedPrecision) : String(value))
+    ? resolvedPrecision > 0
+      ? value.toFixed(resolvedPrecision)
+      : String(value)
     : '';
+  const minAttr = Number.isFinite(min) ? min : undefined;
+  const maxAttr = Number.isFinite(max) ? max : undefined;
 
   const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const raw = Number(e.target.value.trim());
@@ -97,18 +103,19 @@ const InputNumber = React.forwardRef<HTMLDivElement, InputNumberProps>((props, r
   return (
     <div ref={ref} className={cls} style={style}>
       <input
+        {...inputProps}
         autoComplete="off"
         disabled={disabled}
         value={displayValue}
         type="number"
         className={`${prefixCls}__input`}
-        max={max}
-        min={min}
+        max={maxAttr}
+        min={minAttr}
         step={step}
         onChange={inputOnChange}
         aria-valuenow={hasNumericValue ? value : undefined}
-        aria-valuemax={max}
-        aria-valuemin={min}
+        aria-valuemax={maxAttr}
+        aria-valuemin={minAttr}
         aria-disabled={disabled}
       />
       <div className={`${prefixCls}__controls`}>
