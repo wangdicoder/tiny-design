@@ -2,7 +2,7 @@
 
 > A friendly UI component set for React
 
-Tiny Design (`@tiny-design/react`) is a comprehensive React UI component library with 80+ components, built with TypeScript, supporting theming via `ConfigProvider` and design tokens.
+Tiny Design (`@tiny-design/react`) is a comprehensive React UI component library with 80+ exported React components, built with TypeScript, supporting theming via `ConfigProvider` and design tokens.
 
 - Docs: https://wangdicoder.github.io/tiny-design/
 - GitHub: https://github.com/wangdicoder/tiny-design

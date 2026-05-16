@@ -1,6 +1,6 @@
 # @tiny-design/react
 
-A friendly UI component library for React with 80+ components, theming, and i18n support.
+A friendly UI component library for React with 80+ exported components, theming, and i18n support.
 
 ## Install
 
@@ -31,22 +31,28 @@ function App() {
 ## Components
 
 ### Layout
-Flex, Layout, Row, Col, Space, Divider, AspectRatio
+
+AspectRatio, Divider, Flex, Grid, Layout, Row, Col, Space, Split, Waterfall
 
 ### Navigation
-Anchor, Breadcrumb, Menu, Link, Pagination, Steps, Tabs
+
+Anchor, Breadcrumb, Dropdown, Menu, Pagination, QuickActions, Steps
 
 ### Forms & Input
-Input, InputNumber, InputPassword, Textarea, Button, Checkbox, Radio, Select, NativeSelect, AutoComplete, Cascader, DatePicker, TimePicker, ColorPicker, Slider, Switch, Rate, Segmented, Upload, Transfer, Form
+
+Form, AutoComplete, Cascader, Checkbox, ColorPicker, DatePicker, Input, InputNumber, InputPassword, InputOTP, NativeSelect, Radio, Rate, Segmented, Select, Slider, SplitButton, Switch, Tabs, Textarea, TimePicker, Transfer, Upload
 
 ### Data Display
-Avatar, Badge, Card, Descriptions, Empty, Image, List, Table, Tag, Timeline, Tree, Typography, Progress, Statistic, Skeleton, Carousel
+
+Avatar, Badge, Calendar, Card, Carousel, Collapse, Countdown, Descriptions, Empty, Flip, List, Marquee, Popover, Progress, ScrollNumber, Statistic, Table, Tag, TextLoop, Timeline, Tooltip, Tree
 
 ### Feedback
-Modal, Drawer, Alert, Tooltip, Popover, PopConfirm, Notification, Message, Result, Loader, LoadingBar
 
-### Other
-Dropdown, SplitButton, Overlay, Countdown, CopyToClipboard, Flip, BackTop, Sticky, QuickActions, Split, ScrollIndicator, StrengthIndicator, Transition
+Alert, Drawer, Loader, LoadingBar, Message, Modal, Notification, Overlay, PopConfirm, Result, ScrollIndicator, Skeleton, StrengthIndicator, Tour
+
+### Foundation & Utilities
+
+Button, Image, Link, Typography, BackTop, ConfigProvider, CopyToClipboard, IntlProvider, Keyboard, Sticky, Transition
 
 ## Configuration
 
@@ -55,21 +61,17 @@ Use `ConfigProvider` to set global defaults:
 ```tsx
 import { ConfigProvider, zh_CN } from '@tiny-design/react';
 
-<ConfigProvider
-  theme="dark"
-  componentSize="lg"
-  locale={zh_CN}
->
+<ConfigProvider theme="dark" componentSize="lg" locale={zh_CN}>
   <App />
 </ConfigProvider>
 ```
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `theme` | `'light' \| 'dark' \| 'system' \| ThemeConfig` | `-` | Global theme mode or token config |
-| `componentSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Global component size |
-| `locale` | `Locale` | `-` | Locale for i18n |
-| `prefixCls` | `string` | `'ty'` | CSS class prefix |
+| Prop            | Type                                           | Default | Description                       |
+| --------------- | ---------------------------------------------- | ------- | --------------------------------- |
+| `theme`         | `'light' \| 'dark' \| 'system' \| ThemeConfig` | `-`     | Global theme mode or token config |
+| `componentSize` | `'sm' \| 'md' \| 'lg'`                         | `'md'`  | Global component size             |
+| `locale`        | `Locale`                                       | `-`     | Locale for i18n                   |
+| `prefixCls`     | `string`                                       | `'ty'`  | CSS class prefix                  |
 
 ## Theming
 

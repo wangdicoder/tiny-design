@@ -41,7 +41,7 @@
 
 ## Highlights
 
-- **80+ components** — buttons, forms, data display, navigation, feedback, and more
+- **86 documented component pages** — buttons, forms, data display, navigation, feedback, charts, icons, and more
 - **Visual Theme Editor** — 20+ built-in presets inspired by popular design systems; customise colours, typography, and spacing in real time without writing code
 - **Dark mode** — built-in light/dark themes with system preference detection and a `useTheme` hook
 - **TypeScript** — written in strict TypeScript with complete type definitions
@@ -110,25 +110,29 @@ See the [Theming Guide](https://wangdicoder.github.io/tiny-design/theme/customis
 
 ## Packages
 
-| Package | Description |
-| ------- | ----------- |
-| [@tiny-design/react](./packages/react) | Core component library |
-| [@tiny-design/tokens](./packages/tokens) | V2 design tokens and theme runtime |
-| [@tiny-design/icons](./packages/icons) | SVG icon components |
-| [@tiny-design/cli](./packages/cli) | CLI for the Tiny Design component library |
-| [@tiny-design/mcp](./packages/mcp) | MCP server for AI assistants to access the component library |
+| Package                                    | Description                                                  |
+| ------------------------------------------ | ------------------------------------------------------------ |
+| [@tiny-design/react](./packages/react)     | Core component library                                       |
+| [@tiny-design/tokens](./packages/tokens)   | V2 design tokens and theme runtime                           |
+| [@tiny-design/icons](./packages/icons)     | SVG icon components                                          |
+| [@tiny-design/charts](./packages/charts)   | Theme-aware chart components built on Recharts               |
+| [@tiny-design/cli](./packages/cli)         | CLI for the Tiny Design component library                    |
+| [@tiny-design/mcp](./packages/mcp)         | MCP server for AI assistants to access the component library |
+| [@tiny-design/extract](./packages/extract) | Internal metadata extractor used by the CLI and MCP packages |
 
 ## Components
 
-| Category | Count | Examples |
-| -------- | :---: | -------- |
-| Foundation | 5 | Button, Icon, Image, Link, Typography |
-| Layout | 7 | Grid, Flex, Space, Split, Divider, Aspect Ratio |
-| Navigation | 7 | Menu, Breadcrumb, Dropdown, Pagination, Steps, Anchor, SpeedDial |
-| Data Display | 19 | Card, Carousel, Collapse, Tag, Tooltip, Tree, Table |
-| Form | 22 | Input, Select, DatePicker, TimePicker, Checkbox, Radio, Slider |
-| Feedback | 13 | Modal, Drawer, Overlay, Message, Notification, Alert, Skeleton |
-| Miscellany | 5 | ConfigProvider, BackTop, Sticky, Keyboard, CopyToClipboard |
+The documentation currently covers 86 component pages across React, Icons, and Charts.
+
+| Category     | Count | Examples                                                                 |
+| ------------ | :---: | ------------------------------------------------------------------------ |
+| Foundation   |   5   | Button, Icon, Image, Link, Typography                                    |
+| Layout       |   9   | AspectRatio, Divider, Flex, Grid, Layout, Space, Split, Waterfall        |
+| Navigation   |   7   | Anchor, Breadcrumb, Dropdown, Menu, Pagination, QuickActions, Steps      |
+| Data Display |  23   | Avatar, Calendar, Card, Chart, Collapse, Table, Tooltip, Tree            |
+| Form         |  23   | AutoComplete, Cascader, DatePicker, InputOTP, Select, TimePicker, Upload |
+| Feedback     |  14   | Alert, Drawer, Modal, Overlay, Message, Notification, Skeleton, Tour     |
+| Miscellany   |   5   | ConfigProvider, BackTop, Sticky, Keyboard, CopyToClipboard               |
 
 ## Internationalization
 
@@ -140,16 +144,16 @@ import { ConfigProvider, zh_CN } from '@tiny-design/react';
 </ConfigProvider>
 ```
 
-| Locale | Language |
-| ------ | -------- |
+| Locale | Language          |
+| ------ | ----------------- |
 | en_US  | English (default) |
-| zh_CN  | 简体中文 |
+| zh_CN  | 简体中文          |
 
 ## Browser Support
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge" width="24px" height="24px" /><br>Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" /><br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /><br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" /><br>Safari |
-| --- | --- | --- | --- |
-| last 2 versions | last 2 versions | last 2 versions | last 2 versions |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| last 2 versions                                                                                                                                  | last 2 versions                                                                                                                                              | last 2 versions                                                                                                                                          | last 2 versions                                                                                                                                          |
 
 ## Contributing
 
@@ -158,6 +162,8 @@ pnpm install        # install dependencies
 pnpm dev            # start docs dev server
 pnpm build          # build all packages
 pnpm test           # run tests
+pnpm test:accessibility  # run Playwright + axe accessibility checks
+pnpm test:visual    # run Playwright visual regression checks
 pnpm lint           # lint code
 ```
 

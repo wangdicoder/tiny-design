@@ -1,6 +1,6 @@
 # @tiny-design/icons
 
-SVG icon components for React, part of the Tiny Design system. Includes 242 icons auto-generated from the icon font.
+SVG icon components for React, part of the Tiny Design system. Includes 243 icons auto-generated from the icon font.
 
 ## Install
 
@@ -32,10 +32,10 @@ function App() {
 
 All icons accept the following props (plus any standard SVG attributes):
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `string \| number` | `'1em'` | Width and height of the icon |
-| `color` | `string` | `'currentColor'` | Fill color |
+| Prop    | Type               | Default          | Description                  |
+| ------- | ------------------ | ---------------- | ---------------------------- |
+| `size`  | `string \| number` | `'1em'`          | Width and height of the icon |
+| `color` | `string`           | `'currentColor'` | Fill color                   |
 
 ### Spinning Icons
 

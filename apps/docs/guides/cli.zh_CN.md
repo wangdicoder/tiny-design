@@ -18,7 +18,7 @@ npm install -g @tiny-design/cli
 ## 快速开始
 
 ```bash
-tiny-design list                        # 列出所有 80+ 个组件（按分类）
+tiny-design list                        # 按分类列出 React 组件元数据
 tiny-design info Button                 # 组件属性、类型、默认值
 tiny-design doc Select                  # 完整的 Markdown 文档
 tiny-design demo Button Type            # 可运行的演示源代码
@@ -39,7 +39,7 @@ tiny-design usage ./src                 # 扫描项目中的导入统计
 | `tiny-design doc <component>`         | 组件的完整 Markdown 文档。                                                 |
 | `tiny-design demo <component> [name]` | 演示源代码（TSX）。未指定名称时列出可用演示。                              |
 | `tiny-design token [category]`        | 设计令牌值。分类：colors、typography、spacing、breakpoints、shadows。      |
-| `tiny-design icon [search]`           | 列出所有 240+ 个图标或按名称搜索。                                         |
+| `tiny-design icon [search]`           | 列出全部 243 个图标或按名称搜索。                                          |
 
 ### 项目分析
 

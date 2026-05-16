@@ -18,7 +18,7 @@ npm install -g @tiny-design/cli
 ## Quick Start
 
 ```bash
-tiny-design list                        # List all 80+ components by category
+tiny-design list                        # List React component metadata by category
 tiny-design info Button                 # Component props, types, defaults
 tiny-design doc Select                  # Full markdown documentation
 tiny-design demo Button Type            # Runnable demo source code
@@ -39,7 +39,7 @@ tiny-design usage ./src                 # Scan project for import stats
 | `tiny-design doc <component>`         | Full markdown documentation for a component.                                                                                  |
 | `tiny-design demo <component> [name]` | Demo source code (TSX). Lists available demos if no name is given.                                                            |
 | `tiny-design token [category]`        | Design token values. Categories: colors, typography, spacing, breakpoints, shadows.                                           |
-| `tiny-design icon [search]`           | List all 240+ icons or search by name.                                                                                        |
+| `tiny-design icon [search]`           | List all 243 icons or search by name.                                                                                         |
 
 ### Project Analysis
 
