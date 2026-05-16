@@ -4,8 +4,8 @@ import { gotoComponent, openFromDemo, previewByTitle, scrollDemoIntoView } from 
 test.describe('popup and interaction visuals', () => {
   test('button more types', async ({ page }) => {
     await gotoComponent(page, 'button');
-    await scrollDemoIntoView(page, 'More Types');
-    await expect(previewByTitle(page, 'More Types')).toHaveScreenshot('button-more-types.png');
+    await scrollDemoIntoView(page, 'Semantic Colors');
+    await expect(previewByTitle(page, 'Semantic Colors')).toHaveScreenshot('button-more-types.png');
   });
 
   test('button disabled states', async ({ page }) => {
@@ -81,19 +81,25 @@ test.describe('popup and interaction visuals', () => {
   test('form size alignment', async ({ page }) => {
     await gotoComponent(page, 'form');
     await scrollDemoIntoView(page, 'Size Alignment');
-    await expect(previewByTitle(page, 'Size Alignment')).toHaveScreenshot('form-size-alignment.png');
+    await expect(previewByTitle(page, 'Size Alignment')).toHaveScreenshot(
+      'form-size-alignment.png'
+    );
   });
 
   test('cascader default value', async ({ page }) => {
     await gotoComponent(page, 'cascader');
     await scrollDemoIntoView(page, 'Default Value');
-    await expect(previewByTitle(page, 'Default Value')).toHaveScreenshot('cascader-default-value.png');
+    await expect(previewByTitle(page, 'Default Value')).toHaveScreenshot(
+      'cascader-default-value.png'
+    );
   });
 
   test('cascader disabled options', async ({ page }) => {
     await gotoComponent(page, 'cascader');
     await scrollDemoIntoView(page, 'Disabled Options');
-    await expect(previewByTitle(page, 'Disabled Options')).toHaveScreenshot('cascader-disabled-options.png');
+    await expect(previewByTitle(page, 'Disabled Options')).toHaveScreenshot(
+      'cascader-disabled-options.png'
+    );
   });
 
   test('time picker controlled', async ({ page }) => {

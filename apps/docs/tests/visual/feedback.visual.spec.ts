@@ -4,8 +4,8 @@ import { gotoComponent, openFromDemo, previewByTitle, scrollDemoIntoView } from 
 test.describe('feedback and data visuals', () => {
   test('button types', async ({ page }) => {
     await gotoComponent(page, 'button');
-    await scrollDemoIntoView(page, 'Type');
-    await expect(previewByTitle(page, 'Type')).toHaveScreenshot('button-types.png');
+    await scrollDemoIntoView(page, 'Variant');
+    await expect(previewByTitle(page, 'Variant')).toHaveScreenshot('button-types.png');
   });
 
   test('modal open state', async ({ page }) => {
