@@ -11,7 +11,7 @@ npm install -g @tiny-design/cli
 ## Quick Start
 
 ```bash
-tiny-design list                        # List all 80+ components by category
+tiny-design list                        # List extracted React component metadata by category
 tiny-design info Button                 # Component props, types, defaults
 tiny-design doc Select                  # Full markdown documentation
 tiny-design demo Button Type            # Runnable demo source code
@@ -25,29 +25,29 @@ tiny-design usage ./src                 # Scan project for import stats
 
 ### Knowledge Query
 
-| Command | Description |
-|---------|-------------|
-| `tiny-design list [category]` | List all components grouped by category |
-| `tiny-design info <component>` | Props table with types, required flags, default values |
-| `tiny-design doc <component>` | Full markdown documentation |
-| `tiny-design demo <component> [name]` | Demo source code (TSX) |
-| `tiny-design token [category]` | Design token values (colors, typography, spacing, breakpoints, shadows) |
-| `tiny-design icon [search]` | List all 240+ icons or search by name |
+| Command                               | Description                                                             |
+| ------------------------------------- | ----------------------------------------------------------------------- |
+| `tiny-design list [category]`         | List all components grouped by category                                 |
+| `tiny-design info <component>`        | Props table with types, required flags, default values                  |
+| `tiny-design doc <component>`         | Full markdown documentation                                             |
+| `tiny-design demo <component> [name]` | Demo source code (TSX)                                                  |
+| `tiny-design token [category]`        | Design token values (colors, typography, spacing, breakpoints, shadows) |
+| `tiny-design icon [search]`           | List all 243 icons or search by name                                    |
 
 ### Project Analysis
 
-| Command | Description |
-|---------|-------------|
-| `tiny-design doctor` | Diagnose project setup (React version, peer deps, duplicates) |
-| `tiny-design usage [dir]` | Scan for `@tiny-design/react` import statistics |
+| Command                   | Description                                                   |
+| ------------------------- | ------------------------------------------------------------- |
+| `tiny-design doctor`      | Diagnose project setup (React version, peer deps, duplicates) |
+| `tiny-design usage [dir]` | Scan for `@tiny-design/react` import statistics               |
 
 ### Global Flags
 
-| Flag | Description | Default |
-|------|-------------|---------|
-| `--format json\|text\|markdown` | Output format | `text` |
-| `--lang en\|zh` | Output language | `en` |
-| `--detail` | Include extended information | `false` |
+| Flag                            | Description                  | Default |
+| ------------------------------- | ---------------------------- | ------- |
+| `--format json\|text\|markdown` | Output format                | `text`  |
+| `--lang en\|zh`                 | Output language              | `en`    |
+| `--detail`                      | Include extended information | `false` |
 
 ## Usage with AI Tools
 
